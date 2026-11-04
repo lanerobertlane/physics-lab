@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wave Machine · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #waves { aspect-ratio: 800 / 500; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .stage-bar .spacer { flex: 1; }
+    .ctl { margin-bottom: 12px; }
+    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
+    .ctl label b { color: var(--text); }
+    .compare { width: 100%; border-collapse: collapse; font-size: .92rem; }
+    .compare th, .compare td { border: 1px solid var(--border-strong); padding: 6px 8px; text-align: left; vertical-align: top; }
+    .compare th { background: var(--surface-2); }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Transverse and longitudinal waves</h1>
+      <p>Watch the red particle: it only moves back and forth around one place. The wave moves along, carrying energy, but the particles don't travel with it.</p>
+    </div>
+
+    <div class="btn-row" id="modes" style="margin-bottom:12px">
+      <button class="btn" data-mode="both">Both</button>
+      <button class="btn" data-mode="transverse">Transverse</button>
+      <button class="btn" data-mode="longitudinal">Longitudinal</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="waves" aria-label="Animated waves"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="pause">❚❚ Pause</button>
+            <select class="select" id="speed" aria-label="Speed">
+              <option value="1">Real speed</option>
+              <option value="0.5">Slow motion</option>
+              <option value="0.2">Very slow</option>
+            </select>
+            <span class="spacer"></span>
+            <label class="toggle"><input type="checkbox" id="labels" checked> Labels</label>
+            <label class="toggle"><input type="checkbox" id="graph"> Displacement graph (longitudinal)</label>
+          </div>
+        </div>
+
+        <div class="panel after-aside">
+          <h2>Compare</h2>
+          <table class="compare">
+            <tr><th></th><th>Transverse</th><th>Longitudinal</th></tr>
+            <tr><th>Oscillations</th><td><b>Perpendicular</b> (at 90°) to the direction of energy transfer</td><td><b>Parallel</b> to the direction of energy transfer</td></tr>
+            <tr><th>Features</th><td>Crests (peaks) and troughs</td><td>Compressions and rarefactions</td></tr>
+            <tr><th>Examples</th><td>Ripples on water, electromagnetic waves (light), waves on a string, S-waves</td><td>Sound waves, P-waves, a slinky pushed and pulled</td></tr>
+            <tr><th>Needs a medium?</th><td>EM waves can travel through a vacuum</td><td>Yes: sound cannot travel through a vacuum</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <aside>
+        <div class="panel">
+          <h2>Wave</h2>
+          <div class="ctl">
+            <label for="freq">Frequency (f) <b id="freq-val"></b></label>
+            <input type="range" id="freq" min="0.25" max="2" step="0.05" value="0.5">
+          </div>
+          <div class="ctl">
+            <label for="vel">Wave speed (v) <b id="vel-val"></b></label>
+            <input type="range" id="vel" min="5" max="20" step="1" value="10">
+          </div>
+          <div class="ctl">
+            <label for="amp">Amplitude (A) <b id="amp-val"></b></label>
+            <input type="range" id="amp" min="0.5" max="3" step="0.1" value="2">
+          </div>
+        </div>
+        <div class="panel">
+          <h2>Working</h2>
+          <div class="working" id="working" style="margin:0"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/waves.js"></script>
+</body>
+</html>

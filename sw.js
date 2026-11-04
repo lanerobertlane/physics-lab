@@ -2,7 +2,7 @@
 // Network first (so updates show straight away), falling back to the saved copy.
 // Bump VERSION when adding new files to PRECACHE.
 
-const VERSION = 'physkit-v9';
+const VERSION = 'physkit-v11';
 const PRECACHE = [
   './',
   'index.html',
@@ -25,6 +25,12 @@ const PRECACHE = [
   'tools/ripple-tank.html',
   'js/light-box.js',
   'tools/light-box.html',
+  'js/states.js',
+  'tools/states.html',
+  'js/gas.js',
+  'tools/gas.html',
+  'js/waves.js',
+  'tools/waves.html',
   'tools/resultant-forces.html',
   'tools/third-law.html',
   'tools/em-spectrum.html',

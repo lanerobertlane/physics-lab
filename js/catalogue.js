@@ -44,8 +44,8 @@ const TOOLS = [
   // Waves
   { topic: 'waves', icon: 'spectrum', name: 'Electromagnetic spectrum', href: 'tools/em-spectrum.html', ks3: true, gcse: true, ht: true,
     desc: 'Explore every region: wavelength, frequency, uses, dangers and how it is made.' },
-  { topic: 'waves', icon: 'wave', name: 'Wave machine', gcse: true, ks3: true,
-    desc: 'Transverse and longitudinal waves with v = fλ checked live.' },
+  { topic: 'waves', icon: 'wave', name: 'Transverse & longitudinal waves', href: 'tools/waves.html', gcse: true, ks3: true,
+    desc: 'Beads on a string and a slinky side by side: crests, troughs, compressions and rarefactions, with v = fλ.' },
   { topic: 'waves', icon: 'ripple', name: 'Ripple tank', href: 'tools/ripple-tank.html', gcse: true, ks3: true, rp: true,
     desc: 'Reflection, refraction and diffraction, with a ruler and strobe for the required practical.' },
   { topic: 'waves', icon: 'ray', name: 'Light box & lenses', href: 'tools/light-box.html', gcse: true, po: true, ks3: true, rp: true,
@@ -60,10 +60,10 @@ const TOOLS = [
     desc: 'Heat a block, plot the heating curve and calculate c.' },
 
   // Particles
-  { topic: 'particles', icon: 'particles', name: 'States of matter', gcse: true, ks3: true,
-    desc: 'Particle model of solids, liquids and gases as temperature changes.' },
-  { topic: 'particles', icon: 'gas', name: 'Gas pressure', gcse: true, po: true,
-    desc: 'Link pressure, volume and temperature for a gas in a box.' },
+  { topic: 'particles', icon: 'particles', name: 'States of matter', href: 'tools/states.html', gcse: true, ks3: true,
+    desc: 'Heat or cool water and watch the particles. Heating curve, latent heat and internal energy.' },
+  { topic: 'particles', icon: 'gas', name: 'Gas pressure', href: 'tools/gas.html', gcse: true, po: true, ht: true, ks3: true,
+    desc: 'Particles in a cylinder with a piston: pressure, volume and temperature, with pV = constant.' },
 
   // Atomic
   { topic: 'atomic', icon: 'atom', name: 'Atom builder', gcse: true, ks3: true,

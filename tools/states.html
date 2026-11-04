@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>States of Matter · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #box { aspect-ratio: 800 / 460; }
+    #curve { width: 100%; aspect-ratio: 800 / 260; display: block; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .stage-bar .spacer { flex: 1; }
+    .temp { font-family: var(--font-head); font-size: 2.2rem; font-weight: 700; color: var(--answer, var(--text)); line-height: 1.1; }
+    .phase { font-weight: 700; font-size: 1.1rem; margin-top: 2px; }
+    .ebar { display: grid; grid-template-columns: 110px 1fr 70px; gap: 8px; align-items: center; margin: 6px 0; font-size: .9rem; font-weight: 700; }
+    .ebar .track { display: block; height: 16px; background: var(--surface-2); border-radius: 4px; overflow: hidden; }
+    .ebar .fill { height: 100%; }
+    .ebar .amount { text-align: right; font-variant-numeric: tabular-nums; color: var(--answer, var(--text)); }
+    .ctl { margin-bottom: 12px; }
+    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
+    .ctl label b { color: var(--text); }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>States of matter</h1>
+      <p>Heat or cool 1 g of water and watch what the particles do. The heating curve shows how the temperature changes, and why it stays the same while the state is changing.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="box" aria-label="Particles in a container"></canvas>
+          <div class="stage-bar">
+            <button class="btn" id="heat">🔥 Heat</button>
+            <button class="btn" id="cool">❄ Cool</button>
+            <button class="btn" id="stop">■ Stop</button>
+            <button class="btn" id="reset">↺ Reset</button>
+            <span class="spacer"></span>
+            <select class="select" id="speed" aria-label="Speed">
+              <option value="2">Normal speed</option>
+              <option value="6">Fast</option>
+              <option value="15">Very fast</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="panel after-aside">
+          <h2>Heating curve</h2>
+          <canvas id="curve" aria-label="Temperature against time"></canvas>
+        </div>
+      </div>
+
+      <aside>
+        <div class="panel">
+          <div class="temp" id="temp"></div>
+          <div class="phase" id="phase"></div>
+          <p class="note" id="explain"></p>
+        </div>
+
+        <div class="panel">
+          <h2>Internal energy</h2>
+          <div class="ebar"><span>Kinetic</span><span class="track"><span class="fill" id="ke-bar" style="display:block; background: var(--f2)"></span></span><span class="amount" id="ke-num"></span></div>
+          <div class="ebar"><span>Potential</span><span class="track"><span class="fill" id="pe-bar" style="display:block; background: var(--f1)"></span></span><span class="amount" id="pe-num"></span></div>
+          <p class="note">Internal energy is the total kinetic and potential energy of all the particles. Heating raises the <b>kinetic</b> energy (temperature goes up) or, during a change of state, the <b>potential</b> energy (bonds are broken, temperature stays the same).</p>
+        </div>
+
+        <div class="panel">
+          <h2>Heater</h2>
+          <div class="ctl">
+            <label for="power">Power <b id="power-val"></b></label>
+            <input type="range" id="power" min="10" max="100" step="5" value="50">
+          </div>
+          <p class="note">Water: specific heat capacity 4200 J/kg °C (liquid), specific latent heat of fusion 334 000 J/kg, of vaporisation 2 260 000 J/kg.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/states.js"></script>
+</body>
+</html>
