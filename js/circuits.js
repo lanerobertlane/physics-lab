@@ -710,11 +710,14 @@ function renderSelected() {
 
   let controls = '';
   if ('value' in T && T.choices) {
-    controls += `<div class="ctl"><label for="c-val">Rating</label><select class="select" id="c-val">${T.choices.map((v) => `<option value="${v}" ${v === c.value ? 'selected' : ''}>${v} A</option>`).join('')}</select></div>`;
+    controls += `<div class="ctl ctl-step"><span>Rating</span><div class="stepper">
+      <button data-step="-1" aria-label="Lower rating">−</button><output>${c.value} A</output><button data-step="1" aria-label="Higher rating">+</button></div></div>`;
   } else if ('value' in T && T.slider) {
     controls += `<div class="ctl-wide"><label class="note" style="margin:0" for="c-val">Resistance: <b id="c-val-out">${fmtR(c.value)}</b></label><input type="range" id="c-val" min="${T.min}" max="${T.max}" step="${T.step}" value="${c.value}"></div>`;
   } else if ('value' in T) {
-    controls += `<div class="ctl"><label for="c-val">${c.type === 'resistor' ? 'Resistance' : 'Voltage'} (${T.unit})</label><input type="number" id="c-val" min="${T.min}" max="${T.max}" step="${T.step}" value="${c.value}" inputmode="decimal"></div>`;
+    const what = c.type === 'resistor' ? 'resistance' : 'voltage';
+    controls += `<div class="ctl ctl-step"><label for="c-val">${what[0].toUpperCase() + what.slice(1)} (${T.unit})</label><div class="stepper">
+      <button data-step="-1" aria-label="Lower ${what}">−</button><input type="number" id="c-val" min="${T.min}" max="${T.max}" step="any" value="${c.value}" inputmode="decimal"><button data-step="1" aria-label="Higher ${what}">+</button></div></div>`;
   }
   const btns = [];
   if (T.polar) btns.push('<button class="btn" id="c-flip">⇄ Turn round</button>');
@@ -729,6 +732,19 @@ function renderSelected() {
     <div class="btn-row" style="margin-top:10px">${btns.join('')}</div>
     <p class="note">${DESCRIPTIONS[c.type] || ''}</p>`;
   $('sel-icon').appendChild(paletteIcon(c.type));
+
+  // − / + buttons: step through the fuse ratings, or nudge a value by a sensible amount.
+  el.querySelectorAll('[data-step]').forEach((btn) => btn.addEventListener('click', () => {
+    const dir = Number(btn.dataset.step);
+    if (T.choices) {
+      const i = Math.max(0, Math.min(T.choices.length - 1, T.choices.indexOf(c.value) + dir));
+      c.value = T.choices[i];
+      c.blown = false;
+    } else {
+      c.value = Math.max(T.min, Math.min(T.max, parseFloat((c.value + dir * stepFor(T, dir > 0 ? c.value : c.value - 1e-9)).toFixed(2))));
+    }
+    changed();
+  }));
 
   const val = $('c-val');
   if (val) {
@@ -747,6 +763,12 @@ function renderSelected() {
   on('c-toggle', () => { c.open = !c.open; changed(); });
   on('c-replace', () => { c.blown = false; changed(); });
   on('c-delete', () => { state.comps.delete(key); state.selected = null; changed(); });
+}
+
+// How much one press of − or + changes a value. Resistances take bigger steps as they grow.
+function stepFor(T, v) {
+  if (T.unit !== 'Ω') return T.step;
+  return v < 10 ? 1 : v < 50 ? 5 : v < 100 ? 10 : v < 500 ? 50 : 100;
 }
 
 function readoutHtml(key) {
