@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Electromagnetism · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #em { aspect-ratio: 800 / 480; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .ctl { margin-bottom: 12px; }
+    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
+    .ctl label b { color: var(--text); }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Electromagnetism</h1>
+      <p id="intro"></p>
+    </div>
+
+    <div class="btn-row" id="modes" style="margin-bottom:12px"></div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="em" aria-label="Electromagnetism simulation"></canvas>
+          <div class="stage-bar" id="bar"></div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="panel" id="controls"></div>
+        <div class="panel" id="info"></div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/electromagnetism.js"></script>
+</body>
+</html>
