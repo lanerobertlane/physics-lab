@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Efficiency · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .devices { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+    .devices .btn { min-height: 54px; }
+    .split { display: flex; height: 64px; border-radius: var(--radius-sm); overflow: hidden; margin: 14px 0 6px; font-weight: 700; color: #fff; }
+    .split > div { display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 6px; min-width: 0; transition: width .3s ease; white-space: nowrap; overflow: hidden; }
+    .useful { background: #2e9e57; }
+    .wasted { background: #d4553a; }
+    .legend { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: .93rem; }
+    .legend b { display: block; }
+    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
+    .ctl label b { color: var(--text); }
+    .calc { display: grid; grid-template-columns: 1fr 120px; gap: 8px; align-items: center; margin: 8px 0; }
+    .calc input { min-height: 40px; padding: 4px 8px; border-radius: var(--radius-sm); border: 1px solid var(--border-strong); background: var(--surface); width: 100%; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Efficiency</h1>
+      <p>No device turns all of its input energy into the useful kind. Pick a device to see where its energy goes, then use the calculator for your own questions.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel">
+          <h2>Choose a device</h2>
+          <div class="devices" id="devices"></div>
+          <div class="split" id="split"></div>
+          <div class="legend" id="legend"></div>
+          <div class="ctl" style="margin-top:14px">
+            <label for="time">Running for <b id="time-val"></b></label>
+            <input type="range" id="time" min="1" max="600" step="1" value="60">
+          </div>
+          <div class="working" id="working"></div>
+          <p class="note" id="improve"></p>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Calculator</h2>
+          <div class="field"><label for="find">Find</label>
+            <select class="select" id="find">
+              <option value="eff">Efficiency</option>
+              <option value="useful">Useful output</option>
+              <option value="total">Total input</option>
+            </select></div>
+          <div id="calc-inputs"></div>
+          <div class="working" id="calc-out"></div>
+          <p class="note">Use energy (J) or power (W) — just use the same for both. Efficiency can be a decimal (0.25) or a percentage (25%).</p>
+        </div>
+        <div class="panel">
+          <h2>Remember</h2>
+          <ul style="margin:0; padding-left:18px; font-size:.93rem">
+            <li>efficiency = useful output energy transfer ÷ total input energy transfer</li>
+            <li>efficiency = useful power output ÷ total power input</li>
+            <li>Wasted energy is usually <b>dissipated</b> to the surroundings as thermal energy, so it spreads out and is less useful.</li>
+            <li>Efficiency is never more than 1 (100%): energy can't be created.</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/efficiency.js"></script>
+</body>
+</html>

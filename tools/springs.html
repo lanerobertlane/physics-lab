@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Springs &amp; Hooke's Law · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #rig { aspect-ratio: 520 / 560; max-width: 460px; margin: 0 auto; }
+    #fe { width: 100%; aspect-ratio: 270 / 220; display: block; margin-top: 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    .rig-wrap { padding: 10px; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .results { width: 100%; border-collapse: collapse; margin-top: 10px; font-variant-numeric: tabular-nums; font-size: .9rem; }
+    .results th, .results td { border: 1px solid var(--border-strong); padding: 4px 6px; text-align: center; }
+    .results th { background: var(--surface-2); }
+    .results td.n { color: var(--answer, inherit); }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Springs and Hooke's law</h1>
+      <p>Hang masses on the spring and read the length from the ruler. Work out the extension, then plot force against extension. The gradient of the straight part is the spring constant.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <div class="rig-wrap"><canvas id="rig" aria-label="Spring hanging from a clamp stand next to a ruler"></canvas></div>
+          <div class="stage-bar">
+            <button class="btn" id="add">＋ Add 100 g</button>
+            <button class="btn" id="remove">− Remove 100 g</button>
+            <select class="select" id="spring" aria-label="Spring">
+              <option value="a">Spring A</option>
+              <option value="b">Spring B (stiffer)</option>
+              <option value="c">Spring C (mystery)</option>
+            </select>
+            <button class="btn" id="fresh">New spring</button>
+          </div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Now</h2>
+          <dl class="readout" id="readout"></dl>
+          <p class="note" id="warn"></p>
+        </div>
+        <div class="panel">
+          <h2>Results</h2>
+          <div class="btn-row">
+            <button class="btn primary" id="record">＋ Record reading</button>
+            <button class="btn" id="clear">Clear</button>
+          </div>
+          <label class="toggle" style="margin-top:6px"><input type="checkbox" id="auto-length" checked> Show the length (untick to read the ruler yourself)</label>
+          <div id="table"></div>
+          <canvas id="fe" aria-label="Force against extension graph"></canvas>
+          <div class="working" id="kcalc"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/springs.js"></script>
+</body>
+</html>

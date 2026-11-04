@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Moments · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #beam { aspect-ratio: 800 / 420; cursor: pointer; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .side { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .side > div { background: var(--surface-2); border-radius: var(--radius-sm); padding: 10px; font-variant-numeric: tabular-nums; font-size: .9rem; }
+    .side b.total { display: block; font-size: 1.2rem; color: var(--answer, inherit); margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Moments</h1>
+      <p>Choose a weight, then tap a hook on the beam to hang it there. Tap a weight to take it off. The beam balances when the clockwise and anticlockwise moments are equal.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="beam" aria-label="Balanced beam with weights"></canvas>
+          <div class="stage-bar">
+            <div class="chip-group" id="weights">
+              <button class="chip" data-w="1" aria-pressed="true">1 N</button>
+              <button class="chip" data-w="2" aria-pressed="false">2 N</button>
+              <button class="chip" data-w="5" aria-pressed="false">5 N</button>
+            </div>
+            <select class="select" id="preset" aria-label="Examples"></select>
+            <button class="btn" id="clear">Clear</button>
+          </div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Moments about the pivot</h2>
+          <div class="side" id="sides"></div>
+          <p style="margin:10px 0 0" id="verdict"></p>
+        </div>
+        <div class="panel">
+          <h2>Remember</h2>
+          <ul style="margin:0; padding-left:18px; font-size:.93rem">
+            <li>A <b>moment</b> is the turning effect of a force: <b>M = F d</b>, where d is the perpendicular distance from the pivot to the line of the force.</li>
+            <li><b>Principle of moments:</b> when an object is balanced, the total clockwise moment equals the total anticlockwise moment.</li>
+            <li>A small force a long way from the pivot can balance a big force close to it. That's how levers make jobs easier.</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/moments.js"></script>
+</body>
+</html>

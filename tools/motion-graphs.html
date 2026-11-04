@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Motion Graphs · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #road { aspect-ratio: 800 / 150; }
+    .graphs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .graphs canvas { width: 100%; aspect-ratio: 400 / 260; display: block; }
+    @media (max-width: 700px) { .graphs { grid-template-columns: 1fr; } }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .pedal { min-width: 110px; min-height: 52px; font-size: 1rem; touch-action: none; user-select: none; -webkit-user-select: none; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Motion graphs</h1>
+      <p>Drive the car (hold the pedals) or play a ready-made journey, and watch the distance–time and velocity–time graphs being drawn.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="road" aria-label="Car on a road"></canvas>
+          <div class="stage-bar">
+            <button class="btn pedal" id="accel">⬆ Accelerate</button>
+            <button class="btn pedal" id="brake">⬇ Brake</button>
+            <button class="btn primary" id="play">▶ Start</button>
+            <button class="btn" id="reset">↺ Reset</button>
+            <select class="select" id="journey" aria-label="Ready-made journey"></select>
+          </div>
+        </div>
+        <div class="panel after-aside">
+          <div class="graphs">
+            <canvas id="dt" aria-label="Distance against time"></canvas>
+            <canvas id="vt" aria-label="Velocity against time"></canvas>
+          </div>
+          <label class="toggle"><input type="checkbox" id="area"> Shade the area under the velocity–time graph</label>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Now</h2>
+          <dl class="readout" id="readout"></dl>
+        </div>
+        <div class="panel">
+          <h2>Reading the graphs</h2>
+          <ul style="margin:0; padding-left:18px; font-size:.93rem">
+            <li><b>Distance–time:</b> the gradient (slope) is the <b>speed</b>. A flat line means stopped; a steeper line means faster; a curve means the speed is changing.</li>
+            <li><b>Velocity–time:</b> the gradient is the <b>acceleration</b>. A flat line means constant speed; sloping down means slowing down.</li>
+            <li>The <b>area under</b> a velocity–time graph is the <b>distance travelled</b> <span class="tag ht">Higher</span></li>
+            <li>a = Δv ÷ t &nbsp;·&nbsp; distance = speed × time</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/motion-graphs.js"></script>
+</body>
+</html>

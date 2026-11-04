@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Specific Heat Capacity · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #rig { aspect-ratio: 800 / 380; }
+    #graph { width: 100%; aspect-ratio: 270 / 220; display: block; margin-top: 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .results { width: 100%; border-collapse: collapse; margin-top: 10px; font-variant-numeric: tabular-nums; font-size: .9rem; }
+    .results th, .results td { border: 1px solid var(--border-strong); padding: 4px 6px; text-align: center; }
+    .results th { background: var(--surface-2); }
+    .results td.n { color: var(--answer, inherit); }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Specific heat capacity</h1>
+      <p>Heat a 1 kg block with an electric heater. Record the energy supplied (from the joulemeter) and the temperature, then work out the specific heat capacity with c = ΔE ÷ (m Δθ).</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="rig" aria-label="Metal block with a heater and thermometer"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="heat">🔥 Switch heater on</button>
+            <button class="btn" id="reset">↺ Cool down and reset</button>
+            <select class="select" id="speed" aria-label="Speed">
+              <option value="1">Real time</option>
+              <option value="10" selected>10 × faster</option>
+              <option value="30">30 × faster</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="panel after-aside">
+          <h2>Method</h2>
+          <ol style="margin:0; padding-left:20px; font-size:.94rem">
+            <li>Measure the mass of the block (1 kg here) and its starting temperature.</li>
+            <li>Switch on the heater. Every minute, record the energy on the joulemeter and the temperature.</li>
+            <li>Work out the change in energy (ΔE) and the change in temperature (Δθ) since the start. Then <b>c = ΔE ÷ (m Δθ)</b>.</li>
+            <li>Try it with and without insulation. Without it, energy is lost to the surroundings, so your value of c comes out too high.</li>
+          </ol>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Set-up</h2>
+          <div class="field"><label for="mat">Block</label>
+            <select class="select" id="mat">
+              <option value="aluminium">Aluminium</option>
+              <option value="copper">Copper</option>
+              <option value="iron">Iron</option>
+              <option value="water">Water (in a beaker)</option>
+            </select></div>
+          <label class="toggle"><input type="checkbox" id="insulate" checked> Insulation around the block</label>
+          <dl class="readout" id="readout" style="margin-top:10px"></dl>
+        </div>
+        <div class="panel">
+          <h2>Results</h2>
+          <div class="btn-row">
+            <button class="btn primary" id="record">＋ Record reading</button>
+            <button class="btn" id="clear">Clear</button>
+          </div>
+          <div id="table"></div>
+          <canvas id="graph" aria-label="Temperature against energy supplied"></canvas>
+          <div class="working" id="answer"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/shc.js"></script>
+</body>
+</html>
