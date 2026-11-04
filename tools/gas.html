@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gas Pressure · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #gas { aspect-ratio: 800 / 440; }
+    #pgraph { width: 100%; aspect-ratio: 270 / 220; display: block; margin-top: 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .ctl { margin-bottom: 12px; }
+    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
+    .ctl label b { color: var(--text); }
+    .results { width: 100%; border-collapse: collapse; margin-top: 10px; font-variant-numeric: tabular-nums; font-size: .92rem; }
+    .results th, .results td { border: 1px solid var(--border-strong); padding: 4px 6px; text-align: center; }
+    .results th { background: var(--surface-2); }
+    .results td.n { color: var(--answer, inherit); }
+    .results .del { border: 0; background: none; color: var(--muted); cursor: pointer; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Gas pressure</h1>
+      <p>Gas particles move randomly and hit the walls of the container. Each collision pushes on the wall, which is what causes the pressure. Drag the piston to change the volume, or change the temperature.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="gas" aria-label="Gas particles in a cylinder with a piston"></canvas>
+          <div class="stage-bar">
+            <label class="toggle"><input type="checkbox" id="iso" checked> Keep the temperature constant</label>
+            <label class="toggle"><input type="checkbox" id="trail"> Follow one particle</label>
+          </div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="panel">
+          <h2>Controls</h2>
+          <div class="ctl">
+            <label for="volume">Volume <b id="volume-val"></b></label>
+            <input type="range" id="volume" min="25" max="100" step="1" value="100">
+          </div>
+          <div class="ctl">
+            <label for="temp">Temperature <b id="temp-val"></b></label>
+            <input type="range" id="temp" min="100" max="600" step="10" value="300">
+          </div>
+          <div class="ctl">
+            <label for="count">Number of particles <b id="count-val"></b></label>
+            <input type="range" id="count" min="20" max="200" step="10" value="100">
+          </div>
+          <p class="note" id="iso-note"></p>
+        </div>
+
+        <div class="panel">
+          <h2>Results</h2>
+          <div class="btn-row">
+            <button class="btn primary" id="record">＋ Record reading</button>
+            <button class="btn" id="clear-results">Clear</button>
+          </div>
+          <div class="field" style="margin-top:10px">
+            <label for="axis">Graph</label>
+            <select class="select" id="axis">
+              <option value="V">Pressure against volume</option>
+              <option value="T">Pressure against temperature</option>
+            </select>
+          </div>
+          <div id="table"></div>
+          <canvas id="pgraph" aria-label="Graph of results"></canvas>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/gas.js"></script>
+</body>
+</html>
