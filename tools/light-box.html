@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Light Box &amp; Lenses · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #optics { aspect-ratio: 800 / 500; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .ctl { margin-bottom: 12px; }
+    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
+    .ctl label b { color: var(--text); }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Light box &amp; lenses</h1>
+      <p>Drag the light box to move it, and drag its round handle to turn it. Measure the angles from the normal (the dashed line at 90° to the surface).</p>
+    </div>
+
+    <div class="btn-row" id="scenes" style="margin-bottom:12px"></div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="optics" aria-label="Light rays"></canvas>
+          <div class="stage-bar" id="box-bar">
+            <button class="btn" data-turn="-5">⟲ 5°</button>
+            <button class="btn" data-turn="-1">⟲ 1°</button>
+            <button class="btn" data-turn="1">⟳ 1°</button>
+            <button class="btn" data-turn="5">⟳ 5°</button>
+            <select class="select" id="beam" aria-label="Number of rays">
+              <option value="1">Single ray</option>
+              <option value="3">Three rays</option>
+              <option value="5">Wide beam (5 rays)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="panel">
+          <h2>Measurements</h2>
+          <div id="readout"></div>
+        </div>
+        <div class="panel" id="settings"></div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/light-box.js"></script>
+</body>
+</html>

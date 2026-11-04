@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bar Magnet Fields · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #field { aspect-ratio: 800 / 520; cursor: grab; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .stage-bar .note { margin: 0; }
+    .views { display: grid; gap: 2px; }
+    .pair { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+    .pair:last-child { border-bottom: 0; }
+    .rules { margin: 0; padding-left: 18px; font-size: .94rem; }
+    .rules li { margin: 4px 0; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Bar magnet fields</h1>
+      <p>Drag magnets to move them. Tap a magnet, then drag its round handle (or use the buttons) to turn it. Add a plotting compass and drag it around the field.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="field" aria-label="Magnetic field"></canvas>
+          <div class="stage-bar">
+            <button class="btn" id="add-magnet">＋ Magnet</button>
+            <button class="btn" id="add-iron">＋ Iron bar</button>
+            <button class="btn" id="add-compass">＋ Compass</button>
+            <button class="btn" id="clear-marks" hidden>Clear compass marks</button>
+          </div>
+        </div>
+
+        <div class="panel after-aside">
+          <h2>Remember</h2>
+          <ul class="rules">
+            <li><b>Like poles repel</b> (N–N or S–S). <b>Unlike poles attract</b> (N–S).</li>
+            <li>Field lines go from the <b>north</b> pole to the <b>south</b> pole.</li>
+            <li>The field is <b>strongest at the poles</b>, where the lines are closest together.</li>
+            <li>A compass needle lines up with the field. Its north end points along the field line.</li>
+            <li>An <b>induced magnet</b> (like the iron bar) only becomes magnetic in a field, and is <b>always attracted</b>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <aside>
+        <div class="panel">
+          <h2>Selected</h2>
+          <div id="selected"></div>
+        </div>
+
+        <div class="panel" id="forces-panel" hidden>
+          <h2>Forces between them</h2>
+          <div id="forces"></div>
+        </div>
+
+        <div class="panel">
+          <h2>Show</h2>
+          <div class="views">
+            <label class="toggle"><input type="checkbox" id="v-lines" checked> Field lines</label>
+            <label class="toggle"><input type="checkbox" id="v-arrows" checked> Arrows on field lines</label>
+            <label class="toggle"><input type="checkbox" id="v-filings"> Iron filings</label>
+            <label class="toggle"><input type="checkbox" id="v-grid"> Grid of compasses</label>
+            <label class="toggle"><input type="checkbox" id="v-strength"> Field strength shading</label>
+            <label class="toggle"><input type="checkbox" id="v-force" checked> Force arrows</label>
+            <label class="toggle"><input type="checkbox" id="v-marks"> Compass leaves marks</label>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Set-up</h2>
+          <div class="field">
+            <label for="preset">Example</label>
+            <select class="select" id="preset"></select>
+          </div>
+          <div class="btn-row">
+            <button class="btn" id="clear">Clear all</button>
+            <button class="btn" id="share">🔗 Copy link</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/magnets.js"></script>
+</body>
+</html>
