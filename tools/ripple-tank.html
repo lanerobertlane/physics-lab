@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ripple Tank · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #tank { aspect-ratio: 800 / 500; cursor: default; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .stage-bar .spacer { flex: 1; }
+    .ctl { margin-bottom: 12px; }
+    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
+    .ctl label b { color: var(--text); }
+    .watch { font-family: ui-monospace, Consolas, monospace; font-size: 1.6rem; font-weight: 700; color: var(--answer, var(--text)); }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Ripple tank</h1>
+      <p>A view from above of water waves in a tank. Use the ruler to measure the wavelength, and the stopwatch to count waves and find the frequency. Then work out the wave speed with v = f λ.</p>
+    </div>
+
+    <div class="btn-row" id="modes" style="margin-bottom:12px"></div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="tank" aria-label="Ripple tank"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="freeze">❚❚ Freeze (strobe)</button>
+            <select class="select" id="speed" aria-label="Speed">
+              <option value="1">Real speed</option>
+              <option value="0.5">Half speed</option>
+              <option value="0.25">Quarter speed</option>
+            </select>
+            <span class="spacer"></span>
+            <label class="toggle"><input type="checkbox" id="ruler-on" checked> Ruler</label>
+            <button class="btn" id="ruler-turn">⟳ Turn ruler</button>
+          </div>
+        </div>
+
+        <div class="panel after-aside">
+          <h2>Required practical: method</h2>
+          <ol style="margin:0; padding-left:20px">
+            <li><b>Wavelength:</b> freeze the waves. Line the ruler up and measure across as many waves as you can (say 10), then divide by the number of waves.</li>
+            <li><b>Frequency:</b> start the stopwatch and count how many waves pass the red line in 10 seconds. Divide the number of waves by the time.</li>
+            <li><b>Wave speed:</b> v = f × λ. Change the frequency and repeat.</li>
+          </ol>
+        </div>
+      </div>
+
+      <aside>
+        <div class="panel">
+          <h2>Wave generator</h2>
+          <div class="ctl">
+            <label for="freq">Frequency <b id="freq-val"></b></label>
+            <input type="range" id="freq" min="4" max="12" step="0.5" value="6">
+          </div>
+          <div class="field">
+            <label for="source">Dipper</label>
+            <select class="select" id="source">
+              <option value="plane">Straight dipper (plane waves)</option>
+              <option value="point">Ball dipper (circular waves)</option>
+            </select>
+          </div>
+          <div class="ctl" id="mode-ctl"></div>
+          <label class="toggle"><input type="checkbox" id="show-values"> Show the answers (f, λ, v)</label>
+          <div id="values" class="working" hidden></div>
+        </div>
+
+        <div class="panel">
+          <h2>Stopwatch</h2>
+          <div class="watch" id="watch">0.00 s</div>
+          <p style="margin:4px 0 10px">Waves passed the red line: <b id="count" style="color: var(--answer, inherit)">0</b></p>
+          <div class="btn-row">
+            <button class="btn primary" id="watch-start">Start</button>
+            <button class="btn" id="watch-reset">Reset</button>
+          </div>
+          <p class="note">Drag the red line to move it.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/ripple-tank.js"></script>
+</body>
+</html>

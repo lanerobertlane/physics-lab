@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Energy Stores · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #scene { aspect-ratio: 800 / 460; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .stage-bar .spacer { flex: 1; }
+    .bars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items: end; height: 200px; padding: 0 4px; border-bottom: 2px solid var(--text); }
+    .bar { position: relative; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; }
+    .bar .fill { border-radius: 3px 3px 0 0; min-height: 1px; transition: height .05s linear; }
+    .bar-labels { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding: 6px 4px 0; text-align: center; font-size: .82rem; font-weight: 700; line-height: 1.2; }
+    .bar-labels .val { display: block; font-variant-numeric: tabular-nums; color: var(--answer, var(--text)); font-size: .92rem; }
+    .transfer { margin: 12px 0 0; padding: 10px 12px; background: var(--surface-2); border-radius: var(--radius-sm); font-weight: 700; min-height: 2.6em; }
+    .ctl { margin-bottom: 12px; }
+    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
+    .ctl label b { color: var(--text); }
+    #graph { width: 100%; aspect-ratio: 800 / 220; display: block; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Energy stores</h1>
+      <p>Watch energy move between the kinetic, gravitational potential and thermal stores. Turn friction on to see energy being dissipated, but the total always stays the same.</p>
+    </div>
+
+    <div class="scene-picker btn-row" id="scenes" style="margin-bottom:12px"></div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="scene" aria-label="Energy simulation"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="play">▶ Play</button>
+            <button class="btn" id="reset">↺ Reset</button>
+            <select class="select" id="speed" aria-label="Speed">
+              <option value="1">Normal speed</option>
+              <option value="0.5">Slow motion</option>
+              <option value="0.2">Very slow</option>
+            </select>
+            <span class="spacer"></span>
+            <label class="toggle"><input type="checkbox" id="friction"> Friction &amp; air resistance</label>
+          </div>
+        </div>
+
+        <div class="panel after-aside" id="graph-panel">
+          <h2>Energy–time graph</h2>
+          <canvas id="graph" aria-label="Energy against time"></canvas>
+        </div>
+      </div>
+
+      <aside>
+        <div class="panel">
+          <h2>Energy stores</h2>
+          <div class="bars" id="bars"></div>
+          <div class="bar-labels" id="bar-labels"></div>
+          <p class="transfer" id="transfer"></p>
+        </div>
+
+        <div class="panel">
+          <h2>Working</h2>
+          <div class="working" id="working" style="margin:0"></div>
+        </div>
+
+        <div class="panel">
+          <h2>Settings</h2>
+          <div class="ctl">
+            <label for="mass">Mass <b id="mass-val"></b></label>
+            <input type="range" id="mass" min="0.5" max="5" step="0.5" value="2">
+          </div>
+          <div class="ctl">
+            <label for="height">Starting height <b id="height-val"></b></label>
+            <input type="range" id="height" min="1" max="10" step="0.5" value="5">
+          </div>
+          <label class="toggle"><input type="checkbox" id="show-graph" checked> Show energy–time graph</label>
+          <p class="note">Gravitational field strength g = 9.8 N/kg.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/energy.js"></script>
+</body>
+</html>

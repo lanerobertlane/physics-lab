@@ -32,12 +32,12 @@ const TOOLS = [
   // Electricity
   { topic: 'electricity', icon: 'circuit', name: 'Circuit builder', href: 'tools/circuits.html', gcse: true, ks3: true, rp: true,
     desc: 'Build circuits with UK symbols and measure V, I and R live. Lamps, diodes, LDRs, thermistors and fuses.' },
-  { topic: 'electricity', icon: 'iv', name: 'I–V characteristics', gcse: true, rp: true,
-    desc: 'Plot the I–V graph for a resistor, filament lamp and diode.' },
+  { topic: 'electricity', icon: 'iv', name: 'I–V characteristics', href: 'tools/circuits.html', gcse: true, rp: true,
+    desc: 'Plot the I–V graph for a resistor, filament lamp and diode, using the circuit builder’s results table.' },
 
   // Magnetism
-  { topic: 'magnetism', icon: 'magnet', name: 'Bar magnet fields', gcse: true, ks3: true,
-    desc: 'Drag magnets around, see field lines and use a plotting compass.' },
+  { topic: 'magnetism', icon: 'magnet', name: 'Bar magnet fields', href: 'tools/magnets.html', gcse: true, ks3: true,
+    desc: 'Drag and turn magnets to see field lines, iron filings and attraction or repulsion. Plot the field with a compass.' },
   { topic: 'magnetism', icon: 'motor', name: 'Electromagnets & the motor effect', gcse: true, ht: true,
     desc: "Fields around wires and solenoids, and Fleming's left-hand rule." },
 
@@ -46,13 +46,13 @@ const TOOLS = [
     desc: 'Explore every region: wavelength, frequency, uses, dangers and how it is made.' },
   { topic: 'waves', icon: 'wave', name: 'Wave machine', gcse: true, ks3: true,
     desc: 'Transverse and longitudinal waves with v = fλ checked live.' },
-  { topic: 'waves', icon: 'ripple', name: 'Ripple tank', gcse: true, rp: true,
+  { topic: 'waves', icon: 'ripple', name: 'Ripple tank', href: 'tools/ripple-tank.html', gcse: true, ks3: true, rp: true,
     desc: 'Reflection, refraction and diffraction, with a ruler and strobe for the required practical.' },
-  { topic: 'waves', icon: 'ray', name: 'Light box & lenses', gcse: true, po: true, ks3: true, rp: true,
-    desc: 'Refraction through glass blocks, total internal reflection and lens ray diagrams.' },
+  { topic: 'waves', icon: 'ray', name: 'Light box & lenses', href: 'tools/light-box.html', gcse: true, po: true, ks3: true, rp: true,
+    desc: 'Refraction through glass blocks, total internal reflection, prisms, mirrors and lens ray diagrams.' },
 
   // Energy
-  { topic: 'energy', icon: 'stores', name: 'Energy stores', gcse: true, ks3: true,
+  { topic: 'energy', icon: 'stores', name: 'Energy stores', href: 'tools/energy.html', gcse: true, ks3: true,
     desc: 'Kinetic and gravitational stores for a bouncing ball or rollercoaster, with friction on or off.' },
   { topic: 'energy', icon: 'efficiency', name: 'Efficiency calculator', gcse: true, ks3: true,
     desc: 'Useful and wasted energy for everyday devices.' },
