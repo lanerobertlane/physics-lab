@@ -2,10 +2,12 @@
 // Network first (so updates show straight away), falling back to the saved copy.
 // Bump VERSION when adding new files to PRECACHE.
 
-const VERSION = 'physkit-v12';
+const VERSION = 'physkit-v14';
 const PRECACHE = [
   './',
   'index.html',
+  'terms.html',
+  'privacy.html',
   'css/style.css',
   'icons/favicon.svg',
   'js/common.js',
@@ -55,7 +57,8 @@ self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET' || new URL(req.url).origin !== self.location.origin) return;
   event.respondWith(
-    fetch(req)
+    // 'no-cache' asks the server whether the file has changed, so updates show straight away.
+    fetch(req, { cache: 'no-cache' })
       .then((res) => {
         const copy = res.clone();
         if (res.ok) caches.open(VERSION).then((cache) => cache.put(req, copy));
