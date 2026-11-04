@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orbits · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #space { aspect-ratio: 800 / 560; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .ctl { margin-bottom: 12px; }
+    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
+    .ctl label b { color: var(--text); }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Orbits</h1>
+      <p>Launch a satellite sideways from above the planet. Too slow and it falls back; at just the right speed it goes round in a circle; faster and the orbit stretches out, until it escapes.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="space" aria-label="Satellite orbiting a planet"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="launch">🚀 Launch</button>
+            <button class="btn" id="compare">Compare three circular orbits</button>
+            <button class="btn" id="clear">Clear</button>
+            <label class="toggle"><input type="checkbox" id="arrows" checked> Show velocity and force</label>
+          </div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Launch</h2>
+          <div class="ctl">
+            <label for="height">Height above the planet's centre <b id="height-val"></b></label>
+            <input type="range" id="height" min="90" max="230" step="5" value="150">
+          </div>
+          <div class="ctl">
+            <label for="speed">Launch speed <b id="speed-val"></b></label>
+            <input type="range" id="speed" min="0" max="160" step="5" value="100">
+          </div>
+          <p class="note" id="predict"></p>
+        </div>
+        <div class="panel">
+          <h2>Latest satellite</h2>
+          <dl class="readout" id="readout"></dl>
+        </div>
+        <div class="panel">
+          <h2>Remember</h2>
+          <ul style="margin:0; padding-left:18px; font-size:.93rem">
+            <li>Gravity provides the force that keeps planets, moons and satellites in orbit. It always pulls towards the centre.</li>
+            <li>In a circular orbit the speed stays the same but the direction keeps changing, so the velocity changes: the object is accelerating towards the centre.</li>
+            <li>For a stable orbit, a smaller radius needs a higher speed.</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/orbits.js"></script>
+</body>
+</html>

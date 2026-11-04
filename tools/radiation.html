@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alpha, Beta &amp; Gamma · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #rad { aspect-ratio: 800 / 380; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
+    .ctl label b { color: var(--text); }
+    .big { font-family: var(--font-head); font-size: 2rem; font-weight: 700; color: var(--answer, var(--text)); font-variant-numeric: tabular-nums; }
+    .props { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    .props th, .props td { border: 1px solid var(--border-strong); padding: 5px 7px; text-align: left; vertical-align: top; }
+    .props th { background: var(--surface-2); }
+    .eqn { font-family: Georgia, "Times New Roman", serif; font-size: 1.25rem; text-align: center; margin: 6px 0; }
+    .eqn .iso { display: inline-flex; align-items: center; }
+    .eqn .nums { display: inline-flex; flex-direction: column; font-size: .7rem; line-height: 1.05; text-align: right; margin-right: 1px; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Alpha, beta and gamma radiation</h1>
+      <p>Choose a radioactive source and put different materials in the way. The Geiger–Müller tube counts the radiation that gets through.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="rad" aria-label="Radioactive source, absorber and Geiger counter"></canvas>
+          <div class="stage-bar">
+            <div class="chip-group" id="source">
+              <button class="chip" data-s="alpha" aria-pressed="true">Alpha source</button>
+              <button class="chip" data-s="beta" aria-pressed="false">Beta source</button>
+              <button class="chip" data-s="gamma" aria-pressed="false">Gamma source</button>
+              <button class="chip" data-s="none" aria-pressed="false">No source</button>
+            </div>
+            <div class="chip-group" id="absorber">
+              <button class="chip" data-a="none" aria-pressed="true">Nothing</button>
+              <button class="chip" data-a="paper" aria-pressed="false">Paper</button>
+              <button class="chip" data-a="aluminium" aria-pressed="false">Aluminium (3 mm)</button>
+              <button class="chip" data-a="lead" aria-pressed="false">Lead (2 cm)</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel after-aside">
+          <h2>Properties</h2>
+          <table class="props">
+            <tr><th></th><th>Alpha (α)</th><th>Beta (β)</th><th>Gamma (γ)</th></tr>
+            <tr><th>What it is</th><td>2 protons + 2 neutrons (a helium nucleus)</td><td>A high-speed electron, made when a neutron turns into a proton</td><td>Electromagnetic radiation from the nucleus</td></tr>
+            <tr><th>Charge</th><td>+2</td><td>−1</td><td>0</td></tr>
+            <tr><th>Range in air</th><td>A few cm</td><td>About a metre</td><td>A long way (spreads out)</td></tr>
+            <tr><th>Stopped by</th><td>A sheet of paper</td><td>A few mm of aluminium</td><td>Reduced by thick lead or concrete</td></tr>
+            <tr><th>Ionising power</th><td>Strongly ionising</td><td>Moderately ionising</td><td>Weakly ionising</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <aside>
+        <div class="panel">
+          <h2>Geiger counter</h2>
+          <div class="big" id="rate">0</div>
+          <div class="note" style="margin:0">counts per minute (over the last 30 s)</div>
+          <p class="note">Background radiation (from rocks, cosmic rays, etc.) is always there: about 20 counts per minute here.</p>
+          <div class="ctl" style="margin-top:10px">
+            <label for="dist">Distance from source <b id="dist-val"></b></label>
+            <input type="range" id="dist" min="1" max="20" step="1" value="3">
+          </div>
+          <label class="toggle"><input type="checkbox" id="sound"> Click sound</label>
+        </div>
+        <div class="panel">
+          <h2>Nuclear equation</h2>
+          <div id="equation"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/radiation.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Half-Life · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #grid { aspect-ratio: 1 / 1; max-width: 420px; margin: 0 auto; }
+    #curve { width: 100%; aspect-ratio: 800 / 300; display: block; }
+    .stage-wrap { padding: 14px; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
+    .ctl label b { color: var(--text); }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Half-life</h1>
+      <p>Radioactive decay is random: you can't predict which nucleus will decay next. But with lots of nuclei, the number left halves in the same time, again and again. That time is the <b>half-life</b>.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <div class="stage-wrap"><canvas id="grid" aria-label="Grid of unstable nuclei"></canvas></div>
+          <div class="stage-bar">
+            <button class="btn primary" id="play">▶ Start</button>
+            <button class="btn" id="reset">↺ Reset</button>
+            <select class="select" id="count" aria-label="Number of nuclei">
+              <option value="100">100 nuclei</option>
+              <option value="400" selected>400 nuclei</option>
+              <option value="1600">1600 nuclei</option>
+            </select>
+          </div>
+        </div>
+        <div class="panel after-aside">
+          <h2>Number of undecayed nuclei against time</h2>
+          <canvas id="curve" aria-label="Decay curve"></canvas>
+          <label class="toggle"><input type="checkbox" id="expected" checked> Show the smooth curve and half-life markers</label>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Readings</h2>
+          <dl class="readout" id="readout"></dl>
+          <div class="working" id="working"></div>
+        </div>
+        <div class="panel">
+          <h2>Settings</h2>
+          <div class="ctl">
+            <label for="half">Half-life <b id="half-val"></b></label>
+            <input type="range" id="half" min="2" max="20" step="1" value="5">
+          </div>
+          <p class="note">Purple nuclei are unstable and haven't decayed yet. Grey ones have decayed. Each one has the same chance of decaying every second.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/half-life.js"></script>
+</body>
+</html>
