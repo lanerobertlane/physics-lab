@@ -38,8 +38,10 @@ const TOOLS = [
   // Magnetism
   { topic: 'magnetism', icon: 'magnet', name: 'Bar magnet fields', href: 'tools/magnets.html', gcse: true, ks3: true,
     desc: 'Drag and turn magnets to see field lines, iron filings and attraction or repulsion. Plot the field with a compass.' },
-  { topic: 'magnetism', icon: 'motor', name: 'Electromagnets & the motor effect', gcse: true, ht: true,
-    desc: "Fields around wires and solenoids, and Fleming's left-hand rule." },
+  { topic: 'magnetism', icon: 'motor', name: 'Electromagnets & the motor effect', href: 'tools/electromagnetism.html', gcse: true, ks3: true, ht: true,
+    desc: "Fields around wires and solenoids, electromagnets, F = BIl with Fleming's left-hand rule, and the DC motor." },
+  { topic: 'magnetism', icon: 'wave', name: 'Electromagnetic induction', href: 'tools/electromagnetism.html#m=induction', gcse: true, po: true, ht: true,
+    desc: 'Move a magnet in and out of a coil: induced p.d., alternating current and the generator effect.' },
 
   // Waves
   { topic: 'waves', icon: 'spectrum', name: 'Electromagnetic spectrum', href: 'tools/em-spectrum.html', ks3: true, gcse: true, ht: true,
