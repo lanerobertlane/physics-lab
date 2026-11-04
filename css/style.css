@@ -1,7 +1,7 @@
 /* Shared styles. Fonts: Source Sans 3 (body) and Bitter, a sturdy textbook-style slab
    serif (headings). The Sparx-style theme uses Nunito. If fonts can't load (offline),
    system fonts are used instead. */
-@import url("https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@500;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Open+Sans:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap");
 
 /* ---------- Themes ---------- */
 
@@ -55,30 +55,48 @@
   color-scheme: light;
 }
 
-/* Sparx-style: deep navy bar, bright green accent, rounded friendly shapes. */
+/* Sparx-style: teal top bar, pale mint page, dark navy headings and selected tabs,
+   green for "done", geometric sans font, moderately rounded white cards. */
 :root[data-theme="sparx"] {
-  --bg: #f1f3f8;
+  --bg: #eef6f6;
   --surface: #ffffff;
-  --surface-2: #eef1f7;
-  --text: #1b1f3b;
-  --muted: #5a6182;
-  --border: #dde1ee;
-  --border-strong: #c3c9dc;
-  --accent: #17a673;
-  --accent-soft: #daf5ea;
+  --surface-2: #f1f6f8;
+  --text: #1c2b3f;
+  --muted: #5a6b7d;
+  --border: #dce6ea;
+  --border-strong: #c3d1d8;
+  --accent: #253d5e;            /* dark navy: selected tabs, primary buttons */
+  --accent-soft: #e2e9f2;
   --accent-ink: #ffffff;
-  --grid: #e5e8f1;
-  --art: #8a91ad;
-  --header-bg: #1b1f3b;
+  --good: #3aa865;
+  --good-soft: #def4e6;
+  --bad: #e0484e;
+  --bad-soft: #fde7e7;
+  --grid: #e3ecef;
+  --art: #8496a3;
+  --header-bg: #2f8b8a;
   --header-ink: #ffffff;
-  --header-btn: rgba(255, 255, 255, .08);
-  --header-btn-border: rgba(255, 255, 255, .2);
-  --radius: 14px;
-  --radius-sm: 10px;
-  --radius-pill: 999px;
-  --font-body: "Nunito", "Segoe UI", -apple-system, Arial, sans-serif;
-  --font-head: "Nunito", "Segoe UI", -apple-system, Arial, sans-serif;
+  --header-btn: #1f5c5c;
+  --header-btn-border: #1f5c5c;
+  --title: #1f3b5c;
+  --radius: 8px;
+  --radius-sm: 6px;
+  --font-body: "DM Sans", "Segoe UI", -apple-system, Arial, sans-serif;
+  --font-head: "DM Sans", "Segoe UI", -apple-system, Arial, sans-serif;
 }
+
+:root[data-theme="sparx"] h1,
+:root[data-theme="sparx"] h2,
+:root[data-theme="sparx"] .tool-name { color: var(--title); font-weight: 700; }
+:root[data-theme="sparx"] .panel,
+:root[data-theme="sparx"] .tool-card { border-color: transparent; box-shadow: 0 1px 3px rgba(20, 50, 70, .12), 0 2px 8px rgba(20, 50, 70, .06); }
+:root[data-theme="sparx"] .panel h2 { color: var(--title); }
+/* Dark navy table headers, like the hand-in table */
+:root[data-theme="sparx"] .results th,
+:root[data-theme="sparx"] .compare th { background: #2c4466; color: #fff; border-color: #2c4466; }
+:root[data-theme="sparx"] .tag.rp { background: var(--good-soft); color: #23824a; }
+:root[data-theme="sparx"] .btn.primary { background: var(--accent); border-color: var(--accent); }
+:root[data-theme="sparx"] .site-header .icon-btn:hover { background: #174a4a; }
 
 /* Lesson: light-blue page, red titles and answers, black text, Calibri throughout.
    Calibri is on Windows; iPads fall back to Carlito/system sans. */
@@ -121,29 +139,48 @@
 /* Written answers / results: red in the Lesson theme, unchanged elsewhere. */
 .big-number, .calc-out .ans, .working b, .readouts .v { color: var(--answer, inherit); }
 
-:root[data-theme="sparx"] h1, :root[data-theme="sparx"] h2, :root[data-theme="sparx"] .tool-name { font-weight: 800; }
-
-/* Classroom: bright white panels under a bold teal bar. */
+/* ClassCharts-style: flat bright-blue top bar, light grey page, white cards with small
+   corners and soft shadows, green / pink / amber status colours, orange tab text. */
 :root[data-theme="classroom"] {
-  --bg: #edf1f5;
+  --bg: #eceff1;
   --surface: #ffffff;
-  --surface-2: #f2f5f8;
-  --text: #1d2733;
-  --muted: #566475;
-  --border: #d3dbe4;
-  --border-strong: #b5c1ce;
-  --accent: #0b8f84;
-  --accent-soft: #d6f2ee;
+  --surface-2: #f5f6f7;
+  --text: #333a40;
+  --muted: #6b747c;
+  --border: #dfe3e6;
+  --border-strong: #c7cdd2;
+  --accent: #2196f3;
+  --accent-soft: #e3f2fd;
   --accent-ink: #ffffff;
-  --grid: #e3e9ef;
-  --art: #8392a3;
-  --header-bg: #10a597;
+  --good: #43a047;
+  --good-soft: #e3f4e4;
+  --bad: #e91e63;
+  --bad-soft: #fde4ec;
+  --grid: #e6e9ec;
+  --art: #8d969e;
+  --header-bg: #2196f3;
   --header-ink: #ffffff;
-  --header-btn: rgba(255, 255, 255, .16);
-  --header-btn-border: rgba(255, 255, 255, .35);
-  --radius: 10px;
-  --radius-sm: 6px;
+  --header-btn: rgba(255, 255, 255, .14);
+  --header-btn-border: rgba(255, 255, 255, .4);
+  --tab-ink: #f0651f;
+  --radius: 4px;
+  --radius-sm: 3px;
+  --font-body: "Open Sans", "Segoe UI", -apple-system, Arial, sans-serif;
+  --font-head: "Open Sans", "Segoe UI", -apple-system, Arial, sans-serif;
 }
+
+:root[data-theme="classroom"] .panel,
+:root[data-theme="classroom"] .tool-card { border-color: transparent; box-shadow: 0 1px 3px rgba(0, 0, 0, .14); }
+:root[data-theme="classroom"] h1, :root[data-theme="classroom"] h2, :root[data-theme="classroom"] .tool-name { font-weight: 600; }
+/* Tabs: white with orange text; the selected one turns solid blue */
+:root[data-theme="classroom"] .chip { color: var(--tab-ink); font-weight: 600; }
+:root[data-theme="classroom"] .chip[aria-pressed="true"] { color: #fff; }
+:root[data-theme="classroom"] .btn.primary { background: var(--good); border-color: var(--good); }
+:root[data-theme="classroom"] .tag.ht { background: #ffb300; color: #fff; }
+:root[data-theme="classroom"] .tag.po { background: var(--accent); color: #fff; }
+:root[data-theme="classroom"] .tag.rp { background: var(--good); color: #fff; }
+:root[data-theme="classroom"] .brand-mark { background: #fff; color: var(--accent); }
+:root[data-theme="classroom"] .results th { background: var(--surface-2); }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]):not([data-theme="classroom"]):not([data-theme="sparx"]):not([data-theme="lesson"]) {
@@ -296,7 +333,7 @@ h1, h2, h3, h4 { font-family: var(--font-head); font-weight: 600; line-height: 1
 
 .brand-mark svg { width: 30px; height: 30px; }
 
-.theme-select { position: relative; padding-right: 30px; }
+.theme-select { position: relative; padding-right: 36px; }
 .theme-select select {
   appearance: none;
   -webkit-appearance: none;
@@ -305,7 +342,7 @@ h1, h2, h3, h4 { font-family: var(--font-head); font-weight: 600; line-height: 1
   color: inherit;
   font-weight: 700;
   cursor: pointer;
-  padding: 0;
+  padding: 0 8px 0 0;
 }
 .theme-select select option { color: #000; background: #fff; }
 .theme-select::after {
@@ -742,3 +779,28 @@ input[type="range"] { width: 100%; accent-color: var(--accent); min-height: 32px
   clip: rect(0 0 0 0);
   white-space: nowrap;
 }
+
+/* ---------- Site footer (added to every page) ---------- */
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 18px;
+  max-width: 1340px;
+  margin: 24px auto 0;
+  padding: 18px 16px 28px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: .88rem;
+}
+
+.site-footer a { color: var(--muted); }
+.site-footer a:hover { color: var(--accent); }
+
+/* ---------- Text pages (terms, privacy) ---------- */
+
+.prose { max-width: 75ch; }
+.prose h2 { font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; text-transform: none; letter-spacing: 0; color: var(--title, var(--text)); margin: 22px 0 6px; }
+.prose p, .prose li { line-height: 1.6; }
+.prose ul { padding-left: 22px; }

@@ -8,15 +8,17 @@ const SITE = {
 
 const PK = (() => {
   const root = document.documentElement.dataset.root || './';
-  // Theme id -> label in the menu. 'auto' follows the device's light/dark setting.
+  // Theme id -> label in the menu. Lesson is the default for anyone who hasn't chosen.
   const THEMES = {
-    auto: 'Auto',
-    light: 'Light',
     lesson: 'Lesson',
-    classroom: 'Classroom',
-    sparx: 'Sparx style',
+    light: 'Light',
+    classroom: 'ClassCharts',
+    sparx: 'Sparx',
     dark: 'Dark',
   };
+  const DEFAULT_THEME = 'lesson';
+  // An old saved choice (such as the removed 'auto') falls back to the default.
+  const savedTheme = () => { const t = store.get('theme', DEFAULT_THEME); return t in THEMES ? t : DEFAULT_THEME; };
 
   const store = {
     get(key, fallback) {
@@ -42,17 +44,11 @@ const PK = (() => {
     back: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>',
   };
 
-  // 'auto' follows the device's light/dark setting.
   function applyTheme(theme) {
-    if (theme in THEMES && theme !== 'auto') document.documentElement.dataset.theme = theme;
-    else delete document.documentElement.dataset.theme;
+    document.documentElement.dataset.theme = theme in THEMES ? theme : DEFAULT_THEME;
   }
 
-  function currentTheme() {
-    const t = document.documentElement.dataset.theme;
-    if (t) return t;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  }
+  const currentTheme = () => document.documentElement.dataset.theme || DEFAULT_THEME;
 
   const isDark = () => currentTheme() === 'dark';
 
@@ -62,7 +58,7 @@ const PK = (() => {
   }
 
   // Apply saved preferences straight away to avoid a flash.
-  applyTheme(store.get('theme', 'auto'));
+  applyTheme(savedTheme());
   applyProjector(store.get('projector', false));
 
   function header({ title = '', isHome = false, spec = null } = {}) {
@@ -89,7 +85,7 @@ const PK = (() => {
     document.body.prepend(el);
 
     const themeSel = el.querySelector('#pk-theme');
-    themeSel.value = store.get('theme', 'auto') in THEMES ? store.get('theme', 'auto') : 'auto';
+    themeSel.value = savedTheme();
     themeSel.addEventListener('change', () => {
       applyTheme(themeSel.value);
       store.set('theme', themeSel.value);
@@ -107,6 +103,19 @@ const PK = (() => {
     });
 
     if (spec) specPanel(spec);
+    footer();
+  }
+
+  function footer() {
+    const el = document.createElement('footer');
+    el.className = 'site-footer';
+    el.innerHTML = `
+      <span>© 2026 Robert Lane</span>
+      <span>Free and open source under the <a href="https://www.gnu.org/licenses/gpl-3.0.html" rel="license noopener" target="_blank">GNU GPL v3</a></span>
+      <a href="${root}terms.html">Terms of use</a>
+      <a href="${root}privacy.html">Privacy</a>
+      <a href="https://github.com/lanerobertlane/physics-lab" rel="noopener" target="_blank">Source code</a>`;
+    document.body.appendChild(el);
   }
 
   // spec: [{ code: '4.5.1.4', text: 'Resultant forces', ht?: true }, { code: 'KS3', text: '…' }]
