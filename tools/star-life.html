@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Life Cycle of a Star · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #star { aspect-ratio: 800 / 460; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .timeline { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 10px; }
+    .timeline button { flex: 1 1 auto; min-height: 38px; font-size: .82rem; }
+    .stage-name { font-family: var(--font-head); font-size: 1.5rem; font-weight: 700; color: var(--title, var(--text)); }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>The life cycle of a star</h1>
+      <p>Every star begins as a cloud of dust and gas. What happens at the end depends on how much mass the star has.</p>
+    </div>
+
+    <div class="chip-group" id="paths" style="margin-bottom:12px">
+      <button class="chip" data-p="sun" aria-pressed="true">About the mass of the Sun</button>
+      <button class="chip" data-p="massive" aria-pressed="false">Much bigger than the Sun</button>
+      <button class="chip" data-p="huge" aria-pressed="false">Very much bigger</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="star" aria-label="Stage in the life of a star"></canvas>
+          <div class="stage-bar">
+            <button class="btn" id="prev">◀ Back</button>
+            <button class="btn primary" id="next">Next stage ▶</button>
+            <button class="btn" id="play">▶ Play all</button>
+          </div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <div class="stage-name" id="name"></div>
+          <p id="text" style="margin:8px 0 0"></p>
+          <div class="timeline" id="timeline"></div>
+        </div>
+        <div class="panel">
+          <h2>Key ideas</h2>
+          <ul style="margin:0; padding-left:18px; font-size:.93rem">
+            <li>Stars release energy by <b>nuclear fusion</b>, joining light nuclei to make heavier ones.</li>
+            <li>In the main sequence, the inward pull of <b>gravity</b> is balanced by the outward <b>pressure</b> from fusion energy, so the star is stable.</li>
+            <li>Fusion inside stars makes elements up to iron. Elements <b>heavier than iron</b> are made in a <b>supernova</b>, and the explosion spreads them through the universe.</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/star-life.js"></script>
+</body>
+</html>

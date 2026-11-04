@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>History of the Atom · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #model { aspect-ratio: 800 / 500; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .year { font-family: var(--font-head); font-size: 1.6rem; font-weight: 700; color: var(--answer, var(--accent)); }
+    .who { font-weight: 700; font-size: 1.05rem; }
+    .counts { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; font-variant-numeric: tabular-nums; }
+    .counts b { text-align: right; color: var(--answer, inherit); }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>The history of the atom</h1>
+      <p>Our model of the atom has changed as new experiments gave new evidence. Step through the models, then try Rutherford's alpha-scattering experiment yourself.</p>
+    </div>
+
+    <div class="btn-row" id="steps" style="margin-bottom:12px"></div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="model" aria-label="Model of the atom"></canvas>
+          <div class="stage-bar" id="bar" hidden>
+            <div class="chip-group" id="model-pick">
+              <button class="chip" data-m="pudding" aria-pressed="false">Plum pudding atoms</button>
+              <button class="chip" data-m="nuclear" aria-pressed="true">Nuclear atoms</button>
+            </div>
+            <button class="btn" id="reset-count">Reset counts</button>
+          </div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel" id="info"></div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/atom-history.js"></script>
+</body>
+</html>

@@ -804,3 +804,11 @@ input[type="range"] { width: 100%; accent-color: var(--accent); min-height: 32px
 .prose h2 { font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; text-transform: none; letter-spacing: 0; color: var(--title, var(--text)); margin: 22px 0 6px; }
 .prose p, .prose li { line-height: 1.6; }
 .prose ul { padding-left: 22px; }
+
+/* Narrow screens: never squash the logo; let the theme menu shrink instead. */
+.brand { flex: none; }
+.header-actions { min-width: 0; }
+@media (max-width: 600px) {
+  .theme-select { min-width: 0; }
+  .theme-select select { width: 82px; text-overflow: ellipsis; }
+}

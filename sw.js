@@ -2,7 +2,7 @@
 // Network first (so updates show straight away), falling back to the saved copy.
 // Bump VERSION when adding new files to PRECACHE.
 
-const VERSION = 'physkit-v14';
+const VERSION = 'physkit-v15';
 const PRECACHE = [
   './',
   'index.html',
@@ -35,6 +35,20 @@ const PRECACHE = [
   'tools/waves.html',
   'js/electromagnetism.js',
   'tools/electromagnetism.html',
+  'js/atom.js',
+  'tools/atom.html',
+  'js/atom-history.js',
+  'tools/atom-history.html',
+  'js/radiation.js',
+  'tools/radiation.html',
+  'js/half-life.js',
+  'tools/half-life.html',
+  'js/orbits.js',
+  'tools/orbits.html',
+  'js/star-life.js',
+  'tools/star-life.html',
+  'js/redshift.js',
+  'tools/redshift.html',
   'tools/resultant-forces.html',
   'tools/third-law.html',
   'tools/em-spectrum.html',

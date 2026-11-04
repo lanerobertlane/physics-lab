@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atom Builder · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #atom { aspect-ratio: 800 / 520; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .part { display: grid; grid-template-columns: 18px 1fr auto; gap: 10px; align-items: center; margin-bottom: 10px; }
+    .part .dot { width: 16px; height: 16px; border-radius: 50%; }
+    .notation { display: flex; align-items: center; justify-content: center; gap: 4px; font-family: Georgia, "Times New Roman", serif; margin: 4px 0 10px; }
+    .notation .nums { display: flex; flex-direction: column; align-items: flex-end; font-size: 1.3rem; line-height: 1.05; }
+    .notation .sym { font-size: 3.6rem; line-height: 1; }
+    .notation .chg { align-self: flex-start; font-size: 1.4rem; }
+    .el-name { text-align: center; font-family: var(--font-head); font-size: 1.35rem; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Atom builder</h1>
+      <p>Add protons, neutrons and electrons. The number of protons decides which element it is; neutrons make different isotopes; electrons that don't match the protons make an ion.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="atom" aria-label="Model of an atom"></canvas>
+          <div class="stage-bar">
+            <button class="btn" id="light">💡 Shine light on it</button>
+            <select class="select" id="preset" aria-label="Example atoms"></select>
+          </div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="panel">
+          <div class="el-name" id="name"></div>
+          <div class="notation" id="notation"></div>
+          <dl class="readout" id="readout"></dl>
+        </div>
+        <div class="panel">
+          <h2>Particles</h2>
+          <div id="parts"></div>
+        </div>
+        <div class="panel">
+          <h2>Remember</h2>
+          <ul style="margin:0; padding-left:18px; font-size:.93rem">
+            <li><b>Proton</b>: charge +1, mass 1. <b>Neutron</b>: charge 0, mass 1. <b>Electron</b>: charge −1, mass very small.</li>
+            <li>The nucleus is tiny: about 1/100 000 of the radius of the atom (here it's drawn much bigger).</li>
+            <li>An atom has no overall charge: protons = electrons.</li>
+            <li>Electrons can move to a higher energy level by absorbing electromagnetic radiation, and drop back by emitting it.</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/atom.js"></script>
+</body>
+</html>

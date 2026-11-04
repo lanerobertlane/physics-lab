@@ -68,21 +68,21 @@ const TOOLS = [
     desc: 'Particles in a cylinder with a piston: pressure, volume and temperature, with pV = constant.' },
 
   // Atomic
-  { topic: 'atomic', icon: 'atom', name: 'Atom builder', gcse: true, ks3: true,
+  { topic: 'atomic', icon: 'atom', name: 'Atom builder', href: 'tools/atom.html', gcse: true, ks3: true,
     desc: 'Add protons, neutrons and electrons. Make ions and isotopes.' },
-  { topic: 'atomic', icon: 'history', name: 'History of the atom', gcse: true,
+  { topic: 'atomic', icon: 'history', name: 'History of the atom', href: 'tools/atom-history.html', gcse: true,
     desc: 'Plum pudding to Bohr, including Rutherford scattering.' },
-  { topic: 'atomic', icon: 'radiation', name: 'Alpha, beta & gamma', gcse: true,
+  { topic: 'atomic', icon: 'radiation', name: 'Alpha, beta & gamma', href: 'tools/radiation.html', gcse: true,
     desc: 'Penetration through paper, aluminium and lead.' },
-  { topic: 'atomic', icon: 'halflife', name: 'Half-life', gcse: true, ht: true,
+  { topic: 'atomic', icon: 'halflife', name: 'Half-life', href: 'tools/half-life.html', gcse: true, ht: true,
     desc: 'Random decay simulator with a graph that builds as it runs.' },
 
   // Space
-  { topic: 'space', icon: 'orbit', name: 'Orbits', gcse: true, po: true, ht: true,
+  { topic: 'space', icon: 'orbit', name: 'Orbits', href: 'tools/orbits.html', gcse: true, po: true, ht: true,
     desc: 'Change a satellite’s speed to see whether it orbits or escapes.' },
-  { topic: 'space', icon: 'star', name: 'Life cycle of a star', gcse: true, po: true,
+  { topic: 'space', icon: 'star', name: 'Life cycle of a star', href: 'tools/star-life.html', gcse: true, po: true,
     desc: 'From nebula to white dwarf, neutron star or black hole.' },
-  { topic: 'space', icon: 'redshift', name: 'Red-shift', gcse: true, po: true,
+  { topic: 'space', icon: 'redshift', name: 'Red-shift', href: 'tools/redshift.html', gcse: true, po: true,
     desc: 'Galaxies moving away and the evidence for the Big Bang.' },
 
   // Reference

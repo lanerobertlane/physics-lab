@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Red-Shift · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #universe { aspect-ratio: 800 / 460; cursor: pointer; }
+    #spectra { width: 100%; aspect-ratio: 800 / 200; display: block; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Red-shift and the Big Bang</h1>
+      <p>Light from distant galaxies is shifted towards the red end of the spectrum. Tap a galaxy to compare its light with light from the Sun.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="universe" aria-label="Expanding universe of galaxies"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="play">❚❚ Pause expansion</button>
+            <button class="btn" id="reset">↺ Rewind</button>
+          </div>
+        </div>
+        <div class="panel after-aside">
+          <h2>Spectra (dark lines are absorption lines)</h2>
+          <canvas id="spectra" aria-label="Absorption spectra compared"></canvas>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Selected galaxy</h2>
+          <dl class="readout" id="readout"></dl>
+          <p class="note" id="explain"></p>
+        </div>
+        <div class="panel">
+          <h2>Evidence for the Big Bang</h2>
+          <ul style="margin:0; padding-left:18px; font-size:.93rem">
+            <li>Light from almost every galaxy is <b>red-shifted</b>: they are all moving away from us.</li>
+            <li>The <b>further away</b> a galaxy is, the <b>bigger</b> its red-shift, so the faster it is moving away.</li>
+            <li>This means the universe is <b>expanding</b>. Wind it back and it all started from a very small, extremely hot and dense region: the <b>Big Bang</b>.</li>
+            <li>Since 1998, observations of supernovae suggest distant galaxies are moving away <b>faster and faster</b>. There is still much we don't understand, such as dark mass and dark energy.</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/redshift.js"></script>
+</body>
+</html>
