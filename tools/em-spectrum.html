@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EM Spectrum · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .trend { display: flex; justify-content: space-between; gap: 12px; font-size: .85rem; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
+    .band { display: flex; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border); }
+    .band button {
+      flex: 1 1 0; min-width: 0; min-height: 64px; border: 0; padding: 6px 2px; cursor: pointer;
+      font-weight: 800; font-size: clamp(.72rem, 1.25vw, .88rem); color: #0c0f1f; line-height: 1.15;
+      position: relative; transition: filter .12s ease;
+    }
+    .band button + button { border-left: 2px solid var(--surface); }
+    .band button:hover { filter: brightness(1.08); }
+    .band button[aria-pressed="true"] { outline: 3px solid var(--text); outline-offset: -3px; z-index: 1; }
+    .band .short { display: none; }
+    @media (max-width: 640px) { .band .long { display: none; } .band .short { display: inline; } .band button { font-size: .8rem; } }
+    .band.quiz button .long, .band.quiz button .short { visibility: hidden; }
+    .band.quiz button.shown .long, .band.quiz button.shown .short { visibility: visible; }
+    .ticks { position: relative; height: 22px; font-size: .75rem; color: var(--muted); font-weight: 650; }
+    .ticks span { position: absolute; transform: translateX(-50%); white-space: nowrap; top: 4px; }
+    .slider-wrap { margin: 10px 0 4px; }
+    #wave { width: 100%; height: 170px; display: block; border-radius: var(--radius-sm); background: var(--surface-2); }
+    .readouts { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; margin-top: 12px; }
+    .readouts > div { background: var(--surface-2); border-radius: var(--radius-sm); padding: 10px 12px; }
+    .readouts .k { font-size: .8rem; color: var(--muted); font-weight: 700; }
+    .readouts .v { font-size: 1.25rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+    .readouts .s { font-size: .85rem; color: var(--muted); }
+    .info h3 { font-size: 1.35rem; margin-bottom: 2px; }
+    .info .sub { color: var(--muted); font-weight: 600; font-size: .92rem; }
+    .info h4 { margin: 14px 0 4px; font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+    .info ul { margin: 0; padding-left: 20px; }
+    .info li { margin: 2px 0; }
+    .info p { margin: 0; }
+    .facts { margin: 0; padding-left: 20px; }
+    .facts li { margin: 3px 0; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>The electromagnetic spectrum</h1>
+      <p>Tap a region of the spectrum, or drag the slider to change the wavelength and watch the wave redraw.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel">
+          <div class="trend"><span>← Longer wavelength · lower frequency</span><span>Shorter wavelength · higher frequency →</span></div>
+          <div class="band" id="band"></div>
+          <div class="ticks" id="ticks" aria-hidden="true"></div>
+          <div class="slider-wrap">
+            <label class="sr-only" for="slider">Wavelength</label>
+            <input type="range" id="slider" min="0" max="700" step="1" value="350">
+          </div>
+          <canvas id="wave" aria-label="Animated wave at the chosen wavelength"></canvas>
+          <div class="readouts">
+            <div><div class="k">Wavelength (λ)</div><div class="v" id="lambda"></div><div class="s" id="lambda-sf"></div></div>
+            <div><div class="k">Frequency (f)</div><div class="v" id="freq"></div><div class="s" id="freq-sf"></div></div>
+            <div><div class="k">Wavelength is about the size of…</div><div class="v" id="size" style="font-size:1.05rem"></div></div>
+          </div>
+          <div class="working" id="wave-eq"></div>
+          <p class="note">Band widths are not to scale — the real spectrum spans more than 15 powers of ten. The wave drawing is stretched so you can see the change.</p>
+        </div>
+
+        <div class="panel after-aside">
+          <h2>True for all electromagnetic waves</h2>
+          <ul class="facts">
+            <li>They are <b>transverse</b> waves.</li>
+            <li>They all travel at the <b>same speed in a vacuum</b> (or air): 3 × 10<sup>8</sup> m/s.</li>
+            <li>They all obey the wave equation <b>v = f λ</b>. Because v is fixed, a higher frequency means a shorter wavelength.</li>
+            <li>They <b>transfer energy</b> from a source to an absorber.</li>
+            <li>They form a <b>continuous spectrum</b> — the regions blend into each other.</li>
+            <li>Our eyes can only detect <b>visible light</b>, a very small part of the spectrum.</li>
+          </ul>
+        </div>
+      </div>
+
+      <aside>
+        <div class="panel info" id="info"></div>
+        <div class="panel">
+          <h2>Test yourself</h2>
+          <label class="toggle"><input type="checkbox" id="quiz"> Hide the region names</label>
+          <p class="note">Hidden names reappear one at a time as you tap each region.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/em-spectrum.js"></script>
+</body>
+</html>

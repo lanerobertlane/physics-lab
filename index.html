@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en-GB" data-root="./">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mr Lane's Physics Lab</title>
+  <meta name="description" content="Interactive physics tools for KS3 and AQA GCSE.">
+  <link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>Interactive physics</h1>
+      <p>Simulations and tools for KS3 and AQA GCSE Physics.</p>
+    </section>
+
+    <div class="filters" role="search">
+      <input class="search" id="search" type="search" placeholder="Search tools… e.g. magnet, v = fλ, half-life" aria-label="Search tools">
+      <div class="chip-group" id="level" aria-label="Course">
+        <button class="chip" data-level="all" aria-pressed="true">All</button>
+        <button class="chip" data-level="ks3" aria-pressed="false">KS3</button>
+        <button class="chip" data-level="combined" aria-pressed="false">GCSE Combined</button>
+        <button class="chip" data-level="physics" aria-pressed="false">GCSE Physics</button>
+      </div>
+      <label class="toggle"><input type="checkbox" id="ready-only"> Ready to use only</label>
+    </div>
+
+    <div id="topics"></div>
+
+    <p class="footer">
+      Tags: <span class="tag po">Physics only</span> not in Combined Science ·
+      <span class="tag ht">Higher</span> includes Higher-tier content ·
+      <span class="tag rp">Required practical</span>.
+      Spec references are to the AQA GCSE Physics (8463) specification.
+    </p>
+  </main>
+
+  <script src="js/common.js"></script>
+  <script src="js/catalogue.js"></script>
+  <script>
+    PK.header({ isHome: true });
+
+    const state = {
+      q: '',
+      level: PK.store.get('home.level', 'all'),
+      readyOnly: PK.store.get('home.readyOnly', false),
+    };
+
+    const levelOk = (t) => {
+      if (state.level === 'ks3') return t.ks3;
+      if (state.level === 'combined') return t.gcse && !t.po;
+      if (state.level === 'physics') return t.gcse;
+      return true;
+    };
+
+    const textOk = (t, topic) => {
+      if (!state.q) return true;
+      const hay = `${t.name} ${t.desc} ${topic.name}`.toLowerCase();
+      return state.q.toLowerCase().split(/\s+/).every((w) => hay.includes(w));
+    };
+
+    function tagsFor(t) {
+      const tags = [];
+      if (t.ks3) tags.push('<span class="tag">KS3</span>');
+      if (t.gcse) tags.push('<span class="tag">GCSE</span>');
+      if (t.po) tags.push('<span class="tag po">Physics only</span>');
+      if (t.ht) tags.push('<span class="tag ht">Higher</span>');
+      if (t.rp) tags.push('<span class="tag rp">Required practical</span>');
+      if (!t.href) tags.push('<span class="tag soon">Coming soon</span>');
+      return tags.join('');
+    }
+
+    function card(t, topic) {
+      const inner = `
+        <div class="tool-top">
+          <div class="tool-icon">${toolIcon(t.icon)}</div>
+          <div class="tool-name">${t.name}</div>
+        </div>
+        <p class="tool-desc">${t.desc}</p>
+        <div class="tags">${tagsFor(t)}</div>`;
+      const style = `style="--topic: var(${topic.colour})"`;
+      return t.href
+        ? `<a class="tool-card" href="${t.href}" ${style}>${inner}</a>`
+        : `<div class="tool-card soon" ${style} aria-disabled="true">${inner}</div>`;
+    }
+
+    function render() {
+      const html = TOPICS.map((topic) => {
+        const tools = TOOLS
+          .filter((t) => t.topic === topic.id)
+          .filter((t) => levelOk(t) && textOk(t, topic) && (!state.readyOnly || t.href))
+          .sort((a, b) => Boolean(b.href) - Boolean(a.href));
+        if (!tools.length) return '';
+        return `
+          <section class="topic" style="--topic: var(${topic.colour})">
+            <div class="topic-head">
+              <span class="topic-dot"></span>
+              <h2>${topic.name}</h2>
+              ${topic.ref ? `<span class="topic-ref">${topic.ref}</span>` : ''}
+            </div>
+            <div class="card-grid">${tools.map((t) => card(t, topic)).join('')}</div>
+          </section>`;
+      }).join('');
+      document.getElementById('topics').innerHTML = html || '<p class="empty">No tools match that search.</p>';
+    }
+
+    document.getElementById('search').addEventListener('input', (e) => { state.q = e.target.value.trim(); render(); });
+
+    const levelBtns = document.querySelectorAll('#level .chip');
+    const syncLevel = () => levelBtns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.level === state.level)));
+    levelBtns.forEach((b) => b.addEventListener('click', () => {
+      state.level = b.dataset.level;
+      PK.store.set('home.level', state.level);
+      syncLevel();
+      render();
+    }));
+
+    const readyBox = document.getElementById('ready-only');
+    readyBox.checked = state.readyOnly;
+    readyBox.addEventListener('change', () => {
+      state.readyOnly = readyBox.checked;
+      PK.store.set('home.readyOnly', state.readyOnly);
+      render();
+    });
+
+    syncLevel();
+    render();
+  </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Third Law Pairs · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .scene-picker { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+    #scene .force { cursor: pointer; }
+    .force-list { display: flex; flex-direction: column; gap: 6px; }
+    .force-btn {
+      display: flex; align-items: center; gap: 10px; text-align: left;
+      min-height: 44px; padding: 8px 12px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); background: var(--surface); cursor: pointer;
+    }
+    .force-btn .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); flex: none; }
+    .force-btn.sel { border-color: var(--f2); }
+    .force-btn.sel .dot { background: var(--f2); }
+    .force-btn.partner { border-color: var(--f3); }
+    .force-btn.partner .dot { background: var(--f3); }
+    .force-btn.right { border-color: var(--good); background: var(--good-soft); }
+    .force-btn.right .dot { background: var(--good); }
+    .force-btn.wrong { border-color: var(--bad); background: var(--bad-soft); }
+    .force-btn.wrong .dot { background: var(--bad); }
+    .force-btn small { display: block; color: var(--muted); }
+    .checks { list-style: none; padding: 0; margin: 10px 0 0; display: flex; flex-direction: column; gap: 6px; }
+    .checks li { display: grid; grid-template-columns: 24px 1fr; gap: 6px; font-size: .92rem; }
+    .checks .ok { color: var(--good); font-weight: 800; }
+    .checks .no { color: var(--bad); font-weight: 800; }
+    .pair-box { padding: 10px 12px; border-radius: var(--radius-sm); background: var(--surface-2); margin-top: 8px; }
+    .pair-box b { display: block; }
+    .scene-caption { padding: 10px 14px; border-top: 1px solid var(--border); color: var(--muted); font-size: .92rem; }
+    .score { font-weight: 700; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Newton's third law pairs</h1>
+      <p>When object A exerts a force on object B, object B exerts an equal and opposite force on object A. Tap a force arrow to find its partner.</p>
+    </div>
+
+    <div class="scene-picker" id="scenes" role="tablist" aria-label="Choose a scene"></div>
+
+    <div class="tool-layout">
+      <div class="panel stage">
+        <svg id="scene" viewBox="0 0 640 440" role="img" aria-label="Scene with force arrows"></svg>
+        <div class="scene-caption" id="caption"></div>
+      </div>
+
+      <aside>
+        <div class="panel">
+          <div class="chip-group" id="mode" style="margin-bottom:12px">
+            <button class="chip" data-mode="explore" aria-pressed="true">Explore</button>
+            <button class="chip" data-mode="quiz" aria-pressed="false">Find the partner</button>
+          </div>
+          <div id="info"></div>
+        </div>
+
+        <div class="panel">
+          <h2>Forces in this scene</h2>
+          <div class="force-list" id="force-list"></div>
+        </div>
+
+        <div class="panel">
+          <h2>A third-law pair always…</h2>
+          <ul class="checks" style="margin:0">
+            <li><span>1</span><span>acts on <b>two different objects</b> (A on B, and B on A)</span></li>
+            <li><span>2</span><span>is the <b>same type</b> of force</span></li>
+            <li><span>3</span><span>is <b>equal in size</b></span></li>
+            <li><span>4</span><span>points in <b>opposite directions</b></span></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/third-law.js"></script>
+</body>
+</html>

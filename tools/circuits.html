@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Circuit Builder · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .palette {
+      display: flex; gap: 6px; overflow-x: auto; padding: 10px; border-bottom: 1px solid var(--border);
+      -webkit-overflow-scrolling: touch; scrollbar-width: thin;
+    }
+    .tool-btn {
+      flex: none; display: flex; flex-direction: column; align-items: center; gap: 2px;
+      min-width: 72px; padding: 6px 6px 4px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+      background: var(--surface); cursor: pointer; font-size: .78rem; font-weight: 700; color: var(--muted);
+    }
+    .tool-btn canvas { width: 60px; height: 34px; }
+    .tool-btn[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); color: var(--text); box-shadow: inset 0 0 0 1px var(--accent); }
+    #board { aspect-ratio: 800 / 560; cursor: crosshair; }
+    .hint-bar { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); font-size: .9rem; color: var(--muted); }
+    .hint-bar .spacer { flex: 1; }
+    .warn { padding: 10px 12px; border-radius: var(--radius-sm); background: var(--bad-soft); color: var(--bad); font-weight: 700; margin-bottom: 10px; }
+    .sel-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .sel-head canvas { width: 72px; height: 40px; background: var(--surface-2); border-radius: var(--radius-sm); }
+    .sel-head b { font-size: 1.1rem; }
+    .ctl { display: grid; grid-template-columns: 1fr 96px; gap: 8px; align-items: center; margin: 8px 0; }
+    .ctl input[type="number"] { min-height: 40px; padding: 4px 8px; border-radius: var(--radius-sm); border: 1px solid var(--border-strong); background: var(--surface); width: 100%; }
+    .ctl-wide { margin: 8px 0; }
+    .results { width: 100%; border-collapse: collapse; margin-top: 10px; font-variant-numeric: tabular-nums; font-size: .95rem; }
+    .results th, .results td { border: 1px solid var(--border-strong); padding: 5px 8px; text-align: center; }
+    .results th { background: var(--surface-2); font-weight: 700; }
+    .results td.num { color: var(--answer, inherit); }
+    .results .del { border: 0; background: none; color: var(--muted); cursor: pointer; font-size: 1rem; min-width: 28px; min-height: 28px; }
+    #graph { width: 100%; aspect-ratio: 270 / 230; display: block; margin-top: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    .rules { margin: 0; padding-left: 18px; font-size: .92rem; }
+    .rules li { margin: 4px 0; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Circuit builder</h1>
+      <p>Pick a component, then tap the gap between two dots to place it. Drag with the wire tool to draw wires quickly. Tap a component to see its readings or change it.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <div class="palette" id="palette" role="toolbar" aria-label="Components"></div>
+          <canvas id="board" aria-label="Circuit board"></canvas>
+          <div class="hint-bar">
+            <span id="hint"></span>
+            <span class="spacer"></span>
+            <select class="select" id="flow" aria-label="Show current">
+              <option value="conv">Show conventional current</option>
+              <option value="electron">Show electron flow</option>
+              <option value="off">Hide current</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="panel after-aside">
+          <h2>Remember</h2>
+          <ul class="rules">
+            <li><b>Series:</b> the same current flows through each component. The potential differences add up to the supply p.d.</li>
+            <li><b>Parallel:</b> each branch has the same p.d. as the supply. The branch currents add up to the total current.</li>
+            <li>Ammeters go <b>in series</b>, voltmeters go <b>in parallel</b> (across the component).</li>
+            <li><b>V = I R</b> &nbsp;·&nbsp; <b>P = V I</b> &nbsp;·&nbsp; <b>P = I² R</b> &nbsp;·&nbsp; <b>Q = I t</b></li>
+          </ul>
+        </div>
+      </div>
+
+      <aside>
+        <div class="panel">
+          <h2>Selected</h2>
+          <div id="selected"></div>
+        </div>
+
+        <div class="panel" id="env-panel" hidden>
+          <h2>Surroundings</h2>
+          <div class="ctl-wide" id="light-ctl" hidden>
+            <label class="note" style="margin:0" for="light">Light level: <b id="light-val"></b></label>
+            <input type="range" id="light" min="0" max="100" value="50">
+          </div>
+          <div class="ctl-wide" id="temp-ctl" hidden>
+            <label class="note" style="margin:0" for="temp">Temperature: <b id="temp-val"></b></label>
+            <input type="range" id="temp" min="0" max="100" value="20">
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Set-up</h2>
+          <div class="field">
+            <label for="preset">Example circuit</label>
+            <select class="select" id="preset"></select>
+          </div>
+          <label class="toggle"><input type="checkbox" id="show-values" checked> Show component values</label>
+          <div class="btn-row" style="margin-top:8px">
+            <button class="btn" id="clear">Clear board</button>
+            <button class="btn" id="share">🔗 Copy link</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Results</h2>
+          <div class="field">
+            <label for="test-comp">Component being tested</label>
+            <select class="select" id="test-comp"></select>
+          </div>
+          <div class="btn-row">
+            <button class="btn primary" id="record">＋ Record reading</button>
+            <button class="btn" id="clear-results">Clear</button>
+          </div>
+          <p class="note" id="record-hint">Change the variable resistor or the battery voltage between readings. Turn the battery round to get negative values.</p>
+          <div style="margin-top:8px">
+            <label class="toggle"><input type="checkbox" id="show-table" checked> Results table</label>
+            <label class="toggle"><input type="checkbox" id="show-graph" checked> I–V graph</label>
+          </div>
+          <div id="table-wrap"></div>
+          <div id="graph-wrap">
+            <canvas id="graph" aria-label="I–V graph of recorded results"></canvas>
+            <label class="toggle"><input type="checkbox" id="join" checked> Join the points</label>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/circuits.js"></script>
+</body>
+</html>

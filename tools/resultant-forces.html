@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resultant Forces · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .force-row { display: grid; grid-template-columns: 14px 1fr auto; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .force-row .swatch { width: 14px; height: 14px; border-radius: 4px; }
+    .force-row .dir-name { font-weight: 650; }
+    .force-row .dir-label { display: block; font-size: .8rem; color: var(--muted); font-weight: 500; }
+    .working { font-size: .92rem; margin: 10px 0 0; padding: 10px 12px; background: var(--surface-2); border-radius: var(--radius-sm); font-variant-numeric: tabular-nums; }
+    .working p { margin: 2px 0; }
+    .sim-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .sim-bar .stats { margin-left: auto; display: flex; gap: 16px; font-variant-numeric: tabular-nums; font-weight: 650; color: var(--muted); }
+    .sim-bar .stats b { color: var(--text); }
+    #arena .handle { cursor: grab; }
+    #arena .handle:active { cursor: grabbing; }
+    .reveal-box { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Resultant forces</h1>
+      <p>Drag the arrow heads (or use + and −) to put forces on the object. The thick purple arrow is the resultant force. Press <b>Play</b> to see what happens.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <svg id="arena" viewBox="0 0 640 480" role="img" aria-label="Box with force arrows"></svg>
+          <div class="sim-bar">
+            <button class="btn primary" id="play">▶ Play</button>
+            <button class="btn" id="reset">↺ Reset</button>
+            <select class="select" id="start" aria-label="Starting motion">
+              <option value="rest">Starts at rest</option>
+              <option value="E">Already moving east (2 m/s)</option>
+              <option value="W">Already moving west (2 m/s)</option>
+              <option value="N">Already moving north (2 m/s)</option>
+              <option value="S">Already moving south (2 m/s)</option>
+            </select>
+            <div class="stats">
+              <span>t = <b id="t">0.0</b> s</span>
+              <span>speed = <b id="speed">0.0</b> m/s</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel after-aside" id="vector-panel">
+          <h2>Scale drawing (tip-to-tail)</h2>
+          <svg id="vector" viewBox="0 0 640 300" role="img" aria-label="Tip-to-tail vector diagram"></svg>
+          <p class="note" id="vector-note"></p>
+        </div>
+      </div>
+
+      <aside>
+        <div class="panel">
+          <h2>Result</h2>
+          <div id="result"></div>
+        </div>
+
+        <div class="panel">
+          <h2>Forces</h2>
+          <div id="force-rows"></div>
+          <div class="btn-row" style="margin-top:6px">
+            <button class="btn" id="clear">Clear all forces</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Object</h2>
+          <div class="field">
+            <label for="shape">Shape</label>
+            <select class="select" id="shape"></select>
+          </div>
+          <div class="force-row">
+            <span></span>
+            <span class="dir-name">Mass</span>
+            <div class="stepper">
+              <button data-mass="-1" aria-label="Decrease mass">−</button>
+              <output id="mass"></output>
+              <button data-mass="1" aria-label="Increase mass">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Set-up</h2>
+          <div class="field">
+            <label for="preset">Example</label>
+            <select class="select" id="preset"></select>
+          </div>
+          <label class="toggle"><input type="checkbox" id="diag"> Include diagonal forces (45°)</label>
+          <label class="toggle"><input type="checkbox" id="hide"> Predict first (hide the answer)</label>
+          <label class="toggle"><input type="checkbox" id="show-vector" checked> Show scale drawing</label>
+          <div class="btn-row" style="margin-top:8px">
+            <button class="btn" id="share">🔗 Copy link to this set-up</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/resultant-forces.js"></script>
+</body>
+</html>

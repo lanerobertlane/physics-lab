@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Equation Explorer · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .eq-filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
+    .symbols { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 8px; }
+    .sym-chip {
+      min-height: 36px; padding: 4px 10px; border-radius: var(--radius-sm); border: 1px solid var(--border);
+      background: var(--surface); cursor: pointer; font-size: .88rem;
+    }
+    .sym-chip b { font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: 1.05rem; margin-right: 4px; }
+    .sym-chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+    .sym-hint { font-size: .85rem; color: var(--muted); font-weight: 600; }
+    .eq-topic { margin: 22px 0 10px; font-size: 1.1rem; }
+    .eq-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr)); gap: 12px; }
+    .eq-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+    .eq-card .tags { gap: 4px; }
+    .tag.recall { background: var(--t-forces); color: #fff; }
+    .tag.given { background: var(--surface-2); color: var(--muted); border: 1px solid var(--border); }
+    .eq-main {
+      font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: 1.6rem;
+      min-height: 64px; display: flex; align-items: center; justify-content: center; text-align: center;
+      background: var(--surface-2); border-radius: var(--radius-sm); padding: 8px; line-height: 1.2;
+    }
+    .eq-main.word { font-size: 1.05rem; font-family: inherit; font-style: normal; font-weight: 600; }
+    .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; margin: 0 .15em; }
+    .frac > span { padding: 0 .2em; }
+    .frac > span:first-child { border-bottom: 2px solid currentColor; }
+    .eq-word { font-size: .92rem; color: var(--muted); }
+    .vars { display: flex; flex-direction: column; gap: 4px; }
+    .var-btn {
+      display: grid; grid-template-columns: 64px 1fr auto; align-items: center; gap: 8px; text-align: left;
+      min-height: 38px; padding: 4px 10px; border-radius: var(--radius-sm); border: 1px solid transparent; background: transparent; cursor: pointer;
+    }
+    .var-btn:hover { border-color: var(--border); }
+    .var-btn .vs { font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: 1.1rem; font-weight: 700; }
+    .var-btn .vs.word { font-family: inherit; font-style: normal; font-size: .8rem; }
+    .var-btn .vu { color: var(--muted); font-size: .85rem; font-weight: 650; }
+    .var-btn[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); }
+    .var-btn.hit { box-shadow: inset 3px 0 0 var(--accent); }
+    .var-hint { font-size: .78rem; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+    details.calc { border-top: 1px solid var(--border); padding-top: 8px; }
+    details.calc summary { cursor: pointer; font-weight: 700; min-height: 32px; display: flex; align-items: center; gap: 6px; list-style: none; }
+    details.calc summary::-webkit-details-marker { display: none; }
+    details.calc summary::before { content: "▸"; color: var(--accent); }
+    details.calc[open] summary::before { content: "▾"; }
+    .calc-row { display: grid; grid-template-columns: 1fr 120px; align-items: center; gap: 8px; margin: 6px 0; font-size: .92rem; }
+    .calc-row input { min-height: 40px; padding: 4px 8px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); width: 100%; }
+    .calc-out { margin-top: 8px; padding: 10px 12px; border-radius: var(--radius-sm); background: var(--surface-2); font-variant-numeric: tabular-nums; }
+    .calc-out .ans { font-size: 1.2rem; font-weight: 800; }
+    .eq-note { font-size: .85rem; color: var(--muted); margin: 0; }
+    .hide-eq .eq-card:not(.revealed) .eq-main { color: transparent; position: relative; cursor: pointer; }
+    .hide-eq .eq-card:not(.revealed) .eq-main * { visibility: hidden; }
+    .hide-eq .eq-card:not(.revealed) .eq-main::after { content: "Tap to reveal"; position: absolute; color: var(--muted); font-family: system-ui, sans-serif; font-style: normal; font-size: .95rem; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Equation explorer</h1>
+      <p>Every equation in AQA GCSE Physics. Tap a quantity in a card to rearrange for it, then use the calculator. Tap a quantity below to find every equation that uses it.</p>
+    </div>
+
+    <div class="eq-filters">
+      <input class="search" id="search" type="search" placeholder="Search… e.g. power, density, λ" aria-label="Search equations">
+      <div class="chip-group" id="course">
+        <button class="chip" data-course="physics" aria-pressed="true">GCSE Physics</button>
+        <button class="chip" data-course="combined" aria-pressed="false">Combined</button>
+      </div>
+      <label class="toggle"><input type="checkbox" id="higher" checked> Higher tier</label>
+      <label class="toggle"><input type="checkbox" id="hide"> Test yourself</label>
+    </div>
+
+    <div class="sym-hint">Find equations by quantity:</div>
+    <div class="symbols" id="symbols"></div>
+
+    <div id="list"></div>
+
+    <p class="note" style="margin-top:28px">Based on the AQA GCSE Physics (8463) specification. Always check against the current equation sheet from AQA. Calculator answers are given to 3 significant figures — use SI units (convert km → m, g → kg, minutes → s first).</p>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/equations.js"></script>
+</body>
+</html>

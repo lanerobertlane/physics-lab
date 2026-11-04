@@ -1,0 +1,7 @@
+# Local preview settings, not part of the website
+.claude/
+
+# Windows / editor clutter
+Thumbs.db
+desktop.ini
+.vscode/
