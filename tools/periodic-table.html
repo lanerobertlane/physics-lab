@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Periodic Table · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .pt-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
+    .pt { display: grid; grid-template-columns: repeat(18, minmax(38px, 1fr)); gap: 3px; min-width: 720px; }
+    .pt .cell { position: relative; aspect-ratio: 1 / 1.1; border: 1px solid rgba(0,0,0,.18); border-radius: 5px; padding: 2px 3px; text-align: left; font: inherit; cursor: pointer; color: #111; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }
+    .pt .cell:hover { filter: brightness(1.08); }
+    .pt .cell[aria-pressed="true"] { outline: 3px solid var(--text); outline-offset: 1px; z-index: 1; }
+    .pt .cell .n { font-size: .62rem; font-weight: 700; line-height: 1; }
+    .pt .cell .s { font-size: clamp(.8rem, 1.6vw, 1.15rem); font-weight: 800; line-height: 1; text-align: center; }
+    .pt .cell .c { font-size: .55rem; font-weight: 700; text-align: center; line-height: 1; min-height: .55rem; }
+    .pt .gap { grid-column: 1 / -1; height: 8px; }
+    .pt .label { font-size: .7rem; font-weight: 700; color: var(--muted); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 2px; }
+    .pt .marker { font-size: .6rem; font-weight: 700; color: var(--muted); border: 1px dashed var(--border-strong); border-radius: 5px; display: grid; place-items: center; text-align: center; }
+    .pt .key { grid-column: 3 / 13; grid-row: 1 / 4; display: flex; flex-wrap: wrap; align-content: flex-start; gap: 4px 12px; font-size: .74rem; padding: 2px 8px; }
+    .pt .key span { display: inline-flex; align-items: center; gap: 5px; }
+    .pt .key i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; border: 1px solid rgba(0,0,0,.2); }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    #atom { aspect-ratio: 800 / 420; }
+    .big-el { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+    .big-el .tile { width: 74px; height: 80px; border-radius: 8px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #111; border: 1px solid rgba(0,0,0,.2); }
+    .big-el .tile b { font-size: 2rem; line-height: 1; }
+    .big-el .tile small { font-weight: 700; }
+    .big-el h2 { margin: 0; font-size: 1.4rem; }
+    .explain p { margin: 0 0 8px; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Periodic table</h1>
+      <p>Tap an element to see its atom, its electronic structure, and where it sits in the table. The group number tells you how many electrons are in the outer shell, and the period tells you how many shells there are.</p>
+    </div>
+
+    <div class="panel" style="margin-bottom:16px">
+      <div class="btn-row" style="margin-bottom:10px">
+        <div class="chip-group" id="colour-by" aria-label="Colour the table by">
+          <button class="chip" data-c="type" aria-pressed="true">Element type</button>
+          <button class="chip" data-c="metal" aria-pressed="false">Metal or non-metal</button>
+          <button class="chip" data-c="plain" aria-pressed="false">Plain</button>
+        </div>
+        <label class="toggle"><input type="checkbox" id="show-config"> Show electronic structures (first 20)</label>
+      </div>
+      <div class="pt-wrap"><div class="pt" id="pt" role="group" aria-label="Periodic table"></div></div>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="atom" aria-label="Diagram of the chosen atom"></canvas>
+          <div class="stage-bar">
+            <div class="chip-group" id="view" aria-label="Diagram style">
+              <button class="chip" data-v="shells" aria-pressed="true">Electron shell diagram</button>
+              <button class="chip" data-v="model" aria-pressed="false">Atom model</button>
+            </div>
+          </div>
+        </div>
+        <div class="panel after-aside explain" id="explain"></div>
+      </div>
+      <aside>
+        <div class="panel">
+          <div class="big-el" id="big"></div>
+          <dl class="readout" id="facts"></dl>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/elements.js"></script>
+  <script src="../js/periodic-table.js"></script>
+</body>
+</html>

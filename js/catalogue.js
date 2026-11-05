@@ -11,6 +11,7 @@ const TOPICS = [
   { id: 'particles', name: 'Particle model of matter', ref: 'AQA 4.3', colour: '--t-particles' },
   { id: 'atomic', name: 'Atomic structure', ref: 'AQA 4.4', colour: '--t-atomic' },
   { id: 'space', name: 'Space physics', ref: 'AQA 4.8', colour: '--t-space' },
+  { id: 'chemistry', name: 'Chemistry', ref: 'AQA Chemistry 4.1–4.2', colour: '--t-chemistry' },
   { id: 'reference', name: 'Reference', ref: '', colour: '--t-reference' },
 ];
 
@@ -145,6 +146,12 @@ const TOOLS = [
   { topic: 'space', icon: 'moon', name: 'Earth, Sun & Moon', href: 'tools/sky.html', ks3: true,
     desc: 'Day and night, the seasons caused by Earth’s tilt, and the phases of the Moon.' },
 
+  // Chemistry
+  { topic: 'chemistry', icon: 'ptable', name: 'Periodic table', href: 'tools/periodic-table.html', ks3: true, gcse: true,
+    desc: 'Tap any element for its electron structure, atom diagram, group, period and the ion it forms.' },
+  { topic: 'chemistry', icon: 'bond', name: 'Bonding', href: 'tools/bonding.html', ks3: true, gcse: true,
+    desc: 'Choose two elements to see ionic, covalent or metallic bonding as dot and cross diagrams, with the exam answer.' },
+
   // Reference
   { topic: 'reference', icon: 'equation', name: 'Equation explorer', href: 'tools/equations.html', ks3: true, gcse: true, ht: true,
     desc: 'Every AQA equation: recall or given, rearrange it and calculate.' },
@@ -202,6 +209,8 @@ const TOOL_ICONS = {
   fission: '<circle cx="12" cy="12" r="4"/><circle cx="4" cy="5" r="1.5"/><circle cx="20" cy="5" r="1.5"/><circle cx="20" cy="19" r="1.5"/><path d="M5.5 6l3 3M18.5 6l-3 3M18.5 18l-3-3"/>',
   moon: '<path d="M20 14A8 8 0 1 1 10 4a6 6 0 0 0 10 10z"/>',
   units: '<path d="M3 17h18M5 17v-4M9 17v-6M13 17v-4M17 17v-6"/>',
+  ptable: '<rect x="2" y="5" width="4" height="4"/><rect x="18" y="5" width="4" height="4"/><rect x="2" y="9" width="4" height="4"/><rect x="6" y="9" width="4" height="4"/><rect x="10" y="9" width="4" height="4"/><rect x="14" y="9" width="4" height="4"/><rect x="18" y="9" width="4" height="4"/><rect x="2" y="13" width="20" height="4"/><path d="M6 13v4M10 13v4M14 13v4M18 13v4"/>',
+  bond: '<circle cx="8" cy="12" r="5"/><circle cx="16" cy="12" r="5"/><circle cx="12" cy="10" r=".8" fill="currentColor"/><path d="M11 13.5l2 2M13 13.5l-2 2"/>',
   equation: '<path d="M4 7h7M7.5 3.5v7M4 17h7M14 5l6 6M20 5l-6 6M14 15h6M14 19h6"/>',
 };
 
