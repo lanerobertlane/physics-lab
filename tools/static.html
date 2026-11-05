@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Static Electricity · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #rub { aspect-ratio: 800 / 400; touch-action: pan-y; }
+    #field { aspect-ratio: 800 / 440; touch-action: none; cursor: crosshair; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Static electricity &amp; electric fields</h1>
+      <p>Rubbing two insulators together moves <b>electrons</b> from one to the other. The one that gains electrons becomes negatively charged; the one that loses them is left positively charged. Like charges repel, unlike charges attract.</p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px">
+      <button class="chip" data-t="rub" aria-pressed="true">Charging by rubbing</button>
+      <button class="chip" data-t="field" aria-pressed="false">Electric fields</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage" data-tab="rub">
+          <canvas id="rub" aria-label="A rod being rubbed with a cloth, and a second charged rod hanging from a thread"></canvas>
+          <div class="stage-bar">
+            <div class="chip-group" id="rub-mode" aria-label="What to charge">
+              <button class="chip" data-m="rods" aria-pressed="true">Rods</button>
+              <button class="chip" data-m="balloon" aria-pressed="false">Balloon</button>
+            </div>
+            <button class="btn primary" id="do-rub">🧽 Rub the rod</button>
+            <button class="btn" id="bring">⟶ Bring it near the hanging rod</button>
+            <button class="btn" id="reset">↺ Start again</button>
+            <button class="btn" id="bal-reset" hidden>↺ New balloon</button>
+          </div>
+        </div>
+        <div class="panel after-aside" data-tab="rub">
+          <h2>What happened?</h2>
+          <p style="margin:0" id="rub-text"></p>
+        </div>
+        <div class="panel stage" data-tab="field" hidden>
+          <canvas id="field" aria-label="Electric field lines around charges. Tap to add a charge; drag the small test charge."></canvas>
+          <div class="stage-bar">
+            <div class="chip-group" id="add" aria-label="Tap the picture to">
+              <button class="chip" data-a="+" aria-pressed="true">Add +</button>
+              <button class="chip" data-a="-" aria-pressed="false">Add −</button>
+              <button class="chip" data-a="x" aria-pressed="false">Remove</button>
+            </div>
+            <div class="chip-group" id="presets" aria-label="Examples">
+              <button class="chip" data-p="pos">One +</button>
+              <button class="chip" data-p="neg">One −</button>
+              <button class="chip" data-p="pair">+ and −</button>
+              <button class="chip" data-p="like">+ and +</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel" data-tab="rub" id="rod-choices">
+          <h2>Choose</h2>
+          <div class="field"><span class="label">Rod you rub</span>
+            <div class="chip-group" id="rod">
+              <button class="chip" data-r="poly" aria-pressed="true">Polythene</button>
+              <button class="chip" data-r="acetate" aria-pressed="false">Acetate</button>
+            </div>
+          </div>
+          <div class="field"><span class="label">Rod hanging from the thread</span>
+            <div class="chip-group" id="hang">
+              <button class="chip" data-h="poly" aria-pressed="true">Charged polythene (−)</button>
+              <button class="chip" data-h="acetate" aria-pressed="false">Charged acetate (+)</button>
+            </div>
+          </div>
+          <p class="note">Only <b>electrons</b> move, never positive charges. Polythene pulls electrons off a cloth; acetate loses electrons to the cloth.</p>
+        </div>
+        <div class="panel" id="bal-help" hidden>
+          <h2>Balloon</h2>
+          <p class="note" style="margin-top:0">Drag the balloon back and forth over the jumper to rub it. Then drag it to the wall and let go.</p>
+          <p class="note">The wall isn’t charged, but the balloon’s charge pushes the electrons in the wall’s surface slightly away. The surface nearest the balloon becomes slightly positive, and attracts it.</p>
+        </div>
+        <div class="panel" data-tab="field" hidden>
+          <h2>Electric fields</h2>
+          <p class="note" style="margin-top:0">A charged object has an electric field around it. Another charge placed in the field feels a force. The lines show the direction of the force on a small <b>positive</b> charge: away from +, towards −.</p>
+          <p class="note">The field is strongest close to the charge, where the lines are closest together. Drag the small test charge to see the force on it.</p>
+          <p class="note">A strong enough field can pull electrons off air particles, making a spark.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/static.js"></script>
+</body>
+</html>

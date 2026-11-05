@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Transformers · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #tf { aspect-ratio: 800 / 400; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .ctl { margin-bottom: 12px; }
+    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
+    .ctl label b { color: var(--text); }
+    .readout dd { white-space: nowrap; }
+    .vesrau { display: grid; gap: .35em; line-height: 1.45; margin: 0 0 14px; }
+    .vesrau h3 { margin: 0 0 2px; font-size: .95rem; color: var(--muted); }
+    .vesrau .v { display: inline-block; white-space: nowrap; margin-right: 2.2em; }
+    .vesrau .v:last-child { margin-right: 0; }
+    .vesrau .ans { font-weight: 800; color: var(--answer, inherit); }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Transformers</h1>
+      <p>A transformer changes the size of an alternating p.d. An alternating current in the primary coil makes a changing magnetic field in the iron core. This induces an alternating p.d. in the secondary coil. More turns on the secondary coil means a bigger p.d.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="tf" aria-label="A transformer: primary coil, iron core, secondary coil and a lamp"></canvas>
+          <div class="stage-bar">
+            <div class="chip-group" id="vp" aria-label="Primary p.d.">
+              <button class="chip" data-v="12">12 V</button>
+              <button class="chip" data-v="230" aria-pressed="true">230 V</button>
+            </div>
+          </div>
+        </div>
+        <div class="panel after-aside">
+          <h2>Working it out</h2>
+          <div class="working" id="working"></div>
+          <p class="note"><b>Transformers only work with a.c.</b> A direct current makes a steady magnetic field, which doesn’t induce a p.d. in the secondary coil. The field has to keep changing.</p>
+          <p class="note">Real transformers are very efficient (often over 95%), so we usually assume 100%: the power out equals the power in.</p>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Coils</h2>
+          <div class="ctl"><label for="np">Turns on the primary coil, n<sub>p</sub> <b id="np-val"></b></label><input type="range" id="np" min="10" max="2000" step="10" value="1150"></div>
+          <div class="ctl"><label for="ns">Turns on the secondary coil, n<sub>s</sub> <b id="ns-val"></b></label><input type="range" id="ns" min="10" max="2000" step="10" value="60"></div>
+          <dl class="readout" id="readout"></dl>
+          <div class="field"><span class="label">The secondary coil powers</span>
+            <div class="chip-group" id="load">
+              <button class="chip" data-l="charger" aria-pressed="false">Phone charger (5 V)</button>
+              <button class="chip" data-l="lamp12" aria-pressed="true">Lamp (12 V)</button>
+              <button class="chip" data-l="lamp230" aria-pressed="false">Mains lamp (230 V)</button>
+              <button class="chip" data-l="neon" aria-pressed="false">Neon sign (2000 V)</button>
+            </div>
+          </div>
+          <p class="note">Choosing one sets the turns to give its rated p.d. Too high a p.d. and it burns out; too low and it doesn’t work properly.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/transformers.js"></script>
+</body>
+</html>

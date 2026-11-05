@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Energy Resources · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #day { aspect-ratio: 800 / 380; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .ctl { margin-bottom: 10px; }
+    .ctl label { display: flex; justify-content: space-between; align-items: center; font-size: .9rem; font-weight: 700; color: var(--muted); }
+    .ctl label b { color: var(--text); }
+    .ctl label i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+    .card { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 12px; background: var(--surface); }
+    .card h3 { margin: 0 0 6px; font-size: 1.05rem; display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+    .card ul { margin: 6px 0 0; padding-left: 18px; font-size: .9rem; }
+    .card li { margin: 2px 0; }
+    .pill { font-size: .72rem; font-weight: 800; padding: 2px 8px; border-radius: 999px; color: #fff; white-space: nowrap; }
+    .pill.r { background: #2e7d32; } .pill.n { background: #6d4c41; }
+    .goal { font-weight: 800; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Energy resources</h1>
+      <p><b>Renewable</b> resources are being (or can be) replenished as they are used. <b>Non-renewable</b> resources will run out. Each resource has advantages and disadvantages: how reliable it is, the pollution it causes, and its cost.</p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px">
+      <button class="chip" data-t="demand" aria-pressed="true">Meet the demand</button>
+      <button class="chip" data-t="compare" aria-pressed="false">Compare resources</button>
+    </div>
+
+    <div class="tool-layout" data-tab="demand">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="day" aria-label="Graph of electricity demand and supply over one day"></canvas>
+          <div class="stage-bar">
+            <div class="chip-group" id="season" aria-label="Season">
+              <button class="chip" data-s="winter" aria-pressed="true">Winter</button>
+              <button class="chip" data-s="summer" aria-pressed="false">Summer</button>
+            </div>
+            <div class="chip-group" id="wind" aria-label="Wind">
+              <button class="chip" data-w="0.05">Calm</button>
+              <button class="chip" data-w="0.35" aria-pressed="true">Breezy</button>
+              <button class="chip" data-w="0.8">Windy</button>
+            </div>
+            <div class="chip-group" id="sun" aria-label="Sun">
+              <button class="chip" data-u="0.25">Cloudy</button>
+              <button class="chip" data-u="1" aria-pressed="true">Sunny</button>
+            </div>
+          </div>
+        </div>
+        <div class="panel after-aside">
+          <h2>How did you do?</h2>
+          <dl class="readout" id="result"></dl>
+          <p id="verdict" style="margin:8px 0 0"></p>
+          <p class="note">Nuclear, wind and solar can’t be turned up and down to follow demand. Gas, coal and hydro-electric power stations are switched on to fill the gap, in that order: hydro first, then gas, then coal.</p>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Build your power stations</h2>
+          <div id="sliders"></div>
+          <p class="note">Capacity in gigawatts (GW). The UK uses about 25–45 GW.</p>
+        </div>
+      </aside>
+    </div>
+
+    <div class="panel" data-tab="compare" hidden>
+      <div class="btn-row" style="margin-bottom:10px">
+        <div class="chip-group" id="filter">
+          <button class="chip" data-f="all" aria-pressed="true">All</button>
+          <button class="chip" data-f="r" aria-pressed="false">Renewable</button>
+          <button class="chip" data-f="n" aria-pressed="false">Non-renewable</button>
+        </div>
+      </div>
+      <div class="cards" id="cards"></div>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/resources.js"></script>
+</body>
+</html>

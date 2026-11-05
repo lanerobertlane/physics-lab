@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Work Done · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #work { aspect-ratio: 800 / 360; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .ctl { margin-bottom: 12px; }
+    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
+    .ctl label b { color: var(--text); }
+    .readout dd { white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Work done</h1>
+      <p>When a force moves an object, energy is transferred and <b>work is done</b>. Work done (J) = force (N) × distance moved along the line of the force (m). One joule of work is done when a force of 1 newton moves an object 1 metre.</p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px">
+      <button class="chip" data-t="push" aria-pressed="true">Pushing a box</button>
+      <button class="chip" data-t="lift" aria-pressed="false">Lifting</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="work" aria-label="A person pushing a box or lifting a load"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="go">▶ Go</button>
+            <button class="btn" id="reset">↺ Reset</button>
+            <div class="chip-group" id="surface" aria-label="Surface">
+              <button class="chip" data-s="ice">Ice</button>
+              <button class="chip" data-s="wood" aria-pressed="true">Wooden floor</button>
+              <button class="chip" data-s="carpet">Carpet</button>
+            </div>
+          </div>
+        </div>
+        <div class="panel after-aside">
+          <h2>Working it out</h2>
+          <div class="working" id="working"></div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Set up</h2>
+          <div class="ctl" id="force-ctl"><label for="force">Pushing force <b id="force-val"></b></label><input type="range" id="force" min="0" max="200" step="5" value="80"></div>
+          <div class="ctl" id="mass-ctl" hidden><label for="mass">Mass lifted <b id="mass-val"></b></label><input type="range" id="mass" min="1" max="50" step="1" value="10"></div>
+          <div class="ctl"><label for="dist" id="dist-label">Distance to push it <b id="dist-val"></b></label><input type="range" id="dist" min="1" max="10" step="0.5" value="5"></div>
+          <dl class="readout" id="readout"></dl>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/work.js"></script>
+</body>
+</html>
