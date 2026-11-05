@@ -89,6 +89,7 @@
           <div class="btn-row" style="margin-top:10px">
             <button class="btn" id="pq-show-hint">Show the equation</button>
             <button class="btn" id="pq-show-working">Show the worked answer</button>
+            <button class="btn" id="pq-print-sheet">🖨 Print worksheet</button>
             <button class="btn" id="pq-present-open" title="Show the question on its own, ready to put on the board"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px;margin-right:4px"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M12 16v4M8 20h8"/></svg>Presentation view</button>
           </div>
           <div id="pq-hint" hidden style="margin-top:10px"></div>
@@ -133,6 +134,7 @@
   sw.after(toolPane);
   toolPane.after(pane);
   document.body.appendChild(present);
+  const tools = PQ.presentTools(present, present.querySelector('.p-bar'));
 
   // ---------- Questions ----------
   const state = {
@@ -142,10 +144,10 @@
     showEq: PK.store.get('calc.showEq', false),
     ks3: PK.store.get('calc.ks3', false),
     keep: false,
-    q: null, tries: 0, score: { right: 0, total: 0, streak: 0 },
+    q: null, tries: 0, score: PQ.loadScore(`tab.${location.pathname.split('/').pop().replace('.html', '')}`),
   };
   const list = () => (state.eqId === 'any' ? eqs : eqs.filter((e) => e.id === state.eqId));
-  function next() { state.q = PQ.make(list(), { ...state, keep: state.keep ? state.q : null }); el('g').textContent = state.ks3 ? '10' : '9.8'; render(); }
+  function next() { state.q = PQ.make(list(), { ...state, keep: state.keep ? state.q : null }); if (tools) tools.clear(); el('g').textContent = state.ks3 ? '10' : '9.8'; render(); }
   function render() {
     const q = state.q;
     state.tries = 0;
@@ -177,6 +179,7 @@
   }
   function renderScore() {
     const s = state.score;
+    PQ.saveScore(`tab.${location.pathname.split('/').pop().replace('.html', '')}`, s);
     el('score').innerHTML = `<b>${s.right}</b> out of <b>${s.total}</b> right first time${s.streak >= 3 ? ` · streak <b>${s.streak}</b> 🔥` : ''}`;
   }
 
@@ -194,7 +197,7 @@
   function setPresenting(on) {
     present.hidden = !on;
     document.body.classList.toggle('pq-presenting', on);
-    if (on) { renderPresentation(); el('p-next').focus(); } else el('present-open').focus();
+    if (on) { renderPresentation(); tools.fit(); el('p-next').focus(); } else { tools.close(); el('present-open').focus(); }
   }
   function togglePart(id, btn, show, hide) { const e = el(id); e.hidden = !e.hidden; el(btn).textContent = e.hidden ? show : hide; }
   el('present-open').addEventListener('click', () => setPresenting(true));
@@ -212,6 +215,7 @@
   });
 
   // ---------- Controls ----------
+  el('print-sheet').addEventListener('click', () => PQ.worksheetDialog({ make: () => PQ.make(list(), { ...state, keep: null }), title: `${document.querySelector('h1').textContent}: practice questions` }));
   el('check').addEventListener('click', check);
   el('answer').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); check(); } });
   el('next').addEventListener('click', () => { next(); el('answer').focus(); });

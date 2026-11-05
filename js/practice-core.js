@@ -463,7 +463,171 @@ const PQ = (() => {
     return { ok: false, tip };
   }
 
+  // ---------- Presentation view: timer and pen ----------
+  // Adds a Timer and a Pen to a presentation overlay. Returns { clear, close }.
+  const TOOLS_CSS = `
+    .pq-ink { position: fixed; left: 0; top: 0; width: 100vw; height: 100vh; z-index: 1001; pointer-events: none; display: block; }
+    .pq-ink.on { pointer-events: auto; touch-action: none; cursor: crosshair; user-select: none; -webkit-user-select: none; }
+    .pq-pens, .pq-timer-pick { position: fixed; left: 50%; transform: translateX(-50%); bottom: 76px; z-index: 1003; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px;
+      padding: 8px; background: var(--surface); border: 1px solid var(--border-strong); border-radius: 999px; box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+    .pq-pens[hidden], .pq-timer-pick[hidden], .pq-clock[hidden] { display: none; }
+    .pq-pens button, .pq-timer-pick button { min-width: 40px; height: 40px; border-radius: 999px; border: 2px solid var(--border-strong); background: var(--surface); color: var(--text); font: 700 .9rem var(--font-body); cursor: pointer; padding: 0 12px; }
+    .pq-pens button[aria-pressed="true"] { outline: 3px solid var(--accent); outline-offset: 1px; }
+    .pq-pens .sw { width: 40px; padding: 0; }
+    .pq-clock { position: fixed; top: clamp(12px, 2vw, 32px); right: clamp(16px, 3vw, 56px); z-index: 1002; font: 800 clamp(2rem, 5vw, 4.5rem)/1 var(--font-body);
+      font-variant-numeric: tabular-nums; color: var(--text); background: var(--surface); padding: 8px 18px; border-radius: 14px; border: 2px solid var(--border-strong); cursor: pointer; }
+    .pq-clock.done { color: #fff; background: #c62828; border-color: #c62828; animation: pq-flash 1s steps(2) infinite; }
+    @keyframes pq-flash { 50% { opacity: .55; } }
+    .present .p-bar, .pq-present .p-bar { z-index: 1004; }`;
+  function presentTools(present, bar) {
+    if (!document.getElementById('pq-tools-css')) document.head.appendChild(Object.assign(document.createElement('style'), { id: 'pq-tools-css', textContent: TOOLS_CSS }));
+    const mk = (html) => { const b = document.createElement('button'); b.className = 'btn'; b.type = 'button'; b.innerHTML = html; return b; };
+    const penBtn = mk('✏️ Pen'), timerBtn = mk('⏱ Timer');
+    penBtn.dataset.tip = 'Write on the screen with your finger, a stylus or the mouse. It clears when you go to the next question.';
+    timerBtn.dataset.tip = 'Starts a countdown, such as “you have 3 minutes”. Tap the clock to stop it.';
+    bar.prepend(timerBtn); bar.prepend(penBtn);
+
+    // Pen
+    const ink = document.createElement('canvas'); ink.className = 'pq-ink';
+    present.appendChild(ink);
+    const pens = document.createElement('div'); pens.className = 'pq-pens'; pens.hidden = true;
+    const COLS = [['#111111', 'Black'], ['#1e63c6', 'Blue'], ['#c62828', 'Red'], ['#2e7d32', 'Green']];
+    pens.innerHTML = COLS.map(([c, n], i) => `<button class="sw" data-c="${c}" aria-label="${n} pen" aria-pressed="${i === 0}" style="background:${c}"></button>`).join('')
+      + '<button data-c="erase" aria-pressed="false">Eraser</button><button data-x="clear">Clear</button><button data-x="done">Done</button>';
+    present.appendChild(pens);
+    let strokes = [], cur = null, colour = COLS[0][0], on = false;
+    const ctx = ink.getContext('2d');
+    function redraw() {
+      const d = window.devicePixelRatio || 1;
+      ctx.setTransform(d, 0, 0, d, 0, 0); ctx.clearRect(0, 0, innerWidth, innerHeight);
+      ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      for (const st of strokes) {
+        ctx.globalCompositeOperation = st.c === 'erase' ? 'destination-out' : 'source-over';
+        ctx.strokeStyle = st.c === 'erase' ? '#000' : st.c; ctx.lineWidth = st.c === 'erase' ? 34 : 4;
+        ctx.beginPath(); st.p.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));
+        if (st.p.length === 1) ctx.lineTo(st.p[0][0] + 0.1, st.p[0][1]);
+        ctx.stroke();
+      }
+      ctx.globalCompositeOperation = 'source-over';
+    }
+    function fit() { const d = window.devicePixelRatio || 1; ink.width = innerWidth * d; ink.height = innerHeight * d; redraw(); }
+    function setPen(v) { on = v; ink.classList.toggle('on', v); pens.hidden = !v; penBtn.classList.toggle('primary', v); if (v) fit(); }
+    penBtn.addEventListener('click', () => setPen(!on));
+    pens.addEventListener('click', (e) => {
+      const b = e.target.closest('button'); if (!b) return;
+      if (b.dataset.c) { colour = b.dataset.c; pens.querySelectorAll('[data-c]').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); }
+      if (b.dataset.x === 'clear') { strokes = []; redraw(); }
+      if (b.dataset.x === 'done') setPen(false);
+    });
+    const at = (ev) => { const r = ink.getBoundingClientRect(); return [(ev.clientX - r.left) * (innerWidth / r.width), (ev.clientY - r.top) * (innerHeight / r.height)]; };
+    ink.addEventListener('pointerdown', (e) => { if (!on) return; e.preventDefault(); ink.setPointerCapture(e.pointerId); cur = { c: colour, p: [at(e)] }; strokes.push(cur); redraw(); });
+    ink.addEventListener('pointermove', (e) => {
+      if (!cur) return;
+      const evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [];
+      for (const ev of (evs.length ? evs : [e])) cur.p.push(at(ev));
+      redraw();
+    });
+    const end = () => { cur = null; };
+    ink.addEventListener('pointerup', end); ink.addEventListener('pointercancel', end);
+    window.addEventListener('resize', () => { if (!present.hidden) fit(); });
+    fit();
+
+    // Timer
+    const clock = document.createElement('div'); clock.className = 'pq-clock'; clock.hidden = true; clock.setAttribute('role', 'timer');
+    clock.title = 'Tap to stop the timer';
+    const pick = document.createElement('div'); pick.className = 'pq-timer-pick'; pick.hidden = true;
+    pick.innerHTML = [1, 2, 3, 5, 10].map((m) => `<button data-m="${m}">${m} min</button>`).join('') + '<button data-m="0">Stop</button>';
+    present.appendChild(clock); present.appendChild(pick);
+    let endAt = 0, tick = null;
+    const show = () => {
+      const left = Math.max(0, Math.round((endAt - Date.now()) / 1000));
+      clock.textContent = left ? `${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')}` : 'Time’s up!';
+      clock.classList.toggle('done', !left);
+      if (!left) clearInterval(tick);
+    };
+    timerBtn.addEventListener('click', () => { pick.hidden = !pick.hidden; pens.hidden = true; });
+    pick.addEventListener('click', (e) => {
+      const b = e.target.closest('button'); if (!b) return;
+      const m = Number(b.dataset.m); pick.hidden = true; clearInterval(tick);
+      if (!m) { clock.hidden = true; return; }
+      endAt = Date.now() + m * 60000; clock.hidden = false; show(); tick = setInterval(show, 250);
+    });
+    clock.addEventListener('click', () => { clearInterval(tick); clock.hidden = true; });
+    return { clear() { strokes = []; redraw(); }, close() { setPen(false); pick.hidden = true; }, fit };
+  }
+
+  // ---------- Printable worksheets ----------
+  const PRINT_CSS = `
+    #pq-print { display: none; }
+    @media print {
+      @page { margin: 15mm; }
+      html, body { background: #fff !important; }
+      body > *:not(#pq-print) { display: none !important; }
+      #pq-print, #pq-print * { color: #000 !important; background: transparent !important; box-shadow: none !important; }
+      #pq-print { display: block; color: #000; font-family: Calibri, Arial, sans-serif; font-size: 11.5pt; }
+      #pq-print h1 { font-size: 18pt; margin: 0 0 6px; color: #000; }
+      #pq-print .meta { display: flex; gap: 40px; margin: 0 0 14px; }
+      #pq-print .meta span { flex: 1; border-bottom: 1px solid #000; padding-bottom: 2px; }
+      #pq-print ol { padding-left: 22px; margin: 0; }
+      #pq-print li { margin: 0 0 12px; break-inside: avoid; }
+      #pq-print li p { margin: 0 0 4px; }
+      #pq-print .work { height: 64px; border-bottom: 1px dotted #888; }
+      #pq-print .ansline { text-align: right; margin-top: 4px; }
+      #pq-print .answers { break-before: page; }
+      #pq-print .vesrau { display: grid; gap: 2px; }
+      #pq-print .vesrau .v { margin-right: 1.6em; }
+      #pq-print .vesrau .ans { font-weight: 700; }
+      #pq-print .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; }
+      #pq-print .frac > span:first-child { border-bottom: 1px solid #000; }
+      #pq-print .foot { margin-top: 10px; font-size: 9pt; color: #555; }
+    }`;
+  // make(): a new question each call. Prints the questions, then the worked answers on a new page.
+  function printWorksheet({ make: makeOne, title = 'Calculation practice', count = 10, answers = true }) {
+    const qs = [];
+    for (let i = 0; i < count * 4 && qs.length < count; i++) {
+      const q = makeOne();
+      if (q && !qs.some((o) => o.eq === q.eq && o.subject === q.subject && o.answer === q.answer)) qs.push(q);
+    }
+    let el = document.getElementById('pq-print');
+    if (!el) {
+      el = document.createElement('div'); el.id = 'pq-print'; document.body.appendChild(el);
+      document.head.appendChild(Object.assign(document.createElement('style'), { textContent: PRINT_CSS }));
+    }
+    const qHtml = qs.map((q) => `<li>${presentationText(q)}<div class="work"></div><div class="ansline">Answer: ____________${unitText(unitOf(q.subject))}</div></li>`).join('');
+    const aHtml = qs.map((q) => `<li>${vesrauHtml(q)}</li>`).join('');
+    el.innerHTML = `
+      <section><h1>${title}</h1><div class="meta"><span>Name:</span><span>Date:</span></div>
+        <p>Show your working. Use g = ${qs[0] && qs[0].ks3 ? 10 : 9.8} N/kg. Give your answers to 3 significant figures.</p><ol>${qHtml}</ol>
+        <p class="foot">Mr Lane’s Physics Lab · lanerobertlane.space</p></section>
+      ${answers ? `<section class="answers"><h1>${title}: answers</h1><ol>${aHtml}</ol></section>` : ''}`;
+    window.print();
+  }
+  // A small window to choose the worksheet options, then print
+  function worksheetDialog(opts) {
+    const m = document.createElement('div');
+    m.className = 'pk-modal'; m.setAttribute('role', 'dialog'); m.setAttribute('aria-modal', 'true'); m.setAttribute('aria-label', 'Print a worksheet');
+    m.innerHTML = `<div class="pk-modal-box"><h2>Print a worksheet</h2>
+      <p class="note" style="margin-top:0">The questions use your current settings. The worked answers go on a separate page.</p>
+      <label style="display:grid;gap:4px;font-weight:700;margin:10px 0">Number of questions
+        <select class="select" id="ws-n"><option>5</option><option selected>10</option><option>15</option><option>20</option></select></label>
+      <label class="toggle"><input type="checkbox" id="ws-a" checked> Include the answers page</label>
+      <div class="btn-row" style="justify-content:flex-end;margin-top:14px"><button class="btn" id="ws-cancel">Cancel</button><button class="btn primary" id="ws-go">🖨 Print</button></div></div>`;
+    document.body.appendChild(m);
+    const close = () => m.remove();
+    m.addEventListener('click', (e) => { if (e.target === m) close(); });
+    m.querySelector('#ws-cancel').addEventListener('click', close);
+    m.querySelector('#ws-go').addEventListener('click', () => {
+      const count = Number(m.querySelector('#ws-n').value), answers = m.querySelector('#ws-a').checked;
+      close(); printWorksheet({ ...opts, count, answers });
+    });
+    m.querySelector('#ws-go').focus();
+  }
+
+  // ---------- Scores saved on this device ----------
+  const loadScore = (key) => ({ right: 0, total: 0, streak: 0, ...(PK.store.get(`score.${key}`, null) || {}) });
+  const saveScore = (key, sc) => PK.store.set(`score.${key}`, sc);
+
   // Equations used at KS3 (Calculation practice's KS3 option)
   const KS3 = ['weight', 'work', 'hooke', 'moment', 'pressure', 'speed', 'density', 'ohm', 'power-e', 'energy-pt', 'eff-e', 'eff-p', 'wave'];
-  return { SETUPS, CONVERT, KS3, make, questionHtml, hintHtml, workingHtml, vesrauHtml, presentationText, mark, writtenFormula, plainName, unitOf, unitText };
+  return { SETUPS, CONVERT, KS3, make, presentTools, worksheetDialog, loadScore, saveScore, questionHtml, hintHtml, workingHtml, vesrauHtml, presentationText, mark, writtenFormula, plainName, unitOf, unitText };
 })();

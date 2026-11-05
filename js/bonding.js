@@ -445,7 +445,7 @@ requestAnimationFrame(frame);
 
 // ---------- Practice: gap-fill model answers ----------
 
-const P = { type: 'ionic', a: 0, b: 0, info: null, answers: {}, checked: false, right: 0, total: 0, last: '' };
+const P = { type: 'ionic', a: 0, b: 0, info: null, answers: {}, checked: false, right: 0, total: 0, last: '', ...(PK.store.get('score.bonding', null) || {}) };
 const PX_IONIC = { metals: [3, 11, 19, 12, 20, 13], nons: [9, 17, 35, 8, 16, 7] };
 const PX_COV = [[8, 1], [7, 1], [6, 1], [1, 17], [6, 8], [17, 17], [8, 8], [7, 7], [1, 1], [1, 9], [16, 1]];
 const pickOne = (arr) => arr[Math.floor(Math.random() * arr.length)];
@@ -516,6 +516,7 @@ function checkPractice(reveal = false) {
   if (reveal) P.checked = true;
   $('p-feedback').textContent = reveal ? 'Here are the answers.' : all ? `All ${sels.length} correct!` : `${right} out of ${sels.length} correct${blank ? `, ${blank} still blank` : ''}. Fix the red ones and check again.`;
   $('p-feedback').className = `p-feedback ${all || reveal ? 'ok' : 'bad'}`;
+  PK.store.set('score.bonding', { right: P.right, total: P.total });
   $('p-score').textContent = P.total ? `${P.right} out of ${P.total} gaps right first time.` : 'No questions checked yet.';
 }
 
@@ -537,3 +538,9 @@ $('p-show').addEventListener('click', () => checkPractice(true));
 $('p-next').addEventListener('click', newPractice);
 $('p-see').addEventListener('click', () => { choose(P.a, P.b); setMode('explore'); });
 if (PK.initialHash === '#practice') setMode('practice');
+// Share: the two elements and whether they have bonded (the view and tick boxes are shared anyway)
+PK.shareState = {
+  get: () => ({ a: state.a, b: state.b, bonded: state.t >= 0.999 ? 1 : 0, pd: state.pd ? 1 : 0, temp: state.temp }),
+  set: (o) => { choose(o.a, o.b); if (o.bonded) state.t = 1; if (o.pd) state.pd = true; if (o.temp != null) { state.temp = o.temp; $('temp').value = o.temp; } renderControls(); },
+};
+if (P.total) $('p-score').textContent = `${P.right} out of ${P.total} gaps right first time.`;

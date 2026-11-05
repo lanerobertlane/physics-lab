@@ -426,6 +426,12 @@ h1, h2, h3, h4 { font-family: var(--font-head); font-weight: 600; line-height: 1
 .theme-switch button[aria-pressed="true"] { background: var(--header-ink); color: var(--header-bg); }
 .theme-switch svg { width: 18px; height: 18px; }
 
+/* Narrower screens (e.g. iPad portrait): header buttons show icons only, so everything fits */
+@media (max-width: 1000px) {
+  .site-header.tool .header-actions .icon-btn .label { display: none; }
+  .site-header.tool .header-actions { gap: 6px; flex: none; }
+  .site-header.tool .header-title { min-width: 0; flex: 0 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+}
 @media (max-width: 700px) {
   .icon-btn .label, .header-title, .brand-by { display: none; }
   .site-header { gap: 8px; padding: 8px 12px; }
@@ -818,3 +824,39 @@ input[type="range"] { width: 100%; accent-color: var(--accent); min-height: 32px
   .theme-select { min-width: 0; }
   .theme-select select { width: 82px; text-overflow: ellipsis; }
 }
+
+/* ---------- Tooltips, ⓘ buttons and glossary words (extras.js) ---------- */
+.pk-tip { position: absolute; z-index: 2000; background: var(--text); color: var(--surface); padding: 8px 11px; border-radius: 8px;
+  font-size: .86rem; line-height: 1.4; font-weight: 500; box-shadow: 0 6px 20px rgba(0,0,0,.25); pointer-events: none; }
+.pk-tip b { color: inherit; }
+.pk-tip-i { display: inline-grid; place-items: center; width: 18px; height: 18px; margin-left: 6px; border-radius: 50%;
+  border: 1.5px solid var(--muted); color: var(--muted); font: 700 11px/1 Georgia, serif; font-style: italic; cursor: help; flex: none; vertical-align: middle; }
+.pk-tip-i:hover, .pk-tip-i:focus-visible { border-color: var(--accent, #1e63c6); color: var(--accent, #1e63c6); outline: none; }
+.pk-term { text-decoration: underline dotted; text-decoration-color: var(--muted); text-underline-offset: 3px; cursor: help; }
+.pk-term:focus-visible { outline: 2px solid var(--accent, #1e63c6); outline-offset: 2px; border-radius: 3px; }
+
+/* Copy picture button on diagrams: small and faint until you point at it */
+.pk-copy { position: absolute; z-index: 5; display: inline-flex; align-items: center; gap: 4px; padding: 3px 7px;
+  font: 700 .72rem var(--font-body); color: var(--muted); background: var(--surface); border: 1px solid var(--border);
+  border-radius: 6px; opacity: .45; cursor: pointer; transition: opacity .15s; }
+.pk-copy[hidden] { display: none; }
+.pk-copy:hover, .pk-copy:focus-visible { opacity: 1; color: var(--text); border-color: var(--border-strong); }
+@media (hover: none) { .pk-copy { opacity: .7; } }
+@media print { .pk-copy, .pk-tip-i { display: none !important; } }
+
+/* Share window */
+.pk-modal { position: fixed; inset: 0; z-index: 1500; display: grid; place-items: center; background: rgba(0,0,0,.45); padding: 16px; }
+.pk-modal-box { background: var(--surface); color: var(--text); border-radius: var(--radius, 12px); padding: 20px; width: min(560px, 100%);
+  max-height: calc(100vh - 32px); overflow: auto; box-shadow: 0 20px 60px rgba(0,0,0,.35); }
+.pk-modal-box h2 { margin: 0 0 6px; }
+.pk-qr { display: grid; place-items: center; margin: 10px 0; }
+.pk-qr canvas { width: min(420px, 70vh, 100%); height: auto; aspect-ratio: 1; image-rendering: pixelated; border-radius: 6px; }
+.pk-link { width: 100%; padding: 8px 10px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--surface-2); color: var(--text); font: inherit; font-size: .85rem; }
+
+/* Favourites star on the home page cards */
+.tool-card { position: relative; }
+.fav-star { position: absolute; top: 8px; right: 10px; z-index: 2; font-size: 1.3rem; line-height: 1; color: var(--muted); cursor: pointer; padding: 2px 4px; border-radius: 6px; }
+.fav-star[aria-pressed="true"] { color: #f5a623; }
+.fav-star:hover, .fav-star:focus-visible { color: #f5a623; outline: none; background: var(--surface-2); }
+.tool-card .tool-top { padding-right: 26px; }
+.topic.shortcut .topic-head h2 { color: var(--text); }

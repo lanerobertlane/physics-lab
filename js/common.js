@@ -239,5 +239,10 @@ const PK = (() => {
     document.head.appendChild(beacon);
   }
 
+  // Tooltips, Copy picture, Share, glossary and recently used (see extras.js)
+  const extras = document.createElement('script');
+  extras.src = `${root}js/extras.js`;
+  document.head.appendChild(extras);
+
   return { root, store, header, toast, copyLink, cssVar, sig, isDark, ans, ansText, answersShown, toggleFullscreen, fullscreenEnabled: fsEnabled, initialHash };
 })();

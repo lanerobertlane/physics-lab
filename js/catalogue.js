@@ -161,6 +161,8 @@ const TOOLS = [
     desc: 'Type in your own results, then get a line of best fit, the gradient and any anomalies highlighted.' },
   { topic: 'reference', icon: 'equation', name: 'Calculation practice', href: 'tools/practice.html', ks3: true, gcse: true, ht: true,
     desc: 'Random questions for any equation on the AQA sheet, with a worked answer to reveal.' },
+  { topic: 'reference', icon: 'list', name: 'Spec index', href: 'tools/spec.html', ks3: true, gcse: true,
+    desc: 'Every AQA and KS3 specification point covered on the site, with links to the tools that cover it.' },
   { topic: 'reference', icon: 'units', name: 'Units, prefixes & standard form', ks3: true, gcse: true,
     desc: 'Practise converting kJ to J, mA to A and numbers into standard form.' },
   { topic: 'reference', icon: 'stores', name: 'Uncertainty & means', ks3: true, gcse: true,
@@ -214,6 +216,7 @@ const TOOL_ICONS = {
   ptable: '<rect x="2" y="5" width="4" height="4"/><rect x="18" y="5" width="4" height="4"/><rect x="2" y="9" width="4" height="4"/><rect x="6" y="9" width="4" height="4"/><rect x="10" y="9" width="4" height="4"/><rect x="14" y="9" width="4" height="4"/><rect x="18" y="9" width="4" height="4"/><rect x="2" y="13" width="20" height="4"/><path d="M6 13v4M10 13v4M14 13v4M18 13v4"/>',
   bond: '<circle cx="8" cy="12" r="5"/><circle cx="16" cy="12" r="5"/><circle cx="12" cy="10" r=".8" fill="currentColor"/><path d="M11 13.5l2 2M13 13.5l-2 2"/>',
   transformer: '<rect x="6" y="4" width="12" height="16" rx="1"/><path d="M2 8h4M2 11h4M2 14h4M18 8h4M18 11h4M18 14h4M18 17h4"/>',
+  list: '<path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/>',
   equation: '<path d="M4 7h7M7.5 3.5v7M4 17h7M14 5l6 6M20 5l-6 6M14 15h6M14 19h6"/>',
 };
 

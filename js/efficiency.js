@@ -148,7 +148,7 @@ const CONTEXTS = [
 ];
 const TOTALS = [200, 400, 500, 800, 1000, 1200, 1500, 2000, 2500, 4000, 5000, 12000, 60000];
 const pick = (a) => a[Math.floor(Math.random() * a.length)];
-const P = { n: 0, right: 0, tried: 0, q: null };
+const P = { n: 0, right: 0, tried: 0, q: null, ...(PK.store.get('score.efficiency', null) || {}) };
 
 function newPractice() {
   const type = pick(['eff', 'eff', 'useful', 'total', 'wasted', 'sankey']);
@@ -214,6 +214,7 @@ function checkPractice() {
   }
   P.tried++; if (k === 'ok') P.right++;
   $('p-feedback').textContent = msg; $('p-feedback').className = `feedback ${k}`;
+  PK.store.set('score.efficiency', { right: P.right, tried: P.tried });
   $('p-score').textContent = `${P.right} right out of ${P.tried}`;
 }
 
@@ -251,3 +252,4 @@ window.addEventListener('pk-answers', () => { renderDevice(); if (P.q) renderPra
 
 renderDevice();
 showTab(location.hash.slice(1) === 'practice' ? 'practice' : 'device');
+if (P.tried) $('p-score').textContent = `${P.right} right out of ${P.tried}`;

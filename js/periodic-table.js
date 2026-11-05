@@ -156,3 +156,6 @@ let last = performance.now();
 function frame(now) { const dt = Math.min(0.05, (now - last) / 1000); last = now; draw(dt); requestAnimationFrame(frame); }
 size(); buildTable(); renderInfo();
 requestAnimationFrame(frame);
+
+// Share: the chosen element
+PK.shareState = { get: () => ({ z: state.z }), set: (o) => { if (o.z) select(o.z); } };
