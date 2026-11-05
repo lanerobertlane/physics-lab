@@ -101,8 +101,8 @@ const TOOLS = [
   // Energy
   { topic: 'energy', icon: 'stores', name: 'Energy stores', href: 'tools/energy.html', gcse: true, ks3: true,
     desc: 'Kinetic and gravitational stores for a bouncing ball or rollercoaster, with friction on or off.' },
-  { topic: 'energy', icon: 'efficiency', name: 'Efficiency calculator', href: 'tools/efficiency.html', gcse: true, ks3: true, ht: true,
-    desc: 'Where the energy goes in everyday devices, plus a calculator for any efficiency question.' },
+  { topic: 'energy', icon: 'efficiency', name: 'Efficiency', href: 'tools/efficiency.html', gcse: true, ks3: true, ht: true,
+    desc: 'Work out the efficiency of everyday devices from Sankey diagrams, step by step, then practise with marked questions.' },
   { topic: 'energy', icon: 'heat', name: 'Specific heat capacity', href: 'tools/shc.html', gcse: true, rp: true,
     desc: 'Heat a 1 kg block, record energy and temperature, and find c from the gradient.' },
   { topic: 'energy', icon: 'heat', name: 'Required practical: thermal insulation', href: 'tools/insulation.html', gcse: true, po: true, rp: true,

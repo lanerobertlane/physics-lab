@@ -7,63 +7,114 @@
   <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../css/style.css">
   <style>
-    .devices { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
-    .devices .btn { min-height: 54px; }
-    .split { display: flex; height: 64px; border-radius: var(--radius-sm); overflow: hidden; margin: 14px 0 6px; font-weight: 700; color: #fff; }
-    .split > div { display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 6px; min-width: 0; transition: width .3s ease; white-space: nowrap; overflow: hidden; }
-    .useful { background: #2e9e57; }
-    .wasted { background: #d4553a; }
-    .legend { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: .93rem; }
-    .legend b { display: block; }
-    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
-    .ctl label b { color: var(--text); }
-    .calc { display: grid; grid-template-columns: 1fr 120px; gap: 8px; align-items: center; margin: 8px 0; }
-    .calc input { min-height: 40px; padding: 4px 8px; border-radius: var(--radius-sm); border: 1px solid var(--border-strong); background: var(--surface); width: 100%; }
+    #sankey, #psankey { aspect-ratio: 800 / 340; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .devices { display: flex; flex-wrap: wrap; gap: 6px; }
+    .question { font-size: 1.08rem; margin: 0 0 12px; line-height: 1.5; }
+    .vesrau { display: grid; gap: .4em; line-height: 1.45; font-size: 1.02rem; }
+    .vesrau .v { display: inline-block; white-space: nowrap; margin-right: 2.2em; }
+    .vesrau .v:last-child { margin-right: 0; }
+    .vesrau .ans { font-weight: 800; color: var(--answer, inherit); }
+    .vesrau .lbl { font-size: .78rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin-top: 6px; }
+    .answer-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 14px 0 0; }
+    .answer-row input { width: 9em; min-height: 42px; padding: 4px 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-strong); background: var(--surface); color: var(--text); font: inherit; font-size: 1.1rem; font-weight: 700; }
+    .feedback { margin: 10px 0 0; font-weight: 700; min-height: 1.4em; }
+    .feedback.ok { color: #2e7d32; } .feedback.bad { color: #c62828; }
+    .score { color: var(--muted); font-size: .9rem; margin-left: auto; }
+    details.method summary { cursor: pointer; font-weight: 800; margin-top: 14px; }
+    details.method[open] summary { margin-bottom: 8px; }
   </style>
 </head>
 <body>
   <main class="tool-page">
     <div class="tool-intro">
       <h1>Efficiency</h1>
-      <p>No device turns all of its input energy into the useful kind. Pick a device to see where its energy goes, then use the calculator for your own questions.</p>
+      <p>No device transfers all of its input energy usefully: some is always wasted, usually by heating the surroundings. <b>Efficiency</b> tells you what fraction of the input is useful. It is never more than 1 (100%).</p>
     </div>
 
-    <div class="tool-layout">
+    <div class="chip-group" id="tabs" style="margin-bottom:12px">
+      <button class="chip" data-t="device" aria-pressed="true">Work it out for a device</button>
+      <button class="chip" data-t="practice" aria-pressed="false">Practice questions</button>
+    </div>
+
+    <div class="tool-layout" data-tab="device">
       <div class="main-col">
         <div class="panel">
           <h2>Choose a device</h2>
           <div class="devices" id="devices"></div>
-          <div class="split" id="split"></div>
-          <div class="legend" id="legend"></div>
-          <div class="ctl" style="margin-top:14px">
-            <label for="time">Running for <b id="time-val"></b></label>
-            <input type="range" id="time" min="1" max="600" step="1" value="60">
+        </div>
+        <div class="panel stage">
+          <canvas id="sankey" aria-label="Sankey diagram showing the energy transferred by the device"></canvas>
+          <div class="stage-bar">
+            <div class="chip-group" id="units" aria-label="Use">
+              <button class="chip" data-u="energy" aria-pressed="true">Energy (J)</button>
+              <button class="chip" data-u="power" aria-pressed="false">Power (W)</button>
+            </div>
+            <label class="toggle"><input type="checkbox" id="count"> Hide the numbers: count the squares</label>
           </div>
-          <div class="working" id="working"></div>
+        </div>
+        <div class="panel">
+          <h2>Work out the efficiency</h2>
+          <p class="question" id="d-question"></p>
+          <div class="vesrau" id="d-steps"></div>
+          <div class="answer-row">
+            <label for="d-answer"><b>Efficiency =</b></label>
+            <input id="d-answer" inputmode="decimal" autocomplete="off" placeholder="e.g. 0.25 or 25%">
+            <button class="btn primary" id="d-check">✓ Check</button>
+          </div>
+          <p class="feedback" id="d-feedback" aria-live="polite"></p>
           <p class="note" id="improve"></p>
         </div>
       </div>
       <aside>
         <div class="panel">
-          <h2>Calculator</h2>
-          <div class="field"><label for="find">Find</label>
-            <select class="select" id="find">
-              <option value="eff">Efficiency</option>
-              <option value="useful">Useful output</option>
-              <option value="total">Total input</option>
-            </select></div>
-          <div id="calc-inputs"></div>
-          <div class="working" id="calc-out"></div>
-          <p class="note">Use energy (J) or power (W) — just use the same for both. Efficiency can be a decimal (0.25) or a percentage (25%).</p>
+          <h2>How to do it</h2>
+          <ol style="margin:0; padding-left:20px; line-height:1.55">
+            <li>Find the <b>total input</b> (everything going in).</li>
+            <li>Find the <b>useful output</b> (only the part you want).</li>
+            <li>Divide: <b>useful ÷ total</b>. The answer is a decimal less than 1.</li>
+            <li>For a percentage, multiply by 100.</li>
+          </ol>
+          <div class="working" style="margin-top:12px">
+            <p><b>efficiency = useful output energy transfer ÷ total input energy transfer</b></p>
+            <p><b>efficiency = useful power output ÷ total power input</b></p>
+          </div>
+          <p class="note"><b>Wasted energy</b> = total input − useful output. It is usually dissipated (spread out) to the surroundings as thermal energy.</p>
+          <p class="note"><b>Check your answer:</b> if you get more than 1, you have divided the wrong way round.</p>
         </div>
+      </aside>
+    </div>
+
+    <div class="tool-layout" data-tab="practice" hidden>
+      <div class="main-col">
         <div class="panel">
-          <h2>Remember</h2>
-          <ul style="margin:0; padding-left:18px; font-size:.93rem">
-            <li>efficiency = useful output energy transfer ÷ total input energy transfer</li>
-            <li>efficiency = useful power output ÷ total power input</li>
-            <li>Wasted energy is usually <b>dissipated</b> to the surroundings as thermal energy, so it spreads out and is less useful.</li>
-            <li>Efficiency is never more than 1 (100%): energy can't be created.</li>
-          </ul>
+          <h2>Question <span id="p-num"></span></h2>
+          <p class="question" id="p-question"></p>
+          <div class="panel stage" id="p-stage" hidden style="margin:0 0 12px; box-shadow:none">
+            <canvas id="psankey" aria-label="Sankey diagram for the question"></canvas>
+          </div>
+          <div class="answer-row">
+            <label for="p-answer"><b id="p-label"></b></label>
+            <input id="p-answer" inputmode="decimal" autocomplete="off">
+            <span id="p-unit"></span>
+            <button class="btn primary" id="p-check">✓ Check</button>
+            <button class="btn" id="p-next">Next question →</button>
+            <span class="score" id="p-score"></span>
+          </div>
+          <p class="feedback" id="p-feedback" aria-live="polite"></p>
+          <details class="method" id="p-method"><summary>Show the worked answer</summary><div class="vesrau" id="p-steps"></div></details>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Rearranging</h2>
+          <div class="working" style="margin-top:0">
+            <p>efficiency = useful ÷ total</p>
+            <p>useful = efficiency × total</p>
+            <p>total = useful ÷ efficiency</p>
+          </div>
+          <p class="note">Use the efficiency as a <b>decimal</b> in these: 25% = 0.25.</p>
+          <p class="note">Wasted = total − useful.</p>
         </div>
       </aside>
     </div>
