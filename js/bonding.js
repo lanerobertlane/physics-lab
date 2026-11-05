@@ -442,3 +442,98 @@ function frame(now) { const dt = Math.min(0.05, (now - last) / 1000); last = now
 size();
 choose(11, 17);
 requestAnimationFrame(frame);
+
+// ---------- Practice: gap-fill model answers ----------
+
+const P = { type: 'ionic', a: 0, b: 0, info: null, answers: {}, checked: false, right: 0, total: 0, last: '' };
+const PX_IONIC = { metals: [3, 11, 19, 12, 20, 13], nons: [9, 17, 35, 8, 16, 7] };
+const PX_COV = [[8, 1], [7, 1], [6, 1], [1, 17], [6, 8], [17, 17], [8, 8], [7, 7], [1, 1], [1, 9], [16, 1]];
+const pickOne = (arr) => arr[Math.floor(Math.random() * arr.length)];
+const range = (a, b) => Array.from({ length: b - a + 1 }, (_, i) => a + i);
+const CHARGES = ['3+', '2+', '1+', '1−', '2−', '3−'];
+
+// A drop-down gap; the first option is a blank
+function gap(key, options, answer) {
+  P.answers[key] = String(answer);
+  const opts = ['…', ...options.map(String)];
+  return `<select data-k="${key}" aria-label="Choose">${opts.map((o, i) => `<option value="${i ? o : ''}">${o}</option>`).join('')}</select>`;
+}
+const cap1 = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+
+function newPractice() {
+  let key;
+  do {
+    if (P.type === 'ionic') { P.a = pickOne(PX_IONIC.metals); P.b = pickOne(PX_IONIC.nons); } else [P.a, P.b] = pickOne(PX_COV);
+    key = `${P.a}-${P.b}`;
+  } while (key === P.last);
+  P.last = key;
+  P.info = analyse(P.a, P.b);
+  P.answers = {}; P.checked = false;
+  const I = P.info;
+  let html;
+  if (I.type === 'ionic') {
+    const m = N(I.m), x = N(I.x), an = ANION[I.x];
+    $('p-title').textContent = `Ionic bonding in ${EL.cap(I.name)}`;
+    html = `
+      <p>${cap1(m)} ${gap('v1', ['loses', 'gains', 'shares'], 'loses')} ${gap('n1', range(1, 3), I.qm)} electron(s).</p>
+      <p>${cap1(x)} ${gap('v2', ['loses', 'gains', 'shares'], 'gains')} ${gap('n2', range(1, 3), I.qx)} electron(s).</p>
+      <p>The ${m} ion has a ${gap('c1', CHARGES, `${I.qm}+`)} charge and the ${an} ion has a ${gap('c2', CHARGES, `${I.qx}−`)} charge.</p>
+      <p>Both ions now have a full outer shell: the same electronic structure as a ${gap('ng', ['noble gas', 'halogen', 'alkali metal'], 'noble gas')}.</p>
+      <p>The oppositely charged ions are held together by strong ${gap('f', ['electrostatic', 'magnetic', 'gravitational'], 'electrostatic')} forces of attraction. This is ${gap('bt', ['ionic', 'covalent', 'metallic'], 'ionic')} bonding.</p>
+      <p>For every ${gap('k1', range(1, 3), I.nM)} ${m} ion(s) there are ${gap('k2', range(1, 3), I.nX)} ${an} ion(s), so the charges add up to zero.</p>
+      <p class="formula-line">Formula: <span id="p-formula">?</span></p>`;
+  } else {
+    const c = N(I.central), l = N(I.lig), same = I.central === I.lig;
+    const word = ['', 'single', 'double', 'triple'][I.order];
+    $('p-title').textContent = `Covalent bonding in ${I.name === 'a covalent molecule' ? I.formula.replace(/<[^>]+>/g, '') : I.name}`;
+    html = `
+      <p>${same ? `Each ${c} atom` : cap1(c)} has ${gap('o1', range(1, 8), EL.outer(I.central))} electron(s) in its outer shell, so it needs ${gap('n1', range(1, 4), valence(I.central))} more to fill it.</p>
+      ${same ? '' : `<p>${cap1(l)} has ${gap('o2', range(1, 8), EL.outer(I.lig))} electron(s) in its outer shell, so it needs ${gap('n2', range(1, 4), valence(I.lig))} more.</p>`}
+      <p>The atoms ${gap('v', ['share', 'transfer', 'lose'], 'share')} pairs of electrons. Each shared pair has one electron from each atom.</p>
+      <p>Altogether there are ${gap('pairs', range(1, 8), I.n * I.order)} shared pair(s) of electrons, and each bond is a ${gap('t', ['single', 'double', 'triple'], word)} covalent bond.</p>
+      <p>Covalent bonds are ${gap('s1', ['strong', 'weak'], 'strong')}, but the forces between the molecules are ${gap('s2', ['weak', 'strong'], 'weak')}, so ${I.formula} has a ${gap('bp', ['low', 'high'], 'low')} boiling point.</p>
+      <p class="formula-line">Formula: <span id="p-formula">?</span></p>`;
+  }
+  $('p-text').innerHTML = html;
+  $('p-text').querySelectorAll('select').forEach((s) => s.addEventListener('change', () => s.classList.remove('ok', 'bad')));
+  $('p-feedback').textContent = ''; $('p-feedback').className = 'p-feedback';
+}
+function checkPractice(reveal = false) {
+  const sels = [...$('p-text').querySelectorAll('select')];
+  let right = 0, blank = 0;
+  for (const s of sels) {
+    if (reveal) s.value = P.answers[s.dataset.k];
+    const ok = s.value === P.answers[s.dataset.k];
+    if (!s.value) blank++;
+    if (ok) right++;
+    s.classList.toggle('ok', ok); s.classList.toggle('bad', !ok && !!s.value);
+  }
+  if (!reveal && blank === sels.length) { $('p-feedback').textContent = 'Choose an answer for each gap first.'; $('p-feedback').className = 'p-feedback bad'; return; }
+  const all = right === sels.length;
+  if (all || reveal) $('p-formula').innerHTML = P.info.formula;
+  // Only the first complete attempt counts towards the score
+  if (!reveal && !P.checked && !blank) { P.checked = true; P.right += right; P.total += sels.length; }
+  if (reveal) P.checked = true;
+  $('p-feedback').textContent = reveal ? 'Here are the answers.' : all ? `All ${sels.length} correct!` : `${right} out of ${sels.length} correct${blank ? `, ${blank} still blank` : ''}. Fix the red ones and check again.`;
+  $('p-feedback').className = `p-feedback ${all || reveal ? 'ok' : 'bad'}`;
+  $('p-score').textContent = P.total ? `${P.right} out of ${P.total} gaps right first time.` : 'No questions checked yet.';
+}
+
+function setMode(m) {
+  document.querySelectorAll('#mode .chip').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.m === m)));
+  $('explore').hidden = m !== 'explore'; $('practice').hidden = m !== 'practice';
+  if (m === 'practice' && !P.info) newPractice();
+  if (m === 'explore') size();
+  window.history.replaceState(null, '', m === 'practice' ? '#practice' : location.pathname);
+}
+document.querySelectorAll('#mode .chip').forEach((b) => b.addEventListener('click', () => setMode(b.dataset.m)));
+document.querySelectorAll('#p-type .chip').forEach((b) => b.addEventListener('click', () => {
+  P.type = b.dataset.t;
+  document.querySelectorAll('#p-type .chip').forEach((c) => c.setAttribute('aria-pressed', String(c === b)));
+  newPractice();
+}));
+$('p-check').addEventListener('click', () => checkPractice(false));
+$('p-show').addEventListener('click', () => checkPractice(true));
+$('p-next').addEventListener('click', newPractice);
+$('p-see').addEventListener('click', () => { choose(P.a, P.b); setMode('explore'); });
+if (PK.initialHash === '#practice') setMode('practice');
