@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Infrared Radiation Practical · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #ir { aspect-ratio: 800 / 380; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
+    .ctl label b { color: var(--text); }
+    .results { width: 100%; border-collapse: collapse; margin-top: 10px; font-variant-numeric: tabular-nums; font-size: .9rem; }
+    .results th, .results td { border: 1px solid var(--border-strong); padding: 4px 6px; text-align: center; }
+    .results th { background: var(--surface-2); }
+    .results td.n { color: var(--answer, inherit); }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Required practical: infrared radiation</h1>
+      <p id="intro"></p>
+    </div>
+
+    <div class="chip-group" id="modes" style="margin-bottom:12px">
+      <button class="chip" data-m="emit" aria-pressed="true">Emitting: Leslie cube</button>
+      <button class="chip" data-m="absorb" aria-pressed="false">Absorbing: wax and pins</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="ir" aria-label="Infrared experiment"></canvas>
+          <div class="stage-bar" id="bar"></div>
+        </div>
+        <div class="panel after-aside">
+          <h2>Conclusion</h2>
+          <p style="margin:0">Dark, matt surfaces are the best <b>emitters</b> and the best <b>absorbers</b> of infrared radiation. Light, shiny surfaces are the worst emitters and absorbers. They are good <b>reflectors</b>.</p>
+          <p class="note">All objects emit and absorb infrared radiation. The hotter an object is, the more infrared it emits in a given time.</p>
+        </div>
+      </div>
+      <aside>
+        <div class="panel" id="controls"></div>
+        <div class="panel">
+          <h2>Results</h2>
+          <div id="table"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/infrared.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thermal Insulation Practical · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #beakers { aspect-ratio: 800 / 300; }
+    #curve { width: 100%; aspect-ratio: 800 / 300; display: block; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .picks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 10px 12px; border-top: 1px solid var(--border); }
+    @media (max-width: 600px) { .picks { grid-template-columns: 1fr 1fr; } }
+    .picks .select { width: 100%; min-width: 0; }
+    .part { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; margin-bottom: 10px; }
+    .results { width: 100%; border-collapse: collapse; margin-top: 10px; font-variant-numeric: tabular-nums; font-size: .86rem; }
+    .results th, .results td { border: 1px solid var(--border-strong); padding: 4px 5px; text-align: center; }
+    .results th { background: var(--surface-2); }
+    .results td.n { color: var(--answer, inherit); }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Required practical: thermal insulation</h1>
+      <p>Four beakers of hot water, each wrapped in a different material. Measure how quickly each one cools down. The best insulator keeps the water hot for longest.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="beakers" aria-label="Four beakers of hot water with different insulation"></canvas>
+          <div class="picks" id="picks"></div>
+          <div class="stage-bar">
+            <button class="btn primary" id="go">▶ Start the stopwatch</button>
+            <button class="btn" id="reset">↺ Refill with hot water</button>
+            <select class="select" id="speed" aria-label="Speed"><option value="10">10 × faster</option><option value="30" selected>30 × faster</option><option value="60">60 × faster</option></select>
+          </div>
+        </div>
+        <div class="panel after-aside">
+          <h2>Cooling curves</h2>
+          <canvas id="curve" aria-label="Temperature against time for each beaker"></canvas>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Fair test</h2>
+          <div class="part"><span><b>Layers of each material</b></span><div class="stepper"><button id="less" aria-label="Fewer layers">−</button><output id="layers"></output><button id="more" aria-label="More layers">+</button></div></div>
+          <label class="toggle"><input type="checkbox" id="lid"> Lids on the beakers</label>
+          <p class="note">Keep these the same for every beaker: the volume of water (200 cm³), the starting temperature (80 °C) and the thickness of insulation. Only change the material.</p>
+        </div>
+        <div class="panel">
+          <h2>Results (temperature in °C)</h2>
+          <div id="table"></div>
+          <p class="note" id="verdict"></p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/insulation.js"></script>
+</body>
+</html>

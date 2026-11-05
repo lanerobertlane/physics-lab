@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acceleration Practical · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #bench { aspect-ratio: 800 / 320; }
+    #graph { width: 100%; aspect-ratio: 270 / 220; display: block; margin-top: 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .part { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; margin-bottom: 10px; }
+    .stepper output { min-width: 76px; }
+    .results { width: 100%; border-collapse: collapse; margin-top: 10px; font-variant-numeric: tabular-nums; font-size: .88rem; }
+    .results th, .results td { border: 1px solid var(--border-strong); padding: 4px 5px; text-align: center; }
+    .results th { background: var(--surface-2); }
+    .results td.n { color: var(--answer, inherit); }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Required practical: acceleration</h1>
+      <p>A falling mass pulls a trolley along a runway. Two light gates measure the trolley's speed. Investigate how the force, and the mass, affect the acceleration.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="bench" aria-label="Trolley on a runway with light gates and a hanging mass"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="go">▶ Release the trolley</button>
+            <button class="btn" id="back">↺ Pull it back</button>
+            <label class="toggle"><input type="checkbox" id="friction"> Friction not compensated</label>
+          </div>
+        </div>
+        <div class="panel after-aside">
+          <h2>Method</h2>
+          <ol style="margin:0; padding-left:20px; font-size:.94rem">
+            <li><b>Changing the force:</b> start with all the 100 g masses on the trolley. Move them to the hanger one at a time, so the total mass stays the same. Force = weight of the hanging masses.</li>
+            <li><b>Changing the mass:</b> keep the hanging mass the same and add masses to the trolley.</li>
+            <li>Each light gate measures how long the card (5 cm long) blocks it, giving a speed. Acceleration = change in speed ÷ time between the gates: <b>a = (v − u) ÷ t</b>.</li>
+            <li>The runway is tilted slightly so friction is balanced (compensated). Untick to see what friction does.</li>
+          </ol>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Set-up</h2>
+          <div class="part"><span><b>On the hanger</b></span><div class="stepper"><button data-k="hang" data-d="-1" aria-label="Fewer hanging masses">−</button><output id="hang-val"></output><button data-k="hang" data-d="1" aria-label="More hanging masses">+</button></div></div>
+          <div class="part"><span><b>On the trolley</b></span><div class="stepper"><button data-k="load" data-d="-1" aria-label="Fewer masses on the trolley">−</button><output id="load-val"></output><button data-k="load" data-d="1" aria-label="More masses on the trolley">+</button></div></div>
+          <button class="btn" id="move">Move 100 g from trolley to hanger</button>
+          <dl class="readout" id="setup" style="margin-top:10px"></dl>
+        </div>
+        <div class="panel">
+          <h2>Light gate readings</h2>
+          <dl class="readout" id="gates"></dl>
+        </div>
+        <div class="panel">
+          <h2>Results</h2>
+          <div class="btn-row"><button class="btn primary" id="record">＋ Record</button><button class="btn" id="clear">Clear</button></div>
+          <div id="table"></div>
+          <div class="field" style="margin-top:8px"><label for="axis">Graph</label>
+            <select class="select" id="axis"><option value="F">Acceleration against force</option><option value="m">Acceleration against mass</option></select></div>
+          <canvas id="graph" aria-label="Results graph"></canvas>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/acceleration.js"></script>
+</body>
+</html>
