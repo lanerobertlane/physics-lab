@@ -1,4 +1,4 @@
-// Shared helpers: header, themes, projector mode, spec panel, toast, offline cache.
+// Shared helpers: header, themes, full screen, spec panel, toast, offline cache.
 
 // ---- Site name: change it here and it updates everywhere. ----
 const SITE = {
@@ -40,7 +40,8 @@ const PK = (() => {
     classroom: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l9-4 9 4-9 4z"/><path d="M7 8v5c0 1.5 2.2 3 5 3s5-1.5 5-3V8"/><path d="M21 6v6"/></svg>',
     sparx: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.2 6.3L20 10l-5.8 1.7L12 18l-2.2-6.3L4 10l5.8-1.7z"/><path d="M19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8z"/></svg>',
     moon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>',
-    projector: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M12 16v4M8 20h8"/></svg>',
+    fullscreen: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg>',
+    exitFullscreen: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4v5H4M20 9h-5V4M15 20v-5h5M4 15h5v5"/></svg>',
     back: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>',
   };
 
@@ -52,14 +53,19 @@ const PK = (() => {
 
   const isDark = () => currentTheme() === 'dark';
 
-  function applyProjector(on) {
-    if (on) document.documentElement.dataset.projector = '';
-    else delete document.documentElement.dataset.projector;
+  // Full screen (the same as pressing F11). Safari before 16.4 only has the webkit names.
+  const fsElement = () => document.fullscreenElement || document.webkitFullscreenElement;
+  const fsEnabled = () => Boolean(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function toggleFullscreen() {
+    const de = document.documentElement;
+    const p = fsElement()
+      ? (document.exitFullscreen || document.webkitExitFullscreen).call(document)
+      : (de.requestFullscreen || de.webkitRequestFullscreen).call(de);
+    if (p && p.catch) p.catch(() => toast('Full screen isn’t available here. Try pressing F11.'));
   }
 
-  // Apply saved preferences straight away to avoid a flash.
+  // Apply the saved theme straight away to avoid a flash.
   applyTheme(savedTheme());
-  applyProjector(store.get('projector', false));
 
   function header({ title = '', isHome = false, spec = null } = {}) {
     document.title = title ? `${title} · ${SITE.name}` : SITE.name;
@@ -75,7 +81,7 @@ const PK = (() => {
       ${title ? `<span class="header-title">${title}</span>` : ''}
       <span class="header-spacer"></span>
       <div class="header-actions">
-        <button class="icon-btn" id="pk-projector" aria-pressed="false" title="Projector mode: bigger text and bolder lines">${icons.projector}<span class="label">Projector</span></button>
+        ${fsEnabled() ? `<button class="icon-btn fs-btn" id="pk-fullscreen" title="Full screen (F11)">${icons.fullscreen}<span class="label">Full screen</span></button>` : ''}
         <label class="icon-btn theme-select" title="Colour theme">${icons.palette}
           <select id="pk-theme" aria-label="Colour theme">
             ${Object.entries(THEMES).map(([id, label]) => `<option value="${id}">${label}</option>`).join('')}
@@ -92,15 +98,17 @@ const PK = (() => {
       window.dispatchEvent(new Event('pk-theme'));
     });
 
-    const projBtn = el.querySelector('#pk-projector');
-    projBtn.setAttribute('aria-pressed', String(store.get('projector', false)));
-    projBtn.addEventListener('click', () => {
-      const on = projBtn.getAttribute('aria-pressed') !== 'true';
-      projBtn.setAttribute('aria-pressed', String(on));
-      applyProjector(on);
-      store.set('projector', on);
-      window.dispatchEvent(new Event('pk-theme'));
-    });
+    const fsBtn = el.querySelector('#pk-fullscreen');
+    if (fsBtn) {
+      fsBtn.addEventListener('click', toggleFullscreen);
+      const syncFs = () => {
+        const on = Boolean(fsElement());
+        fsBtn.innerHTML = `${on ? icons.exitFullscreen : icons.fullscreen}<span class="label">${on ? 'Exit full screen' : 'Full screen'}</span>`;
+        fsBtn.title = on ? 'Exit full screen (Esc)' : 'Full screen (F11)';
+      };
+      document.addEventListener('fullscreenchange', syncFs);
+      document.addEventListener('webkitfullscreenchange', syncFs);
+    }
 
     if (spec) specPanel(spec);
     footer();
@@ -113,8 +121,7 @@ const PK = (() => {
       <span>© 2026 Robert Lane</span>
       <span>Free and open source under the <a href="https://www.gnu.org/licenses/gpl-3.0.html" rel="license noopener" target="_blank">GNU GPL v3</a></span>
       <a href="${root}terms.html">Terms of use</a>
-      <a href="${root}privacy.html">Privacy</a>
-      <a href="https://github.com/lanerobertlane/physics-lab" rel="noopener" target="_blank">Source code</a>`;
+      <a href="${root}privacy.html">Privacy</a>`;
     document.body.appendChild(el);
   }
 

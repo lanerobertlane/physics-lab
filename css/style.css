@@ -262,12 +262,9 @@
   color-scheme: dark;
 }
 
-/* Projector mode: bigger type, stronger lines, no faint text */
-:root[data-projector] {
-  font-size: 118%;
-  --muted: var(--text);
-  --stroke: 1.5;
-}
+/* Full screen button: only on computers with a mouse (not phones or iPads) */
+.fs-btn { display: none !important; }
+@media (hover: hover) and (pointer: fine) { .fs-btn { display: inline-flex !important; } }
 
 /* ---------- Base ---------- */
 
