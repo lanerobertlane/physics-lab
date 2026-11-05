@@ -34,6 +34,24 @@
     .setting { display: grid; gap: 4px; margin-bottom: 10px; font-weight: 700; font-size: .9rem; color: var(--muted); }
     .setting .select { width: 100%; }
     aside .toggle { margin-top: 6px; }
+
+    /* Presentation view: the question on its own, like a lesson slide */
+    .present { position: fixed; inset: 0; z-index: 1000; background: var(--bg); color: var(--text); overflow: auto;
+      padding: clamp(16px, 2.2vw, 40px) clamp(16px, 3vw, 56px) 110px; font-family: var(--font-body); }
+    .present h1 { color: var(--title, var(--accent)); font-size: clamp(2rem, 4.2vw, 3.6rem); font-weight: 700; margin: 0 0 clamp(24px, 6vh, 80px); }
+    .p-q { font-size: clamp(1.35rem, 3vw, 2.6rem); line-height: 1.45; max-width: 60ch; margin-left: clamp(0px, 2.5vw, 48px); }
+    .p-q p { margin: 0 0 .9em; }
+    .p-extra { font-size: clamp(1.1rem, 2.2vw, 1.9rem); margin: clamp(16px, 4vh, 40px) 0 0 clamp(0px, 2.5vw, 48px); max-width: 60ch; }
+    .p-extra .eq-show { font-size: 1em; text-align: left; display: inline-block; padding: 8px 18px; }
+    .p-extra h2 { display: none; }
+    .vesrau { display: grid; gap: .6em; line-height: 1.4; }
+    .vesrau .ans { font-weight: 800; color: var(--answer, inherit); }
+    .p-bar { position: fixed; left: 0; right: 0; bottom: 0; display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end;
+      padding: 12px clamp(16px, 3vw, 56px); background: linear-gradient(transparent, var(--bg) 35%); }
+    .p-bar .btn { opacity: .85; }
+    .p-bar .btn:hover, .p-bar .btn:focus-visible { opacity: 1; }
+    body.presenting { overflow: hidden; }
+    :root[data-theme="lesson"] .eq-show { font-family: var(--font-body); }   /* Calibri throughout */
   </style>
 </head>
 <body>
@@ -57,6 +75,7 @@
           <div class="btn-row" style="margin-top:10px">
             <button class="btn" id="show-hint">Show the equation</button>
             <button class="btn" id="show-working">Show the worked answer</button>
+            <button class="btn" id="present-open" title="Show the question on its own, ready to put on the board"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px;margin-right:4px"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M12 16v4M8 20h8"/></svg>Presentation view</button>
           </div>
           <div id="hint" hidden style="margin-top:10px"></div>
         </div>
@@ -85,6 +104,20 @@
       </aside>
     </div>
   </main>
+
+  <div class="present" id="present" role="dialog" aria-modal="true" aria-label="Presentation view" hidden>
+    <h1>Calculation practice</h1>
+    <div class="p-q" id="p-q"></div>
+    <div class="p-extra" id="p-hint" hidden></div>
+    <div class="p-extra" id="p-work" hidden></div>
+    <div class="p-bar">
+      <button class="btn" id="p-hint-btn">Show the equation</button>
+      <button class="btn" id="p-work-btn">Show the answer</button>
+      <button class="btn primary" id="p-next">Next question →</button>
+      <button class="btn fs-btn" id="p-fs">Full screen</button>
+      <button class="btn" id="p-close">✕ Exit presentation view</button>
+    </div>
+  </div>
 
   <script src="../js/common.js"></script>
   <script src="../js/equations-data.js"></script>
