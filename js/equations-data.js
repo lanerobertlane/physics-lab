@@ -123,3 +123,69 @@ const EQUATIONS = [
   { id: 'impulse', topic: 'Forces', recall: false, po: true, ht: true, lhs: 'F', rhs: [['m', 1], ['dv', 1], ['dt', -1]], wordNames: { dv: 'change in velocity' },
     word: 'force = change in momentum ÷ time taken', html: 'F = <span class="frac"><span>m Δv</span><span>Δt</span></span>' },
 ];
+
+// ---------- Helpers shared by the explorer and calculation practice ----------
+
+const varsOf = (eq) => (eq.custom ? eq.vars : [eq.lhs, ...eq.rhs.map(([id]) => id)]);
+const groupOf = (id) => Q[id].group || id;
+const nameOf = (eq, id) => (eq.wordNames && eq.wordNames[id]) || Q[id].name;
+const hasWord = (eq) => varsOf(eq).some((id) => Q[id].word);
+const term = (label, p) => (p === 1 ? label : `${label}<sup>${p}</sup>`);
+const frac = (num, den) => (den ? `<span class="frac"><span>${num}</span><span>${den}</span></span>` : num);
+
+function wordEquation(eq) {
+  if (eq.word) return eq.word;
+  const n = (id, p) => (p === 2 ? `(${nameOf(eq, id)})²` : nameOf(eq, id));
+  const num = eq.rhs.filter(([, p]) => p > 0).map(([id, p]) => n(id, p));
+  const den = eq.rhs.filter(([, p]) => p < 0).map(([id, p]) => n(id, -p));
+  const coef = eq.coef === 0.5 ? '0.5 × ' : '';
+  return `${nameOf(eq, eq.lhs)} = ${coef}${num.join(' × ') || '1'}${den.length ? ' ÷ ' + den.join(' × ') : ''}`;
+}
+
+// Build the right-hand side for a chosen subject. `lab` turns a variable id into HTML
+// (its symbol, or a number when showing the working).
+function expression(eq, subject, lab, numeric) {
+  const join = numeric || hasWord(eq) ? ' × ' : ' ';
+  const coef = eq.coef || 1;
+  let num = [], den = [], power = 1;
+
+  if (subject === eq.lhs) {
+    for (const [id, p] of eq.rhs) (p > 0 ? num : den).push(term(lab(id), Math.abs(p)));
+    if (coef === 0.5) num.unshift('½');
+    else if (coef !== 1) num.unshift(String(coef));
+  } else {
+    power = eq.rhs.find(([id]) => id === subject)[1];
+    num.push(lab(eq.lhs));
+    for (const [id, p] of eq.rhs) {
+      if (id === subject) continue;
+      (p < 0 ? num : den).push(term(lab(id), Math.abs(p)));
+    }
+    if (coef === 0.5) num.unshift('2');
+    else if (coef !== 1) den.unshift(String(coef));
+    if (power < 0) { [num, den] = [den, num]; power = -power; }
+  }
+  const body = frac(num.join(join) || '1', den.join(join));
+  return power === 2 ? `√(${body})` : body;
+}
+
+function solve(eq, subject, x) {
+  if (eq.custom) return eq.forms[subject].calc(x);
+  const coef = eq.coef || 1;
+  if (subject === eq.lhs) return eq.rhs.reduce((acc, [id, p]) => acc * x[id] ** p, coef);
+  const pX = eq.rhs.find(([id]) => id === subject)[1];
+  const rest = eq.rhs.reduce((acc, [id, p]) => (id === subject ? acc : acc * x[id] ** p), coef);
+  return (x[eq.lhs] / rest) ** (1 / pX);
+}
+
+// Accept "3e8", "3 x 10^8", "3×10^8", "1,200".
+function parseNum(str) {
+  if (str == null) return NaN;
+  const s = String(str).replace(/,/g, '').replace(/\s+/g, '').replace(/[x×]10\^?/i, 'e');
+  if (s === '' || !/^[-+]?(\d+\.?\d*|\.\d+)(e[-+]?\d+)?$/i.test(s)) return NaN;
+  return parseFloat(s);
+}
+
+function numLabel(v) {
+  const t = PK.sig(v, 4);
+  return v < 0 || t.includes('×') ? `(${t})` : t;
+}

@@ -150,7 +150,7 @@ const TOOLS = [
     desc: 'Every AQA equation: recall or given, rearrange it and calculate.' },
   { topic: 'reference', icon: 'graph', name: 'Practical graph plotter', ks3: true, gcse: true, rp: true,
     desc: 'Type in your own results, then get a line of best fit, the gradient and any anomalies highlighted.' },
-  { topic: 'reference', icon: 'equation', name: 'Calculation practice', ks3: true, gcse: true, ht: true,
+  { topic: 'reference', icon: 'equation', name: 'Calculation practice', href: 'tools/practice.html', ks3: true, gcse: true, ht: true,
     desc: 'Random questions for any equation on the AQA sheet, with a worked answer to reveal.' },
   { topic: 'reference', icon: 'units', name: 'Units, prefixes & standard form', ks3: true, gcse: true,
     desc: 'Practise converting kJ to J, mA to A and numbers into standard form.' },
