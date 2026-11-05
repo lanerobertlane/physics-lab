@@ -3,6 +3,7 @@
 
 PK.header({
   title: 'Moments',
+  answers: true,
   spec: [
     { code: '4.5.4', text: 'Moments, levers and gears: moment = force × perpendicular distance (M = F d); the principle of moments for a balanced object', po: true },
     { code: 'KS3', text: 'Moment as the turning effect of a force; balanced moments' },
@@ -102,14 +103,14 @@ const fmt = (x) => String(parseFloat(x.toFixed(2)));
 
 function render() {
   const { acw, cw, left, right } = moments();
-  const list = (items) => items.length ? items.map(([w, d]) => `${w} N × ${d} m = ${fmt(w * d)} N m`).join('<br>') : 'none';
+  const list = (items) => items.length ? items.map(([w, d]) => `${w} N × ${d} m = ${PK.ans(`${fmt(w * d)} N m`)}`).join('<br>') : 'none';
   $('sides').innerHTML = `
-    <div><b>Anticlockwise</b><br>${list(left)}<b class="total">${fmt(acw)} N m</b></div>
-    <div><b>Clockwise</b><br>${list(right)}<b class="total">${fmt(cw)} N m</b></div>`;
+    <div><b>Anticlockwise</b><br>${list(left)}<b class="total">${PK.ans(`${fmt(acw)} N m`)}</b></div>
+    <div><b>Clockwise</b><br>${list(right)}<b class="total">${PK.ans(`${fmt(cw)} N m`)}</b></div>`;
   const diff = Math.abs(cw - acw);
   $('verdict').innerHTML = diff < 1e-9
     ? (acw === 0 ? 'Hang some weights on the beam.' : '<span class="badge good">Balanced</span> The clockwise and anticlockwise moments are equal.')
-    : `<span class="badge bad">Not balanced</span> The ${cw > acw ? 'clockwise' : 'anticlockwise'} moment is bigger by ${fmt(diff)} N m, so the beam turns ${cw > acw ? 'clockwise' : 'anticlockwise'}.`;
+    : `<span class="badge bad">Not balanced</span> The ${cw > acw ? 'clockwise' : 'anticlockwise'} moment is bigger by ${PK.ans(`${fmt(diff)} N m`)}, so the beam turns ${cw > acw ? 'clockwise' : 'anticlockwise'}.`;
   history.replaceState(null, '', '#' + Object.entries(state.hung).filter(([, w]) => w.length).map(([h, w]) => `${h}:${w.join('.')}`).join('_'));
 }
 

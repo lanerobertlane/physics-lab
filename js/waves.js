@@ -3,6 +3,7 @@
 
 PK.header({
   title: 'Transverse & longitudinal waves',
+  answers: true,
   spec: [
     { code: '4.6.1.1', text: 'Transverse and longitudinal waves: oscillations perpendicular or parallel to the direction of energy transfer; compressions and rarefactions' },
     { code: '4.6.1.2', text: 'Properties of waves: amplitude, wavelength, frequency, period (T = 1 / f) and wave speed (v = f λ)' },
@@ -182,9 +183,9 @@ function renderWorking() {
   $('vel-val').textContent = `${state.v} cm/s`;
   $('amp-val').textContent = `${state.A.toFixed(1)} cm`;
   $('working').innerHTML = `
-    <p>Period: T = 1 ÷ f = 1 ÷ ${state.f.toFixed(2)} = <b>${(1 / state.f).toFixed(2)} s</b></p>
-    <p>Wavelength: λ = v ÷ f = ${state.v} ÷ ${state.f.toFixed(2)} = <b>${lam.toFixed(1)} cm</b></p>
-    <p>Check: v = f λ = ${state.f.toFixed(2)} × ${lam.toFixed(1)} = <b>${state.v} cm/s</b></p>
+    <p>Period: T = 1 ÷ f = 1 ÷ ${state.f.toFixed(2)} = <b>${PK.ans(`${(1 / state.f).toFixed(2)} s`)}</b></p>
+    <p>Wavelength: λ = v ÷ f = ${state.v} ÷ ${state.f.toFixed(2)} = <b>${PK.ans(`${lam.toFixed(1)} cm`)}</b></p>
+    <p>Check: v = f λ = ${state.f.toFixed(2)} × ${PK.ans(lam.toFixed(1))} = <b>${state.v} cm/s</b></p>
     <p class="note" style="margin-top:6px">Amplitude doesn't affect the speed, frequency or wavelength — it shows how much energy the wave carries.</p>`;
 }
 

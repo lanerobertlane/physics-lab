@@ -3,6 +3,7 @@
 
 PK.header({
   title: 'Resultant forces',
+  answers: true,
   spec: [
     { code: '4.5.1.1', text: 'Scalar and vector quantities — forces drawn as arrows' },
     { code: '4.5.1.4', text: 'Resultant forces: calculating the resultant of forces in a line' },
@@ -73,7 +74,6 @@ const state = {
   m: 2,
   shape: 'box',
   diag: false,
-  hide: false,
   revealed: false,
   showVector: true,
   start: 'rest',
@@ -163,7 +163,7 @@ function labelAnchor(d) {
 function drawArena() {
   const c = (n) => PK.cssVar(n);
   const stroke = parseFloat(PK.cssVar('--stroke')) || 1;
-  const hidden = state.hide && !state.revealed;
+  const hidden = !PK.answersShown() && !state.revealed;
   const ox = CX + sim.x * PX_PER_M, oy = CY - sim.y * PX_PER_M;
 
   let s = `<rect width="${W}" height="${H}" fill="${c('--surface')}"/>`;
@@ -328,14 +328,13 @@ function renderPanel() {
   $('mass').textContent = `${fmt(state.m)} kg`;
   $('shape').value = state.shape;
   $('diag').checked = state.diag;
-  $('hide').checked = state.hide;
   $('show-vector').checked = state.showVector;
   $('vector-panel').hidden = !state.showVector;
   $('start').value = state.start;
   $('preset').value = state.preset;
 
   const r = resultant();
-  const hidden = state.hide && !state.revealed;
+  const hidden = !PK.answersShown() && !state.revealed;
   const balanced = r.mag < 1e-9;
 
   if (hidden) {
@@ -395,7 +394,7 @@ function drawVector() {
   const c = (n) => PK.cssVar(n);
   const stroke = parseFloat(PK.cssVar('--stroke')) || 1;
   const VW = 640, VH = 300, PAD = 30;
-  const hidden = state.hide && !state.revealed;
+  const hidden = !PK.answersShown() && !state.revealed;
 
   const forces = activeDirs().filter((d) => state.f[d.id] > 0);
   const pts = [{ x: 0, y: 0 }];
@@ -544,7 +543,7 @@ $('diag').addEventListener('change', (e) => {
   if (!state.diag) DIRS.filter((d) => d.diag).forEach((d) => { state.f[d.id] = 0; });
   changed();
 });
-$('hide').addEventListener('change', (e) => { state.hide = e.target.checked; state.revealed = false; render(); saveHash(); });
+window.addEventListener('pk-answers', () => { state.revealed = false; render(); });
 $('show-vector').addEventListener('change', (e) => { state.showVector = e.target.checked; render(); });
 $('start').addEventListener('change', (e) => {
   state.start = e.target.value;
@@ -567,7 +566,6 @@ function saveHash() {
   p.set('m', state.m);
   if (state.shape !== 'box') p.set('o', state.shape);
   if (state.diag) p.set('d', '1');
-  if (state.hide) p.set('h', '1');
   if (state.start !== 'rest') p.set('s', state.start);
   history.replaceState(null, '', '#' + p.toString());
 }
@@ -587,7 +585,6 @@ function loadHash() {
   state.m = Math.max(1, Math.min(20, Number(p.get('m')) || 2));
   state.shape = SHAPES[p.get('o')] ? p.get('o') : 'box';
   state.diag = p.get('d') === '1';
-  state.hide = p.get('h') === '1';
   state.start = DIR[p.get('s')] ? p.get('s') : 'rest';
   return true;
 }

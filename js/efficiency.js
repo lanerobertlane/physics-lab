@@ -3,6 +3,7 @@
 
 PK.header({
   title: 'Efficiency',
+  answers: true,
   spec: [
     { code: '4.1.2.1', text: 'Energy transfers in a system: wasted energy is dissipated; ways of reducing unwanted transfers (lubrication, thermal insulation)' },
     { code: '4.1.2.2', text: 'Efficiency = useful output energy transfer ÷ total input energy transfer, and = useful power output ÷ total power input' },
@@ -50,14 +51,14 @@ function renderDevice() {
   const d = DEVICES[state.dev];
   document.querySelectorAll('#devices .btn').forEach((b, i) => b.setAttribute('aria-pressed', String(i === state.dev)));
   const u = d.power * d.eff, wst = d.power - u, Ein = d.power * state.time;
-  $('split').innerHTML = `<div class="useful" style="width:${d.eff * 100}%">${d.eff >= 0.15 ? `useful ${Math.round(d.eff * 100)}%` : ''}</div>
-    <div class="wasted" style="width:${(1 - d.eff) * 100}%">wasted ${Math.round((1 - d.eff) * 100)}%</div>`;
-  $('legend').innerHTML = `<div><b style="color:#2e9e57">Useful: ${siPower(u)}</b>${d.useful}</div><div><b style="color:#d4553a">Wasted: ${siPower(wst)}</b>${d.wasted}</div>`;
+  $('split').innerHTML = `<div class="useful" style="width:${d.eff * 100}%">${d.eff >= 0.15 ? `useful ${PK.ans(`${Math.round(d.eff * 100)}%`)}` : ''}</div>
+    <div class="wasted" style="width:${(1 - d.eff) * 100}%">wasted ${PK.ans(`${Math.round((1 - d.eff) * 100)}%`)}</div>`;
+  $('legend').innerHTML = `<div><b style="color:#2e9e57">Useful: ${PK.ans(siPower(u))}</b>${d.useful}</div><div><b style="color:#d4553a">Wasted: ${PK.ans(siPower(wst))}</b>${d.wasted}</div>`;
   $('time-val').textContent = state.time >= 60 ? `${Math.floor(state.time / 60)} min ${state.time % 60 ? `${state.time % 60} s` : ''}` : `${state.time} s`;
   $('working').innerHTML = `
-    <p>Total power input = <b>${siPower(d.power)}</b>, useful power output = <b>${siPower(u)}</b></p>
-    <p>efficiency = useful power output ÷ total power input = ${siPower(u)} ÷ ${siPower(d.power)} = <b>${d.eff} (${Math.round(d.eff * 100)}%)</b></p>
-    <p>In ${state.time} s: total energy in = P × t = ${siEnergy(Ein)}, useful energy out = ${siEnergy(Ein * d.eff)}, wasted = ${siEnergy(Ein * (1 - d.eff))}</p>`;
+    <p>Total power input = <b>${siPower(d.power)}</b>, useful power output = <b>${PK.ans(siPower(u))}</b></p>
+    <p>efficiency = useful power output ÷ total power input = ${PK.ans(siPower(u))} ÷ ${siPower(d.power)} = <b>${PK.ans(`${d.eff} (${Math.round(d.eff * 100)}%)`)}</b></p>
+    <p>In ${state.time} s: total energy in = P × t = ${PK.ans(siEnergy(Ein))}, useful energy out = ${PK.ans(siEnergy(Ein * d.eff))}, wasted = ${PK.ans(siEnergy(Ein * (1 - d.eff)))}</p>`;
   $('improve').innerHTML = `<b>Improving it:</b> ${d.improve}`;
 }
 

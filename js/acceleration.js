@@ -4,6 +4,7 @@
 
 PK.header({
   title: 'Acceleration practical',
+  answers: true,
   spec: [
     { code: '4.5.6.2.2', text: "Newton's second law: F = m a; acceleration is proportional to the resultant force and inversely proportional to the mass" },
     { code: '4.5.6.2.2', text: 'Required practical: investigate the effect of varying the force, and the mass, on the acceleration of an object' },
@@ -97,12 +98,12 @@ function render() {
   $('hang-val').textContent = `${state.hang * 100} g`;
   $('load-val').textContent = `${state.load * 100} g`;
   $('setup').innerHTML = `
-    <dt>Accelerating force</dt><dd>${force().toFixed(2)} N</dd>
+    <dt>Accelerating force</dt><dd>${PK.ans(`${force().toFixed(2)} N`)}</dd>
     <dt>Total mass moving</dt><dd>${mTotal().toFixed(2)} kg</dd>`;
   const r = readings();
   $('gates').innerHTML = r
     ? `<dt>Speed at gate 1 (u)</dt><dd>${r.u.toFixed(2)} m/s</dd><dt>Speed at gate 2 (v)</dt><dd>${r.v.toFixed(2)} m/s</dd><dt>Time between gates (t)</dt><dd>${r.t.toFixed(2)} s</dd>
-       <dt>a = (v − u) ÷ t</dt><dd>${r.a.toFixed(2)} m/s²</dd>`
+       <dt>a = (v − u) ÷ t</dt><dd>${PK.ans(`${r.a.toFixed(2)} m/s²`)}</dd>`
     : '<dt>—</dt><dd>Release the trolley</dd>';
   $('record').disabled = !r;
 }
@@ -110,7 +111,7 @@ function render() {
 function renderResults() {
   const rows = state.rows;
   $('table').innerHTML = rows.length ? `<table class="results"><thead><tr><th>F (N)</th><th>m (kg)</th><th>u (m/s)</th><th>v (m/s)</th><th>t (s)</th><th>a (m/s²)</th></tr></thead>
-    <tbody>${rows.map((r) => `<tr><td>${r.F.toFixed(2)}</td><td>${r.m.toFixed(2)}</td><td class="n">${r.u.toFixed(2)}</td><td class="n">${r.v.toFixed(2)}</td><td class="n">${r.t.toFixed(2)}</td><td class="n">${r.a.toFixed(2)}</td></tr>`).join('')}</tbody></table>` : '<p class="note">No readings yet.</p>';
+    <tbody>${rows.map((r) => `<tr><td>${PK.ans(r.F.toFixed(2))}</td><td>${r.m.toFixed(2)}</td><td class="n">${r.u.toFixed(2)}</td><td class="n">${r.v.toFixed(2)}</td><td class="n">${r.t.toFixed(2)}</td><td class="n">${PK.ans(r.a.toFixed(2))}</td></tr>`).join('')}</tbody></table>` : '<p class="note">No readings yet.</p>';
   drawGraph();
 }
 

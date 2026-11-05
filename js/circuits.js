@@ -3,6 +3,7 @@
 
 PK.header({
   title: 'Circuit builder',
+  answers: true,
   spec: [
     { code: '4.2.1.1', text: 'Standard circuit diagram symbols' },
     { code: '4.2.1.2', text: 'Electrical charge and current: current is the same at any point in a single closed loop' },
@@ -780,8 +781,8 @@ function readoutHtml(key) {
   const rows = [['Current (I)', fmtA(rd.I)]];
   if (c.type !== 'wire') {
     rows.push(['Potential difference (V)', fmtV(rd.V)]);
-    if (R != null && !['ammeter', 'switch', 'fuse'].includes(c.type)) rows.push(['Resistance (R)', fmtR(R)]);
-    if (!['ammeter', 'voltmeter', 'switch', 'fuse'].includes(c.type)) rows.push(['Power (P = V I)', `${fmtNum(rd.V * rd.I)} W`]);
+    if (R != null && !['ammeter', 'switch', 'fuse'].includes(c.type)) rows.push(['Resistance (R)', c.type === 'resistor' ? fmtR(R) : PK.ans(fmtR(R))]);
+    if (!['ammeter', 'voltmeter', 'switch', 'fuse'].includes(c.type)) rows.push(['Power (P = V I)', PK.ans(`${fmtNum(rd.V * rd.I)} W`)]);
   }
   return rows.map(([k, v]) => `<dt>${k}</dt><dd style="color: var(--answer, inherit)">${v}</dd>`).join('');
 }
@@ -966,7 +967,7 @@ function renderResults() {
             <td>${n + 1}</td>
             <td class="num">${fmtNum(r.V)}</td>
             <td class="num">${fmtNum(r.I)}</td>
-            <td class="num">${r.I ? fmtNum(r.V / r.I) : r.V ? 'very high' : '—'}</td>
+            <td class="num">${PK.ans(r.I ? fmtNum(r.V / r.I) : r.V ? 'very high' : '—')}</td>
             <td><button class="del" data-row="${n}" aria-label="Delete reading ${n + 1}">✕</button></td></tr>`).join('')}</tbody>
         </table>`
       : '<p class="note">No readings yet.</p>';

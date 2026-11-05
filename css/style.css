@@ -262,6 +262,12 @@
   color-scheme: dark;
 }
 
+/* Hidden answers: PK.ans() values show as "?" */
+.pk-ans-q { display: none; }
+:root[data-hide-answers] .pk-ans-v { display: none; }
+:root[data-hide-answers] .pk-ans-q { display: inline-block; min-width: 2.2em; text-align: center; padding: 0 .3em; border-radius: 4px; background: var(--surface-2); border: 1px dashed var(--border-strong); color: var(--muted); font-weight: 800; }
+:root[data-hide-answers] .hide-when-no-answers { display: none !important; }
+
 /* Full screen button: only on computers with a mouse (not phones or iPads) */
 .fs-btn { display: none !important; }
 @media (hover: hover) and (pointer: fine) { .fs-btn { display: inline-flex !important; } }

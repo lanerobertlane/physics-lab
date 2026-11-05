@@ -3,6 +3,7 @@
 
 PK.header({
   title: 'Motion graphs',
+  answers: true,
   spec: [
     { code: '4.5.6.1.2', text: 'Speed: distance travelled = speed × time' },
     { code: '4.5.6.1.4', text: 'Distance–time relationship: the gradient of a distance–time graph is the speed' },
@@ -84,7 +85,7 @@ function drawRoad() {
   rctx.fillStyle = '#111'; rctx.beginPath(); rctx.arc(carX - 22, y + 37, 8, 0, Math.PI * 2); rctx.arc(carX + 24, y + 37, 8, 0, Math.PI * 2); rctx.fill();
   if (state.a < 0) { rctx.fillStyle = '#ff1744'; rctx.fillRect(carX - 42, y + 20, 5, 7); }
   rctx.fillStyle = '#1b1f2a'; rctx.font = `700 16px ${font}`; rctx.textAlign = 'left'; rctx.textBaseline = 'top';
-  rctx.fillText(`t = ${state.t.toFixed(1)} s    distance = ${state.d.toFixed(1)} m    speed = ${state.v.toFixed(1)} m/s`, 12, 10);
+  rctx.fillText(`t = ${state.t.toFixed(1)} s    distance = ${state.d.toFixed(1)} m    speed = ${PK.ansText(state.v.toFixed(1))} m/s`, 12, 10);
 }
 
 function axes(g, title, yLabel, yMax, yStep) {
@@ -120,7 +121,7 @@ function drawGraphs() {
       for (const p of state.log) g.lineTo(ax.X(p.t), ax.Y(p.v));
       g.lineTo(ax.X(state.log[state.log.length - 1].t), ax.Y(0)); g.closePath(); g.fill();
       g.fillStyle = PK.cssVar('--text'); g.font = `700 12px ${PK.cssVar('--font-body') || 'sans-serif'}`; g.textAlign = 'right'; g.textBaseline = 'top';
-      g.fillText(`area = ${state.d.toFixed(0)} m`, 390, 30);
+      g.fillText(`area = ${PK.ansText(state.d.toFixed(0))} m`, 390, 30);
     }
     g.strokeStyle = col; g.lineWidth = 2.5;
     g.beginPath(); state.log.forEach((p, i) => (i ? g.lineTo(ax.X(p.t), ax.Y(p[key])) : g.moveTo(ax.X(p.t), ax.Y(p[key])))); g.stroke();
@@ -132,9 +133,9 @@ function renderPanel() {
   $('readout').innerHTML = `
     <dt>Time</dt><dd>${state.t.toFixed(1)} s</dd>
     <dt>Distance</dt><dd>${state.d.toFixed(1)} m</dd>
-    <dt>Velocity</dt><dd>${state.v.toFixed(1)} m/s</dd>
-    <dt>Acceleration</dt><dd>${state.a.toFixed(1)} m/s²</dd>
-    <dt>Motion</dt><dd>${what}</dd>`;
+    <dt>Velocity</dt><dd>${PK.ans(`${state.v.toFixed(1)} m/s`)}</dd>
+    <dt>Acceleration</dt><dd>${PK.ans(`${state.a.toFixed(1)} m/s²`)}</dd>
+    <dt>Motion</dt><dd>${PK.ans(what)}</dd>`;
 }
 
 // ---------- Controls ----------

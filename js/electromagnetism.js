@@ -4,6 +4,7 @@
 
 PK.header({
   title: 'Electromagnetism',
+  answers: true,
   spec: [
     { code: '4.7.2.1', text: 'Electromagnetism: the field around a wire and a solenoid; electromagnets and iron cores' },
     { code: '4.7.2.2', text: "Fleming's left-hand rule and F = B I l", ht: true },
@@ -293,7 +294,7 @@ const motorMode = {
   info() {
     const s = S.motor, d = this.dirs(), F = s.B * s.I * s.l;
     return `<h2>Force</h2>
-      <div class="working" style="margin:0">F = B I l = ${s.B} × ${s.I} × ${s.l} = <b>${parseFloat(F.toFixed(4))} N</b> ${F > 0 ? (d.up ? 'upwards' : 'downwards') : ''}</div>
+      <div class="working" style="margin:0">F = B I l = ${s.B} × ${s.I} × ${s.l} = <b>${PK.ans(`${parseFloat(F.toFixed(4))} N`)}</b> ${F > 0 ? (d.up ? 'upwards' : 'downwards') : ''}</div>
       <p class="note"><b>Fleming's left-hand rule:</b> <b>F</b>irst finger = <b>F</b>ield (N → S), se<b>C</b>ond finger = <b>C</b>urrent, thu<b>M</b>b = <b>M</b>otion (force).</p>
       <p class="note">Reverse the current <i>or</i> the field and the force reverses. Reverse both and it goes back the same way. There is no force if the wire is parallel to the field.</p>`;
   },

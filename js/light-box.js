@@ -3,6 +3,7 @@
 
 PK.header({
   title: 'Light box & lenses',
+  answers: true,
   spec: [
     { code: '4.6.2.2', text: 'Refraction at a boundary, shown with ray diagrams' },
     { code: '4.6.1.3', text: 'Required practical: reflection of light by surfaces and refraction by different substances', po: true },
@@ -495,11 +496,11 @@ function renderDiagramReadout(v, m, real, atFocus) {
   const size = mag > 1.02 ? 'magnified' : mag < 0.98 ? 'diminished' : 'same size';
   $('readout').innerHTML = `
     <dl class="readout">
-      <dt>Image</dt><dd>${real ? 'real' : 'virtual'}, ${m < 0 ? 'inverted' : 'upright'}, ${size}</dd>
+      <dt>Image</dt><dd>${PK.ans(`${real ? 'real' : 'virtual'}, ${m < 0 ? 'inverted' : 'upright'}, ${size}`)}</dd>
       <dt>Image distance</dt><dd>${Math.abs(v).toFixed(1)} cm ${v > 0 ? '(other side)' : '(same side)'}</dd>
       <dt>Image height</dt><dd>${(mag * dg.h).toFixed(1)} cm</dd>
     </dl>
-    <div class="working">magnification = image height ÷ object height = ${(mag * dg.h).toFixed(1)} ÷ ${dg.h} = <b>${mag.toFixed(2)}</b></div>`;
+    <div class="working">magnification = image height ÷ object height = ${(mag * dg.h).toFixed(1)} ÷ ${dg.h} = <b>${PK.ans(mag.toFixed(2))}</b></div>`;
 }
 
 function renderSettings() {

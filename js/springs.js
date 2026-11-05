@@ -3,6 +3,7 @@
 
 PK.header({
   title: "Springs & Hooke's law",
+  answers: true,
   spec: [
     { code: '4.5.3', text: 'Forces and elasticity: elastic and inelastic deformation; F = k e; the limit of proportionality' },
     { code: '4.5.3', text: 'Required practical: investigate the relationship between force and extension for a spring' },
@@ -114,11 +115,11 @@ function render() {
   const linear = F <= s.lp;
   $('readout').innerHTML = `
     <dt>Mass</dt><dd>${state.grams} g</dd>
-    <dt>Force (weight)</dt><dd>${F.toFixed(2)} N</dd>
+    <dt>Force (weight)</dt><dd>${PK.ans(`${F.toFixed(2)} N`)}</dd>
     <dt>Natural length</dt><dd>${s.L0.toFixed(1)} cm</dd>
     <dt>Length now</dt><dd>${state.showLength ? `${L.toFixed(1)} cm` : 'read the ruler'}</dd>
-    ${state.showLength ? `<dt>Extension</dt><dd>${e.toFixed(1)} cm</dd>` : ''}
-    ${state.showLength && linear && F > 0 ? `<dt>Elastic potential energy</dt><dd>${(0.5 * s.k * (e / 100) ** 2).toFixed(3)} J</dd>` : ''}`;
+    ${state.showLength ? `<dt>Extension</dt><dd>${PK.ans(`${e.toFixed(1)} cm`)}</dd>` : ''}
+    ${state.showLength && linear && F > 0 ? `<dt>Elastic potential energy</dt><dd>${PK.ans(`${(0.5 * s.k * (e / 100) ** 2).toFixed(3)} J`)}</dd>` : ''}`;
   $('warn').innerHTML = state.set > 1e-6
     ? '<b>Past the elastic limit:</b> this spring is now permanently stretched (inelastic deformation). It won’t return to its natural length. Press “New spring”.'
     : !linear ? '<b>Past the limit of proportionality:</b> extension is no longer proportional to force, so the graph curves.' : 'Force = mass × g = mass (kg) × 9.8 N/kg.';
@@ -128,14 +129,14 @@ function render() {
 function renderTable() {
   const rows = state.rows;
   $('table').innerHTML = rows.length ? `<table class="results"><thead><tr><th>Mass (g)</th><th>Force (N)</th><th>Length (cm)</th><th>Extension (cm)</th></tr></thead>
-    <tbody>${rows.map((r) => `<tr><td>${r.g}</td><td class="n">${r.F.toFixed(2)}</td><td class="n">${r.L.toFixed(1)}</td><td class="n">${r.e.toFixed(1)}</td></tr>`).join('')}</tbody></table>` : '<p class="note">No readings yet.</p>';
+    <tbody>${rows.map((r) => `<tr><td>${r.g}</td><td class="n">${PK.ans(r.F.toFixed(2))}</td><td class="n">${r.L.toFixed(1)}</td><td class="n">${PK.ans(r.e.toFixed(1))}</td></tr>`).join('')}</tbody></table>` : '<p class="note">No readings yet.</p>';
   drawGraph();
   // Spring constant from the straight part (points at or below the limit of proportionality)
   const lin = rows.filter((r) => r.F > 0 && r.F <= sp().lp + 1e-9);
   if (lin.length >= 2) {
     const sxx = lin.reduce((a, r) => a + (r.e / 100) ** 2, 0), sxy = lin.reduce((a, r) => a + (r.e / 100) * r.F, 0);
     const kk = sxy / sxx;
-    $('kcalc').innerHTML = `Gradient of the straight part = spring constant: <b>k ≈ ${kk.toFixed(1)} N/m</b><br>(F = k e, with e in metres)`;
+    $('kcalc').innerHTML = `Gradient of the straight part = spring constant: <b>k ≈ ${PK.ans(`${kk.toFixed(1)} N/m`)}</b><br>(F = k e, with e in metres)`;
   } else $('kcalc').innerHTML = 'Record at least two readings to find the spring constant from the gradient.';
 }
 

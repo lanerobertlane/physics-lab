@@ -4,6 +4,7 @@
 
 PK.header({
   title: 'Thermal insulation practical',
+  answers: true,
   spec: [
     { code: '4.1.2.1', text: 'Required practical: investigate the effectiveness of different materials as thermal insulators, and the factors that affect this (such as thickness)', po: true },
     { code: '4.1.2.1', text: 'The higher the thermal conductivity of a material, the higher the rate of energy transfer by conduction', po: true },
@@ -119,7 +120,7 @@ function render() {
   if (state.t >= T_END) {
     const drops = state.temps.map((T) => START - T);
     const best = drops.indexOf(Math.min(...drops));
-    $('verdict').innerHTML = `Temperature drop in 20 minutes: ${drops.map((d, i) => `${'ABCD'[i]} ${d.toFixed(1)} °C`).join(', ')}.<br><b>Best insulator: ${'ABCD'[best]} (${MATERIALS[state.picks[best]].name.toLowerCase()})</b>.${['cotton', 'bubble', 'paper'].includes(state.picks[best]) ? ' It traps air, which is a poor conductor of heat.' : ''}`;
+    $('verdict').innerHTML = `Temperature drop in 20 minutes: ${drops.map((d, i) => `${'ABCD'[i]} ${PK.ans(`${d.toFixed(1)} °C`)}`).join(', ')}.<br><span class="hide-when-no-answers"><b>Best insulator: ${'ABCD'[best]} (${MATERIALS[state.picks[best]].name.toLowerCase()})</b>.${['cotton', 'bubble', 'paper'].includes(state.picks[best]) ? ' It traps air, which is a poor conductor of heat.' : ''}</span>`;
   } else $('verdict').textContent = 'Readings are taken every 2 minutes for 20 minutes.';
 }
 

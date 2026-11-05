@@ -41,6 +41,8 @@ const PK = (() => {
     sparx: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.2 6.3L20 10l-5.8 1.7L12 18l-2.2-6.3L4 10l5.8-1.7z"/><path d="M19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8z"/></svg>',
     moon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>',
     fullscreen: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg>',
+    eye: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>',
+    eyeOff: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l18 18"/><path d="M10.6 5.1A10 10 0 0 1 12 5c6 0 10 7 10 7a17 17 0 0 1-3.2 3.9M6.6 6.6C3.8 8.4 2 12 2 12s4 7 10 7a9.6 9.6 0 0 0 5.4-1.6"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>',
     exitFullscreen: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4v5H4M20 9h-5V4M15 20v-5h5M4 15h5v5"/></svg>',
     back: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>',
   };
@@ -64,10 +66,21 @@ const PK = (() => {
     if (p && p.catch) p.catch(() => toast('Full screen isn’t available here. Try pressing F11.'));
   }
 
-  // Apply the saved theme straight away to avoid a flash.
-  applyTheme(savedTheme());
+  // Show / hide answers, so students can work values out for themselves. One setting for
+  // the whole site. Wrap a value in PK.ans() for HTML; use PK.ansText() for canvas text.
+  const answersShown = () => store.get('answers', true) !== false;
+  function applyAnswers(on) {
+    if (on) delete document.documentElement.dataset.hideAnswers;
+    else document.documentElement.dataset.hideAnswers = '';
+  }
+  const ans = (html) => `<span class="pk-ans"><span class="pk-ans-v">${html}</span><span class="pk-ans-q" aria-label="hidden answer">?</span></span>`;
+  const ansText = (text) => (answersShown() ? text : '?');
 
-  function header({ title = '', isHome = false, spec = null } = {}) {
+  // Apply saved settings straight away to avoid a flash.
+  applyTheme(savedTheme());
+  applyAnswers(answersShown());
+
+  function header({ title = '', isHome = false, spec = null, answers = false } = {}) {
     document.title = title ? `${title} · ${SITE.name}` : SITE.name;
 
     const el = document.createElement('header');
@@ -81,6 +94,7 @@ const PK = (() => {
       ${title ? `<span class="header-title">${title}</span>` : ''}
       <span class="header-spacer"></span>
       <div class="header-actions">
+        ${answers ? `<button class="icon-btn" id="pk-answers" aria-pressed="false">${icons.eye}<span class="label">Answers</span></button>` : ''}
         ${fsEnabled() ? `<button class="icon-btn fs-btn" id="pk-fullscreen" title="Full screen (F11)">${icons.fullscreen}<span class="label">Full screen</span></button>` : ''}
         <label class="icon-btn theme-select" title="Colour theme">${icons.palette}
           <select id="pk-theme" aria-label="Colour theme">
@@ -97,6 +111,25 @@ const PK = (() => {
       store.set('theme', themeSel.value);
       window.dispatchEvent(new Event('pk-theme'));
     });
+
+    const ansBtn = el.querySelector('#pk-answers');
+    if (ansBtn) {
+      const syncAns = () => {
+        const on = answersShown();
+        ansBtn.innerHTML = `${on ? icons.eye : icons.eyeOff}<span class="label">${on ? 'Answers shown' : 'Answers hidden'}</span>`;
+        ansBtn.setAttribute('aria-pressed', String(!on));
+        ansBtn.title = on ? 'Hide the answers, so you can work them out yourself' : 'Show the answers';
+      };
+      ansBtn.addEventListener('click', () => {
+        store.set('answers', !answersShown());
+        applyAnswers(answersShown());
+        syncAns();
+        toast(answersShown() ? 'Answers shown' : 'Answers hidden: work them out yourself');
+        window.dispatchEvent(new Event('pk-answers'));
+        window.dispatchEvent(new Event('pk-theme'));   // tools redraw their canvases on this
+      });
+      syncAns();
+    }
 
     const fsBtn = el.querySelector('#pk-fullscreen');
     if (fsBtn) {
@@ -194,5 +227,5 @@ const PK = (() => {
     });
   }
 
-  return { root, store, header, toast, copyLink, cssVar, sig, isDark };
+  return { root, store, header, toast, copyLink, cssVar, sig, isDark, ans, ansText, answersShown };
 })();

@@ -3,6 +3,7 @@
 
 PK.header({
   title: 'Stopping distances',
+  answers: true,
   spec: [
     { code: '4.5.6.3.1', text: 'Stopping distance = thinking distance + braking distance' },
     { code: '4.5.6.3.2', text: 'Reaction time: typically 0.2–0.9 s; affected by tiredness, drugs, alcohol and distractions' },
@@ -65,7 +66,7 @@ function drawRoad() {
   rctx.fillStyle = '#ffb300'; rctx.fillRect(x0, 60, tx - x0, 18);
   rctx.fillStyle = '#e53935'; rctx.fillRect(tx, 60, bx - tx, 18);
   rctx.fillStyle = '#1b1f2a'; rctx.font = `700 13px ${font}`; rctx.textBaseline = 'bottom'; rctx.textAlign = 'left';
-  rctx.fillText(`thinking ${thinking().toFixed(0)} m`, x0, 56);
+  rctx.fillText(`thinking ${PK.ansText(thinking().toFixed(0))} m`, x0, 56);
   rctx.textAlign = 'right'; rctx.fillText(`braking ${braking().toFixed(0)} m`, Math.min(W - 6, bx), 56);
 
   // Hazard and car
@@ -103,7 +104,7 @@ function drawChart() {
     cctx.font = `${r.s === state.mph ? 800 : 600} 12px ${c.font}`; cctx.textAlign = 'right'; cctx.textBaseline = 'middle';
     cctx.fillText(`${r.s} mph`, L - 8, y + h / 2);
     cctx.textAlign = 'left'; cctx.fillStyle = c.text; cctx.font = `700 11px ${c.font}`;
-    cctx.fillText(`${(r.th + r.br).toFixed(0)} m`, X(r.th + r.br) + 6, y + h / 2);
+    cctx.fillText(`${PK.ansText((r.th + r.br).toFixed(0))} m`, X(r.th + r.br) + 6, y + h / 2);
   });
 }
 
@@ -112,14 +113,14 @@ function renderPanel() {
   $('speed-val').textContent = `${state.mph} mph (${vv.toFixed(1)} m/s)`;
   $('mass-val').textContent = `${state.mass} kg`;
   $('readout').innerHTML = `
-    <dt>Thinking distance</dt><dd>${th.toFixed(1)} m</dd>
+    <dt>Thinking distance</dt><dd>${PK.ans(`${th.toFixed(1)} m`)}</dd>
     <dt>Braking distance</dt><dd>${br.toFixed(1)} m</dd>
-    <dt>Stopping distance</dt><dd>${(th + br).toFixed(1)} m</dd>
-    <dt>That's about</dt><dd>${Math.max(1, Math.round((th + br) / 4.5))} car lengths</dd>`;
+    <dt>Stopping distance</dt><dd>${PK.ans(`${(th + br).toFixed(1)} m`)}</dd>
+    <dt>That's about</dt><dd>${PK.ans(`${Math.max(1, Math.round((th + br) / 4.5))} car lengths`)}</dd>`;
   $('working').innerHTML = `
-    <p>Thinking: ${vv.toFixed(1)} m/s × ${state.react} s = <b>${th.toFixed(1)} m</b></p>
-    <p>Kinetic energy: ½ × ${state.mass} × ${vv.toFixed(1)}² = <b>${Math.round(ke).toLocaleString()} J</b></p>
-    <p>The brakes do this much work: W = F s, so the braking force ≈ ${Math.round(ke).toLocaleString()} ÷ ${br.toFixed(1)} = <b>${Math.round(F).toLocaleString()} N</b> <span class="tag ht">Higher</span></p>
+    <p>Thinking: ${vv.toFixed(1)} m/s × ${state.react} s = <b>${PK.ans(`${th.toFixed(1)} m`)}</b></p>
+    <p>Kinetic energy: ½ × ${state.mass} × ${vv.toFixed(1)}² = <b>${PK.ans(`${Math.round(ke).toLocaleString()} J`)}</b></p>
+    <p>The brakes do this much work: W = F s, so the braking force ≈ ${PK.ans(Math.round(ke).toLocaleString())} ÷ ${br.toFixed(1)} = <b>${PK.ans(`${Math.round(F).toLocaleString()} N`)}</b> <span class="tag ht">Higher</span></p>
     <p class="note" style="margin-top:4px">A heavier car has more kinetic energy, so the same braking force takes longer to stop it. The brakes get hot: the energy goes to their thermal store.</p>`;
   drawChart();
 }
@@ -146,6 +147,7 @@ function frame(now) {
 }
 
 window.addEventListener('resize', sizeAll);
+window.addEventListener('pk-answers', renderPanel);
 sizeAll();
 renderPanel();
 requestAnimationFrame(frame);
