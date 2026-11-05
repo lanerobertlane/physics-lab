@@ -172,3 +172,9 @@ sizeCanvas();
 loadHash();
 render();
 requestAnimationFrame(frame);
+
+// Share: the weights hanging on the beam
+PK.shareState = {
+  get: () => ({ h: state.hung }),
+  set: (o) => { if (o.h && typeof o.h === 'object') { state.hung = o.h; render(); } },
+};

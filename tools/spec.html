@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spec Index · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .spec-tools .filters { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 14px; }
+    .spec-tools .search { flex: 1; min-width: 220px; }
+    .sec { margin: 0 0 18px; }
+    .sec h2 { margin: 0 0 8px; }
+    table.spec { width: 100%; border-collapse: collapse; }
+    table.spec th, table.spec td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+    table.spec th { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+    table.spec td.code { white-space: nowrap; font-weight: 800; font-variant-numeric: tabular-nums; width: 1%; }
+    table.spec td.text { width: 55%; }
+    table.spec td.text p { margin: 0 0 4px; }
+    table.spec td.links a { display: inline-block; margin: 0 6px 6px 0; padding: 3px 10px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); color: var(--text); text-decoration: none; font-weight: 700; font-size: .88rem; }
+    table.spec td.links a:hover { border-color: var(--accent); }
+    .count { color: var(--muted); font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <main class="tool-page spec-tools">
+    <div class="tool-intro">
+      <h1>Spec index</h1>
+      <p>Every specification point covered on this site, with the tools that cover it. Use it to plan lessons or to find the right tool for revision.</p>
+    </div>
+    <div class="panel">
+      <div class="filters">
+        <input class="search" id="q" type="search" placeholder="Search, e.g. 4.5.3, half-life, ionic" aria-label="Search the spec points">
+        <div class="chip-group" id="course" aria-label="Course">
+          <button class="chip" data-c="all" aria-pressed="true">All</button>
+          <button class="chip" data-c="physics" aria-pressed="false">GCSE Physics</button>
+          <button class="chip" data-c="chemistry" aria-pressed="false">GCSE Chemistry</button>
+          <button class="chip" data-c="ks3" aria-pressed="false">KS3</button>
+        </div>
+        <span class="count" id="count"></span>
+      </div>
+      <div id="list"></div>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/catalogue.js"></script>
+  <script src="../js/spec-index-data.js"></script>
+  <script src="../js/spec.js"></script>
+</body>
+</html>

@@ -240,3 +240,9 @@ sizeAll();
 state.y = sp().L0 * PX_CM;
 render();
 requestAnimationFrame(frame);
+
+// Share: the masses on the spring and the ruler position (the spring and tick boxes are shared anyway)
+PK.shareState = {
+  get: () => ({ g: state.grams, r: state.rulerCm }),
+  set: (o) => { state.grams = Math.max(0, Math.min(sp().max, Number(o.g) || 0)); if (o.r) setRuler(Number(o.r)); render(); },
+};

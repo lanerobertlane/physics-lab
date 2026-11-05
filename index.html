@@ -33,7 +33,7 @@
       Tags: <span class="tag po">Physics only</span> not in Combined Science ·
       <span class="tag ht">Higher</span> includes Higher-tier content ·
       <span class="tag rp">Required practical</span>.
-      Spec references are to the AQA GCSE Physics (8463) specification.
+      Spec references are to the AQA GCSE Physics (8463) and Chemistry (8462) specifications. Favourites and recently used tools are saved only on this device.
     </p>
   </main>
 
@@ -43,6 +43,7 @@
     PK.header({ isHome: true });
 
     const state = {
+      favs: PK.store.get('home.favs', []) || [],
       q: '',
       level: PK.store.get('home.level', 'all'),
       readyOnly: PK.store.get('home.readyOnly', false),
@@ -74,7 +75,9 @@
     }
 
     function card(t, topic) {
+      const fav = state.favs.includes(t.href);
       const inner = `
+        ${t.href ? `<span class="fav-star" role="button" tabindex="0" data-fav="${t.href}" aria-pressed="${fav}" aria-label="${fav ? 'Remove from' : 'Add to'} favourites" data-tip="${fav ? 'Remove from your favourites' : 'Add to your favourites, saved on this device'}">${fav ? '★' : '☆'}</span>` : ''}
         <div class="tool-top">
           <div class="tool-icon">${toolIcon(t.icon)}</div>
           <div class="tool-name">${t.name}</div>
@@ -87,8 +90,23 @@
         : `<div class="tool-card soon" ${style} aria-disabled="true">${inner}</div>`;
     }
 
+    // Favourites and recently used, saved on this device only
+    const byHref = (h) => TOOLS.find((t) => t.href === h);
+    const topicOf = (t) => TOPICS.find((x) => x.id === t.topic);
+    function shortcut(title, hrefs, note) {
+      const tools = hrefs.map(byHref).filter(Boolean);
+      if (!tools.length) return '';
+      return `
+        <section class="topic shortcut">
+          <div class="topic-head"><h2>${title}</h2><span class="topic-ref">${note}</span></div>
+          <div class="card-grid">${tools.map((t) => card(t, topicOf(t))).join('')}</div>
+        </section>`;
+    }
+
     function render() {
-      const html = TOPICS.map((topic) => {
+      const top = state.q ? '' : shortcut('★ Favourites', state.favs, 'Tap ☆ on any tool to add it')
+        + shortcut('Recently used', (PK.store.get('home.recent', []) || []).filter((h) => !state.favs.includes(h)).slice(0, 4), 'On this device');
+      const html = top + TOPICS.map((topic) => {
         const tools = TOOLS
           .filter((t) => t.topic === topic.id)
           .filter((t) => levelOk(t) && textOk(t, topic) && (!state.readyOnly || t.href))
@@ -125,6 +143,19 @@
       PK.store.set('home.readyOnly', state.readyOnly);
       render();
     });
+
+    // Star a tool to add it to Favourites
+    function toggleFav(e) {
+      const star = e.target.closest('[data-fav]');
+      if (!star || (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ')) return;
+      e.preventDefault(); e.stopPropagation();
+      const h = star.dataset.fav;
+      state.favs = state.favs.includes(h) ? state.favs.filter((x) => x !== h) : [...state.favs, h];
+      PK.store.set('home.favs', state.favs);
+      render();
+    }
+    document.getElementById('topics').addEventListener('click', toggleFav);
+    document.getElementById('topics').addEventListener('keydown', toggleFav);
 
     syncLevel();
     render();

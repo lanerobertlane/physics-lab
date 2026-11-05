@@ -27,7 +27,7 @@ const state = {
   keep: false,
   q: null,
   tries: 0,
-  score: { right: 0, total: 0, streak: 0 },
+  score: PQ.loadScore('calc'),
 };
 
 function pool() {
@@ -38,10 +38,10 @@ function pool() {
     && (state.topic === 'all' || eq.topic === state.topic));
 }
 
-function makeQuestion() {
+function makeQuestion(keep = state.keep) {
   const list = state.eqId === 'any' ? pool() : EQUATIONS.filter((e) => e.id === state.eqId);
   $('g').textContent = state.course === 'ks3' ? '10' : '9.8';
-  return PQ.make(list, { rearrange: state.rearrange, convert: state.convert, ks3: state.course === 'ks3', keep: state.keep ? state.q : null });
+  return PQ.make(list, { rearrange: state.rearrange, convert: state.convert, ks3: state.course === 'ks3', keep: keep ? state.q : null });
 }
 
 // The tool (and tab) where each equation can be explored
@@ -98,11 +98,12 @@ function renderPresentation() {
   $('p-work-btn').textContent = 'Show the answer';
 }
 
+const tools = PQ.presentTools($('present'), $('present').querySelector('.p-bar'));
 const presenting = () => !$('present').hidden;
 function setPresenting(on) {
   $('present').hidden = !on;
   document.body.classList.toggle('presenting', on);
-  if (on) { renderPresentation(); $('p-next').focus(); } else $('present-open').focus();
+  if (on) { renderPresentation(); tools.fit(); $('p-next').focus(); } else { tools.close(); $('present-open').focus(); }
 }
 function togglePart(id, btn, show, hide) {
   const el = $(id);
@@ -150,6 +151,7 @@ function check() {
 
 function renderScore() {
   const s = state.score;
+  PQ.saveScore('calc', s);
   $('score').innerHTML = `<b>${s.right}</b> out of <b>${s.total}</b> right first time${s.streak >= 3 ? ` · streak <b>${s.streak}</b> 🔥` : ''}`;
 }
 
@@ -167,7 +169,7 @@ function renderEqSelect() {
   $('eq').value = state.eqId;
 }
 
-function next() { state.q = makeQuestion(); renderQuestion(); }
+function next() { state.q = makeQuestion(); renderQuestion(); tools.clear(); }
 // A change of settings starts afresh, even when keeping the context
 function fresh() { const k = state.keep; state.keep = false; next(); state.keep = k; }
 
@@ -202,6 +204,7 @@ $('show-working').addEventListener('click', () => {
   if (w.hidden && state.tries === 0 && state.q) { state.score.total++; state.score.streak = 0; state.tries = 1; renderScore(); }
   w.hidden = !w.hidden;
 });
+$('print-sheet').addEventListener('click', () => PQ.worksheetDialog({ make: () => makeQuestion(false), title: 'Calculation practice' }));
 $('reset-score').addEventListener('click', () => { state.score = { right: 0, total: 0, streak: 0 }; renderScore(); });
 
 renderEqSelect();

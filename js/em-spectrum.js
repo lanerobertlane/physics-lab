@@ -276,3 +276,6 @@ const startIdx = Math.max(0, REGIONS.findIndex((r) => r.id === fromHash));
 sizeCanvas();
 setPos(fromHash ? startIdx * 100 + 50 : 350);
 requestAnimationFrame(drawWave);
+
+// Share: where the slider is along the spectrum
+PK.shareState = { get: () => ({ p: state.pos }), set: (o) => { if (o.p != null) setPos(Number(o.p)); } };
