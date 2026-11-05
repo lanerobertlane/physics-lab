@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mains Electricity · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #scope { aspect-ratio: 800 / 420; }
+    #plug { aspect-ratio: 800 / 460; max-width: 640px; margin: 0 auto; }
+    #safe { aspect-ratio: 800 / 360; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .wire-key { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+    .wire-key li { display: flex; gap: 10px; align-items: center; }
+    .wire-key i { width: 34px; height: 12px; border-radius: 6px; display: inline-block; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Mains electricity</h1>
+      <p>Mains electricity in the UK is an alternating supply at 230 V and 50 Hz. See a.c. and d.c. on an oscilloscope, wire a three-pin plug, and find out how the earth wire and the fuse keep you safe.</p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px">
+      <button class="chip" data-t="scope" aria-pressed="true">A.c. and d.c.</button>
+      <button class="chip" data-t="plug" aria-pressed="false">Wire a plug</button>
+      <button class="chip" data-t="safe" aria-pressed="false">Earth wire &amp; fuse</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <!-- A.c. and d.c. -->
+        <div class="panel stage" data-tab="scope">
+          <canvas id="scope" aria-label="Oscilloscope trace"></canvas>
+          <div class="stage-bar">
+            <div class="chip-group" id="source" aria-label="Supply">
+              <button class="chip" data-s="ac" aria-pressed="true">Mains (a.c.)</button>
+              <button class="chip" data-s="battery" aria-pressed="false">12 V battery (d.c.)</button>
+              <button class="chip" data-s="dc" aria-pressed="false">230 V d.c.</button>
+            </div>
+          </div>
+        </div>
+        <!-- Plug -->
+        <div class="panel stage" data-tab="plug" hidden>
+          <canvas id="plug" aria-label="Inside a three-pin plug"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="plug-check">Check my wiring</button>
+            <button class="btn" id="plug-show">Show me</button>
+            <button class="btn" id="plug-clear">Start again</button>
+          </div>
+        </div>
+        <!-- Safety -->
+        <div class="panel stage" data-tab="safe" hidden>
+          <canvas id="safe" aria-label="Appliance with a metal case, the earth wire and a fuse"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="power" aria-pressed="false">⏻ Switch on</button>
+            <button class="btn" id="fault">⚡ Cause a fault</button>
+            <button class="btn" id="replace" disabled>🔧 Replace the fuse</button>
+            <label class="toggle"><input type="checkbox" id="earth" checked> Earth wire connected</label>
+          </div>
+        </div>
+        <div class="panel after-aside" data-tab="safe" hidden>
+          <h2>What happens</h2>
+          <p style="margin:0" id="safe-result"></p>
+        </div>
+      </div>
+
+      <aside>
+        <!-- A.c. and d.c. -->
+        <div class="panel" data-tab="scope">
+          <h2>Oscilloscope</h2>
+          <div class="field"><label for="vdiv">Y-gain (volts per square) <b id="vdiv-val"></b></label>
+            <select class="select" id="vdiv"><option value="2">2 V</option><option value="5">5 V</option><option value="10">10 V</option><option value="20">20 V</option><option value="50">50 V</option><option value="100" selected>100 V</option><option value="200">200 V</option></select></div>
+          <div class="field"><label for="tdiv">Time-base (time per square) <b id="tdiv-val"></b></label>
+            <select class="select" id="tdiv"><option value="1">1 ms</option><option value="2">2 ms</option><option value="5" selected>5 ms</option><option value="10">10 ms</option></select></div>
+          <dl class="readout" id="scope-read"></dl>
+          <p class="note"><b>Why does the trace peak at 325 V, not 230 V?</b> The mains p.d. is always changing, and it spends most of each cycle below its peak. 230 V is a kind of average: it heats things as much as a steady 230 V d.c. supply would. To manage that, the a.c. has to swing higher, up to about 325 V (230 × √2).</p>
+        </div>
+        <!-- Plug -->
+        <div class="panel" data-tab="plug" hidden>
+          <h2>The three wires</h2>
+          <ul class="wire-key">
+            <li><i style="background:#8d5524"></i><span><b>Live</b> (brown): carries the alternating p.d. from the supply, about 230 V. It goes through the fuse.</span></li>
+            <li><i style="background:#1e63c6"></i><span><b>Neutral</b> (blue): completes the circuit, at or close to 0 V.</span></li>
+            <li><i style="background:repeating-linear-gradient(90deg,#43a047 0 8px,#fdd835 8px 16px)"></i><span><b>Earth</b> (green and yellow): a safety wire at 0 V. It only carries current if there is a fault.</span></li>
+          </ul>
+          <p class="note" id="plug-result" style="margin-top:12px"></p>
+        </div>
+        <!-- Safety -->
+        <div class="panel" data-tab="safe" hidden>
+          <h2>Set-up</h2>
+          <div class="field"><label for="appliance">Appliance</label><select class="select" id="appliance"></select></div>
+          <div class="field"><span class="label">Fuse</span>
+            <div class="chip-group" id="fuses">
+              <button class="chip" data-f="3">3 A</button>
+              <button class="chip" data-f="5">5 A</button>
+              <button class="chip" data-f="13">13 A</button>
+            </div>
+          </div>
+          <div class="working" id="fuse-working"></div>
+          <p class="note">The live wire is dangerous even when a switch is off, because it is still connected to the supply. A p.d. of 230 V between your body (at 0 V, the earth) and the live wire makes a current flow through you.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/mains.js"></script>
+</body>
+</html>

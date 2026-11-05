@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Earth, Sun &amp; Moon · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #dayview { aspect-ratio: 800 / 440; }
+    #seasons { aspect-ratio: 800 / 420; }
+    #moon { aspect-ratio: 800 / 400; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .ctl { margin-bottom: 12px; }
+    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
+    .ctl label b { color: var(--text); }
+    .energy-bar { height: 18px; border-radius: 9px; background: var(--surface-2); border: 1px solid var(--border-strong); overflow: hidden; margin: 6px 0 2px; }
+    .energy-bar div { height: 100%; background: linear-gradient(90deg, #f57c00, #ffd23f); }
+    .readout dt { font-size: .88rem; }
+    .readout dd { white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Earth, Sun &amp; Moon</h1>
+      <p>The Earth spins on its axis once a day, giving day and night. The axis is tilted by 23.4°, and this tilt, together with the Earth’s orbit round the Sun, gives the seasons: the Sun climbs higher in summer, so its light is more concentrated and the days are longer. The Moon’s phases come from how much of its sunlit half we can see.</p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px">
+      <button class="chip" data-t="day" aria-pressed="true">Day &amp; night</button>
+      <button class="chip" data-t="seasons" aria-pressed="false">Seasons</button>
+      <button class="chip" data-t="moon" aria-pressed="false">Phases of the Moon</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage" data-tab="day">
+          <canvas id="dayview" aria-label="The Earth lit by the Sun, spinning"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="spin">❚❚ Stop spinning</button>
+            <label class="toggle"><input type="checkbox" id="heat"> Show light and heat on the surface</label>
+          </div>
+        </div>
+        <div class="panel stage" data-tab="seasons" hidden>
+          <canvas id="seasons" aria-label="The Earth's orbit, its tilted axis, and the angle of the midday Sun in the UK"></canvas>
+          <div class="stage-bar">
+            <label class="toggle"><input type="checkbox" id="four"> Show all four seasons</label>
+          </div>
+        </div>
+        <div class="panel stage" data-tab="moon" hidden>
+          <canvas id="moon" aria-label="The Moon orbiting the Earth and the phase we see"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="m-play">▶ Play</button>
+          </div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="panel" data-tab="day">
+          <h2>Time and date</h2>
+          <div class="ctl"><label for="hour">Time in the UK <b id="hour-val"></b></label><input type="range" id="hour" min="0" max="23.99" step="0.05" value="12"></div>
+          <div class="ctl"><label for="date">Date <b id="date-val"></b></label><input type="range" id="date" min="0" max="364" step="1" value="171"></div>
+          <div class="btn-row" style="margin-bottom:10px">
+            <button class="btn quick-date" data-d="171">21 June</button>
+            <button class="btn quick-date" data-d="354">21 December</button>
+          </div>
+          <dl class="readout" id="day-read"></dl>
+          <p class="note">The Sun’s light is strongest where it is overhead. Near the poles the same light hits the ground at a low angle, so it is spread out and heats the ground less.</p>
+        </div>
+        <div class="panel" data-tab="seasons" hidden>
+          <h2>Date</h2>
+          <div class="ctl"><label for="s-date">Date <b id="s-date-val"></b></label><input type="range" id="s-date" min="0" max="364" step="1" value="171"></div>
+          <div class="btn-row" style="margin-bottom:10px">
+            <button class="btn quick-date" data-d="79">21 March</button>
+            <button class="btn quick-date" data-d="171">21 June</button>
+            <button class="btn quick-date" data-d="264">22 Sept</button>
+            <button class="btn quick-date" data-d="354">21 Dec</button>
+          </div>
+          <div class="field"><span class="label">Axial tilt</span>
+            <div class="chip-group" id="planets">
+              <button class="chip" data-p="earth">Earth 23.4°</button>
+              <button class="chip" data-p="mercury">Mercury 0°</button>
+              <button class="chip" data-p="mars">Mars 25°</button>
+              <button class="chip" data-p="uranus">Uranus 98°</button>
+            </div>
+          </div>
+          <p class="note" id="planet-note" hidden>The picture shows the Earth given this planet’s tilt, so you can compare: the readings are for the UK’s latitude, and the date stands for the same point in the planet’s own year. The bigger the tilt, the more extreme the seasons.</p>
+          <dl class="readout" id="s-read"></dl>
+          <div class="energy-bar"><div id="s-bar"></div></div>
+          <p class="note">Summer is warmer for two reasons: the Sun is higher, so each m² of ground gets more energy, and the days are longer. It is not because the Earth is closer to the Sun (it is actually closest in January).</p>
+        </div>
+        <div class="panel" data-tab="moon" hidden>
+          <h2>Moon</h2>
+          <div class="ctl"><label for="m-day">Days since new moon <b id="m-day-val"></b></label><input type="range" id="m-day" min="0" max="29.5" step="0.1" value="0"></div>
+          <p style="margin:0 0 8px"><b id="m-phase"></b></p>
+          <p class="note">The Moon doesn’t make its own light: half of it is always lit by the Sun. As it orbits the Earth (about once every 29½ days), we see different amounts of that lit half.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/sky.js"></script>
+</body>
+</html>

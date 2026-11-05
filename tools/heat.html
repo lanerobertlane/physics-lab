@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Conduction, Convection &amp; Radiation · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #cond { aspect-ratio: 800 / 400; }
+    #conv { aspect-ratio: 800 / 420; }
+    #rad { aspect-ratio: 800 / 380; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Conduction, convection &amp; radiation</h1>
+      <p>Energy is transferred by heating in three ways. Conduction passes it through solids, particle to particle. Convection carries it round in liquids and gases. Radiation sends it as infrared waves, which can even cross empty space.</p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px">
+      <button class="chip" data-t="conduction" aria-pressed="true">Conduction</button>
+      <button class="chip" data-t="convection" aria-pressed="false">Convection</button>
+      <button class="chip" data-t="radiation" aria-pressed="false">Radiation</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage" data-tab="conduction">
+          <canvas id="cond" aria-label="Two rods heated at one end, with pins stuck on with wax"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="c-go">🔥 Light the Bunsen burners</button>
+            <button class="btn" id="c-reset">↺ Cool down and reset</button>
+            <label class="toggle"><input type="checkbox" id="c-particles" checked> Show particles</label>
+            <label class="toggle"><input type="checkbox" id="c-colour"> Show temperature colours</label>
+          </div>
+        </div>
+        <div class="panel stage" data-tab="convection" hidden>
+          <canvas id="conv" aria-label="Beaker of water heated at one side, showing a convection current"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="v-go">❚❚ Turn the heat off</button>
+            <button class="btn" id="v-dye">💜 Drop in a crystal of dye</button>
+            <label class="toggle"><input type="checkbox" id="v-arrows" checked> Show arrows</label>
+            <label class="toggle"><input type="checkbox" id="v-colour" checked> Show temperature colours</label>
+          </div>
+        </div>
+        <div class="panel stage" data-tab="radiation" hidden>
+          <canvas id="rad" aria-label="A heater giving out infrared radiation to two cans"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="r-go">🔥 Switch the heater on</button>
+            <button class="btn" id="r-reset">↺ Reset</button>
+            <label class="toggle"><input type="checkbox" id="r-vacuum"> Remove the air (vacuum)</label>
+          </div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="panel" data-tab="conduction">
+          <h2>Rods</h2>
+          <div class="field"><label for="c-mat-a">Rod A</label><select class="select" id="c-mat-a"></select></div>
+          <div class="field"><label for="c-mat-b">Rod B</label><select class="select" id="c-mat-b"></select></div>
+          <h2 style="margin-top:12px">Pins dropped</h2>
+          <dl class="readout" id="c-read"></dl>
+          <p class="note" id="c-verdict"></p>
+          <p class="note">Particles at the hot end vibrate more. They bump into their neighbours and pass the energy along. Metals are the best conductors because they also have free electrons that carry energy quickly through the metal.</p>
+        </div>
+        <div class="panel" data-tab="convection" hidden>
+          <h2>How convection works</h2>
+          <ol style="margin:0;padding-left:1.2em;display:grid;gap:6px">
+            <li>The water near the heater gets warmer.</li>
+            <li>Its particles move faster and spread out, so the warm water becomes <b>less dense</b>.</li>
+            <li>The less dense warm water rises. Cooler, denser water sinks to take its place.</li>
+            <li>This flow is a <b>convection current</b>. It carries energy all round the water.</li>
+          </ol>
+          <p class="note">Convection only happens in fluids (liquids and gases), because their particles can move from place to place. It's how a radiator heats a whole room.</p>
+        </div>
+        <div class="panel" data-tab="radiation" hidden>
+          <h2>Cans</h2>
+          <div class="field"><label for="r-a">Left can</label><select class="select" id="r-a"></select></div>
+          <div class="field"><label for="r-b">Right can</label><select class="select" id="r-b"></select></div>
+          <p class="note" id="r-verdict"></p>
+          <p class="note">Dark, matt surfaces are the best absorbers (and emitters) of infrared. Light, shiny surfaces reflect most of it. Radiation doesn't need particles, so it works through a vacuum: that's how energy from the Sun reaches the Earth.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/heat.js"></script>
+</body>
+</html>

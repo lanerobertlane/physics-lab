@@ -233,11 +233,11 @@ function vesrauHtml(q) {
   const lab = (id) => (id === subject ? symOf(eq, id) : numLabel(x[id]));
   const blocks = [];
   const written = WRITTEN[eq.id];
-  // Values, converted to SI units where needed; the unknown is "?"
+  // Values on one line, converted to SI units where needed; the unknown is "?"
   blocks.push((written ? written.order : varsOf(eq)).map((id) => {
-    if (id === subject) return `<div>${symOf(eq, id)} = ?</div>`;
+    if (id === subject) return `<span class="v">${symOf(eq, id)} = ?</span>`;
     const sh = shown[id];
-    return `<div>${symOf(eq, id)} = ${fmt(sh.value)}${unitText(sh.unit)}${sh.f !== 1 ? ` = ${fmt(x[id])}${unitText(unitOf(id))}` : ''}</div>`;
+    return `<span class="v">${symOf(eq, id)} = ${fmt(sh.value)}${unitText(sh.unit)}${sh.f !== 1 ? ` = ${fmt(x[id])}${unitText(unitOf(id))}` : ''}</span>`;
   }).join(''));
   // Equation as written
   blocks.push(`<div>${written ? written.html : writtenFormula(eq)}</div>`);

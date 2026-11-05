@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Terminal Velocity · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #scene { aspect-ratio: 800 / 420; }
+    #graph { width: 100%; aspect-ratio: 800 / 260; display: block; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .ctl { margin-bottom: 12px; }
+    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
+    .ctl label b { color: var(--text); }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Terminal velocity</h1>
+      <p>A skydiver jumps from 3000 m. Watch the weight and air resistance arrows as they fall. When the two forces are equal, the skydiver falls at a steady speed: their terminal velocity. Open the parachute to slow down to a safe landing speed.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="scene" aria-label="Skydiver falling, with weight and air resistance arrows"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="jump">▶ Jump</button>
+            <button class="btn" id="chute" disabled>🪂 Open the parachute</button>
+            <button class="btn" id="reset">↺ Back to the plane</button>
+            <div class="chip-group" id="speed" aria-label="Speed">
+              <button class="chip" data-s="1" aria-pressed="true">Real time</button>
+              <button class="chip" data-s="3" aria-pressed="false">3 × faster</button>
+            </div>
+          </div>
+        </div>
+        <div class="panel after-aside">
+          <h2>Velocity–time graph</h2>
+          <canvas id="graph" aria-label="Velocity against time for the skydiver"></canvas>
+          <label class="toggle"><input type="checkbox" id="show-vt" checked> Show the terminal velocities</label>
+          <p class="note">The gradient of the graph is the acceleration. It starts at 9.8 m/s² and falls to zero as the air resistance grows. Where the line is flat, the skydiver is at terminal velocity.</p>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Forces</h2>
+          <dl class="readout" id="readout"></dl>
+          <p class="note">Air resistance gets bigger as the speed goes up. The resultant force is the weight minus the air resistance.</p>
+        </div>
+        <div class="panel">
+          <h2>The skydiver</h2>
+          <div class="ctl"><label for="mass">Mass (with kit) <b id="mass-val"></b></label><input type="range" id="mass" min="50" max="120" step="5" value="80"></div>
+          <div class="field"><span class="label">Body position</span>
+            <div class="chip-group" id="body">
+              <button class="chip" data-b="spread" aria-pressed="true">Spread out</button>
+              <button class="chip" data-b="dive" aria-pressed="false">Head-down dive</button>
+            </div>
+          </div>
+          <p class="note">A heavier skydiver needs more air resistance to balance their weight, so their terminal velocity is higher. A streamlined dive has less air resistance at the same speed.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/terminal.js"></script>
+</body>
+</html>
