@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Density Practical · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #lab { aspect-ratio: 800 / 380; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
+    .ctl label b { color: var(--text); }
+    .results { width: 100%; border-collapse: collapse; margin-top: 10px; font-variant-numeric: tabular-nums; font-size: .88rem; }
+    .results th, .results td { border: 1px solid var(--border-strong); padding: 4px 5px; text-align: center; }
+    .results th { background: var(--surface-2); }
+    .results td.n { color: var(--answer, inherit); }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Required practical: density</h1>
+      <p id="intro"></p>
+    </div>
+
+    <div class="chip-group" id="modes" style="margin-bottom:12px">
+      <button class="chip" data-m="regular" aria-pressed="true">Regular block</button>
+      <button class="chip" data-m="irregular" aria-pressed="false">Irregular object</button>
+      <button class="chip" data-m="liquid" aria-pressed="false">Liquid</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="lab" aria-label="Density apparatus"></canvas>
+          <div class="stage-bar" id="bar"></div>
+        </div>
+        <div class="panel after-aside">
+          <h2>Density</h2>
+          <p style="margin:0"><b>density = mass ÷ volume</b> &nbsp; (ρ = m ÷ V)</p>
+          <p class="note">In g/cm³, multiply by 1000 to get kg/m³. An object floats in water if its density is less than 1 g/cm³ (1000 kg/m³).</p>
+        </div>
+      </div>
+      <aside>
+        <div class="panel" id="controls"></div>
+        <div class="panel">
+          <h2>Results</h2>
+          <div class="btn-row"><button class="btn primary" id="record">＋ Record</button><button class="btn" id="clear">Clear</button></div>
+          <label class="toggle" style="margin-top:6px"><input type="checkbox" id="answers"> Show the density (check your own working)</label>
+          <div id="table"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/density.js"></script>
+</body>
+</html>

@@ -22,6 +22,7 @@
         <button class="chip" data-level="ks3" aria-pressed="false">KS3</button>
         <button class="chip" data-level="combined" aria-pressed="false">GCSE Combined</button>
         <button class="chip" data-level="physics" aria-pressed="false">GCSE Physics</button>
+        <button class="chip" data-level="rp" aria-pressed="false">Required practicals</button>
       </div>
       <label class="toggle"><input type="checkbox" id="ready-only"> Ready to use only</label>
     </div>
@@ -51,6 +52,7 @@
       if (state.level === 'ks3') return t.ks3;
       if (state.level === 'combined') return t.gcse && !t.po;
       if (state.level === 'physics') return t.gcse;
+      if (state.level === 'rp') return t.rp;
       return true;
     };
 

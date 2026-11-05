@@ -28,7 +28,7 @@ const TOOLS = [
     desc: 'Hang masses, read the ruler, plot force against extension and find the spring constant.' },
   { topic: 'forces', icon: 'lever', name: 'Moments', href: 'tools/moments.html', gcse: true, po: true, ks3: true,
     desc: 'Hang weights on a beam and balance it using the principle of moments.' },
-  { topic: 'forces', icon: 'resultant', name: 'Required practical: acceleration', gcse: true, rp: true,
+  { topic: 'forces', icon: 'resultant', name: 'Required practical: acceleration', href: 'tools/acceleration.html', gcse: true, rp: true,
     desc: 'A trolley pulled by falling masses: how force and mass affect acceleration (F = m a).' },
 
   // Electricity
@@ -52,7 +52,7 @@ const TOOLS = [
     desc: 'Beads on a string and a slinky side by side: crests, troughs, compressions and rarefactions, with v = fλ.' },
   { topic: 'waves', icon: 'ripple', name: 'Ripple tank', href: 'tools/ripple-tank.html', gcse: true, ks3: true, rp: true,
     desc: 'Reflection, refraction and diffraction, with a ruler and strobe for the required practical.' },
-  { topic: 'waves', icon: 'heat', name: 'Required practical: infrared radiation', gcse: true, rp: true,
+  { topic: 'waves', icon: 'heat', name: 'Required practical: infrared radiation', href: 'tools/infrared.html', gcse: true, rp: true,
     desc: 'A Leslie cube: how the type of surface affects the infrared radiated and absorbed.' },
   { topic: 'waves', icon: 'ray', name: 'Light box & lenses', href: 'tools/light-box.html', gcse: true, po: true, ks3: true, rp: true,
     desc: 'Refraction through glass blocks, total internal reflection, prisms, mirrors and lens ray diagrams.' },
@@ -64,7 +64,7 @@ const TOOLS = [
     desc: 'Where the energy goes in everyday devices, plus a calculator for any efficiency question.' },
   { topic: 'energy', icon: 'heat', name: 'Specific heat capacity', href: 'tools/shc.html', gcse: true, rp: true,
     desc: 'Heat a 1 kg block, record energy and temperature, and find c from the gradient.' },
-  { topic: 'energy', icon: 'heat', name: 'Required practical: thermal insulation', gcse: true, po: true, rp: true,
+  { topic: 'energy', icon: 'heat', name: 'Required practical: thermal insulation', href: 'tools/insulation.html', gcse: true, po: true, rp: true,
     desc: 'Compare insulating materials by how quickly a beaker of hot water cools.' },
 
   // Particles
@@ -72,7 +72,7 @@ const TOOLS = [
     desc: 'Heat or cool water and watch the particles. Heating curve, latent heat and internal energy.' },
   { topic: 'particles', icon: 'gas', name: 'Gas pressure', href: 'tools/gas.html', gcse: true, po: true, ht: true, ks3: true,
     desc: 'Particles in a cylinder with a piston: pressure, volume and temperature, with pV = constant.' },
-  { topic: 'particles', icon: 'gas', name: 'Required practical: density', gcse: true, rp: true, ks3: true,
+  { topic: 'particles', icon: 'gas', name: 'Required practical: density', href: 'tools/density.html', gcse: true, rp: true, ks3: true,
     desc: 'Measure mass and volume of regular and irregular objects (a eureka can) and liquids, and calculate density.' },
 
   // Atomic
