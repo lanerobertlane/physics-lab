@@ -57,6 +57,8 @@ const PK = (() => {
 
   // Full screen (the same as pressing F11). Safari before 16.4 only has the webkit names.
   const fsElement = () => document.fullscreenElement || document.webkitFullscreenElement;
+  // The address's #part when the page opened, before a tool changes it (e.g. #practice)
+  const initialHash = location.hash;
   const fsEnabled = () => Boolean(document.fullscreenEnabled || document.webkitFullscreenEnabled);
   function toggleFullscreen() {
     const de = document.documentElement;
@@ -237,5 +239,5 @@ const PK = (() => {
     document.head.appendChild(beacon);
   }
 
-  return { root, store, header, toast, copyLink, cssVar, sig, isDark, ans, ansText, answersShown, toggleFullscreen, fullscreenEnabled: fsEnabled };
+  return { root, store, header, toast, copyLink, cssVar, sig, isDark, ans, ansText, answersShown, toggleFullscreen, fullscreenEnabled: fsEnabled, initialHash };
 })();
