@@ -358,7 +358,7 @@ function pickerHtml(which) {
   return CHOICES.map((z) => {
     // Grey out second elements that don't make a simple bond with the first
     const off = which === 'b' && analyse(state.a, z).type === 'none';
-    return `<button data-z="${z}" style="background:${EL.CATEGORIES[EL.category(z)].col}" aria-pressed="${state[which] === z}" aria-label="${EL.Name(z)}${off ? ' (no simple bond with ' + N(state.a) + ')' : ''}"${off ? ` class="off" title="${EL.Name(z)} doesn’t make a simple bond with ${N(state.a)} at GCSE"` : ''}>${S(z)}</button>`;
+    return `<button data-z="${z}" style="background:${EL.CATEGORIES[EL.category(z)].col}" aria-pressed="${state[which] === z}" aria-label="${EL.Name(z)}"${off ? ' class="off" disabled' : ''}>${S(z)}</button>`;
   }).join('');
 }
 function renderPickers() {
