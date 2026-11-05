@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contamination, Irradiation &amp; Background · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #pie { aspect-ratio: 800 / 360; }
+    #scene { aspect-ratio: 800 / 340; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .counter { display: flex; align-items: baseline; gap: 10px; margin: 6px 0 10px; }
+    .counter .digits { font-size: 2.4rem; font-weight: 800; font-variant-numeric: tabular-nums; color: var(--answer, var(--text)); }
+    .results p { margin: 4px 0; }
+    .sort { display: grid; gap: 10px; }
+    .sort .item { padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); }
+    .sort .item p { margin: 0 0 8px; font-weight: 700; }
+    .sort .fb { font-weight: 400; margin: 8px 0 0; }
+    .sort .fb.ok { color: #2e7d32; } .sort .fb.bad { color: #c62828; }
+    table.compare { width: 100%; border-collapse: collapse; font-size: .92rem; }
+    table.compare th, table.compare td { border-bottom: 1px solid var(--border); padding: 6px 4px; text-align: left; vertical-align: top; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Contamination, irradiation &amp; background</h1>
+      <p>We are exposed to a little radiation all the time: this is background radiation. Being near a radioactive source <b>irradiates</b> you, but you don’t become radioactive. If radioactive atoms get <b>on</b> or <b>in</b> you, you are <b>contaminated</b>, and they keep irradiating you after you walk away.</p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px">
+      <button class="chip" data-t="background" aria-pressed="true">Background radiation</button>
+      <button class="chip" data-t="contamination" aria-pressed="false">Contamination or irradiation?</button>
+      <button class="chip" data-t="sort" aria-pressed="false">Sort them</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <!-- Background -->
+        <div class="panel stage" data-tab="background">
+          <canvas id="pie" aria-label="Pie chart of where a person's yearly radiation dose comes from"></canvas>
+          <div class="stage-bar">
+            <div class="chip-group" id="place" aria-label="Where you live">
+              <button class="chip" data-p="uk" aria-pressed="true">UK average</button>
+              <button class="chip" data-p="cornwall" aria-pressed="false">Living in Cornwall</button>
+            </div>
+            <label class="toggle"><input type="checkbox" id="pilot"> Airline pilot</label>
+            <label class="toggle"><input type="checkbox" id="ct"> Had a CT scan this year</label>
+          </div>
+        </div>
+        <div class="panel after-aside" data-tab="background">
+          <h2>Correcting for background</h2>
+          <p style="margin-top:0">A Geiger–Müller tube always picks up some background radiation. To find the count rate from a source alone, measure the background first and take it away.</p>
+          <div class="counter"><span class="digits" id="digits">0</span><span id="count-label">counts</span></div>
+          <div class="btn-row">
+            <button class="btn primary" id="count-bg">⏱ Count background for 1 minute</button>
+            <button class="btn" id="count-src">☢ Count with the source for 1 minute</button>
+          </div>
+          <div class="results" id="results" style="margin-top:10px"></div>
+        </div>
+
+        <!-- Contamination -->
+        <div class="panel stage" data-tab="contamination" hidden>
+          <canvas id="scene" aria-label="A person walking past a radioactive source"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="walk-sealed">▶ Walk past a sealed source</button>
+            <button class="btn primary" id="walk-spill">▶ Walk through a spill</button>
+            <button class="btn" id="wash" disabled>🧼 Wash and change clothes</button>
+          </div>
+        </div>
+        <div class="panel after-aside" data-tab="contamination" hidden>
+          <h2>What happened?</h2>
+          <p style="margin:0" id="c-text">Choose one of the walks.</p>
+        </div>
+
+        <!-- Sort -->
+        <div class="panel" data-tab="sort" hidden>
+          <h2>Contamination or irradiation?</h2>
+          <div class="sort" id="sort"></div>
+          <p class="note" id="sort-score" style="margin-bottom:0"></p>
+        </div>
+      </div>
+
+      <aside>
+        <div class="panel" data-tab="background">
+          <h2>Your yearly dose</h2>
+          <dl class="readout" id="dose-read"></dl>
+          <p class="note">Radiation dose is measured in <b>sieverts (Sv)</b>. 1 millisievert (mSv) = 0.001 Sv. It measures the risk of harm to the body.</p>
+          <p class="note">Background radiation comes from <b>natural</b> sources (rocks, radon gas, cosmic rays, food) and <b>man-made</b> sources (medical scans, fallout from nuclear weapons testing and nuclear accidents).</p>
+        </div>
+        <div class="panel" data-tab="contamination" hidden>
+          <h2>Which is most dangerous?</h2>
+          <table class="compare" id="danger"></table>
+          <p class="note">To stay safe: keep sources in lead-lined boxes, handle them with tongs, keep your distance and keep the time short. People who work with radiation wear a dosimeter badge.</p>
+        </div>
+        <div class="panel" data-tab="sort" hidden>
+          <h2>Remember</h2>
+          <p class="note" style="margin-top:0"><b>Irradiation</b>: being exposed to radiation from a source outside you. It stops when you move away, and you don’t become radioactive.</p>
+          <p class="note"><b>Contamination</b>: radioactive atoms get on or into something. They keep decaying and irradiating it until they are removed or decay away.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/background.js"></script>
+</body>
+</html>

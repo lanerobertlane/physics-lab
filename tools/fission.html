@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nuclear Fission &amp; Fusion · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #chain { aspect-ratio: 800 / 420; }
+    #fusion { aspect-ratio: 800 / 400; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .ctl { margin-bottom: 12px; }
+    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
+    .ctl label b { color: var(--text); }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Nuclear fission &amp; fusion</h1>
+      <p><b>Fission</b>: a large, unstable nucleus such as uranium-235 absorbs a neutron and splits into two smaller nuclei, giving out 2 or 3 neutrons, gamma rays and a lot of energy. <b>Fusion</b>: two light nuclei join to make a heavier one, releasing energy. This is what powers the Sun.</p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px">
+      <button class="chip" data-t="fission" aria-pressed="true">Fission &amp; chain reactions</button>
+      <button class="chip" data-t="fusion" aria-pressed="false">Fusion</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage" data-tab="fission">
+          <canvas id="chain" aria-label="Uranium-235 nuclei, neutrons and control rods"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="fire">⟶ Fire a neutron</button>
+            <button class="btn" id="refuel">↺ New fuel</button>
+            <div class="ctl" style="flex:1;min-width:220px;margin:0"><label for="rods">Control rods pushed in <b id="rods-val"></b></label><input type="range" id="rods" min="0" max="100" step="5" value="0"></div>
+          </div>
+        </div>
+        <div class="panel stage" data-tab="fusion" hidden>
+          <canvas id="fusion" aria-label="Hydrogen nuclei moving fast and fusing into helium"></canvas>
+          <div class="stage-bar">
+            <div class="ctl" style="flex:1;min-width:240px;margin:0"><label for="temp">Temperature <b id="temp-val"></b></label><input type="range" id="temp" min="1" max="200" step="1" value="15"></div>
+            <button class="btn" id="refill">↺ New fuel</button>
+          </div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="panel" data-tab="fission">
+          <h2>Reaction</h2>
+          <dl class="readout" id="f-read"></dl>
+          <p class="note"><b>Chain reaction:</b> each fission gives out 2 or 3 neutrons, which can split more nuclei. In a <b>nuclear reactor</b>, control rods absorb some of the neutrons so that, on average, only one goes on to cause another fission: the reaction is <b>controlled</b>. In a <b>nuclear weapon</b> the chain reaction is <b>uncontrolled</b> and causes an explosion.</p>
+          <p class="note">All the fission products move off fast: they have kinetic energy, which heats the reactor.</p>
+        </div>
+        <div class="panel" data-tab="fusion" hidden>
+          <h2>Fusion</h2>
+          <dl class="readout" id="u-read"></dl>
+          <p class="note">Nuclei are positive, so they repel each other. They only get close enough to join if they are moving very fast, which needs a very high temperature (and, in the Sun, a very high pressure too).</p>
+          <p class="note">The helium nucleus and neutron have slightly less mass than the two hydrogen nuclei. The missing mass has been converted into energy.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/fission.js"></script>
+</body>
+</html>
