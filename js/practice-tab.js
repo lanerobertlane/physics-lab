@@ -107,7 +107,9 @@
           <label class="toggle"><input type="checkbox" id="pq-rearrange"> Include rearranging</label>
           <label class="toggle"><input type="checkbox" id="pq-convert"> Include unit conversions</label>
           <label class="toggle"><input type="checkbox" id="pq-showEq"> Always show the equation</label>
-          <p class="note">Answers within 1% are marked correct, so 3 significant figures is fine. Use g = 9.8 N/kg. For every equation, try <a href="${PK.root}tools/practice.html">Calculation practice</a>.</p>
+          <label class="toggle"><input type="checkbox" id="pq-keep"> Same question, new numbers</label>
+          <label class="toggle"><input type="checkbox" id="pq-ks3"> KS3</label>
+          <p class="note">Answers within 1% are marked correct, so 3 significant figures is fine. Use g = <span id="pq-g">9.8</span> N/kg. For every equation, try <a href="${PK.root}tools/practice.html">Calculation practice</a>.</p>
         </div>
       </aside>
     </div>`;
@@ -138,10 +140,12 @@
     rearrange: PK.store.get('calc.rearrange', true),
     convert: PK.store.get('calc.convert', false),
     showEq: PK.store.get('calc.showEq', false),
+    ks3: PK.store.get('calc.ks3', false),
+    keep: false,
     q: null, tries: 0, score: { right: 0, total: 0, streak: 0 },
   };
   const list = () => (state.eqId === 'any' ? eqs : eqs.filter((e) => e.id === state.eqId));
-  function next() { state.q = PQ.make(list(), state); render(); }
+  function next() { state.q = PQ.make(list(), { ...state, keep: state.keep ? state.q : null }); el('g').textContent = state.ks3 ? '10' : '9.8'; render(); }
   function render() {
     const q = state.q;
     state.tries = 0;
@@ -219,9 +223,13 @@
   });
   el('reset').addEventListener('click', () => { state.score = { right: 0, total: 0, streak: 0 }; renderScore(); });
   if (multi) el('eq').addEventListener('change', (e) => { state.eqId = e.target.value; next(); });
-  for (const key of ['rearrange', 'convert', 'showEq']) {
+  for (const key of ['ks3', 'keep', 'rearrange', 'convert', 'showEq']) {
     el(key).checked = state[key];
-    el(key).addEventListener('change', (e) => { state[key] = e.target.checked; PK.store.set(`calc.${key}`, state[key]); if (key === 'showEq') render(); else next(); });
+    el(key).addEventListener('change', (e) => {
+      state[key] = e.target.checked;
+      if (key !== 'keep') PK.store.set(`calc.${key}`, state[key]);
+      if (key === 'showEq') render(); else if (key !== 'keep') { const k = state.keep; state.keep = false; next(); state.keep = k; }
+    });
   }
 
   // ---------- Switching between the tool and the questions ----------
