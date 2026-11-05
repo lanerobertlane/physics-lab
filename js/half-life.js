@@ -3,6 +3,7 @@
 
 PK.header({
   title: 'Half-life',
+  answers: true,
   spec: [
     { code: '4.4.2.1', text: 'Radioactive decay is random; activity is the rate at which unstable nuclei decay (becquerel, Bq)' },
     { code: '4.4.2.3', text: 'Half-lives and the random nature of radioactive decay; finding the half-life from a graph' },
@@ -105,12 +106,12 @@ function renderPanel() {
   $('half-val').textContent = `${state.half} s`;
   $('readout').innerHTML = `
     <dt>Time</dt><dd>${state.t.toFixed(1)} s</dd>
-    <dt>Half-lives gone</dt><dd>${halves.toFixed(2)}</dd>
+    <dt>Half-lives gone</dt><dd>${PK.ans(halves.toFixed(2))}</dd>
     <dt>Undecayed nuclei</dt><dd>${n} of ${state.n0}</dd>
     <dt>Activity</dt><dd>${state.recent.length} Bq</dd>`;
   const whole = Math.floor(halves + 1e-9);
   $('working').innerHTML = whole >= 1
-    ? `<p>After ${whole} half-li${whole > 1 ? 'ves' : 'fe'} we expect ${state.n0} × (½)<sup>${whole}</sup> = <b>${(state.n0 / 2 ** whole).toFixed(1)}</b> left (1/${2 ** whole} of the start).</p><p class="note" style="margin-top:4px">The real number left varies because decay is random. With more nuclei it gets closer to the prediction.</p>`
+    ? `<p>After ${whole} half-li${whole > 1 ? 'ves' : 'fe'} we expect ${state.n0} × (½)<sup>${whole}</sup> = <b>${PK.ans((state.n0 / 2 ** whole).toFixed(1))}</b> left (${PK.ans(`1/${2 ** whole}`)} of the start).</p><p class="note" style="margin-top:4px">The real number left varies because decay is random. With more nuclei it gets closer to the prediction.</p>`
     : '<p>Press Start. Watch how long it takes for half of the nuclei to decay.</p>';
 }
 

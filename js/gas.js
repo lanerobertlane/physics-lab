@@ -4,6 +4,7 @@
 
 PK.header({
   title: 'Gas pressure',
+  answers: true,
   spec: [
     { code: '4.3.3.1', text: 'Particle motion in gases: random motion; temperature is related to the average kinetic energy; pressure increases with temperature at constant volume' },
     { code: '4.3.3.2', text: 'Pressure in gases: p V = constant for a fixed mass of gas at constant temperature', po: true },
@@ -206,7 +207,7 @@ function drawGauge(c, font) {
 function renderResults() {
   $('table').innerHTML = results.length ? `<table class="results">
     <thead><tr><th>V (L)</th><th>T (K)</th><th>p (kPa)</th><th>p × V</th><th></th></tr></thead>
-    <tbody>${results.map((r, i) => `<tr><td class="n">${r.V.toFixed(2)}</td><td class="n">${r.T.toFixed(0)}</td><td class="n">${r.p.toFixed(0)}</td><td class="n">${(r.p * r.V).toFixed(0)}</td>
+    <tbody>${results.map((r, i) => `<tr><td class="n">${r.V.toFixed(2)}</td><td class="n">${r.T.toFixed(0)}</td><td class="n">${r.p.toFixed(0)}</td><td class="n">${PK.ans((r.p * r.V).toFixed(0))}</td>
       <td><button class="del" data-i="${i}" aria-label="Delete">✕</button></td></tr>`).join('')}</tbody></table>`
     : '<p class="note">No readings yet. Change the volume or temperature between readings.</p>';
   drawGraph();

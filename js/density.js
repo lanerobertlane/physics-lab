@@ -3,6 +3,7 @@
 
 PK.header({
   title: 'Density practical',
+  answers: true,
   spec: [
     { code: '4.3.1.1', text: 'Density of materials: ρ = m ÷ V; the particle model explains differences in density' },
     { code: '4.3.1.1', text: 'Required practical: use appropriate apparatus to make and record measurements to determine the densities of regular and irregular solid objects and liquids' },
@@ -19,7 +20,7 @@ const state = {
   mode: 'regular', solid: 'aluminium', dims: [4, 3, 2.5],
   object: 'stone', dropped: false, flow: 0,
   liquid: 'water', poured: 50, tared: true,
-  answers: false, rows: [], t: 0,
+  rows: [], t: 0,
 };
 
 const CYL_MASS = 82.4;   // empty measuring cylinder, g
@@ -157,8 +158,8 @@ function renderControls() {
 
 function renderTable() {
   $('table').innerHTML = state.rows.length ? `<table class="results"><thead><tr><th>Object</th><th>Mass (g)</th><th>Volume (cm³)</th><th>Density (g/cm³)</th><th>Density (kg/m³)</th></tr></thead>
-    <tbody>${state.rows.map((r) => `<tr><td>${r.what}</td><td class="n">${r.m.toFixed(1)}</td><td class="n">${parseFloat(r.V.toFixed(1))}</td>
-      <td class="n">${state.answers ? (r.m / r.V).toFixed(2) : '?'}</td><td class="n">${state.answers ? Math.round((r.m / r.V) * 1000) : '?'}</td></tr>`).join('')}</tbody></table>` : '<p class="note">No readings yet. Take the measurements, then press Record.</p>';
+    <tbody>${state.rows.map((r) => `<tr><td>${r.what}</td><td class="n">${r.m.toFixed(1)}</td><td class="n">${r.how.includes('×') ? PK.ans(parseFloat(r.V.toFixed(1))) : parseFloat(r.V.toFixed(1))}</td>
+      <td class="n">${PK.ans((r.m / r.V).toFixed(2))}</td><td class="n">${PK.ans(Math.round((r.m / r.V) * 1000))}</td></tr>`).join('')}</tbody></table>` : '<p class="note">No readings yet. Take the measurements, then press Record.</p>';
 }
 
 document.querySelectorAll('#modes .chip').forEach((b) => b.addEventListener('click', () => {
@@ -172,7 +173,6 @@ $('record').addEventListener('click', () => {
   renderTable();
 });
 $('clear').addEventListener('click', () => { state.rows = []; renderTable(); });
-$('answers').addEventListener('change', (e) => { state.answers = e.target.checked; renderTable(); });
 
 function frame() { draw(); requestAnimationFrame(frame); }
 window.addEventListener('resize', sizeCanvas);

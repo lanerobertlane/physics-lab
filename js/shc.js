@@ -4,6 +4,7 @@
 
 PK.header({
   title: 'Specific heat capacity',
+  answers: true,
   spec: [
     { code: '4.1.1.3', text: 'Energy changes in systems: ΔE = m c Δθ; specific heat capacity' },
     { code: '4.1.1.3', text: 'Required practical: determine the specific heat capacity of one or more materials' },
@@ -105,13 +106,13 @@ function renderResults() {
   // Changes are measured from the first reading.
   $('table').innerHTML = rows.length ? `<table class="results"><thead><tr><th>Time (s)</th><th>Energy (J)</th><th>Temp. (°C)</th><th>ΔE (J)</th><th>Δθ (°C)</th></tr></thead>
     <tbody>${rows.map((r) => `<tr><td>${Math.round(r.t)}</td><td class="n">${Math.round(r.E)}</td><td class="n">${r.T.toFixed(1)}</td>
-      <td class="n">${Math.round(r.E - first.E)}</td><td class="n">${(r.T - first.T).toFixed(1)}</td></tr>`).join('')}</tbody></table>` : '<p class="note">No readings yet.</p>';
+      <td class="n">${PK.ans(Math.round(r.E - first.E))}</td><td class="n">${PK.ans((r.T - first.T).toFixed(1))}</td></tr>`).join('')}</tbody></table>` : '<p class="note">No readings yet.</p>';
   const lastRow = rows[rows.length - 1];
   const dE = rows.length >= 2 ? lastRow.E - first.E : 0, dT = rows.length >= 2 ? lastRow.T - first.T : 0;
   if (dE > 0 && dT > 0.05) {
     const cVal = dE / (M * dT), real = MATS[state.mat].c;
-    $('answer').innerHTML = `Using the first and last readings:<br>c = ΔE ÷ (m Δθ) = ${Math.round(dE)} ÷ (${M} × ${dT.toFixed(1)}) = <b>${Math.round(cVal)} J/kg °C</b><br>
-      <span class="note">Accepted value for ${MATS[state.mat].name.toLowerCase()}: ${real} J/kg °C (${cVal > real * 1.02 ? `${Math.round(((cVal - real) / real) * 100)}% too high: some energy heated the surroundings` : 'good agreement'}).</span>`;
+    $('answer').innerHTML = `Using the first and last readings:<br>c = ΔE ÷ (m Δθ) = ${PK.ans(Math.round(dE))} ÷ (${M} × ${PK.ans(dT.toFixed(1))}) = <b>${PK.ans(`${Math.round(cVal)} J/kg °C`)}</b><br>
+      <span class="note hide-when-no-answers">Accepted value for ${MATS[state.mat].name.toLowerCase()}: ${real} J/kg °C (${cVal > real * 1.02 ? `${Math.round(((cVal - real) / real) * 100)}% too high: some energy heated the surroundings` : 'good agreement'}).</span>`;
   } else $('answer').innerHTML = 'Record a reading at the start, then more while heating.';
   drawGraph();
 }

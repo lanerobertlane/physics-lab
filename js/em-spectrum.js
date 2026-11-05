@@ -3,6 +3,7 @@
 
 PK.header({
   title: 'EM spectrum',
+  answers: true,
   spec: [
     { code: '4.6.1.2', text: 'Properties of waves: wave speed = frequency × wavelength (v = f λ)' },
     { code: '4.6.2.1', text: 'Types of electromagnetic waves: transverse, continuous spectrum, same speed in a vacuum' },
@@ -194,10 +195,10 @@ function render() {
   const hideName = state.quiz && !revealed.has(i);
   $('lambda').textContent = withPrefix(lambda, 'm', LAMBDA_PREFIX);
   $('lambda-sf').innerHTML = `${standardForm(lambda)} m`;
-  $('freq').textContent = withPrefix(f, 'Hz', FREQ_PREFIX);
-  $('freq-sf').innerHTML = `${standardForm(f)} Hz`;
+  $('freq').innerHTML = PK.ans(withPrefix(f, 'Hz', FREQ_PREFIX));
+  $('freq-sf').innerHTML = PK.ans(`${standardForm(f)} Hz`);
   $('wave-eq').innerHTML = `<p><b>Wave equation:</b> v = f λ, so f = v ÷ λ</p>
-    <p>f = 3.0 × 10<sup>8</sup> ÷ ${standardForm(lambda)} = <b>${standardForm(f)} Hz</b></p>`;
+    <p>f = 3.0 × 10<sup>8</sup> ÷ ${standardForm(lambda)} = <b>${PK.ans(`${standardForm(f)} Hz`)}</b></p>`;
   const lg = Math.log10(lambda);
   $('size').textContent = SIZES.find(([t]) => lg >= t - 0.5)[1];
 

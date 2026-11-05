@@ -3,6 +3,7 @@
 
 PK.header({
   title: 'Ripple tank',
+  answers: true,
   spec: [
     { code: '4.6.1.2', text: 'Properties of waves: wavelength, frequency, period and wave speed; v = f λ' },
     { code: '4.6.1.2', text: 'Required practical: measure the frequency, wavelength and speed of waves in a ripple tank' },
@@ -312,9 +313,8 @@ function renderValues() {
   $('freq-val').textContent = `${state.f} Hz`;
   const lam = V_DEEP / state.f;
   const box = $('values');
-  box.hidden = !$('show-values').checked;
-  let html = `<p>f = <b>${state.f} Hz</b></p><p>λ = <b>${lam.toFixed(1)} cm</b> (deep water)</p><p>v = f λ = ${state.f} × ${lam.toFixed(1)} = <b>${V_DEEP} cm/s</b></p>`;
-  if (state.mode === 'refract') html += `<p>In shallow water: v = <b>${V_SHALLOW} cm/s</b>, λ = <b>${(V_SHALLOW / state.f).toFixed(1)} cm</b>. The frequency doesn't change.</p>`;
+  let html = `<p>f = <b>${state.f} Hz</b></p><p>λ = <b>${PK.ans(`${lam.toFixed(1)} cm`)}</b> (deep water)</p><p>v = f λ = ${state.f} × ${PK.ans(lam.toFixed(1))} = <b>${PK.ans(`${V_DEEP} cm/s`)}</b></p>`;
+  if (state.mode === 'refract') html += `<p>In shallow water: v = <b>${PK.ans(`${V_SHALLOW} cm/s`)}</b>, λ = <b>${PK.ans(`${(V_SHALLOW / state.f).toFixed(1)} cm`)}</b>. The frequency doesn't change.</p>`;
   box.innerHTML = html;
 }
 
@@ -352,7 +352,6 @@ $('modes').addEventListener('click', (e) => { const b = e.target.closest('[data-
 $('freq').addEventListener('input', (e) => { state.f = Number(e.target.value); renderValues(); saveHash(); });
 $('source').addEventListener('change', (e) => { state.source = e.target.value; build(); clearWaves(); saveHash(); });
 $('speed').addEventListener('change', (e) => { state.speed = Number(e.target.value); });
-$('show-values').addEventListener('change', renderValues);
 $('freeze').addEventListener('click', () => {
   state.frozen = !state.frozen;
   $('freeze').textContent = state.frozen ? '▶ Run' : '❚❚ Freeze (strobe)';

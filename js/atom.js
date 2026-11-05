@@ -3,6 +3,7 @@
 
 PK.header({
   title: 'Atom builder',
+  answers: true,
   spec: [
     { code: '4.4.1.1', text: 'The structure of an atom: a tiny positive nucleus of protons and neutrons, with electrons in energy levels; electrons move between levels by absorbing or emitting EM radiation' },
     { code: '4.4.1.2', text: 'Mass number, atomic number and isotopes; atoms losing or gaining electrons become ions' },
@@ -53,9 +54,9 @@ function render() {
   const el = p > 0 ? ELEMENTS[p - 1] : null;
   const charge = p - e;
   const chargeTxt = charge === 0 ? '' : `${Math.abs(charge) === 1 ? '' : Math.abs(charge)}${charge > 0 ? '+' : '−'}`;
-  $('name').textContent = el ? `${el[1]}${p ? `-${p + n}` : ''}` : 'No protons: not an element';
+  $('name').innerHTML = el ? PK.ans(`${el[1]}${p ? `-${p + n}` : ''}`) : 'No protons: not an element';
   $('notation').innerHTML = el
-    ? `<span class="nums"><span>${p + n}</span><span>${p}</span></span><span class="sym">${el[0]}</span><span class="chg">${chargeTxt}</span>`
+    ? PK.ans(`<span class="nums"><span>${p + n}</span><span>${p}</span></span><span class="sym">${el[0]}</span><span class="chg">${chargeTxt}</span>`)
     : '';
   const kind = !el ? '—'
     : charge === 0 ? 'neutral atom'
@@ -64,12 +65,12 @@ function render() {
   const iso = !el ? '' : n === COMMON_N[p - 1] ? 'the most common isotope' : `an isotope of ${el[1].toLowerCase()} (usually ${COMMON_N[p - 1]} neutrons)`;
   const sh = shells(e);
   $('readout').innerHTML = `
-    <dt>Atomic number (Z)</dt><dd>${p}</dd>
-    <dt>Mass number (A)</dt><dd>${p + n}</dd>
-    <dt>Charge</dt><dd>${charge === 0 ? '0' : (charge > 0 ? '+' : '−') + Math.abs(charge)}</dd>
-    <dt>Type</dt><dd>${kind}</dd>
-    ${el ? `<dt>Isotope</dt><dd>${iso}</dd>` : ''}
-    <dt>Electron shells</dt><dd>${sh.length ? sh.join(', ') : '—'}</dd>`;
+    <dt>Atomic number (Z)</dt><dd>${PK.ans(p)}</dd>
+    <dt>Mass number (A)</dt><dd>${PK.ans(p + n)}</dd>
+    <dt>Charge</dt><dd>${PK.ans(charge === 0 ? '0' : (charge > 0 ? '+' : '−') + Math.abs(charge))}</dd>
+    <dt>Type</dt><dd>${PK.ans(kind)}</dd>
+    ${el ? `<dt>Isotope</dt><dd>${PK.ans(iso)}</dd>` : ''}
+    <dt>Electron shells</dt><dd>${PK.ans(sh.length ? sh.join(', ') : '—')}</dd>`;
   for (const k of ['p', 'n', 'e']) $(`${k}-val`).textContent = state[k];
 }
 

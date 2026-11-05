@@ -3,6 +3,7 @@
 
 PK.header({
   title: 'Energy stores',
+  answers: true,
   spec: [
     { code: '4.1.1.1', text: 'Energy stores and systems: energy transfers when a ball is dropped, when a moving object slows down, etc.' },
     { code: '4.1.1.2', text: 'Changes in energy: Ek = ½ m v² and Ep = m g h' },
@@ -251,7 +252,7 @@ function renderPanel() {
   const vals = { ek: e.ek, ep: e.ep, eth: e.eth, total: state.friction ? e.e0 : total };
   for (const b of BARS) {
     $('bar-' + b.key).style.height = `${Math.min(100, (vals[b.key] / e.e0) * 92)}%`;
-    $('val-' + b.key).textContent = fmtJ(vals[b.key]);
+    $('val-' + b.key).innerHTML = PK.ans(fmtJ(vals[b.key]));
   }
 
   // Which way is energy going?
@@ -274,10 +275,10 @@ function renderPanel() {
 
   const h = height(), v = speed();
   $('working').innerHTML = `
-    <p>E<sub>p</sub> = m g h = ${state.m} × 9.8 × ${h.toFixed(2)} = <b>${fmtJ(e.ep)}</b></p>
-    <p>E<sub>k</sub> = ½ m v² = ½ × ${state.m} × ${v.toFixed(2)}² = <b>${fmtJ(e.ek)}</b></p>
-    ${state.friction ? `<p>Thermal (dissipated) = <b>${fmtJ(e.eth)}</b></p>` : ''}
-    <p>Total = <b>${fmtJ(state.friction ? e.e0 : total)}</b> — it never changes.</p>`;
+    <p>E<sub>p</sub> = m g h = ${state.m} × 9.8 × ${h.toFixed(2)} = <b>${PK.ans(fmtJ(e.ep))}</b></p>
+    <p>E<sub>k</sub> = ½ m v² = ½ × ${state.m} × ${v.toFixed(2)}² = <b>${PK.ans(fmtJ(e.ek))}</b></p>
+    ${state.friction ? `<p>Thermal (dissipated) = <b>${PK.ans(fmtJ(e.eth))}</b></p>` : ''}
+    <p>Total = <b>${PK.ans(fmtJ(state.friction ? e.e0 : total))}</b> — it never changes.</p>`;
 }
 
 // ---------- Energy–time graph ----------
