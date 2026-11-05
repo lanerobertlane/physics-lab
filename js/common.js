@@ -227,5 +227,5 @@ const PK = (() => {
     });
   }
 
-  return { root, store, header, toast, copyLink, cssVar, sig, isDark, ans, ansText, answersShown };
+  return { root, store, header, toast, copyLink, cssVar, sig, isDark, ans, ansText, answersShown, toggleFullscreen, fullscreenEnabled: fsEnabled };
 })();

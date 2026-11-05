@@ -154,7 +154,15 @@ function makeQuestion() {
 
 const fmt = (v) => PK.sig(v, 4);
 const unitText = (u) => (u ? ` ${u}` : '');
-function sentenceName(eq, id) { const n = nameOf(eq, id); return n.charAt(0).toUpperCase() + n.slice(1); }
+// Plainer wording for questions than the formal names on the equation sheet.
+const PLAIN = {
+  'force applied to a spring': 'force', 'moment of a force': 'moment', 'force normal to a surface': 'force',
+  'area of that surface': 'area', 'speed (or velocity)': 'speed', 'distance travelled': 'distance',
+  'force on a conductor carrying a current': 'force on the wire', 'pressure due to a column of liquid': 'pressure',
+  'height of the column': 'depth', 'perpendicular distance from the pivot': 'distance from the pivot',
+};
+const plainName = (eq, id) => PLAIN[nameOf(eq, id)] || nameOf(eq, id);
+function sentenceName(eq, id) { const n = plainName(eq, id); return n.charAt(0).toUpperCase() + n.slice(1); }
 
 function renderQuestion() {
   const q = state.q;
@@ -181,11 +189,12 @@ function renderQuestion() {
     <div class="tags">${tags}<span class="tag">${eq.topic}</span></div>
     <p class="ctx">${SETUPS[eq.id].ctx}</p>
     <ul class="givens">${rows}</ul>
-    <p class="ask">Calculate the <b>${nameOf(eq, subject)}</b>${unit ? ` in ${unit}` : ''}.${Q[subject].word && subject === 'eff' ? ' Give your answer as a decimal.' : ''}</p>
+    <p class="ask">Calculate the <b>${plainName(eq, subject)}</b>${unit ? ` in ${unit}` : ''}.${Q[subject].word && subject === 'eff' ? ' Give your answer as a decimal.' : ''}</p>
     ${state.showEq ? `<div class="eq-show">${writtenFormula(eq)}</div>` : ''}`;
   $('unit').textContent = unit;
   $('hint').innerHTML = `<div class="eq-show">${writtenFormula(eq)}</div><div class="note">${wordEquation(eq)}</div>`;
   $('working').innerHTML = workingHtml(q);
+  renderPresentation();
 }
 
 function workingHtml(q) {
@@ -198,7 +207,7 @@ function workingHtml(q) {
   }
   const asWritten = eq.custom ? eq.vars[0] : eq.lhs;
   if (subject !== asWritten || (eq.html && !eq.custom)) {
-    steps.push(`<li><b>Rearrange for the ${nameOf(eq, subject)}.</b><div class="eq-show">${rearranged(eq, subject)}</div></li>`);
+    steps.push(`<li><b>Rearrange for the ${plainName(eq, subject)}.</b><div class="eq-show">${rearranged(eq, subject)}</div></li>`);
   }
   const sub = eq.custom
     ? eq.forms[subject].sub(Object.fromEntries(given.map((id) => [id, numLabel(x[id])])))
@@ -208,6 +217,95 @@ function workingHtml(q) {
   steps.push(`<li><b>Work it out.</b><div class="ans">${lhsLabel} = ${PK.sig(answer, 3)}${unitText(unitOf(subject))}</div>${isExact(answer) ? '' : '<div class="note">Rounded to 3 significant figures.</div>'}</li>`);
   return `<h2>Worked answer</h2><ol class="steps">${steps.join('')}</ol>`;
 }
+
+// Presentation view's answer, laid out as VESRAU: Values, Equation, Substitute, Rearrange
+// (only when it's needed), Answer and Units. Just the lines, without labels.
+const symOf = (eq, id) => (Q[id].word ? plainName(eq, id) : Q[id].sym);
+// Equations written on the sheet in a different form from the one used to solve them.
+const WRITTEN = {
+  'transformer-ratio': { order: ['Vp', 'Vs', 'np', 'ns'], html: 'V<sub>p</sub> / V<sub>s</sub> = n<sub>p</sub> / n<sub>s</sub>', sub: (l) => `${l('Vp')} / ${l('Vs')} = ${l('np')} / ${l('ns')}` },
+  'transformer-power': { order: ['Vs', 'Is', 'Vp', 'Ip'], html: 'V<sub>s</sub> I<sub>s</sub> = V<sub>p</sub> I<sub>p</sub>', sub: (l) => `${l('Vs')} × ${l('Is')} = ${l('Vp')} × ${l('Ip')}` },
+  gas: { order: ['p1', 'V1', 'p2', 'V2'], html: 'p<sub>1</sub> V<sub>1</sub> = p<sub>2</sub> V<sub>2</sub>', sub: (l) => `${l('p1')} × ${l('V1')} = ${l('p2')} × ${l('V2')}` },
+};
+
+function vesrauHtml(q) {
+  const { eq, subject, given, shown, x, answer } = q;
+  const lab = (id) => (id === subject ? symOf(eq, id) : numLabel(x[id]));
+  const blocks = [];
+  const written = WRITTEN[eq.id];
+  // Values, converted to SI units where needed; the unknown is "?"
+  blocks.push((written ? written.order : varsOf(eq)).map((id) => {
+    if (id === subject) return `<div>${symOf(eq, id)} = ?</div>`;
+    const sh = shown[id];
+    return `<div>${symOf(eq, id)} = ${fmt(sh.value)}${unitText(sh.unit)}${sh.f !== 1 ? ` = ${fmt(x[id])}${unitText(unitOf(id))}` : ''}</div>`;
+  }).join(''));
+  // Equation as written
+  blocks.push(`<div>${written ? written.html : writtenFormula(eq)}</div>`);
+  // Substitute into it (the unknown stays as a symbol)
+  blocks.push(`<div>${written ? written.sub(lab)
+    : eq.custom ? `${lab('vf')}<sup>2</sup> − ${lab('u')}<sup>2</sup> = 2 × ${lab('a')} × ${lab('s')}`
+      : `${lab(eq.lhs)} = ${expression(eq, eq.lhs, lab, true)}`}</div>`);
+  // Rearrange, only if the unknown isn't already the subject
+  if (written || eq.custom || subject !== eq.lhs) {
+    const solved = eq.custom
+      ? eq.forms[subject].sub(Object.fromEntries(given.map((id) => [id, numLabel(x[id])])))
+      : expression(eq, subject, (id) => numLabel(x[id]), true);
+    blocks.push(`<div>${symOf(eq, subject)} = ${solved}</div>`);
+  }
+  // Answer and units
+  blocks.push(`<div class="ans">${symOf(eq, subject)} = ${PK.sig(answer, 3)}${unitText(unitOf(subject))}</div>`);
+  return `<div class="vesrau">${blocks.map((b) => `<div class="vb">${b}</div>`).join('')}</div>`;
+}
+
+// ---------- Presentation view ----------
+
+const joinList = (a) => (a.length < 2 ? a.join('') : `${a.slice(0, -1).join(', ')} and ${a[a.length - 1]}`);
+
+function presentationText(q) {
+  const { eq, subject, given, shown } = q;
+  const facts = given.map((id) => `the ${plainName(eq, id)} is ${fmt(shown[id].value)}${unitText(shown[id].unit)}`);
+  const sentence = joinList(facts);
+  const unit = unitOf(subject);
+  return `<p>${SETUPS[eq.id].ctx} ${sentence.charAt(0).toUpperCase()}${sentence.slice(1)}.</p>
+    <p>Calculate the ${plainName(eq, subject)}${unit ? ` in ${unit}` : ''}.${subject === 'eff' ? ' Give your answer as a decimal.' : ''}</p>`;
+}
+
+function renderPresentation() {
+  const q = state.q;
+  $('p-q').innerHTML = q ? presentationText(q) : '<p>No equations match these settings.</p>';
+  $('p-hint').innerHTML = q ? `<div class="eq-show">${writtenFormula(q.eq)}</div>` : '';
+  $('p-work').innerHTML = q ? vesrauHtml(q) : '';
+  $('p-hint').hidden = !state.showEq;
+  $('p-work').hidden = true;
+  $('p-hint-btn').textContent = state.showEq ? 'Hide the equation' : 'Show the equation';
+  $('p-work-btn').textContent = 'Show the answer';
+}
+
+const presenting = () => !$('present').hidden;
+function setPresenting(on) {
+  $('present').hidden = !on;
+  document.body.classList.toggle('presenting', on);
+  if (on) { renderPresentation(); $('p-next').focus(); } else $('present-open').focus();
+}
+function togglePart(id, btn, show, hide) {
+  const el = $(id);
+  el.hidden = !el.hidden;
+  $(btn).textContent = el.hidden ? show : hide;
+}
+$('present-open').addEventListener('click', () => setPresenting(true));
+$('p-close').addEventListener('click', () => setPresenting(false));
+$('p-next').addEventListener('click', () => next());
+$('p-hint-btn').addEventListener('click', () => togglePart('p-hint', 'p-hint-btn', 'Show the equation', 'Hide the equation'));
+$('p-work-btn').addEventListener('click', () => togglePart('p-work', 'p-work-btn', 'Show the answer', 'Hide the answer'));
+if (PK.fullscreenEnabled()) $('p-fs').addEventListener('click', PK.toggleFullscreen); else $('p-fs').remove();
+// Keyboard (and presentation clickers, which send arrow keys / Page Down)
+document.addEventListener('keydown', (e) => {
+  if (!presenting() || e.ctrlKey || e.metaKey || e.altKey) return;
+  if (e.key === 'Escape') setPresenting(false);
+  else if (['ArrowRight', 'PageDown', 'n', 'N'].includes(e.key) || (e.key === ' ' && e.target.tagName !== 'BUTTON')) { e.preventDefault(); next(); }
+  else if (e.key === 'a' || e.key === 'A') togglePart('p-work', 'p-work-btn', 'Show the answer', 'Hide the answer');
+  else if (e.key === 'e' || e.key === 'E') togglePart('p-hint', 'p-hint-btn', 'Show the equation', 'Hide the equation');
+});
 
 const isExact = (v) => Number(v.toPrecision(3)) === Number(v.toPrecision(12));
 
