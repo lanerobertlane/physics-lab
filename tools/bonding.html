@@ -19,6 +19,13 @@
     .answer p { margin: 0 0 8px; line-height: 1.55; }
     .answer h2 { display: flex; align-items: center; gap: 8px; }
     .examples { display: flex; flex-wrap: wrap; gap: 6px; }
+    .gapfill p { font-size: 1.12rem; line-height: 2.3; margin: 0 0 6px; }
+    .gapfill select { font: inherit; font-weight: 700; padding: 3px 6px; border-radius: var(--radius-sm); border: 2px solid var(--border-strong); background: var(--surface); color: var(--text); }
+    .gapfill select.ok { border-color: #2e7d32; background: rgba(46, 125, 50, .12); }
+    .gapfill select.bad { border-color: #c62828; background: rgba(198, 40, 40, .1); }
+    .gapfill .formula-line { font-size: 1.3rem; font-weight: 800; }
+    .p-feedback { margin: 12px 0 0; font-weight: 700; min-height: 1.4em; }
+    .p-feedback.ok { color: #2e7d32; } .p-feedback.bad { color: #c62828; }
     .pick-key { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: .78rem; color: var(--muted); margin: -4px 0 14px; }
     .pick-key span { display: inline-flex; align-items: center; gap: 5px; }
     .pick-key i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; border: 1px solid rgba(0,0,0,.2); }
@@ -33,6 +40,12 @@
       <p>Choose two elements to bond. A metal and a non-metal make <b>ionic</b> bonds (electrons are transferred), two non-metals make <b>covalent</b> bonds (electrons are shared), and a metal on its own has <b>metallic</b> bonding (delocalised electrons).</p>
     </div>
 
+    <div class="chip-group" id="mode" style="margin-bottom:14px" aria-label="Show">
+      <button class="chip" data-m="explore" aria-pressed="true">🔬 Explore</button>
+      <button class="chip" data-m="practice" aria-pressed="false">✏️ Practice</button>
+    </div>
+
+    <div id="explore">
     <div class="tool-layout">
       <div class="main-col">
         <div class="panel stage">
@@ -66,6 +79,42 @@
           <div class="examples" id="examples"></div>
         </div>
       </aside>
+    </div>
+    </div>
+
+    <div id="practice" hidden>
+      <div class="tool-layout">
+        <div class="main-col">
+          <div class="panel">
+            <div class="chip-group" id="p-type" style="margin-bottom:12px" aria-label="Type of bonding">
+              <button class="chip" data-t="ionic" aria-pressed="true">Ionic</button>
+              <button class="chip" data-t="covalent" aria-pressed="false">Covalent</button>
+            </div>
+            <h2 id="p-title"></h2>
+            <div class="gapfill" id="p-text"></div>
+            <div class="btn-row" style="margin-top:14px">
+              <button class="btn primary" id="p-check">✓ Check</button>
+              <button class="btn hide-when-no-answers" id="p-show">Show answers</button>
+              <button class="btn" id="p-next">Next question →</button>
+              <button class="btn" id="p-see">See it in Explore</button>
+            </div>
+            <p class="p-feedback" id="p-feedback" aria-live="polite"></p>
+          </div>
+        </div>
+        <aside>
+          <div class="panel">
+            <h2>Score</h2>
+            <p id="p-score" style="margin:0">No questions checked yet.</p>
+          </div>
+          <div class="panel">
+            <h2>Tips</h2>
+            <p class="note" style="margin-top:0"><b>Metals lose</b> electrons and form <b>positive</b> ions. <b>Non-metals gain</b> electrons and form <b>negative</b> ions.</p>
+            <p class="note">Group 1 → 1+, group 2 → 2+, group 3 → 3+. Group 7 → 1−, group 6 → 2−, group 5 → 3−.</p>
+            <p class="note">The charges in a compound must add up to zero.</p>
+            <p class="note">In covalent bonds, each shared pair is one electron from each atom.</p>
+          </div>
+        </aside>
+      </div>
     </div>
   </main>
 

@@ -44,6 +44,21 @@ function makeQuestion() {
   return PQ.make(list, { rearrange: state.rearrange, convert: state.convert, ks3: state.course === 'ks3', keep: state.keep ? state.q : null });
 }
 
+// The tool (and tab) where each equation can be explored
+const TOOL_FOR = {
+  weight: ['work.html#lift', 'Work done (lifting)'], work: ['work.html', 'Work done'], 'power-w': ['work.html', 'Work done'],
+  hooke: ['springs.html', 'Springs & Hooke’s law'], epe: ['springs.html', 'Springs & Hooke’s law'],
+  moment: ['moments.html', 'Moments'], speed: ['motion-graphs.html', 'Motion graphs'], suvat: ['motion-graphs.html', 'Motion graphs'],
+  accel: ['acceleration.html', 'Acceleration practical'], newton2: ['resultant-forces.html', 'Resultant forces'],
+  ke: ['energy.html', 'Energy stores'], gpe: ['work.html#lift', 'Work done (lifting)'],
+  'eff-e': ['efficiency.html', 'Efficiency'], 'eff-p': ['efficiency.html', 'Efficiency'],
+  charge: ['circuits.html', 'Circuit builder'], ohm: ['circuits.html', 'Circuit builder'], 'energy-qv': ['circuits.html', 'Circuit builder'],
+  'power-vi': ['mains.html#safe', 'Mains electricity (earth wire & fuse)'], 'power-i2r': ['grid.html', 'The National Grid'],
+  density: ['density.html', 'Density'], wave: ['waves.html', 'Waves'], period: ['waves.html', 'Waves'],
+  shc: ['shc.html', 'Specific heat capacity'], latent: ['states.html', 'States of matter'], gas: ['gas.html', 'Gas pressure'],
+  fbil: ['electromagnetism.html', 'Electromagnetism'], 'transformer-ratio': ['transformers.html', 'Transformers'], 'transformer-power': ['transformers.html', 'Transformers'],
+};
+
 // ---------- Display ----------
 
 function renderQuestion() {
@@ -57,9 +72,13 @@ function renderQuestion() {
   if (!q) {
     $('question').innerHTML = '<p class="note">No equations match these settings. Try another topic or turn on Higher tier.</p>';
     $('unit').textContent = '';
+    $('see-tool').hidden = true;
     return;
   }
   $('question').innerHTML = PQ.questionHtml(q, { showEq: state.showEq });
+  const tool = TOOL_FOR[q.eq.id];
+  $('see-tool').hidden = !tool;
+  if (tool) { $('see-tool').href = tool[0]; $('see-tool').title = `Open ${tool[1]}`; }
   $('unit').textContent = PQ.unitOf(q.subject);
   $('hint').innerHTML = PQ.hintHtml(q);
   $('working').innerHTML = PQ.workingHtml(q);
