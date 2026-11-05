@@ -231,7 +231,7 @@ const PK = (() => {
   // device. Only on the live site, so testing locally isn't counted.
   if (location.hostname === 'lanerobertlane.space') {
     const beacon = document.createElement('script');
-    beacon.type = 'module';
+    beacon.defer = true;   // a classic script, so the beacon can find its own tag (document.currentScript)
     beacon.src = 'https://static.cloudflareinsights.com/beacon.min.js';
     beacon.setAttribute('data-cf-beacon', '{"token": "abeb8a6480974a32b24aafb4d792e58d"}');
     document.head.appendChild(beacon);
