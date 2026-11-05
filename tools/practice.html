@@ -92,8 +92,9 @@
         <div class="panel">
           <h2>Questions</h2>
           <div class="chip-group" id="course" style="margin-bottom:10px">
-            <button class="chip" data-v="physics" aria-pressed="true">GCSE Physics</button>
+            <button class="chip" data-v="ks3" aria-pressed="false">KS3</button>
             <button class="chip" data-v="combined" aria-pressed="false">Combined</button>
+            <button class="chip" data-v="physics" aria-pressed="true">GCSE Physics</button>
           </div>
           <label class="setting">Topic<select class="select" id="topic"></select></label>
           <label class="setting">Equation<select class="select" id="eq"></select></label>
@@ -101,7 +102,8 @@
           <label class="toggle"><input type="checkbox" id="rearrange"> Include rearranging</label>
           <label class="toggle"><input type="checkbox" id="convert"> Include unit conversions</label>
           <label class="toggle"><input type="checkbox" id="showEq"> Always show the equation</label>
-          <p class="note">Answers within 1% are marked correct, so 3 significant figures is fine. Use g = 9.8 N/kg.</p>
+          <label class="toggle"><input type="checkbox" id="keep"> Same question, new numbers</label>
+          <p class="note">Answers within 1% are marked correct, so 3 significant figures is fine. Use g = <span id="g">9.8</span> N/kg. KS3 uses easier numbers and the KS3 equations.</p>
         </div>
       </aside>
     </div>

@@ -24,6 +24,7 @@ const state = {
   rearrange: PK.store.get('calc.rearrange', true),
   convert: PK.store.get('calc.convert', false),
   showEq: PK.store.get('calc.showEq', false),
+  keep: false,
   q: null,
   tries: 0,
   score: { right: 0, total: 0, streak: 0 },
@@ -31,6 +32,7 @@ const state = {
 
 function pool() {
   return EQUATIONS.filter((eq) => PQ.SETUPS[eq.id]
+    && !(state.course === 'ks3' && !PQ.KS3.includes(eq.id))
     && !(state.course === 'combined' && eq.po)
     && !(!state.higher && eq.ht)
     && (state.topic === 'all' || eq.topic === state.topic));
@@ -38,7 +40,8 @@ function pool() {
 
 function makeQuestion() {
   const list = state.eqId === 'any' ? pool() : EQUATIONS.filter((e) => e.id === state.eqId);
-  return PQ.make(list, { rearrange: state.rearrange, convert: state.convert });
+  $('g').textContent = state.course === 'ks3' ? '10' : '9.8';
+  return PQ.make(list, { rearrange: state.rearrange, convert: state.convert, ks3: state.course === 'ks3', keep: state.keep ? state.q : null });
 }
 
 // ---------- Display ----------
@@ -146,6 +149,8 @@ function renderEqSelect() {
 }
 
 function next() { state.q = makeQuestion(); renderQuestion(); }
+// A change of settings starts afresh, even when keeping the context
+function fresh() { const k = state.keep; state.keep = false; next(); state.keep = k; }
 
 function chipGroup(containerId, key, onChange) {
   const btns = document.querySelectorAll(`#${containerId} .chip`);
@@ -154,19 +159,20 @@ function chipGroup(containerId, key, onChange) {
   sync();
 }
 
-chipGroup('course', 'course', () => { PK.store.set('calc.course', state.course); renderEqSelect(); next(); });
+chipGroup('course', 'course', () => { PK.store.set('calc.course', state.course); renderEqSelect(); fresh(); });
 $('topic').innerHTML = '<option value="all">All topics</option>' + TOPIC_ORDER.map((t) => `<option value="${t}">${t}</option>`).join('');
-$('topic').addEventListener('change', (e) => { state.topic = e.target.value; renderEqSelect(); next(); });
-$('eq').addEventListener('change', (e) => { state.eqId = e.target.value; next(); });
+$('topic').addEventListener('change', (e) => { state.topic = e.target.value; renderEqSelect(); fresh(); });
+$('eq').addEventListener('change', (e) => { state.eqId = e.target.value; fresh(); });
 
 function toggle(id, key, onChange) {
   $(id).checked = state[key];
   $(id).addEventListener('change', (e) => { state[key] = e.target.checked; PK.store.set('calc.' + key, state[key]); onChange(); });
 }
-toggle('higher', 'higher', () => { renderEqSelect(); next(); });
-toggle('rearrange', 'rearrange', next);
-toggle('convert', 'convert', next);
+toggle('higher', 'higher', () => { renderEqSelect(); fresh(); });
+toggle('rearrange', 'rearrange', fresh);
+toggle('convert', 'convert', fresh);
 toggle('showEq', 'showEq', renderQuestion);
+$('keep').addEventListener('change', (e) => { state.keep = e.target.checked; });
 
 $('check').addEventListener('click', check);
 $('answer').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); check(); } });
