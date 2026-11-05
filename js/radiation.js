@@ -145,6 +145,8 @@ function draw() {
   ctx.beginPath(); ctx.arc(dx + 75, CY - 30, 7, 0, Math.PI * 2); ctx.fill();
   ctx.fillStyle = c.text; ctx.font = `700 12px ${c.font}`; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
   ctx.fillText('G–M tube', dx + 45, CY + 22);
+  ctx.fillStyle = c.muted; ctx.font = `600 11px ${c.font}`;
+  ctx.fillText('↔ drag to move', dx + 45, CY + 38);
 }
 
 // ---------- Panel ----------
@@ -176,7 +178,37 @@ function pick(groupId, attr, key) {
 }
 pick('source', 's', 'source');
 pick('absorber', 'a', 'absorber');
-$('dist').addEventListener('input', (e) => { state.d = Number(e.target.value); clicks = []; t = 0; particles = []; renderPanel(); });
+function setDistance(d) {
+  d = Math.round(Math.max(1, Math.min(20, d)) * 2) / 2;   // nearest 0.5 cm
+  if (d === state.d) return;
+  state.d = d;
+  $('dist').value = d;
+  clicks = []; t = 0; particles = [];
+  renderPanel();
+}
+$('dist').addEventListener('input', (e) => setDistance(Number(e.target.value)));
+
+// Drag the G–M tube along the bench. Only sideways drags are taken, so the page still scrolls.
+canvas.style.touchAction = 'pan-y';
+const toLogical = (e) => { const r = canvas.getBoundingClientRect(); return { x: ((e.clientX - r.left) / r.width) * W, y: ((e.clientY - r.top) / r.height) * H }; };
+const onTube = (p) => p.x >= detX() - 10 && p.x <= detX() + 95 && p.y >= CY - 42 && p.y <= CY + 50;
+let drag = null;
+canvas.addEventListener('pointerdown', (e) => {
+  const p = toLogical(e);
+  if (!onTube(p)) return;
+  drag = { grab: p.x - detX() };
+  canvas.setPointerCapture(e.pointerId);
+  canvas.style.cursor = 'grabbing';
+  e.preventDefault();
+});
+canvas.addEventListener('pointermove', (e) => {
+  const p = toLogical(e);
+  if (drag) setDistance((p.x - drag.grab - SRC_X - 30) / PX_CM);
+  else canvas.style.cursor = onTube(p) ? 'grab' : '';
+});
+const endDrag = () => { drag = null; canvas.style.cursor = ''; };
+canvas.addEventListener('pointerup', endDrag);
+canvas.addEventListener('pointercancel', endDrag);
 $('sound').addEventListener('change', (e) => { state.sound = e.target.checked; });
 
 function sizeCanvas() {
