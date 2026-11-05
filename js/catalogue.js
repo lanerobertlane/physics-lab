@@ -37,8 +37,8 @@ const TOOLS = [
     desc: 'Carts on an air track that stick or bounce, with momentum totals before and after.' },
   { topic: 'forces', icon: 'weight', name: 'Weight on other planets', gcse: true, ks3: true,
     desc: 'Hang a mass on a newtonmeter on different planets and moons: W = m g.' },
-  { topic: 'forces', icon: 'resultant', name: 'Work done', gcse: true,
-    desc: 'Push a box across different surfaces and calculate the work done: W = F s.' },
+  { topic: 'forces', icon: 'resultant', name: 'Work done', href: 'tools/work.html', gcse: true, ks3: true,
+    desc: 'Push a box across different surfaces and lift loads, and see where the energy goes: W = F s.' },
   { topic: 'forces', icon: 'pressure', name: 'Pressure in fluids & upthrust', gcse: true, po: true, ht: true,
     desc: 'p = h ρ g with a depth slider, and how upthrust decides whether an object floats or sinks.' },
   { topic: 'forces', icon: 'gear', name: 'Levers & gears', gcse: true, po: true,
@@ -59,7 +59,9 @@ const TOOLS = [
     desc: 'Compare the power of appliances, then work out energy in kWh and the cost: E = P t.' },
   { topic: 'electricity', icon: 'pylon', name: 'The National Grid', href: 'tools/grid.html', gcse: true, ht: true,
     desc: 'Step-up and step-down transformers, and why sending power at high voltage wastes less energy.' },
-  { topic: 'electricity', icon: 'static', name: 'Static electricity & electric fields', gcse: true, po: true, ks3: true,
+  { topic: 'electricity', icon: 'transformer', name: 'Transformers', href: 'tools/transformers.html', gcse: true, ht: true,
+    desc: 'Change the turns on each coil to step the p.d. up or down, and see why transformers only work with a.c.' },
+  { topic: 'electricity', icon: 'static', name: 'Static electricity & electric fields', href: 'tools/static.html', gcse: true, po: true, ks3: true,
     desc: 'Rub rods to charge them, see attraction and repulsion, and draw the electric field around charges.' },
 
   // Magnetism
@@ -105,7 +107,7 @@ const TOOLS = [
     desc: 'Heat a 1 kg block, record energy and temperature, and find c from the gradient.' },
   { topic: 'energy', icon: 'heat', name: 'Required practical: thermal insulation', href: 'tools/insulation.html', gcse: true, po: true, rp: true,
     desc: 'Compare insulating materials by how quickly a beaker of hot water cools.' },
-  { topic: 'energy', icon: 'wind', name: 'Energy resources', gcse: true, ks3: true,
+  { topic: 'energy', icon: 'wind', name: 'Energy resources', href: 'tools/resources.html', gcse: true, ks3: true,
     desc: 'Compare renewable and non-renewable resources for reliability, pollution and cost, and meet demand through the day.' },
   { topic: 'energy', icon: 'heat', name: 'Conduction, convection & radiation', href: 'tools/heat.html', ks3: true,
     desc: 'The three ways energy is transferred by heating, including a convection current in a beaker.' },
@@ -211,6 +213,7 @@ const TOOL_ICONS = {
   units: '<path d="M3 17h18M5 17v-4M9 17v-6M13 17v-4M17 17v-6"/>',
   ptable: '<rect x="2" y="5" width="4" height="4"/><rect x="18" y="5" width="4" height="4"/><rect x="2" y="9" width="4" height="4"/><rect x="6" y="9" width="4" height="4"/><rect x="10" y="9" width="4" height="4"/><rect x="14" y="9" width="4" height="4"/><rect x="18" y="9" width="4" height="4"/><rect x="2" y="13" width="20" height="4"/><path d="M6 13v4M10 13v4M14 13v4M18 13v4"/>',
   bond: '<circle cx="8" cy="12" r="5"/><circle cx="16" cy="12" r="5"/><circle cx="12" cy="10" r=".8" fill="currentColor"/><path d="M11 13.5l2 2M13 13.5l-2 2"/>',
+  transformer: '<rect x="6" y="4" width="12" height="16" rx="1"/><path d="M2 8h4M2 11h4M2 14h4M18 8h4M18 11h4M18 14h4M18 17h4"/>',
   equation: '<path d="M4 7h7M7.5 3.5v7M4 17h7M14 5l6 6M20 5l-6 6M14 15h6M14 19h6"/>',
 };
 
