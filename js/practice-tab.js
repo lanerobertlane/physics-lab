@@ -108,7 +108,7 @@
           <label class="toggle"><input type="checkbox" id="pq-convert"> Include unit conversions</label>
           <label class="toggle"><input type="checkbox" id="pq-showEq"> Always show the equation</label>
           <label class="toggle"><input type="checkbox" id="pq-keep"> Same question, new numbers</label>
-          <label class="toggle"><input type="checkbox" id="pq-ks3"> KS3</label>
+          <label class="toggle"><input type="checkbox" id="pq-ks3"> KS3 only</label>
           <p class="note">Answers within 1% are marked correct, so 3 significant figures is fine. Use g = <span id="pq-g">9.8</span> N/kg. For every equation, try <a href="${PK.root}tools/practice.html">Calculation practice</a>.</p>
         </div>
       </aside>
