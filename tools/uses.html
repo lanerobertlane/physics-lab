@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Uses of Radiation · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #use { aspect-ratio: 800 / 380; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .sources { display: grid; gap: 6px; }
+    .src { display: grid; grid-template-columns: auto 1fr auto; gap: 2px 10px; align-items: center; text-align: left; padding: 8px 10px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--surface); color: var(--text); font: inherit; cursor: pointer; }
+    .src[aria-pressed="true"] { border-color: var(--accent, #1e63c6); box-shadow: 0 0 0 2px var(--accent, #1e63c6) inset; }
+    .src b { font-size: .98rem; }
+    .src .t { grid-row: span 2; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 1.1rem; }
+    .src small { color: var(--muted); grid-column: 2; }
+    .src .hl { grid-row: span 2; font-size: .85rem; font-weight: 700; color: var(--muted); text-align: right; }
+    .t.alpha { background: #e53935; } .t.beta { background: #1e88e5; } .t.gamma { background: #8e24aa; }
+    .verdict { display: grid; gap: 10px; }
+    .verdict p { margin: 0; }
+    .tick { font-weight: 800; }
+    .tick.ok { color: #2e7d32; } .tick.bad { color: #c62828; } .tick.meh { color: #ef6c00; }
+    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
+    .ctl label b { color: var(--text); }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Uses of radiation</h1>
+      <p>Radioactive sources do useful jobs, but each job needs the right <b>type</b> of radiation (alpha, beta or gamma) and the right <b>half-life</b>. Pick a job, choose a source, and see whether it works.</p>
+    </div>
+
+    <div class="chip-group" id="jobs" style="margin-bottom:12px" aria-label="Job">
+      <button class="chip" data-j="smoke" aria-pressed="true">Smoke alarm</button>
+      <button class="chip" data-j="gauge">Thickness gauge</button>
+      <button class="chip" data-j="tracer">Medical tracer</button>
+      <button class="chip" data-j="therapy">Radiotherapy</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="use" aria-label="The radioactive source doing its job"></canvas>
+          <div class="stage-bar" id="bar"></div>
+        </div>
+        <div class="panel after-aside">
+          <h2 id="job-title"></h2>
+          <p style="margin-top:0" id="job-text"></p>
+          <div class="verdict" id="verdict" aria-live="polite"></div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Choose a source</h2>
+          <div class="sources" id="sources"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/uses.js"></script>
+</body>
+</html>

@@ -126,13 +126,13 @@ const TOOLS = [
     desc: 'Penetration through paper, aluminium and lead.' },
   { topic: 'atomic', icon: 'halflife', name: 'Half-life', href: 'tools/half-life.html', gcse: true, ht: true,
     desc: 'Random decay simulator with a graph that builds as it runs.' },
-  { topic: 'atomic', icon: 'fission', name: 'Nuclear fission & fusion', gcse: true, po: true,
+  { topic: 'atomic', icon: 'fission', name: 'Nuclear fission & fusion', href: 'tools/fission.html', gcse: true, po: true,
     desc: 'Fire neutrons at uranium-235 to start a chain reaction, and push in control rods to slow it.' },
-  { topic: 'atomic', icon: 'equation', name: 'Nuclear equations', gcse: true,
-    desc: 'Balance alpha and beta decay equations by dragging protons and neutrons.' },
-  { topic: 'atomic', icon: 'radiation', name: 'Uses of radiation', gcse: true, po: true,
+  { topic: 'atomic', icon: 'equation', name: 'Nuclear equations', href: 'tools/nuclear.html', gcse: true,
+    desc: 'Complete alpha, beta and gamma decay equations for real isotopes, then watch the nucleus decay.' },
+  { topic: 'atomic', icon: 'radiation', name: 'Uses of radiation', href: 'tools/uses.html', gcse: true, po: true,
     desc: 'Thickness gauges, smoke alarms and medical tracers: why each needs a particular type and half-life.' },
-  { topic: 'atomic', icon: 'radiation', name: 'Contamination, irradiation & background', gcse: true,
+  { topic: 'atomic', icon: 'radiation', name: 'Contamination, irradiation & background', href: 'tools/background.html', gcse: true,
     desc: 'The difference between contamination and irradiation, and where background radiation comes from.' },
 
   // Space
