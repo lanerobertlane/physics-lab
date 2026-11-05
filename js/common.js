@@ -80,7 +80,7 @@ const PK = (() => {
   applyTheme(savedTheme());
   applyAnswers(answersShown());
 
-  function header({ title = '', isHome = false, spec = null, answers = false } = {}) {
+  function header({ title = '', isHome = false, spec = null, answers = false, specNote = null } = {}) {
     document.title = title ? `${title} · ${SITE.name}` : SITE.name;
 
     const el = document.createElement('header');
@@ -143,7 +143,7 @@ const PK = (() => {
       document.addEventListener('webkitfullscreenchange', syncFs);
     }
 
-    if (spec) specPanel(spec);
+    if (spec) specPanel(spec, specNote);
     footer();
   }
 
@@ -159,7 +159,7 @@ const PK = (() => {
   }
 
   // spec: [{ code: '4.5.1.4', text: 'Resultant forces', ht?: true }, { code: 'KS3', text: '…' }]
-  function specPanel(spec) {
+  function specPanel(spec, note) {
     const main = document.querySelector('main');
     const intro = document.querySelector('.tool-intro');
     if (intro) {
@@ -175,7 +175,7 @@ const PK = (() => {
     panel.id = 'spec';
     panel.innerHTML = `<h2>Specification coverage</h2>
       <ul>${spec.map((s) => `<li><span class="code">${s.code === 'KS3' ? 'KS3' : 'AQA ' + s.code}</span><span>${s.text}${s.ht ? ' <span class="tag ht">Higher</span>' : ''}${s.po ? ' <span class="tag po">Physics only</span>' : ''}</span></li>`).join('')}</ul>
-      <p class="note">AQA references are to GCSE Physics (8463); Combined Science (8464) covers the same content apart from Physics-only points. KS3 references are to the National Curriculum programme of study.</p>`;
+      <p class="note">${note || 'AQA references are to GCSE Physics (8463); Combined Science (8464) covers the same content apart from Physics-only points. KS3 references are to the National Curriculum programme of study.'}</p>`;
     main.appendChild(panel);
   }
 

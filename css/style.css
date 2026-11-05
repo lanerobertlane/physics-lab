@@ -36,6 +36,7 @@
   --t-particles: #0d9488;
   --t-atomic: #db2777;
   --t-space: #4f46e5;
+  --t-chemistry: #65a30d;
   --t-reference: #475569;
 
   --f1: #2563eb;
@@ -210,7 +211,8 @@
     --t-particles: #2dd4bf;
     --t-atomic: #f472b6;
     --t-space: #818cf8;
-    --t-reference: #94a3b8;
+    --t-chemistry: #a3e635;
+  --t-reference: #94a3b8;
     --f1: #60a5fa;
     --f2: #fb923c;
     --f3: #34d399;
@@ -250,6 +252,7 @@
   --t-particles: #2dd4bf;
   --t-atomic: #f472b6;
   --t-space: #818cf8;
+  --t-chemistry: #a3e635;
   --t-reference: #94a3b8;
   --f1: #60a5fa;
   --f2: #fb923c;
