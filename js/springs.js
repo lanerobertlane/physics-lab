@@ -19,7 +19,10 @@ const SPRINGS = {
   b: { k: 50, lp: 7.0, el: 7.5, L0: 10, max: 800, name: 'Spring B' },
   c: { k: 32, lp: 5.0, el: 5.5, L0: 12, max: 700, name: 'Spring C' },
 };
-const state = { spring: 'a', grams: 0, maxF: 0, set: 0, y: 0, vy: 0, showLength: true, rows: [] };
+// moveRuler: the ruler can be dragged so its zero lines up with the bottom of the spring.
+// rulerCm: how far the ruler's zero sits below the top of the spring.
+const state = { spring: 'a', grams: 0, maxF: 0, set: 0, y: 0, vy: 0, showLength: true, rows: [], moveRuler: false, rulerCm: 0 };
+const RULER_MAX_CM = 30;
 const sp = () => SPRINGS[state.spring];
 const force = () => (state.grams / 1000) * G;
 
@@ -68,12 +71,16 @@ function draw(dt) {
   ctx.fillStyle = '#5d6470'; ctx.fillRect(60, 20, 12, 520); ctx.fillRect(30, 530, 260, 16); ctx.fillRect(60, 50, 200, 12);
   ctx.fillStyle = '#3a3f48'; ctx.fillRect(225, 44, 30, 24);
 
-  // Ruler
+  // Ruler (its zero is at R0; it moves when the movable ruler is switched on)
+  const R0 = TOP + state.rulerCm * PX_CM;
+  if (state.moveRuler) { ctx.save(); ctx.shadowColor = 'rgba(0, 0, 0, .25)'; ctx.shadowBlur = 8; ctx.shadowOffsetY = 2; }
   ctx.fillStyle = 'rgba(255, 236, 140, .95)'; ctx.strokeStyle = '#7a6a1f'; ctx.lineWidth = 1.5;
-  ctx.fillRect(RULER_X, TOP - 6, 54, 62 * PX_CM); ctx.strokeRect(RULER_X, TOP - 6, 54, 62 * PX_CM);
+  ctx.fillRect(RULER_X, R0 - 6, 54, 62 * PX_CM);
+  if (state.moveRuler) ctx.restore();
+  ctx.strokeRect(RULER_X, R0 - 6, 54, 62 * PX_CM);
   ctx.strokeStyle = '#222'; ctx.fillStyle = '#222'; ctx.font = `700 10px ${c.font}`; ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
   for (let mm = 0; mm <= 600; mm++) {
-    const y = TOP + (mm / 10) * PX_CM;
+    const y = R0 + (mm / 10) * PX_CM;
     if (mm % 10 && PX_CM < 6) continue;
     const len = mm % 10 === 0 ? 18 : mm % 5 === 0 ? 12 : 6;
     if (mm % 2 && mm % 5) continue;
@@ -81,7 +88,11 @@ function draw(dt) {
     ctx.beginPath(); ctx.moveTo(RULER_X, y); ctx.lineTo(RULER_X + len, y); ctx.stroke();
     if (mm % 50 === 0) ctx.fillText(mm / 10, RULER_X + 50, y);
   }
-  ctx.textAlign = 'center'; ctx.fillText('cm', RULER_X + 27, TOP - 14);
+  ctx.textAlign = 'center'; ctx.fillText('cm', RULER_X + 27, R0 - 14);
+  if (state.moveRuler) {
+    ctx.fillStyle = c.muted; ctx.font = `700 12px ${c.font}`; ctx.textAlign = 'left';
+    ctx.fillText('↕ drag the ruler', RULER_X + 60, R0 + 20);
+  }
 
   // Spring
   const x = 240, y0 = TOP, y1 = TOP + state.y;
@@ -117,7 +128,9 @@ function render() {
     <dt>Mass</dt><dd>${state.grams} g</dd>
     <dt>Force (weight)</dt><dd>${PK.ans(`${F.toFixed(2)} N`)}</dd>
     <dt>Natural length</dt><dd>${s.L0.toFixed(1)} cm</dd>
-    <dt>Length now</dt><dd>${state.showLength ? `${L.toFixed(1)} cm` : 'read the ruler'}</dd>
+    ${state.moveRuler
+      ? `<dt>Ruler reading</dt><dd>${state.showLength ? `${(L - state.rulerCm).toFixed(1)} cm` : 'read the ruler'}</dd>`
+      : `<dt>Length now</dt><dd>${state.showLength ? `${L.toFixed(1)} cm` : 'read the ruler'}</dd>`}
     ${state.showLength ? `<dt>Extension</dt><dd>${PK.ans(`${e.toFixed(1)} cm`)}</dd>` : ''}
     ${state.showLength && linear && F > 0 ? `<dt>Elastic potential energy</dt><dd>${PK.ans(`${(0.5 * s.k * (e / 100) ** 2).toFixed(3)} J`)}</dd>` : ''}`;
   $('warn').innerHTML = state.set > 1e-6
@@ -128,8 +141,8 @@ function render() {
 
 function renderTable() {
   const rows = state.rows;
-  $('table').innerHTML = rows.length ? `<table class="results"><thead><tr><th>Mass (g)</th><th>Force (N)</th><th>Length (cm)</th><th>Extension (cm)</th></tr></thead>
-    <tbody>${rows.map((r) => `<tr><td>${r.g}</td><td class="n">${PK.ans(r.F.toFixed(2))}</td><td class="n">${r.L.toFixed(1)}</td><td class="n">${PK.ans(r.e.toFixed(1))}</td></tr>`).join('')}</tbody></table>` : '<p class="note">No readings yet.</p>';
+  $('table').innerHTML = rows.length ? `<table class="results"><thead><tr><th>Mass (g)</th><th>Force (N)</th><th>${state.moveRuler ? 'Ruler reading' : 'Length'} (cm)</th><th>Extension (cm)</th></tr></thead>
+    <tbody>${rows.map((r) => `<tr><td>${r.g}</td><td class="n">${PK.ans(r.F.toFixed(2))}</td><td class="n">${r.read.toFixed(1)}</td><td class="n">${PK.ans(r.e.toFixed(1))}</td></tr>`).join('')}</tbody></table>` : '<p class="note">No readings yet.</p>';
   drawGraph();
   // Spring constant from the straight part (points at or below the limit of proportionality)
   const lin = rows.filter((r) => r.F > 0 && r.F <= sp().lp + 1e-9);
@@ -169,11 +182,50 @@ $('fresh').addEventListener('click', freshSpring);
 $('spring').addEventListener('change', (e) => { state.spring = e.target.value; freshSpring(); });
 $('record').addEventListener('click', () => {
   const L = lengthCm();
-  state.rows.push({ g: state.grams, F: force(), L, e: L - sp().L0 });
+  state.rows.push({ g: state.grams, F: force(), L, read: state.moveRuler ? L - state.rulerCm : L, e: L - sp().L0 });
   renderTable();
 });
 $('clear').addEventListener('click', () => { state.rows = []; renderTable(); });
 $('auto-length').addEventListener('change', (e) => { state.showLength = e.target.checked; render(); });
+
+// ---------- Movable ruler ----------
+
+function setRuler(cm) {
+  state.rulerCm = Math.round(Math.max(0, Math.min(RULER_MAX_CM, cm)) * 10) / 10;
+  render();
+}
+$('move-ruler').addEventListener('change', (e) => {
+  state.moveRuler = e.target.checked;
+  if (!state.moveRuler) state.rulerCm = 0;
+  $('ruler-nudge').hidden = !state.moveRuler;
+  $('ruler-tip').hidden = !state.moveRuler;
+  rig.style.touchAction = state.moveRuler ? 'none' : '';   // stop iPads scrolling while dragging
+  if (state.rows.length) { state.rows = []; PK.toast('Results cleared for the new set-up'); }
+  render();
+});
+$('ruler-up').addEventListener('click', () => setRuler(state.rulerCm - 0.1));
+$('ruler-down').addEventListener('click', () => setRuler(state.rulerCm + 0.1));
+
+const toLogical = (e) => { const r = rig.getBoundingClientRect(); return { x: ((e.clientX - r.left) / r.width) * W, y: ((e.clientY - r.top) / r.height) * H }; };
+const onRuler = (p) => state.moveRuler && p.x >= RULER_X - 6 && p.x <= RULER_X + 60
+  && p.y >= TOP + state.rulerCm * PX_CM - 12 && p.y <= TOP + state.rulerCm * PX_CM + 62 * PX_CM;
+let drag = null;
+rig.addEventListener('pointerdown', (e) => {
+  const p = toLogical(e);
+  if (!onRuler(p)) return;
+  drag = { y: p.y, cm: state.rulerCm };
+  rig.setPointerCapture(e.pointerId);
+  rig.style.cursor = 'grabbing';
+  e.preventDefault();
+});
+rig.addEventListener('pointermove', (e) => {
+  const p = toLogical(e);
+  if (drag) setRuler(drag.cm + (p.y - drag.y) / PX_CM);
+  else rig.style.cursor = onRuler(p) ? 'grab' : '';
+});
+const endDrag = () => { drag = null; rig.style.cursor = ''; };
+rig.addEventListener('pointerup', endDrag);
+rig.addEventListener('pointercancel', endDrag);
 
 let last = performance.now();
 function frame(now) {
