@@ -138,7 +138,6 @@ function drawIonic() {
   const I = info, { atoms, moves } = ionicLayout(), t = state.t;
   // 0–0.7: electrons transfer; 0.7–1: the oppositely charged ions pull together
   const tt = Math.min(1, t / 0.7), done = tt >= 0.999;
-  const ease = tt < 0.5 ? 2 * tt * tt : 1 - ((-2 * tt + 2) ** 2) / 2;
   const sq = Math.max(0, Math.min(1, (t - 0.7) / 0.3)), sqE = sq * sq * (3 - 2 * sq);
   const single = I.nM === 1 && I.nX === 1;
   for (const a of atoms) { if (single) a.x = 400 + (a.x - 400) * (1 - 0.2 * sqE); else a.y = 210 + (a.y - 210) * (1 - 0.14 * sqE); }
@@ -177,23 +176,35 @@ function drawIonic() {
     const shellsNow = done ? (isM ? ionShells : [...sh.slice(0, -1), 8]) : sh;
     text(`${label}  ${shellsNow.join(',')}`, a.x, a.y + outerR(n) + (done ? 32 : 20), { s: 12, col: PK.cssVar('--muted') });
   }
-  // The transferring electrons
+  // Losing and gaining: the metal's outer electrons disappear, then the non-metal's appear.
+  // Nothing is shown travelling between them.
+  const lose = Math.min(1, tt / 0.45), gain = Math.max(0, Math.min(1, (tt - 0.55) / 0.45));
   for (const mv of moves) {
-    const nF = EL.shells(mv.from.z).length, nT = EL.shells(mv.to.z).length;
-    const rF = outerR(nF), rT = outerR(nT);
+    const rF = outerR(EL.shells(mv.from.z).length), rT = outerR(EL.shells(mv.to.z).length);
     const a0 = slots(I.qm)[mv.e], a1 = slots(8)[mv.slot];
-    const x0 = mv.from.x + Math.cos(a0) * rF, y0 = mv.from.y + Math.sin(a0) * rF;
-    const x1 = mv.to.x + Math.cos(a1) * rT, y1 = mv.to.y + Math.sin(a1) * rT;
-    const lift = Math.sin(Math.PI * ease) * -40;
-    mark(x0 + (x1 - x0) * ease, y0 + (y1 - y0) * ease + lift, 'x', COL.metal);
-    if (tt > 0 && tt < 1) {
-      ctx.strokeStyle = 'rgba(230, 81, 0, .25)'; ctx.setLineDash([4, 4]); ctx.lineWidth = 1.5;
-      ctx.beginPath(); ctx.moveTo(x0, y0); ctx.quadraticCurveTo((x0 + x1) / 2, (y0 + y1) / 2 - 80, x1, y1); ctx.stroke(); ctx.setLineDash([]);
+    if (lose < 1) {
+      ctx.save(); ctx.globalAlpha = 1 - lose;
+      mark(mv.from.x + Math.cos(a0) * rF, mv.from.y + Math.sin(a0) * rF, 'x', COL.metal);
+      ctx.restore();
     }
+    if (gain > 0) {
+      ctx.save(); ctx.globalAlpha = gain;
+      mark(mv.to.x + Math.cos(a1) * rT, mv.to.y + Math.sin(a1) * rT, 'x', COL.metal);
+      ctx.restore();
+    }
+  }
+  // Say what is happening above each atom while it happens
+  const phase = (v) => v > 0.001 && v < 0.999;
+  for (const a of atoms) {
+    const r = outerR(EL.shells(a.z).length);
+    if (a.kind === 'M' && phase(lose)) text(`loses ${pl(I.qm, 'electron')}`, a.x, a.y - r - 18, { s: 14, w: 800, col: COL.metal });
+    if (a.kind === 'X' && phase(gain)) text(`gains ${pl(I.qx, 'electron')}`, a.x, a.y - r - 18, { s: 14, w: 800, col: COL.non });
   }
   if (done && t < 0.999) text('The oppositely charged ions attract each other…', 400, H - 18, { s: 13, col: PK.cssVar('--muted') });
   else if (done) text(`Formula: ${S(I.m)}${I.nM > 1 ? I.nM : ''}${S(I.x)}${I.nX > 1 ? I.nX : ''}  (charges balance: ${I.nM} × ${I.qm}+ = ${I.nX} × ${I.qx}−)`, 400, H - 18, { s: 13 });
-  else text(t === 0 ? 'Press “Bond”: electrons will move from the metal to the non-metal.' : 'Electrons move from the metal to the non-metal…', 400, H - 18, { s: 13, col: PK.cssVar('--muted') });
+  else text(t === 0 ? `Press “Bond”: ${N(I.m)} will lose electrons and ${N(I.x)} will gain them.`
+    : lose < 0.999 ? `${NN(I.m)} loses ${pl(I.qm, 'electron')}${I.nM > 1 ? ' (each atom)' : ''}…`
+      : gain > 0.001 ? `${NN(I.x)} gains ${pl(I.qx, 'electron')}${I.nX > 1 ? ' (each atom)' : ''}…` : `${NN(I.m)} has lost ${pl(I.qm, 'electron')}…`, 400, H - 18, { s: 13, col: PK.cssVar('--muted') });
 }
 
 // ---------- Covalent ----------

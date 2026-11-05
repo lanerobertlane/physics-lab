@@ -207,7 +207,7 @@ function solveOnce(diodeOn) {
   return { V, I };
 }
 
-function solve() {
+function solveCircuit() {
   const diodeOn = {};
   let out;
   for (let pass = 0; pass < 3; pass++) {           // passes allow a fuse to blow and re-solve
@@ -805,8 +805,8 @@ function renderEnv() {
   $('temp-val').textContent = `${state.temp} °C (thermistor = ${fmtR(thermR())})`;
 }
 
-$('light').addEventListener('input', (e) => { state.light = Number(e.target.value); solve(); renderEnv(); refreshReadingsOnly(); });
-$('temp').addEventListener('input', (e) => { state.temp = Number(e.target.value); solve(); renderEnv(); refreshReadingsOnly(); });
+$('light').addEventListener('input', (e) => { state.light = Number(e.target.value); solveCircuit(); renderEnv(); refreshReadingsOnly(); });
+$('temp').addEventListener('input', (e) => { state.temp = Number(e.target.value); solveCircuit(); renderEnv(); refreshReadingsOnly(); });
 
 // ---------- Presets ----------
 
@@ -1104,7 +1104,7 @@ window.addEventListener('resize', () => { if (results.graph) drawGraph(); });
 // ---------- Update cycle ----------
 
 function changed(fromSlider = false) {
-  solve();
+  solveCircuit();
   renderEnv();
   syncTestSelect();
   if (fromSlider) refreshReadingsOnly(); else renderSelected();
