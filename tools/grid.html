@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The National Grid · Mr Lane's Physics Lab</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #grid { aspect-ratio: 800 / 330; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .ctl { margin-bottom: 12px; }
+    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
+    .ctl label b { color: var(--text); }
+    .bar { display: flex; height: 26px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border-strong); margin: 8px 0 4px; }
+    .bar .ok { background: #43a047; }
+    .bar .lost { background: #e65100; }
+    .bar-key { display: flex; gap: 14px; font-size: .85rem; font-weight: 700; color: var(--muted); }
+    .bar-key span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; background: #43a047; }
+    .bar-key span.l::before { background: #e65100; }
+    .readout dt { font-size: .88rem; }
+    .readout dd { white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>The National Grid</h1>
+      <p>Electricity travels from power stations to homes through long cables. Choose the p.d. in the cables and watch what happens to the current, and to the energy wasted heating the cables.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="grid" aria-label="Power station, transformers, pylons and homes"></canvas>
+          <div class="stage-bar">
+            <span class="note" style="margin:0"><b>P.d. in the cables:</b></span>
+            <div class="chip-group" id="volts" aria-label="Transmission p.d.">
+              <button class="chip" data-v="25000">25 kV (no step-up)</button>
+              <button class="chip" data-v="132000">132 kV</button>
+              <button class="chip" data-v="275000">275 kV</button>
+              <button class="chip" data-v="400000">400 kV</button>
+            </div>
+          </div>
+        </div>
+        <div class="panel after-aside">
+          <h2>Why transmit at a high p.d.?</h2>
+          <p style="margin:0" id="verdict"></p>
+          <div class="working" id="working"></div>
+          <p class="note">The power sent is the same at every p.d. (P = V I), so a higher p.d. means a smaller current. The heating in the cables depends on the current squared (P = I² R), so a smaller current wastes much less energy. The cables here have a resistance of 0.5 Ω.</p>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Energy</h2>
+          <div class="bar" id="bar" aria-hidden="true"></div>
+          <div class="bar-key"><span>reaches homes</span><span class="l">wasted heating cables</span></div>
+          <dl class="readout" id="readout" style="margin-top:10px"></dl>
+        </div>
+        <div class="panel">
+          <h2>Demand</h2>
+          <div class="ctl"><label for="power">Power sent from the power station <b id="power-val"></b></label><input type="range" id="power" min="100" max="1000" step="50" value="500"></div>
+          <p class="note">Demand goes up in the evening, when people get home and switch things on.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/grid.js"></script>
+</body>
+</html>

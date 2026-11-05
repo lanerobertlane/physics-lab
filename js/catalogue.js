@@ -30,7 +30,7 @@ const TOOLS = [
     desc: 'Hang weights on a beam and balance it using the principle of moments.' },
   { topic: 'forces', icon: 'resultant', name: 'Required practical: acceleration', href: 'tools/acceleration.html', gcse: true, rp: true,
     desc: 'A trolley pulled by falling masses: how force and mass affect acceleration (F = m a).' },
-  { topic: 'forces', icon: 'parachute', name: 'Terminal velocity', gcse: true, ks3: true,
+  { topic: 'forces', icon: 'parachute', name: 'Terminal velocity', href: 'tools/terminal.html', gcse: true, po: true, ks3: true,
     desc: 'A skydiver with weight and drag arrows that change with speed, a parachute and a live velocity–time graph.' },
   { topic: 'forces', icon: 'collide', name: 'Momentum & collisions', gcse: true, ht: true,
     desc: 'Carts on an air track that stick or bounce, with momentum totals before and after.' },
@@ -52,11 +52,11 @@ const TOOLS = [
     desc: 'Build circuits with UK symbols and measure V, I and R live. Lamps, diodes, LDRs, thermistors and fuses.' },
   { topic: 'electricity', icon: 'iv', name: 'I–V characteristics', href: 'tools/circuits.html', gcse: true, rp: true,
     desc: 'Plot the I–V graph for a resistor, filament lamp and diode, using the circuit builder’s results table.' },
-  { topic: 'electricity', icon: 'plug', name: 'Mains electricity', gcse: true, ks3: true,
+  { topic: 'electricity', icon: 'plug', name: 'Mains electricity', href: 'tools/mains.html', gcse: true, ks3: true,
     desc: 'AC and DC on an oscilloscope, wiring a three-pin plug, and how the earth wire and fuse keep you safe.' },
   { topic: 'electricity', icon: 'bill', name: 'Paying for electricity', gcse: true, ks3: true,
     desc: 'Compare the power of appliances, then work out energy in kWh and the cost: E = P t.' },
-  { topic: 'electricity', icon: 'pylon', name: 'The National Grid', gcse: true, ht: true,
+  { topic: 'electricity', icon: 'pylon', name: 'The National Grid', href: 'tools/grid.html', gcse: true, ht: true,
     desc: 'Step-up and step-down transformers, and why sending power at high voltage wastes less energy.' },
   { topic: 'electricity', icon: 'static', name: 'Static electricity & electric fields', gcse: true, po: true, ks3: true,
     desc: 'Rub rods to charge them, see attraction and repulsion, and draw the electric field around charges.' },
@@ -106,7 +106,7 @@ const TOOLS = [
     desc: 'Compare insulating materials by how quickly a beaker of hot water cools.' },
   { topic: 'energy', icon: 'wind', name: 'Energy resources', gcse: true, ks3: true,
     desc: 'Compare renewable and non-renewable resources for reliability, pollution and cost, and meet demand through the day.' },
-  { topic: 'energy', icon: 'heat', name: 'Conduction, convection & radiation', ks3: true,
+  { topic: 'energy', icon: 'heat', name: 'Conduction, convection & radiation', href: 'tools/heat.html', ks3: true,
     desc: 'The three ways energy is transferred by heating, including a convection current in a beaker.' },
 
   // Particles
@@ -142,7 +142,7 @@ const TOOLS = [
     desc: 'From nebula to white dwarf, neutron star or black hole.' },
   { topic: 'space', icon: 'redshift', name: 'Red-shift', href: 'tools/redshift.html', gcse: true, po: true,
     desc: 'Galaxies moving away and the evidence for the Big Bang.' },
-  { topic: 'space', icon: 'moon', name: 'Earth, Sun & Moon', ks3: true,
+  { topic: 'space', icon: 'moon', name: 'Earth, Sun & Moon', href: 'tools/sky.html', ks3: true,
     desc: 'Day and night, the seasons caused by Earth’s tilt, and the phases of the Moon.' },
 
   // Reference
