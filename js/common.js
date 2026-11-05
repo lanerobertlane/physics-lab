@@ -227,5 +227,15 @@ const PK = (() => {
     });
   }
 
+  // Anonymous page-view counts (Cloudflare Web Analytics): no cookies and nothing stored on the
+  // device. Only on the live site, so testing locally isn't counted.
+  if (location.hostname === 'lanerobertlane.space') {
+    const beacon = document.createElement('script');
+    beacon.type = 'module';
+    beacon.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+    beacon.setAttribute('data-cf-beacon', '{"token": "abeb8a6480974a32b24aafb4d792e58d"}');
+    document.head.appendChild(beacon);
+  }
+
   return { root, store, header, toast, copyLink, cssVar, sig, isDark, ans, ansText, answersShown, toggleFullscreen, fullscreenEnabled: fsEnabled };
 })();
