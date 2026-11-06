@@ -1,0 +1,88 @@
+SOURCE GRN Science / Year 11 / Physics / Waves
+
+## 1. EM waves   (Q6 sugar-stirring control variable: chemistry context, dropped)
+mc | waves | Transverse & longitudinal waves | What name is given to the number of waves passing a point per second? | Wavelength; *Frequency; Period; Amplitude
+short | waves | Transverse & longitudinal waves | What name is given to the time it takes for one complete wave to move past a stationary point? | ACCEPT: period; time period; a period; a time period
+tf | energy | Energy stores | All types of energy are measured in joules. | TRUE
+short | energy | Energy stores | The conservation of energy tells us energy cannot be created or ______. | ACCEPT: destroyed
+mc | reference | Practical graph plotter | The variable you change is the... | *Independent variable; Dependent variable; Control variable
+mc | waves | Transverse & longitudinal waves | What is the name for vibrations which cause a wave? | Fluctuations; *Oscillations; Vibrations; Alternations
+open | waves | Transverse & longitudinal waves | Describe the difference between a transverse and a longitudinal wave. | MODEL: In a transverse wave the oscillations are perpendicular to the direction of energy transfer. In a longitudinal wave the oscillations are parallel to the direction of energy transfer.   [Showbie said "transvers and an alternating wave"; corrected]
+
+## 2b. Uses of short wavelength radiation
+mc | waves | Electromagnetic spectrum | What needs to happen to radio waves when they hit a receiver in order to produce an electrical signal? | Reflected; Transmitted; *Absorbed; Refracted   [NOTE: Showbie had no answer ticked; set by me]
+short | electricity | Circuit builder | What piece of equipment would you use to measure potential difference? | ACCEPT: voltmeter; a voltmeter
+mc | waves | Electromagnetic spectrum | How are radio waves produced? | *Alternating currents; Radio transmitters; They are natural, not produced; Objects at high temperatures | EXP: Oscillations of charges in an alternating current in an electrical circuit produce radio waves.
+open | waves | Electromagnetic spectrum | Explain why microwaves are used for satellite communication. | MODEL: Microwaves can pass through the Earth's atmosphere (they are not absorbed or reflected by it), so they can reach satellites in space.
+mc | energy | Energy stores | Energy is always wasted through which store? | *Internal (thermal); Friction; Sound; Energy is not always wasted | EXP: Wasted energy is dissipated, usually to the thermal store of the surroundings.
+open | waves | Electromagnetic spectrum | Explain why gamma waves are hazardous to humans. (3 marks) | MODEL: Gamma rays are ionising radiation. They can penetrate the body and ionise atoms in cells. This can damage DNA, causing mutations that may lead to cancer.
+
+## 2c. Uses of x-rays and gamma   (Q2 rate of reaction: dropped)
+mc | waves | Required practical: infrared radiation | How does increasing the temperature of an object affect it? | Increases potential energy; Particles spread out; *Emits more infrared; Absorbs more infrared | EXP: The hotter an object is, the more infrared radiation it emits in a given time.
+mc | atomic | Atom builder | A version of the same element with a different number of neutrons is called... | An ion; *An isotope; An allotrope
+short | waves | Electromagnetic spectrum | Which type of wave is used for satellite communication? | ACCEPT: microwaves; microwave; micro waves
+open | waves | Transverse & longitudinal waves | Describe a transverse wave. | MODEL: The oscillations are perpendicular (at right angles) to the direction of energy transfer, e.g. ripples on water or any electromagnetic wave.
+multi | energy | Energy stores | Which of the following are stores of energy? (Tick all that apply) | *Internal; Friction; *Chemical; Heat
+
+## 2. Uses of EM waves
+mc | waves | Electromagnetic spectrum | Which of these statements is true for all EM waves? | *They are all transverse; They all travel at the same speed through air; They are all absorbed by the atmosphere; They transfer matter   [B is nearly true too; reworded "through air" kept, EXP clarifies] | EXP: All EM waves are transverse. They all travel at the same speed in a vacuum (not exactly in air).
+short | particles | Required practical: density | What piece of equipment is used to measure the volume of an irregular object? | ACCEPT: displacement can; eureka can; a eureka can; a displacement can; measuring cylinder
+mc | electricity | Circuit builder | Which voltmeter would have the highest reading? [img: three circuits. 1: one cell, one lamp, V1 across lamp. 2: two cells, one lamp, V2 across lamp. 3: three cells, two lamps in series, V3 across one lamp] | V1; *V2; V3; They're all the same | EXP: V2 gets the p.d. of two cells. V3 shares three cells between two lamps, so it reads 1.5 cells' worth.
+short | waves | Electromagnetic spectrum | Which type of electromagnetic wave has the highest frequency? | ACCEPT: gamma; gamma rays; gamma ray
+mc | electricity | Circuit builder | How does increasing the resistance in a variable resistor affect the current? | Current increases; *Current decreases; Resistance does not affect current
+mc | particles | Required practical: density | Which of these could be used to measure the volume of a regular shape? | Ruler; Vernier callipers; Micrometer; *All of these could be used | EXP: Measure the length, width and height, then multiply.
+short | waves | Electromagnetic spectrum | Name an ionising electromagnetic wave. | ACCEPT: UV; ultraviolet; gamma; gamma ray; gamma rays; x-ray; x-rays; xray; xrays
+
+## 3. Refraction
+mc | waves | Electromagnetic spectrum | Which EM waves have the longest wavelength? | Gamma; Visible; *Radio; UV
+tf | waves | Electromagnetic spectrum | All EM waves are transverse and travel at the same speed through a vacuum. | TRUE
+open | forces | Resultant forces | A moving object has a resultant force of zero acting on it. What will happen to this object? | MODEL: It will keep moving at the same speed in the same direction (constant velocity).
+mc | waves | Electromagnetic spectrum | What happens to a microwave when it reaches the edge of the atmosphere? | *Passes through it; Is absorbed by it; Reflects off it
+mc | atomic | Alpha, beta & gamma | Which type of radiation is most ionising? | *Alpha; Beta; Gamma
+open | atomic | Alpha, beta & gamma | What is required to stop beta radiation? | MODEL: A few millimetres of aluminium.   [could be short: accept "aluminium"]
+
+## 4. Refraction RP (Triple)
+mc | waves | Light box & lenses | What causes a wave to refract? | A change in wavelength; A change in frequency; *A change in speed; A change in energy | EXP: Waves change speed when they cross a boundary between materials, which can change their direction.
+short | waves | Electromagnetic spectrum | Which EM wave has the lowest frequency? | ACCEPT: radio; radio wave; radio waves; radiowave
+mc | energy | Energy stores | Which energy store does a battery contain? | *Chemical; Electrical; Thermal; It depends what the battery is used for
+num | energy | Energy stores | A bungee jumper has 1 000 000 J of gravitational potential energy. If their mass is 100 kg, what is the maximum kinetic energy they could have when they fall? | NUM: 1000000 J | EXP: Energy is conserved, so all the GPE could become kinetic energy. The mass is not needed.
+short | reference | Practical graph plotter | Which type of variable do we measure in an investigation? | ACCEPT: dependent; dependant; dependent variable; dependant variable; the dependent variable
+short | waves | Electromagnetic spectrum | When do all EM waves travel at the same speed? | ACCEPT: vacuum; in a vacuum; in space; space
+
+## 5. Lenses (Triple)
+short | atomic | Alpha, beta & gamma | What term describes radiation that can mutate cells? | ACCEPT: ionising; ionizing; ionising radiation; ionizing radiation
+open | waves | Electromagnetic spectrum | Suggest why gamma radiation cannot be used for an x-ray medical image. | MODEL: Gamma rays pass through bone as well as soft tissue, so there would be no contrast (no shadow of the bone).
+num | energy | Energy stores | A catapult has 150 J in its elastic potential store. The ball has a mass of 100 g. What is the maximum kinetic energy the ball can gain? | NUM: 150 J | EXP: Energy is conserved, so at most all 150 J can be transferred to the kinetic store. The mass is not needed.
+mc | energy | Specific heat capacity | Which factor determines the energy required to raise the temperature of 1 kg of a substance by 1 °C? | Latent heat; *Specific heat capacity; Specific latent heat; Specific temperature capacity
+tf | reference | Practical graph plotter | An investigation should only have one independent variable. | TRUE
+mc | reference | Uncertainty & means | Which of these describes how close together a set of repeat results are? | Accuracy; *Precision; Resolution
+mc | reference | Uncertainty & means | Which of these describes how close to the true value a result is? | *Accuracy; Precision; Resolution
+mc | reference | Uncertainty & means | Which of these describes the smallest measurable change? | Accuracy; Precision; *Resolution
+
+## 6. Diverging lenses (Triple)   (Q3 "State an ionising EM wave" = duplicate of earlier, skip)
+mc | waves | Light box & lenses | The point where parallel rays of light converge after passing through a lens is called the... | Convergence point; *Principal focus; Focal length; Image
+mc | waves | Light box & lenses | If an image forms on the same side of the lens as the object, it is a... | Real image; *Virtual image
+open | waves | Electromagnetic spectrum | Which EM wave is used for satellite communication and why? | MODEL: Microwaves, because they pass through the atmosphere to reach the satellite.
+open | energy | Energy stores | Which energy transfers occur when a bungee jumper falls from a bridge, then returns to the top of the bounce? ___ → ___ → ___ | MODEL: Gravitational potential → kinetic → elastic potential (then back to kinetic and gravitational potential as they bounce up).
+
+## 7. Waves for exploration   (Q3 duplicate of "All EM waves are transverse...", skip)
+multi | waves | Light box & lenses | What type of images can a concave lens produce? (Tick all that apply) | Real; *Virtual; Magnified; *Diminished
+open | waves | Electromagnetic spectrum | Give one use of microwaves other than cooking. | MODEL: Satellite communications (also mobile phones, Wi-Fi or radar).   [could be short: accept satellite; satellites; mobile phones; phones; wifi; radar; communication]
+mc | particles | States of matter | The energy required to change the state of 1 kg of a substance is the... | Specific heat capacity; Thermal energy; *Specific latent heat; Internal energy
+num | energy | Energy stores | A bungee jumper has 200 000 J in their gravitational potential store at the top of a bridge. What is the maximum kinetic energy they could have when they fall? | NUM: 200000 J
+mc | electricity | Static electricity & electric fields | How does an object become positively charged? | It gains protons; It loses protons; It gains electrons; *It loses electrons
+
+## 8. Visible light (Triple)
+multi | waves | Seismic waves | Select all correct statements. | Both P waves and S waves are transverse; *P waves can pass through the mantle and the outer core; *S waves can only pass through the mantle; *P waves travel quicker than S waves | EXP: P waves are longitudinal and faster. S waves are transverse and cannot travel through the liquid outer core.
+multi | energy | Specific heat capacity | To calculate the energy needed to heat up and fully boil a saucepan of water at 20 °C, what information would we need about the water? (Tick all that apply) | Volume; *Mass; Total thermal energy; *Specific heat capacity; *Specific latent heat
+mc | waves | Transverse & longitudinal waves | What is the relationship between the frequency and wavelength of a wave? | Directly proportional; Indirectly proportional; *Inversely proportional; Negative correlation; Positive correlation | EXP: v = f λ, so for a fixed wave speed, doubling the frequency halves the wavelength.
+short | atomic | Uses of radiation | Which type of radiation would be used inside the body to destroy cancerous cells? (Answer as one word) | ACCEPT: alpha; alpha radiation; an alpha particle; alpha particles   [NOTE for Rob: Showbie answer alpha - check you're happy with this]
+open | atomic | History of the atom | During the Rutherford scattering experiment most alpha particles passed straight through the gold foil. Why? | MODEL: Most of the atom is empty space.
+short | forces | Weight on other planets | Which force causes objects to fall towards the ground? | ACCEPT: weight; gravity; gravitational force; gravitational; the weight
+
+## 10. Leslie cube
+mc | waves | Electromagnetic spectrum | Why can't radio waves be used for satellite communication? | They have a short range; Their wavelength is too long; *They cannot pass through the ionosphere; They do not carry enough energy | EXP: Many radio waves are reflected by the ionosphere, so they don't reach satellites.
+open | waves | Electromagnetic spectrum | Why shouldn't we use gamma rays for an image of bones? | MODEL: Gamma rays pass through bone as well as soft tissue, so no shadow of the bone forms (and they are highly ionising).
+open | energy | Efficiency | A tennis ball has 28 J of gravitational potential energy. Explain why the kinetic energy of the ball will be less than 28 J when it reaches the floor. | MODEL: Some energy is dissipated by air resistance (work done against air resistance), heating the ball and the surroundings, so not all 28 J is transferred to the kinetic store.
+mc | electricity | Circuit builder | What component can be added to a circuit to vary the potential difference across a lamp? | Voltmeter; Battery; *Variable resistor; Switch
+mc | reference | Uncertainty & means | An apple has a mass of 27 g. When measured on a balance the readings are 26.6 g, 27.5 g and 27 g. These readings are: | Accurate and precise; *Accurate but not precise; Precise but not accurate; Neither accurate nor precise | EXP: The mean (27.0 g) is close to the true value, so they are accurate, but they are spread out, so they are not precise.

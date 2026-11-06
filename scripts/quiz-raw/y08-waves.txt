@@ -1,0 +1,36 @@
+SOURCE GRN Science / Year 8 / Physics / Wave Effects and Properties
+
+## Colours   (despite the title these are wave basics; Q1, Q2, Q5, Q6 repeat existing questions)
+mc | waves | Transverse & longitudinal waves | In a longitudinal wave, which way are the vibrations compared with the direction of energy transfer? | *Parallel to it; Perpendicular to it
+mc | waves | Transverse & longitudinal waves | In a transverse wave, which way are the vibrations compared with the direction of energy transfer? | Parallel to it; *Perpendicular to it
+
+## Properties of Waves   (Q4 repeats an existing question)
+open | waves | Electromagnetic spectrum | Name two types of electromagnetic radiation with a lower frequency than ultraviolet. | MODEL: Any two of: visible light, infrared, microwaves, radio waves.
+multi | waves | Electromagnetic spectrum | Which of these are uses of ultraviolet (UV)? (tick 2) | *Sterilising water; Scanning babies in the womb; *Checking for forged banknotes; Breaking up kidney stones | EXP: Baby scans and breaking up kidney stones use ultrasound, which is sound, not part of the EM spectrum.
+open | waves | Electromagnetic spectrum | Why is ultraviolet (UV) harmful? | MODEL: UV can damage skin cells. It causes sunburn, makes skin age faster and increases the risk of skin cancer. It can also damage your eyes.
+open | magnetism | Bar magnet fields | What are the three magnetic metals? | MODEL: Iron, nickel and cobalt (and steel, because it contains iron).
+multi | forces | Resultant forces | Which of these are resistive forces? (tick 2) | Upthrust; *Water resistance; *Friction; Weight | EXP: Resistive forces act against the motion: friction, air resistance and water resistance (drag).
+short | forces | Work done | What is the word equation for work done? | ACCEPT: work done = force × distance; work done = force x distance; force × distance; force x distance; force times distance; work = force × distance; work = force x distance; work done = force × distance moved; work done = force x distance moved; force x distance moved
+
+## Reflection do now   (Q1, Q4 repeat existing questions)
+short | waves | Sound on an oscilloscope | When the amplitude of a sound wave decreases, what happens to the sound? | ACCEPT: quieter; it gets quieter; gets quieter; it is quieter; softer; less loud; volume decreases; the volume goes down; lower volume
+open | waves | Sound on an oscilloscope | What three things can happen to a sound wave when it hits a surface? | MODEL: It can be reflected (bounce back as an echo), absorbed (taken in by the material) or transmitted (pass through).
+
+## Refraction   (Q5 repeats an existing question)
+mc | waves | Transverse & longitudinal waves | In which type of wave are the oscillations perpendicular to the direction of energy transfer? | Longitudinal; *Transverse
+short | waves | Transverse & longitudinal waves | Give an example of a transverse wave. | ACCEPT: light; light waves; water waves; ripples; ripples on water; radio waves; microwaves; infrared; ultraviolet; x-rays; x rays; gamma rays; electromagnetic waves; em waves; s-waves; s waves; waves on a string
+open | waves | Light box & lenses | What is the law of reflection? | MODEL: The angle of incidence equals the angle of reflection (both measured from the normal).
+open | forces | Speed & distance–time | Define speed. | MODEL: Speed is the distance travelled per unit time (speed = distance ÷ time).
+short | forces | Resultant forces | Name a contact force. | ACCEPT: friction; air resistance; drag; water resistance; tension; normal contact force; normal force; reaction force; upthrust; thrust; push; pull
+
+## Ultrasound   (Q4, Q5 repeat existing questions)
+multi | waves | Transverse & longitudinal waves | Which of these are types of wave? (tick 2) | *Longitudinal; Traverse; *Transverse; Milliverse
+mc | waves | Transverse & longitudinal waves | The amplitude of a wave is... | The height from peak to trough; The distance from a point on one wave to the same point on the next; *The height from the middle line to a peak (or trough); How many waves pass a point each second
+open | magnetism | Electromagnets & the motor effect | What can a permanent magnet do that an electromagnet can't? | MODEL: It stays magnetic all the time, without needing an electric current.
+
+## Ultraviolet   (Q2, Q6 repeat existing questions. [NOTE for Rob: Q1 marks "change the wavelength" as how to change pitch; pitch is set by the frequency. Fixed])
+mc | waves | Sound on an oscilloscope | How do you change the pitch of a sound? | Change the amplitude; *Change the frequency; Change the speed | EXP: A higher frequency gives a higher pitch. (In the same material the wavelength changes too, but it's the frequency that sets the pitch.)
+open | forces | Pressure in fluids & upthrust | Which two forces must be balanced for an object to float in water? | MODEL: Its weight (down) and upthrust (up).
+open | waves | Echo sounding & ultrasound scans | Give two uses of ultrasound. | MODEL: Any two of: scanning unborn babies, scanning organs, breaking up kidney stones, cleaning jewellery, echo sounding (finding the depth of the sea), checking for cracks in metal.
+mc | waves | Echo sounding & ultrasound scans | What is the frequency of ultrasound? | *Above 20 000 Hz; Between 20 Hz and 20 000 Hz; Below 20 Hz | EXP: Humans hear from about 20 Hz to 20 000 Hz. Ultrasound is higher than we can hear.
+short | waves | Transverse & longitudinal waves | What is the unit of frequency? | ACCEPT: hertz; Hz; hertz (Hz)

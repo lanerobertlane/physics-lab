@@ -1,0 +1,38 @@
+SOURCE GRN Science / Year 8 / Physics / Pressure and work
+
+## 1. Pressure EWE   (retrieval; Q1, Q2, Q4, Q7 repeat existing questions)
+short | waves | Transverse & longitudinal waves | What is the highest point of a wave called? | ACCEPT: peak; crest; the peak; the crest
+open | space | Earth, Sun & Moon | What causes the Earth to have seasons? | MODEL: The Earth's axis is tilted. As the Earth orbits the Sun, the half tilted towards the Sun has summer (longer days, and the Sun higher in the sky), and the half tilted away has winter.
+short | waves | Echo sounding & ultrasound scans | What do we call a reflected sound wave? | ACCEPT: echo; an echo; echoes
+
+## 2. Calculating pressure   (Q2, Q7 repeat existing questions. [NOTE for Rob: Q3 offers both "Gravitational force" and "Weight" but only marks Weight; reworded. Q6 "Light waves travel always in a straight line" has the same problem as the Year 7 question (reflection and refraction change direction); left out. "1. Pressure in solids" is an exact copy of "1. Pressure EWE", so it isn't listed separately])
+multi | forces | Pressure on solids | Which of these would increase pressure? (tick 2) | Increasing the area; *Decreasing the area; *Increasing the force; Decreasing the force
+mc | forces | Weight on other planets | What is the name for the force of gravity pulling an object down? | Mass; *Weight; Contact force; Upthrust
+short | space | Orbits | What is the name for the path the Earth takes around the Sun? | ACCEPT: orbit; an orbit; its orbit
+open | space | Earth, Sun & Moon | Why do the UK and Australia have opposite seasons? | MODEL: They are in opposite hemispheres. Because the Earth's axis is tilted, when the Northern hemisphere (UK) is tilted towards the Sun, the Southern hemisphere (Australia) is tilted away.
+
+## 3. Pressure in liquids   (Q1, Q4 repeat existing questions; Q6 sugar-stirring variables dropped as before)
+mc | forces | Pressure on solids | What is the unit of pressure? | N m²; N m; N/m; *N/m² | EXP: Pressure = force ÷ area, so newtons per square metre (N/m²), also called pascals (Pa).
+num | forces | Pressure on solids | A force of 20 N acts on an area of 5 m². Calculate the pressure. | NUM: 4 N/m² | EXP: Pressure = force ÷ area = 20 ÷ 5 = 4 N/m².
+tf | space | Earth, Sun & Moon | The distances between all the planets in the solar system are very similar. | FALSE | EXP: The inner rocky planets are close together; the outer gas giants are much further apart.
+short | waves | Sound on an oscilloscope | If the frequency of a sound wave increases, how does the sound change? | ACCEPT: higher pitch; higher; it gets higher; higher pitched; pitch increases; the pitch gets higher; pitch goes up
+open | waves | Sound on an oscilloscope | Why do we see lightning before we hear thunder? | MODEL: Light travels much faster than sound (about 300 000 000 m/s compared with about 340 m/s in air), so the light reaches us first.
+
+## 4. Upthrust and floating/sinking   (Q1, Q2, Q6, Q8 repeat existing questions; Q4 sugar-stirring variables dropped)
+open | forces | Pressure on solids | Why are tractor tyres much wider than car tyres? | MODEL: Wide tyres spread the tractor's heavy weight over a bigger area, so the pressure on the ground is lower and it doesn't sink into soft fields.
+tf | reference | Practical graph plotter | You should only ever have one control variable in an experiment. | FALSE | EXP: You keep as many variables the same as you can (lots of control variables), but change only one (the independent variable).
+tf | waves | Transverse & longitudinal waves | All waves travel at the same speed. | FALSE | EXP: Different waves travel at different speeds. Light is far faster than sound, and sound is faster in solids than in air.
+
+## 5. Work done calculations   (Q1 sugar variables dropped; Q5, Q6 repeat existing questions)
+short | forces | Pressure in fluids & upthrust | Objects under water have a force pushing up on them. What is it called? | ACCEPT: upthrust; up thrust; buoyancy; buoyant force
+mc | forces | Pressure in fluids & upthrust | Why does a ping pong ball float in water? | It is lighter than water; It weighs less than water; *It has a lower density than water; A ping pong ball doesn't float in water | EXP: Anything less dense than water floats. "Lighter" isn't enough: a huge log floats, but a tiny pebble sinks.
+tf | forces | Pressure on solids | The unit of pressure is N/m². | TRUE | EXP: Newtons per square metre, also called pascals (Pa).
+mc | waves | Ripple tank | When a wave hits an object, it can be... | Reflected; Absorbed; Transmitted; *All of these
+mc | space | Earth, Sun & Moon | Day and night are caused by... | The Earth's orbit around the Sun; *The Earth spinning on its axis; The Moon's orbit around the Earth; A combination of all of these
+
+## 6. Levers   (Q2 repeats an earlier question; Q5 sugar variables dropped)
+mc | forces | Work done | Work done is a transfer of... | *Energy; Force; Work; Power
+open | forces | Work done | A student pushes against a wall that doesn't move. Why isn't the student doing any work on the wall? | MODEL: The wall doesn't move. Work done = force × distance moved, and the distance is zero, so no work is done on the wall.
+mc | forces | Work done | Which is the correct equation for work done? | *Work done = force × distance; Work done = force ÷ distance; Work done = distance ÷ force
+short | waves | Colour & filters | A black object looks black because it ___ all the light that hits it. | ACCEPT: absorbs; absorb; absorbs all
+mc | waves | Colour & filters | A red filter... | *Only lets red light through; Lets all colours except red through; Reflects red light | EXP: The filter absorbs every other colour.

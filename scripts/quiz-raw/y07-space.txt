@@ -1,0 +1,42 @@
+SOURCE GRN Science / Year 7 / Physics / space
+
+## Do now - Beyond the solar system
+mc | forces | Resultant forces | Which force transfers energy from the kinetic store to the thermal store? | *Friction; Weight; Tension; Normal contact force
+open | space | Earth, Sun & Moon | Why do we have a leap year every four years? | MODEL: It takes the Earth about 365¼ days to orbit the Sun. The extra quarter days add up to one whole extra day every four years, so we add 29 February.
+open | space | Earth, Sun & Moon | Name the rocky planets. | MODEL: Mercury, Venus, Earth and Mars (the four planets closest to the Sun).
+open | forces | Terminal velocity | Give one way a cyclist can reduce the air resistance on them. | MODEL: Crouch down low over the handlebars, wear tight-fitting clothes, or wear a streamlined helmet.
+mc | space | Earth, Sun & Moon | What is the scientific name for a shooting star? | Asteroid; Meteoroid; *Meteor; Meteorite | EXP: A meteor is the streak of light from a rock burning up in the atmosphere. If it reaches the ground it's a meteorite.
+open | space | Earth, Sun & Moon | Why does the Sun appear to move across the sky during the day? | MODEL: The Earth spins on its axis (once every 24 hours), so the Sun seems to move from east to west. It's the Earth that moves, not the Sun.
+open | forces | Terminal velocity | Why would a cyclist want to reduce the air resistance on them? | MODEL: So they can go faster for the same effort (less energy is wasted pushing the air out of the way).
+
+## Do now - Day and night   (Q6 repeats an earlier question. [NOTE for Rob: Q3 says "all" the energy on Earth comes from the Sun; reworded to "almost all", since geothermal, nuclear and tidal energy don't])
+num | space | Earth, Sun & Moon | How many planets are in our solar system? | NUM: 8 | EXP: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus and Neptune.
+short | space | Earth, Sun & Moon | Which planet is closest to the Sun? | ACCEPT: mercury
+short | energy | Energy resources | Where does almost all the energy we have on Earth come from? | ACCEPT: the sun; sun; the Sun; sunlight; the sun's light
+mc | forces | Resultant forces | What is the unit of force? | Joules; *Newtons; Watts; Amps
+mc | forces | Resultant forces | Which of these is a non-contact force? | Friction; Tension; *Weight; Air resistance
+mc | forces | Weight on other planets | What happens to a person's weight on the Moon compared with on Earth? | It increases; *It decreases; It stays the same | EXP: The Moon's gravitational field strength is about 1.6 N/kg, much less than Earth's 10 N/kg. Their mass stays the same.
+
+## Do now - Seasons
+short | space | Earth, Sun & Moon | How long does it take the Earth to spin round once (one rotation)? | ACCEPT: 24 hours; a day; one day; 1 day; 24 hrs; 24h; 24
+mc | forces | Resultant forces | Which statement about balanced forces is correct? | *The forces are equal in size and act in opposite directions; The forces are equal in size and act in the same direction; The forces are equal in size but can act in any direction; The forces are not equal, as long as they act in different directions
+short | space | Earth, Sun & Moon | Which star do all the planets in our solar system orbit? | ACCEPT: the sun; sun; the Sun
+mc | forces | Weight on other planets | Which piece of equipment measures weight? | Scales; Mass balance; *Newtonmeter; Force ruler | EXP: A newtonmeter (forcemeter) measures force in newtons. A balance measures mass.
+mc | forces | Resultant forces | The forces on a car driving along a motorway are balanced. What do you know about its speed? | It is slowing down; It is speeding up; It is not moving; *It is moving at a constant speed
+mc | space | Orbits | If a planet is further from the Sun, what happens to the time it takes to complete one orbit? | It stays the same; It decreases; *It increases; It depends on the size of the planet | EXP: Planets further out travel more slowly and have further to go, so their year is longer.
+open | forces | Terminal velocity | How does increasing the surface area of an object affect the air resistance on it? | MODEL: A bigger surface area means more air resistance, because the object has to push more air out of the way. That's how a parachute works.
+
+## Do now - The solar system   (Q4 repeats an earlier question)
+mc | space | Orbits | As the distance between two objects increases, what happens to the gravitational force between them? | It increases; *It decreases; It stays the same
+mc | space | Earth, Sun & Moon | Why is the weather hotter in summer? | The Earth is closer to the Sun; The Earth is further from the Sun; *Our half of the Earth is tilted towards the Sun; Our half of the Earth is tilted away from the Sun | EXP: When our hemisphere tilts towards the Sun, the Sun is higher in the sky, the days are longer and the sunlight is more concentrated.
+open | space | Earth, Sun & Moon | Why are the seasons different in the Northern and Southern hemispheres? | MODEL: The Earth's axis is tilted. When the Northern hemisphere is tilted towards the Sun (summer), the Southern hemisphere is tilted away from it (winter), and the other way round six months later.
+mc | particles | Required practical: density | Which piece of equipment measures the mass of an object? | Newtonmeter; *Balance; Ruler; Measuring cylinder
+short | space | Earth, Sun & Moon | How long does it take the Earth to orbit the Sun? | ACCEPT: a year; one year; 1 year; 365 days; 365.25 days; 365¼ days; 365 and a quarter days; 365
+mc | forces | Resultant forces | Which of these is a contact force? | *Air resistance; Weight; Magnetism; Electrostatic force
+
+## Heating at an angle   (Q4 repeats an earlier question)
+short | waves | Light box & lenses | Which piece of equipment measures angles? {both} | ACCEPT: protractor; a protractor
+mc | waves | Light box & lenses | Which word describes lines at 90° to each other? {both} | *Perpendicular; Parallel | EXP: In ray diagrams, the normal is drawn perpendicular to the surface.
+open | particles | Required practical: density | What is the equation for density? {both} | MODEL: Density = mass ÷ volume (ρ = m ÷ V).
+short | particles | States of matter | Which state of matter is usually the most dense? {both} | ACCEPT: solid; solids; a solid | EXP: The particles in a solid are packed closest together. (Ice is an unusual exception: it is less dense than water.)
+open | particles | States of matter | Challenge: describe the difference between how particles move in a solid and in a gas. {both} | MODEL: In a solid the particles vibrate about fixed positions. In a gas they move quickly and randomly in all directions, far apart from each other.

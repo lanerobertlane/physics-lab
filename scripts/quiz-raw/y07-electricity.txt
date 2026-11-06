@@ -1,0 +1,50 @@
+SOURCE GRN Science / Year 7 / Physics / Electricity
+
+## 1. Static electricity   (all energy questions in the Showbie quiz; the kettle picture is described in words)
+short | energy | Energy stores | Give an example of an object with energy in its thermal store. | ACCEPT: hot water; a cup of tea; tea; coffee; kettle; hot kettle; the sun; sun; fire; oven; radiator; hot chocolate; soup; heater; iron | EXP: Anything hot has energy in its thermal store.
+mc | energy | Efficiency | A kettle transfers energy electrically to heat the water, and also makes a noise. Which energy is wasted (dissipated)? | Thermal energy of the water; *Sound
+tf | energy | Energy stores | Energy can be created. | FALSE | EXP: Energy can't be created or destroyed, only transferred.
+num | energy | Energy stores | A ball at the top of a ramp has 20 J in its gravitational potential store. What is the most energy its kinetic store can have as it rolls down? | NUM: 20 J | EXP: Energy is conserved, so at most all 20 J can be transferred to the kinetic store (less if there's friction).
+short | energy | Energy stores | Give an example of an object with energy in its elastic potential store. | ACCEPT: stretched rubber band; rubber band; elastic band; spring; stretched spring; catapult; slingshot; trampoline; bow; bungee cord; squashed spring; compressed spring
+mc | energy | Energy stores | Which energy store does a banana have? | Thermal; *Chemical; Kinetic; Elastic
+
+## 2. Electrical circuits   [NOTE for Rob: Q1 "What charge do all objects want to be?" reworded; objects don't "want" anything]
+mc | electricity | Static electricity & electric fields | An object with equal amounts of positive and negative charge is... | Positive; Negative; *Neutral
+short | electricity | Static electricity & electric fields | What happens when two rods with the same (like) charge are placed near each other? {both} | ACCEPT: repel; they repel; repulsion; push apart; they push apart; push away; they push each other away | EXP: Like charges repel.
+short | electricity | Static electricity & electric fields | What happens when two rods with opposite charges are placed near each other? {both} | ACCEPT: attract; they attract; attraction; pull together; they pull together; they pull towards each other | EXP: Opposite charges attract.
+mc | energy | Energy stores | Which energy store does the petrol in a car have? | Thermal; Kinetic; *Chemical; Gravitational potential
+open | energy | Energy stores | State the law of conservation of energy. | MODEL: Energy cannot be created or destroyed. It can only be transferred from one store to another.
+mc | energy | Efficiency | A cell lights a bulb. Energy is transferred from the cell's chemical store, electrically, to the bulb. The bulb gives out light and also gets hot. Which store does the energy that isn't light end up in? | *Thermal store of the surroundings; Chemical store of the cell; Kinetic store of the bulb; Elastic potential store
+
+## 3. Parallel circuits   (Q6 repeats quiz 1, skip)
+open | electricity | Static electricity & electric fields | What are the three types of charge an object can have? | MODEL: Positive, negative or neutral (no overall charge).
+short | electricity | Static electricity & electric fields | What key word describes objects that are pulled together? | ACCEPT: attract; attraction; attracted; attracting
+short | electricity | Static electricity & electric fields | What key word describes objects that are pushed apart? | ACCEPT: repel; repulsion; repelled; repelling
+mc | electricity | Circuit builder | Name this component. [img: cell] {both} | *Cell; Battery | EXP: One long and one short line is a cell. A battery is two or more cells joined together.
+tf | electricity | Circuit builder | On a circuit diagram, wires can be drawn diagonally. | FALSE | EXP: Wires are drawn as straight lines that only go across or up and down.
+short | electricity | Circuit builder | Where do you usually draw the cell or battery on a circuit diagram? | ACCEPT: at the top; top; the top; at the top of the diagram; top of the circuit | EXP: Drawing the supply at the top makes circuits easier to read and compare.
+
+## 4. Current   (Q7 repeats quiz 2, skip)
+open | electricity | Circuit builder | What happens to the brightness of a bulb when another bulb is added in series? | MODEL: The bulbs get dimmer. The p.d. from the cell is shared between them and the current gets smaller.
+open | electricity | Circuit builder | What happens to the brightness of a bulb when another bulb is added in parallel? | MODEL: It stays the same brightness. Each branch gets the full p.d. from the cell.
+open | electricity | Circuit builder | What happens to a series circuit if one bulb breaks? | MODEL: The circuit is broken, so no current flows and all the other bulbs go out.
+mc | energy | Energy stores | Which energy store does a candle have? | Thermal; *Chemical; Kinetic; Light | EXP: The wax stores energy chemically. Burning it transfers energy by heating and by light.
+tf | energy | Energy stores | Energy cannot be created or destroyed. | TRUE
+mc | energy | Energy stores | What is the unit of energy? {both} | *Joules (J); Newtons (N); Kilograms (kg)
+
+## 5. Potential difference   [NOTE for Rob: Q3 says an ammeter can go anywhere in "a circuit"; that's only true for a series circuit, so I added "series"]
+mc | electricity | Circuit builder | The charged particles that move around an electrical circuit are called... {both} | Rate; Neutrons; *Electrons
+tf | electricity | Circuit builder | Ammeters are always connected in series. {both} | TRUE | EXP: An ammeter measures the current through a component, so it goes in the same loop as it.
+open | electricity | Circuit builder | Why can an ammeter be placed anywhere in a series circuit? | MODEL: The current is the same everywhere in a series circuit.
+short | electricity | Circuit builder | What is the unit of current? {both} | ACCEPT: amps; amp; amperes; ampere; A
+short | energy | Energy stores | Give an example of an object with energy in its chemical store. | ACCEPT: food; battery; a battery; cell; petrol; fuel; coal; wood; candle; banana; gas; oil; diesel
+short | energy | Energy resources | Give an example of a fossil fuel. {both} | ACCEPT: coal; oil; natural gas; gas; crude oil; petrol; diesel
+mc | electricity | Paying for electricity | What is the unit of power? | Joules (J); Newtons (N); *Watts (W)
+
+## 6. Resistance   (Q7 repeats a Year 9 question, skip)
+num | electricity | Paying for electricity | A toaster has a power rating of 50 W. How many joules of energy does it transfer in 1 second? | NUM: 50 J | EXP: 1 watt is 1 joule per second, so 50 W transfers 50 J every second.
+num | electricity | Paying for electricity | How many watts are in 2 kilowatts? {both} | NUM: 2000 W | EXP: Kilo means 1000, so 2 kW = 2 × 1000 = 2000 W.
+mc | electricity | Circuit builder | What is the unit of potential difference? {both} | Amps; *Volts
+mc | electricity | Circuit builder | How are voltmeters connected in a circuit? {both} | Series; *Parallel | EXP: A voltmeter is connected across a component, in parallel with it.
+open | electricity | Circuit builder | Why do we use symbols instead of drawing pictures of components? | MODEL: Symbols are quicker to draw, clearer and the same everywhere, so anyone can read the circuit diagram.
+mc | energy | Energy stores | A catapult (slingshot) is pulled back, ready to fire. Which energy store is full? | *Elastic potential; Kinetic; Chemical; Gravitational potential

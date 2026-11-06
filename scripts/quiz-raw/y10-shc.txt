@@ -1,0 +1,28 @@
+SOURCE GRN Science / Year 10 / Physics / Specific Heat Capacity
+
+## 1. States of matter   (Q7 force unit: duplicate, skip)
+short | particles | States of matter | What change of state happens when a solid turns into a liquid? {both} | ACCEPT: melting; melt; melts
+short | particles | States of matter | What change of state happens when a liquid turns into a gas? {both} | ACCEPT: evaporation; evaporating; boiling; evaporate; boil
+short | particles | States of matter | What change of state happens when a gas turns into a liquid? {both} | ACCEPT: condensation; condensing; condense
+short | particles | States of matter | What change of state happens when a liquid turns into a solid? {both} | ACCEPT: freezing; freeze; solidifying; solidification
+mc | electricity | Circuit builder | What circuit symbol is shown? [img: variable-resistor] {both} | LDR; *Variable resistor; Transistor; Thermistor   [NOTE: Showbie had no answer ticked; set by me]
+tf | waves | Transverse & longitudinal waves | The amplitude is the part of the wave labelled A. [img: wave-labels] {both} | FALSE | EXP: C is the amplitude. A points to a peak (crest).
+
+## 2. Specific Heat Capacity   (Q7 force unit: duplicate, skip)
+mc | particles | States of matter | What is meant by the melting point of a substance? {both} | The temperature at which it changes from a solid to a gas; *The temperature at which it changes from a solid to a liquid; The temperature at which it changes from a liquid to a gas; The temperature at which it changes from a liquid to a solid
+mc | energy | Specific heat capacity | Which takes longer to boil on the same hob? {both} | *A large saucepan of water; A small saucepan of water | EXP: More mass of water needs more energy to heat it by the same temperature rise.
+short | particles | States of matter | The diagram shows the arrangement of particles in a... [img: particles-solid] {both} | ACCEPT: solid; a solid
+mc | particles | States of matter | Particles in a gas are... {both} | Tightly spaced and regularly arranged; Tightly spaced and randomly arranged; Widely spaced and regularly arranged; *Widely spaced and randomly arranged
+tf | particles | States of matter | The particles in a liquid are arranged randomly and are close together, touching their neighbours, so liquids cannot usually be compressed. {both} | TRUE
+short | forces | Resultant forces | A box is sliding down a slope. What should the arrow pointing up the slope be labelled? [img: slope-friction] {both} | ACCEPT: friction; frictional force; friction force
+
+## 3. RP Specific Heat Capacity   (Q3-6 duplicates, skip. NOTE for Rob: Q1 definition left out "1 kg"; added)
+mc | energy | Specific heat capacity | The specific heat capacity of a substance is the energy needed to... | *raise the temperature of 1 kg of the substance by 1 °C; lower the temperature of 1 kg of the substance by 1 °C; raise the temperature of 1 kg of the substance by 100 °C; lower the temperature of 1 kg of the substance by 10 °C
+short | energy | Energy stores | Complete the sentence: energy cannot be ______ or destroyed. {both} | ACCEPT: created; made
+tf | energy | Energy stores | Energy is measured in newtons. {both} | FALSE | EXP: Energy is measured in joules (J). Newtons are the unit of force.
+
+## 4. Specific Latent Heat   (Q1-4 duplicates, skip)
+mc | energy | Specific heat capacity | Which is the correct rearrangement of E = m c Δθ to make c the subject? | c = m × E × Δθ; *c = E ÷ (m × Δθ); c = m ÷ (E × Δθ); c = Δθ ÷ (m × E)
+short | energy | Specific heat capacity | In the equation E = m c Δθ, what does m represent? | ACCEPT: mass; the mass; mass in kg
+num | reference | Units, prefixes & standard form | What is 12 kJ in joules? | NUM: 12000 J
+open | energy | Specific heat capacity | In the specific heat capacity practical, explain why a student's value of specific heat capacity was higher than expected. | MODEL: Some of the energy supplied was dissipated to the surroundings (the block was not fully insulated), so the temperature rise was smaller than it should have been. A smaller Δθ in c = E ÷ (m Δθ) gives a larger c.

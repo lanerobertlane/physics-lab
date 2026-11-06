@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en-GB" data-root="../" data-share="off">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quick Quizzes · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Short self-marking physics quizzes for revision on your own or for the whole class, with a QR code to show on the board.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="physics, quiz, retrieval practice, education, school, KS3, GCSE, AQA, science, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/quiz.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Quick quizzes">
+  <meta property="og:description" content="Short self-marking physics quizzes for revision on your own or for the whole class, with a QR code to show on the board.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/quiz.html">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Quick quizzes", "description": "Short self-marking physics quizzes for revision on your own or for the whole class, with a QR code to show on the board.", "url": "https://lanerobertlane.space/tools/quiz.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["Key Stage 3", "GCSE"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Quiz", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <script>if (/[?&]play=/.test(location.search)) document.documentElement.dataset.glossary = 'off';</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* Teacher view */
+    .qz-search { width: 100%; min-height: 44px; font-size: 1rem; padding: 6px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-strong); background: var(--surface); color: var(--text); }
+    /* Year › folder › quiz, like the Showbie library */
+    .qz-year { border-top: 1px solid var(--border); }
+    .qz-year > summary, .qz-group > summary { display: flex; align-items: center; gap: 10px; min-height: 48px; cursor: pointer; list-style: none; }
+    .qz-year > summary::-webkit-details-marker, .qz-group > summary::-webkit-details-marker { display: none; }
+    .qz-year > summary::before, .qz-group > summary::before { content: '▸'; font-size: 1.1rem; color: var(--muted); transition: transform .15s; }
+    .qz-year[open] > summary::before, .qz-group[open] > summary::before { transform: rotate(90deg); }
+    .qz-year > summary h3 { margin: 0; font-size: 1.25rem; }
+    .qz-group > summary h4 { margin: 0; font-size: 1.02rem; font-weight: 700; }
+    .qz-year > summary .note, .qz-group > summary .note { margin: 0; font-weight: 400; }
+    .qz-year > summary:focus-visible, .qz-group > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .qz-year > .qz-group, .qz-year > .qz-row { margin-left: 22px; }
+    .qz-group { border-top: 1px solid var(--border); }
+    .qz-group > .qz-row { margin-left: 22px; }
+    .qz-year[open] { padding-bottom: 8px; }
+    .qz-listbar { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+    .qz-listbar .qz-search { flex: 1; }
+    .qz-lv { font-weight: 700; }
+    .qz-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 0; border-top: 1px solid var(--border); }
+    .qz-row-main { display: grid; gap: 2px; min-width: 0; flex: 1 1 260px; }
+    .qz-row-main .note { margin: 0; }
+    .qz-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+    .qz-tag { border-left: 4px solid var(--c); }
+    .qz-topic { border: 1px solid var(--border); border-left: 5px solid var(--c); border-radius: var(--radius-sm); padding: 6px 12px 10px; margin: 0 0 10px; }
+    .qz-topic legend { padding: 0 4px; font-weight: 700; }
+    .qz-tools { display: flex; flex-wrap: wrap; gap: 4px 18px; }
+    .qz-tools .note { margin: 0; }
+    .qz-title { all: unset; cursor: pointer; font-weight: 700; color: var(--text); text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 3px; }
+    .qz-title:hover { text-decoration-color: currentColor; }
+    .qz-title:focus-visible, .linkish:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+    .linkish { background: none; border: 0; padding: 0; font: inherit; color: var(--accent-text, var(--accent)); text-decoration: underline; cursor: pointer; }
+
+    /* Preview of the questions */
+    .qz-preview { width: min(720px, 100%); }
+    .qz-p-list { display: grid; gap: 12px; padding-left: 1.6em; margin: 12px 0; }
+    .qz-p-list > li { padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+    .qz-p-q { margin: 0 0 6px; font-weight: 600; }
+    .qz-p-q .note { font-weight: 400; }
+    .qz-p-img svg { max-width: min(100%, 320px); height: auto; }
+    .qz-p-opts { margin: 0; padding-left: 1.2em; list-style: '◦ '; }
+    .qz-p-ans { display: none; margin: 6px 0 0; padding: 6px 10px; border-radius: var(--radius-sm); background: var(--good-soft); }
+    .qz-p-answers .qz-p-ans { display: block; }
+    .qz-p-answers .qz-p-right { font-weight: 700; list-style: '✓ '; }
+    .qz-p-bar { position: sticky; bottom: -20px; background: var(--surface); padding: 10px 0; justify-content: flex-end; border-top: 1px solid var(--border); }
+    .setting { display: grid; gap: 4px; margin-bottom: 10px; font-weight: 700; font-size: .9rem; color: var(--muted); }
+
+    /* The board */
+    .qz-board { position: fixed; inset: 0; z-index: 1000; background: var(--bg); color: var(--text); overflow: auto; padding: clamp(16px, 3vw, 48px) 16px 110px; text-align: center; }
+    .qz-board h1 { color: var(--title, var(--accent)); font-size: clamp(1.8rem, 4.5vw, 3.6rem); margin: 0 0 8px; }
+    .qz-board-sub { font-size: clamp(1.1rem, 2.2vw, 1.8rem); margin: 0 0 clamp(12px, 3vh, 32px); color: var(--muted); }
+    .qz-board-qr canvas { width: min(62vh, 80vw); height: auto; aspect-ratio: 1; image-rendering: pixelated; border-radius: 12px; box-shadow: 0 2px 16px rgba(0,0,0,.15); }
+    .qz-board-link { font-size: clamp(.9rem, 1.6vw, 1.3rem); word-break: break-all; color: var(--muted); max-width: 70ch; margin: 14px auto 0; }
+    .qz-board .p-bar { position: fixed; left: 0; right: 0; bottom: 0; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; padding: 12px; background: var(--surface); border-top: 1px solid var(--border); }
+
+    /* Student view */
+    .qz-playing .tool-intro, .qz-playing .spec-panel { display: none; }
+    #play { max-width: 760px; margin: 0 auto; }
+    .qz-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+    .qz-top h1 { margin: 0; font-size: clamp(1.4rem, 3.5vw, 2rem); }
+    .qz-count { font-weight: 700; color: var(--muted); }
+    .qz-bar { height: 8px; border-radius: 4px; background: var(--surface-2); margin: 10px 0 14px; overflow: hidden; }
+    .qz-bar::after { content: ''; display: block; height: 100%; width: var(--p, 0%); background: var(--accent); transition: width .3s; }
+    #play-card { font-size: 1.15rem; }
+    .qz-end { text-align: center; }
+    .qz-score { font-size: 1.6rem; margin: 6px 0; }
+    .qz-score b { font-size: 4rem; color: var(--accent); display: block; line-height: 1.1; }
+    .qz-msg { font-weight: 700; }
+    .qz-review { text-align: left; display: grid; gap: 8px; padding-left: 1.4em; font-size: 1rem; }
+    .qz-review .mk { font-weight: 800; }
+    .qz-review .good .mk { color: var(--good); } .qz-review .bad .mk { color: var(--bad); }
+    .qz-review small { color: var(--muted); }
+    .qz-end .qz-actions { justify-content: center; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div id="teacher">
+      <div class="tool-intro">
+        <h1>Quick quizzes</h1>
+        <p>Short quizzes that mark themselves. Tap a quiz’s title to see its questions first. For revision on your own, press <b>Try it</b>. To use one in a lesson, press <b>Show on board</b> and the class scans the QR code with their iPad cameras. Every answer is marked straight away, with the correct answer and a short explanation. Your answers stay on your own device and aren’t sent to anyone.</p>
+      </div>
+      <div class="chip-group" id="qz-tabs" style="margin-bottom:12px">
+        <button class="chip" data-t="list" aria-pressed="true">Department quizzes</button>
+        <button class="chip" data-t="build" aria-pressed="false">Build a quiz by topic</button>
+      </div>
+      <div class="chip-group" id="qz-level" aria-label="Level" style="margin-bottom:12px">
+        <button class="chip" data-lv="all" aria-pressed="true">KS3 and GCSE</button>
+        <button class="chip" data-lv="ks3" aria-pressed="false">KS3</button>
+        <button class="chip" data-lv="ks4" aria-pressed="false">GCSE</button>
+      </div>
+      <div class="tool-layout">
+        <div class="main-col">
+          <div class="panel" id="qz-pane-list">
+            <h2>Department quizzes</h2>
+            <div class="qz-listbar"><input class="qz-search" id="qz-search" type="search" placeholder="Search quizzes and questions" aria-label="Search quizzes and questions"><button class="btn" id="qz-openall">Open all</button></div>
+            <div id="qz-list"></div>
+          </div>
+          <div class="panel" id="qz-pane-build" hidden>
+            <h2>Build a quiz by topic</h2>
+            <p class="note" style="margin-top:0">Tick topics or individual tools. Questions are picked at random from those you tick.</p>
+            <div id="qz-build"></div>
+            <div class="setting" style="max-width:220px"><label for="qz-n">Number of questions</label>
+              <select class="select" id="qz-n"><option>5</option><option selected>10</option><option>15</option><option>20</option><option value="all">All of them</option></select></div>
+            <p class="note" id="qz-pool"></p>
+            <div class="btn-row" style="margin-top:10px"><button class="btn" id="qz-build-preview" aria-haspopup="dialog">Preview</button><button class="btn" id="qz-build-try">Try it</button><button class="btn primary" id="qz-build-board">Show on board</button></div>
+          </div>
+        </div>
+        <aside>
+          <div class="panel">
+            <h2>Options</h2>
+            <label class="toggle"><input type="checkbox" id="qz-order"> Mix up the question order</label>
+            <p class="note">Answer options are always shuffled. At the end you can redo the ones you got wrong.</p>
+            <p class="note" id="qz-total"></p>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <div id="play" hidden>
+      <div class="qz-top"><h1 id="play-title"></h1><span class="qz-count" id="play-count"></span></div>
+      <div class="qz-bar" id="play-progress" role="presentation"></div>
+      <div class="panel" id="play-card"></div>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/catalogue.js"></script>
+  <script src="../js/quiz-bank.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/quiz.js"></script>
+</body>
+</html>

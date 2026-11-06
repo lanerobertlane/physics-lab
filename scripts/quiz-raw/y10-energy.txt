@@ -1,0 +1,53 @@
+SOURCE GRN Science / Year 10 / Physics / Energy
+
+## 1. Energy transfers   (Q7 "energy transfer in that process is called... Heating" dropped. NOTE for Rob: rubbing hands is work done against friction, i.e. transferred mechanically; "Heating" is debatable)
+short | waves | Transverse & longitudinal waves | Light, ripples on water and sound are all examples of... | ACCEPT: waves; wave
+open | waves | Transverse & longitudinal waves | What are the two types of wave called? | MODEL: Transverse and longitudinal.
+mc | waves | Transverse & longitudinal waves | What is label B pointing to? [img: wave-labels] | Amplitude; Peak; *Trough; Wavelength
+mc | energy | Energy stores | What is the name of the energy store related to the height of an object? | Kinetic; Elastic potential; *Gravitational potential; Thermal
+tf | energy | Energy stores | Power is measured in joules (J). | FALSE | EXP: Power is measured in watts (W). Energy is measured in joules.
+short | energy | Energy stores | When you rub your hands together as fast as you can, energy is transferred from the kinetic store to the ______ store. | ACCEPT: thermal; thermal energy; thermal store; internal
+
+## 2. Gravitational Energy   (Q4 "Light, x-rays, gamma rays and sound waves are examples of radiation: True" dropped. NOTE for Rob: sound is not electromagnetic radiation, so this is misleading at GCSE)
+mc | forces | Work done | Which force always heats surfaces when they move past one another? | Upthrust; Air resistance; *Friction; Tension | EXP: Work done against friction is dissipated to the thermal store. (Air resistance does this too, but friction is the force between surfaces.)
+short | energy | Energy stores | What is the unit of energy? | ACCEPT: joules; joule; J
+mc | energy | Energy stores | Which describes the energy transfer when a catapult is released? | Kinetic → air resistance; *Elastic potential → kinetic; Gravitational potential → kinetic; Elastic potential → gravitational potential
+short | waves | Transverse & longitudinal waves | What is the name for the part of the wave labelled D? [img: wave-labels] | ACCEPT: wavelength; the wavelength
+mc | forces | Pressure on solids | Pressure = force [ ? ] area | +; −; ×; *÷
+short | forces | Pressure on solids | What is the unit of pressure? | ACCEPT: pascals; pascal; Pa; N/m2; N/m^2; newtons per metre squared; N/cm2; N/cm^2; newtons per centimetre squared
+
+## 3. Kinetic Energy   (Q4 units of energy, Q5 pressure equation: duplicates, skip)
+mc | energy | Energy stores | Which energy store is found in petrol? | Electrical; *Chemical; Radiation; Kinetic
+short | energy | Energy stores | What is the unit of power? | ACCEPT: watts; watt; W
+open | particles | States of matter | Describe the arrangement of particles in a solid. | MODEL: The particles are very close together in a regular pattern (a lattice). They vibrate about fixed positions.
+tf | forces | Work done | Friction always transfers energy to the thermal store. | TRUE | EXP: Work done against friction heats the surfaces.
+mc | forces | Pressure in fluids & upthrust | What is the name for the force that a liquid or gas exerts on a floating object? | Gravity; Air resistance; *Upthrust; Tension
+
+## 4. Energy Calculations
+mc | energy | Energy stores | Which equation links speed, kinetic energy and mass? | *Ek = ½ m v²; Ep = m g h; V = I R; ρ = m ÷ V
+mc | energy | Energy stores | Which of these is the equation for gravitational potential energy? | Ek = ½ m v²; Ep = ½ m v²; *Ep = m g h; Ee = ½ k e²
+tf | energy | Energy stores | E = m × g × h can be rearranged into m = g ÷ (E × h). | FALSE | EXP: The correct rearrangement is m = E ÷ (g × h).
+mc | reference | Units, prefixes & standard form | If v² = 100, then... | v = 100; v = 100 000; v = 200; *v = 10 | EXP: Take the square root: √100 = 10.
+num | energy | Energy stores | An object of mass 5 kg is raised 2 m. The gravitational field strength is 10 N/kg. What is the gain in gravitational potential energy? | NUM: 100 J | EXP: Ep = m g h = 5 × 10 × 2 = 100 J
+num | reference | Units, prefixes & standard form | Express 0.1 kg in grams. | NUM: 100 g
+
+## Elastic Energy   (Q5 unit of current: duplicate, skip)
+mc | energy | Energy stores | What is the equation for gravitational potential energy? | E = m ÷ g ÷ h; *E = m g h; E = m + g + h; E = m ÷ (g h)
+open | energy | Energy stores | Give an example of a chemical energy store. | MODEL: Food, fuels (such as petrol, coal or wood) or batteries.
+open | energy | Energy stores | What is the law of conservation of energy? | MODEL: Energy cannot be created or destroyed. It can only be transferred usefully, stored or dissipated.
+open | electricity | Circuit builder | Describe the difference between series and parallel circuits. | MODEL: In a series circuit the components are in one loop, so the current is the same everywhere and the p.d. is shared. In a parallel circuit there are separate branches, so the current splits and each branch has the same p.d. as the supply.
+tf | electricity | Static electricity & electric fields | Electric charge can flow easily through insulators. | FALSE | EXP: Electrons cannot move freely through insulators, so they don't conduct. This is why charge can build up on them.
+
+## Non-renewable Energy   (Q1 petrol store: duplicate, skip)
+open | energy | Energy stores | What factors determine the gravitational potential energy of an object? | MODEL: Its mass, its height above the ground and the gravitational field strength (Ep = m g h).
+mc | energy | Energy stores | What is the unit of energy? | Watts; *Joules; Newtons
+short | electricity | Circuit builder | What component do you use to measure the current in a circuit? | ACCEPT: ammeter; an ammeter
+mc | waves | Transverse & longitudinal waves | What type of wave is visible light? | *Transverse; Longitudinal
+
+## Renewable Energy
+open | energy | Energy resources | Name three fossil fuels. | MODEL: Coal, oil and natural gas.
+mc | energy | Energy resources | What is a major disadvantage of using non-renewable energy resources? | They are always available; They are cost-effective; They are easy to transport; *They contribute to pollution and climate change | EXP: Burning fossil fuels releases carbon dioxide, which contributes to climate change, and other gases that cause air pollution.
+tf | forces | Pressure in fluids & upthrust | Pressure in a liquid increases with depth. | TRUE | EXP: The deeper you go, the greater the weight of liquid above pushing down.
+tf | forces | Pressure on solids | Increasing the area over which a force is applied increases the pressure. | FALSE | EXP: Pressure = force ÷ area, so a bigger area gives a smaller pressure.
+mc | waves | Transverse & longitudinal waves | Which property of a wave is measured in hertz? | Amplitude; *Frequency; Wavelength; Speed | EXP: Frequency is the number of waves passing a point each second.
+open | energy | Energy resources | Explain why nuclear power is a non-renewable energy resource. | MODEL: Its fuel (uranium or plutonium) is mined and will run out. It is not replaced as fast as we use it.

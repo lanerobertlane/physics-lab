@@ -1,0 +1,57 @@
+SOURCE OWN
+
+## Required practical: infrared radiation
+mc | waves | Required practical: infrared radiation | Which surface of a Leslie cube emits the most infrared? {ks4} | Shiny silver; Shiny white; *Matt black; Matt white
+mc | waves | Required practical: infrared radiation | Which surface is the best absorber of infrared? {ks4} | Shiny silver; *Matt black; Shiny white; They are all the same | EXP: Good emitters are also good absorbers.
+tf | waves | Required practical: infrared radiation | Shiny, light-coloured surfaces are good reflectors of infrared. {ks4} | TRUE
+short | waves | Required practical: infrared radiation | What instrument measures the infrared from each face of a Leslie cube? {ks4} | ACCEPT: infrared detector; ir detector; infrared thermometer; thermopile; detector
+open | waves | Required practical: infrared radiation | Why must the detector be the same distance from each face of the Leslie cube? {ks4} | MODEL: The infrared reaching the detector depends on the distance, so keeping it the same makes it a fair test. Only the type of surface should change.
+mc | waves | Required practical: infrared radiation | Why do people in hot countries often wear white clothes? {both} | *White reflects infrared, so they absorb less; White emits more infrared; White is a better conductor; White clothes are thinner
+open | waves | Required practical: infrared radiation | Explain why the inside of a vacuum flask is silvered. {ks4} | MODEL: Shiny silver surfaces are poor emitters and good reflectors of infrared, so less energy is transferred by radiation into or out of the drink.
+
+## Ripple tank
+mc | waves | Ripple tank | In a ripple tank, what does the distance between two neighbouring bright lines show? {ks4} | The amplitude; *The wavelength; The frequency; The speed
+num | waves | Ripple tank | Waves in a ripple tank have a frequency of 4 Hz and a wavelength of 0.05 m. What is their speed? {ks4} | NUM: 0.2 m/s | EXP: v = f λ = 4 × 0.05 = 0.2 m/s.
+tf | waves | Ripple tank | Water waves slow down when they go into shallower water. {ks4} | TRUE | EXP: When they slow down, their wavelength gets shorter and they can change direction (refract).
+mc | waves | Ripple tank | Why is a strobe light used with a ripple tank? {ks4} | To make the water warmer; *To make the waves look still, so they can be measured; To make the waves faster; To change the frequency | EXP: When the strobe flashes at the same frequency as the waves, they appear frozen.
+short | waves | Ripple tank | What do we call a wave changing direction when it goes from deep to shallow water? {both} | ACCEPT: refraction; refracting; it refracts
+open | waves | Ripple tank | How could you measure the frequency of the water waves in a ripple tank? {ks4} | MODEL: Count the number of waves passing a point in a measured time (for example 10 seconds), then divide the number of waves by the time.
+
+## Light box & lenses
+mc | waves | Light box & lenses | What is the normal? {both} | *A line at 90° to the surface where the ray hits it; The ray that bounces off; The surface of the mirror; The angle between the ray and the surface
+tf | waves | Light box & lenses | When light goes from air into glass, it bends towards the normal. {ks4} | TRUE | EXP: It slows down in the glass, so it bends towards the normal.
+num | waves | Light box & lenses | A ray hits a mirror with an angle of incidence of 35°. What is the angle of reflection? {both} | NUM: 35 ° | EXP: The angle of incidence equals the angle of reflection.
+mc | waves | Light box & lenses | What does a convex (converging) lens do to parallel rays of light? {ks4} | Spreads them out; *Brings them together at the principal focus; Reflects them; Stops them
+short | waves | Light box & lenses | What do we call light changing direction as it goes from one material into another? {both} | ACCEPT: refraction; refracting; it refracts
+
+## Conduction, convection & radiation
+mc | energy | Conduction, convection & radiation | Which is the only way energy can travel through a vacuum, such as space? {both} | Conduction; Convection; *Radiation | EXP: Conduction and convection need particles. Infrared radiation is a wave, so it can travel through empty space.
+open | energy | Conduction, convection & radiation | Explain why hot air rises. {both} | MODEL: When air is heated, its particles move faster and spread out, so the air becomes less dense. Less dense air rises above the cooler, denser air around it.
+mc | energy | Conduction, convection & radiation | Why are metals good thermal conductors? {ks4} | They are shiny; *They have free (delocalised) electrons that carry energy quickly; Their particles are far apart; They are dense
+multi | energy | Conduction, convection & radiation | Which of these are good thermal insulators? (tick 3) {both} | *Air; *Wool; *Plastic foam; Copper | EXP: Materials that trap air are good insulators, because gases are poor conductors.
+open | energy | Conduction, convection & radiation | Why is a radiator usually put near the bottom of a wall? {both} | MODEL: It heats the air next to it, which rises. Cooler air moves in to take its place, setting up a convection current that warms the whole room.
+
+## Required practical: thermal insulation
+mc | energy | Required practical: thermal insulation | In the insulation practical, what is the dependent variable? {ks4} | The type of insulating material; *The temperature of the water (or how fast it cools); The volume of water; The size of the beaker
+multi | energy | Required practical: thermal insulation | Which of these must be kept the same for a fair test? (tick 3) {ks4} | *The starting temperature of the water; *The volume of water; *The thickness of the insulating layer; The type of insulating material | EXP: The type of material is the independent variable, which you change.
+tf | energy | Required practical: thermal insulation | The best insulator is the material that makes the water cool down most slowly. {both} | TRUE
+short | energy | Required practical: thermal insulation | Which piece of equipment measures the temperature of the water? {both} | ACCEPT: thermometer; a thermometer; temperature probe; thermocouple; data logger
+open | energy | Required practical: thermal insulation | Why should you put a lid on the beaker in the insulation practical? {ks4} | MODEL: A lid reduces energy lost by evaporation and convection from the top of the water, so the results mainly depend on the insulating material.
+mc | energy | Required practical: thermal insulation | How does double glazing reduce energy loss from a house? {both} | It reflects all light; *The gap between the panes reduces conduction and convection; It makes the glass thicker; It stops radiation completely
+num | energy | Required practical: thermal insulation | Water cools from 80 °C to 62 °C in 10 minutes. By how many degrees has it cooled? {ks3} | NUM: 18 °C | EXP: 80 − 62 = 18 °C.
+
+## Gas pressure
+mc | particles | Gas pressure | What causes gas pressure on the walls of a container? {both} | *The particles colliding with the walls; The particles sticking to the walls; The weight of the container; The particles getting bigger
+mc | particles | Gas pressure | What happens to the pressure of a gas if it is squashed into a smaller volume at the same temperature? {both} | *It increases; It decreases; It stays the same | EXP: The particles hit the walls more often.
+num | particles | Gas pressure | A gas at 100 kPa is squashed from 2.0 m³ to 1.0 m³ at constant temperature. What is the new pressure? {ks4} | NUM: 200 kPa | EXP: p V = constant, so p = 100 × 2.0 ÷ 1.0 = 200 kPa.
+tf | particles | Gas pressure | Heating a gas in a sealed container makes its particles move faster. {both} | TRUE | EXP: Their average kinetic energy increases, so they hit the walls harder and more often, and the pressure rises.
+open | particles | Gas pressure | Explain why a bike pump gets warm when you pump it quickly. {ks4} | MODEL: You do work on the gas by pushing the piston. This energy is transferred to the gas particles, increasing their kinetic energy, so the temperature rises.
+open | particles | Gas pressure | Why might an aerosol can explode if it is put on a fire? {both} | MODEL: The heat makes the gas particles move faster, so they hit the walls harder and more often. The pressure increases until the can bursts.
+
+## Electromagnetic induction
+mc | magnetism | Electromagnetic induction | What happens when a magnet is pushed into a coil of wire connected to a meter? {ks4} | Nothing; *A potential difference is induced and a current flows; The coil becomes permanently magnetic; The magnet gets hotter
+multi | magnetism | Electromagnetic induction | Which of these would increase the induced p.d.? (tick 3) {ks4} | *Moving the magnet faster; *Using a stronger magnet; *Using more turns on the coil; Holding the magnet still inside the coil
+tf | magnetism | Electromagnetic induction | Holding a magnet still inside a coil induces a p.d. {ks4} | FALSE | EXP: There must be movement (or a changing magnetic field) to induce a p.d.
+short | magnetism | Electromagnetic induction | What do we call the effect of making a p.d. by moving a wire in a magnetic field? {ks4} | ACCEPT: the generator effect; generator effect; electromagnetic induction; induction
+mc | magnetism | Electromagnetic induction | What happens to the induced current if you pull the magnet out instead of pushing it in? {ks4} | It stops; *It flows the other way; It gets bigger; It stays the same
+open | magnetism | Electromagnetic induction | Why does a generator produce an alternating current? {ks4} | MODEL: As the coil turns, each side moves up through the magnetic field and then down, so the induced p.d. keeps reversing direction.

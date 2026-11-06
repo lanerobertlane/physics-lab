@@ -1,0 +1,8 @@
+SOURCE GRN Science / Year 7 / Physics
+
+## Density   (Q6 repeats an earlier question)
+open | particles | States of matter | Describe the arrangement of particles in a solid. | MODEL: The particles are packed closely together in a regular pattern, touching each other.
+short | particles | States of matter | What is the name for the change from a solid to a liquid? {both} | ACCEPT: melting; melt; melts
+open | particles | States of matter | What happens to the energy of the particles when ice melts? | MODEL: The particles gain energy. This energy weakens the forces (bonds) between them, so they can move around each other.
+short | electricity | Circuit builder | Current is the flow of... {both} | ACCEPT: charge; electrons; electric charge; charged particles; negative charge
+tf | forces | Weight on other planets | Mass and weight are the same thing. {both} | FALSE | EXP: Mass is the amount of matter (kg). Weight is the force of gravity on that mass (N).

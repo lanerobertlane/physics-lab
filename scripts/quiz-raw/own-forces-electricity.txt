@@ -1,0 +1,63 @@
+SOURCE OWN
+
+## Required practical: acceleration
+mc | forces | Required practical: acceleration | In the acceleration required practical, what is the independent variable when you investigate the effect of force? {ks4} | *The force pulling the trolley; The acceleration of the trolley; The mass of the trolley; The length of the runway | EXP: You change the force (the hanging masses) and measure the acceleration.
+mc | forces | Required practical: acceleration | Why are the masses moved from the trolley to the hanger, rather than taken off, when the force is increased? {ks4} | *To keep the total mass being accelerated the same; To make the trolley go faster; To reduce friction; To make the light gates work | EXP: The accelerating mass is the trolley plus the hanger. Moving masses between them keeps it constant, so it's a fair test.
+short | forces | Required practical: acceleration | What does a light gate measure as the card on the trolley passes through it? {ks4} | ACCEPT: time; the time; the time taken; time taken; how long the card blocks the beam | EXP: Speed = card length ÷ time. Two speeds and the time between them give the acceleration.
+tf | forces | Required practical: acceleration | If the mass stays the same, doubling the resultant force doubles the acceleration. {ks4} | TRUE | EXP: a = F ÷ m, so acceleration is directly proportional to the resultant force.
+mc | forces | Required practical: acceleration | Using the same force, what happens to the acceleration if the mass of the trolley is doubled? {ks4} | It doubles; *It halves; It stays the same; It goes up four times | EXP: a = F ÷ m, so acceleration is inversely proportional to mass.
+num | forces | Required practical: acceleration | A resultant force of 1.2 N acts on a trolley of mass 0.8 kg. What is its acceleration? {ks4} | NUM: 1.5 m/s² | EXP: a = F ÷ m = 1.2 ÷ 0.8 = 1.5 m/s².
+open | forces | Required practical: acceleration | Give one reason why the measured acceleration is often less than the value calculated from F = m a. {ks4} | MODEL: Friction (and air resistance) act against the motion, so the resultant force is less than the weight of the hanging masses.
+multi | forces | Required practical: acceleration | Which of these make the results more accurate? (tick 2) {ks4} | *Using light gates instead of a stopwatch; *Tilting the runway slightly to balance out friction; Using a heavier hanger every time; Doing it on a carpet | EXP: Light gates remove reaction time. A friction-compensated runway makes the hanging weight the resultant force.
+
+## Stopping distances
+mc | forces | Stopping distances | Stopping distance is... {ks4} | Thinking distance × braking distance; *Thinking distance + braking distance; Braking distance − thinking distance; Just the braking distance
+mc | forces | Stopping distances | Which of these increases the thinking distance? {ks4} | Wet roads; Worn tyres; *Drinking alcohol; Worn brakes | EXP: Alcohol, drugs, tiredness and distractions slow the driver's reaction time. Road and car conditions affect the braking distance.
+multi | forces | Stopping distances | Which of these increase the braking distance? (tick 3) {ks4} | *Icy roads; *Worn tyres; *A heavier car; A tired driver | EXP: A tired driver affects thinking distance, not braking distance.
+tf | forces | Stopping distances | If a car's speed doubles, its thinking distance doubles. {ks4} | TRUE | EXP: Thinking distance = speed × reaction time, so it's proportional to speed.
+tf | forces | Stopping distances | If a car's speed doubles, its braking distance doubles. {ks4} | FALSE | EXP: Braking distance goes up four times, because the kinetic energy (½ m v²) goes up four times.
+num | forces | Stopping distances | A driver's reaction time is 0.7 s and the car is travelling at 20 m/s. What is the thinking distance? {ks4} | NUM: 14 m | EXP: Thinking distance = speed × reaction time = 20 × 0.7 = 14 m.
+open | forces | Stopping distances | Explain why it is dangerous to brake very hard at high speed. {ks4} | MODEL: Braking hard needs a large decelerating force. The brakes can overheat, and the tyres can skid if the friction between them and the road isn't enough, so the driver can lose control.
+short | forces | Stopping distances | What do we call the time between a driver seeing a hazard and pressing the brake? {ks4} | ACCEPT: reaction time; the reaction time; reaction times
+
+## Newton's third law pairs
+tf | forces | Newton's third law pairs | The two forces in a Newton's third law pair act on the same object. {both} | FALSE | EXP: They act on two different objects. That's why they never cancel out.
+mc | forces | Newton's third law pairs | You push on a wall with a force of 50 N. What force does the wall push on you? {both} | *50 N towards you; 50 N away from you; 0 N; More than 50 N
+mc | forces | Newton's third law pairs | The Earth pulls a book down with its weight. What is the third law partner of this force? {ks4} | The table pushing the book up; *The book pulling the Earth up; The book pushing down on the table; Air resistance on the book | EXP: Both forces in a pair are the same type (here gravitational) and act on the two objects involved.
+multi | forces | Newton's third law pairs | Which of these are true for a Newton's third law pair? (tick 3) {ks4} | *Equal in size; *Opposite in direction; *The same type of force; Act on the same object
+short | forces | Newton's third law pairs | A swimmer pushes the water backwards. Which way does the water push the swimmer? {both} | ACCEPT: forwards; forward; frontwards; ahead
+open | forces | Newton's third law pairs | A book rests on a table. Its weight and the normal contact force are equal and opposite. Explain why they are NOT a third law pair. {ks4} | MODEL: They act on the same object (the book) and are different types of force (gravitational and contact). A third law pair acts on two different objects and is the same type of force.
+
+## Moments
+num | forces | Moments | A force of 20 N acts 0.5 m from a pivot. What is the moment? {both} | NUM: 10 N m | EXP: Moment = force × perpendicular distance = 20 × 0.5 = 10 N m.
+short | forces | Moments | What is the unit of a moment? {both} | ACCEPT: N m; Nm; newton metres; newton metre; newton-metres; N·m
+mc | forces | Moments | A see-saw is balanced. What do you know about the moments? {both} | *The clockwise moment equals the anticlockwise moment; The clockwise moment is bigger; The forces on each side are always equal; There are no moments | EXP: This is the principle of moments.
+num | forces | Moments | A 400 N child sits 1.5 m from the pivot of a see-saw. How far from the pivot must a 600 N adult sit to balance it? {both} | NUM: 1 m | EXP: 400 × 1.5 = 600 × d, so d = 600 ÷ 600 = 1 m.
+mc | forces | Moments | Why is a door handle placed far from the hinges? {ks3} | *A bigger distance gives a bigger moment for the same force; It looks better; It makes the door lighter; It reduces friction
+open | forces | Moments | Explain why a long spanner makes it easier to undo a tight nut. {both} | MODEL: The longer spanner increases the distance from the pivot (the nut). Moment = force × distance, so the same moment can be made with a smaller force.
+
+## Springs & Hooke's law
+short | forces | Springs & Hooke's law | What do we call the increase in length of a spring when it is stretched? {both} | ACCEPT: extension; the extension
+tf | forces | Springs & Hooke's law | Up to the limit of proportionality, the extension of a spring is directly proportional to the force on it. {both} | TRUE | EXP: That's Hooke's law: F = k e.
+num | forces | Springs & Hooke's law | A spring is 10 cm long. With a mass hung on it, it is 14 cm long. What is the extension in cm? {ks3} | NUM: 4 cm | EXP: Extension = new length − original length = 14 − 10 = 4 cm.
+mc | forces | Springs & Hooke's law | On a force–extension graph, what does a straight line through the origin show? {both} | *Extension is directly proportional to force; The spring has broken; The spring is stretched past its limit; Force and extension are not linked
+mc | forces | Springs & Hooke's law | Which spring is the stiffest? {ks4} | k = 10 N/m; k = 25 N/m; *k = 60 N/m; They are all the same | EXP: A bigger spring constant means more force is needed for each metre of extension.
+open | forces | Springs & Hooke's law | What is the difference between elastic and inelastic (plastic) deformation? {ks4} | MODEL: After elastic deformation the object goes back to its original shape when the force is removed. After inelastic deformation it stays permanently stretched or bent.
+
+## The National Grid
+mc | electricity | The National Grid | What does a step-up transformer do in the National Grid? {ks4} | *Increases the p.d. and reduces the current; Increases the current and reduces the p.d.; Increases both; Changes a.c. to d.c.
+open | electricity | The National Grid | Why is electricity sent across the National Grid at a very high potential difference? {ks4} | MODEL: For the same power, a high p.d. means a low current. A lower current wastes less energy heating the cables, so the grid is more efficient.
+mc | electricity | The National Grid | Where are step-down transformers used? {ks4} | Next to the power station; *Near homes, before electricity is used; Inside the generator; In the overhead cables | EXP: They reduce the p.d. to 230 V so it's safe to use.
+short | electricity | The National Grid | What is the network of cables and transformers that links power stations to homes called? {ks4} | ACCEPT: the national grid; national grid; the grid; grid
+tf | electricity | The National Grid | Transformers in the National Grid only work with alternating current. {ks4} | TRUE | EXP: A changing current is needed to make a changing magnetic field, which induces a p.d. in the other coil.
+mc | electricity | The National Grid | What is the p.d. of the mains supply to UK homes? {ks4} | 12 V; 110 V; *230 V; 400 000 V
+num | electricity | The National Grid | A transformer has an input power of 2000 W. Assuming it is 100% efficient, what is its output power? {ks4} | NUM: 2000 W | EXP: A 100% efficient transformer gives out all the power it takes in: V_p I_p = V_s I_s.
+
+## Transformers
+mc | electricity | Transformers | A transformer has more turns on its secondary coil than on its primary coil. What type is it? {ks4} | *Step-up; Step-down; Isolating; It isn't a transformer
+mc | electricity | Transformers | What is the core of a transformer made of? {ks4} | Copper; Plastic; *Iron; Aluminium | EXP: Iron is easily magnetised, so it carries the changing magnetic field from one coil to the other.
+num | electricity | Transformers | A transformer has 100 turns on the primary coil and 500 on the secondary. The input p.d. is 12 V. What is the output p.d.? {ks4} | NUM: 60 V | EXP: V_s ÷ V_p = n_s ÷ n_p, so V_s = 12 × 500 ÷ 100 = 60 V.
+num | electricity | Transformers | A step-down transformer changes 230 V to 23 V. The primary coil has 2000 turns. How many turns are on the secondary coil? {ks4} | NUM: 200 | EXP: n_s = n_p × V_s ÷ V_p = 2000 × 23 ÷ 230 = 200.
+tf | electricity | Transformers | A transformer will work with a d.c. supply. {ks4} | FALSE | EXP: Direct current makes a steady magnetic field, which doesn't induce a p.d. in the secondary coil.
+open | electricity | Transformers | Explain how a transformer produces a p.d. in its secondary coil. {ks4} | MODEL: An alternating current in the primary coil makes a changing magnetic field in the iron core. This changing field passes through the secondary coil and induces an alternating p.d. across it.
+mc | electricity | Transformers | A step-up transformer increases the p.d. What happens to the current? {ks4} | It increases; *It decreases; It stays the same | EXP: Power in = power out (if 100% efficient), so if V goes up, I goes down.

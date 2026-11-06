@@ -1,0 +1,18 @@
+SOURCE OWN
+
+## KS3 top-up
+mc | forces | Newton's third law pairs | When you sit on a chair, you push down on it. What does the chair do? {ks3} | *Pushes up on you with the same force; Pushes up on you with a smaller force; Does nothing; Pulls you down
+tf | forces | Newton's third law pairs | When a rocket pushes gas out of the back, the gas pushes the rocket forwards. {both} | TRUE
+mc | forces | Springs & Hooke's law | What happens to the extension of a spring if you hang more mass on it? {ks3} | *It increases; It decreases; It stays the same
+open | forces | Springs & Hooke's law | Give two examples of everyday objects that use springs. {ks3} | MODEL: Any two of: trampolines, mattresses, car suspension, pens, newtonmeters, door closers, pogo sticks.
+short | electricity | Mains electricity | What should you never put into a plug socket? {ks3} | ACCEPT: fingers; your fingers; metal; metal objects; anything metal; a knife; wet hands; water
+mc | electricity | Mains electricity | Why should you never use electrical appliances with wet hands? {ks3} | *Water conducts electricity, so you could get an electric shock; Water damages the plastic; It makes the appliance slower; It makes the fuse blow every time
+tf | electricity | Mains electricity | Plugs and cables are covered in plastic because plastic is an electrical insulator. {ks3} | TRUE
+mc | electricity | Mains electricity | Which of these uses mains electricity, not a battery? {ks3} | A torch; A mobile phone away from its charger; *A kettle; A TV remote control
+open | electricity | Mains electricity | Why is it dangerous to overload a socket with lots of adaptors? {ks3} | MODEL: Too much current flows through the socket and cables, so they get very hot. This can melt the insulation and start a fire.
+mc | waves | Ripple tank | What happens to water waves when they hit a flat wall? {ks3} | *They reflect; They stop completely; They get bigger; They turn into sound
+short | particles | Gas pressure | What do we call the pressure caused by the air around us? {ks3} | ACCEPT: air pressure; atmospheric pressure; atmosphere pressure
+mc | chemistry | Bonding | What do we call two or more atoms joined together? {ks3} | *A molecule; An element; A mixture; An ion
+tf | chemistry | Bonding | A compound is made of two or more different elements chemically joined together. {ks3} | TRUE
+mc | chemistry | Bonding | Which of these is a compound? {ks3} | Oxygen (O₂); Iron (Fe); *Water (H₂O); Helium (He)
+short | chemistry | Bonding | What is the chemical formula of carbon dioxide? {ks3} | ACCEPT: CO2; co2; CO₂

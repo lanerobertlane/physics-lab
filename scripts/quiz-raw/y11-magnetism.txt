@@ -1,0 +1,37 @@
+SOURCE GRN Science / Year 11 / Physics / Magnetism
+Format per question: type | topic | tool | question | options (* = correct) | accept / model
+
+## 1. Magnetic fields
+mc | electricity | Circuit builder | What is this electrical component? [img: fixed resistor symbol] | Filament lamp; Fuse; Battery; *Fixed resistor
+mc | waves | Electromagnetic spectrum | Which electromagnetic wave has the highest frequency? | *Gamma; Radio; UV; Microwave
+mc | atomic | Alpha, beta & gamma | An alpha particle is made of... | A fast moving electron; *2 protons and 2 neutrons; 2 protons; 2 neutrons
+open | atomic | Alpha, beta & gamma | How can alpha radiation be stopped? | MODEL: A sheet of paper (or a few centimetres of air, or skin) stops alpha radiation.
+multi | particles | Required practical: density | To find the density of an irregular object I would need (tick all correct answers) | Ruler; *Digital balance; *Eureka can; Spring
+open | electricity | Circuit builder | How does increasing the resistance in a circuit affect the brightness of a bulb? | MODEL: The current decreases, so the bulb gets dimmer.
+
+## 2. Magnetic fields 2   (Q4-6 biology: dropped)
+short | magnetism | Bar magnet fields | What name is given to the ends of a magnet? | ACCEPT: poles; pole
+multi | magnetism | Bar magnet fields | Which of these are magnetic? (tick all correct answers) | Aluminium; Copper; *Iron; *Nickel   [NOTE: Showbie had no correct answer ticked; set by me]
+multi | magnetism | Bar magnet fields | Which of these laws are correct? | Like poles attract; *Like poles repel; *Opposite poles attract; Opposite poles repel
+
+## Alternators and dynamos
+tf | magnetism | Electromagnets & the motor effect | The motor effect occurs when a current-carrying conductor is placed in a magnetic field. | TRUE | EXP: The motor effect is the force experienced by a current-carrying conductor in a magnetic field.
+tf | particles | States of matter | Internal energy of a system is the sum of its kinetic and potential energy. | TRUE | EXP: Internal energy is the total kinetic and potential energy of all the particles in a system.
+open | particles | States of matter | Explain the relationship between internal energy and temperature in a substance. | MODEL: Heating increases the internal energy. If the kinetic energy of the particles increases, the temperature rises (unless the substance is changing state, when the potential energy increases instead).
+mc | particles | Gas pressure | What happens to the internal energy of a gas when it is compressed? | It decreases; *It increases; It remains constant; It becomes zero | EXP: Compressing a gas increases its internal energy as work is done on the gas, raising its temperature.
+tf | magnetism | Generators, loudspeakers & microphones | A generator uses the motor effect to produce electricity. | FALSE | EXP: A generator uses electromagnetic induction, not the motor effect, to produce electricity.
+open | magnetism | Electromagnetic induction | How does the direction of induced current change when the direction of the magnetic field changes? | MODEL: The induced current reverses direction.
+mc | magnetism | Electromagnetic induction | Which factor does NOT affect the magnitude of induced potential difference? | Speed of movement; *Polarity of the magnet; Strength of magnetic field; Number of turns in coil | EXP: Swapping the poles reverses the direction of the induced p.d. but not its size. [Showbie explanation mentioned colour of conductor; rewritten]
+
+## Induced potential
+mc | magnetism | Electromagnets & the motor effect | What is the main principle behind the operation of an electric motor? | Gravitational force; Thermal expansion; *The motor effect; Electromagnetic induction | EXP: The motor effect is the force experienced by a current-carrying wire in a magnetic field, which is the basis for motor operation.
+tf | magnetism | Generators, loudspeakers & microphones | The motor effect is responsible for the operation of loudspeakers. | TRUE | EXP: Loudspeakers use the motor effect to convert electrical signals into sound by moving a diaphragm.
+mc | forces | Newton's third law pairs | Which of the following is a result of Newton's 3rd law? | Gravitational pull; *Action and reaction forces; Acceleration; Inertia | EXP: When two objects interact, they exert equal and opposite forces on each other.
+tf | magnetism | Generators, loudspeakers & microphones | In a loudspeaker, the diaphragm moves due to the interaction of magnetic fields. | TRUE | EXP: The diaphragm in a loudspeaker moves because of the interaction between the magnetic field of the coil and the permanent magnet.
+open | magnetism | Electromagnets & the motor effect | Describe the role of a commutator in an electric motor. | MODEL: The split-ring commutator reverses the current in the coil every half turn, so the coil keeps turning in the same direction.
+mc | magnetism | Electromagnets & the motor effect | What happens when a current-carrying conductor is placed in a magnetic field? | It becomes a magnet; It loses resistance; It generates heat; *It experiences a force | EXP: A current-carrying conductor in a magnetic field experiences a force due to the motor effect, which is used in motors.
+tf | forces | Newton's third law pairs | Newton's 3rd law implies that forces always occur in pairs. | TRUE | EXP: Newton's 3rd law pairs are equal in size, opposite in direction, the same type of force, and act on different objects.
+mc | magnetism | Generators, loudspeakers & microphones | Which component in a loudspeaker is directly responsible for producing sound? | The casing; *The diaphragm; The coil; The magnet | EXP: The diaphragm (cone) in a loudspeaker vibrates to produce sound waves, driven by the motor effect.
+
+## Motor effect   (Q1 rate of reaction, Q2 crude oil, Q4-7 gas tests: chemistry not on site, dropped. NOTE for Rob: Showbie Q6 hydrogen test marks "Bleaches damp litmus paper" as correct - should be squeaky pop)
+open | magnetism | Electromagnets & the motor effect | Describe how to make an electromagnet. | MODEL: Wrap a coil of insulated wire around an iron core and pass a current through the wire.

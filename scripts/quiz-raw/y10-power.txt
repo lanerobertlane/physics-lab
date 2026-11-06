@@ -1,0 +1,7 @@
+SOURCE GRN Science / Year 10 / Physics / Power
+
+## Power   (Q1 unit of energy: duplicate, skip. Q5-6 acids: chemistry not on site, dropped)
+tf | energy | Energy stores | An object's gravitational potential energy store decreases as the object moves higher. {both} | FALSE | EXP: Ep = m g h, so the higher it goes, the more energy is in its gravitational potential store.
+open | energy | Energy stores | Describe the energy transfer in an electric fan. {both} | MODEL: Energy is transferred electrically from the mains to the kinetic store of the fan blades (and the air). Some is wasted, dissipated to the thermal store of the surroundings and as sound.
+mc | waves | Transverse & longitudinal waves | In a transverse wave, the oscillations are ______ to the direction of energy transfer. | Parallel; *Perpendicular
+mc | waves | Transverse & longitudinal waves | Which is an example of a longitudinal wave? {both} | *Sound; Light; Water waves

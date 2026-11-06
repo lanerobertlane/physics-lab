@@ -1,0 +1,89 @@
+SOURCE OWN
+
+## Nuclear fission & fusion
+mc | atomic | Nuclear fission & fusion | What is nuclear fission? {ks4} | *A large nucleus splitting into two smaller nuclei; Two small nuclei joining together; An electron leaving an atom; A nucleus giving out an alpha particle
+mc | atomic | Nuclear fission & fusion | What is nuclear fusion? {ks4} | A large nucleus splitting; *Two light nuclei joining to make a heavier nucleus; A neutron turning into a proton; An atom gaining electrons
+short | atomic | Nuclear fission & fusion | Which particle is absorbed by a uranium-235 nucleus to start fission? {ks4} | ACCEPT: neutron; a neutron; neutrons
+tf | atomic | Nuclear fission & fusion | Fission releases two or three neutrons, which can cause more fissions. {ks4} | TRUE | EXP: This is a chain reaction.
+mc | atomic | Nuclear fission & fusion | What do the control rods in a nuclear reactor do? {ks4} | Speed up the neutrons; *Absorb neutrons to slow down the chain reaction; Cool the reactor; Shield the workers | EXP: Lowering the rods absorbs more neutrons, so fewer fissions happen.
+mc | atomic | Nuclear fission & fusion | Where does nuclear fusion happen naturally? {ks4} | In nuclear power stations; *In stars, such as the Sun; In the Earth's core; In smoke detectors
+open | atomic | Nuclear fission & fusion | Why is fusion not yet used in power stations? {ks4} | MODEL: Fusion needs extremely high temperatures and pressures to force the nuclei together. It's very hard to reach and contain these conditions, so far it has used more energy than it gives out.
+
+## History of the atom
+mc | atomic | History of the atom | Which model of the atom described a ball of positive charge with electrons stuck in it? {ks4} | *The plum pudding model; The nuclear model; The Bohr model; Dalton's model
+mc | atomic | History of the atom | In Rutherford's alpha scattering experiment, most alpha particles went straight through the gold foil. What did this show? {ks4} | The atom is solid; *Most of the atom is empty space; Electrons are negative; The nucleus is negative
+tf | atomic | History of the atom | Some alpha particles bounced back, which showed the atom has a small, dense, positive nucleus. {ks4} | TRUE
+short | atomic | History of the atom | Which scientist suggested that electrons orbit the nucleus at fixed distances (in shells)? {ks4} | ACCEPT: bohr; niels bohr; neils bohr
+mc | atomic | History of the atom | Which particle was discovered by James Chadwick, about 20 years after the nucleus? {ks4} | Proton; Electron; *Neutron; Alpha particle
+open | atomic | History of the atom | Why was the plum pudding model replaced by the nuclear model? {ks4} | MODEL: Rutherford's alpha scattering experiment showed that some alpha particles were deflected through large angles. This could only happen if the positive charge and mass were concentrated in a tiny nucleus, which the plum pudding model couldn't explain.
+mc | atomic | History of the atom | Who discovered the electron, leading to the plum pudding model? {ks4} | *J. J. Thomson; Ernest Rutherford; Niels Bohr; John Dalton
+
+## Half-life
+mc | atomic | Half-life | What is the half-life of a radioactive isotope? {ks4} | *The time it takes for half the unstable nuclei to decay; Half the time it takes for all the nuclei to decay; The time for the activity to reach zero; Half the mass of the sample
+num | atomic | Half-life | A sample has an activity of 800 Bq. Its half-life is 2 hours. What is its activity after 4 hours? {ks4} | NUM: 200 Bq | EXP: 4 hours is 2 half-lives: 800 → 400 → 200 Bq.
+num | atomic | Half-life | An isotope's activity falls from 600 Bq to 75 Bq in 15 days. What is its half-life in days? {ks4} | NUM: 5 days | EXP: 600 → 300 → 150 → 75 is 3 half-lives, so 15 ÷ 3 = 5 days.
+tf | atomic | Half-life | We can predict exactly when a particular nucleus will decay. {ks4} | FALSE | EXP: Radioactive decay is random. Half-life only tells us about large numbers of nuclei.
+short | atomic | Half-life | What is the unit of activity? {ks4} | ACCEPT: becquerel; becquerels; bq
+open | atomic | Half-life | Why is a short half-life better for a medical tracer injected into the body? {ks4} | MODEL: It stays radioactive long enough to do the scan, but then decays quickly, so the patient isn't exposed to radiation for long.
+
+## Contamination, irradiation & background
+mc | atomic | Contamination, irradiation & background | What is irradiation? {ks4} | *Being exposed to radiation from a source outside the body; Getting radioactive atoms on or in your body; Becoming radioactive; Cooking with microwaves
+mc | atomic | Contamination, irradiation & background | What is radioactive contamination? {ks4} | Being near a radioactive source; *Unwanted radioactive atoms getting on or into an object or person; An object being exposed to gamma rays; Radiation from space
+tf | atomic | Contamination, irradiation & background | An object that has been irradiated becomes radioactive. {ks4} | FALSE | EXP: Irradiation doesn't make things radioactive. Contamination does, because the radioactive atoms are still there.
+multi | atomic | Contamination, irradiation & background | Which of these are natural sources of background radiation? (tick 3) {ks4} | *Radon gas from rocks; *Cosmic rays from space; *Food and drink; Medical X-rays
+short | atomic | Contamination, irradiation & background | Name the radioactive gas from rocks that is the biggest source of background radiation in the UK. {ks4} | ACCEPT: radon; radon gas
+open | atomic | Contamination, irradiation & background | Give two ways people who work with radioactive sources protect themselves. {ks4} | MODEL: Any two of: wear gloves and protective clothing, handle sources with tongs, keep sources in lead-lined boxes, stand behind shielding, keep the time of exposure short, wear a radiation badge (dosimeter).
+mc | atomic | Contamination, irradiation & background | Why is a source inside the body that gives out alpha particles the most dangerous? {ks4} | Alpha is the most penetrating; *Alpha is the most ionising, and inside the body it can reach living cells; Alpha has the longest half-life; Alpha is a type of gamma
+
+## Uses of radiation
+mc | atomic | Uses of radiation | Which type of radiation is used in a smoke detector? {ks4} | *Alpha; Beta; Gamma | EXP: Alpha ionises the air so a small current flows. Smoke absorbs the alpha particles and the current drops, setting off the alarm.
+mc | atomic | Uses of radiation | Which radiation is used to check the thickness of paper in a factory? {ks4} | Alpha; *Beta; Gamma | EXP: Alpha would be stopped completely and gamma would pass straight through. The amount of beta getting through changes with the thickness.
+mc | atomic | Uses of radiation | Which radiation is used as a medical tracer that is detected outside the body? {ks4} | Alpha; Beta; *Gamma | EXP: Gamma passes out of the body to the detector and is the least ionising.
+short | atomic | Uses of radiation | Which type of radiation is used to kill bacteria on surgical instruments? {ks4} | ACCEPT: gamma; gamma rays; gamma radiation
+open | atomic | Uses of radiation | Why should a source used in a smoke detector have a long half-life? {ks4} | MODEL: So it keeps giving out radiation at a steady rate for many years, and doesn't need replacing.
+tf | atomic | Uses of radiation | Radiotherapy uses radiation to kill cancer cells. {ks4} | TRUE
+
+## Nuclear equations
+mc | atomic | Nuclear equations | What happens to the mass number when a nucleus gives out an alpha particle? {ks4} | *It goes down by 4; It goes down by 2; It stays the same; It goes up by 1
+mc | atomic | Nuclear equations | What happens to the atomic number in beta decay? {ks4} | It goes down by 1; *It goes up by 1; It stays the same; It goes down by 2 | EXP: A neutron turns into a proton and an electron, which leaves as the beta particle.
+tf | atomic | Nuclear equations | Gamma emission changes the mass number and atomic number of the nucleus. {ks4} | FALSE | EXP: Gamma is a wave, so neither number changes. The nucleus just loses energy.
+num | atomic | Nuclear equations | Radium-226 (atomic number 88) emits an alpha particle. What is the mass number of the new nucleus? {ks4} | NUM: 222 | EXP: 226 − 4 = 222. (Its atomic number is 88 − 2 = 86: radon.)
+
+## Red-shift
+mc | space | Red-shift | What is red-shift? {ks4} | *Light from a galaxy moving away has a longer wavelength than expected; Light turning red when it hits dust; Stars turning red as they age; Light slowing down in space
+tf | space | Red-shift | More distant galaxies show a bigger red-shift. {ks4} | TRUE | EXP: This means more distant galaxies are moving away faster, which shows the universe is expanding.
+mc | space | Red-shift | What does red-shift tell us about the universe? {ks4} | It is shrinking; *It is expanding; It isn't changing; It is spinning
+short | space | Red-shift | What is the theory that the universe began from a very small, very hot, very dense region? {ks4} | ACCEPT: big bang; the big bang; big bang theory; the big bang theory
+open | space | Red-shift | Give two pieces of evidence for the Big Bang theory. {ks4} | MODEL: Red-shift of light from distant galaxies (the further away, the bigger the red-shift) and the cosmic microwave background radiation (CMBR) that fills the universe.
+mc | space | Red-shift | What happens to the wavelength of light from a galaxy that is moving away from us? {ks4} | *It gets longer; It gets shorter; It stays the same
+
+## Orbits
+mc | space | Orbits | What force keeps the Moon in orbit around the Earth? {both} | Magnetism; Friction; *Gravity; Air resistance
+tf | space | Orbits | A satellite in a circular orbit has a constant speed but a changing velocity. {ks4} | TRUE | EXP: Its direction keeps changing, and velocity includes direction.
+mc | space | Orbits | If a satellite moves into a smaller orbit, what must happen to its speed to stay in orbit? {ks4} | *It must increase; It must decrease; It stays the same
+short | space | Orbits | What do we call an object that orbits a planet, such as the Moon? {both} | ACCEPT: satellite; a satellite; moon; natural satellite
+open | space | Orbits | Why doesn't a satellite in orbit fall to the Earth? {ks4} | MODEL: It is falling towards the Earth because of gravity, but it is moving sideways so fast that the Earth's surface curves away beneath it. It keeps falling round the Earth instead of into it.
+
+## Life cycle of a star
+mc | space | Life cycle of a star | What is a star formed from? {ks4} | *A cloud of dust and gas (a nebula); A black hole; A planet; A supernova only
+mc | space | Life cycle of a star | What will our Sun become at the end of its life? {ks4} | A black hole; A neutron star; *A white dwarf (after becoming a red giant); A supernova
+tf | space | Life cycle of a star | A star stays stable while the outward pressure from fusion balances the inward pull of gravity. {ks4} | TRUE | EXP: This is the main sequence stage.
+short | space | Life cycle of a star | What do we call the huge explosion at the end of a very massive star's life? {ks4} | ACCEPT: supernova; a supernova
+open | space | Life cycle of a star | Where do elements heavier than iron come from? {ks4} | MODEL: They are made in supernova explosions, which also spread them out through the universe.
+
+## Bonding
+mc | chemistry | Bonding | What type of bonding happens between a metal and a non-metal? {ks4} | *Ionic; Covalent; Metallic | EXP: The metal atom loses electrons and the non-metal atom gains them, making oppositely charged ions.
+mc | chemistry | Bonding | What type of bonding happens between two non-metals? {ks4} | Ionic; *Covalent; Metallic | EXP: The atoms share pairs of electrons.
+tf | chemistry | Bonding | In ionic bonding, electrons are shared between atoms. {ks4} | FALSE | EXP: In ionic bonding electrons are transferred. Sharing happens in covalent bonding.
+short | chemistry | Bonding | What charge does a sodium ion have? {ks4} | ACCEPT: +1; 1+; positive; plus one; one positive; +
+mc | chemistry | Bonding | In metallic bonding, the metal ions are held together by... {ks4} | *A sea of delocalised electrons; Shared pairs of electrons; Neutrons; Negative ions
+open | chemistry | Bonding | Describe what happens to the electrons when sodium and chlorine form sodium chloride. {ks4} | MODEL: Sodium loses its one outer electron to chlorine. Sodium becomes a positive ion (Na⁺) and chlorine becomes a negative ion (Cl⁻). The oppositely charged ions attract each other.
+mc | chemistry | Bonding | A water molecule (H₂O) has which type of bonds? {both} | Ionic; *Covalent; Metallic
+
+## Periodic table
+mc | chemistry | Periodic table | What does the group number tell you about an atom in groups 1 to 7? {ks4} | The number of shells; *The number of electrons in the outer shell; The number of neutrons; The mass number
+short | chemistry | Periodic table | What are the elements in group 0 called? {both} | ACCEPT: noble gases; the noble gases; noble gas; inert gases
+tf | chemistry | Periodic table | Metals are found on the left of the periodic table and non-metals on the right. {both} | TRUE
+mc | chemistry | Periodic table | What are the rows of the periodic table called? {both} | Groups; *Periods; Columns; Families
+num | chemistry | Periodic table | Carbon has an atomic number of 6. How many protons does a carbon atom have? {both} | NUM: 6 | EXP: The atomic number is the number of protons.
+open | chemistry | Periodic table | Why are group 1 metals stored under oil? {ks4} | MODEL: They are very reactive and react with oxygen and water vapour in the air. The oil keeps the air out.

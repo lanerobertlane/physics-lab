@@ -1,0 +1,22 @@
+SOURCE GRN Science / Year 11 / Physics / Space (Triple only)
+
+## 1. Life cycle of stars
+mc | atomic | Atom builder | What force keeps electrons in orbit around the nucleus? | Gravitational; Strong; *Electrostatic; Magnetic
+open | waves | Electromagnetic spectrum | What happens to a light wave as the wavelength changes? | MODEL: If the wavelength increases, the frequency decreases (the speed stays the same). For visible light the colour shifts towards red.
+short | forces | Motion graphs | What measurement describes the rate of change in velocity? | ACCEPT: acceleration   [Showbie: open, no answer; made short answer]
+mc | forces | Pressure in fluids & upthrust | Which of these DO NOT affect the pressure applied by a fluid? | Density of a fluid; Height of the column of fluid above them; Gravitational field strength; *Viscosity of the fluid
+mc | forces | Pressure in fluids & upthrust | What causes upthrust? | *A difference in pressure between the top and bottom of an object; Water having a higher density than the object; Every action has an equal but opposite reaction; Momentum of the water and the object must be equal but opposite
+
+## 2. Red shift
+mc | space | Life cycle of a star | Which of these stages will our Sun not go through (or has not been through)? | Nebula; Main sequence; Red giant; *Neutron star | EXP: The Sun is not massive enough to become a supernova, so it will not form a neutron star. It will become a white dwarf.
+short | space | Life cycle of a star | What is the heaviest element produced by fusion in a star? | ACCEPT: iron; Fe | EXP: Elements heavier than iron are made in a supernova.
+short | space | Life cycle of a star | Which process releases energy in stars? | ACCEPT: nuclear fusion; fusion; nucleur fusion
+multi | electricity | Circuit builder | Why does adding a resistor in parallel reduce total resistance? (tick all that apply) | *More paths for the current; *Total current is higher; Potential difference is the same for all components; Adding resistors increases the resistance
+short | electricity | Mains electricity | What component can be added to break a circuit if the current is too high? | ACCEPT: fuse; a fuse; circuit breaker; a circuit breaker
+
+## 3. Orbital motion
+mc | space | Red-shift | What happens to the wavelength of light if an object is moving towards us? | The wavelength increases making it appear more red; The wavelength increases making it appear more blue; The wavelength decreases making it appear more red; *The wavelength decreases making it appear more blue
+mc | space | Red-shift | Which of these give evidence for the Big Bang? | All stars emit the same light; There are elements heavier than iron on Earth; *Galaxies further away are receding faster; Dark matter
+mc | space | Life cycle of a star | What will the Sun eventually end up as? | *Black dwarf; Black hole; Neutron star; Supernova
+short | magnetism | Electromagnets & the motor effect | When a wire carrying a current is placed in a magnetic field it experiences a force. This is called the ______ effect. | ACCEPT: motor; motor effect; the motor effect
+open | magnetism | Electromagnets & the motor effect | What is produced around a wire when a current flows through it? | MODEL: A magnetic field (in circles around the wire).   [could be short: accept "magnetic field"]

@@ -1,0 +1,40 @@
+SOURCE GRN Science / Year 8 / Physics / Speed
+
+## 1. Speed   (Q7 marks both Ruler and Metre stick, so it is a tick-two question here)
+mc | magnetism | Bar magnet fields | Where is the magnetic field of a bar magnet strongest? | At the centre; At the north pole only; At the south pole only; *At either pole
+mc | forces | Speed & distance–time | What unit do we measure time in, in science? | *Seconds; Minutes; Hours
+mc | forces | Speed & distance–time | What unit do we measure distance in, in science? | Inches; *Metres; Feet; Yards
+short | electricity | Circuit builder | What do we call a material that lets electricity flow through it? | ACCEPT: conductor; a conductor; electrical conductor; conductors
+short | electricity | Circuit builder | What do we call a material that stops electricity flowing through it? | ACCEPT: insulator; an insulator; electrical insulator; insulators
+mc | forces | Speed & distance–time | What is the most accurate way to time something in a lesson? | Clock; *Stopwatch; Watch
+multi | forces | Speed & distance–time | Which would you use to measure a short distance, such as 20 cm? (tick 2) | *Ruler; *Metre stick; Tape measure; Trundle wheel
+
+## 2. Distance-time graphs   ([NOTE for Rob: Q7 "What is an induced magnet?" marks two answers, including "the area around a magnet in which magnetic forces can be felt", which is the magnetic field. Fixed to one correct answer])
+mc | forces | Speed & distance–time | Which is the correct equation for speed? | Speed = time × distance; *Speed = distance ÷ time; Speed = miles × kilometres; Speed = kilometres ÷ miles
+short | forces | Speed & distance–time | What is the unit of speed? | ACCEPT: m/s; metres per second; meters per second; ms-1; m s-1; mps
+mc | forces | Speed & distance–time | What is the speed of an object that travels 200 m in 40 seconds? | 40 m/s; *5 m/s; 200 mph; 10 m/s | EXP: Speed = distance ÷ time = 200 ÷ 40 = 5 m/s.
+short | forces | Speed & distance–time | A car travels at 30 miles per hour. How far does it go in 60 minutes? | ACCEPT: 30 miles; 30; 30 mi | EXP: 60 minutes is one hour, so it goes 30 miles.
+short | electricity | Circuit builder | What is this circuit symbol? [img: resistor] | ACCEPT: resistor; a resistor; fixed resistor
+mc | electricity | Circuit builder | What is this circuit symbol? [img: lamp] | Battery; *Lamp (bulb); LED; Switch
+mc | magnetism | Bar magnet fields | What is an induced magnet? | The ends of a magnet; The area around a magnet where magnetic forces can be felt; *A material that is only magnetic while it is in a magnetic field; A magnet that can repel and attract other magnets
+
+## 3. Relative motion   (Q5, Q6 repeat earlier questions. [NOTE for Rob: Q7's explanation says the area around a magnet is called "magnetic field lines"; it is the magnetic field. Fixed])
+mc | forces | Speed & distance–time | What is the standard (SI) unit of speed? | mph; *m/s; km/h; kph
+mc | forces | Motion graphs | What does a gentle slope on a distance–time graph show? | *The object is moving slowly; The object is moving fast; The object is stationary
+mc | forces | Motion graphs | What does a steep slope on a distance–time graph show? | The object is moving slowly; *The object is moving fast; The object is stationary
+short | electricity | Circuit builder | What is this circuit symbol? [img: switch] | ACCEPT: switch; a switch; open switch; an open switch
+tf | magnetism | Bar magnet fields | The area around a magnet where magnetic forces can be felt is called the pole. | FALSE | EXP: That area is the magnetic field. The poles are the two ends of the magnet, where the field is strongest.
+
+## 4. Streamlining   (Q7 repeats an existing question. [NOTE for Rob: Q1 marks "Speed = time × distance" as correct; it should be distance ÷ time. Left out, as the bank has the correct version from quiz 2])
+mc | forces | Speed & distance–time | How do you work out the relative speed of two objects moving in opposite directions? | Multiply the speeds; *Add the speeds; Subtract the speeds; Divide the speeds | EXP: Two cars each doing 30 mph towards each other close the gap at 60 mph.
+mc | forces | Speed & distance–time | How do you work out the relative speed of two objects moving in the same direction? | Multiply the speeds; Add the speeds; *Subtract the speeds; Divide the speeds | EXP: A car doing 70 mph overtakes one doing 60 mph at 10 mph.
+short | forces | Motion graphs | What goes on the x-axis (horizontal axis) of a distance–time graph? | ACCEPT: time; the time; time in seconds; time (s)
+short | forces | Terminal velocity | Which force slows a parachute down? | ACCEPT: air resistance; drag; air drag
+tf | electricity | Circuit builder | This circuit symbol is a voltmeter. [img: ammeter] | FALSE | EXP: A circle with A in it is an ammeter, which measures current. A voltmeter has V in it.
+
+## 5. Falling Cupcake Case Investigation   (Q3, Q5 repeat earlier questions)
+mc | forces | Speed & distance–time | How does the speed of a moving object look to an observer moving in the same direction? | Faster than its actual speed; *Slower than its actual speed; The same as its actual speed; Impossible to tell
+mc | forces | Terminal velocity | What is streamlining? | A way of slowing objects down; A way of increasing weight; A way of generating electricity; *A way of reducing air resistance
+tf | forces | Speed & distance–time | The equation for speed is: speed = time × distance. | FALSE | EXP: Speed = distance ÷ time.
+short | forces | Motion graphs | What goes on the y-axis (vertical axis) of a distance–time graph? | ACCEPT: distance; the distance; distance in metres; distance (m)
+open | forces | Terminal velocity | How does streamlining affect the motion of vehicles? | MODEL: It reduces air resistance, so the vehicle can go faster, or use less fuel at the same speed.

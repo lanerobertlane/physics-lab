@@ -1,0 +1,51 @@
+SOURCE GRN Science / Year 7 / Physics / Energy
+
+## 1. Energy Stores   [NOTE for Rob: Q7 "What is label D pointing to?" is marked Trough, but D is the wavelength. Fixed here. Q1 lists "Water" as a wave; changed to "water waves". Q2 duplicates an existing question]
+short | waves | Transverse & longitudinal waves | Light, sound and water waves are all examples of... | ACCEPT: waves; wave
+tf | waves | Transverse & longitudinal waves | The wavelength of a wave is the distance covered by one full cycle of the wave. | TRUE | EXP: For example, from one peak to the next peak.
+mc | waves | Transverse & longitudinal waves | What is label A pointing to? [img: wave-labels] | Amplitude; *Peak; Trough; Wavelength
+mc | waves | Transverse & longitudinal waves | What is label B pointing to? [img: wave-labels] | Amplitude; Peak; *Trough; Wavelength
+mc | waves | Transverse & longitudinal waves | What is label C pointing to? [img: wave-labels] | *Amplitude; Peak; Trough; Wavelength | EXP: The amplitude is the height from the middle line to a peak.
+mc | waves | Transverse & longitudinal waves | What is label D pointing to? [img: wave-labels] | Amplitude; Peak; Trough; *Wavelength | EXP: The wavelength is the distance from one peak to the next.
+
+## 2. Conservation of Energy   (Q5 repeats an existing question)
+mc | energy | Energy stores | Which energy store depends on the height of an object? | Kinetic; Elastic potential; *Gravitational potential; Thermal
+mc | energy | Energy stores | What unit is energy measured in? | Watts; Newtons; *Joules; Volts
+short | energy | Energy stores | Which energy store depends on how fast something is moving? | ACCEPT: kinetic; kinetic energy; kinetic store
+mc | waves | Transverse & longitudinal waves | What kind of wave is drawn here? [img: wave-labels] | Longitudinal; *Transverse
+tf | energy | Energy stores | When an object is dropped, energy is transferred from its gravitational potential store to its kinetic store. | TRUE
+short | energy | Energy stores | When you rub your hands together quickly, energy is transferred from the kinetic store to which store? | ACCEPT: thermal; thermal store; thermal energy; heat | EXP: Friction between your hands warms them up.
+
+## 3. Energy in Food
+short | energy | Energy stores | Complete the sentence: "Energy cannot be created or destroyed. It can only be stored or ___." | ACCEPT: transferred; transfered; moved
+mc | energy | Efficiency | When energy is dissipated, where does it go? | *To the surroundings; It is destroyed; Nowhere, it stays stored | EXP: Dissipated energy spreads out into the surroundings, usually warming them up. It isn't destroyed.
+short | energy | Efficiency | Give one way energy is wasted when you boil a kettle. | ACCEPT: sound; noise; heating the surroundings; heating the air; heating the kettle; heat; thermal; thermal energy of the surroundings | EXP: The useful transfer is to the thermal store of the water. Sound and heating the kettle and the air around it are wasted.
+mc | waves | Transverse & longitudinal waves | What is the name for the part of the wave labelled D? [img: wave-labels] | Amplitude; Frequency; *Wavelength; Transverse
+mc | energy | Efficiency | A television transfers energy electrically to light, sound and thermal energy. Which of these is wasted (dissipated)? | *Thermal; Sound; Light | EXP: Light and sound are what we want from a TV. Heating the TV and the room is wasted.
+short | energy | Energy stores | Give an example where a force (a mechanical transfer) warms something up. | ACCEPT: rubbing your hands together; rubbing hands; rubbing hands together; friction; brakes; braking; sanding wood; sanding; drilling; sliding down a slide | EXP: Friction transfers energy to the thermal store.
+short | waves | Electromagnetic spectrum | Sound, light and X-rays are all examples of... | ACCEPT: waves; wave
+
+## 4. Energy and Electricity   (Q2 calories: biology, dropped. Q5, Q7 repeat earlier quizzes. [NOTE for Rob: Q3 had no correct answer ticked; set to longitudinal])
+mc | energy | Energy stores | Which energy store does a running cheetah have? | Gravitational potential; Movement; Elastic potential; *Kinetic
+mc | waves | Transverse & longitudinal waves | What kind of wave is shown? [img: longitudinal] | Transverse; *Longitudinal | EXP: The coils are squashed together (compressions) and spread out (rarefactions) along the direction the wave travels.
+short | waves | Transverse & longitudinal waves | Give an example of a longitudinal wave. {both} | ACCEPT: sound; sound waves; ultrasound; p-waves; p waves; p-wave; seismic p-waves; earthquake p-waves
+short | energy | Energy stores | Which energy store depends on temperature? | ACCEPT: thermal; thermal store; thermal energy; internal
+
+## 5. Cost of Energy   (Q2–Q5 repeat earlier quizzes)
+mc | energy | Energy stores | Batteries store energy in which store? | Kinetic; Electrical; *Chemical; Thermal | EXP: A battery's chemical store is emptied as it transfers energy electrically to the circuit.
+tf | electricity | Paying for electricity | A 20 W lamp transfers 20 J of energy every second. | TRUE | EXP: 1 watt = 1 joule per second.
+num | electricity | Paying for electricity | Write 12 000 W in kilowatts. {both} | NUM: 12 kW | EXP: Divide by 1000: 12 000 ÷ 1000 = 12 kW.
+
+## RP Bouncing   (Q2 repeats quiz 2. [NOTE for Rob: Q1 talks about energy "forms" being "converted"; reworded to stores and transfers, the current AQA language])
+tf | energy | Energy stores | Energy can be held in different stores and transferred from one store to another. | TRUE | EXP: For example chemical, kinetic, gravitational potential, elastic potential and thermal stores.
+tf | energy | Energy stores | A moving object has energy in its kinetic store. | TRUE
+mc | energy | Energy stores | Which of these is a store of chemical energy? | Light bulb; Solar panel; *Battery; Wind turbine
+mc | waves | Transverse & longitudinal waves | Which part of a wave is the crest (peak)? | The lowest point of the wave; The midpoint of the wave; The start of the wave; *The highest point of the wave
+mc | waves | Transverse & longitudinal waves | What is the amplitude of a wave? {both} | The time taken for one complete wave; *The maximum displacement from the rest position; The distance between two crests; The number of waves passing a point per second | EXP: The amplitude is the height from the middle (rest) line to a crest.
+
+## The ear   (Q3 repeats an existing question)
+short | waves | Sound on an oscilloscope | What type of wave is a sound wave? {both} | ACCEPT: longitudinal; a longitudinal wave; longitudinal wave
+open | waves | Transverse & longitudinal waves | What is the amplitude of a wave? | MODEL: The height of the wave from the middle (rest) line to a peak.
+short | waves | Sound on an oscilloscope | In which state of matter does sound travel fastest? {both} | ACCEPT: solid; solids; a solid | EXP: The particles in a solid are closest together, so the vibrations pass along fastest.
+num | waves | Echo sounding & ultrasound scans | Ultrasound is sound above what frequency? {both} | NUM: 20000 Hz | EXP: Humans can hear up to about 20 000 Hz (20 kHz). Ultrasound is higher than that.
+open | waves | Echo sounding & ultrasound scans | What do we use ultrasound for? {both} | MODEL: Scanning unborn babies (pre-natal scans). Also: scanning organs, cleaning jewellery, and echo sounding to find the depth of the sea.

@@ -1,0 +1,42 @@
+SOURCE GRN Science / Year 8 / Physics / Heating and cooling
+
+## 1. Heat and temperature   (Q8, Q9 repeat existing variables questions)
+mc | forces | Work done | What is the unit of work done? | *Joules; Metres; Newtons; Kilograms
+short | forces | Work done | A weightlifter holding a bar still above their head is not doing any work on it, because the bar is not... | ACCEPT: moving; being moved; moving any distance; moving a distance | EXP: Work done = force × distance moved. No movement means no work is done on the bar.
+mc | forces | Moments | The moment of a force on a lever gets bigger when the force... | *Increases; Decreases; It doesn't make a difference | EXP: Moment = force × perpendicular distance from the pivot.
+mc | forces | Moments | The moment of a force on a lever gets bigger when the distance from the pivot... | *Increases; Decreases; It doesn't make a difference | EXP: That's why it's easier to open a door by pushing on the side furthest from the hinges.
+short | forces | Work done | When work is done, there is a transfer of... | ACCEPT: energy
+short | forces | Pressure on solids | The force per unit area is called... | ACCEPT: pressure
+tf | forces | Pressure in fluids & upthrust | Pressure can only be applied by solids, not by liquids or gases. | FALSE | EXP: Liquids and gases exert pressure too, for example water pressure and air pressure.
+
+## 2. Conduction   (Q4, Q8, Q9 repeat existing questions. [NOTE for Rob: Q1 marks Fahrenheit wrong as a unit of temperature, though it is one; reworded to the unit we use in science. Q3 says "heat energy"; reworded to the thermal store])
+mc | energy | Specific heat capacity | Which unit do we use for temperature in science? | *Degrees Celsius (°C); Joules (J); Coulombs (C); Newtons (N)
+mc | energy | Specific heat capacity | Which unit is energy measured in? | Degrees Celsius (°C); *Joules (J); Coulombs (C); Newtons (N)
+tf | energy | Specific heat capacity | An iceberg has more energy in its thermal store than a hot cup of coffee. | TRUE | EXP: The iceberg is much colder, but it has a huge mass, so all its particles together store far more energy. Temperature isn't the same as thermal energy.
+open | forces | Pressure on solids | Why do snowshoes have a large surface area? | MODEL: The large area spreads your weight out, so the pressure on the snow is lower and you don't sink in. | EXP: pressure = force ÷ area.
+mc | forces | Pressure on solids | To increase the pressure, the force needs to... | *Increase; Decrease; Force doesn't make a difference
+open | forces | Pressure in fluids & upthrust | Why do your ears pop when you dive deeper underwater? | MODEL: Pressure in water increases with depth, because there is more water above you pushing down. The extra pressure pushes on your eardrums.
+
+## 3. Convection   (Q4 repeats an existing question. [NOTE for Rob: Q2 marks "Solids only" for where conduction happens; it happens in solids, liquids and gases, just best in solids (worst in gases). Fixed. Q5 "Heat" is not a type of wave: left out, since infrared is a wave and "heat" is ambiguous])
+open | particles | States of matter | How does the movement of the particles change when a substance is heated? | MODEL: The particles gain kinetic energy and move faster (in a solid, they vibrate more).
+mc | energy | Conduction, convection & radiation | Conduction can happen in... | Solids only; Solids and liquids but not gases; Liquids only; *Solids, liquids and gases | EXP: Conduction happens in all three, but it is fastest in solids (especially metals) and slowest in gases, where the particles are far apart.
+open | energy | Conduction, convection & radiation | Explain why a saucepan is made of metal but has a plastic handle. | MODEL: Metal is a good thermal conductor, so energy is transferred quickly to the food. Plastic is a thermal insulator, so the handle stays cool enough to hold.
+open | forces | Pressure on solids | Explain why a tractor with large tyres is less likely to sink into mud. Use the word pressure. | MODEL: The large tyres spread the tractor's weight over a bigger area, so the pressure on the mud is lower and the tractor doesn't sink in.
+mc | forces | Pressure on solids | Which is the equation for pressure? | Pressure = force × area; Pressure = area ÷ force; *Pressure = force ÷ area
+multi | particles | States of matter | In which states of matter can the particles move from place to place? (tick 2) | Solid; *Liquid; *Gas | EXP: In a solid the particles only vibrate about fixed positions.
+
+## 4. Radiation   (Q4 repeats the conduction question from quiz 3, with the same Showbie error)
+mc | waves | Sound on an oscilloscope | If a sound has a higher pitch, its... | *Frequency has increased; Frequency has decreased; Amplitude has increased; Amplitude has decreased
+short | waves | Sound on an oscilloscope | If a sound wave's amplitude increases, the sound gets... | ACCEPT: louder; loud; get louder; it gets louder
+mc | forces | Pressure in fluids & upthrust | Air pressure acts... | Downwards; Upwards; *In all directions; It depends on the wind
+mc | energy | Conduction, convection & radiation | Convection happens in... | Solids only; Solids and liquids only; Liquids only; Solids, liquids and gases; *Liquids and gases only | EXP: Convection needs the particles to move from place to place, so it can't happen in a solid.
+short | energy | Conduction, convection & radiation | Which word describes substances that can flow, such as liquids and gases? | ACCEPT: fluid; fluids; a fluid
+short | energy | Conduction, convection & radiation | The movement of a warm gas or liquid around a room is called a convection... | ACCEPT: current; convection current
+
+## 5. Insulation   (Q6 repeats the conduction error again, left out; Q7 repeats quiz 4)
+mc | forces | Pressure in fluids & upthrust | What happens to water pressure as you go deeper? | *It increases; It decreases; It stays the same
+open | forces | Pressure in fluids & upthrust | Why is the pressure from water usually greater than the pressure from the air? | MODEL: Water is much denser than air, so the same depth of water has far more weight pushing down.
+mc | forces | Pressure in fluids & upthrust | Which force pushes up on objects under water? | Water resistance; *Upthrust; Weight; Pressure
+mc | forces | Pressure on solids | How could the pressure under a snowshoe be reduced? | Increase the force applied; Try to step more lightly; *Increase the surface area of the shoe; Make the snowshoe out of a softer material
+short | energy | Conduction, convection & radiation | What is the name for energy transferred by waves, such as infrared? | ACCEPT: radiation; infrared radiation; thermal radiation; radiating
+open | energy | Energy stores | Challenge: describe the energy transfers in a bow and arrow. | MODEL: Pulling back the bow transfers energy from your muscles (chemical store) to the elastic potential store of the bow. When you let go, energy is transferred to the kinetic store of the arrow. Some is wasted as sound and by heating.

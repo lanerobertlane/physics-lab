@@ -1,0 +1,18 @@
+SOURCE GRN Science / Year 9 / Physics
+
+## Vectors and Scalars   [NOTE for Rob: Q1 "Forces cause movement" is marked False, which is confusing (a resultant force does start things moving). Reworded. Q4 had no correct answer ticked; set to newtons]
+tf | forces | Resultant forces | A moving object needs a resultant force to keep it moving at a steady speed. {both} | FALSE | EXP: With no resultant force, a moving object keeps moving at the same speed in the same direction. A resultant force changes its speed or direction.
+short | forces | Weight on other planets | What is the unit of mass? {both} | ACCEPT: kilograms; kilogram; kg
+mc | forces | Resultant forces | What happens to a moving car when the resultant force on it is zero? {both} | It stops; It slows down; It speeds up; *It carries on at a constant speed
+mc | forces | Weight on other planets | What is the unit of weight? {both} | Kilograms (kg); *Newtons (N); Newton-metres (N m); Newtons per kilogram (N/kg) | EXP: Weight is a force, so it is measured in newtons. N/kg is the unit of gravitational field strength.
+tf | forces | Resultant forces | Friction is a non-contact force. {both} | FALSE | EXP: Friction only acts when surfaces touch, so it is a contact force.
+mc | forces | Resultant forces | Air resistance is a... {both} | *Contact force; Non-contact force | EXP: The object has to touch the air particles, so air resistance is a contact force.
+open | forces | Work done | Challenge: describe the energy transfers when you lift an object up. {both} | MODEL: Energy is transferred from the chemical store of your muscles, mechanically (by the force doing work), to the gravitational potential store of the object. Some is wasted by heating your body and the surroundings.
+
+## Weight and Gravity
+mc | forces | Resultant forces | Which of these is a contact force? {both} | *Friction; Magnetism; Gravity; Electrostatic
+short | energy | Energy stores | Which energy store is found in food? {both} | ACCEPT: chemical; chemical store; chemical energy
+open | atomic | Atom builder | Which three subatomic particles are found in an atom? {both} | MODEL: Protons, neutrons and electrons.
+mc | atomic | Atom builder | Which particle has a negative charge? {both} | Proton; Neutron; *Electron; Nucleus
+mc | atomic | Atom builder | Which particle has a positive charge? {both} | *Proton; Neutron; Electron; Nucleus
+open | forces | Resultant forces | Which forces always act in the opposite direction to the motion? {both} | MODEL: Friction, air resistance and water resistance (drag).
