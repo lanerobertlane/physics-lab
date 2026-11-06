@@ -1,0 +1,90 @@
+SOURCE GRN Science / Year 10 / Physics / Forces
+
+## 1. Resultant forces
+mc | forces | Resultant forces | In which direction does friction act? | Same direction as the motion; *Opposite direction to the motion; Towards the centre of the object; Away from the object
+tf | forces | Weight on other planets | If a person travelled to the Moon, their weight would stay the same but their mass would change. | FALSE | EXP: Their mass stays the same, but their weight changes because the gravitational field strength is different.
+open | forces | Resultant forces | Name two non-contact forces. | MODEL: Any two of: gravitational force (weight), magnetic force, electrostatic force.
+short | forces | Resultant forces | What unit is used to measure forces? | ACCEPT: newtons; newton; N
+mc | waves | Transverse & longitudinal waves | What unit is used to measure the frequency of a wave? | Joules; *Hertz; Newtons; Decibels
+tf | forces | Terminal velocity | As an object's speed increases, the resistive forces acting on it also increase. | TRUE | EXP: Air resistance and drag get bigger as the object moves faster, which is why falling objects reach terminal velocity.
+
+## 2. Vector diagrams   (NOTE for Rob: Q1 "Forces cause movement: False" reworded; Q5 had no answer ticked)
+tf | forces | Resultant forces | A resultant force is always needed to keep an object moving. | FALSE | EXP: With no resultant force, a moving object keeps moving at a constant velocity (Newton's first law). A resultant force changes its speed or direction.
+mc | forces | Resultant forces | Forces are... | *Vectors; Scalars; Both | EXP: A force has a size and a direction.
+short | forces | Weight on other planets | What is the unit of mass? | ACCEPT: kilograms; kilogram; kg
+mc | forces | Resultant forces | What happens to a moving car with zero resultant force acting on it? | It stops; Slows down; Speeds up; *Continues at a constant speed
+mc | forces | Weight on other planets | What is the unit of weight? | Kilograms (kg); *Newtons (N); Newton-metres (N m); Newtons per kilogram (N/kg)   [set by me]
+tf | forces | Resultant forces | Friction is a non-contact force. | FALSE | EXP: Friction only acts when surfaces touch, so it is a contact force.
+
+## 3. Work done   (Q1 sugar control variable: non-physics context, dropped)
+short | forces | Pressure in fluids & upthrust | Objects under water have a force pushing up on them. What is the name of this force? | ACCEPT: upthrust; up thrust; buoyancy
+mc | particles | Required practical: density | Why does a ping pong ball float in water? | It is lighter than water; It weighs less than water; *It has a lower density than water; A ping pong ball doesn't float in water
+tf | forces | Pressure on solids | The unit of pressure can be written as N/m². | TRUE | EXP: 1 N/m² is 1 pascal (Pa).
+mc | reference | Practical graph plotter | The independent variable is the variable you... | *Change; Measure; Keep the same
+open | waves | Transverse & longitudinal waves | Give one example of something that travels as a wave. | MODEL: Light, sound, water ripples, radio waves, microwaves or seismic waves (any one).
+
+## Acceleration and Velocity
+open | forces | Weight on other planets | Explain the difference between mass and weight. | MODEL: Mass is the amount of matter in an object, measured in kg, and is the same everywhere. Weight is the force of gravity on the mass, measured in N. It depends on the gravitational field strength (W = m g).
+open | forces | Speed & distance–time | What equation links speed, distance and time? | MODEL: Speed = distance ÷ time (or distance = speed × time).
+short | forces | Speed & distance–time | What is the standard unit of speed? | ACCEPT: m/s; metres per second; meters per second; ms-1; m s-1
+num | forces | Speed & distance–time | A car travels 200 metres in 10 seconds. Calculate the speed of the car. | NUM: 20 m/s | EXP: Speed = distance ÷ time = 200 ÷ 10 = 20 m/s
+open | forces | Speed & distance–time | A road has lampposts every 20 metres. Explain how you could calculate the speed of a car travelling along the road. | MODEL: Use a stopwatch to time how long the car takes to travel between two lampposts (or several, for a longer distance). Divide the distance (20 m per gap) by the time.
+
+## Distance time graphs   (Q1, Q2 duplicates, skip. Q6 "most environmentally friendly: Renewable energy" dropped. NOTE for Rob: hydropower and geothermal are renewable too, so the options overlap)
+tf | forces | Resultant forces | The normal contact force acts perpendicular (at 90°) to a surface. | TRUE | EXP: A surface pushes back on an object resting on it, at right angles to the surface.
+mc | forces | Resultant forces | Which of the following is a contact force? | *Friction; Electrostatic force; Magnetic force; Gravity
+mc | energy | Energy resources | Which energy resource generates the most electricity worldwide? | *Coal; Solar power; Wind energy; Hydropower | EXP: Coal is still the largest single source of the world's electricity, although renewables are growing fast.
+
+## Elastic energy
+open | forces | Springs & Hooke's law | What does elastic deformation mean? | MODEL: The object goes back to its original shape and length when the force is removed.
+open | forces | Springs & Hooke's law | What does plastic (inelastic) deformation mean? | MODEL: The object does not go back to its original shape and length when the force is removed.
+open | energy | Energy stores | State two energy stores. | MODEL: Any two of: kinetic, gravitational potential, elastic potential, chemical, thermal (internal), magnetic, electrostatic, nuclear.
+short | forces | Springs & Hooke's law | What is the unit of extension? | ACCEPT: metres; metre; m; meters; meter
+tf | electricity | Circuit builder | A parallel circuit has only one path for the current to flow. | FALSE | EXP: A parallel circuit has two or more branches, so there is more than one path.
+tf | electricity | Circuit builder | In a series circuit, the current is the same at all points. | TRUE
+
+## Elasticity   (Q3 weight unit: duplicate, skip)
+mc | forces | Work done | Which equation links work done, force and distance? | Work done = force ÷ distance; *Work done = force × distance (along the line of the force)
+mc | forces | Work done | What is the unit of work done? | Watts; *Joules; Newtons; Metres
+tf | forces | Work done | Work is done when energy is transferred by a force moving an object. | TRUE | EXP: Work done (J) = force (N) × distance moved along the line of the force (m).
+mc | electricity | Circuit builder | Which equation calculates the current? | Current = p.d. × resistance; Current = p.d. + resistance; Current = p.d. − resistance; *Current = p.d. ÷ resistance
+mc | waves | Transverse & longitudinal waves | What is the unit of frequency? | Period; Amplitude; *Hertz (Hz); Wavelength
+tf | waves | Transverse & longitudinal waves | In a longitudinal wave, the oscillations are parallel to the direction of energy transfer. | TRUE | EXP: Sound waves are longitudinal: the air particles move backwards and forwards along the direction the wave travels.
+
+## Hookes Law   (Q2 plastic deformation: duplicate, skip)
+open | forces | Springs & Hooke's law | Recall the equation that links force, extension and spring constant. | MODEL: Force = spring constant × extension (F = k e).
+short | energy | Energy stores | What unit do we measure elastic potential energy in? | ACCEPT: joules; joule; J
+mc | electricity | Circuit builder | What is the effect of increasing the potential difference across a resistor? | *The current increases; The resistance decreases; The current decreases; The resistance increases
+mc | electricity | Circuit builder | What happens to the current in a circuit if the resistance is increased? | *The current decreases; The current fluctuates; The current remains the same; The current increases
+
+## Newtons 1st law
+mc | forces | Resultant forces | Which of the following is an example of a non-contact force? {both} | Friction; Normal contact force; *Magnetic force; Tension | EXP: Magnetic force acts on objects without touching them.
+tf | forces | Weight on other planets | The weight of an object is the same as its mass. {both} | FALSE | EXP: Weight is the force of gravity on an object (N). Mass is the amount of matter (kg). On Earth, a 5 kg mass weighs about 49 N.
+mc | forces | Resultant forces | Which of the following is an example of a contact force? {both} | Gravity; Magnetic force; Electrostatic force; *Friction
+tf | forces | Resultant forces | An object in equilibrium has no resultant force acting on it. | TRUE | EXP: The forces are balanced, so the object stays at rest or keeps moving at a constant velocity.
+mc | forces | Speed & distance–time | What is the equation for speed? {both} | Time divided by distance; *Distance divided by time; Distance multiplied by speed; Time multiplied by distance
+tf | forces | Motion graphs | Speed is a scalar quantity. | TRUE | EXP: Speed has a size only. Velocity is a vector: it has a size and a direction.
+
+## Newtons 2nd Law   (Q1-4 duplicates of Newtons 1st law, skip)
+tf | forces | Motion graphs | Velocity is a scalar quantity. | FALSE | EXP: Velocity is a vector: it has a size (speed) and a direction.
+
+## Pressure in Fluids   (Q4-7 duplicates, skip)
+open | forces | Motion graphs | What does a horizontal line on a distance–time graph tell you? {both} | MODEL: The object is stationary (not moving).
+open | forces | Motion graphs | How do you calculate speed from a distance–time graph? | MODEL: Find the gradient: change in distance ÷ change in time.
+open | forces | Motion graphs | What does a line sloping downwards on a distance–time graph tell you? | MODEL: The object is moving back towards its starting point.
+
+## Speed   (Q1 duplicate, skip)
+open | forces | Resultant forces | What happens to a stationary object if there is no resultant force acting on it? {both} | MODEL: It stays stationary.
+open | forces | Resultant forces | What happens to a moving object if a resultant force acts on it? | MODEL: It accelerates: it speeds up, slows down or changes direction, depending on the direction of the force.
+num | forces | Resultant forces | A car has a driving force of 1200 N and a resistive force of 800 N. Calculate the resultant force on the car. {both} | NUM: 400 N | EXP: The forces act in opposite directions, so subtract: 1200 − 800 = 400 N forwards.
+mc | electricity | Circuit builder | What instrument is used to measure potential difference (voltage)? {both} | Ammeter; *Voltmeter; Wattmeter; Ohmmeter
+
+## Speed investigation   (Q1, Q3, Q5 duplicates, skip)
+open | forces | Speed & distance–time | What units do we measure distance and time in? {both} | MODEL: Distance in metres (m), time in seconds (s).
+short | reference | Practical graph plotter | Which type of variable do we keep the same to make a test fair? {both} | ACCEPT: control; control variable; control variables; controlled; controlled variable
+
+## Untitled Quiz
+tf | waves | Electromagnetic spectrum | All radiation is harmful to humans. | FALSE | EXP: Low-energy radiation such as radio waves and visible light is not harmful at normal levels. Ionising radiation (UV, X-rays, gamma, alpha and beta) can damage cells.
+mc | atomic | Uses of radiation | Which type of radiation is used in household smoke detectors? | X-rays; Gamma rays; *Alpha particles; Beta particles | EXP: Americium-241 emits alpha particles, which ionise the air so a small current flows. Smoke absorbs the alpha particles, the current falls and the alarm sounds.
+tf | atomic | Alpha, beta & gamma | Gamma radiation is a type of electromagnetic radiation. | TRUE | EXP: Gamma rays are high-frequency electromagnetic waves emitted from the nucleus.
+open | atomic | Contamination, irradiation & background | What safety precautions should be taken when working with radioactive materials? | MODEL: Handle sources with tongs, keep them at a distance and pointing away from people, minimise the time of exposure, store them in lead-lined boxes, and wear protective clothing or shielding.

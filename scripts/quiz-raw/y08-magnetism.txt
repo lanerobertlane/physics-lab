@@ -1,0 +1,28 @@
+SOURCE GRN Science / Year 8 / Physics / Magnetism
+
+## 1. Magnets and Poles   (all retrieval; Q2 slingshot and Q3 repeat existing questions)
+mc | energy | Energy stores | What is the unit of energy? | Newtons (N); Watts (W); Amps (A); *Joules (J)
+mc | forces | Pressure in fluids & upthrust | In which directions does pressure in a liquid act? | Upwards; Downwards; *In all directions; It depends on the liquid
+mc | forces | Terminal velocity | What happens to drag when speed increases? | Drag stays the same; *Drag increases; Drag decreases
+
+## 2. Magnetic fields   (Q7 "How does your body use energy?" is biology, dropped)
+short | magnetism | Bar magnet fields | What happens when you put the like poles of two magnets together? | ACCEPT: repel; they repel; push apart; they push apart; repulsion
+open | magnetism | Bar magnet fields | What are the two poles of a magnet called? | MODEL: North and south.
+short | magnetism | Bar magnet fields | What happens when different (unlike) poles are brought together? | ACCEPT: attract; they attract; pull together; attraction; they pull together
+mc | magnetism | Bar magnet fields | Is magnetism a contact or a non-contact force? | Contact; *Non-contact
+short | magnetism | Bar magnet fields | Name a magnetic material. | ACCEPT: iron; nickel; cobalt; steel
+short | energy | Energy stores | Which energy store is in a tank of petrol? | ACCEPT: chemical; chemical store; chemical energy
+
+## 3. Electromagnets   (Q1, Q2, Q6 repeat existing questions)
+open | magnetism | Bar magnet fields | What is an induced magnet? {both} | MODEL: A material that becomes a magnet only when it is placed in a magnetic field. It loses most of its magnetism when taken out.
+tf | magnetism | Bar magnet fields | A permanent magnet produces its own magnetic field. {both} | TRUE
+tf | magnetism | Bar magnet fields | An induced magnet can attract and repel. {both} | FALSE | EXP: An induced magnet is always attracted, never repelled.
+short | energy | Energy resources | Give an example of a renewable energy resource. | ACCEPT: solar; wind; hydroelectric; hydro; tidal; wave; waves; geothermal; biofuel; biofuels; biomass; wind power; solar power; the sun; sunlight
+
+## 4. Electromagnet investigation   (Q7 repeats an existing question. [NOTE for Rob: Q5 marks magnetic field lines as going "South to North"; they go from north to south (outside the magnet). Fixed])
+short | magnetism | Bar magnet fields | Where is the magnetic field of a bar magnet strongest? {both} | ACCEPT: at the poles; the poles; poles; at the ends; the ends; ends; at each pole
+short | magnetism | Bar magnet fields | Which direction does a compass point? | ACCEPT: north; magnetic north; to the north; towards north
+short | magnetism | Electromagnets & the motor effect | When an electric current flows through a wire, what does it produce around the wire? {both} | ACCEPT: magnetic field; a magnetic field; field; magnetism
+open | magnetism | Electromagnets & the motor effect | How can you make the magnetic field around a wire stronger? {both} | MODEL: Wind the wire into a coil (more turns), put an iron core inside the coil, or increase the current.
+mc | magnetism | Bar magnet fields | Which way do magnetic field lines point? {both} | *From north to south; From south to north | EXP: Outside the magnet, field lines go from the north pole to the south pole.
+short | energy | Energy resources | Which renewable energy resource pumps cold water down into hot rocks underground, and uses the hot water and steam that come back up to generate electricity? | ACCEPT: geothermal; geothermal energy; geothermal power

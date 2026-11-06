@@ -1,0 +1,45 @@
+SOURCE GRN Science / Year 9 / Physics / Particle model
+
+## 1. Particle model
+mc | magnetism | Bar magnet fields | What are the ends of a magnet called? {both} | *Poles; Points; Fields; Attractors
+tf | magnetism | Bar magnet fields | All metals are magnetic. {both} | FALSE | EXP: Only iron, nickel and cobalt (and steel, which contains iron) are magnetic.
+open | energy | Energy stores | Describe the energy transfers when a ball is dropped from a height. {both} | MODEL: As the ball falls, energy is transferred from its gravitational potential store to its kinetic store. When it hits the ground, some energy is transferred to the thermal store of the surroundings and carried away by sound.
+mc | electricity | Paying for electricity | What is the definition of power? {both} | How quickly something happens; *The amount of energy transferred per second; The total energy that is transferred; The force something can apply
+open | magnetism | Electromagnets & the motor effect | Describe how to make an electromagnet. {both} | MODEL: Wrap a coil of insulated wire around an iron core (such as a nail) and pass a current through the wire. More turns or a bigger current make it stronger.
+
+## 2. Density
+mc | particles | States of matter | Describe the arrangement of particles in a solid. {both} | Vibrate; *Regular; Can't be squashed; Fixed shape | EXP: Particles in a solid are in a regular pattern, touching each other. "Vibrate" describes how they move.
+mc | particles | States of matter | Describe the movement of particles in a solid. {both} | *Vibrate in a fixed position; No spaces between them; Can't be squashed; Fixed shape
+mc | particles | States of matter | Why are there spaces between the particles in a gas? {both} | They spread out to fill the room; *The forces between the particles are very weak; The particles get bigger when they are a gas | EXP: The forces between gas particles are too weak to hold them together, so they move apart. The particles don't change size.
+tf | particles | States of matter | You can compress (squash) a liquid. {both} | FALSE | EXP: The particles in a liquid are already touching, so there's almost no space to squash them into.
+short | magnetism | Bar magnet fields | Name a magnetic metal. {both} | ACCEPT: iron; nickel; cobalt; steel
+mc | magnetism | Bar magnet fields | Why does a compass point north? {both} | The weight pulls the bottom of the compass down; *The compass needle lines up with the Earth's magnetic field; It doesn't, you have to move it to point north
+
+## 3. Density RP   (Q4 repeats quiz 1, skip)
+mc | particles | Required practical: density | Which of these is a correct unit for density? {both} | cm³/g; *g/cm³; g cm³; cm g³ | EXP: Density = mass ÷ volume, so the unit is g/cm³ (or kg/m³).
+mc | particles | Required practical: density | What is meant by density? {both} | How heavy something is; How big something is; *How much mass an object has for its volume; How likely something is to float | EXP: Density is the mass per unit volume.
+mc | particles | States of matter | The particles are all touching, but they can move around each other. Which state is this? {both} | Solid; *Liquid; Gas
+open | magnetism | Electromagnets & the motor effect | Give one advantage of an electromagnet over a permanent magnet. {both} | MODEL: It can be switched on and off. (Also: its strength can be changed by changing the current.)
+mc | energy | Energy stores | Which energy store does a log of wood have? {both} | Thermal; *Chemical; Sound; Light | EXP: Wood stores energy chemically. It is released when the wood burns.
+
+## 4. Changes of state
+multi | particles | Required practical: density | Which pieces of equipment do you need to find the volume of an irregular shape? (tick 2) {both} | *Displacement (eureka) can; *Measuring cylinder; Mass balance; Weighing scales | EXP: Lower the object into a full eureka can and collect the water that overflows in a measuring cylinder. Its volume equals the object's volume.
+mc | particles | Required practical: density | Which is the correct equation for density? {both} | Density = mass × volume; *Density = mass ÷ volume; Density = volume ÷ mass
+multi | particles | States of matter | Which of these properties does a gas have? (tick 2) {both} | Fixed shape; *Can be compressed; *Spreads out to fill a container; Fixed volume
+num | energy | Efficiency | A light bulb has 100 J of energy going in. 20 J is given out as light. How much energy is transferred by heating? {both} | NUM: 80 J | EXP: 100 − 20 = 80 J is wasted by heating the surroundings.
+open | energy | Energy stores | Describe the energy transfers when a catapult is stretched back and released. {both} | MODEL: Stretching the catapult transfers energy to its elastic potential store. When it is released, energy is transferred from the elastic potential store to the kinetic store of the stone.
+
+## 5. Internal energy   [NOTE for Rob: Q3 asks for the "most accurate" way to measure the length of a regular shape and marks Ruler, but a micrometer is more accurate. Reworded to "most suitable" for a 5 cm block]
+mc | particles | States of matter | What is the name for a gas turning into a liquid? {both} | *Condensation; Freezing; Melting; Boiling
+short | particles | States of matter | What is the name for the change of state from a solid straight to a gas? {both} | ACCEPT: sublimation; subliming; sublimating
+mc | particles | Required practical: density | Which is the most suitable way to measure the sides of a 5 cm block? {both} | *Ruler; Tape measure; Trundle wheel; Micrometer | EXP: A ruler measures to the nearest mm, which suits a 5 cm block. A micrometer is more precise but can only measure up to about 2.5 cm.
+multi | particles | States of matter | Which of these are properties of a liquid? (tick 2) {both} | *Cannot be compressed; Spreads out to fill a container; *Can be poured
+multi | magnetism | Bar magnet fields | Which of these metals are magnetic? (tick 2) {both} | Copper; *Iron; *Nickel; Aluminium | EXP: The magnetic metals are iron, nickel and cobalt.
+
+## 5. Pressure in gases
+mc | forces | Resultant forces | What is the unit of force? {both} | *N; g; J; cm³ | EXP: Force is measured in newtons (N).
+open | particles | States of matter | Describe the arrangement of particles in a gas. {both} | MODEL: The particles are far apart and randomly arranged, with lots of space between them.
+mc | particles | Required practical: density | Why does ice float on water? {both} | *Ice is less dense than water; Ice is solid; Ice is lighter than water; Ice is colder than water | EXP: An object floats if it is less dense than the liquid. Ice is unusual: it is less dense than liquid water.
+mc | particles | States of matter | Which state of matter has a fixed shape and a fixed volume? {both} | *Solid; Liquid; Gas
+open | particles | States of matter | Explain how the energy of the particles changes when the temperature of a substance goes up. | MODEL: The particles gain kinetic energy and move (or vibrate) faster. Temperature goes up because the average kinetic energy of the particles goes up, so the internal energy goes up.
+open | particles | States of matter | Explain how the energy of the particles changes when a substance changes state. | MODEL: The energy goes into breaking (or weakening) the bonds between the particles, so their potential energy changes, not their kinetic energy. The temperature stays the same while the state changes, but the internal energy still goes up.

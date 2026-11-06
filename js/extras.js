@@ -47,6 +47,7 @@
   // ---------- Tooltips for settings ----------
   // Keys are element ids; "page#id" when the same id means different things on different pages.
   const TIPS = {
+    'quiz#qz-order': 'Each student gets the questions in a different order, so they can’t copy the person next to them.',
     // Practice questions (Calculation practice and every tool's Practice tab)
     rearrange: 'Sometimes asks for a quantity that isn’t the subject of the equation, so you have to rearrange it first.',
     convert: 'Some values are given in units like kJ, g or cm. Convert them to SI units (such as J, kg and m) before you calculate.',
@@ -347,6 +348,7 @@
     for (let r = 0; r < n; r++) for (let k = 0; k < n; k++) if (q.isDark(r, k)) c.fillRect(Math.floor((k + quiet) * cell), Math.floor((r + quiet) * cell), Math.ceil(cell), Math.ceil(cell));
     return true;
   }
+  PK.qr = { load: loadQr, draw: drawQr };
   function openShare() {
     if (typeof window.saveHash === 'function') { try { window.saveHash(); } catch { /* ignore */ } }
     const url = shareUrl();
@@ -423,7 +425,7 @@
     glossBusy = false;
   }
   function startGlossary() {
-    if (page === 'index' || !main) return;
+    if (page === 'index' || !main || document.documentElement.dataset.glossary === 'off') return;
     const s = document.createElement('script');
     s.src = `${PK.root}js/glossary.js`;
     s.onload = () => {
@@ -466,9 +468,9 @@
 
   // ---------- Start ----------
   function start() {
-    restoring = true; restoreState(); restoring = false;
-    watchUrl();
-    addShareButton();
+    // A page can opt out of link sharing (Quick quizzes makes its own links)
+    const own = document.documentElement.dataset.share === 'off';
+    if (!own) { restoring = true; restoreState(); restoring = false; watchUrl(); addShareButton(); }
     attachTips();
     addCopyButtons();
     addTableButtons();

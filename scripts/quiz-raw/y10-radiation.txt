@@ -1,0 +1,53 @@
+SOURCE GRN Science / Year 10 / Physics / Radiation
+
+## 1. Atoms and isotopes
+open | atomic | Atom builder | What subatomic particles are found in the nucleus of an atom? {both} | MODEL: Protons and neutrons.
+short | atomic | Atom builder | What is the charge of an electron? {both} | ACCEPT: negative; -1; −1; minus one; negative one; -
+short | waves | Transverse & longitudinal waves | What is the name for the part of the wave labelled A? [img: wave-labels] {both} | ACCEPT: peak; crest; the peak; the crest
+open | chemistry | Periodic table | Why does this model show an element and not a compound? [img: element-molecules] {ks3} | MODEL: All the atoms are the same type (the same colour). A compound has two or more different types of atom chemically joined.
+mc | atomic | Atom builder | What subatomic particle is found outside the nucleus of an atom? {both} | Proton; *Electron; Neutron
+short | electricity | Circuit builder | What does this circuit symbol represent? [img: battery] {both} | ACCEPT: battery; a battery; cells; battery of cells
+mc | atomic | Atom builder | What is the relative mass of a proton? | *1; 0; 0.0005; −1   [NOTE: Showbie had no answer ticked; set by me]
+
+## 2. Properties of Alpha, Beta and Gamma Radiation   (Q1 proton mass, Q5 electron charge: duplicates, skip)
+mc | atomic | Atom builder | What is an isotope? | An atom which has gained or lost protons; An atom which has gained or lost electrons; *An atom of the same element with a different number of neutrons
+mc | atomic | Atom builder | What is an ion? {both} | An atom which has gained or lost protons; *An atom which has gained or lost electrons; An atom with a different number of neutrons
+short | atomic | Alpha, beta & gamma | Which part of an atom does radioactive decay happen in? | ACCEPT: nucleus; the nucleus
+tf | atomic | Alpha, beta & gamma | An alpha particle is a helium atom. | FALSE | EXP: An alpha particle is a helium nucleus: 2 protons and 2 neutrons, with no electrons.
+short | waves | Transverse & longitudinal waves | Which letter shows the wavelength of the wave? [img: wave-labels] {both} | ACCEPT: D; d
+
+## 3. Decay equations   (Q6 V = IR: duplicate, skip)
+mc | atomic | Nuclear equations | During alpha decay, the mass number of the nucleus... | Increases by 1; Decreases by 1; Increases by 2; Decreases by 2; Increases by 4; *Decreases by 4; Stays the same | EXP: An alpha particle is 2 protons + 2 neutrons, so the mass number falls by 4.
+mc | atomic | Nuclear equations | During beta decay, the mass number of the nucleus... | Increases by 1; Decreases by 1; Increases by 2; Decreases by 2; Increases by 4; Decreases by 4; *Stays the same | EXP: A neutron turns into a proton, so the total number of nucleons is unchanged.
+short | energy | Energy resources | Electricity generated from fossil fuels or nuclear fuel comes from which kind of energy resource? | ACCEPT: non-renewable; non renewable; nonrenewable
+short | atomic | Nuclear equations | During beta decay, the atomic number of the nucleus... | ACCEPT: increases by 1; goes up by 1; increases by one; +1; increases
+mc | atomic | Nuclear equations | During alpha decay, the atomic number of the nucleus... | Increases by 1; Decreases by 1; Increases by 2; *Decreases by 2; Increases by 4; Decreases by 4; Stays the same
+tf | atomic | Nuclear equations | During gamma decay, the atomic number of the nucleus doesn't change. | TRUE | EXP: Gamma rays are electromagnetic waves with no mass or charge, so neither number changes.
+
+## 5. Litvinenko investigation   (Q1-6 duplicates, skip)
+short | atomic | Atom builder | What is the relative charge of a proton? {both} | ACCEPT: +1; 1; positive; plus one; positive one; +
+
+## Decay equations   (Q3 stopping beta: duplicate, skip)
+open | atomic | Alpha, beta & gamma | What is the structure of an alpha particle? | MODEL: Two protons and two neutrons (the same as a helium nucleus).
+open | atomic | Alpha, beta & gamma | What is a beta particle? | MODEL: A high-speed electron emitted from the nucleus when a neutron turns into a proton.
+short | electricity | Circuit builder | What charged particle moves around a circuit to carry the current? {both} | ACCEPT: electron; electrons; an electron
+open | energy | Energy stores | Describe the energy changes when a book falls off a shelf. {both} | MODEL: Energy is transferred from the book's gravitational potential store to its kinetic store as it falls. When it hits the floor, the energy is dissipated to the thermal store of the surroundings and as sound.
+
+## Half-Life   (all five questions duplicate earlier ones, skip)
+
+## Irradiation and Contamination   (all duplicates, skip)
+
+## Isotopes and Radiation   (Q1-4 duplicates, skip)
+mc | particles | Required practical: density | What is the equation for density? {both} | *Density = mass ÷ volume; Density = volume ÷ mass; Density = mass × volume
+tf | particles | States of matter | Liquids usually have a higher density than solids of the same substance. {both} | FALSE | EXP: The particles in a solid are usually packed more closely, so the solid is denser. (Water is an unusual exception: ice floats.)
+
+## Properties of Radiation   (Q3 isotope: duplicate, skip)
+short | particles | Required practical: density | What piece of equipment do you use to measure the mass of an object? {both} | ACCEPT: balance; a balance; digital balance; scales; electronic balance; top pan balance; mass balance
+mc | electricity | Circuit builder | How is a voltmeter connected in a circuit? {both} | Series; *Parallel | EXP: A voltmeter goes across (in parallel with) the component, to compare the energy carried by the charge on each side.
+mc | atomic | Alpha, beta & gamma | Which type of radiation is made of the nucleus of a helium atom? | *Alpha; Beta; Gamma
+tf | atomic | Alpha, beta & gamma | Gamma radiation has a low frequency. | FALSE | EXP: Gamma rays have the highest frequency (and shortest wavelength) in the electromagnetic spectrum.
+
+## Uses of Radiation   (Q1, Q2 duplicates, skip)
+mc | atomic | Alpha, beta & gamma | Which type of radiation is the most penetrating? | Alpha; Beta; *Gamma
+open | atomic | Half-life | What is meant by the half-life of a radioactive isotope? | MODEL: The time it takes for the number of unstable nuclei in a sample (or the count rate) to halve.
+short | atomic | Alpha, beta & gamma | Which type of radiation has a negative charge? | ACCEPT: beta; beta radiation; beta particles; beta particle; beta minus

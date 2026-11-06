@@ -1,0 +1,30 @@
+SOURCE GRN Science / Year 9 / Physics / Electricity
+
+## 1. Circuit symbols   (Q1, Q2, Q5, Q6 duplicates, skip)
+short | particles | States of matter | In which state of matter do the particles have the most kinetic energy? {both} | ACCEPT: gas; a gas; gases | EXP: Gas particles move fastest, so they have the most kinetic energy.
+short | energy | Energy stores | Which energy store does a book on a high shelf have? {both} | ACCEPT: gravitational potential; gravitational; gpe; gravitational potential energy; gravitational store
+
+## 2. Charge and current   (Q5 duplicate, skip)
+short | electricity | Circuit builder | What are two or more cells joined together called? {both} | ACCEPT: battery; a battery
+open | electricity | Static electricity & electric fields | What happens when two negatively charged objects are placed next to each other? {both} | MODEL: They repel (push each other apart), because like charges repel.
+open | electricity | Static electricity & electric fields | What are the three types of charge an object can have? {both} | MODEL: Positive, negative or neutral (no overall charge).
+open | energy | Energy stores | Name a way that energy can be transferred. {both} | MODEL: Any one of: mechanically (by a force doing work), electrically, by heating, or by radiation (light or sound waves).
+open | electricity | Circuit builder | Name two rules for drawing circuit diagrams. {both} | MODEL: Any two of: use a ruler for straight lines, only horizontal and vertical lines, no gaps in the wires, use the correct symbols, don't draw wires through symbols.
+open | electricity | Circuit builder | How do we draw the circuit symbol for a bulb (lamp)? {both} | MODEL: A circle with a cross (X) inside it, with a wire on each side.
+
+## 3. Potential difference and Energy   (Q2, Q4 duplicates, skip)
+short | electricity | Circuit builder | What is a flow of charged particles called? {both} | ACCEPT: current; electric current; a current; an electric current
+open | electricity | Circuit builder | What equation links current, charge and time? | MODEL: Charge = current × time (Q = I t).
+tf | forces | Work done | When work is done, energy is transferred. {both} | TRUE
+short | waves | Transverse & longitudinal waves | Waves transfer... {both} | ACCEPT: energy; energy and information; information; energy not matter
+
+## Resistance   (Q1, Q2 duplicates, skip)
+mc | energy | Energy stores | Which energy store is associated with a stretched rubber band? {both} | *Elastic potential; Chemical; Nuclear; Thermal
+tf | particles | States of matter | Gas particles have fixed positions. {both} | FALSE | EXP: Gas particles move randomly and quickly, so they spread out to fill their container.
+mc | particles | States of matter | What is the main feature of the particle arrangement in a gas? {both} | Particles are tightly packed; Particles have fixed positions; Particles are in a regular pattern; *Particles are far apart and move freely
+
+## Resistance of a wire   (all duplicates, skip)
+
+## Series and parallel resistance   (Q2, Q3, Q4, Q5, Q6 duplicates, skip)
+short | electricity | Circuit builder | What is the unit of resistance? {both} | ACCEPT: ohms; ohm; Ω
+open | electricity | Circuit builder | What does a variable resistor do? {both} | MODEL: Its resistance can be changed, so it can be used to change the current in a circuit (for example, to dim a lamp).

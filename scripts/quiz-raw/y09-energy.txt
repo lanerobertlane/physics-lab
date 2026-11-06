@@ -1,0 +1,59 @@
+SOURCE GRN Science / Year 9 / Physics / Energy
+
+## 1. Energy stores and transfers   (Q1, Q4, Q5 duplicates, skip)
+multi | forces | Pressure on solids | To increase the pressure a solid applies, you should... (tick 2) {both} | Increase the surface area; *Decrease the surface area; *Increase the force; Decrease the force
+short | forces | Pressure in fluids & upthrust | In which direction does pressure in a liquid act? | ACCEPT: all directions; in all directions; every direction; all; everywhere
+mc | waves | Ripple tank | What name is given to a wave bouncing off a surface? {both} | *Reflection; Refraction; Transmission; Absorption
+
+## 2. Energy pathways
+short | energy | Energy stores | Name one energy store. {both} | ACCEPT: kinetic; gravitational potential; gravitational; elastic potential; elastic; chemical; thermal; magnetic; electrostatic; nuclear | EXP: The stores are kinetic, gravitational potential, elastic potential, chemical, thermal, magnetic, electrostatic and nuclear.
+mc | energy | Energy stores | A car is driving along. Which energy store does the car have because it is moving? {both} | Chemical; Gravitational; *Kinetic; Elastic | EXP: Anything that is moving has energy in its kinetic store.
+mc | reference | Practical graph plotter | A student investigates how the mass of a ball affects the time it takes to drop. Which is the independent variable? {both} | *Mass of the ball; Height the ball is dropped from; Time taken to fall; The person timing the ball | EXP: The independent variable is the one you change: here, the mass.
+mc | reference | Practical graph plotter | A student investigates how the mass of a ball affects the time it takes to drop. Which is the dependent variable? {both} | Mass of the ball; Height the ball is dropped from; *Time taken to fall; The person timing the ball | EXP: The dependent variable is the one you measure: here, the time taken to fall.
+mc | waves | Echo sounding & ultrasound scans | An echo is caused when a sound wave... {both} | *Reflects; Refracts; Transmits; Is absorbed
+multi | waves | Transverse & longitudinal waves | What is transferred by a wave? (tick 2) {both} | *Energy; *Information; Matter; Particles | EXP: Waves transfer energy and information, not matter.
+
+## 3. Conservation of energy   (Q5 duplicate, skip)
+mc | energy | Energy stores | Energy transferred by a force is transferred through... {both} | Radiation; *A mechanical pathway; Heating | EXP: When a force does work, energy is transferred mechanically.
+short | energy | Energy stores | When a slingshot is released, energy in the ___ store is transferred to the kinetic store. {both} | ACCEPT: elastic; elastic potential; elastic potential energy
+mc | reference | Practical graph plotter | What is the name given to a variable that is kept the same? {both} | Independent; *Control; Dependent; Variables cannot stay the same
+tf | energy | Efficiency | All energy transfers are useful. {both} | FALSE | EXP: Some energy is always wasted, usually by heating the surroundings.
+mc | waves | Ripple tank | A wave changing direction when it goes into water is an example of... {both} | Reflection; *Refraction; Absorption; Transmission
+
+## 4. Sankey diagrams   (Q5 duplicate, skip)
+short | energy | Energy stores | Energy cannot be created or destroyed. This is known as the ___ of energy. {both} | ACCEPT: conservation; law of conservation; principle of conservation
+num | energy | Efficiency | A light bulb has 200 J of electrical energy going in and gives out 50 J of light. How much energy is wasted by heating? {both} | NUM: 150 J | EXP: Energy in = useful out + wasted, so wasted = 200 − 50 = 150 J.
+mc | reference | Practical graph plotter | What is the name given to the variable you measure? {both} | Independent; *Dependent; Control
+tf | energy | Energy stores | Energy can be created but not destroyed. {both} | FALSE | EXP: Energy can't be created or destroyed, only transferred between stores.
+mc | waves | Transverse & longitudinal waves | The frequency of a wave is... {both} | *The number of waves per second; The length of a wave; The height of a wave; The time it takes a single wave to pass a point
+num | energy | Efficiency | A radio gives out 100 J of sound and 20 J by heating. How much energy goes into the radio? {both} | NUM: 120 J | EXP: Energy in = 100 + 20 = 120 J.
+
+## 5. Efficiency   (Q1, Q2 acid and magnesium variables: chemistry context, dropped. Q5, Q6 repeat quiz 1, skip)
+open | energy | Efficiency | Name one wasted energy transfer from a television. {both} | MODEL: Energy is wasted by heating the surroundings (the TV gets warm). Sound from the fan or speakers that nobody wants is also wasted. | EXP: The useful transfers are light and sound for the programme.
+tf | energy | Energy stores | Energy cannot be created or destroyed. {both} | TRUE | EXP: This is the law of conservation of energy. Energy is only transferred between stores.
+
+## 6. Sankey diagrams   [NOTE for Rob: Q1 says energy is "always" wasted to the thermal store; reworded to "usually"]
+mc | energy | Efficiency | Wasted energy usually ends up in which store? {both} | *Thermal; Light; Sound; Chemical | EXP: Most wasted energy heats the surroundings, so it ends up in their thermal store.
+mc | energy | Efficiency | Efficiency is... {both} | The amount of energy wasted; *The percentage of energy used usefully; The amount of energy used usefully; The percentage of energy wasted | EXP: Efficiency = useful output ÷ total input, often given as a percentage.
+open | energy | Energy stores | Describe the law of conservation of energy. {both} | MODEL: Energy cannot be created or destroyed. It can only be transferred from one store to another, so the total energy stays the same.
+mc | particles | Gas pressure | Which of these would increase the pressure of a gas? | *Increasing the temperature; Increasing the volume; Decreasing the number of particles | EXP: Hotter particles move faster, so they hit the walls harder and more often.
+open | forces | Pressure on solids | Explain why tractors have tyres with a large surface area. {both} | MODEL: The large area spreads the tractor's weight out, so the pressure on the ground is lower and the tractor doesn't sink into soft mud. | EXP: pressure = force ÷ area, so a bigger area gives a smaller pressure.
+
+## Heat Transfer   (Q3 repeats an earlier waves question, skip)
+mc | forces | Work done | What is the unit of work done? {both} | *Joules; Watts; Amps; Volts | EXP: Work done is energy transferred, so it is measured in joules (J).
+mc | electricity | Paying for electricity | What is the unit of power? {both} | Joules; *Watts; Amps; Volts | EXP: Power is measured in watts (W). 1 W is 1 joule per second.
+mc | particles | States of matter | What is the main difference between particles in a liquid and a gas? {both} | *Particles in a gas are far apart and move freely; Particles in a liquid are far apart; Particles in a liquid are stationary; Particles in a gas are closely packed
+mc | particles | States of matter | What happens to the particles in a solid when it is heated? {both} | They stop moving; *They vibrate more; They move far apart; They become smaller | EXP: The particles gain kinetic energy and vibrate more about their fixed positions. The particles themselves don't change size.
+open | forces | Work done | Explain why you add oil to a bike chain. {both} | MODEL: Oil reduces the friction between the moving parts. Less energy is wasted by heating, so the bike is more efficient and the chain wears less.
+
+## Power and Work
+mc | energy | Energy stores | Which energy store is filled when you stretch a rubber band? {both} | Chemical; Thermal; *Elastic potential; Gravitational potential | EXP: A stretched (deformed) object stores energy in its elastic potential store.
+mc | energy | Energy stores | Which of these transfers energy from a chemical store to a kinetic store? {both} | A solar panel generating electricity; A battery lighting a torch; *A car engine burning fuel; A wind turbine spinning | EXP: The engine burns fuel (chemical store) to make the car move (kinetic store).
+tf | energy | Energy stores | Energy can be created or destroyed. {both} | FALSE | EXP: The law of conservation of energy: energy can only be transferred from one store to another.
+open | forces | Terminal velocity | How does air resistance affect the motion of a falling object? {both} | MODEL: Air resistance acts upwards, against the motion. It gets bigger as the object speeds up, so the object's acceleration gets smaller. When air resistance equals the weight, the object falls at a steady speed (terminal velocity).
+mc | forces | Resultant forces | Which of these is a non-contact force? {both} | *Magnetic force; Friction; Tension; Normal contact force | EXP: Non-contact forces act at a distance. Magnetic, electrostatic and gravitational forces are non-contact.
+
+## Reducing Heat Transfers   (Q3 duplicate, skip)
+tf | electricity | Paying for electricity | Power is the rate at which energy is transferred. {both} | TRUE | EXP: Power = energy transferred ÷ time.
+mc | electricity | Paying for electricity | Which equation gives power? {both} | Power = speed ÷ time; Power = force ÷ distance; Power = mass ÷ volume; *Power = energy ÷ time | EXP: P = E ÷ t, with power in watts, energy in joules and time in seconds.
+open | energy | Energy stores | What are the four ways energy can be transferred between stores? {both} | MODEL: Mechanically (by a force doing work), electrically (by a current), by heating, and by radiation (such as light or sound waves).

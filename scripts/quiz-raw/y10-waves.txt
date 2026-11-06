@@ -1,0 +1,30 @@
+SOURCE GRN Science / Year 10 / Physics / Waves
+
+## Calculating period   (Q5 unit of speed: duplicate, skip)
+short | waves | Transverse & longitudinal waves | Name an example of a transverse wave. {both} | ACCEPT: light; water waves; ripples; water ripples; radio waves; microwaves; x-rays; gamma rays; electromagnetic waves; em waves; s waves; s-waves; infrared; ultraviolet; visible light; waves on a string
+tf | waves | Transverse & longitudinal waves | The oscillations in a longitudinal wave are perpendicular to the direction of energy transfer. | FALSE | EXP: In a longitudinal wave they are parallel. Perpendicular oscillations make a transverse wave.
+open | forces | Resultant forces | A stationary object with balanced forces will... {both} | MODEL: stay stationary (remain at rest).
+open | forces | Stopping distances | Name a factor that can affect braking distance. | MODEL: Any one of: speed, wet or icy roads, worn brakes, worn tyres, the mass of the vehicle.
+
+## Properties of Waves   (Q1, Q2 duplicates, skip)
+open | energy | Required practical: thermal insulation | Describe how a building can be adapted to lose less energy. {both} | MODEL: Any of: loft insulation, cavity wall insulation, double or triple glazing, draught excluders, thicker walls or walls with a lower thermal conductivity. These reduce the rate of energy transfer to the surroundings.
+open | energy | Efficiency | Describe the energy transfers in a light bulb. {both} | MODEL: Energy is transferred electrically to the bulb. The useful output is light. Some energy is wasted, dissipated to the thermal store of the surroundings.
+
+## Transverse and Longitudinal   (Q4 sound type: duplicate, skip)
+open | electricity | Circuit builder | Explain what happens to the current in a series circuit if one component breaks. {both} | MODEL: The current stops everywhere in the circuit, because there is only one path and it is now broken.
+mc | energy | Energy stores | Which energy store is associated with the motion of an object? {both} | Potential; *Kinetic; Chemical; Thermal
+tf | waves | Transverse & longitudinal waves | Waves transfer matter from one place to another. | FALSE | EXP: Waves transfer energy, not matter. The particles oscillate about fixed positions.
+tf | energy | Energy stores | Energy cannot be created or destroyed. {both} | TRUE | EXP: This is the principle of conservation of energy.
+mc | energy | Energy resources | What is the main source of energy for the Earth? {both} | Wind; Geothermal; *The Sun (solar); Nuclear
+
+## waves   (Q5 plant cell, Q6 mixtures: not on site, dropped)
+open | waves | Sound on an oscilloscope | What happens when a sound wave reflects? {both} | MODEL: It bounces back off a surface and we hear an echo.
+open | waves | Transverse & longitudinal waves | What is the frequency of a wave? {both} | MODEL: The number of waves passing a point each second, measured in hertz (Hz).
+open | waves | Sound on an oscilloscope | What happens to a sound if you increase the amplitude? {both} | MODEL: It gets louder.   [could be short: louder]
+open | waves | Sound on an oscilloscope | Why do cinemas have materials on the walls that absorb sound? {both} | MODEL: Soft materials absorb sound rather than reflecting it, so there are fewer echoes and the sound is clearer.
+
+## Wave speed   (Q2 transverse vs longitudinal: duplicate, skip)
+mc | waves | Transverse & longitudinal waves | In which direction do the air particles move when a sound wave travels through air? | In random directions; Perpendicular to the wave direction; *Parallel to the wave direction; Outwards from the source in all directions
+tf | waves | Transverse & longitudinal waves | Sound waves are an example of transverse waves. {both} | FALSE | EXP: Sound waves are longitudinal: the particles vibrate parallel to the direction the wave travels.
+mc | waves | Transverse & longitudinal waves | In which direction do the particles vibrate in a transverse wave? | *Perpendicular to the wave direction; In a circular motion; Parallel to the wave direction; In random directions
+mc | energy | Energy stores | Which of the following is not an energy store? {both} | *Temperature; Gravitational; Kinetic; Chemical | EXP: Temperature is a measurement. Thermal (internal) energy is the store.

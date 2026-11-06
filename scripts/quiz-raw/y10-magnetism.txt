@@ -1,0 +1,16 @@
+SOURCE GRN Science / Year 10 / Physics / Magnetism
+
+## Electromagnets   (Q3 "Earth's magnetic field is because of its nickel core: False" dropped. NOTE for Rob: the Earth's core is an iron–nickel alloy, so this is misleading. Q7 slingshot: duplicate of catapult, skip)
+mc | magnetism | Bar magnet fields | What do like poles of a magnet do? {both} | Attract; *Repel
+open | magnetism | Bar magnet fields | Where is the magnetic field of a bar magnet strongest? {both} | MODEL: At the poles (the ends of the magnet), where the field lines are closest together.
+open | magnetism | Bar magnet fields | What happens when a piece of iron is placed near a permanent magnet? | MODEL: It becomes an induced magnet and is attracted to the permanent magnet. It loses most of its magnetism when it is taken away.
+open | magnetism | Bar magnet fields | What are the three magnetic metal elements? {both} | MODEL: Iron, nickel and cobalt.
+mc | forces | Resultant forces | Which of the following is a non-contact force? {both} | Friction; *Electrostatic force; Tension
+
+## Magnetism   (Q3-5 duplicates, skip)
+open | forces | Resultant forces | State three forces. {both} | MODEL: Any three of: weight (gravity), friction, air resistance, drag, upthrust, tension, normal contact force, magnetic force, electrostatic force, thrust.
+short | forces | Resultant forces | Name a non-contact force. {both} | ACCEPT: gravity; weight; gravitational; gravitational force; magnetic; magnetism; magnetic force; electrostatic; electrostatic force; static
+
+## Untitled Quiz   (Q1, Q2, Q4 duplicates, skip)
+multi | magnetism | Bar magnet fields | Which of these materials are magnetic? {both} | *Nickel; Copper; Magnesium; *Iron
+mc | waves | Transverse & longitudinal waves | What type of wave is sound? {both} | Transverse; *Longitudinal

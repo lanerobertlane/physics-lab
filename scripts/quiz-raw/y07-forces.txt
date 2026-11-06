@@ -1,0 +1,31 @@
+SOURCE GRN Science / Year 7 / Physics / Forces
+
+## 1. Gravity   (Q2 repeats an existing question)
+mc | waves | Transverse & longitudinal waves | What is passed along by a wave? | Particles; *Energy; Light; Matter
+mc | waves | Transverse & longitudinal waves | What is the height of a wave from the middle line called? | Peak; *Amplitude; Volume; Wavelength
+mc | waves | Transverse & longitudinal waves | What is the top point of a wave called? | *Peak; Amplitude; Volume; Wavelength
+open | forces | Resultant forces | Name as many forces as you can. | MODEL: Any of: weight (gravity), friction, air resistance, water resistance (drag), upthrust, tension, normal contact force (reaction), magnetic force, electrostatic force, thrust, lift.
+
+## 2. Mass and Weight   (Q6 repeats an existing question. [NOTE for Rob: Q4 "Larger objects have less gravitational field strength" says "larger" but means more mass; reworded to planets with more mass])
+mc | forces | Resultant forces | What type of force is gravity? {both} | Contact force; *Non-contact force
+mc | forces | Resultant forces | What type of force is friction? {both} | *Contact force; Non-contact force
+mc | forces | Resultant forces | What type of force is magnetism? {both} | Contact force; *Non-contact force
+tf | forces | Weight on other planets | A planet with more mass has a weaker gravitational field strength. | FALSE | EXP: More mass means a stronger gravitational field, so your weight there is bigger.
+short | forces | Weight on other planets | In which direction does gravity pull you? | ACCEPT: down; downwards; towards the centre of the earth; towards the center of the earth; towards the centre; towards the earth; to the centre of the earth | EXP: Gravity pulls towards the centre of the Earth (or whichever planet you are on).
+
+## 3. Friction and Air Resistance   (Q1, Q2 repeat existing questions. [NOTE for Rob: Q5 "Light can only travel in straight lines" is marked True, but light changes direction when it reflects or refracts. Reworded])
+mc | forces | Weight on other planets | Which equation gives weight? {both} | *Mass × gravitational field strength; Mass + gravitational field strength; Mass ÷ gravitational field strength; Mass × 10 | EXP: W = m g. On Earth g is about 10 N/kg, but it is different on other planets.
+short | forces | Weight on other planets | What is the gravitational field strength on Earth, in N/kg? {both} | ACCEPT: 10; 9.8; 9.81; 10 N/kg; 9.8 N/kg; 9.81 N/kg | EXP: It is about 9.8 N/kg; we usually use 10 N/kg.
+tf | waves | Light box & lenses | Light travels in straight lines until it hits something or goes into a different material. | TRUE | EXP: Light only changes direction when it reflects or refracts.
+mc | waves | Sound on an oscilloscope | Sound is an example of which type of wave? | Transverse; *Longitudinal
+
+## 4. Balanced and Unbalanced Forces   (Q4 repeats an existing question)
+mc | forces | Resultant forces | In which direction does friction act? {both} | Same direction as the motion; *Opposite direction to the motion; Towards the centre of the object; Away from the object
+tf | forces | Weight on other planets | If a person travelled to the Moon, their weight would stay the same but their mass would change. {both} | FALSE | EXP: It's the other way round: mass stays the same, but weight is smaller on the Moon because its gravitational field is weaker.
+open | forces | Resultant forces | Name two non-contact forces. {both} | MODEL: Any two of: weight (gravity), magnetic force, electrostatic force.
+mc | waves | Transverse & longitudinal waves | What unit is used to measure the frequency of a wave? {both} | Joules; *Hertz; Newtons; Decibels
+tf | forces | Terminal velocity | As an object moves faster, the air resistance on it gets bigger. {both} | TRUE | EXP: That's why a falling object eventually stops speeding up: air resistance grows until it balances the weight.
+
+## Comparing lubricants   (Q1, Q2, Q4 repeat existing questions)
+tf | forces | Weight on other planets | Your mass changes depending on where you are. | FALSE | EXP: Mass is the amount of matter, so it stays the same everywhere. Weight changes with gravitational field strength.
+open | forces | Terminal velocity | How could you reduce air resistance? | MODEL: Make the object streamlined (a smooth, pointed shape), make its front surface area smaller, or move more slowly.

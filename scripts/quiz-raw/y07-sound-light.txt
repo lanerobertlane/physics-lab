@@ -1,0 +1,38 @@
+SOURCE GRN Science / Year 7 / Physics / Sound and light
+
+## Changing sounds   (Q5 repeats an existing question)
+short | waves | Transverse & longitudinal waves | What is transferred by a wave? | ACCEPT: energy; energy and information; information | EXP: Waves transfer energy (and information) from one place to another.
+short | waves | Transverse & longitudinal waves | What is never transferred by a wave? | ACCEPT: matter; particles; the medium; stuff; mass | EXP: The particles only vibrate about where they are. They aren't carried along with the wave.
+short | waves | Sound on an oscilloscope | What causes sound waves? {both} | ACCEPT: vibrations; vibration; vibrating; something vibrating; vibrating objects; a vibrating object
+short | waves | Transverse & longitudinal waves | What do we call the vibration that starts a wave? | ACCEPT: the source; source; oscillation; an oscillation; oscillations
+short | waves | Transverse & longitudinal waves | What is the lowest point of a wave called? {both} | ACCEPT: trough; a trough; the trough
+short | waves | Transverse & longitudinal waves | What is the distance from the middle line to a peak called? {both} | ACCEPT: amplitude; the amplitude
+
+## Reflection, absorption and transmission   (Q4 repeats Changing sounds. Q7 lab safety: not a site topic, dropped)
+mc | waves | Sound on an oscilloscope | What happens to a sound if the amplitude increases? {both} | Pitch gets higher; Sound gets quieter; *Sound gets louder; Pitch gets lower
+short | waves | Transverse & longitudinal waves | If the frequency of a wave increases, what happens to the wavelength? {both} | ACCEPT: it decreases; decreases; gets shorter; it gets shorter; shorter; smaller; gets smaller; it gets smaller; decrease | EXP: v = f λ. At the same speed, more waves per second means each wave must be shorter.
+mc | waves | Sound on an oscilloscope | What happens to a sound if the frequency increases? {both} | Pitch gets lower; Sound gets louder; *Pitch gets higher; Sound gets quieter
+short | chemistry | Periodic table | What do we call a substance made of only one type of atom? | ACCEPT: element; an element; elements
+short | chemistry | Periodic table | Where would you find a list of all the elements? | ACCEPT: periodic table; the periodic table; in the periodic table
+
+## Sound waves   (Q2, Q3, Q4 repeat earlier questions)
+tf | waves | Sound on an oscilloscope | Sound cannot travel through a vacuum. {both} | TRUE | EXP: Sound needs particles (a solid, liquid or gas) to pass the vibrations along. A vacuum has no particles.
+open | atomic | Atom builder | Describe the structure of an atom. {both} | MODEL: A tiny, positively charged nucleus in the middle, made of protons and neutrons, with negatively charged electrons moving around it in shells. Most of the atom is empty space.
+
+## Speed of Sound   (Q1 repeats an earlier question. [NOTE for Rob: Q3 accepts "pitch" as the meaning of frequency; frequency is the number of waves per second, and pitch depends on it. Left out, as the bank already has the correct version. Q4 "What do we see in a mirror?" has no correct answer ticked and is ambiguous; left out])
+tf | waves | Transverse & longitudinal waves | A wave transfers energy. {both} | TRUE
+tf | waves | Sound on an oscilloscope | Sound can be transmitted through walls and doors. | TRUE | EXP: That's why you can hear people talking in another room if they're loud enough.
+short | waves | Sound on an oscilloscope | If you scream into a pillow, is the sound mostly absorbed or reflected? | ACCEPT: absorbed; absorption; it is absorbed | EXP: Soft materials absorb sound. Hard, smooth surfaces reflect it.
+
+## The Ear   (Q6 lab safety dropped. [NOTE for Rob: Q1 and Q4 had no correct answer ticked; set to "volume increased" and "pitch increased"])
+mc | waves | Sound on an oscilloscope | The amplitude of a sound wave increases. What changes about the sound? | *The volume increases; The pitch increases; The volume decreases; The pitch decreases | EXP: Bigger amplitude means a louder sound.
+tf | waves | Transverse & longitudinal waves | Waves transfer matter. | FALSE | EXP: Waves transfer energy, not matter.
+open | waves | Sound on an oscilloscope | Describe a material that would reflect a sound wave well. | MODEL: A hard, smooth, flat surface, such as a tiled wall, glass or concrete.
+mc | waves | Sound on an oscilloscope | The frequency of a sound wave increases. What changes about the sound? | The volume increases; *The pitch gets higher; The volume decreases; The pitch gets lower | EXP: Higher frequency means a higher pitch.
+tf | waves | Sound on an oscilloscope | Sound is an example of a longitudinal wave. {both} | TRUE
+
+## Waves   (despite the title, this is lab skills: Q2–Q5 lab equipment and safety, Q6 biology; dropped)
+mc | particles | Required practical: density | Which piece of equipment do we use to measure mass? | Conical flask; *Balance; Measuring cylinder
+
+## Wave speed   (Q2–Q5 repeat existing questions; Q6 biology and Q7 mixtures dropped)
+open | waves | Sound on an oscilloscope | What does "transmission" of a wave mean? | MODEL: The wave passes through a material and carries on out the other side.

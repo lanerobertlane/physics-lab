@@ -1,0 +1,65 @@
+SOURCE GRN Science / Year 10 / Physics / Electricity
+
+## 1. Charge, current and resistance
+short | electricity | Circuit builder | What is the unit for current? | ACCEPT: amp; amps; ampere; amperes; ampres; A
+mc | electricity | Circuit builder | What is the unit for potential difference? | Joules; Amps; *Volts; Watts
+tf | electricity | Mains electricity | Power is measured in watts. | TRUE
+open | energy | Energy resources | Name a non-renewable energy resource. | MODEL: Coal, oil, natural gas or nuclear fuel (uranium).   [could be short]
+short | energy | Energy stores | In the equation Ee = ½ × k × e², what does k stand for? | ACCEPT: spring constant; the spring constant; spring const
+
+## 2. Electrical Power   (Q6 duplicate unit of current, skip)
+tf | electricity | Circuit builder | Potential difference is measured in amps. | FALSE | EXP: Potential difference is measured in volts (V). Current is measured in amps.
+mc | electricity | Circuit builder | When drawing a circuit diagram, which of the following rules apply? | Lines have to be straight; Lines can only be horizontal or vertical; We have to draw symbols for the components; *All of these
+mc | electricity | Circuit builder | Components are in series when... | *Charge flows through one component and then the next; Charge flows through one component or the other; Charge is in all of the components at the same time
+mc | electricity | Circuit builder | Components are in parallel when... | Charge flows through one component and then the next; *Charge flows through one component or the other; Charge is in all of the components at the same time
+open | electricity | Circuit builder | What is the definition of current? | MODEL: Current is the rate of flow of electrical charge.
+short | energy | Energy stores | Which energy store does a battery have? | ACCEPT: chemical; chemical store; chemical energy
+
+## 3. IV Characteristics   (Q5 duplicate unit of p.d., skip)
+mc | energy | Energy stores | What store of energy does a candle contain? | Thermal; *Chemical; Kinetic; Light
+open | electricity | Circuit builder | What happens to the brightness of a bulb when another bulb is added in series? | MODEL: Both bulbs are dimmer, because the total resistance is higher so the current is lower (and the p.d. is shared).
+open | electricity | Circuit builder | What happens to the brightness of a bulb when the current increases? | MODEL: The bulb gets brighter.   [could be short: brighter]
+mc | electricity | Circuit builder | A current is a flow of... | Electricity; Metal; *Charge; Volts
+tf | electricity | Circuit builder | Resistance is measured in watts (W). | FALSE | EXP: Watts are the unit of power. Resistance is measured in ohms (Ω).
+mc | electricity | Static electricity & electric fields | Positive and negative charges... | Repel; *Attract   [NOTE: Showbie had no answer ticked; set by me]
+
+## 5. LDR & Thermistor   (Q2, Q3, Q7 duplicates, skip)
+open | electricity | Circuit builder | What is the equation linking resistance, potential difference and current? | MODEL: Potential difference = current × resistance (V = I R).
+mc | electricity | I–V characteristics | Which component does this I–V graph represent? [img: iv-ohmic] | Diode; *Ohmic resistor; Filament bulb; Thermistor
+mc | electricity | I–V characteristics | Which component does this I–V graph represent? [img: iv-diode] | *Diode; Ohmic resistor; Filament bulb; LDR
+mc | electricity | I–V characteristics | Which component does this I–V graph represent? [img: iv-filament] | Diode; Ohmic resistor; *Filament bulb; LDR
+
+## 6. Mains Electricity   (Q2-4 duplicate I-V graphs, skip. NOTE for Rob: Showbie Q1 accepts "40 Amps" / "40 A" - resistance is in ohms)
+num | electricity | Circuit builder | Using V = I R, calculate the resistance when the potential difference is 4 V and the current is 0.1 A. | NUM: 40 Ω | EXP: R = V ÷ I = 4 ÷ 0.1 = 40 Ω
+tf | electricity | I–V characteristics | The relationship between current and potential difference for an ohmic resistor is directly proportional. | TRUE | EXP: At a constant temperature the I–V graph is a straight line through the origin.
+short | energy | Energy stores | A battery powering a motor in a remote-controlled car transfers energy from the chemical store to the ______ store. | ACCEPT: kinetic; kinetic energy; kinetic store
+short | electricity | Circuit builder | Increasing the resistance causes the current to... | ACCEPT: decrease; go down; fall; drop; get smaller; decreases
+
+## 7. AC DC
+open | electricity | Mains electricity | What happens to the fuse if the current exceeds the fuse rating? | MODEL: The fuse wire heats up and melts, breaking the circuit.
+open | electricity | Mains electricity | What is the role of the live wire? | MODEL: The live wire carries the alternating potential difference (about 230 V) from the supply to the appliance.
+mc | electricity | Mains electricity | What colour is the neutral wire? | Red; Brown; *Blue; Yellow and green
+mc | electricity | Mains electricity | What colour is the live wire? | Red; *Brown; Blue; Yellow and green
+open | electricity | Mains electricity | Describe how the earth wire and fuse protect you if the live wire touches the metal casing of an appliance. | MODEL: A large current flows from the live wire through the casing and down the earth wire. This large current melts the fuse, which breaks the circuit, so the casing is no longer live.
+mc | electricity | Circuit builder | What equation links current, potential difference and resistance? | *V = I × R; Q = I × t; R = V × I; Q = I × R
+open | electricity | Circuit builder | An electric current is the ______ of flow of ______. | MODEL: An electric current is the rate of flow of charge.   [could be short: rate charge]
+
+## 8. National Grid
+open | electricity | Mains electricity | What is meant by the power of an appliance? | MODEL: The energy it transfers per second (the rate of energy transfer).
+num | electricity | Mains electricity | Recall the potential difference of the UK mains supply. | NUM: 230 V
+open | electricity | Mains electricity | Describe what is meant by alternating current. | MODEL: A current that keeps changing direction (in the UK mains, 50 times a second: 50 Hz).
+open | electricity | Mains electricity | What colour is the live wire and where in the plug does it connect? | MODEL: Brown. It connects to the fuse, at the bottom right when you look into the open plug with the cable at the bottom.
+open | electricity | The National Grid | What effect does a high current have on a wire or cable? | MODEL: It heats the wire, so energy is wasted (dissipated to the surroundings). This is why the National Grid transmits at high p.d. and low current.
+
+## IV 4   (Showbie explanations rewritten: some claims were inaccurate)
+mc | electricity | I–V characteristics | For a resistor with a higher resistance, how does the slope of its I–V graph (current on the y-axis) appear? | No slope; Steeper slope; *Shallower slope; Unchanged slope | EXP: A higher resistance means less current for the same p.d., so the line is shallower.
+mc | electricity | I–V characteristics | What happens to the resistance of a filament bulb as its temperature increases? | *Resistance increases; Resistance remains constant; Resistance decreases; Resistance becomes zero | EXP: The ions in the hot filament vibrate more, so electrons collide with them more often.
+open | electricity | I–V characteristics | Explain why the I–V characteristic of a diode is not linear. | MODEL: A diode lets current flow in one direction only: it has a very high resistance in the reverse direction. In the forward direction, once the p.d. passes about 0.7 V the resistance drops and the current rises steeply.
+mc | electricity | I–V characteristics | Which device has a linear I–V characteristic? | Diode; *Ohmic resistor; Filament bulb; LED | EXP: At a constant temperature, current is directly proportional to p.d. for an ohmic resistor.
+tf | electricity | I–V characteristics | The I–V characteristic for a filament bulb is a straight line. | FALSE | EXP: It curves, because the resistance increases as the filament gets hotter.
+
+## IV - Filament bulb   (Q4 near-duplicate of IV 4 Q5, skip)
+open | electricity | I–V characteristics | How would you find the I–V characteristic of a filament bulb in an experiment? | MODEL: Put the bulb in series with an ammeter and a variable resistor (or variable supply), with a voltmeter in parallel across the bulb. Change the p.d. in steps and record the current each time. Reverse the supply connections and repeat for negative values. Plot current against p.d.
+mc | electricity | I–V characteristics | What causes the resistance of a filament bulb to increase as the current increases? | Lower voltage leading to more resistance; Defective filament structure; *Increased filament temperature; Weak electric field | EXP: More current heats the filament, so the metal ions vibrate more and get in the way of the electrons.
+open | electricity | I–V characteristics | Explain the effect of temperature on the resistance of a filament bulb. | MODEL: As the temperature increases, the ions in the metal vibrate more, so electrons collide with them more often. The resistance increases.
+tf | electricity | I–V characteristics | The resistance of a filament bulb decreases as the potential difference increases. | FALSE | EXP: As the p.d. increases the filament heats up, so its resistance increases.
