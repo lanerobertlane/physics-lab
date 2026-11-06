@@ -165,3 +165,6 @@ sizeAll();
 renderPanel();
 renderResults();
 requestAnimationFrame(frame);
+
+// Share: the results so far
+PK.shareState = { get: () => ({ r: state.rows }), set: (o) => { if (Array.isArray(o.r)) { state.rows = o.r; renderResults(); } } };

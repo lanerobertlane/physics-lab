@@ -44,7 +44,7 @@
     .pq-present { position: fixed; inset: 0; z-index: 1000; background: var(--bg); color: var(--text); overflow: auto;
       padding: clamp(16px, 2.2vw, 40px) clamp(16px, 3vw, 56px) 110px; font-family: var(--font-body); }
     .pq-present h1 { color: var(--title, var(--accent)); font-size: clamp(2rem, 4.2vw, 3.6rem); font-weight: 700; margin: 0 0 clamp(24px, 6vh, 80px); }
-    .pq-present .p-q { font-size: clamp(1.35rem, 3vw, 2.6rem); line-height: 1.45; max-width: 60ch; margin-left: clamp(0px, 2.5vw, 48px); }
+    .pq-present .p-q { font-size: clamp(1.35rem, 3vw, 2.6rem); line-height: 1.45; max-width: 80ch; margin-left: clamp(0px, 2.5vw, 48px); }
     .pq-present .p-q p { margin: 0 0 .9em; }
     .pq-present .p-extra { font-size: clamp(1.1rem, 2.2vw, 1.9rem); margin: clamp(16px, 4vh, 40px) 0 0 clamp(0px, 2.5vw, 48px); max-width: 60ch; }
     .pq-present .p-extra .eq-show { font-size: 1em; text-align: left; display: inline-block; padding: 8px 18px; }
@@ -254,4 +254,9 @@
   sw.querySelectorAll('.chip').forEach((b) => b.addEventListener('click', () => show(b.dataset.v)));
   renderScore();
   if (PK.initialHash === '#practice') show('practice');
+  // Share: the exact question on screen
+  PK.shareQuestion = {
+    get: () => (pane.hidden ? null : PQ.encodeQ(state.q)),
+    set: (o) => { const q = PQ.decodeQ(o); if (q) { state.q = q; render(); } },
+  };
 })();

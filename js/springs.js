@@ -243,6 +243,6 @@ requestAnimationFrame(frame);
 
 // Share: the masses on the spring and the ruler position (the spring and tick boxes are shared anyway)
 PK.shareState = {
-  get: () => ({ g: state.grams, r: state.rulerCm }),
-  set: (o) => { state.grams = Math.max(0, Math.min(sp().max, Number(o.g) || 0)); if (o.r) setRuler(Number(o.r)); render(); },
+  get: () => ({ g: state.grams, r: state.rulerCm, rows: state.rows }),
+  set: (o) => { state.grams = Math.max(0, Math.min(sp().max, Number(o.g) || 0)); if (o.r) setRuler(Number(o.r)); if (Array.isArray(o.rows)) state.rows = o.rows; render(); renderTable(); },
 };

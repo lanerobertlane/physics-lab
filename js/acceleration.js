@@ -166,3 +166,9 @@ sizeAll();
 render();
 renderResults();
 requestAnimationFrame(frame);
+
+// Share: the masses on the hanger and the trolley, and the results so far
+PK.shareState = {
+  get: () => ({ h: state.hang, l: state.load, r: state.rows }),
+  set: (o) => { state.hang = o.h ?? state.hang; state.load = o.l ?? state.load; state.rows = Array.isArray(o.r) ? o.r : []; pullBack(); renderResults(); },
+};

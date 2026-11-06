@@ -155,3 +155,13 @@ size(bc, 800, 300); size(cc, 800, 300);
 renderPicks();
 reset();
 requestAnimationFrame(frame);
+
+// Share: the number of layers and the material on each beaker
+PK.shareState = {
+  get: () => ({ L: state.layers, p: state.picks }),
+  set: (o) => {
+    if (o.L) state.layers = o.L;
+    if (Array.isArray(o.p)) { state.picks = o.p; $('picks').querySelectorAll('select').forEach((s) => { s.value = state.picks[Number(s.dataset.i)]; }); }
+    reset();
+  },
+};
