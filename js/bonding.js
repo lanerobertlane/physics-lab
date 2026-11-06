@@ -324,9 +324,8 @@ function renderAnswer() {
     const many = I.nM > 1 || I.nX > 1;
     const p1 = `${M} loses ${pl(I.qm, 'electron')} and ${X} gains ${pl(I.qx, 'electron')}.${many ? ` In ${I.formula}, ${I.nM === 1 ? 'one' : words[I.nM]} ${N(I.m)} atom${I.nM > 1 ? 's' : ''} transfer${I.nM > 1 ? '' : 's'} ${I.nM * I.qm} electrons to ${I.nX === 1 ? 'one' : words[I.nX]} ${X} atom${I.nX > 1 ? 's' : ''}.` : ''}`;
     const p2 = `The ${N(I.m)} ion (${EL.ionHtml(I.m, I.qm)}) has a ${I.qm}+ charge and the ${ANION[I.x]} ion (${EL.ionHtml(I.x, -I.qx)}) has a ${I.qx}− charge.`;
-    const p3 = `Both ions now have a full outer shell, the same electronic structure as a noble gas (${S(I.m)}<sup>${EL.chargeText(I.qm)}</sup>: ${mOut.slice(0, -1).join(',')}; ${S(I.x)}<sup>${EL.chargeText(-I.qx)}</sup>: ${[...xOut.slice(0, -1), 8].join(',')}).`;
-    const p4 = 'The oppositely charged ions are held together by strong electrostatic forces of attraction. This is ionic bonding, and it forms a giant ionic lattice.';
-    html = [p1, p2, p3, p4].map((p) => `<p>${PK.ans(p)}</p>`).join('');
+    // The 4 marks: what each atom loses or gains, and the charge on each ion
+    html = [p1, p2].map((p) => `<p>${PK.ans(p)}</p>`).join('');
   } else if (I.type === 'covalent') {
     const C = NN(I.central), c = N(I.central), l = N(I.lig), same = I.central === I.lig;
     const needC = valence(I.central), needL = valence(I.lig);
