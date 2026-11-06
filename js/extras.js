@@ -215,6 +215,64 @@
   }
   window.addEventListener('resize', () => requestAnimationFrame(placeCopyButtons));
 
+  // ---------- Copy table ----------
+  // Results tables copy as a real table (Word, PowerPoint, Google Docs) and as tab-separated
+  // text (Excel and Sheets put each value in its own cell). Hidden answers copy as "?".
+  const TABLES = 'main table.results, main table.compare, main table.props';
+  function tableData(t) {
+    return [...t.rows].map((tr) => [...tr.cells].map((td) => {
+      const c = td.cloneNode(true);
+      c.querySelectorAll('button, .pk-tip-i').forEach((b) => b.remove());
+      c.querySelectorAll('input, select').forEach((i) => i.replaceWith(document.createTextNode(i.value)));
+      c.querySelectorAll('.pk-ans').forEach((a) => a.replaceWith(document.createTextNode(PK.answersShown() ? a.querySelector('.pk-ans-v').textContent : '?')));
+      return { text: c.textContent.replace(/\s+/g, ' ').trim(), head: td.tagName === 'TH' };
+    })).filter((row) => row.some((cell) => cell.text));
+  }
+  async function copyTable(t) {
+    const rows = tableData(t);
+    const esc2 = (x) => x.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+    const html = `<table border="1" cellpadding="4" style="border-collapse:collapse;font-family:Calibri,Arial,sans-serif">${rows.map((r) =>
+      `<tr>${r.map((c) => (c.head ? `<th style="background:#eee">${esc2(c.text)}</th>` : `<td>${esc2(c.text)}</td>`)).join('')}</tr>`).join('')}</table>`;
+    const tsv = rows.map((r) => r.map((c) => c.text).join('\t')).join('\n');
+    try {
+      await navigator.clipboard.write([new ClipboardItem({ 'text/html': new Blob([html], { type: 'text/html' }), 'text/plain': new Blob([tsv], { type: 'text/plain' }) })]);
+      PK.toast('Table copied: paste it into Word, PowerPoint or Excel');
+    } catch {
+      try { await navigator.clipboard.writeText(tsv); PK.toast('Table copied as text: paste it into Excel or Word'); } catch { PK.toast('Your browser wouldn’t let the table be copied'); }
+    }
+  }
+  const tableBtns = [];
+  function placeTableButtons() {
+    for (const { box, b } of tableBtns) {
+      const t = box.querySelector('table');
+      b.hidden = !t || !t.rows.length;
+      if (b.hidden) continue;
+      const hr = box.getBoundingClientRect(), r = t.getBoundingClientRect();
+      b.style.top = `${r.top - hr.top - b.offsetHeight - 4}px`;
+      b.style.left = `${r.right - hr.left - b.offsetWidth}px`;
+    }
+  }
+  function addTableButtons() {
+    document.querySelectorAll(TABLES).forEach((t) => {
+      // Tools rebuild their tables, so the button belongs to the box the table sits in
+      const box = t.parentElement;
+      if (!box || box.dataset.tableCopy) return;
+      box.dataset.tableCopy = '1';
+      if (getComputedStyle(box).position === 'static') box.style.position = 'relative';
+      if (parseFloat(getComputedStyle(box).paddingTop) < 30) box.style.paddingTop = '30px';
+      const b = document.createElement('button');
+      b.className = 'pk-copy pk-copy-table'; b.type = 'button';
+      b.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><span>Copy table</span>';
+      b.setAttribute('aria-label', 'Copy this table');
+      b.dataset.tip = 'Copies the table, ready to paste into Word, PowerPoint or Excel.';
+      b.addEventListener('click', () => { const tb = box.querySelector('table'); if (tb) copyTable(tb); });
+      box.appendChild(b);
+      tableBtns.push({ box, b });
+    });
+    placeTableButtons();
+  }
+  window.addEventListener('resize', () => requestAnimationFrame(placeTableButtons));
+
   // ---------- Share: QR code and the current set-up ----------
   // The set-up is every named control in the tool: sliders, tick boxes, drop-downs and the
   // pressed button in each group of chips. It goes in the link as ?s=…
@@ -413,11 +471,12 @@
     addShareButton();
     attachTips();
     addCopyButtons();
+    addTableButtons();
     startGlossary();
     recordVisit();
     // Some tools build parts later (tabs, practice): pick those up too
     let t = null;
-    new MutationObserver(() => { clearTimeout(t); t = setTimeout(() => { attachTips(); addCopyButtons(); placeCopyButtons(); }, 300); }).observe(document.body, { childList: true, subtree: true });
+    new MutationObserver(() => { clearTimeout(t); t = setTimeout(() => { attachTips(); addCopyButtons(); placeCopyButtons(); addTableButtons(); }, 300); }).observe(document.body, { childList: true, subtree: true });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
 })();

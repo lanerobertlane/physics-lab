@@ -1,0 +1,6 @@
+# Mr Lane's Physics Lab: a free educational physics website for school students
+User-agent: *
+Allow: /
+Disallow: /scripts/
+
+Sitemap: https://lanerobertlane.space/sitemap.xml
