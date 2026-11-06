@@ -145,3 +145,6 @@ window.addEventListener('resize', () => { sizeCanvases(); renderPanel(); });
 sizeCanvases();
 renderPanel();
 requestAnimationFrame(frame);
+
+// Share: how far the universe has expanded
+PK.shareState = { get: () => ({ s: state.scale }), set: (o) => { if (o.s) { state.scale = Number(o.s); renderPanel(); } } };

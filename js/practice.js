@@ -210,3 +210,8 @@ $('reset-score').addEventListener('click', () => { state.score = { right: 0, tot
 renderEqSelect();
 renderScore();
 next();
+// Share: the exact question on screen, so a QR code on the board opens the same one
+PK.shareQuestion = {
+  get: () => PQ.encodeQ(state.q),
+  set: (o) => { const q = PQ.decodeQ(o); if (q) { state.q = q; renderQuestion(); } },
+};

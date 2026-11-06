@@ -218,7 +218,7 @@
   // ---------- Share: QR code and the current set-up ----------
   // The set-up is every named control in the tool: sliders, tick boxes, drop-downs and the
   // pressed button in each group of chips. It goes in the link as ?s=…
-  const skip = (el) => !el.id || /answer|^pk-|^p-answer|^d-answer/.test(el.id) || el.closest('.pq, #practice, .pk-modal, header');
+  const skip = (el) => !el.id || /answer|^pk-|^ws-/.test(el.id) || el.closest('.pk-modal, header, .pq-present, .present');
   const groupButtons = (g) => [...g.querySelectorAll(':scope > button[aria-pressed], :scope > .chip[aria-pressed]')];
   function captureState() {
     const s = {};
@@ -227,6 +227,7 @@
       s[el.id] = el.type === 'checkbox' ? (el.checked ? 1 : 0) : el.value;
     });
     if (PK.shareState) { try { s['@@'] = PK.shareState.get(); } catch { /* leave it out */ } }
+    if (PK.shareQuestion) { try { const q = PK.shareQuestion.get(); if (q) s['@q'] = q; } catch { /* leave it out */ } }
     // Any group of on/off buttons (chips, element pickers, source cards…)
     main.querySelectorAll('[id]').forEach((g) => {
       if (skip(g)) return;
@@ -253,7 +254,7 @@
     const fire = (el, type) => el.dispatchEvent(new Event(type, { bubbles: true }));
     // Chips first (they can reset other controls), then drop-downs, sliders and tick boxes
     for (const [k, i] of Object.entries(s)) {
-      if (!k.startsWith('@') || k === '@@') continue;
+      if (!k.startsWith('@') || k === '@@' || k === '@q') continue;
       const g = document.getElementById(k.slice(1)), chip = g && groupButtons(g)[i];
       if (chip && chip.getAttribute('aria-pressed') !== 'true') chip.click();
     }
@@ -263,6 +264,7 @@
     for (const [el, v] of els) if (el.type === 'checkbox' && el.checked !== Boolean(v)) el.click();
     // The tool's own extra details last, so a button above can't reset them
     if (s['@@'] && PK.shareState) { try { PK.shareState.set(s['@@']); } catch { /* ignore */ } }
+    if (s['@q'] && PK.shareQuestion) { try { PK.shareQuestion.set(s['@q']); } catch { /* ignore */ } }
   }
 
   let qrLoading = null;

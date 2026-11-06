@@ -180,3 +180,9 @@ sizeCanvas();
 renderControls();
 renderTable();
 requestAnimationFrame(frame);
+
+// Share: the block's size, whether the balance is zeroed, and the results so far
+PK.shareState = {
+  get: () => ({ d: state.dims, t: state.tared ? 1 : 0, r: state.rows }),
+  set: (o) => { if (Array.isArray(o.d)) state.dims = o.d; state.tared = Boolean(o.t); if (Array.isArray(o.r)) state.rows = o.r; renderControls(); renderTable(); },
+};

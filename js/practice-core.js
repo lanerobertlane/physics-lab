@@ -136,7 +136,7 @@ const PQ = (() => {
     ohm: { free: { I: r(0.1, 2, 0.1), R: r(2, 60, 2) }, contexts: [
       c('A resistor is connected in a circuit.'),
       c('A lamp is lit by a battery.', { V: [1.5, 3, 4.5, 6, 9, 12], I: r(0.1, 1, 0.05) }),
-      c('A heating element is connected to the 230 V mains.', { V: [230], I: r(2, 13, 0.5) }),
+      c('A heating element is connected to the 230 V mains.', { V: [230], I: r(2, 13, 0.5) }),
       c('A thermistor is used in a temperature sensor.', { V: [5, 6, 9, 12], R: r(100, 5000, 100) }),
       c('An LED and a resistor are connected to a battery.', { V: [3, 4.5, 6, 9], I: r(0.005, 0.03, 0.005) }),
     ] },
@@ -163,7 +163,7 @@ const PQ = (() => {
     'energy-qv': { free: { Qc: r(1, 500, 1), V: [1.5, 3, 6, 9, 12, 24, 230] }, contexts: [
       c('Charge flows through a component.'),
       c('A phone battery is charged.', { Qc: r(5000, 20000, 1000), V: [5] }),
-      c('Charge flows through a lamp connected to a 12 V battery.', { Qc: r(10, 500, 10), V: [12] }),
+      c('Charge flows through a lamp connected to a 12 V battery.', { Qc: r(10, 500, 10), V: [12] }),
       c('A lightning bolt transfers charge to the ground.', { Qc: r(5, 30, 1), V: r(100e6, 1000e6, 100e6) }, { ks3: false }),
     ] },
     density: { free: { rho: [700, 920, 1000, 2700, 7900, 8900, 11300, 19300], vol: r(0.0005, 0.02, 0.0005) }, contexts: [
@@ -233,7 +233,7 @@ const PQ = (() => {
       c('A transformer changes the size of an alternating p.d.'),
       c('A phone charger contains a step-down transformer.', { Vp: [230], np: r(1000, 5000, 100), ns: r(10, 100, 10) }),
       c('A step-up transformer at a power station feeds the National Grid.', { Vp: [25000], np: r(100, 1000, 50), ns: r(1500, 16000, 500) }),
-      c('A transformer powers a 12 V model railway from the mains.', { Vp: [230], np: r(500, 2500, 100), ns: r(20, 200, 10) }),
+      c('A transformer powers a 12 V model railway from the mains.', { Vp: [230], np: r(500, 2500, 100), ns: r(20, 200, 10) }),
     ] },
     'transformer-power': { free: { Vp: [230, 400, 11000], Ip: r(0.5, 10, 0.5), Vs: [6, 12, 24, 110] }, contexts: [
       c('A transformer is 100% efficient.'),
@@ -281,7 +281,7 @@ const PQ = (() => {
   const sig3 = (x) => Number(x.toPrecision(3));
   const unitOf = (id) => Q[id].unit;
   const fmt = (v) => PK.sig(v, 4);
-  const unitText = (u) => (u ? ` ${u}` : '');
+  const unitText = (u) => (u ? ` ${u}` : '');  // non-breaking: "220 kJ" never splits
   const isExact = (v) => Number(v.toPrecision(3)) === Number(v.toPrecision(12));
 
   function writtenFormula(eq) {
@@ -627,7 +627,24 @@ const PQ = (() => {
   const loadScore = (key) => ({ right: 0, total: 0, streak: 0, ...(PK.store.get(`score.${key}`, null) || {}) });
   const saveScore = (key, sc) => PK.store.set(`score.${key}`, sc);
 
+  // A question as a small object for a link, and back again
+  function encodeQ(q) {
+    if (!q) return null;
+    return { e: q.eq.id, c: q.ci, s: q.subject, k: q.ks3 ? 1 : 0, x: q.x, sh: Object.fromEntries(q.given.map((id) => [id, [q.shown[id].value, q.shown[id].unit, q.shown[id].f]])) };
+  }
+  function decodeQ(o) {
+    const eq = o && EQUATIONS.find((e) => e.id === o.e);
+    if (!eq || !SETUPS[eq.id] || !o.x) return null;
+    const subject = o.s, given = varsOf(eq).filter((id) => id !== subject);
+    const x = o.x, answer = solve(eq, subject, Object.fromEntries(given.map((id) => [id, x[id]])));
+    if (!isFinite(answer)) return null;
+    const shown = {};
+    for (const id of given) { const v = (o.sh || {})[id]; shown[id] = v ? { value: v[0], unit: v[1], f: v[2] } : { value: x[id], unit: unitOf(id), f: 1 }; }
+    const ctx = SETUPS[eq.id].contexts[o.c] || SETUPS[eq.id].contexts[0];
+    return { eq, subject, given, x, shown, answer, ctx: ctx.ctx, ci: SETUPS[eq.id].contexts.indexOf(ctx), ks3: Boolean(o.k) };
+  }
+
   // Equations used at KS3 (Calculation practice's KS3 option)
   const KS3 = ['weight', 'work', 'hooke', 'moment', 'pressure', 'speed', 'density', 'ohm', 'power-e', 'energy-pt', 'eff-e', 'eff-p', 'wave'];
-  return { SETUPS, CONVERT, KS3, make, presentTools, worksheetDialog, loadScore, saveScore, questionHtml, hintHtml, workingHtml, vesrauHtml, presentationText, mark, writtenFormula, plainName, unitOf, unitText };
+  return { SETUPS, CONVERT, KS3, make, encodeQ, decodeQ, presentTools, worksheetDialog, loadScore, saveScore, questionHtml, hintHtml, workingHtml, vesrauHtml, presentationText, mark, writtenFormula, plainName, unitOf, unitText };
 })();

@@ -823,7 +823,7 @@ const PRESETS = [
   { id: 'series', name: 'Two lamps in series', build: () => [rect(2, 1, 7, 4), { 'h,4,4': ['battery', { flip: true }], 'h,3,1': ['lamp'], 'h,5,1': ['lamp'], 'v,2,2': ['ammeter'], 'v,7,2': ['ammeter'] }] },
   { id: 'parallel', name: 'Two lamps in parallel', build: () => [
     [...rect(2, 1, 7, 5), 'h,2,3', 'h,3,3', 'h,4,3', 'h,5,3', 'h,6,3'],
-    { 'v,2,4': ['battery', { flip: true }], 'h,4,1': ['lamp'], 'h,4,3': ['lamp'], 'h,5,1': ['ammeter'], 'h,5,3': ['ammeter'], 'h,4,5': ['ammeter'] }] },
+    { 'h,3,5': ['battery', { flip: true }], 'h,5,5': ['ammeter'], 'h,4,1': ['lamp'], 'h,4,3': ['lamp'], 'h,5,1': ['ammeter'], 'h,5,3': ['ammeter'] }] },
   { id: 'resistance', name: 'Required practical: resistance', build: () => [
     [...rect(2, 1, 7, 4), 'v,4,0', 'h,4,0', 'v,5,0'],
     { 'h,3,4': ['battery', { flip: true }], 'h,4,1': ['resistor'], 'h,4,0': ['voltmeter'], 'h,5,4': ['ammeter'], 'v,7,2': ['varres'] }] },
@@ -839,10 +839,21 @@ const PRESETS = [
   { id: 'fuse', name: 'Fuse blowing', build: () => [rect(2, 1, 7, 4), { 'h,3,4': ['battery', { value: 12, flip: true }], 'h,3,1': ['fuse', { value: 1 }], 'h,5,1': ['varres', { value: 40 }], 'v,7,2': ['ammeter'] }] },
 ];
 
+// The examples are written with the supply along the bottom; turn them upside down so they
+// follow the usual convention: the cell or battery at the top, lamps and other outputs below.
+// Each part keeps its left-right direction, so polarity (e.g. for the diodes) is unchanged, and a
+// voltmeter drawn across a lamp stays across that lamp.
+function supplyAtTop([wires, parts]) {
+  const rowsOf = (k) => { const [d, , r] = k.split(','); return d === 'v' ? [Number(r), Number(r) + 1] : [Number(r)]; };
+  const all = [...wires, ...Object.keys(parts)].flatMap(rowsOf), R = Math.min(...all) + Math.max(...all);
+  const flip = (k) => { const [d, c, r] = k.split(','); return `${d},${c},${d === 'v' ? R - Number(r) - 1 : R - Number(r)}`; };
+  return [wires.map(flip), Object.fromEntries(Object.entries(parts).map(([k, v]) => [flip(k), v]))];
+}
+
 function applyPreset(id) {
   const p = PRESETS.find((x) => x.id === id);
   if (!p || !p.build) return;
-  const [wires, parts] = p.build();
+  const [wires, parts] = supplyAtTop(p.build());
   state.comps.clear();
   for (const k of Object.keys(lampR)) delete lampR[k];
   for (const k of wires) state.comps.set(k, newComp('wire'));

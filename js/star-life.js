@@ -193,3 +193,6 @@ state.i = Math.max(0, Math.min(PATHS[state.path].length - 1, Number(q.get('stage
 sizeCanvas();
 render();
 requestAnimationFrame(frame);
+
+// Share: which stage of the life cycle is showing
+PK.shareState = { get: () => ({ i: state.i }), set: (o) => { if (o.i != null) go(Number(o.i)); } };
