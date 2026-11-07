@@ -22,8 +22,6 @@
     .pq-switch { margin: 0 0 14px; }
     .pq .q-panel { font-size: 1.15rem; }
     .pq .tags { gap: 4px; margin-bottom: 8px; display: flex; flex-wrap: wrap; }
-    .pq .tag.recall { background: var(--t-forces); color: #fff; }
-    .pq .tag.given { background: var(--surface-2); color: var(--muted); border: 1px solid var(--border); }
     .pq .ctx { margin: 0 0 10px; }
     .pq .givens { list-style: none; padding: 0; margin: 0 0 12px; display: grid; gap: 6px; }
     .pq .givens li { display: flex; justify-content: space-between; gap: 12px; padding: 8px 12px; background: var(--surface-2); border-radius: var(--radius-sm); }

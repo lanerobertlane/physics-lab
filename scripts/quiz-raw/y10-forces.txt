@@ -18,7 +18,7 @@ tf | forces | Resultant forces | Friction is a non-contact force. | FALSE | EXP:
 
 ## 3. Work done   (Q1 sugar control variable: non-physics context, dropped)
 short | forces | Pressure in fluids & upthrust | Objects under water have a force pushing up on them. What is the name of this force? | ACCEPT: upthrust; up thrust; buoyancy
-mc | particles | Required practical: density | Why does a ping pong ball float in water? | It is lighter than water; It weighs less than water; *It has a lower density than water; A ping pong ball doesn't float in water
+mc | particles | Density | Why does a ping pong ball float in water? | It is lighter than water; It weighs less than water; *It has a lower density than water; A ping pong ball doesn't float in water
 tf | forces | Pressure on solids | The unit of pressure can be written as N/m². | TRUE | EXP: 1 N/m² is 1 pascal (Pa).
 mc | reference | Practical graph plotter | The independent variable is the variable you... | *Change; Measure; Keep the same
 open | waves | Transverse & longitudinal waves | Give one example of something that travels as a wave. | MODEL: Light, sound, water ripples, radio waves, microwaves or seismic waves (any one).

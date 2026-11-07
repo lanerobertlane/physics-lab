@@ -167,14 +167,17 @@ function startTeacher() {
       byTool.get(k).push(q.id);
     }
   }
+  // A tool can be listed under more than one topic (catalogue `also`); its questions are filed under its main topic
+  const toolKey = (x) => `${x.topic}|${x.name}`;
+  const toolsIn = (id) => TOOLS.filter((x) => (x.topic === id || (x.also || []).includes(id)) && byTool.has(toolKey(x)));
   function renderBuild() {
     sortByTool();
-    const topics = TOPICS.filter((t) => [...byTool.keys()].some((k) => k.startsWith(`${t.id}|`)));
+    const topics = TOPICS.filter((t) => toolsIn(t.id).length);
     $('qz-build').innerHTML = topics.map((t) => {
-      const tools = TOOLS.filter((x) => x.topic === t.id && byTool.has(`${t.id}|${x.name}`));
-      const allOn = tools.every((x) => picked.has(`${t.id}|${x.name}`));
+      const tools = toolsIn(t.id);
+      const allOn = tools.every((x) => picked.has(toolKey(x)));
       return `<fieldset class="qz-topic" style="--c:var(${t.colour})"><legend><label class="toggle"><input type="checkbox" data-topic="${t.id}" ${allOn ? 'checked' : ''}> ${esc(t.name)}</label></legend>
-        <div class="qz-tools">${tools.map((x) => { const k = `${t.id}|${x.name}`; return `<label class="toggle"><input type="checkbox" data-tool="${esc(k)}" ${picked.has(k) ? 'checked' : ''}> ${esc(x.name)} <span class="note">(${byTool.get(k).length})</span></label>`; }).join('')}</div></fieldset>`;
+        <div class="qz-tools">${tools.map((x) => { const k = toolKey(x); return `<label class="toggle"><input type="checkbox" data-tool="${esc(k)}" ${picked.has(k) ? 'checked' : ''}> ${esc(x.name)} <span class="note">(${byTool.get(k).length})</span></label>`; }).join('')}</div></fieldset>`;
     }).join('') || '<p class="note">No questions at this level yet.</p>';
     updateCount();
   }
@@ -187,14 +190,11 @@ function startTeacher() {
   $('qz-build').addEventListener('change', (e) => {
     const el = e.target;
     if (el.dataset.topic) {
-      TOOLS.filter((x) => x.topic === el.dataset.topic && byTool.has(`${x.topic}|${x.name}`)).forEach((x) => { const k = `${x.topic}|${x.name}`; if (el.checked) picked.add(k); else picked.delete(k); });
-      renderBuild();
+      toolsIn(el.dataset.topic).forEach((x) => { if (el.checked) picked.add(toolKey(x)); else picked.delete(toolKey(x)); });
     } else if (el.dataset.tool) {
       if (el.checked) picked.add(el.dataset.tool); else picked.delete(el.dataset.tool);
-      const topic = el.dataset.tool.split('|')[0];
-      const box = $('qz-build').querySelector(`[data-topic="${topic}"]`);
-      box.checked = [...$('qz-build').querySelectorAll(`[data-tool^="${topic}|"]`)].every((c) => c.checked);
     }
+    if (el.dataset.topic || el.dataset.tool) renderBuild();   // a tool can appear under two topics, so redraw both
     PK.store.set('quiz.tools', [...picked]);
     updateCount();
   });

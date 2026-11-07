@@ -2,7 +2,7 @@
 window.SPEC_INDEX = [
  {
   "page": "acceleration",
-  "title": "Acceleration practical",
+  "title": "Acceleration",
   "course": "physics",
   "spec": [
    {
@@ -141,7 +141,7 @@ window.SPEC_INDEX = [
  },
  {
   "page": "density",
-  "title": "Density practical",
+  "title": "Density",
   "course": "physics",
   "spec": [
    {
@@ -408,7 +408,7 @@ window.SPEC_INDEX = [
  },
  {
   "page": "infrared",
-  "title": "Infrared radiation practical",
+  "title": "Infrared radiation",
   "course": "physics",
   "spec": [
    {
@@ -424,7 +424,7 @@ window.SPEC_INDEX = [
  },
  {
   "page": "insulation",
-  "title": "Thermal insulation practical",
+  "title": "Thermal insulation",
   "course": "physics",
   "spec": [
    {
@@ -524,6 +524,40 @@ window.SPEC_INDEX = [
    {
     "code": "KS3",
     "text": "Moment as the turning effect of a force; balanced moments"
+   }
+  ]
+ },
+ {
+  "page": "momentum",
+  "title": "Momentum & collisions",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "4.5.7.1",
+    "text": "Momentum is a property of moving objects: p = m v",
+    "ht": 1
+   },
+   {
+    "code": "4.5.7.2",
+    "text": "Conservation of momentum: in a closed system, the total momentum before an event is equal to the total momentum after the event",
+    "ht": 1
+   },
+   {
+    "code": "4.5.7.2",
+    "text": "Collisions and explosions: calculating velocities from conservation of momentum",
+    "ht": 1
+   },
+   {
+    "code": "4.5.7.3",
+    "text": "Changes in momentum: F = m Δv ÷ Δt; force equals the rate of change of momentum",
+    "ht": 1,
+    "po": 1
+   },
+   {
+    "code": "4.5.7.3",
+    "text": "Safety features that increase the time taken for a change in momentum: air bags, seat belts, crumple zones, cushioned surfaces, cycle helmets",
+    "ht": 1,
+    "po": 1
    }
   ]
  },
@@ -1019,6 +1053,33 @@ window.SPEC_INDEX = [
    {
     "code": "KS3",
     "text": "Waves on water as transverse; sound as a longitudinal wave; frequency and amplitude"
+   }
+  ]
+ },
+ {
+  "page": "weight",
+  "title": "Weight on other planets",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "4.5.1.3",
+    "text": "Weight is the force acting on an object due to gravity: W = m g"
+   },
+   {
+    "code": "4.5.1.3",
+    "text": "The weight of an object depends on the gravitational field strength at the point where the object is"
+   },
+   {
+    "code": "4.5.1.3",
+    "text": "Weight and mass are directly proportional; weight is measured using a calibrated spring-balance (a newtonmeter)"
+   },
+   {
+    "code": "KS3",
+    "text": "Forces: weight = mass × gravitational field strength (g); on Earth g is about 10 N/kg, and it is different on other planets and stars"
+   },
+   {
+    "code": "KS3",
+    "text": "Space physics: gravity force and weight on other planets"
    }
   ]
  },

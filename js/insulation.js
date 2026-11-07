@@ -3,7 +3,7 @@
 // a lid) has a smaller k, so its water stays hot for longer.
 
 PK.header({
-  title: 'Thermal insulation practical',
+  title: 'Thermal insulation',
   answers: true,
   spec: [
     { code: '4.1.2.1', text: 'Required practical: investigate the effectiveness of different materials as thermal insulators, and the factors that affect this (such as thickness)', po: true },

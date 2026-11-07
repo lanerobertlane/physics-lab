@@ -1,13 +1,13 @@
 SOURCE OWN
 
-## Required practical: infrared radiation
-mc | waves | Required practical: infrared radiation | Which surface of a Leslie cube emits the most infrared? {ks4} | Shiny silver; Shiny white; *Matt black; Matt white
-mc | waves | Required practical: infrared radiation | Which surface is the best absorber of infrared? {ks4} | Shiny silver; *Matt black; Shiny white; They are all the same | EXP: Good emitters are also good absorbers.
-tf | waves | Required practical: infrared radiation | Shiny, light-coloured surfaces are good reflectors of infrared. {ks4} | TRUE
-short | waves | Required practical: infrared radiation | What instrument measures the infrared from each face of a Leslie cube? {ks4} | ACCEPT: infrared detector; ir detector; infrared thermometer; thermopile; detector
-open | waves | Required practical: infrared radiation | Why must the detector be the same distance from each face of the Leslie cube? {ks4} | MODEL: The infrared reaching the detector depends on the distance, so keeping it the same makes it a fair test. Only the type of surface should change.
-mc | waves | Required practical: infrared radiation | Why do people in hot countries often wear white clothes? {both} | *White reflects infrared, so they absorb less; White emits more infrared; White is a better conductor; White clothes are thinner
-open | waves | Required practical: infrared radiation | Explain why the inside of a vacuum flask is silvered. {ks4} | MODEL: Shiny silver surfaces are poor emitters and good reflectors of infrared, so less energy is transferred by radiation into or out of the drink.
+## Infrared radiation
+mc | waves | Infrared radiation | Which surface of a Leslie cube emits the most infrared? {ks4} | Shiny silver; Shiny white; *Matt black; Matt white
+mc | waves | Infrared radiation | Which surface is the best absorber of infrared? {ks4} | Shiny silver; *Matt black; Shiny white; They are all the same | EXP: Good emitters are also good absorbers.
+tf | waves | Infrared radiation | Shiny, light-coloured surfaces are good reflectors of infrared. {ks4} | TRUE
+short | waves | Infrared radiation | What instrument measures the infrared from each face of a Leslie cube? {ks4} | ACCEPT: infrared detector; ir detector; infrared thermometer; thermopile; detector
+open | waves | Infrared radiation | Why must the detector be the same distance from each face of the Leslie cube? {ks4} | MODEL: The infrared reaching the detector depends on the distance, so keeping it the same makes it a fair test. Only the type of surface should change.
+mc | waves | Infrared radiation | Why do people in hot countries often wear white clothes? {both} | *White reflects infrared, so they absorb less; White emits more infrared; White is a better conductor; White clothes are thinner
+open | waves | Infrared radiation | Explain why the inside of a vacuum flask is silvered. {ks4} | MODEL: Shiny silver surfaces are poor emitters and good reflectors of infrared, so less energy is transferred by radiation into or out of the drink.
 
 ## Ripple tank
 mc | waves | Ripple tank | In a ripple tank, what does the distance between two neighbouring bright lines show? {ks4} | The amplitude; *The wavelength; The frequency; The speed
@@ -31,14 +31,14 @@ mc | energy | Conduction, convection & radiation | Why are metals good thermal c
 multi | energy | Conduction, convection & radiation | Which of these are good thermal insulators? (tick 3) {both} | *Air; *Wool; *Plastic foam; Copper | EXP: Materials that trap air are good insulators, because gases are poor conductors.
 open | energy | Conduction, convection & radiation | Why is a radiator usually put near the bottom of a wall? {both} | MODEL: It heats the air next to it, which rises. Cooler air moves in to take its place, setting up a convection current that warms the whole room.
 
-## Required practical: thermal insulation
-mc | energy | Required practical: thermal insulation | In the insulation practical, what is the dependent variable? {ks4} | The type of insulating material; *The temperature of the water (or how fast it cools); The volume of water; The size of the beaker
-multi | energy | Required practical: thermal insulation | Which of these must be kept the same for a fair test? (tick 3) {ks4} | *The starting temperature of the water; *The volume of water; *The thickness of the insulating layer; The type of insulating material | EXP: The type of material is the independent variable, which you change.
-tf | energy | Required practical: thermal insulation | The best insulator is the material that makes the water cool down most slowly. {both} | TRUE
-short | energy | Required practical: thermal insulation | Which piece of equipment measures the temperature of the water? {both} | ACCEPT: thermometer; a thermometer; temperature probe; thermocouple; data logger
-open | energy | Required practical: thermal insulation | Why should you put a lid on the beaker in the insulation practical? {ks4} | MODEL: A lid reduces energy lost by evaporation and convection from the top of the water, so the results mainly depend on the insulating material.
-mc | energy | Required practical: thermal insulation | How does double glazing reduce energy loss from a house? {both} | It reflects all light; *The gap between the panes reduces conduction and convection; It makes the glass thicker; It stops radiation completely
-num | energy | Required practical: thermal insulation | Water cools from 80 °C to 62 °C in 10 minutes. By how many degrees has it cooled? {ks3} | NUM: 18 °C | EXP: 80 − 62 = 18 °C.
+## Thermal insulation
+mc | energy | Thermal insulation | In the insulation practical, what is the dependent variable? {ks4} | The type of insulating material; *The temperature of the water (or how fast it cools); The volume of water; The size of the beaker
+multi | energy | Thermal insulation | Which of these must be kept the same for a fair test? (tick 3) {ks4} | *The starting temperature of the water; *The volume of water; *The thickness of the insulating layer; The type of insulating material | EXP: The type of material is the independent variable, which you change.
+tf | energy | Thermal insulation | The best insulator is the material that makes the water cool down most slowly. {both} | TRUE
+short | energy | Thermal insulation | Which piece of equipment measures the temperature of the water? {both} | ACCEPT: thermometer; a thermometer; temperature probe; thermocouple; data logger
+open | energy | Thermal insulation | Why should you put a lid on the beaker in the insulation practical? {ks4} | MODEL: A lid reduces energy lost by evaporation and convection from the top of the water, so the results mainly depend on the insulating material.
+mc | energy | Thermal insulation | How does double glazing reduce energy loss from a house? {both} | It reflects all light; *The gap between the panes reduces conduction and convection; It makes the glass thicker; It stops radiation completely
+num | energy | Thermal insulation | Water cools from 80 °C to 62 °C in 10 minutes. By how many degrees has it cooled? {ks3} | NUM: 18 °C | EXP: 80 − 62 = 18 °C.
 
 ## Gas pressure
 mc | particles | Gas pressure | What causes gas pressure on the walls of a container? {both} | *The particles colliding with the walls; The particles sticking to the walls; The weight of the container; The particles getting bigger

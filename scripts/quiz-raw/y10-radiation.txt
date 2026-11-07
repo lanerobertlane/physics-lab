@@ -38,11 +38,11 @@ open | energy | Energy stores | Describe the energy changes when a book falls of
 ## Irradiation and Contamination   (all duplicates, skip)
 
 ## Isotopes and Radiation   (Q1-4 duplicates, skip)
-mc | particles | Required practical: density | What is the equation for density? {both} | *Density = mass ÷ volume; Density = volume ÷ mass; Density = mass × volume
+mc | particles | Density | What is the equation for density? {both} | *Density = mass ÷ volume; Density = volume ÷ mass; Density = mass × volume
 tf | particles | States of matter | Liquids usually have a higher density than solids of the same substance. {both} | FALSE | EXP: The particles in a solid are usually packed more closely, so the solid is denser. (Water is an unusual exception: ice floats.)
 
 ## Properties of Radiation   (Q3 isotope: duplicate, skip)
-short | particles | Required practical: density | What piece of equipment do you use to measure the mass of an object? {both} | ACCEPT: balance; a balance; digital balance; scales; electronic balance; top pan balance; mass balance
+short | particles | Density | What piece of equipment do you use to measure the mass of an object? {both} | ACCEPT: balance; a balance; digital balance; scales; electronic balance; top pan balance; mass balance
 mc | electricity | Circuit builder | How is a voltmeter connected in a circuit? {both} | Series; *Parallel | EXP: A voltmeter goes across (in parallel with) the component, to compare the energy carried by the charge on each side.
 mc | atomic | Alpha, beta & gamma | Which type of radiation is made of the nucleus of a helium atom? | *Alpha; Beta; Gamma
 tf | atomic | Alpha, beta & gamma | Gamma radiation has a low frequency. | FALSE | EXP: Gamma rays have the highest frequency (and shortest wavelength) in the electromagnetic spectrum.

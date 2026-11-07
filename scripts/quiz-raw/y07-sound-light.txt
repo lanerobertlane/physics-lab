@@ -32,7 +32,7 @@ mc | waves | Sound on an oscilloscope | The frequency of a sound wave increases.
 tf | waves | Sound on an oscilloscope | Sound is an example of a longitudinal wave. {both} | TRUE
 
 ## Waves   (despite the title, this is lab skills: Q2–Q5 lab equipment and safety, Q6 biology; dropped)
-mc | particles | Required practical: density | Which piece of equipment do we use to measure mass? | Conical flask; *Balance; Measuring cylinder
+mc | particles | Density | Which piece of equipment do we use to measure mass? | Conical flask; *Balance; Measuring cylinder
 
 ## Wave speed   (Q2–Q5 repeat existing questions; Q6 biology and Q7 mixtures dropped)
 open | waves | Sound on an oscilloscope | What does "transmission" of a wave mean? | MODEL: The wave passes through a material and carries on out the other side.

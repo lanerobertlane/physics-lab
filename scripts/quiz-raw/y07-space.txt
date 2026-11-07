@@ -30,13 +30,13 @@ open | forces | Terminal velocity | How does increasing the surface area of an o
 mc | space | Orbits | As the distance between two objects increases, what happens to the gravitational force between them? | It increases; *It decreases; It stays the same
 mc | space | Earth, Sun & Moon | Why is the weather hotter in summer? | The Earth is closer to the Sun; The Earth is further from the Sun; *Our half of the Earth is tilted towards the Sun; Our half of the Earth is tilted away from the Sun | EXP: When our hemisphere tilts towards the Sun, the Sun is higher in the sky, the days are longer and the sunlight is more concentrated.
 open | space | Earth, Sun & Moon | Why are the seasons different in the Northern and Southern hemispheres? | MODEL: The Earth's axis is tilted. When the Northern hemisphere is tilted towards the Sun (summer), the Southern hemisphere is tilted away from it (winter), and the other way round six months later.
-mc | particles | Required practical: density | Which piece of equipment measures the mass of an object? | Newtonmeter; *Balance; Ruler; Measuring cylinder
+mc | particles | Density | Which piece of equipment measures the mass of an object? | Newtonmeter; *Balance; Ruler; Measuring cylinder
 short | space | Earth, Sun & Moon | How long does it take the Earth to orbit the Sun? | ACCEPT: a year; one year; 1 year; 365 days; 365.25 days; 365¼ days; 365 and a quarter days; 365
 mc | forces | Resultant forces | Which of these is a contact force? | *Air resistance; Weight; Magnetism; Electrostatic force
 
 ## Heating at an angle   (Q4 repeats an earlier question)
 short | waves | Light box & lenses | Which piece of equipment measures angles? {both} | ACCEPT: protractor; a protractor
 mc | waves | Light box & lenses | Which word describes lines at 90° to each other? {both} | *Perpendicular; Parallel | EXP: In ray diagrams, the normal is drawn perpendicular to the surface.
-open | particles | Required practical: density | What is the equation for density? {both} | MODEL: Density = mass ÷ volume (ρ = m ÷ V).
+open | particles | Density | What is the equation for density? {both} | MODEL: Density = mass ÷ volume (ρ = m ÷ V).
 short | particles | States of matter | Which state of matter is usually the most dense? {both} | ACCEPT: solid; solids; a solid | EXP: The particles in a solid are packed closest together. (Ice is an unusual exception: it is less dense than water.)
 open | particles | States of matter | Challenge: describe the difference between how particles move in a solid and in a gas. {both} | MODEL: In a solid the particles vibrate about fixed positions. In a gas they move quickly and randomly in all directions, far apart from each other.

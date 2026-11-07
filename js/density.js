@@ -2,7 +2,7 @@
 // a eureka can (irregular object) or a measuring cylinder (liquid). ρ = m ÷ V.
 
 PK.header({
-  title: 'Density practical',
+  title: 'Density',
   answers: true,
   spec: [
     { code: '4.3.1.1', text: 'Density of materials: ρ = m ÷ V; the particle model explains differences in density' },
