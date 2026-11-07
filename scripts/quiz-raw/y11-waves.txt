@@ -18,7 +18,7 @@ mc | energy | Energy stores | Wasted energy usually ends up in which store? | *I
 open | waves | Electromagnetic spectrum | Explain why gamma waves are hazardous to humans. (3 marks) | MODEL: Gamma rays are ionising radiation. They can penetrate the body and ionise atoms in cells. This can damage DNA, causing mutations that may lead to cancer.
 
 ## 2c. Uses of x-rays and gamma   (Q2 rate of reaction: dropped)
-mc | waves | Required practical: infrared radiation | How does increasing the temperature of an object affect it? | Increases potential energy; Particles spread out; *Emits more infrared; Absorbs more infrared | EXP: The hotter an object is, the more infrared radiation it emits in a given time.
+mc | waves | Infrared radiation | How does increasing the temperature of an object affect it? | Increases potential energy; Particles spread out; *Emits more infrared; Absorbs more infrared | EXP: The hotter an object is, the more infrared radiation it emits in a given time.
 mc | atomic | Atom builder | A version of the same element with a different number of neutrons is called... | An ion; *An isotope; An allotrope
 short | waves | Electromagnetic spectrum | Which type of wave is used for satellite communication? | ACCEPT: microwaves; microwave; micro waves
 open | waves | Transverse & longitudinal waves | Describe a transverse wave. | MODEL: The oscillations are perpendicular (at right angles) to the direction of energy transfer, e.g. ripples on water or any electromagnetic wave.
@@ -26,11 +26,11 @@ multi | energy | Energy stores | Which of the following are stores of energy? (T
 
 ## 2. Uses of EM waves
 mc | waves | Electromagnetic spectrum | Which of these statements is true for all EM waves? | *They are all transverse; They all travel at the same speed through air; They are all absorbed by the atmosphere; They transfer matter   [B is nearly true too; reworded "through air" kept, EXP clarifies] | EXP: All EM waves are transverse. They all travel at the same speed in a vacuum (not exactly in air).
-short | particles | Required practical: density | What piece of equipment is used to measure the volume of an irregular object? | ACCEPT: displacement can; eureka can; a eureka can; a displacement can; measuring cylinder
+short | particles | Density | What piece of equipment is used to measure the volume of an irregular object? | ACCEPT: displacement can; eureka can; a eureka can; a displacement can; measuring cylinder
 mc | electricity | Circuit builder | Which voltmeter would have the highest reading? [img: three circuits. 1: one cell, one lamp, V1 across lamp. 2: two cells, one lamp, V2 across lamp. 3: three cells, two lamps in series, V3 across one lamp] | V1; *V2; V3; They're all the same | EXP: V2 gets the p.d. of two cells. V3 shares three cells between two lamps, so it reads 1.5 cells' worth.
 short | waves | Electromagnetic spectrum | Which type of electromagnetic wave has the highest frequency? | ACCEPT: gamma; gamma rays; gamma ray
 mc | electricity | Circuit builder | How does increasing the resistance in a variable resistor affect the current? | Current increases; *Current decreases; Resistance does not affect current
-mc | particles | Required practical: density | Which of these could be used to measure the volume of a regular shape? | Ruler; Vernier callipers; Micrometer; *All of these could be used | EXP: Measure the length, width and height, then multiply.
+mc | particles | Density | Which of these could be used to measure the volume of a regular shape? | Ruler; Vernier callipers; Micrometer; *All of these could be used | EXP: Measure the length, width and height, then multiply.
 short | waves | Electromagnetic spectrum | Name an ionising electromagnetic wave. | ACCEPT: UV; ultraviolet; gamma; gamma ray; gamma rays; x-ray; x-rays; xray; xrays
 
 ## 3. Refraction

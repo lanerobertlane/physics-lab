@@ -7,7 +7,7 @@ open | forces | Resultant forces | A stationary object with balanced forces will
 open | forces | Stopping distances | Name a factor that can affect braking distance. | MODEL: Any one of: speed, wet or icy roads, worn brakes, worn tyres, the mass of the vehicle.
 
 ## Properties of Waves   (Q1, Q2 duplicates, skip)
-open | energy | Required practical: thermal insulation | Describe how a building can be adapted to lose less energy. {both} | MODEL: Any of: loft insulation, cavity wall insulation, double or triple glazing, draught excluders, thicker walls or walls with a lower thermal conductivity. These reduce the rate of energy transfer to the surroundings.
+open | energy | Thermal insulation | Describe how a building can be adapted to lose less energy. {both} | MODEL: Any of: loft insulation, cavity wall insulation, double or triple glazing, draught excluders, thicker walls or walls with a lower thermal conductivity. These reduce the rate of energy transfer to the surroundings.
 open | energy | Efficiency | Describe the energy transfers in a light bulb. {both} | MODEL: Energy is transferred electrically to the bulb. The useful output is light. Some energy is wasted, dissipated to the thermal store of the surroundings.
 
 ## Transverse and Longitudinal   (Q4 sound type: duplicate, skip)

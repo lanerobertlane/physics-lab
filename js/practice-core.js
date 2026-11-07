@@ -375,7 +375,6 @@ const PQ = (() => {
     const rows = given.map((id) => `<li><span>${sentenceName(eq, id)}</span><b>${fmt(shown[id].value)}${unitText(shown[id].unit)}</b></li>`).join('');
     const unit = unitOf(subject);
     const tags = [
-      eq.recall ? '<span class="tag recall">Must recall</span>' : '<span class="tag given">Given on sheet</span>',
       eq.po ? '<span class="tag po">Physics only</span>' : '',
       eq.ht ? '<span class="tag ht">Higher</span>' : '',
     ].join('');

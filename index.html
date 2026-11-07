@@ -121,7 +121,7 @@
         + shortcut('Recently used', (PK.store.get('home.recent', []) || []).filter((h) => !state.favs.includes(h)).slice(0, 4), 'On this device');
       const html = top + TOPICS.map((topic) => {
         const tools = TOOLS
-          .filter((t) => t.topic === topic.id)
+          .filter((t) => t.topic === topic.id || (t.also || []).includes(topic.id))
           .filter((t) => levelOk(t) && textOk(t, topic) && (!state.readyOnly || t.href))
           .sort((a, b) => Boolean(b.href) - Boolean(a.href));
         if (!tools.length) return '';

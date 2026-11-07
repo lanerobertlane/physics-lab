@@ -85,8 +85,11 @@
     'r-vacuum': 'Removes the air. Infrared still reaches the cans, because radiation doesn’t need particles to travel.',
     'ruler-on': 'Shows a ruler for measuring the wavelength.',
     'show-config': 'Writes the electronic structure (like 2,8,1) on each of the first 20 elements.',
+    'show-ke': 'Adds kinetic energy to the table. Momentum is always conserved, but kinetic energy is only kept when the gliders bounce perfectly.',
+    crumple: 'Gives the car a crumple zone, so it takes longer to stop. The same change in momentum over a longer time means a smaller force.',
     'circuits#show-graph': 'Plots an I–V graph from your readings.',
     'energy#show-graph': 'Shows how the energy in each store changes over time.',
+    'show-reading': 'Shows the newtonmeter reading for you. Untick it to read the scale yourself, as in a real experiment.',
     'show-table': 'Shows the results table for your readings.',
     'show-values': 'Writes each component’s value on the circuit, such as a cell’s p.d. or a resistor’s resistance.',
     'show-vector': 'Shows the scale drawing, with the forces drawn tip to tail.',
@@ -257,7 +260,13 @@
     document.querySelectorAll(TABLES).forEach((t) => {
       // Tools rebuild their tables, so the button belongs to the box the table sits in
       const box = t.parentElement;
-      if (!box || box.dataset.tableCopy) return;
+      if (!box) return;
+      if (box.dataset.tableCopy) {
+        // Rebuilding the table with innerHTML removes the button too, so put it back
+        const had = tableBtns.find((x) => x.box === box);
+        if (had && !box.contains(had.b)) box.appendChild(had.b);
+        return;
+      }
       box.dataset.tableCopy = '1';
       if (getComputedStyle(box).position === 'static') box.style.position = 'relative';
       if (parseFloat(getComputedStyle(box).paddingTop) < 30) box.style.paddingTop = '30px';

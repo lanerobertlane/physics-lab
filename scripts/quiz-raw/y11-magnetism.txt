@@ -6,7 +6,7 @@ mc | electricity | Circuit builder | What is this electrical component? [img: fi
 mc | waves | Electromagnetic spectrum | Which electromagnetic wave has the highest frequency? | *Gamma; Radio; UV; Microwave
 mc | atomic | Alpha, beta & gamma | An alpha particle is made of... | A fast moving electron; *2 protons and 2 neutrons; 2 protons; 2 neutrons
 open | atomic | Alpha, beta & gamma | How can alpha radiation be stopped? | MODEL: A sheet of paper (or a few centimetres of air, or skin) stops alpha radiation.
-multi | particles | Required practical: density | To find the density of an irregular object I would need (tick all correct answers) | Ruler; *Digital balance; *Eureka can; Spring
+multi | particles | Density | To find the density of an irregular object I would need (tick all correct answers) | Ruler; *Digital balance; *Eureka can; Spring
 open | electricity | Circuit builder | How does increasing the resistance in a circuit affect the brightness of a bulb? | MODEL: The current decreases, so the bulb gets dimmer.
 
 ## 2. Magnetic fields 2   (Q4-6 biology: dropped)

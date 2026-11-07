@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weight on Other Planets · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Hang masses on a newtonmeter on the Moon, Mars or Jupiter, plot weight against mass and find g from the gradient. W = m g.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="physics, forces, space, weight, mass, gravitational field strength, planets, education, school, KS3, GCSE, AQA, science, simulation, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/weight.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Weight on other planets">
+  <meta property="og:description" content="Hang masses on a newtonmeter on the Moon, Mars or Jupiter, plot weight against mass and find g from the gradient. W = m g.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/weight.html">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Weight on other planets", "description": "Hang masses on a newtonmeter on the Moon, Mars or Jupiter, plot weight against mass and find g from the gradient. W = m g.", "url": "https://lanerobertlane.space/tools/weight.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["Key Stage 3", "GCSE"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #rig { aspect-ratio: 520 / 620; max-width: 430px; margin: 0 auto; }
+    #wm { width: 100%; aspect-ratio: 270 / 220; display: block; margin-top: 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    .rig-wrap { padding: 10px; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .results { width: 100%; border-collapse: collapse; margin-top: 10px; font-variant-numeric: tabular-nums; font-size: .9rem; }
+    .results th, .results td { border: 1px solid var(--border-strong); padding: 4px 6px; text-align: center; }
+    .results th { background: var(--surface-2); }
+    .results td.n { color: var(--answer, inherit); }
+    .swatch { display: inline-block; width: .8em; height: .8em; border-radius: 50%; margin-right: 5px; vertical-align: -1px; }
+    .legend { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 4px; font-size: .9rem; }
+    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
+    .ctl label b { color: var(--text); }
+    .bars { display: grid; gap: 6px; margin-top: 10px; }
+    .bar { display: grid; grid-template-columns: 6.5em 1fr 5.5em; gap: 8px; align-items: center; font-size: .9rem; }
+    .bar .track { height: 16px; border-radius: 4px; background: var(--surface-2); overflow: hidden; }
+    .bar .fill { display: block; height: 100%; border-radius: 4px; }
+    .bar .val { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Weight on other planets</h1>
+      <p>Your mass is the same everywhere, but your weight depends on the gravitational field strength, <b>g</b>, where you are: <b>W = m g</b>. Hang masses on a newtonmeter on different worlds, record the weight and plot weight against mass. The gradient of the line is g.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <div class="rig-wrap"><canvas id="rig" aria-label="Masses hanging from a newtonmeter on a clamp stand"></canvas></div>
+          <div class="stage-bar">
+            <select class="select" id="world" aria-label="Where you are">
+              <option value="mercury">Mercury</option>
+              <option value="venus">Venus</option>
+              <option value="earth" selected>Earth</option>
+              <option value="moon">The Moon</option>
+              <option value="mars">Mars</option>
+              <option value="jupiter">Jupiter</option>
+              <option value="saturn">Saturn</option>
+              <option value="uranus">Uranus</option>
+              <option value="neptune">Neptune</option>
+              <option value="pluto">Pluto</option>
+              <option value="mystery">Mystery planet</option>
+            </select>
+            <button class="btn" id="add">＋ Add 100 g</button>
+            <button class="btn" id="remove">− Remove 100 g</button>
+            <select class="select" id="meter" aria-label="Newtonmeter">
+              <option value="10">0–10 N newtonmeter</option>
+              <option value="50">0–50 N newtonmeter</option>
+            </select>
+            <button class="btn" id="new-mystery" hidden>New mystery planet</button>
+          </div>
+          <p class="note" id="world-note" style="margin:0;padding:0 12px 10px"></p>
+        </div>
+        <div class="panel after-aside">
+          <h2>What would you weigh?</h2>
+          <div class="ctl"><label for="you">Your mass <b id="you-val"></b></label><input type="range" id="you" min="20" max="120" step="1" value="50"></div>
+          <div class="bars" id="bars"></div>
+          <p class="note">Your mass doesn’t change from world to world. Only your weight does.</p>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Now</h2>
+          <dl class="readout" id="readout"></dl>
+          <p class="note" id="warn"></p>
+        </div>
+        <div class="panel">
+          <h2>Results</h2>
+          <div class="btn-row">
+            <button class="btn primary" id="record">＋ Record reading</button>
+            <button class="btn" id="clear">Clear</button>
+          </div>
+          <label class="toggle" style="margin-top:6px"><input type="checkbox" id="show-reading" checked> Show the reading (untick to read the newtonmeter yourself)</label>
+          <div id="table"></div>
+          <canvas id="wm" aria-label="Weight against mass graph"></canvas>
+          <ul class="legend" id="legend"></ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/weight.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/quiz-pages/weight.js"></script>
+  <script src="../js/practice-tab.js" data-eqs="weight"></script>
+</body>
+</html>

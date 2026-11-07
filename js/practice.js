@@ -46,10 +46,10 @@ function makeQuestion(keep = state.keep) {
 
 // The tool (and tab) where each equation can be explored
 const TOOL_FOR = {
-  weight: ['work.html#lift', 'Work done (lifting)'], work: ['work.html', 'Work done'], 'power-w': ['work.html', 'Work done'],
+  weight: ['weight.html', 'Weight on other planets'], momentum: ['momentum.html', 'Momentum & collisions'], impulse: ['momentum.html#safety', 'Momentum & collisions (crash safety)'], work: ['work.html', 'Work done'], 'power-w': ['work.html', 'Work done'],
   hooke: ['springs.html', 'Springs & Hooke’s law'], epe: ['springs.html', 'Springs & Hooke’s law'],
   moment: ['moments.html', 'Moments'], speed: ['motion-graphs.html', 'Motion graphs'], suvat: ['motion-graphs.html', 'Motion graphs'],
-  accel: ['acceleration.html', 'Acceleration practical'], newton2: ['resultant-forces.html', 'Resultant forces'],
+  accel: ['acceleration.html', 'Acceleration'], newton2: ['resultant-forces.html', 'Resultant forces'],
   ke: ['energy.html', 'Energy stores'], gpe: ['work.html#lift', 'Work done (lifting)'],
   'eff-e': ['efficiency.html', 'Efficiency'], 'eff-p': ['efficiency.html', 'Efficiency'],
   charge: ['circuits.html', 'Circuit builder'], ohm: ['circuits.html', 'Circuit builder'], 'energy-qv': ['circuits.html', 'Circuit builder'],

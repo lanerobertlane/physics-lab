@@ -3,7 +3,7 @@
 // a 5 cm card to measure speed, and the time between gates gives a = (v − u) / t.
 
 PK.header({
-  title: 'Acceleration practical',
+  title: 'Acceleration',
   answers: true,
   spec: [
     { code: '4.5.6.2.2', text: "Newton's second law: F = m a; acceleration is proportional to the resultant force and inversely proportional to the mass" },

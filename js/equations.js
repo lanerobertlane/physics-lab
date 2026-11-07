@@ -71,7 +71,6 @@ function calcResult(eq) {
 function cardHtml(eq) {
   const subject = state.subject[eq.id];
   const tags = [
-    eq.recall ? '<span class="tag recall">Must recall</span>' : '<span class="tag given">Given on sheet</span>',
     eq.po ? '<span class="tag po">Physics only</span>' : '',
     eq.ht ? '<span class="tag ht">Higher</span>' : '',
   ].join('');

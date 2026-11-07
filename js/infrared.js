@@ -4,7 +4,7 @@
 // ε values are simplified, typical-of-a-school-lab figures.
 
 PK.header({
-  title: 'Infrared radiation practical',
+  title: 'Infrared radiation',
   spec: [
     { code: '4.6.3.1', text: 'Required practical: investigate how the amount of infrared radiation absorbed or radiated by a surface depends on the nature of that surface' },
     { code: '4.6.3.1', text: 'All bodies emit and absorb infrared radiation; the hotter the body, the more infrared radiation it emits in a given time', po: true },

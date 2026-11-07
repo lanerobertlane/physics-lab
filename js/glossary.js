@@ -31,6 +31,8 @@ window.PK_GLOSSARY = {
   'moment': { def: 'The turning effect of a force: moment = force × perpendicular distance from the pivot.', also: ['moments'] },
   'pivot': { def: 'The point an object turns about.' },
   'momentum': { def: 'Mass × velocity. In a closed system the total momentum before an event equals the total momentum after.' },
+  'closed system': { def: 'A system where no energy or matter enters or leaves, and no external forces act. Total momentum stays the same.' },
+  'newtonmeter': { def: 'A spring balance that measures force, in newtons.', also: ['newtonmeters', 'forcemeter'] },
   'velocity': { def: 'Speed in a given direction. It is a vector quantity.' },
   'acceleration': { def: 'The rate of change of velocity: a = Δv ÷ t, in m/s².' },
   'displacement': { def: 'The distance an object has moved from its start, in a stated direction. It is a vector quantity.' },

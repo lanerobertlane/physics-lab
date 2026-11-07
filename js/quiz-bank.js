@@ -2732,7 +2732,7 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "forces",
-   "tool": "Required practical: acceleration",
+   "tool": "Acceleration",
    "q": "In the acceleration required practical, what is the independent variable when you investigate the effect of force?",
    "lv": "ks4",
    "opts": [
@@ -2751,7 +2751,7 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "forces",
-   "tool": "Required practical: acceleration",
+   "tool": "Acceleration",
    "q": "Why are the masses moved from the trolley to the hanger, rather than taken off, when the force is increased?",
    "lv": "ks4",
    "opts": [
@@ -2770,7 +2770,7 @@ window.QUIZ_BANK = {
   {
    "type": "short",
    "topic": "forces",
-   "tool": "Required practical: acceleration",
+   "tool": "Acceleration",
    "q": "What does a light gate measure as the card on the trolley passes through it?",
    "lv": "ks4",
    "accept": [
@@ -2787,7 +2787,7 @@ window.QUIZ_BANK = {
   {
    "type": "tf",
    "topic": "forces",
-   "tool": "Required practical: acceleration",
+   "tool": "Acceleration",
    "q": "If the mass stays the same, doubling the resultant force doubles the acceleration.",
    "lv": "ks4",
    "ans": true,
@@ -2798,7 +2798,7 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "forces",
-   "tool": "Required practical: acceleration",
+   "tool": "Acceleration",
    "q": "Using the same force, what happens to the acceleration if the mass of the trolley is doubled?",
    "lv": "ks4",
    "opts": [
@@ -2817,7 +2817,7 @@ window.QUIZ_BANK = {
   {
    "type": "num",
    "topic": "forces",
-   "tool": "Required practical: acceleration",
+   "tool": "Acceleration",
    "q": "A resultant force of 1.2 N acts on a trolley of mass 0.8 kg. What is its acceleration?",
    "lv": "ks4",
    "num": 1.5,
@@ -2829,7 +2829,7 @@ window.QUIZ_BANK = {
   {
    "type": "open",
    "topic": "forces",
-   "tool": "Required practical: acceleration",
+   "tool": "Acceleration",
    "q": "Give one reason why the measured acceleration is often less than the value calculated from F = m a.",
    "lv": "ks4",
    "model": "Friction (and air resistance) act against the motion, so the resultant force is less than the weight of the hanging masses.",
@@ -2839,7 +2839,7 @@ window.QUIZ_BANK = {
   {
    "type": "multi",
    "topic": "forces",
-   "tool": "Required practical: acceleration",
+   "tool": "Acceleration",
    "q": "Which of these make the results more accurate? (tick 2)",
    "lv": "ks4",
    "opts": [
@@ -2855,6 +2855,171 @@ window.QUIZ_BANK = {
    "exp": "Light gates remove reaction time. A friction-compensated runway makes the hanging weight the resultant force.",
    "id": "for1p7xi",
    "pg": "acceleration"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Momentum & collisions",
+   "q": "What is the unit of momentum?",
+   "lv": "ks4",
+   "opts": [
+    "kg m/s",
+    "N",
+    "kg m/s²",
+    "J"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Momentum = mass × velocity, so its unit is kg × m/s.",
+   "id": "for10afi",
+   "pg": "momentum"
+  },
+  {
+   "type": "num",
+   "topic": "forces",
+   "tool": "Momentum & collisions",
+   "q": "A 0.5 kg glider moves at 0.6 m/s. What is its momentum?",
+   "lv": "ks4",
+   "num": 0.3,
+   "unit": "kg m/s",
+   "exp": "p = m v = 0.5 × 0.6 = 0.3 kg m/s.",
+   "id": "for1pjao",
+   "pg": "momentum"
+  },
+  {
+   "type": "tf",
+   "topic": "forces",
+   "tool": "Momentum & collisions",
+   "q": "Momentum has a direction as well as a size.",
+   "lv": "ks4",
+   "ans": true,
+   "exp": "Momentum is a vector, because velocity is a vector. Motion one way is positive and the other way is negative.",
+   "id": "forv1d1t",
+   "pg": "momentum"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Momentum & collisions",
+   "q": "In a closed system, what happens to the total momentum in a collision?",
+   "lv": "ks4",
+   "opts": [
+    "It stays the same",
+    "It always increases",
+    "It always decreases",
+    "It becomes zero"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "This is conservation of momentum: total momentum before = total momentum after.",
+   "id": "for1x081",
+   "pg": "momentum"
+  },
+  {
+   "type": "num",
+   "topic": "forces",
+   "tool": "Momentum & collisions",
+   "q": "A 0.4 kg glider moving at 0.8 m/s hits a 0.4 kg glider at rest and they stick together. How fast do they move afterwards?",
+   "lv": "ks4",
+   "num": 0.4,
+   "unit": "m/s",
+   "exp": "Momentum before = 0.4 × 0.8 = 0.32 kg m/s. Afterwards 0.32 = 0.8 × v, so v = 0.4 m/s.",
+   "id": "for1sfs7",
+   "pg": "momentum"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Momentum & collisions",
+   "q": "Two gliders at rest are pushed apart by a spring. What is their total momentum afterwards?",
+   "lv": "ks4",
+   "opts": [
+    "Zero",
+    "Equal to the energy in the spring",
+    "Twice the momentum of one glider",
+    "It depends on their masses"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The total momentum was zero before, so it is zero after. They have equal momentum in opposite directions.",
+   "id": "foripglm",
+   "pg": "momentum"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Momentum & collisions",
+   "q": "A gun recoils when it fires a bullet. Why does the gun move more slowly than the bullet?",
+   "lv": "ks4",
+   "opts": [
+    "The gun has much more mass, but the same size of momentum",
+    "The gun has less momentum",
+    "The bullet has more mass",
+    "Friction slows the gun"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Momentum is conserved, so the gun and bullet have equal and opposite momentum. The gun's bigger mass means a smaller velocity.",
+   "id": "foreh8w0",
+   "pg": "momentum"
+  },
+  {
+   "type": "open",
+   "topic": "forces",
+   "tool": "Momentum & collisions",
+   "q": "Use ideas about momentum to explain how a crumple zone protects people in a car crash.",
+   "lv": "ks4",
+   "model": "The crumple zone increases the time it takes the car to stop. The change in momentum is the same, so the rate of change of momentum is smaller, which means a smaller force on the people.",
+   "id": "formr1a1",
+   "pg": "momentum"
+  },
+  {
+   "type": "multi",
+   "topic": "forces",
+   "tool": "Momentum & collisions",
+   "q": "Which of these reduce the force on a person in a collision by increasing the time taken to stop? (tick 3)",
+   "lv": "ks4",
+   "opts": [
+    "Air bags",
+    "Seat belts",
+    "Cycle helmets",
+    "Brakes"
+   ],
+   "ans": [
+    0,
+    1,
+    2
+   ],
+   "exp": "They all make the momentum change over a longer time, so the force is smaller.",
+   "id": "forhvt6a",
+   "pg": "momentum"
+  },
+  {
+   "type": "num",
+   "topic": "forces",
+   "tool": "Momentum & collisions",
+   "q": "A 1200 kg car travelling at 15 m/s stops in 0.12 s in a crash. What is the average force on the car?",
+   "lv": "ks4",
+   "num": 150000,
+   "unit": "N",
+   "exp": "F = m Δv ÷ Δt = 1200 × 15 ÷ 0.12 = 150 000 N.",
+   "id": "forckkmd",
+   "pg": "momentum"
+  },
+  {
+   "type": "tf",
+   "topic": "forces",
+   "tool": "Momentum & collisions",
+   "q": "When two gliders stick together after a collision, kinetic energy is conserved.",
+   "lv": "ks4",
+   "ans": false,
+   "exp": "Momentum is conserved, but some kinetic energy is transferred to other stores, such as by heating and sound.",
+   "id": "for6j5n1",
+   "pg": "momentum"
   },
   {
    "type": "mc",
@@ -3655,7 +3820,7 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "waves",
-   "tool": "Required practical: infrared radiation",
+   "tool": "Infrared radiation",
    "q": "Which surface of a Leslie cube emits the most infrared?",
    "lv": "ks4",
    "opts": [
@@ -3673,7 +3838,7 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "waves",
-   "tool": "Required practical: infrared radiation",
+   "tool": "Infrared radiation",
    "q": "Which surface is the best absorber of infrared?",
    "lv": "ks4",
    "opts": [
@@ -3692,7 +3857,7 @@ window.QUIZ_BANK = {
   {
    "type": "tf",
    "topic": "waves",
-   "tool": "Required practical: infrared radiation",
+   "tool": "Infrared radiation",
    "q": "Shiny, light-coloured surfaces are good reflectors of infrared.",
    "lv": "ks4",
    "ans": true,
@@ -3702,7 +3867,7 @@ window.QUIZ_BANK = {
   {
    "type": "short",
    "topic": "waves",
-   "tool": "Required practical: infrared radiation",
+   "tool": "Infrared radiation",
    "q": "What instrument measures the infrared from each face of a Leslie cube?",
    "lv": "ks4",
    "accept": [
@@ -3718,7 +3883,7 @@ window.QUIZ_BANK = {
   {
    "type": "open",
    "topic": "waves",
-   "tool": "Required practical: infrared radiation",
+   "tool": "Infrared radiation",
    "q": "Why must the detector be the same distance from each face of the Leslie cube?",
    "lv": "ks4",
    "model": "The infrared reaching the detector depends on the distance, so keeping it the same makes it a fair test. Only the type of surface should change.",
@@ -3728,7 +3893,7 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "waves",
-   "tool": "Required practical: infrared radiation",
+   "tool": "Infrared radiation",
    "q": "Why do people in hot countries often wear white clothes?",
    "lv": "both",
    "opts": [
@@ -3746,7 +3911,7 @@ window.QUIZ_BANK = {
   {
    "type": "open",
    "topic": "waves",
-   "tool": "Required practical: infrared radiation",
+   "tool": "Infrared radiation",
    "q": "Explain why the inside of a vacuum flask is silvered.",
    "lv": "ks4",
    "model": "Shiny silver surfaces are poor emitters and good reflectors of infrared, so less energy is transferred by radiation into or out of the drink.",
@@ -3990,7 +4155,7 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "energy",
-   "tool": "Required practical: thermal insulation",
+   "tool": "Thermal insulation",
    "q": "In the insulation practical, what is the dependent variable?",
    "lv": "ks4",
    "opts": [
@@ -4008,7 +4173,7 @@ window.QUIZ_BANK = {
   {
    "type": "multi",
    "topic": "energy",
-   "tool": "Required practical: thermal insulation",
+   "tool": "Thermal insulation",
    "q": "Which of these must be kept the same for a fair test? (tick 3)",
    "lv": "ks4",
    "opts": [
@@ -4029,7 +4194,7 @@ window.QUIZ_BANK = {
   {
    "type": "tf",
    "topic": "energy",
-   "tool": "Required practical: thermal insulation",
+   "tool": "Thermal insulation",
    "q": "The best insulator is the material that makes the water cool down most slowly.",
    "lv": "both",
    "ans": true,
@@ -4039,7 +4204,7 @@ window.QUIZ_BANK = {
   {
    "type": "short",
    "topic": "energy",
-   "tool": "Required practical: thermal insulation",
+   "tool": "Thermal insulation",
    "q": "Which piece of equipment measures the temperature of the water?",
    "lv": "both",
    "accept": [
@@ -4055,7 +4220,7 @@ window.QUIZ_BANK = {
   {
    "type": "open",
    "topic": "energy",
-   "tool": "Required practical: thermal insulation",
+   "tool": "Thermal insulation",
    "q": "Why should you put a lid on the beaker in the insulation practical?",
    "lv": "ks4",
    "model": "A lid reduces energy lost by evaporation and convection from the top of the water, so the results mainly depend on the insulating material.",
@@ -4065,7 +4230,7 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "energy",
-   "tool": "Required practical: thermal insulation",
+   "tool": "Thermal insulation",
    "q": "How does double glazing reduce energy loss from a house?",
    "lv": "both",
    "opts": [
@@ -4083,7 +4248,7 @@ window.QUIZ_BANK = {
   {
    "type": "num",
    "topic": "energy",
-   "tool": "Required practical: thermal insulation",
+   "tool": "Thermal insulation",
    "q": "Water cools from 80 °C to 62 °C in 10 minutes. By how many degrees has it cooled?",
    "lv": "ks3",
    "num": 18,
@@ -4321,7 +4486,8 @@ window.QUIZ_BANK = {
    "lv": "both",
    "ans": false,
    "exp": "Mass is the amount of matter (kg). Weight is the force of gravity on that mass (N).",
-   "id": "for14ey3"
+   "id": "for14ey3",
+   "pg": "weight"
   },
   {
    "type": "open",
@@ -5513,7 +5679,8 @@ window.QUIZ_BANK = {
    "lv": "ks3",
    "ans": false,
    "exp": "More mass means a stronger gravitational field, so your weight there is bigger.",
-   "id": "for1pqbr"
+   "id": "for1pqbr",
+   "pg": "weight"
   },
   {
    "type": "short",
@@ -5531,7 +5698,8 @@ window.QUIZ_BANK = {
     "to the centre of the earth"
    ],
    "exp": "Gravity pulls towards the centre of the Earth (or whichever planet you are on).",
-   "id": "for1cb12"
+   "id": "for1cb12",
+   "pg": "weight"
   },
   {
    "type": "mc",
@@ -5549,7 +5717,8 @@ window.QUIZ_BANK = {
     0
    ],
    "exp": "W = m g. On Earth g is about 10 N/kg, but it is different on other planets.",
-   "id": "forfrudi"
+   "id": "forfrudi",
+   "pg": "weight"
   },
   {
    "type": "short",
@@ -5566,7 +5735,8 @@ window.QUIZ_BANK = {
     "9.81 N/kg"
    ],
    "exp": "It is about 9.8 N/kg; we usually use 10 N/kg.",
-   "id": "for1ltke"
+   "id": "for1ltke",
+   "pg": "weight"
   },
   {
    "type": "tf",
@@ -5620,7 +5790,8 @@ window.QUIZ_BANK = {
    "lv": "both",
    "ans": false,
    "exp": "It's the other way round: mass stays the same, but weight is smaller on the Moon because its gravitational field is weaker.",
-   "id": "fortg0yq"
+   "id": "fortg0yq",
+   "pg": "weight"
   },
   {
    "type": "open",
@@ -5669,7 +5840,8 @@ window.QUIZ_BANK = {
    "lv": "ks3",
    "ans": false,
    "exp": "Mass is the amount of matter, so it stays the same everywhere. Weight changes with gravitational field strength.",
-   "id": "for1au0c"
+   "id": "for1au0c",
+   "pg": "weight"
   },
   {
    "type": "open",
@@ -5978,7 +6150,7 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "particles",
-   "tool": "Required practical: density",
+   "tool": "Density",
    "q": "Which piece of equipment do we use to measure mass?",
    "lv": "ks3",
    "opts": [
@@ -6179,7 +6351,8 @@ window.QUIZ_BANK = {
     1
    ],
    "exp": "The Moon's gravitational field strength is about 1.6 N/kg, much less than Earth's 10 N/kg. Their mass stays the same.",
-   "id": "fornw5ig"
+   "id": "fornw5ig",
+   "pg": "weight"
   },
   {
    "type": "short",
@@ -6247,7 +6420,8 @@ window.QUIZ_BANK = {
     2
    ],
    "exp": "A newtonmeter (forcemeter) measures force in newtons. A balance measures mass.",
-   "id": "for17i6q"
+   "id": "for17i6q",
+   "pg": "weight"
   },
   {
    "type": "mc",
@@ -6345,7 +6519,7 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "particles",
-   "tool": "Required practical: density",
+   "tool": "Density",
    "q": "Which piece of equipment measures the mass of an object?",
    "lv": "ks3",
    "opts": [
@@ -6430,7 +6604,7 @@ window.QUIZ_BANK = {
   {
    "type": "open",
    "topic": "particles",
-   "tool": "Required practical: density",
+   "tool": "Density",
    "q": "What is the equation for density?",
    "lv": "both",
    "model": "Density = mass ÷ volume (ρ = m ÷ V).",
@@ -7247,7 +7421,8 @@ window.QUIZ_BANK = {
    "ans": [
     1
    ],
-   "id": "forxnvtu"
+   "id": "forxnvtu",
+   "pg": "weight"
   },
   {
    "type": "short",
@@ -9098,7 +9273,8 @@ window.QUIZ_BANK = {
     "kilogram",
     "kg"
    ],
-   "id": "for1sk2a"
+   "id": "for1sk2a",
+   "pg": "weight"
   },
   {
    "type": "mc",
@@ -9134,7 +9310,8 @@ window.QUIZ_BANK = {
     1
    ],
    "exp": "Weight is a force, so it is measured in newtons. N/kg is the unit of gravitational field strength.",
-   "id": "for2ffug"
+   "id": "for2ffug",
+   "pg": "weight"
   },
   {
    "type": "tf",
@@ -9411,7 +9588,7 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "particles",
-   "tool": "Required practical: density",
+   "tool": "Density",
    "q": "Which of these is a correct unit for density?",
    "lv": "both",
    "opts": [
@@ -9430,7 +9607,7 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "particles",
-   "tool": "Required practical: density",
+   "tool": "Density",
    "q": "What is meant by density?",
    "lv": "both",
    "opts": [
@@ -9495,7 +9672,7 @@ window.QUIZ_BANK = {
   {
    "type": "multi",
    "topic": "particles",
-   "tool": "Required practical: density",
+   "tool": "Density",
    "q": "Which pieces of equipment do you need to find the volume of an irregular shape? (tick 2)",
    "lv": "both",
    "opts": [
@@ -9515,7 +9692,7 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "particles",
-   "tool": "Required practical: density",
+   "tool": "Density",
    "q": "Which is the correct equation for density?",
    "lv": "both",
    "opts": [
@@ -9605,7 +9782,7 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "particles",
-   "tool": "Required practical: density",
+   "tool": "Density",
    "q": "Which is the most suitable way to measure the sides of a 5 cm block?",
    "lv": "both",
    "opts": [
@@ -9672,7 +9849,7 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "particles",
-   "tool": "Required practical: density",
+   "tool": "Density",
    "q": "Why does ice float on water?",
    "lv": "both",
    "opts": [
@@ -10929,7 +11106,8 @@ window.QUIZ_BANK = {
    "q": "Explain the difference between mass and weight.",
    "lv": "ks4",
    "model": "Mass is the amount of matter in an object, measured in kg, and is the same everywhere. Weight is the force of gravity on the mass, measured in N. It depends on the gravitational field strength (W = m g).",
-   "id": "for1q7mo"
+   "id": "for1q7mo",
+   "pg": "weight"
   },
   {
    "type": "open",
@@ -11251,7 +11429,8 @@ window.QUIZ_BANK = {
    "lv": "both",
    "ans": false,
    "exp": "Weight is the force of gravity on an object (N). Mass is the amount of matter (kg). On Earth, a 5 kg mass weighs about 49 N.",
-   "id": "fordz83a"
+   "id": "fordz83a",
+   "pg": "weight"
   },
   {
    "type": "mc",
@@ -12006,7 +12185,7 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "particles",
-   "tool": "Required practical: density",
+   "tool": "Density",
    "q": "What is the equation for density?",
    "lv": "both",
    "opts": [
@@ -12034,7 +12213,7 @@ window.QUIZ_BANK = {
   {
    "type": "short",
    "topic": "particles",
-   "tool": "Required practical: density",
+   "tool": "Density",
    "q": "What piece of equipment do you use to measure the mass of an object?",
    "lv": "both",
    "accept": [
@@ -12474,7 +12653,7 @@ window.QUIZ_BANK = {
   {
    "type": "open",
    "topic": "energy",
-   "tool": "Required practical: thermal insulation",
+   "tool": "Thermal insulation",
    "q": "Describe how a building can be adapted to lose less energy.",
    "lv": "both",
    "model": "Any of: loft insulation, cavity wall insulation, double or triple glazing, draught excluders, thicker walls or walls with a lower thermal conductivity. These reduce the rate of energy transfer to the surroundings.",
@@ -12719,7 +12898,7 @@ window.QUIZ_BANK = {
   {
    "type": "multi",
    "topic": "particles",
-   "tool": "Required practical: density",
+   "tool": "Density",
    "q": "To find the density of an irregular object I would need (tick all correct answers)",
    "lv": "ks4",
    "opts": [
@@ -13408,7 +13587,7 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "waves",
-   "tool": "Required practical: infrared radiation",
+   "tool": "Infrared radiation",
    "q": "How does increasing the temperature of an object affect it?",
    "lv": "ks4",
    "opts": [
@@ -13506,7 +13685,7 @@ window.QUIZ_BANK = {
   {
    "type": "short",
    "topic": "particles",
-   "tool": "Required practical: density",
+   "tool": "Density",
    "q": "What piece of equipment is used to measure the volume of an irregular object?",
    "lv": "ks4",
    "accept": [
@@ -13573,7 +13752,7 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "particles",
-   "tool": "Required practical: density",
+   "tool": "Density",
    "q": "Which of these could be used to measure the volume of a regular shape?",
    "lv": "ks4",
    "opts": [
@@ -14121,7 +14300,8 @@ window.QUIZ_BANK = {
     "gravitational",
     "the weight"
    ],
-   "id": "forhvhln"
+   "id": "forhvhln",
+   "pg": "weight"
   },
   {
    "type": "mc",

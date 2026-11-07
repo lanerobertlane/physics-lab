@@ -1,6 +1,7 @@
 // The list of every tool on the home page. Set `href` once a tool is built;
 // tools without one show as "coming soon".
 // Flags: ks3, gcse, po (GCSE Physics only, not Combined), ht (has Higher-tier content), rp (required practical).
+// also: other topics the tool is listed under as well, e.g. also: ['space'].
 
 const TOPICS = [
   { id: 'forces', name: 'Forces', ref: 'AQA 4.5', colour: '--t-forces' },
@@ -29,14 +30,14 @@ const TOOLS = [
     desc: 'Hang masses, read the ruler, plot force against extension and find the spring constant.' },
   { topic: 'forces', icon: 'lever', name: 'Moments', href: 'tools/moments.html', gcse: true, po: true, ks3: true,
     desc: 'Hang weights on a beam and balance it using the principle of moments.' },
-  { topic: 'forces', icon: 'resultant', name: 'Required practical: acceleration', href: 'tools/acceleration.html', gcse: true, rp: true,
+  { topic: 'forces', icon: 'resultant', name: 'Acceleration', href: 'tools/acceleration.html', gcse: true, rp: true,
     desc: 'A trolley pulled by falling masses: how force and mass affect acceleration (F = m a).' },
   { topic: 'forces', icon: 'parachute', name: 'Terminal velocity', href: 'tools/terminal.html', gcse: true, po: true, ks3: true,
     desc: 'A skydiver with weight and drag arrows that change with speed, a parachute and a live velocity–time graph.' },
-  { topic: 'forces', icon: 'collide', name: 'Momentum & collisions', gcse: true, ht: true,
-    desc: 'Carts on an air track that stick or bounce, with momentum totals before and after.' },
-  { topic: 'forces', icon: 'weight', name: 'Weight on other planets', gcse: true, ks3: true,
-    desc: 'Hang a mass on a newtonmeter on different planets and moons: W = m g.' },
+  { topic: 'forces', icon: 'collide', name: 'Momentum & collisions', href: 'tools/momentum.html', gcse: true, ht: true,
+    desc: 'Make gliders on an air track stick or bounce and compare the total momentum before and after. Explosions, and how crumple zones reduce the force in a crash.' },
+  { topic: 'forces', also: ['space'], icon: 'weight', name: 'Weight on other planets', href: 'tools/weight.html', gcse: true, ks3: true,
+    desc: 'Hang masses on a newtonmeter on the Moon, Mars or Jupiter and plot weight against mass. Find g for a mystery planet from the gradient.' },
   { topic: 'forces', icon: 'resultant', name: 'Work done', href: 'tools/work.html', gcse: true, ks3: true,
     desc: 'Push a box across different surfaces and lift loads, and see where the energy goes: W = F s.' },
   { topic: 'forces', icon: 'pressure', name: 'Pressure in fluids & upthrust', gcse: true, po: true, ht: true,
@@ -81,7 +82,7 @@ const TOOLS = [
     desc: 'Beads on a string and a slinky side by side: crests, troughs, compressions and rarefactions, with v = fλ.' },
   { topic: 'waves', icon: 'ripple', name: 'Ripple tank', href: 'tools/ripple-tank.html', gcse: true, ks3: true, rp: true,
     desc: 'Reflection, refraction and diffraction, with a ruler and strobe for the required practical.' },
-  { topic: 'waves', icon: 'heat', name: 'Required practical: infrared radiation', href: 'tools/infrared.html', gcse: true, rp: true,
+  { topic: 'waves', icon: 'heat', name: 'Infrared radiation', href: 'tools/infrared.html', gcse: true, rp: true,
     desc: 'Use a Leslie cube to find out how the type of surface affects the infrared radiated and absorbed.' },
   { topic: 'waves', icon: 'ray', name: 'Light box & lenses', href: 'tools/light-box.html', gcse: true, po: true, ks3: true, rp: true,
     desc: 'Shine rays through glass blocks, prisms, mirrors and lenses: refraction, total internal reflection and lens ray diagrams.' },
@@ -105,7 +106,7 @@ const TOOLS = [
     desc: 'Work out the efficiency of everyday devices from Sankey diagrams, step by step, then practise with marked questions.' },
   { topic: 'energy', icon: 'heat', name: 'Specific heat capacity', href: 'tools/shc.html', gcse: true, rp: true,
     desc: 'Heat a 1 kg block, record energy and temperature, and find c from the gradient.' },
-  { topic: 'energy', icon: 'heat', name: 'Required practical: thermal insulation', href: 'tools/insulation.html', gcse: true, po: true, rp: true,
+  { topic: 'energy', icon: 'heat', name: 'Thermal insulation', href: 'tools/insulation.html', gcse: true, po: true, rp: true,
     desc: 'Compare insulating materials by how quickly a beaker of hot water cools.' },
   { topic: 'energy', icon: 'wind', name: 'Energy resources', href: 'tools/resources.html', gcse: true, ks3: true,
     desc: 'Compare renewable and non-renewable resources for reliability, pollution and cost, and meet demand through the day.' },
@@ -117,7 +118,7 @@ const TOOLS = [
     desc: 'Heat or cool water and watch the particles. Heating curve, latent heat and internal energy.' },
   { topic: 'particles', icon: 'gas', name: 'Gas pressure', href: 'tools/gas.html', gcse: true, po: true, ht: true, ks3: true,
     desc: 'Change the volume and temperature of a gas in a cylinder and watch the pressure: pV = constant.' },
-  { topic: 'particles', icon: 'gas', name: 'Required practical: density', href: 'tools/density.html', gcse: true, rp: true, ks3: true,
+  { topic: 'particles', icon: 'gas', name: 'Density', href: 'tools/density.html', gcse: true, rp: true, ks3: true,
     desc: 'Measure mass and volume of regular and irregular objects (a eureka can) and liquids, and calculate density.' },
 
   // Atomic
@@ -156,7 +157,7 @@ const TOOLS = [
 
   // Reference
   { topic: 'reference', icon: 'equation', name: 'Equation explorer', href: 'tools/equations.html', ks3: true, gcse: true, ht: true,
-    desc: 'Every AQA equation, with the ones you must learn marked. Rearrange any of them and calculate.' },
+    desc: 'Every AQA equation in one place. Rearrange any of them and calculate.' },
   { topic: 'reference', icon: 'graph', name: 'Practical graph plotter', ks3: true, gcse: true, rp: true,
     desc: 'Type in your own results, then get a line of best fit, the gradient and any anomalies highlighted.' },
   { topic: 'reference', icon: 'equation', name: 'Calculation practice', href: 'tools/practice.html', ks3: true, gcse: true, ht: true,

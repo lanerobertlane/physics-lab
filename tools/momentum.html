@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Momentum &amp; Collisions · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Gliders on an air track that stick or bounce, with momentum totals before and after. Explosions, and how crumple zones reduce the force in a crash.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="physics, forces, momentum, collisions, education, school, GCSE, AQA, science, simulation, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/momentum.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Momentum &amp; collisions">
+  <meta property="og:description" content="Gliders on an air track that stick or bounce, with momentum totals before and after. Explosions, and how crumple zones reduce the force in a crash.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/momentum.html">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Momentum & collisions", "description": "Gliders on an air track that stick or bounce, with momentum totals before and after. Explosions, and how crumple zones reduce the force in a crash.", "url": "https://lanerobertlane.space/tools/momentum.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["GCSE"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #track { aspect-ratio: 800 / 300; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .ctl { margin-bottom: 12px; }
+    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
+    .ctl label b { color: var(--text); }
+    .mtable { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: .92rem; }
+    .mtable th, .mtable td { border: 1px solid var(--border-strong); padding: 5px 6px; text-align: center; }
+    .mtable th { background: var(--surface-2); }
+    .mtable td.total { font-weight: 800; }
+    .mtable tr.sum td { background: var(--surface-2); }
+    .glider-a { color: #1e88e5; font-weight: 800; } .glider-b { color: #e53935; font-weight: 800; }
+    :root[data-theme="dark"] .glider-a { color: #64b5f6; } :root[data-theme="dark"] .glider-b { color: #ef9a9a; }
+    .verdict { margin: 10px 0 0; font-weight: 700; }
+    .bars { display: grid; gap: 8px; margin-top: 8px; }
+    .bar { display: grid; grid-template-columns: 8.5em 1fr; gap: 8px; align-items: center; font-size: .9rem; }
+    .bar span.fill { display: block; height: 18px; border-radius: 4px; background: var(--accent); min-width: 2px; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Momentum and collisions</h1>
+      <p>Momentum is mass × velocity (<b>p = m v</b>), so it has a direction. Set up two gliders on an air track and watch what happens to the total momentum when they collide, or when they push apart in an explosion. In a crash, see how a longer stopping time means a smaller force.</p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px" aria-label="Show">
+      <button class="chip" data-t="collide" aria-pressed="true">Collisions</button>
+      <button class="chip" data-t="explode" aria-pressed="false">Explosions</button>
+      <button class="chip" data-t="safety" aria-pressed="false">Crash safety</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="track" aria-label="Two gliders on an air track"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="go">▶ Go</button>
+            <button class="btn" id="reset">↺ Reset</button>
+            <span class="note" id="dir-note" style="margin:0">Velocities to the right are positive.</span>
+          </div>
+        </div>
+        <div class="panel after-aside" id="table-panel">
+          <h2 id="table-title">Momentum before and after</h2>
+          <div id="table"></div>
+          <p class="verdict" id="verdict"></p>
+        </div>
+      </div>
+      <aside>
+        <div class="panel" id="p-collide">
+          <h2>Gliders</h2>
+          <div class="ctl"><label for="ma"><span><span class="glider-a">A</span> mass</span> <b id="ma-val"></b></label><input type="range" id="ma" min="0.1" max="1" step="0.1" value="0.4"></div>
+          <div class="ctl"><label for="ua"><span><span class="glider-a">A</span> velocity</span> <b id="ua-val"></b></label><input type="range" id="ua" min="0" max="1.5" step="0.1" value="0.8"></div>
+          <div class="ctl"><label for="mb"><span><span class="glider-b">B</span> mass</span> <b id="mb-val"></b></label><input type="range" id="mb" min="0.1" max="1" step="0.1" value="0.4"></div>
+          <div class="ctl"><label for="ub"><span><span class="glider-b">B</span> velocity</span> <b id="ub-val"></b></label><input type="range" id="ub" min="-1.5" max="1.5" step="0.1" value="0"></div>
+          <div class="field"><span class="label">When they collide</span>
+            <div class="chip-group" id="kind">
+              <button class="chip" data-k="stick" aria-pressed="true">Stick together</button>
+              <button class="chip" data-k="bounce" aria-pressed="false">Bounce apart</button>
+            </div>
+          </div>
+          <label class="toggle"><input type="checkbox" id="show-ke"> Show kinetic energy</label>
+        </div>
+        <div class="panel" id="p-explode" hidden>
+          <h2>Explosion</h2>
+          <p class="note" style="margin-top:0">The gliders start together, at rest, with a squashed spring between them. Releasing the spring pushes them apart.</p>
+          <div class="ctl"><label for="ea"><span><span class="glider-a">A</span> mass</span> <b id="ea-val"></b></label><input type="range" id="ea" min="0.1" max="1" step="0.1" value="0.2"></div>
+          <div class="ctl"><label for="eb"><span><span class="glider-b">B</span> mass</span> <b id="eb-val"></b></label><input type="range" id="eb" min="0.1" max="1" step="0.1" value="0.4"></div>
+          <div class="ctl"><label for="espring">Energy in the spring <b id="espring-val"></b></label><input type="range" id="espring" min="0.02" max="0.2" step="0.02" value="0.08"></div>
+        </div>
+        <div class="panel" id="p-safety" hidden>
+          <h2>The crash</h2>
+          <div class="ctl"><label for="cm">Mass of the car <b id="cm-val"></b></label><input type="range" id="cm" min="800" max="2000" step="100" value="1200"></div>
+          <div class="ctl"><label for="cv">Speed <b id="cv-val"></b></label><input type="range" id="cv" min="5" max="30" step="1" value="15"></div>
+          <label class="toggle"><input type="checkbox" id="crumple" checked> Crumple zone</label>
+          <p class="note">A crumple zone squashes slowly, so the car takes longer to stop. Air bags, seat belts, cycle helmets and crash mats work in the same way.</p>
+          <dl class="readout" id="safety-readout"></dl>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/momentum.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/quiz-pages/momentum.js"></script>
+  <script src="../js/practice-tab.js" data-eqs="momentum impulse"></script>
+</body>
+</html>
