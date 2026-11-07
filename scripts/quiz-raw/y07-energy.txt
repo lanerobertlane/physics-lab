@@ -22,7 +22,7 @@ mc | energy | Efficiency | When energy is dissipated, where does it go? | *To th
 short | energy | Efficiency | Give one way energy is wasted when you boil a kettle. | ACCEPT: sound; noise; heating the surroundings; heating the air; heating the kettle; heat; thermal; thermal energy of the surroundings | EXP: The useful transfer is to the thermal store of the water. Sound and heating the kettle and the air around it are wasted.
 mc | waves | Transverse & longitudinal waves | What is the name for the part of the wave labelled D? [img: wave-labels] | Amplitude; Frequency; *Wavelength; Transverse
 mc | energy | Efficiency | A television transfers energy electrically to light, sound and thermal energy. Which of these is wasted (dissipated)? | *Thermal; Sound; Light | EXP: Light and sound are what we want from a TV. Heating the TV and the room is wasted.
-short | energy | Energy stores | Give an example where a force (a mechanical transfer) warms something up. | ACCEPT: rubbing your hands together; rubbing hands; rubbing hands together; friction; brakes; braking; sanding wood; sanding; drilling; sliding down a slide | EXP: Friction transfers energy to the thermal store.
+open | energy | Energy stores | Give an example where a force (a mechanical transfer) warms something up. | MODEL: Rubbing your hands together, brakes on a bike or car, sanding wood, or sliding down a slide. Friction transfers energy to the thermal store.
 short | waves | Electromagnetic spectrum | Sound, light and X-rays are all examples of... | ACCEPT: waves; wave
 
 ## 4. Energy and Electricity   (Q2 calories: biology, dropped. Q5, Q7 repeat earlier quizzes. [NOTE for Rob: Q3 had no correct answer ticked; set to longitudinal])

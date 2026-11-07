@@ -6,7 +6,16 @@ window.QZ = (() => {
   const IMGS = () => window.QUIZ_IMAGES || {};
 
   // ---------- Marking ----------
-  const norm = (s) => String(s).toLowerCase().replace(/[‘’']/g, '').replace(/[^a-z0-9.]+/g, ' ').replace(/\b(a|an|the)\b/g, ' ').replace(/\s+/g, ' ').trim();
+  // Plus and minus signs are kept (the charge of an electron is −1, not +1), Ω is read as "ohm",
+  // subscript and superscript digits as ordinary digits (CO₂, m²)
+  const SUBS = { '₀': '0', '₁': '1', '₂': '2', '₃': '3', '₄': '4', '²': '2', '³': '3' };
+  const norm = (s) => {
+    const t = String(s).toLowerCase()
+      .replace(/[₀-₄²³]/g, (c) => SUBS[c]).replace(/[ω]/g, ' ohm ').replace(/[−–]/g, '-')
+      .replace(/[‘’']/g, '').replace(/[^a-z0-9.+\-]+/g, ' ').replace(/\s+/g, ' ').trim();
+    // Leave out "a", "an" and "the", unless that's the whole answer ("A" is the unit of current)
+    return t.replace(/\b(a|an|the)\b/g, ' ').replace(/\s+/g, ' ').trim() || t;
+  };
   function close1(a, b) { // one letter wrong, missing or extra
     if (Math.abs(a.length - b.length) > 1) return false;
     let i = 0, j = 0, d = 0;

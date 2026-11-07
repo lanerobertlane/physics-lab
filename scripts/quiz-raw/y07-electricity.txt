@@ -1,11 +1,11 @@
 SOURCE GRN Science / Year 7 / Physics / Electricity
 
 ## 1. Static electricity   (all energy questions in the Showbie quiz; the kettle picture is described in words)
-short | energy | Energy stores | Give an example of an object with energy in its thermal store. | ACCEPT: hot water; a cup of tea; tea; coffee; kettle; hot kettle; the sun; sun; fire; oven; radiator; hot chocolate; soup; heater; iron | EXP: Anything hot has energy in its thermal store.
+open | energy | Energy stores | Give an example of an object with energy in its thermal store. | MODEL: Anything hot, for example a cup of tea, a radiator, a hot bath or the Sun. (Everything has some energy in its thermal store; hotter objects have more.)
 mc | energy | Efficiency | A kettle transfers energy electrically to heat the water, and also makes a noise. Which energy is wasted (dissipated)? | Thermal energy of the water; *Sound
 tf | energy | Energy stores | Energy can be created. | FALSE | EXP: Energy can't be created or destroyed, only transferred.
 num | energy | Energy stores | A ball at the top of a ramp has 20 J in its gravitational potential store. What is the most energy its kinetic store can have as it rolls down? | NUM: 20 J | EXP: Energy is conserved, so at most all 20 J can be transferred to the kinetic store (less if there's friction).
-short | energy | Energy stores | Give an example of an object with energy in its elastic potential store. | ACCEPT: stretched rubber band; rubber band; elastic band; spring; stretched spring; catapult; slingshot; trampoline; bow; bungee cord; squashed spring; compressed spring
+open | energy | Energy stores | Give an example of an object with energy in its elastic potential store. | MODEL: Anything stretched, squashed or bent, for example a stretched rubber band, a pulled-back catapult, a squashed spring or a bent bow.
 mc | energy | Energy stores | Which energy store does a banana have? | Thermal; *Chemical; Kinetic; Elastic
 
 ## 2. Electrical circuits   [NOTE for Rob: Q1 "What charge do all objects want to be?" reworded; objects don't "want" anything]
@@ -17,7 +17,7 @@ open | energy | Energy stores | State the law of conservation of energy. | MODEL
 mc | energy | Efficiency | A cell lights a bulb. Energy is transferred from the cell's chemical store, electrically, to the bulb. The bulb gives out light and also gets hot. Which store does the energy that isn't light end up in? | *Thermal store of the surroundings; Chemical store of the cell; Kinetic store of the bulb; Elastic potential store
 
 ## 3. Parallel circuits   (Q6 repeats quiz 1, skip)
-open | electricity | Static electricity & electric fields | What are the three types of charge an object can have? | MODEL: Positive, negative or neutral (no overall charge).
+open | electricity | Static electricity & electric fields | What are the two types of electric charge, and what do we call an object with no overall charge? | MODEL: Positive and negative. An object with equal amounts of each has no overall charge: it is neutral.
 short | electricity | Static electricity & electric fields | What key word describes objects that are pulled together? | ACCEPT: attract; attraction; attracted; attracting
 short | electricity | Static electricity & electric fields | What key word describes objects that are pushed apart? | ACCEPT: repel; repulsion; repelled; repelling
 mc | electricity | Circuit builder | Name this component. [img: cell] {both} | *Cell; Battery | EXP: One long and one short line is a cell. A battery is two or more cells joined together.
@@ -37,7 +37,7 @@ mc | electricity | Circuit builder | The charged particles that move around an e
 tf | electricity | Circuit builder | Ammeters are always connected in series. {both} | TRUE | EXP: An ammeter measures the current through a component, so it goes in the same loop as it.
 open | electricity | Circuit builder | Why can an ammeter be placed anywhere in a series circuit? | MODEL: The current is the same everywhere in a series circuit.
 short | electricity | Circuit builder | What is the unit of current? {both} | ACCEPT: amps; amp; amperes; ampere; A
-short | energy | Energy stores | Give an example of an object with energy in its chemical store. | ACCEPT: food; battery; a battery; cell; petrol; fuel; coal; wood; candle; banana; gas; oil; diesel
+open | energy | Energy stores | Give an example of an object with energy in its chemical store. | MODEL: Food, fuels (such as petrol, coal or wood) or batteries.
 short | energy | Energy resources | Give an example of a fossil fuel. {both} | ACCEPT: coal; oil; natural gas; gas; crude oil; petrol; diesel
 mc | electricity | Paying for electricity | What is the unit of power? | Joules (J); Newtons (N); *Watts (W)
 

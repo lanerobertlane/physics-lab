@@ -11,12 +11,12 @@ mc | forces | Pressure in fluids & upthrust | What causes upthrust? | *A differe
 mc | space | Life cycle of a star | Which of these stages will our Sun not go through (or has not been through)? | Nebula; Main sequence; Red giant; *Neutron star | EXP: The Sun is not massive enough to become a supernova, so it will not form a neutron star. It will become a white dwarf.
 short | space | Life cycle of a star | What is the heaviest element produced by fusion in a star? | ACCEPT: iron; Fe | EXP: Elements heavier than iron are made in a supernova.
 short | space | Life cycle of a star | Which process releases energy in stars? | ACCEPT: nuclear fusion; fusion; nucleur fusion
-multi | electricity | Circuit builder | Why does adding a resistor in parallel reduce total resistance? (tick all that apply) | *More paths for the current; *Total current is higher; Potential difference is the same for all components; Adding resistors increases the resistance
+mc | electricity | Circuit builder | Why does adding a resistor in parallel reduce the total resistance? | *It gives the current another path to flow through; It makes the p.d. bigger; It makes each resistor smaller; It doesn't: adding resistors always increases the resistance | EXP: With more paths, more current flows for the same p.d., so the total resistance is lower.
 short | electricity | Mains electricity | What component can be added to break a circuit if the current is too high? | ACCEPT: fuse; a fuse; circuit breaker; a circuit breaker
 
 ## 3. Orbital motion
 mc | space | Red-shift | What happens to the wavelength of light if an object is moving towards us? | The wavelength increases making it appear more red; The wavelength increases making it appear more blue; The wavelength decreases making it appear more red; *The wavelength decreases making it appear more blue
 mc | space | Red-shift | Which of these give evidence for the Big Bang? | All stars emit the same light; There are elements heavier than iron on Earth; *Galaxies further away are receding faster; Dark matter
-mc | space | Life cycle of a star | What will the Sun eventually end up as? | *Black dwarf; Black hole; Neutron star; Supernova
+mc | space | Life cycle of a star | What will the Sun eventually end up as? | *Black dwarf; Black hole; Neutron star; Supernova | EXP: The Sun will become a red giant, then a white dwarf, which slowly cools and fades into a black dwarf.
 short | magnetism | Electromagnets & the motor effect | When a wire carrying a current is placed in a magnetic field it experiences a force. This is called the ______ effect. | ACCEPT: motor; motor effect; the motor effect
 open | magnetism | Electromagnets & the motor effect | What is produced around a wire when a current flows through it? | MODEL: A magnetic field (in circles around the wire).   [could be short: accept "magnetic field"]

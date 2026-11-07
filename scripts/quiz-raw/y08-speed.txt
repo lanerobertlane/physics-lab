@@ -33,7 +33,7 @@ short | forces | Terminal velocity | Which force slows a parachute down? | ACCEP
 tf | electricity | Circuit builder | This circuit symbol is a voltmeter. [img: ammeter] | FALSE | EXP: A circle with A in it is an ammeter, which measures current. A voltmeter has V in it.
 
 ## 5. Falling Cupcake Case Investigation   (Q3, Q5 repeat earlier questions)
-mc | forces | Speed & distance–time | How does the speed of a moving object look to an observer moving in the same direction? | Faster than its actual speed; *Slower than its actual speed; The same as its actual speed; Impossible to tell
+mc | forces | Speed & distance–time | A car is overtaken by a faster car. To the people in the slower car, the faster car seems to be moving... | Faster than its actual speed; *Slower than its actual speed; At its actual speed; Backwards | EXP: Its relative speed is the difference between the two speeds. A car doing 70 mph passes one doing 60 mph at 10 mph.
 mc | forces | Terminal velocity | What is streamlining? | A way of slowing objects down; A way of increasing weight; A way of generating electricity; *A way of reducing air resistance
 tf | forces | Speed & distance–time | The equation for speed is: speed = time × distance. | FALSE | EXP: Speed = distance ÷ time.
 short | forces | Motion graphs | What goes on the y-axis (vertical axis) of a distance–time graph? | ACCEPT: distance; the distance; distance in metres; distance (m)

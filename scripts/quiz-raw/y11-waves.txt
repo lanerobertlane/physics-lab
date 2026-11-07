@@ -6,7 +6,7 @@ short | waves | Transverse & longitudinal waves | What name is given to the time
 tf | energy | Energy stores | All types of energy are measured in joules. | TRUE
 short | energy | Energy stores | The conservation of energy tells us energy cannot be created or ______. | ACCEPT: destroyed
 mc | reference | Practical graph plotter | The variable you change is the... | *Independent variable; Dependent variable; Control variable
-mc | waves | Transverse & longitudinal waves | What is the name for vibrations which cause a wave? | Fluctuations; *Oscillations; Vibrations; Alternations
+mc | waves | Transverse & longitudinal waves | What is the scientific name for the back-and-forth movements that make a wave? | Fluctuations; *Oscillations; Alternations; Rotations
 open | waves | Transverse & longitudinal waves | Describe the difference between a transverse and a longitudinal wave. | MODEL: In a transverse wave the oscillations are perpendicular to the direction of energy transfer. In a longitudinal wave the oscillations are parallel to the direction of energy transfer.   [Showbie said "transvers and an alternating wave"; corrected]
 
 ## 2b. Uses of short wavelength radiation
@@ -14,7 +14,7 @@ mc | waves | Electromagnetic spectrum | What needs to happen to radio waves when
 short | electricity | Circuit builder | What piece of equipment would you use to measure potential difference? | ACCEPT: voltmeter; a voltmeter
 mc | waves | Electromagnetic spectrum | How are radio waves produced? | *Alternating currents; Radio transmitters; They are natural, not produced; Objects at high temperatures | EXP: Oscillations of charges in an alternating current in an electrical circuit produce radio waves.
 open | waves | Electromagnetic spectrum | Explain why microwaves are used for satellite communication. | MODEL: Microwaves can pass through the Earth's atmosphere (they are not absorbed or reflected by it), so they can reach satellites in space.
-mc | energy | Energy stores | Energy is always wasted through which store? | *Internal (thermal); Friction; Sound; Energy is not always wasted | EXP: Wasted energy is dissipated, usually to the thermal store of the surroundings.
+mc | energy | Energy stores | Wasted energy usually ends up in which store? | *Internal (thermal) store of the surroundings; Friction; Sound; Energy is never wasted | EXP: Friction is a force and sound is a way of transferring energy, not stores. Wasted energy usually heats the surroundings.
 open | waves | Electromagnetic spectrum | Explain why gamma waves are hazardous to humans. (3 marks) | MODEL: Gamma rays are ionising radiation. They can penetrate the body and ionise atoms in cells. This can damage DNA, causing mutations that may lead to cancer.
 
 ## 2c. Uses of x-rays and gamma   (Q2 rate of reaction: dropped)
@@ -73,15 +73,15 @@ num | energy | Energy stores | A bungee jumper has 200 000 J in their gravitatio
 mc | electricity | Static electricity & electric fields | How does an object become positively charged? | It gains protons; It loses protons; It gains electrons; *It loses electrons
 
 ## 8. Visible light (Triple)
-multi | waves | Seismic waves | Select all correct statements. | Both P waves and S waves are transverse; *P waves can pass through the mantle and the outer core; *S waves can only pass through the mantle; *P waves travel quicker than S waves | EXP: P waves are longitudinal and faster. S waves are transverse and cannot travel through the liquid outer core.
+multi | waves | Seismic waves | Which of these statements about seismic waves are correct? (tick 3) | Both P waves and S waves are transverse; *P waves can travel through solids and liquids; *S waves cannot travel through the liquid outer core; *P waves travel faster than S waves | EXP: P waves are longitudinal and faster. S waves are transverse and can only travel through solids, so they don't pass through the liquid outer core.
 multi | energy | Specific heat capacity | To calculate the energy needed to heat up and fully boil a saucepan of water at 20 °C, what information would we need about the water? (Tick all that apply) | Volume; *Mass; Total thermal energy; *Specific heat capacity; *Specific latent heat
 mc | waves | Transverse & longitudinal waves | What is the relationship between the frequency and wavelength of a wave? | Directly proportional; Indirectly proportional; *Inversely proportional; Negative correlation; Positive correlation | EXP: v = f λ, so for a fixed wave speed, doubling the frequency halves the wavelength.
-short | atomic | Uses of radiation | Which type of radiation would be used inside the body to destroy cancerous cells? (Answer as one word) | ACCEPT: alpha; alpha radiation; an alpha particle; alpha particles   [NOTE for Rob: Showbie answer alpha - check you're happy with this]
+open | atomic | Uses of radiation | A radioactive source is placed inside a tumour to destroy the cancer cells. Why is an alpha or beta source a good choice? | MODEL: Alpha and beta are very ionising, so they damage the cancer cells, but they only travel a short distance in the body, so they don't reach much healthy tissue. (Gamma from outside the body is also used, aimed at the tumour from different directions.)
 open | atomic | History of the atom | During the Rutherford scattering experiment most alpha particles passed straight through the gold foil. Why? | MODEL: Most of the atom is empty space.
 short | forces | Weight on other planets | Which force causes objects to fall towards the ground? | ACCEPT: weight; gravity; gravitational force; gravitational; the weight
 
 ## 10. Leslie cube
-mc | waves | Electromagnetic spectrum | Why can't radio waves be used for satellite communication? | They have a short range; Their wavelength is too long; *They cannot pass through the ionosphere; They do not carry enough energy | EXP: Many radio waves are reflected by the ionosphere, so they don't reach satellites.
+mc | waves | Electromagnetic spectrum | Why are microwaves, not long-wavelength radio waves, used to communicate with satellites? | Radio waves have a short range; Radio waves don't carry enough energy; *Long-wavelength radio waves are reflected by the ionosphere, so they don't reach the satellite; Microwaves are cheaper | EXP: Microwaves pass through the atmosphere. Many longer radio waves are reflected back to Earth by the ionosphere.
 open | waves | Electromagnetic spectrum | Why shouldn't we use gamma rays for an image of bones? | MODEL: Gamma rays pass through bone as well as soft tissue, so no shadow of the bone forms (and they are highly ionising).
 open | energy | Efficiency | A tennis ball has 28 J of gravitational potential energy. Explain why the kinetic energy of the ball will be less than 28 J when it reaches the floor. | MODEL: Some energy is dissipated by air resistance (work done against air resistance), heating the ball and the surroundings, so not all 28 J is transferred to the kinetic store.
 mc | electricity | Circuit builder | What component can be added to a circuit to vary the potential difference across a lamp? | Voltmeter; Battery; *Variable resistor; Switch
