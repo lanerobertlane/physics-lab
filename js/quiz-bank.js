@@ -18,11 +18,11 @@ window.QUIZ_BANK = {
    "title": "1. Static electricity",
    "folder": "Year 7 · Electricity",
    "qs": [
-    "ene16bri",
+    "ene1gnd3",
     "ene1ypfk",
     "enecgb77",
     "enejy869",
-    "ene1p6hu",
+    "ene3q7ud",
     "ene16422"
    ]
   },
@@ -44,7 +44,7 @@ window.QUIZ_BANK = {
    "title": "3. Parallel circuits",
    "folder": "Year 7 · Electricity",
    "qs": [
-    "ele1me7u",
+    "ele1cjvr",
     "eleh9xuf",
     "ele1g2jf",
     "ele2hmrk",
@@ -74,7 +74,7 @@ window.QUIZ_BANK = {
     "elezs5o9",
     "ele1ba1f",
     "eleb3emt",
-    "enenmfr3",
+    "ene38qc9",
     "ene1wjpg",
     "ele1xqwq"
    ]
@@ -128,7 +128,7 @@ window.QUIZ_BANK = {
     "enepu7cl",
     "wav12zss",
     "ene1d23u",
-    "ene1kfsd",
+    "ene9yczw",
     "wavifasb"
    ]
   },
@@ -240,7 +240,7 @@ window.QUIZ_BANK = {
     "wav1i4ym",
     "wav12iwx",
     "wavcara3",
-    "wavz84wo",
+    "wavca0if",
     "wavk7jj6",
     "wavrwowq"
    ]
@@ -607,7 +607,7 @@ window.QUIZ_BANK = {
    "title": "5. Falling Cupcake Case Investigation",
    "folder": "Year 8 · Speed",
    "qs": [
-    "for1uulq",
+    "for1b39k",
     "forld9kh",
     "for159t9",
     "for148g2",
@@ -695,7 +695,7 @@ window.QUIZ_BANK = {
    "qs": [
     "ele1fjj5",
     "ele8no2f",
-    "ele1me7u",
+    "ele1cjvr",
     "enefg81c",
     "ele16qzj",
     "ele1qjyb"
@@ -1600,7 +1600,7 @@ window.QUIZ_BANK = {
     "spa10xam",
     "spasuskp",
     "spa1ygw8",
-    "ele15eks",
+    "ele1oy0e",
     "ele1bwnv"
    ]
   },
@@ -1626,7 +1626,7 @@ window.QUIZ_BANK = {
     "enep3k6a",
     "ene4rf74",
     "ref1odlq",
-    "wav1abxe",
+    "wav13ubu",
     "wav1j5eb"
    ]
   },
@@ -1639,7 +1639,7 @@ window.QUIZ_BANK = {
     "elejpi74",
     "wavz52cg",
     "wav4cm5h",
-    "ene1kzih",
+    "ene18p1p",
     "wav4fuda"
    ]
   },
@@ -1738,10 +1738,10 @@ window.QUIZ_BANK = {
    "title": "8. Visible light",
    "folder": "Year 11 · Waves",
    "qs": [
-    "wavskp2c",
+    "wav41pu5",
     "enet3t50",
     "wavqbj6h",
-    "ato47lbh",
+    "ato1psb0",
     "ato1sehz",
     "forhvhln"
    ]
@@ -1751,7 +1751,7 @@ window.QUIZ_BANK = {
    "title": "10. Leslie cube",
    "folder": "Year 11 · Waves",
    "qs": [
-    "wavhvc9c",
+    "wav168gr",
     "wavqi4qb",
     "ene14fid",
     "ele1w0bc",
@@ -3495,22 +3495,13 @@ window.QUIZ_BANK = {
    "pg": "springs"
   },
   {
-   "type": "short",
+   "type": "open",
    "topic": "electricity",
    "tool": "Mains electricity",
-   "q": "What should you never put into a plug socket?",
+   "q": "Name something you should never put into a plug socket, and say why.",
    "lv": "ks3",
-   "accept": [
-    "fingers",
-    "your fingers",
-    "metal",
-    "metal objects",
-    "anything metal",
-    "a knife",
-    "wet hands",
-    "water"
-   ],
-   "id": "elec6c7p",
+   "model": "Anything except a proper plug, especially fingers or metal objects (like a knife or fork). Metal and your body conduct electricity, so you could get an electric shock.",
+   "id": "ele1qnes",
    "pg": "mains"
   },
   {
@@ -4333,30 +4324,13 @@ window.QUIZ_BANK = {
    "id": "for14ey3"
   },
   {
-   "type": "short",
+   "type": "open",
    "topic": "energy",
    "tool": "Energy stores",
    "q": "Give an example of an object with energy in its thermal store.",
    "lv": "ks3",
-   "accept": [
-    "hot water",
-    "a cup of tea",
-    "tea",
-    "coffee",
-    "kettle",
-    "hot kettle",
-    "the sun",
-    "sun",
-    "fire",
-    "oven",
-    "radiator",
-    "hot chocolate",
-    "soup",
-    "heater",
-    "iron"
-   ],
-   "exp": "Anything hot has energy in its thermal store.",
-   "id": "ene16bri",
+   "model": "Anything hot, for example a cup of tea, a radiator, a hot bath or the Sun. (Everything has some energy in its thermal store; hotter objects have more.)",
+   "id": "ene1gnd3",
    "pg": "energy"
   },
   {
@@ -4399,26 +4373,13 @@ window.QUIZ_BANK = {
    "pg": "energy"
   },
   {
-   "type": "short",
+   "type": "open",
    "topic": "energy",
    "tool": "Energy stores",
    "q": "Give an example of an object with energy in its elastic potential store.",
    "lv": "ks3",
-   "accept": [
-    "stretched rubber band",
-    "rubber band",
-    "elastic band",
-    "spring",
-    "stretched spring",
-    "catapult",
-    "slingshot",
-    "trampoline",
-    "bow",
-    "bungee cord",
-    "squashed spring",
-    "compressed spring"
-   ],
-   "id": "ene1p6hu",
+   "model": "Anything stretched, squashed or bent, for example a stretched rubber band, a pulled-back catapult, a squashed spring or a bent bow.",
+   "id": "ene3q7ud",
    "pg": "energy"
   },
   {
@@ -4543,10 +4504,10 @@ window.QUIZ_BANK = {
    "type": "open",
    "topic": "electricity",
    "tool": "Static electricity & electric fields",
-   "q": "What are the three types of charge an object can have?",
+   "q": "What are the two types of electric charge, and what do we call an object with no overall charge?",
    "lv": "ks3",
-   "model": "Positive, negative or neutral (no overall charge).",
-   "id": "ele1me7u",
+   "model": "Positive and negative. An object with equal amounts of each has no overall charge: it is neutral.",
+   "id": "ele1cjvr",
    "pg": "static"
   },
   {
@@ -4756,27 +4717,13 @@ window.QUIZ_BANK = {
    "pg": "circuits"
   },
   {
-   "type": "short",
+   "type": "open",
    "topic": "energy",
    "tool": "Energy stores",
    "q": "Give an example of an object with energy in its chemical store.",
    "lv": "ks3",
-   "accept": [
-    "food",
-    "battery",
-    "a battery",
-    "cell",
-    "petrol",
-    "fuel",
-    "coal",
-    "wood",
-    "candle",
-    "banana",
-    "gas",
-    "oil",
-    "diesel"
-   ],
-   "id": "enenmfr3",
+   "model": "Food, fuels (such as petrol, coal or wood) or batteries.",
+   "id": "ene38qc9",
    "pg": "energy"
   },
   {
@@ -5181,25 +5128,13 @@ window.QUIZ_BANK = {
    "pg": "efficiency"
   },
   {
-   "type": "short",
+   "type": "open",
    "topic": "energy",
    "tool": "Energy stores",
    "q": "Give an example where a force (a mechanical transfer) warms something up.",
    "lv": "ks3",
-   "accept": [
-    "rubbing your hands together",
-    "rubbing hands",
-    "rubbing hands together",
-    "friction",
-    "brakes",
-    "braking",
-    "sanding wood",
-    "sanding",
-    "drilling",
-    "sliding down a slide"
-   ],
-   "exp": "Friction transfers energy to the thermal store.",
-   "id": "ene1kfsd",
+   "model": "Rubbing your hands together, brakes on a bike or car, sanding wood, or sliding down a slide. Friction transfers energy to the thermal store.",
+   "id": "ene9yczw",
    "pg": "energy"
   },
   {
@@ -5798,16 +5733,17 @@ window.QUIZ_BANK = {
    "type": "short",
    "topic": "waves",
    "tool": "Transverse & longitudinal waves",
-   "q": "What do we call the vibration that starts a wave?",
+   "q": "The back-and-forth movements that make up a wave are called...",
    "lv": "ks3",
    "accept": [
-    "the source",
-    "source",
+    "oscillations",
     "oscillation",
-    "an oscillation",
-    "oscillations"
+    "vibrations",
+    "vibration",
+    "oscillating",
+    "vibrating"
    ],
-   "id": "wavz84wo",
+   "id": "wavca0if",
    "pg": "waves"
   },
   {
@@ -7961,18 +7897,19 @@ window.QUIZ_BANK = {
    "type": "mc",
    "topic": "forces",
    "tool": "Speed & distance–time",
-   "q": "How does the speed of a moving object look to an observer moving in the same direction?",
+   "q": "A car is overtaken by a faster car. To the people in the slower car, the faster car seems to be moving...",
    "lv": "ks3",
    "opts": [
     "Faster than its actual speed",
     "Slower than its actual speed",
-    "The same as its actual speed",
-    "Impossible to tell"
+    "At its actual speed",
+    "Backwards"
    ],
    "ans": [
     1
    ],
-   "id": "for1uulq"
+   "exp": "Its relative speed is the difference between the two speeds. A car doing 70 mph passes one doing 60 mph at 10 mph.",
+   "id": "for1b39k"
   },
   {
    "type": "mc",
@@ -13187,22 +13124,22 @@ window.QUIZ_BANK = {
    "pg": "star-life"
   },
   {
-   "type": "multi",
+   "type": "mc",
    "topic": "electricity",
    "tool": "Circuit builder",
-   "q": "Why does adding a resistor in parallel reduce total resistance? (tick all that apply)",
+   "q": "Why does adding a resistor in parallel reduce the total resistance?",
    "lv": "ks4",
    "opts": [
-    "More paths for the current",
-    "Total current is higher",
-    "Potential difference is the same for all components",
-    "Adding resistors increases the resistance"
+    "It gives the current another path to flow through",
+    "It makes the p.d. bigger",
+    "It makes each resistor smaller",
+    "It doesn't: adding resistors always increases the resistance"
    ],
    "ans": [
-    0,
-    1
+    0
    ],
-   "id": "ele15eks",
+   "exp": "With more paths, more current flows for the same p.d., so the total resistance is lower.",
+   "id": "ele1oy0e",
    "pg": "circuits"
   },
   {
@@ -13271,6 +13208,7 @@ window.QUIZ_BANK = {
    "ans": [
     0
    ],
+   "exp": "The Sun will become a red giant, then a white dwarf, which slowly cools and fades into a black dwarf.",
    "id": "spagfmt6",
    "pg": "star-life"
   },
@@ -13373,18 +13311,18 @@ window.QUIZ_BANK = {
    "type": "mc",
    "topic": "waves",
    "tool": "Transverse & longitudinal waves",
-   "q": "What is the name for vibrations which cause a wave?",
+   "q": "What is the scientific name for the back-and-forth movements that make a wave?",
    "lv": "ks4",
    "opts": [
     "Fluctuations",
     "Oscillations",
-    "Vibrations",
-    "Alternations"
+    "Alternations",
+    "Rotations"
    ],
    "ans": [
     1
    ],
-   "id": "wav1abxe",
+   "id": "wav13ubu",
    "pg": "waves"
   },
   {
@@ -13456,25 +13394,6 @@ window.QUIZ_BANK = {
    "model": "Microwaves can pass through the Earth's atmosphere (they are not absorbed or reflected by it), so they can reach satellites in space.",
    "id": "wav4cm5h",
    "pg": "em-spectrum"
-  },
-  {
-   "type": "mc",
-   "topic": "energy",
-   "tool": "Energy stores",
-   "q": "Energy is always wasted through which store?",
-   "lv": "ks4",
-   "opts": [
-    "Internal (thermal)",
-    "Friction",
-    "Sound",
-    "Energy is not always wasted"
-   ],
-   "ans": [
-    0
-   ],
-   "exp": "Wasted energy is dissipated, usually to the thermal store of the surroundings.",
-   "id": "ene1kzih",
-   "pg": "energy"
   },
   {
    "type": "open",
@@ -14112,21 +14031,21 @@ window.QUIZ_BANK = {
    "type": "multi",
    "topic": "waves",
    "tool": "Seismic waves",
-   "q": "Select all correct statements.",
+   "q": "Which of these statements about seismic waves are correct? (tick 3)",
    "lv": "ks4",
    "opts": [
     "Both P waves and S waves are transverse",
-    "P waves can pass through the mantle and the outer core",
-    "S waves can only pass through the mantle",
-    "P waves travel quicker than S waves"
+    "P waves can travel through solids and liquids",
+    "S waves cannot travel through the liquid outer core",
+    "P waves travel faster than S waves"
    ],
    "ans": [
     1,
     2,
     3
    ],
-   "exp": "P waves are longitudinal and faster. S waves are transverse and cannot travel through the liquid outer core.",
-   "id": "wavskp2c"
+   "exp": "P waves are longitudinal and faster. S waves are transverse and can only travel through solids, so they don't pass through the liquid outer core.",
+   "id": "wav41pu5"
   },
   {
    "type": "multi",
@@ -14170,18 +14089,13 @@ window.QUIZ_BANK = {
    "pg": "waves"
   },
   {
-   "type": "short",
+   "type": "open",
    "topic": "atomic",
    "tool": "Uses of radiation",
-   "q": "Which type of radiation would be used inside the body to destroy cancerous cells? (Answer as one word)",
+   "q": "A radioactive source is placed inside a tumour to destroy the cancer cells. Why is an alpha or beta source a good choice?",
    "lv": "ks4",
-   "accept": [
-    "alpha",
-    "alpha radiation",
-    "an alpha particle",
-    "alpha particles"
-   ],
-   "id": "ato47lbh",
+   "model": "Alpha and beta are very ionising, so they damage the cancer cells, but they only travel a short distance in the body, so they don't reach much healthy tissue. (Gamma from outside the body is also used, aimed at the tumour from different directions.)",
+   "id": "ato1psb0",
    "pg": "uses"
   },
   {
@@ -14213,19 +14127,19 @@ window.QUIZ_BANK = {
    "type": "mc",
    "topic": "waves",
    "tool": "Electromagnetic spectrum",
-   "q": "Why can't radio waves be used for satellite communication?",
+   "q": "Why are microwaves, not long-wavelength radio waves, used to communicate with satellites?",
    "lv": "ks4",
    "opts": [
-    "They have a short range",
-    "Their wavelength is too long",
-    "They cannot pass through the ionosphere",
-    "They do not carry enough energy"
+    "Radio waves have a short range",
+    "Radio waves don't carry enough energy",
+    "Long-wavelength radio waves are reflected by the ionosphere, so they don't reach the satellite",
+    "Microwaves are cheaper"
    ],
    "ans": [
     2
    ],
-   "exp": "Many radio waves are reflected by the ionosphere, so they don't reach satellites.",
-   "id": "wavhvc9c",
+   "exp": "Microwaves pass through the atmosphere. Many longer radio waves are reflected back to Earth by the ionosphere.",
+   "id": "wav168gr",
    "pg": "em-spectrum"
   },
   {

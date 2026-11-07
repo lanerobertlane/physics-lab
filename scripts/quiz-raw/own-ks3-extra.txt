@@ -5,7 +5,7 @@ mc | forces | Newton's third law pairs | When you sit on a chair, you push down 
 tf | forces | Newton's third law pairs | When a rocket pushes gas out of the back, the gas pushes the rocket forwards. {both} | TRUE
 mc | forces | Springs & Hooke's law | What happens to the extension of a spring if you hang more mass on it? {ks3} | *It increases; It decreases; It stays the same
 open | forces | Springs & Hooke's law | Give two examples of everyday objects that use springs. {ks3} | MODEL: Any two of: trampolines, mattresses, car suspension, pens, newtonmeters, door closers, pogo sticks.
-short | electricity | Mains electricity | What should you never put into a plug socket? {ks3} | ACCEPT: fingers; your fingers; metal; metal objects; anything metal; a knife; wet hands; water
+open | electricity | Mains electricity | Name something you should never put into a plug socket, and say why. {ks3} | MODEL: Anything except a proper plug, especially fingers or metal objects (like a knife or fork). Metal and your body conduct electricity, so you could get an electric shock.
 mc | electricity | Mains electricity | Why should you never use electrical appliances with wet hands? {ks3} | *Water conducts electricity, so you could get an electric shock; Water damages the plastic; It makes the appliance slower; It makes the fuse blow every time
 tf | electricity | Mains electricity | Plugs and cables are covered in plastic because plastic is an electrical insulator. {ks3} | TRUE
 mc | electricity | Mains electricity | Which of these uses mains electricity, not a battery? {ks3} | A torch; A mobile phone away from its charger; *A kettle; A TV remote control

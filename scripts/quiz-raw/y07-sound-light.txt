@@ -4,7 +4,7 @@ SOURCE GRN Science / Year 7 / Physics / Sound and light
 short | waves | Transverse & longitudinal waves | What is transferred by a wave? | ACCEPT: energy; energy and information; information | EXP: Waves transfer energy (and information) from one place to another.
 short | waves | Transverse & longitudinal waves | What is never transferred by a wave? | ACCEPT: matter; particles; the medium; stuff; mass | EXP: The particles only vibrate about where they are. They aren't carried along with the wave.
 short | waves | Sound on an oscilloscope | What causes sound waves? {both} | ACCEPT: vibrations; vibration; vibrating; something vibrating; vibrating objects; a vibrating object
-short | waves | Transverse & longitudinal waves | What do we call the vibration that starts a wave? | ACCEPT: the source; source; oscillation; an oscillation; oscillations
+short | waves | Transverse & longitudinal waves | The back-and-forth movements that make up a wave are called... | ACCEPT: oscillations; oscillation; vibrations; vibration; oscillating; vibrating
 short | waves | Transverse & longitudinal waves | What is the lowest point of a wave called? {both} | ACCEPT: trough; a trough; the trough
 short | waves | Transverse & longitudinal waves | What is the distance from the middle line to a peak called? {both} | ACCEPT: amplitude; the amplitude
 

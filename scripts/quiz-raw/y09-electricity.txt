@@ -7,7 +7,7 @@ short | energy | Energy stores | Which energy store does a book on a high shelf 
 ## 2. Charge and current   (Q5 duplicate, skip)
 short | electricity | Circuit builder | What are two or more cells joined together called? {both} | ACCEPT: battery; a battery
 open | electricity | Static electricity & electric fields | What happens when two negatively charged objects are placed next to each other? {both} | MODEL: They repel (push each other apart), because like charges repel.
-open | electricity | Static electricity & electric fields | What are the three types of charge an object can have? {both} | MODEL: Positive, negative or neutral (no overall charge).
+open | electricity | Static electricity & electric fields | What are the two types of electric charge, and what do we call an object with no overall charge? {both} | MODEL: Positive and negative. An object with equal amounts of each has no overall charge: it is neutral.
 open | energy | Energy stores | Name a way that energy can be transferred. {both} | MODEL: Any one of: mechanically (by a force doing work), electrically, by heating, or by radiation (light or sound waves).
 open | electricity | Circuit builder | Name two rules for drawing circuit diagrams. {both} | MODEL: Any two of: use a ruler for straight lines, only horizontal and vertical lines, no gaps in the wires, use the correct symbols, don't draw wires through symbols.
 open | electricity | Circuit builder | How do we draw the circuit symbol for a bulb (lamp)? {both} | MODEL: A circle with a cross (X) inside it, with a wire on each side.
