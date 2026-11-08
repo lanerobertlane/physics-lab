@@ -32,7 +32,7 @@ const TOOLS = [
     desc: 'Hang weights on a beam and balance it using the principle of moments.' },
   { topic: 'forces', icon: 'resultant', name: 'Acceleration', href: 'tools/acceleration.html', gcse: true, rp: true,
     desc: 'A trolley pulled by falling masses: how force and mass affect acceleration (F = m a).' },
-  { topic: 'forces', icon: 'parachute', name: 'Terminal velocity', href: 'tools/terminal.html', gcse: true, po: true, ks3: true,
+  { topic: 'forces', icon: 'parachute', name: 'Terminal velocity', href: 'tools/terminal.html', gcse: true, ks3: true,
     desc: 'A skydiver with weight and drag arrows that change with speed, a parachute and a live velocity–time graph.' },
   { topic: 'forces', icon: 'collide', name: 'Momentum & collisions', href: 'tools/momentum.html', gcse: true, ht: true,
     desc: 'Make gliders on an air track stick or bounce and compare the total momentum before and after. Explosions, and how crumple zones reduce the force in a crash.' },
@@ -42,12 +42,20 @@ const TOOLS = [
     desc: 'Push a box across different surfaces and lift loads, and see where the energy goes: W = F s.' },
   { topic: 'forces', icon: 'pressure', name: 'Pressure in fluids & upthrust', gcse: true, po: true, ht: true,
     desc: 'p = h ρ g with a depth slider, and how upthrust decides whether an object floats or sinks.' },
-  { topic: 'forces', icon: 'gear', name: 'Levers & gears', href: 'tools/levers.html', gcse: true, po: true,
+  { topic: 'forces', icon: 'gear', name: 'Levers & gears', href: 'tools/levers.html', gcse: true, ks3: true, po: true,
     desc: 'See how levers and gears pass on the turning effect of a force.' },
   { topic: 'forces', icon: 'graph', name: 'Speed & distance–time', href: 'tools/speed.html', ks3: true,
     desc: 'Race objects and plot their distance–time graphs: speed = distance ÷ time.' },
   { topic: 'forces', icon: 'pressure', name: 'Pressure on solids', ks3: true,
     desc: 'Snowshoes against stilettos: pressure = force ÷ area.' },
+  { topic: 'forces', icon: 'resultant', name: 'Resolving forces', gcse: true, ht: true,
+    desc: 'Split a force into two components at right angles, and check them with a scale drawing.' },
+  { topic: 'forces', icon: 'graph', name: 'Distance, displacement, speed & velocity', gcse: true,
+    desc: 'Follow a journey with bends and see why distance and displacement, and speed and velocity, are different.' },
+  { topic: 'forces', icon: 'graph', name: 'Tangents on distance–time graphs', gcse: true, ht: true,
+    desc: 'Draw a tangent on a curved distance–time graph to find the speed at an instant.' },
+  { topic: 'forces', icon: 'car', name: 'Reaction time test', gcse: true, ks3: true,
+    desc: 'Measure your reaction time, and see how distractions change it.' },
 
   // Electricity
   { topic: 'electricity', icon: 'circuit', name: 'Circuit builder', href: 'tools/circuits.html', gcse: true, ks3: true, rp: true,
@@ -64,6 +72,8 @@ const TOOLS = [
     desc: 'Change the turns on each coil to step the p.d. up or down, and see why transformers only work with a.c.' },
   { topic: 'electricity', icon: 'static', name: 'Static electricity & electric fields', href: 'tools/static.html', gcse: true, po: true, ks3: true,
     desc: 'Rub rods to charge them, see attraction and repulsion, and draw the electric field around charges.' },
+  { topic: 'electricity', icon: 'circuit', name: 'Resistance of a wire', gcse: true, rp: true,
+    desc: 'Required practical: how the length of a wire affects its resistance.' },
 
   // Magnetism
   { topic: 'magnetism', icon: 'magnet', name: 'Bar magnet fields', href: 'tools/magnets.html', gcse: true, ks3: true,
@@ -74,6 +84,8 @@ const TOOLS = [
     desc: 'Move a magnet in and out of a coil: induced p.d., alternating current and the generator effect.' },
   { topic: 'magnetism', icon: 'motor', name: 'Generators, loudspeakers & microphones', gcse: true, po: true, ht: true,
     desc: 'Compare the output traces of alternators and dynamos, and find out how loudspeakers and microphones work.' },
+  { topic: 'magnetism', icon: 'magnet', name: 'Earth’s magnetic field', gcse: true, ks3: true,
+    desc: 'Use a compass to find the Earth’s field, and see why it is evidence for a magnetic core.' },
 
   // Waves
   { topic: 'waves', icon: 'spectrum', name: 'Electromagnetic spectrum', href: 'tools/em-spectrum.html', ks3: true, gcse: true, ht: true,
@@ -84,7 +96,7 @@ const TOOLS = [
     desc: 'Reflection, refraction and diffraction, with a ruler and strobe for the required practical.' },
   { topic: 'waves', icon: 'heat', name: 'Infrared radiation', href: 'tools/infrared.html', gcse: true, rp: true,
     desc: 'Use a Leslie cube to find out how the type of surface affects the infrared radiated and absorbed.' },
-  { topic: 'waves', icon: 'ray', name: 'Light box & lenses', href: 'tools/light-box.html', gcse: true, po: true, ks3: true, rp: true,
+  { topic: 'waves', icon: 'ray', name: 'Light box & lenses', href: 'tools/light-box.html', gcse: true, ks3: true, rp: true,
     desc: 'Shine rays through glass blocks, prisms, mirrors and lenses: refraction, total internal reflection and lens ray diagrams.' },
   { topic: 'waves', icon: 'sound', name: 'Sound on an oscilloscope', gcse: true, ks3: true,
     desc: 'Change frequency and amplitude, hear the result, and link them to pitch and loudness. Hearing range and ultrasound.' },
@@ -98,6 +110,10 @@ const TOOLS = [
     desc: 'Find out how the temperature of an object changes the radiation it emits, and the balance that sets Earth’s temperature.' },
   { topic: 'waves', icon: 'eye', name: 'Pinhole camera & the eye', ks3: true,
     desc: 'Form an image with a pinhole camera and compare it with how the eye focuses light.' },
+  { topic: 'waves', icon: 'wave', name: 'Waves in a solid', gcse: true, rp: true,
+    desc: 'Required practical: measure the frequency, wavelength and speed of waves on a stretched string or in a metal rod.' },
+  { topic: 'waves', icon: 'sound', name: 'Measuring the speed of sound', gcse: true, ks3: true,
+    desc: 'Time an echo, or a sound between two microphones, and work out the speed of sound in air.' },
 
   // Energy
   { topic: 'energy', icon: 'stores', name: 'Energy stores', href: 'tools/energy.html', gcse: true, ks3: true,
@@ -106,20 +122,24 @@ const TOOLS = [
     desc: 'Work out the efficiency of everyday devices from Sankey diagrams, step by step, then practise with marked questions.' },
   { topic: 'energy', icon: 'heat', name: 'Specific heat capacity', href: 'tools/shc.html', gcse: true, rp: true,
     desc: 'Heat a 1 kg block, record energy and temperature, and find c from the gradient.' },
-  { topic: 'energy', icon: 'heat', name: 'Thermal insulation', href: 'tools/insulation.html', gcse: true, po: true, rp: true,
+  { topic: 'energy', icon: 'heat', name: 'Thermal insulation', href: 'tools/insulation.html', gcse: true, rp: true,
     desc: 'Compare insulating materials by how quickly a beaker of hot water cools.' },
   { topic: 'energy', icon: 'wind', name: 'Energy resources', href: 'tools/resources.html', gcse: true, ks3: true,
     desc: 'Compare renewable and non-renewable resources for reliability, pollution and cost, and meet demand through the day.' },
   { topic: 'energy', icon: 'heat', name: 'Conduction, convection & radiation', href: 'tools/heat.html', ks3: true,
     desc: 'See the three ways energy is transferred by heating, including a convection current in a beaker.' },
+  { topic: 'energy', icon: 'stores', name: 'Power: comparing two motors', gcse: true, ks3: true,
+    desc: 'Two motors lift the same load through the same height in different times. Which has the greater power?' },
 
   // Particles
   { topic: 'particles', icon: 'particles', name: 'States of matter', href: 'tools/states.html', gcse: true, ks3: true,
     desc: 'Heat or cool water and watch the particles. Heating curve, latent heat and internal energy.' },
-  { topic: 'particles', icon: 'gas', name: 'Gas pressure', href: 'tools/gas.html', gcse: true, po: true, ht: true, ks3: true,
+  { topic: 'particles', icon: 'gas', name: 'Gas pressure', href: 'tools/gas.html', gcse: true, ht: true, ks3: true,
     desc: 'Change the volume and temperature of a gas in a cylinder and watch the pressure: pV = constant.' },
   { topic: 'particles', icon: 'gas', name: 'Density', href: 'tools/density.html', gcse: true, rp: true, ks3: true,
     desc: 'Measure mass and volume of regular and irregular objects (a eureka can) and liquids, and calculate density.' },
+  { topic: 'particles', icon: 'particles', name: 'Brownian motion & diffusion', ks3: true,
+    desc: 'Watch particles jostle and spread out, and see how this supports the particle model.' },
 
   // Atomic
   { topic: 'atomic', icon: 'atom', name: 'Atom builder', href: 'tools/atom.html', gcse: true, ks3: true,
@@ -134,7 +154,7 @@ const TOOLS = [
     desc: 'Fire neutrons at uranium-235 to start a chain reaction, and push in control rods to slow it.' },
   { topic: 'atomic', icon: 'equation', name: 'Nuclear equations', href: 'tools/nuclear.html', gcse: true,
     desc: 'Complete alpha, beta and gamma decay equations for real isotopes, then watch the nucleus decay.' },
-  { topic: 'atomic', icon: 'radiation', name: 'Uses of radiation', href: 'tools/uses.html', gcse: true, po: true,
+  { topic: 'atomic', icon: 'radiation', name: 'Uses of radiation', href: 'tools/uses.html', gcse: true,
     desc: 'Find out why thickness gauges, smoke alarms and medical tracers each need a particular type of radiation and half-life.' },
   { topic: 'atomic', icon: 'radiation', name: 'Contamination, irradiation & background', href: 'tools/background.html', gcse: true,
     desc: 'Learn the difference between contamination and irradiation, and where background radiation comes from.' },
@@ -148,6 +168,10 @@ const TOOLS = [
     desc: 'See how light from galaxies moving away from us gives evidence for the Big Bang.' },
   { topic: 'space', icon: 'moon', name: 'Earth, Sun & Moon', href: 'tools/sky.html', ks3: true,
     desc: 'See what causes day and night, the seasons (Earth’s tilt) and the phases of the Moon.' },
+  { topic: 'space', icon: 'orbit', name: 'Planets, moons & satellites', gcse: true, po: true,
+    desc: 'Compare planets, their moons and artificial satellites in our solar system.' },
+  { topic: 'space', icon: 'star', name: 'Stars, galaxies & light years', ks3: true,
+    desc: 'The Sun as a star, other stars and galaxies, and the light year as a unit of distance.' },
 
   // Chemistry
   { topic: 'chemistry', icon: 'ptable', name: 'Periodic table', href: 'tools/periodic-table.html', ks3: true, gcse: true,

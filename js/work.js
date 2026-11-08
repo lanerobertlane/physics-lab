@@ -42,10 +42,7 @@ function step(dt) {
 function render() {
   const lift = state.tab === 'lift';
   $('force-ctl').hidden = lift; $('mass-ctl').hidden = !lift; $('surface').hidden = lift;
-  $('force-val').textContent = `${state.F} N`;
-  $('mass-val').textContent = `${state.m} kg`;
   $('dist-label').firstChild.textContent = lift ? 'Height to lift it ' : 'Distance to push it ';
-  $('dist-val').textContent = `${state.s} m`;
   let rows = '', work = '';
   if (!lift) {
     const f = friction(), moves = state.F > f;
@@ -78,6 +75,9 @@ function render() {
 
 // ---------- Picture ----------
 
+const canSetPush = () => state.tab === 'push' && !state.running && state.x === 0;
+const pushTip = () => 120 + 60 - 90 - 6 + 20 + state.F * 0.6;   // where the end of the push arrow is, with the box at the start
+
 function person(x, y, push, lifting) {
   ctx.strokeStyle = PK.cssVar('--text'); ctx.lineWidth = 5; ctx.lineCap = 'round';
   ctx.beginPath(); ctx.arc(x, y - 112, 13, 0, Math.PI * 2); ctx.stroke();
@@ -103,11 +103,11 @@ function draw() {
     const S = SURF[state.surface], floorY = 280, px0 = 120, scale = 52;
     ctx.fillStyle = S.col; ctx.fillRect(0, floorY, W, 30);
     // Distance markers
-    ctx.strokeStyle = PK.cssVar('--muted'); ctx.lineWidth = 1; ctx.fillStyle = PK.cssVar('--muted'); ctx.font = `600 11px ${font()}`; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    ctx.strokeStyle = PK.cssVar('--muted'); ctx.lineWidth = 1; ctx.fillStyle = PK.cssVar('--muted'); ctx.font = `600 13px ${font()}`; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
     for (let m = 0; m <= 10; m++) { const x = px0 + 60 + m * scale; ctx.beginPath(); ctx.moveTo(x, floorY + 30); ctx.lineTo(x, floorY + 38); ctx.stroke(); ctx.fillText(`${m} m`, x, floorY + 40); }
     const goalX = px0 + 60 + state.s * scale;
     ctx.strokeStyle = '#2e7d32'; ctx.setLineDash([5, 4]); ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(goalX, 120); ctx.lineTo(goalX, floorY); ctx.stroke(); ctx.setLineDash([]);
-    ctx.fillStyle = '#2e7d32'; ctx.textBaseline = 'bottom'; ctx.font = `700 12px ${font()}`; ctx.fillText(`${state.s} m`, goalX, 116);
+    ctx.fillStyle = '#2e7d32'; ctx.textBaseline = 'bottom'; ctx.font = `700 13px ${font()}`; ctx.fillText(`${state.s} m`, goalX, 116);
     // Box (front edge at the distance moved)
     const bx = px0 + 60 + state.x * scale - 0, bw = 90, bh = 80;
     const hot = state.heat;
@@ -121,6 +121,10 @@ function draw() {
     // Forces
     const f = friction();
     arrow(bx - bw - 6, floorY - 50, bx - bw - 6 + 20 + state.F * 0.6, floorY - 50, '#1e63c6', `push ${state.F} N`);
+    if (canSetPush()) {
+      ctx.fillStyle = '#1e63c6'; ctx.strokeStyle = '#fff'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(pushTip(), floorY - 50, 11, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    }
     if (state.running || state.done || state.F > 0) arrow(bx - bw / 2, floorY + 8, bx - bw / 2 - 20 - Math.min(state.F, f) * 0.6, floorY + 8, '#c62828', '');
     ctx.fillStyle = '#c62828'; ctx.font = `800 13px ${font()}`; ctx.textAlign = 'right'; ctx.textBaseline = 'top';
     ctx.fillText(`friction ${fmt(Math.min(state.F, f))} N`, bx - bw / 2 - 24, floorY + 54);
@@ -140,7 +144,7 @@ function draw() {
     ctx.fillStyle = '#fff'; ctx.font = `800 13px ${font()}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(`${state.m} kg`, 574, top + 30);
     person(450, groundY, false, true);
     // Height scale
-    ctx.strokeStyle = PK.cssVar('--muted'); ctx.fillStyle = PK.cssVar('--muted'); ctx.lineWidth = 1; ctx.font = `600 11px ${font()}`; ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+    ctx.strokeStyle = PK.cssVar('--muted'); ctx.fillStyle = PK.cssVar('--muted'); ctx.lineWidth = 1; ctx.font = `600 13px ${font()}`; ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
     for (let m = 0; m <= 10; m++) { const y = groundY - m * scale; ctx.beginPath(); ctx.moveTo(670, y); ctx.lineTo(680, y); ctx.stroke(); ctx.fillText(`${m} m`, 664, y); }
     ctx.strokeStyle = '#2e7d32'; ctx.setLineDash([5, 4]); ctx.beginPath(); ctx.moveTo(600, groundY - state.s * scale); ctx.lineTo(690, groundY - state.s * scale); ctx.stroke(); ctx.setLineDash([]);
     arrow(612, top + 60, 612, top + 10, '#1e63c6', '');
@@ -159,9 +163,9 @@ function draw() {
 
 $('go').addEventListener('click', () => { if (state.done) reset(); state.running = true; state.done = false; render(); });
 $('reset').addEventListener('click', reset);
-$('force').addEventListener('input', (e) => { state.F = Number(e.target.value); reset(); });
-$('mass').addEventListener('input', (e) => { state.m = Number(e.target.value); reset(); });
-$('dist').addEventListener('input', (e) => { state.s = Number(e.target.value); reset(); });
+$('force').addEventListener('input', () => { state.F = PK.num('force'); reset(); });
+$('mass').addEventListener('input', () => { state.m = PK.num('mass'); reset(); });
+$('dist').addEventListener('input', () => { state.s = PK.num('dist'); reset(); });
 document.querySelectorAll('#surface .chip').forEach((b) => b.addEventListener('click', () => {
   state.surface = b.dataset.s;
   document.querySelectorAll('#surface .chip').forEach((c) => c.setAttribute('aria-pressed', String(c === b)));
@@ -174,6 +178,13 @@ document.querySelectorAll('#tabs .chip').forEach((b) => b.addEventListener('clic
   reset();
 }));
 window.addEventListener('pk-answers', render);
+PK.dragOn(cv, 800, 360, {
+  hit: (p) => (canSetPush() && Math.hypot(p.x - pushTip(), p.y - 230) < 30 ? 'push' : null),
+  move: (d, p) => {
+    PK.setNum('force', Math.round((p.x - (120 + 60 - 90 - 6 + 20)) / 0.6 / 5) * 5);
+    state.F = PK.num('force'); reset();
+  },
+});
 window.addEventListener('resize', size);
 
 let last = performance.now();

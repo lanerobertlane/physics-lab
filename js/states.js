@@ -178,7 +178,7 @@ function drawBox() {
   bctx.fillStyle = '#e53935';
   bctx.fillRect(tx - 5, ty1 - frac * (ty1 - ty0 - 10) - 5, 10, frac * (ty1 - ty0 - 10) + 5);
   bctx.beginPath(); bctx.arc(tx, ty1 + 10, 15, 0, Math.PI * 2); bctx.fill(); bctx.stroke();
-  bctx.font = `600 12px ${font}`; bctx.textAlign = 'right'; bctx.fillStyle = c.muted;
+  bctx.font = `600 13px ${font}`; bctx.textAlign = 'right'; bctx.fillStyle = c.muted;
   for (const t of [-40, 0, 50, 100, 150]) {
     const y = ty1 - ((t - T_MIN) / (T_MAX - T_MIN)) * (ty1 - ty0 - 10) - 5;
     bctx.fillText(`${t} °C`, tx - 16, y);
@@ -199,7 +199,7 @@ function drawCurve() {
   const Y = (temp) => T + ph - ((temp - T_MIN) / (T_MAX - T_MIN)) * ph;
 
   cctx.strokeStyle = c.grid; cctx.lineWidth = 1;
-  cctx.fillStyle = c.muted; cctx.font = `600 11px ${font}`;
+  cctx.fillStyle = c.muted; cctx.font = `600 13px ${font}`;
   cctx.textAlign = 'right'; cctx.textBaseline = 'middle';
   for (const temp of [-40, 0, 50, 100, 150]) {
     cctx.beginPath(); cctx.moveTo(L, Y(temp)); cctx.lineTo(L + pw, Y(temp)); cctx.stroke();
@@ -210,7 +210,7 @@ function drawCurve() {
   for (let t = 0; t <= tMax; t += step) cctx.fillText(t, X(t), T + ph + 4);
   cctx.strokeStyle = c.text; cctx.lineWidth = 1.5;
   cctx.beginPath(); cctx.moveTo(L, T); cctx.lineTo(L, T + ph); cctx.lineTo(L + pw, T + ph); cctx.stroke();
-  cctx.fillStyle = c.text; cctx.font = `700 12px ${font}`;
+  cctx.fillStyle = c.text; cctx.font = `700 13px ${font}`;
   cctx.fillText('time / s', L + pw / 2, GH - 16);
   cctx.save(); cctx.translate(16, T + ph / 2); cctx.rotate(-Math.PI / 2); cctx.textBaseline = 'middle'; cctx.fillText('temperature / °C', 0, 0); cctx.restore();
 
@@ -221,7 +221,7 @@ function drawCurve() {
     cctx.stroke();
   }
   // Label the flat sections
-  cctx.fillStyle = c.muted; cctx.font = `700 12px ${font}`; cctx.textAlign = 'left'; cctx.textBaseline = 'bottom';
+  cctx.fillStyle = c.muted; cctx.font = `700 13px ${font}`; cctx.textAlign = 'left'; cctx.textBaseline = 'bottom';
   cctx.fillText('melting / freezing point (0 °C)', L + 6, Y(0) - 3);
   cctx.fillText('boiling point (100 °C)', L + 6, Y(100) - 3);
 }
@@ -284,7 +284,7 @@ $('reset').addEventListener('click', () => {
   sim.E = C_ICE * 20; sim.t = 0; curve = [{ t: 0, T: stateOf(sim.E).T }];
   parts.forEach((p, i) => { p.x = sites[i].x; p.y = sites[i].y; p.vx = 0; p.vy = 0; });
 });
-$('speed').addEventListener('change', (e) => { sim.speed = Number(e.target.value); });
+PK.chips('speed', (v) => { sim.speed = v; });
 $('power').addEventListener('input', (e) => { sim.power = Number(e.target.value); $('power-val').textContent = `${sim.power} W`; });
 $('power-val').textContent = `${sim.power} W`;
 

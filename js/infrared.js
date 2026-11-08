@@ -6,7 +6,7 @@
 PK.header({
   title: 'Infrared radiation',
   spec: [
-    { code: '4.6.3.1', text: 'Required practical: investigate how the amount of infrared radiation absorbed or radiated by a surface depends on the nature of that surface' },
+    { code: '4.6.2.2', text: 'Required practical: investigate how the amount of infrared radiation absorbed or radiated by a surface depends on the nature of that surface' },
     { code: '4.6.3.1', text: 'All bodies emit and absorb infrared radiation; the hotter the body, the more infrared radiation it emits in a given time', po: true },
   ],
 });
@@ -74,7 +74,7 @@ function drawEmit(c, t) {
   ctx.fillStyle = '#0d1a0d'; ctx.fillRect(590, 100, 160, 48);
   ctx.fillStyle = '#7CFC00'; ctx.font = '700 24px ui-monospace, Consolas, monospace'; ctx.textAlign = 'right';
   ctx.fillText(`${Math.round(r * (1 + (Math.sin(t * 7) * 0.004)))}`, 740, 125);
-  ctx.fillStyle = c.muted; ctx.font = `600 12px ${c.font}`; ctx.textAlign = 'center';
+  ctx.fillStyle = c.muted; ctx.font = `600 13px ${c.font}`; ctx.textAlign = 'center';
   ctx.fillText('infrared detector (W/m²)', 670, 90);
   ctx.fillText('same distance for every face', 455, 290);
 }
@@ -128,10 +128,10 @@ function renderControls() {
     $('intro').textContent = 'A Leslie cube is filled with hot water. Each face has a different surface. Point the infrared detector at each face in turn, from the same distance, and record the reading.';
     el.innerHTML = `<h2>Leslie cube</h2>
       <div class="btn-row" style="margin-bottom:10px">${SURFACES.map((s, i) => `<button class="btn" data-face="${i}" aria-pressed="${i === state.face}">${s.name}</button>`).join('')}</div>
-      <div class="ctl"><label for="water">Water temperature <b id="water-val">${state.water} °C</b></label><input type="range" id="water" min="40" max="90" step="5" value="${state.water}"></div>
+      <div class="num-row"><label for="water">Water temperature</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: water temperature">−</button><input type="number" id="water" min="40" max="90" step="any" data-inc="5" value="${state.water}" inputmode="decimal"><span class="unit">°C</span><button data-step="1" aria-label="More: water temperature">+</button></div></div>
       <div class="btn-row" style="margin-top:8px"><button class="btn primary" id="record">＋ Record reading</button><button class="btn" id="clear">Clear</button></div>`;
     el.querySelectorAll('[data-face]').forEach((b) => b.addEventListener('click', () => { state.face = Number(b.dataset.face); renderControls(); }));
-    $('water').addEventListener('input', (e) => { state.water = Number(e.target.value); $('water-val').textContent = `${state.water} °C`; });
+    $('water').addEventListener('input', () => { state.water = PK.num('water'); });
     $('record').addEventListener('click', () => { state.rows.push({ name: SURFACES[state.face].name, T: state.water, r: reading() }); renderTable(); });
     $('clear').addEventListener('click', () => { state.rows = []; renderTable(); });
     $('bar').innerHTML = '<span class="note" style="margin:0">Tip: keep the water temperature the same for every face (a fair test).</span>';
@@ -141,11 +141,10 @@ function renderControls() {
     el.innerHTML = `<h2>Plates</h2>
       <div class="field"><label for="pl">Left plate</label><select class="select" id="pl">${opts(state.plates[0])}</select></div>
       <div class="field"><label for="pr">Right plate</label><select class="select" id="pr">${opts(state.plates[1])}</select></div>
-      <div class="field"><label for="spd">Speed</label><select class="select" id="spd"><option value="1">Real time</option><option value="5">5 × faster</option><option value="20">20 × faster</option><option value="50">50 × faster</option></select></div>`;
+      <div class="field"><span class="label">Speed</span><div class="chip-group" id="spd" aria-label="Speed">${[1, 5, 20, 50].map((v) => `<button class="chip" data-v="${v}" aria-pressed="${v === state.speed}">${v === 1 ? 'Real time' : `${v}×`}</button>`).join('')}</div></div>`;
     $('pl').addEventListener('change', (e) => { state.plates[0] = Number(e.target.value); resetAbsorb(); });
     $('pr').addEventListener('change', (e) => { state.plates[1] = Number(e.target.value); resetAbsorb(); });
-    $('spd').value = String(state.speed);
-    $('spd').addEventListener('change', (e) => { state.speed = Number(e.target.value); });
+    PK.chips('spd', (v) => { state.speed = v; });
     $('bar').innerHTML = '<button class="btn primary" id="start">🔥 Switch on the heater</button><button class="btn" id="reset">↺ Reset</button>';
     $('start').addEventListener('click', () => { if (!state.running && state.t === 0) state.running = true; });
     $('reset').addEventListener('click', resetAbsorb);

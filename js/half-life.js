@@ -65,17 +65,17 @@ function drawCurve() {
   const c = { surface: PK.cssVar('--surface'), text: PK.cssVar('--text'), muted: PK.cssVar('--muted'), grid: PK.cssVar('--grid'), line: '#7b3fe4', mark: PK.cssVar('--f2'), font: PK.cssVar('--font-body') || 'sans-serif' };
   cctx.fillStyle = c.surface; cctx.fillRect(0, 0, GW, GH);
   const L = 60, R = 16, T = 12, B = 40, pw = GW - L - R, ph = GH - T - B;
-  const tMax = state.half * 6;
+  const tMax = state.mystery ? 90 : state.half * 6;   // a fixed axis, so its numbers don't give the mystery away
   const X = (t) => L + (t / tMax) * pw, Y = (n) => T + ph - (n / state.n0) * ph;
 
-  cctx.strokeStyle = c.grid; cctx.lineWidth = 1; cctx.fillStyle = c.muted; cctx.font = `600 11px ${c.font}`;
+  cctx.strokeStyle = c.grid; cctx.lineWidth = 1; cctx.fillStyle = c.muted; cctx.font = `600 13px ${c.font}`;
   cctx.textAlign = 'right'; cctx.textBaseline = 'middle';
   for (const f of [0, 0.25, 0.5, 0.75, 1]) { cctx.beginPath(); cctx.moveTo(L, Y(f * state.n0)); cctx.lineTo(L + pw, Y(f * state.n0)); cctx.stroke(); cctx.fillText(Math.round(f * state.n0), L - 6, Y(f * state.n0)); }
   cctx.textAlign = 'center'; cctx.textBaseline = 'top';
   for (let s = 0; s <= tMax; s += state.half) cctx.fillText(s, X(s), T + ph + 4);
   cctx.strokeStyle = c.text; cctx.lineWidth = 1.5;
   cctx.beginPath(); cctx.moveTo(L, T); cctx.lineTo(L, T + ph); cctx.lineTo(L + pw, T + ph); cctx.stroke();
-  cctx.fillStyle = c.text; cctx.font = `700 12px ${c.font}`;
+  cctx.fillStyle = c.text; cctx.font = `700 13px ${c.font}`;
   cctx.fillText('time / s', L + pw / 2, GH - 16);
   cctx.save(); cctx.translate(14, T + ph / 2); cctx.rotate(-Math.PI / 2); cctx.textBaseline = 'middle'; cctx.fillText('undecayed nuclei', 0, 0); cctx.restore();
 
@@ -89,7 +89,7 @@ function drawCurve() {
     for (let k2 = 1; k2 <= 3; k2++) {
       const n = state.n0 / 2 ** k2, x = X(state.half * k2);
       cctx.beginPath(); cctx.moveTo(L, Y(n)); cctx.lineTo(x, Y(n)); cctx.lineTo(x, T + ph); cctx.stroke();
-      cctx.fillStyle = c.mark; cctx.font = `700 11px ${c.font}`; cctx.textAlign = 'left'; cctx.textBaseline = 'bottom';
+      cctx.fillStyle = c.mark; cctx.font = `700 13px ${c.font}`; cctx.textAlign = 'left'; cctx.textBaseline = 'bottom';
       cctx.fillText(`${k2} half-li${k2 > 1 ? 'ves' : 'fe'}`, x + 4, T + ph - 4);
     }
     cctx.setLineDash([]);
@@ -103,16 +103,15 @@ function drawCurve() {
 
 function renderPanel() {
   const n = left(), halves = state.t / state.half;
-  $('half-val').textContent = `${state.half} s`;
   $('readout').innerHTML = `
     <dt>Time</dt><dd>${state.t.toFixed(1)} s</dd>
-    <dt>Half-lives gone</dt><dd>${PK.ans(halves.toFixed(2))}</dd>
+    <dt>Half-lives gone</dt><dd>${state.mystery ? '?' : PK.ans(halves.toFixed(2))}</dd>
     <dt>Undecayed nuclei</dt><dd>${n} of ${state.n0}</dd>
     <dt>Activity</dt><dd>${state.recent.length} Bq</dd>`;
-  const whole = Math.floor(halves + 1e-9);
+  const whole = state.mystery ? 0 : Math.floor(halves + 1e-9);
   $('working').innerHTML = whole >= 1
     ? `<p>After ${whole} half-li${whole > 1 ? 'ves' : 'fe'} we expect ${state.n0} × (½)<sup>${whole}</sup> = <b>${PK.ans((state.n0 / 2 ** whole).toFixed(1))}</b> left (${PK.ans(`1/${2 ** whole}`)} of the start).</p><p class="note" style="margin-top:4px">The real number left varies because decay is random. With more nuclei it gets closer to the prediction.</p>`
-    : '<p>Press Start. Watch how long it takes for half of the nuclei to decay.</p>';
+    : state.mystery ? '<p>Read the time it takes for the number left to halve, then check it again from a later point on the graph.</p>' : '<p>Press Start. Watch how long it takes for half of the nuclei to decay.</p>';
 }
 
 let last = performance.now(), tick = 0;
@@ -133,7 +132,14 @@ $('play').addEventListener('click', () => {
 });
 $('reset').addEventListener('click', () => { reset(); renderPanel(); });
 $('count').addEventListener('change', (e) => { state.n0 = Number(e.target.value); reset(); renderPanel(); });
-$('half').addEventListener('input', (e) => { state.half = Number(e.target.value); reset(); renderPanel(); });
+$('half').addEventListener('input', () => { state.half = PK.num('half'); reset(); renderPanel(); });
+$('mystery').addEventListener('click', () => {
+  state.mystery = !state.mystery;
+  if (state.mystery) { state.half = 3 + Math.floor(Math.random() * 13); state.expected = false; $('expected').checked = false; PK.setNum('half', state.half); reset(); }
+  $('half-row').hidden = state.mystery; $('mystery-note').hidden = !state.mystery; $('expected').disabled = state.mystery;
+  $('mystery').textContent = state.mystery ? '👁 Reveal the half-life' : '❓ Mystery half-life';
+  renderPanel();
+});
 $('expected').addEventListener('change', (e) => { state.expected = e.target.checked; });
 
 window.addEventListener('resize', sizeCanvases);

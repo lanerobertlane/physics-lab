@@ -44,11 +44,7 @@
           <div class="stage-bar">
             <button class="btn primary" id="heat">🔥 Switch heater on</button>
             <button class="btn" id="reset">↺ Cool down and reset</button>
-            <select class="select" id="speed" aria-label="Speed">
-              <option value="1">Real time</option>
-              <option value="10" selected>10 × faster</option>
-              <option value="30">30 × faster</option>
-            </select>
+            <div class="chip-group" id="speed" aria-label="Speed"><button class="chip" data-v="1" aria-pressed="false">Real time</button><button class="chip" data-v="10" aria-pressed="true">10×</button><button class="chip" data-v="30" aria-pressed="false">30×</button></div>
           </div>
         </div>
 

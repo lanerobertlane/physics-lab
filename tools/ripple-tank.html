@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ripple Tank · Mr Lane's Physics Lab</title>
   <!-- About this page, for search engines and school web filters -->
-  <meta name="description" content="Reflection, refraction and diffraction, with a ruler and strobe for the required practical.">
+  <meta name="description" content="Reflection and refraction, with a ruler and strobe for the required practical.">
   <meta name="rating" content="general">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Robert Lane">
@@ -14,10 +14,10 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Mr Lane’s Physics Lab">
   <meta property="og:title" content="Ripple tank">
-  <meta property="og:description" content="Reflection, refraction and diffraction, with a ruler and strobe for the required practical.">
+  <meta property="og:description" content="Reflection and refraction, with a ruler and strobe for the required practical.">
   <meta property="og:url" content="https://lanerobertlane.space/tools/ripple-tank.html">
   <meta property="og:locale" content="en_GB">
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Ripple tank", "description": "Reflection, refraction and diffraction, with a ruler and strobe for the required practical.", "url": "https://lanerobertlane.space/tools/ripple-tank.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["Key Stage 3", "GCSE"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Ripple tank", "description": "Reflection and refraction, with a ruler and strobe for the required practical.", "url": "https://lanerobertlane.space/tools/ripple-tank.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["Key Stage 3", "GCSE"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
   <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../css/style.css">
   <style>
@@ -42,14 +42,10 @@
     <div class="tool-layout">
       <div class="main-col">
         <div class="panel stage">
-          <canvas id="tank" aria-label="Ripple tank"></canvas>
+          <canvas id="tank" class="drag" aria-label="Ripple tank"></canvas>
           <div class="stage-bar">
             <button class="btn primary" id="freeze">❚❚ Freeze (strobe)</button>
-            <select class="select" id="speed" aria-label="Speed">
-              <option value="1">Real speed</option>
-              <option value="0.5">Half speed</option>
-              <option value="0.25">Quarter speed</option>
-            </select>
+            <div class="chip-group" id="speed" aria-label="Speed"><button class="chip" data-v="1" aria-pressed="true">Real speed</button><button class="chip" data-v="0.5" aria-pressed="false">Half</button><button class="chip" data-v="0.25" aria-pressed="false">Quarter</button></div>
             <span class="spacer"></span>
             <label class="toggle"><input type="checkbox" id="ruler-on" checked> Ruler</label>
             <button class="btn" id="ruler-turn">⟳ Turn ruler</button>
@@ -69,10 +65,7 @@
       <aside>
         <div class="panel">
           <h2>Wave generator</h2>
-          <div class="ctl">
-            <label for="freq">Frequency <b id="freq-val"></b></label>
-            <input type="range" id="freq" min="4" max="12" step="0.5" value="6">
-          </div>
+          <div class="num-row"><label for="freq">Frequency</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: frequency">−</button><input type="number" id="freq" min="4" max="12" step="any" data-inc="0.5" value="6" inputmode="decimal"><span class="unit">Hz</span><button data-step="1" aria-label="More: frequency">+</button></div></div>
           <div class="field">
             <label for="source">Dipper</label>
             <select class="select" id="source">

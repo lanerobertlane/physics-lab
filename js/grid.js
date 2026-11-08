@@ -127,7 +127,6 @@ function draw(dt) {
 
 function render() {
   const f = figures();
-  $('power-val').textContent = fmtW(state.P);
   document.querySelectorAll('#volts .chip').forEach((b) => b.setAttribute('aria-pressed', String(Number(b.dataset.v) === state.Vt)));
   $('readout').innerHTML = `
     <dt>Current in the cables (I = P ÷ V)</dt><dd>${PK.ans(fmtA(f.I))}</dd>
@@ -148,7 +147,7 @@ function render() {
 }
 
 document.querySelectorAll('#volts .chip').forEach((b) => b.addEventListener('click', () => { state.Vt = Number(b.dataset.v); render(); }));
-$('power').addEventListener('input', (e) => { state.P = Number(e.target.value) * 1e6; render(); });
+$('power').addEventListener('input', () => { state.P = PK.num('power') * 1e6; render(); });
 
 let last = performance.now();
 function frame(now) {

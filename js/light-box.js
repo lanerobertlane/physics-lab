@@ -5,7 +5,7 @@ PK.header({
   title: 'Light box & lenses',
   answers: true,
   spec: [
-    { code: '4.6.2.2', text: 'Refraction at a boundary, shown with ray diagrams' },
+    { code: '4.6.2.2', text: 'Refraction at a boundary, shown with ray diagrams', ht: true },
     { code: '4.6.1.3', text: 'Required practical: reflection of light by surfaces and refraction by different substances', po: true },
     { code: '4.6.2.5', text: 'Lenses: convex and concave, principal focus, real and virtual images, ray diagrams, magnification = image height ÷ object height', po: true },
     { code: '4.6.2.6', text: 'Visible light: white light is a mixture of colours (prism)', po: true },
@@ -512,13 +512,13 @@ function renderSettings() {
     el.innerHTML = `<h2>Ray diagram</h2>
       <div class="field"><label for="d-type">Lens</label>
         <select class="select" id="d-type"><option value="convex">Convex (converging)</option><option value="concave">Concave (diverging)</option></select></div>
-      <div class="ctl"><label for="d-u">Object distance <b id="d-u-val">${dg.u} cm</b></label><input type="range" id="d-u" min="2" max="26" step="0.5" value="${dg.u}"></div>
-      <div class="ctl"><label for="d-f">Focal length <b id="d-f-val">${dg.f} cm</b></label><input type="range" id="d-f" min="4" max="12" step="0.5" value="${dg.f}"></div>
+      <div class="num-row"><label for="d-u">Object distance</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: object distance">−</button><input type="number" id="d-u" min="2" max="26" step="any" data-inc="0.5" value="${dg.u}" inputmode="decimal"><span class="unit">cm</span><button data-step="1" aria-label="More: object distance">+</button></div></div>
+      <div class="num-row"><label for="d-f">Focal length</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: focal length">−</button><input type="number" id="d-f" min="4" max="12" step="any" data-inc="0.5" value="${dg.f}" inputmode="decimal"><span class="unit">cm</span><button data-step="1" aria-label="More: focal length">+</button></div></div>
       <p class="note">Try the object beyond 2F, at 2F, between F and 2F, and inside F.</p>`;
     $('d-type').value = dg.type;
     $('d-type').addEventListener('change', (e) => { dg.type = e.target.value; changed(); });
-    $('d-u').addEventListener('input', (e) => { dg.u = Number(e.target.value); $('d-u-val').textContent = `${dg.u} cm`; changed(); });
-    $('d-f').addEventListener('input', (e) => { dg.f = Number(e.target.value); $('d-f-val').textContent = `${dg.f} cm`; changed(); });
+    $('d-u').addEventListener('input', () => { dg.u = PK.num('d-u'); changed(); });
+    $('d-f').addEventListener('input', () => { dg.f = PK.num('d-f'); changed(); });
     return;
   }
   let html = '<h2>Settings</h2>';
@@ -527,12 +527,12 @@ function renderSettings() {
       <option value="1.33">Water (n = 1.33)</option><option value="1.5">Glass (n = 1.5)</option><option value="1.49">Perspex (n = 1.49)</option><option value="2.42">Diamond (n = 2.42)</option></select></div>`;
   }
   if (s === 'prism') html += '<label class="toggle"><input type="checkbox" id="spectrum"> White light (show the spectrum)</label>';
-  if (s === 'convex' || s === 'concave') html += `<div class="ctl"><label for="focal">Focal length <b id="focal-val">${(state.f / PXCM).toFixed(1)} cm</b></label><input type="range" id="focal" min="60" max="300" step="5" value="${state.f}"></div>`;
+  if (s === 'convex' || s === 'concave') html += `<div class="num-row"><label for="focal">Focal length</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: focal length">−</button><input type="number" id="focal" min="4" max="20" step="any" data-inc="0.5" value="${(state.f / PXCM).toFixed(1)}" inputmode="decimal"><span class="unit">cm</span><button data-step="1" aria-label="More: focal length">+</button></div></div>`;
   el.innerHTML = html;
   el.hidden = html === '<h2>Settings</h2>';
   if ($('material')) { $('material').value = String(state.n); $('material').addEventListener('change', (e) => { state.n = Number(e.target.value); changed(); }); }
   if ($('spectrum')) { $('spectrum').checked = state.spectrum; $('spectrum').addEventListener('change', (e) => { state.spectrum = e.target.checked; changed(); }); }
-  if ($('focal')) $('focal').addEventListener('input', (e) => { state.f = Number(e.target.value); $('focal-val').textContent = `${(state.f / PXCM).toFixed(1)} cm`; changed(); });
+  if ($('focal')) $('focal').addEventListener('input', () => { state.f = PK.num('focal') * PXCM; changed(); });
 }
 
 // ---------- Interaction ----------
@@ -563,7 +563,7 @@ canvas.addEventListener('pointermove', (e) => {
   const p = point(e);
   if (drag.what === 'object') {
     state.diag.u = Math.max(2, Math.min(26, Math.round(((LENS_X - p.x) / DPX) * 2) / 2));
-    const s = $('d-u'); if (s) { s.value = state.diag.u; $('d-u-val').textContent = `${state.diag.u} cm`; }
+    const s = $('d-u'); if (s) s.value = state.diag.u;
   } else if (drag.what === 'move') {
     state.box.x = Math.max(20, Math.min(W - 20, p.x + drag.dx));
     state.box.y = Math.max(20, Math.min(H - 20, p.y + drag.dy));
@@ -588,7 +588,7 @@ document.querySelectorAll('[data-turn]').forEach((b) => b.addEventListener('clic
 }));
 $('beam').addEventListener('change', (e) => { state.beam = Number(e.target.value); changed(); });
 
-$('scenes').innerHTML = Object.entries(SCENES).map(([id, s]) => `<button class="btn" data-scene="${id}">${s.name}</button>`).join('');
+$('scenes').innerHTML = Object.entries(SCENES).map(([id, s]) => `<button class="btn${id === 'semi' ? ' beyond' : ''}" data-scene="${id}">${s.name}</button>`).join('');
 $('scenes').addEventListener('click', (e) => { const b = e.target.closest('[data-scene]'); if (b) setScene(b.dataset.scene); });
 
 function setScene(id) {
@@ -599,6 +599,8 @@ function setScene(id) {
   renderSettings();
   changed();
 }
+
+window.addEventListener('pk-beyond', () => { if (state.scene === 'semi' && !PK.beyondShown()) setScene('block'); });
 
 let queued = false;
 function changed() {
@@ -616,7 +618,7 @@ function saveHash() {
 
 function loadHash() {
   const p = new URLSearchParams(location.hash.slice(1));
-  const s = SCENES[p.get('s')] ? p.get('s') : 'block';
+  const s = SCENES[p.get('s')] && (p.get('s') !== 'semi' || PK.beyondShown()) ? p.get('s') : 'block';
   setScene(s);
   if (s === 'diagram') {
     if (p.get('t') === 'concave') state.diag.type = 'concave';

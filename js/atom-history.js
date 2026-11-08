@@ -149,7 +149,7 @@ function drawScatter(c, dt) {
 
   // Source and foil
   ctx.fillStyle = '#5b6470'; ctx.fillRect(0, CY - 200, 34, 400);
-  ctx.fillStyle = '#fff'; ctx.font = `700 12px ${c.font}`; ctx.save(); ctx.translate(18, CY); ctx.rotate(-Math.PI / 2); ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('alpha source', 0, 0); ctx.restore();
+  ctx.fillStyle = '#fff'; ctx.font = `700 13px ${c.font}`; ctx.save(); ctx.translate(18, CY); ctx.rotate(-Math.PI / 2); ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('alpha source', 0, 0); ctx.restore();
   ctx.fillStyle = 'rgba(212, 175, 55, .25)'; ctx.fillRect(FOIL_X[0] - 16, 0, FOIL_X[1] - FOIL_X[0] + 32, H);
   for (const n of atoms) {
     if (state.model === 'nuclear') { ctx.fillStyle = '#d4af37'; ctx.beginPath(); ctx.arc(n.x, n.y, 3.5, 0, Math.PI * 2); ctx.fill(); }

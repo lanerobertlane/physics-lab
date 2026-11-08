@@ -44,7 +44,7 @@ const JOBS = {
     text: 'Inside the alarm, radiation ionises the air between two metal plates, so a small current flows. Smoke gets in the way and the current drops, which sets off the alarm. The alarm should last about 10 years.',
     type: {
       alpha: ['ok', 'Alpha is very strongly ionising, so it makes plenty of ions to carry the current. Smoke absorbs it easily, so the current drops when there is smoke. It can’t get out through the plastic case.'],
-      beta: ['bad', 'Beta passes straight through smoke, so smoke hardly changes the current and the alarm wouldn’t go off. It is also only weakly ionising, so the current is tiny.'],
+      beta: ['bad', 'Beta passes straight through smoke, so smoke hardly changes the current and the alarm wouldn’t go off. It is also less ionising than alpha, so the current is tiny.'],
       gamma: ['bad', 'Gamma passes straight through smoke (and out of the alarm into the room), so smoke doesn’t change the current. It is only very weakly ionising.'],
     },
     life: 10 * YEAR, lifeText: '10 years', okIf: (f) => f > 0.8,
@@ -187,7 +187,7 @@ function sourceBox(x, y, w, h, label) {
   const S = SOURCES[state.src];
   ctx.fillStyle = '#455a64'; ctx.fillRect(x, y, w, h);
   ctx.fillStyle = COLOUR[S.type]; ctx.beginPath(); ctx.arc(x + w / 2, y + h / 2, Math.min(w, h) / 4, 0, Math.PI * 2); ctx.fill();
-  if (label !== false) text(S.name, x + w / 2, y + h + 12, { s: 11 });
+  if (label !== false) text(S.name, x + w / 2, y + h + 12, { s: 13 });
 }
 
 // ---------- Smoke alarm ----------
@@ -214,21 +214,21 @@ function smokeDraw() {
   text('+', 270, 95, { s: 18, w: 800, col: '#c62828' }); text('−', 270, 285, { s: 18, w: 800, col: '#1e63c6' });
   sourceBox(150, 172, 44, 36);
   if (state.smoke) for (const b of SMOKE_BLOBS) { ctx.fillStyle = 'rgba(120,120,120,.2)'; ctx.beginPath(); ctx.arc(b.x + Math.sin(state.t + b.ph) * 6, b.y + Math.cos(state.t * 0.7 + b.ph) * 4, b.r, 0, Math.PI * 2); ctx.fill(); }
-  for (const e of extras) text(e.s > 0 ? '+' : '−', e.x, e.y, { s: 11, w: 800, col: e.s > 0 ? '#c62828' : '#1e63c6' });
+  for (const e of extras) text(e.s > 0 ? '+' : '−', e.x, e.y, { s: 13, w: 800, col: e.s > 0 ? '#c62828' : '#1e63c6' });
   parts.forEach(drawParticle);
   // Current meter and alarm
   const I = BASE[type] * (state.smoke ? THROUGH_SMOKE[type] : 1) * a, rel = I / BASE[type];
   const alarm = rel < 0.6;
   ctx.fillStyle = PK.cssVar('--surface-2'); ctx.fillRect(690, 90, 96, 200);
-  text('Current', 738, 106, { s: 12, w: 800 });
+  text('Current', 738, 106, { s: 13, w: 800 });
   ctx.fillStyle = '#c5cdd3'; ctx.fillRect(722, 122, 32, 130);
   ctx.fillStyle = '#43a047'; const hBar = 130 * Math.min(1, I); ctx.fillRect(722, 252 - hBar, 32, hBar);
-  text(I > 0.5 ? 'big' : I > 0.08 ? 'small' : 'tiny', 738, 268, { s: 12 });
+  text(I > 0.5 ? 'big' : I > 0.08 ? 'small' : 'tiny', 738, 268, { s: 13 });
   if (alarm) {
     const on = Math.floor(state.t * 4) % 2 === 0;
     ctx.fillStyle = on ? '#e53935' : '#7f1d1d'; ctx.beginPath(); ctx.arc(738, 40, 14, 0, Math.PI * 2); ctx.fill();
     if (on) text('BEEP! BEEP!', 640, 40, { s: 16, w: 800, col: '#e53935', a: 'right' });
-  } else { ctx.fillStyle = '#2e7d32'; ctx.beginPath(); ctx.arc(738, 40, 10, 0, Math.PI * 2); ctx.fill(); text('quiet', 720, 40, { s: 12, a: 'right' }); }
+  } else { ctx.fillStyle = '#2e7d32'; ctx.beginPath(); ctx.arc(738, 40, 10, 0, Math.PI * 2); ctx.fill(); text('quiet', 720, 40, { s: 13, a: 'right' }); }
   text(state.smoke ? (alarm ? 'Smoke absorbs the radiation: fewer ions, so the current drops and the alarm sounds.' : 'The radiation goes straight through the smoke, so the current hardly changes.')
     : (alarm ? 'The source has decayed so much that the current is low: the alarm goes off with no smoke!' : 'The radiation ionises the air, and the ions carry a current between the plates.'), 400, 345, { s: 13 });
 }
@@ -263,24 +263,24 @@ function gaugeDraw() {
   ctx.strokeStyle = '#c9bfa3'; ctx.lineWidth = 1;
   for (let x = -((state.t * 60) % 40); x < 640; x += 40) { ctx.beginPath(); ctx.moveTo(x, top); ctx.lineTo(x + 6, bot); ctx.stroke(); }
   for (const rx of [130, 560]) for (const ry of [top - 26, bot + 26]) { ctx.fillStyle = '#78909c'; ctx.beginPath(); ctx.arc(rx, ry, 24, 0, Math.PI * 2); ctx.fill(); ctx.fillStyle = '#546e7a'; ctx.beginPath(); ctx.arc(rx, ry, 6, 0, Math.PI * 2); ctx.fill(); }
-  text('rollers', 130, bot + 64, { s: 11 });
+  text('rollers', 130, bot + 64, { s: 13 });
   sourceBox(374, 62, 52, 36, false);
-  text(SOURCES[state.src].name, 450, 80, { s: 11, a: 'left' });
+  text(SOURCES[state.src].name, 450, 80, { s: 13, a: 'left' });
   // Detector
   ctx.fillStyle = '#37474f'; ctx.fillRect(382, 300, 36, 60); ctx.fillStyle = '#90a4ae'; ctx.fillRect(386, 300, 28, 6);
-  text('detector', 450, 330, { s: 11, a: 'left' });
+  text('detector', 450, 330, { s: 13, a: 'left' });
   parts.forEach(drawParticle);
   // Count rate and graph
   ctx.fillStyle = PK.cssVar('--surface-2'); ctx.fillRect(650, 40, 140, 300);
-  text('Count rate', 720, 58, { s: 12, w: 800 });
+  text('Count rate', 720, 58, { s: 13, w: 800 });
   text(`${shown ?? 0}`, 720, 92, { s: 30, w: 800, col: PK.cssVar('--answer') || PK.cssVar('--text') });
-  text('counts per second', 720, 118, { s: 11 });
+  text('counts per second', 720, 118, { s: 13 });
   const gx = 660, gy = 140, gw = 120, gh = 180, max = 320;
   ctx.strokeStyle = PK.cssVar('--border-strong'); ctx.lineWidth = 1; ctx.strokeRect(gx, gy, gw, gh);
   ctx.strokeStyle = '#1e88e5'; ctx.lineWidth = 2; ctx.beginPath();
   hist.forEach((v, i) => { const x = gx + (i / 29) * gw, y = gy + gh - Math.min(1, v / max) * gh; if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); });
   ctx.stroke();
-  text('last 30 s', 720, gy + gh + 12, { s: 10 });
+  text('last 30 s', 720, gy + gh + 12, { s: 13 });
 }
 
 // ---------- Medical tracer ----------
@@ -312,22 +312,22 @@ function tracerDraw() {
   ctx.fillStyle = '#f2c9a0'; ctx.beginPath(); ctx.roundRect(150, 210, 450, 90, 30); ctx.fill();
   ctx.beginPath(); ctx.arc(110, 255, 36, 0, Math.PI * 2); ctx.fill();
   for (const [kx, ky] of KIDNEYS) { ctx.fillStyle = '#a1443a'; ctx.beginPath(); ctx.ellipse(kx, ky, 18, 9, 0, 0, Math.PI * 2); ctx.fill(); }
-  text('kidneys', 370, 284, { s: 11 });
+  text('kidneys', 370, 284, { s: 13 });
   for (const e of extras) { ctx.fillStyle = 'rgba(229, 57, 53, .35)'; ctx.beginPath(); ctx.arc(e.x, e.y, 3, 0, Math.PI * 2); ctx.fill(); }
   // Gamma camera
-  ctx.fillStyle = '#546e7a'; ctx.fillRect(250, 100, 240, 30); text('gamma camera', 370, 115, { s: 12, col: '#fff' });
+  ctx.fillStyle = '#546e7a'; ctx.fillRect(250, 100, 240, 30); text('gamma camera', 370, 115, { s: 13, col: '#fff' });
   ctx.strokeStyle = '#546e7a'; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(370, 100); ctx.lineTo(370, 60); ctx.lineTo(615, 60); ctx.stroke();
   parts.forEach(drawParticle);
   // Image from the camera
   ctx.fillStyle = '#000'; ctx.fillRect(620, 40, 165, 140);
-  text('Camera image', 702, 30, { s: 12, w: 800 });
+  text('Camera image', 702, 30, { s: 13, w: 800 });
   for (const [x, y] of image) { ctx.fillStyle = 'rgba(120, 255, 160, .5)'; ctx.fillRect(620 + ((x - 290) / 160) * 165 - 2, 40 + ((y - 230) / 50) * 140 - 2, 4, 4); }
-  if (!image.length) text(state.t > 0 ? 'nothing detected' : '', 702, 110, { s: 12, col: '#bbb' });
+  if (!image.length) text(state.t > 0 ? 'nothing detected' : '', 702, 110, { s: 13, col: '#bbb' });
   // Clock and activity
   const a = activity();
   text(`Time since injection: ${Math.floor(state.t)} hours`, 20, 30, { s: 13, a: 'left', w: 800 });
   text(`Radioactive tracer left: ${state.t > 0 || state.running ? pct(a) : '–'}`, 20, 52, { s: 13, a: 'left' });
-  if (extras.length > 20) text('Red: cells damaged inside the body', 20, 345, { s: 12, a: 'left', col: '#c62828' });
+  if (extras.length > 20) text('Red: cells damaged inside the body', 20, 345, { s: 13, a: 'left', col: '#c62828' });
   if (!state.running && state.t === 0) text('Press “Inject the tracer” to start.', 370, 170, { s: 13 });
 }
 
@@ -359,7 +359,7 @@ function therapyDraw() {
   ctx.strokeStyle = '#c99a6e'; ctx.lineWidth = 2; ctx.stroke();
   text('Cross-section through the patient', BX, 40, { s: 13, w: 800 });
   const r = Math.max(0, 22 * (1 - dose / 400));
-  if (r > 0) { ctx.fillStyle = '#6d4c41'; ctx.beginPath(); ctx.arc(TX, TY, r, 0, Math.PI * 2); ctx.fill(); text('tumour', TX, TY + 34, { s: 11 }); }
+  if (r > 0) { ctx.fillStyle = '#6d4c41'; ctx.beginPath(); ctx.arc(TX, TY, r, 0, Math.PI * 2); ctx.fill(); text('tumour', TX, TY + 34, { s: 13 }); }
   else text('Tumour destroyed ✓', TX, TY, { s: 13, w: 800, col: '#2e7d32' });
   for (const e of extras) { ctx.fillStyle = 'rgba(229, 57, 53, .4)'; ctx.beginPath(); ctx.arc(e.x, e.y, 3, 0, Math.PI * 2); ctx.fill(); }
   for (let k = 0; k < 3; k++) {
@@ -369,11 +369,11 @@ function therapyDraw() {
   parts.forEach(drawParticle);
   const a = activity();
   ctx.fillStyle = PK.cssVar('--surface-2'); ctx.fillRect(630, 60, 160, 150);
-  text('Tumour', 710, 78, { s: 12, w: 800 });
+  text('Tumour', 710, 78, { s: 13, w: 800 });
   text(`${Math.round(Math.min(100, (dose / 400) * 100))}% destroyed`, 710, 104, { s: 15, w: 800 });
-  text('Source strength', 710, 140, { s: 12, w: 800 });
+  text('Source strength', 710, 140, { s: 13, w: 800 });
   text(pct(a), 710, 164, { s: 15, w: 800 });
-  if (extras.length > 20) text('Red: skin and healthy tissue damaged', 20, 355, { s: 12, a: 'left', col: '#c62828' });
+  if (extras.length > 20) text('Red: skin and healthy tissue damaged', 20, 355, { s: 13, a: 'left', col: '#c62828' });
   if (!state.running && state.t === 0) text('Press “Start treatment”.', BX, BY, { s: 13 });
 }
 

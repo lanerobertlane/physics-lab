@@ -44,7 +44,7 @@
     <div class="tool-layout">
       <div class="main-col">
         <div class="panel stage">
-          <canvas id="gas" aria-label="Gas particles in a cylinder with a piston"></canvas>
+          <canvas id="gas" class="drag" aria-label="Gas particles in a cylinder with a piston"></canvas>
           <div class="stage-bar">
             <label class="toggle"><input type="checkbox" id="iso" checked> Keep the temperature constant</label>
             <label class="toggle"><input type="checkbox" id="trail"> Follow one particle</label>
@@ -55,14 +55,9 @@
       <aside>
         <div class="panel">
           <h2>Controls</h2>
-          <div class="ctl">
-            <label for="volume">Volume <b id="volume-val"></b></label>
-            <input type="range" id="volume" min="25" max="100" step="1" value="100">
-          </div>
-          <div class="ctl">
-            <label for="temp">Temperature <b id="temp-val"></b></label>
-            <input type="range" id="temp" min="100" max="600" step="10" value="300">
-          </div>
+          <div class="num-row"><label for="volume">Volume</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: volume">−</button><input type="number" id="volume" min="0.5" max="2" step="any" data-inc="0.1" value="2" inputmode="decimal"><span class="unit">L</span><button data-step="1" aria-label="More: volume">+</button></div></div>
+          <div class="num-row"><label for="temp">Temperature</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: temperature">−</button><input type="number" id="temp" min="-173" max="327" step="any" data-inc="10" data-whole value="27"><span class="unit">°C</span><button data-step="1" aria-label="More: temperature">+</button></div></div>
+          <p class="note beyond" id="temp-k" style="margin:-6px 0 10px"></p>
           <div class="ctl">
             <label for="count">Number of particles <b id="count-val"></b></label>
             <input type="range" id="count" min="20" max="200" step="10" value="100">

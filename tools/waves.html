@@ -48,14 +48,10 @@
     <div class="tool-layout">
       <div class="main-col">
         <div class="panel stage">
-          <canvas id="waves" aria-label="Animated waves"></canvas>
+          <canvas id="waves" class="drag" aria-label="Animated waves"></canvas>
           <div class="stage-bar">
             <button class="btn primary" id="pause">❚❚ Pause</button>
-            <select class="select" id="speed" aria-label="Speed">
-              <option value="1">Real speed</option>
-              <option value="0.5">Slow motion</option>
-              <option value="0.2">Very slow</option>
-            </select>
+            <div class="chip-group" id="speed" aria-label="Speed"><button class="chip" data-v="1" aria-pressed="true">Real speed</button><button class="chip" data-v="0.5" aria-pressed="false">Slow</button><button class="chip" data-v="0.2" aria-pressed="false">Very slow</button></div>
             <span class="spacer"></span>
             <label class="toggle"><input type="checkbox" id="labels" checked> Labels</label>
             <label class="toggle"><input type="checkbox" id="graph"> Displacement graph (longitudinal)</label>
@@ -77,14 +73,8 @@
       <aside>
         <div class="panel">
           <h2>Wave</h2>
-          <div class="ctl">
-            <label for="freq">Frequency (f) <b id="freq-val"></b></label>
-            <input type="range" id="freq" min="0.25" max="2" step="0.05" value="0.5">
-          </div>
-          <div class="ctl">
-            <label for="vel">Wave speed (v) <b id="vel-val"></b></label>
-            <input type="range" id="vel" min="5" max="20" step="1" value="10">
-          </div>
+          <div class="num-row"><label for="freq">Frequency (f)</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: frequency">−</button><input type="number" id="freq" min="0.25" max="2" step="any" data-inc="0.25" value="0.5" inputmode="decimal"><span class="unit">Hz</span><button data-step="1" aria-label="More: frequency">+</button></div></div>
+          <div class="num-row"><label for="vel">Wave speed (v)</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: wave speed">−</button><input type="number" id="vel" min="5" max="20" step="any" data-inc="1" value="10" inputmode="decimal"><span class="unit">cm/s</span><button data-step="1" aria-label="More: wave speed">+</button></div></div>
           <div class="ctl">
             <label for="amp">Amplitude (A) <b id="amp-val"></b></label>
             <input type="range" id="amp" min="0.5" max="3" step="0.1" value="2">

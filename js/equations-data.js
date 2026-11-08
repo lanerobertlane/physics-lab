@@ -93,7 +93,7 @@ const EQUATIONS = [
   { id: 'energy-qv', topic: 'Electricity', recall: true, lhs: 'E', rhs: [['Qc', 1], ['V', 1]] },
   { id: 'density', topic: 'Particle model', recall: true, lhs: 'rho', rhs: [['m', 1], ['vol', -1]] },
   { id: 'wave', topic: 'Waves', recall: true, lhs: 'v', rhs: [['f', 1], ['lam', 1]], wordNames: { v: 'wave speed' } },
-  { id: 'magnification', topic: 'Waves', recall: true, po: true, lhs: 'mag', rhs: [['hi', 1], ['ho', -1]], note: 'Image and object height just need the same units (both cm or both mm).' },
+  { id: 'magnification', topic: 'Waves', recall: false, po: true, lhs: 'mag', rhs: [['hi', 1], ['ho', -1]], note: 'Image and object height just need the same units (both cm or both mm).' },
 
   // ----- Given on the equation sheet -----
   {

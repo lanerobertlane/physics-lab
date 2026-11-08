@@ -32,19 +32,14 @@
   <main class="tool-page">
     <div class="tool-intro">
       <h1>Moments</h1>
-      <p>Choose a weight, then tap a hook on the beam to hang it there. Tap a weight to take it off. The beam balances when the clockwise and anticlockwise moments are equal.</p>
+      <p>Drag a weight from the tray onto a hook, and drag it off to take it away. You can also tap a weight in the tray, then tap a hook. The beam balances when the clockwise and anticlockwise moments are equal.</p>
     </div>
 
     <div class="tool-layout">
       <div class="main-col">
         <div class="panel stage">
-          <canvas id="beam" aria-label="Balanced beam with weights"></canvas>
+          <canvas id="beam" class="drag" aria-label="Balanced beam with weights"></canvas>
           <div class="stage-bar">
-            <div class="chip-group" id="weights">
-              <button class="chip" data-w="1" aria-pressed="true">1 N</button>
-              <button class="chip" data-w="2" aria-pressed="false">2 N</button>
-              <button class="chip" data-w="5" aria-pressed="false">5 N</button>
-            </div>
             <select class="select" id="preset" aria-label="Examples"></select>
             <button class="btn" id="clear">Clear</button>
           </div>

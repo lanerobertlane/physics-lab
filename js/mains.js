@@ -7,8 +7,8 @@ PK.header({
   spec: [
     { code: '4.2.3.1', text: 'Direct and alternating potential difference; UK mains is a.c. at 50 Hz and about 230 V' },
     { code: '4.2.3.2', text: 'Mains electricity: live (brown), neutral (blue) and earth (green and yellow) wires; why the live wire is dangerous; the earth wire as a safety wire' },
-    { code: '4.2.4.1', text: 'Power: P = V I, used to choose a fuse' },
-    { code: 'KS3', text: 'Electricity in the home: fuses, the cost of electricity and safety' },
+    { code: '4.2.4.1', text: 'Power: P = V I' },
+    { code: 'KS3', text: 'Domestic electricity: comparing the power ratings of appliances in watts and kilowatts' },
   ],
 });
 
@@ -117,7 +117,7 @@ function drawPlug() {
   pctx.save(); pctx.translate(580, 230); pctx.rotate(-Math.PI / 2); pctx.fillText(`fuse ${state.fuse} A`, 0, 0); pctx.restore();
   // Cable grip at the bottom
   pctx.fillStyle = '#9e9e9e'; pctx.fillRect(340, 380, 120, 24);
-  pctx.fillStyle = '#333'; pctx.font = `700 12px ${font()}`; pctx.fillText('cable grip', 400, 392);
+  pctx.fillStyle = '#333'; pctx.font = `700 13px ${font()}`; pctx.fillText('cable grip', 400, 392);
   // Outer cable
   pctx.fillStyle = '#eeeeee'; pctx.strokeStyle = '#999'; pctx.fillRect(370, 404, 60, 60); pctx.strokeRect(370, 404, 60, 60);
   // Wires from the cable to each terminal
@@ -202,7 +202,7 @@ function drawSafety() {
   // Socket and cable
   fctx.fillStyle = '#eeeeee'; fctx.strokeStyle = '#777'; fctx.lineWidth = 2;
   fctx.fillRect(30, 120, 90, 110); fctx.strokeRect(30, 120, 90, 110);
-  fctx.fillStyle = '#333'; fctx.font = `700 12px ${font()}`; fctx.textAlign = 'center'; fctx.textBaseline = 'top'; fctx.fillText('socket', 75, 236);
+  fctx.fillStyle = '#333'; fctx.font = `700 13px ${font()}`; fctx.textAlign = 'center'; fctx.textBaseline = 'top'; fctx.fillText('socket', 75, 236);
   // Three wires to the appliance
   const lines = [['L', 150, '#8d5524'], ['N', 175, '#1e63c6'], ['E', 200, '#43a047']];
   for (const [key, y, col] of lines) {
@@ -219,7 +219,7 @@ function drawSafety() {
   fctx.strokeStyle = blown ? '#999' : '#333'; fctx.lineWidth = 2; fctx.beginPath();
   if (blown) { fctx.moveTo(204, 150); fctx.lineTo(224, 150); fctx.moveTo(236, 150); fctx.lineTo(256, 150); } else { fctx.moveTo(204, 150); fctx.lineTo(256, 150); }
   fctx.stroke();
-  fctx.fillStyle = '#333'; fctx.font = `700 12px ${font()}`; fctx.fillText(`${state.fuse} A fuse${blown ? ' (blown)' : ''}`, 230, 112);
+  fctx.fillStyle = '#333'; fctx.font = `700 13px ${font()}`; fctx.fillText(`${state.fuse} A fuse${blown ? ' (blown)' : ''}`, 230, 112);
   fctx.strokeStyle = '#8d5524'; fctx.lineWidth = 6; fctx.beginPath(); fctx.moveTo(260, 150); fctx.lineTo(state.fault ? 520 : 470, 150); fctx.stroke();
   // Appliance with a metal case
   const live = o.kind === 'shock';
@@ -227,16 +227,16 @@ function drawSafety() {
   fctx.fillRect(470, 80, 220, 180); fctx.strokeRect(470, 80, 220, 180);
   fctx.fillStyle = '#263238'; fctx.font = `800 15px ${font()}`;
   fctx.fillText(APPLIANCES[state.appliance].name, 580, 270);
-  fctx.font = `700 12px ${font()}`; fctx.fillText('metal case', 580, 90);
+  fctx.font = `700 13px ${font()}`; fctx.fillText('metal case', 580, 90);
   // On/off indicator light
   const working = o.kind === 'ok';
   fctx.fillStyle = working ? '#76ff03' : '#455a64'; fctx.strokeStyle = '#263238'; fctx.lineWidth = 2;
   if (working) { fctx.shadowColor = '#76ff03'; fctx.shadowBlur = 14; }
   fctx.beginPath(); fctx.arc(650, 200, 9, 0, Math.PI * 2); fctx.fill(); fctx.shadowBlur = 0; fctx.stroke();
-  fctx.fillStyle = '#263238'; fctx.font = `800 12px ${font()}`; fctx.fillText(state.on ? 'ON' : 'OFF', 650, 214);
+  fctx.fillStyle = '#263238'; fctx.font = `800 13px ${font()}`; fctx.fillText(state.on ? 'ON' : 'OFF', 650, 214);
   if (state.fault) {
     fctx.fillStyle = '#ffeb3b'; fctx.font = `800 26px ${font()}`; fctx.fillText('⚡', 530, 132);
-    fctx.fillStyle = '#c62828'; fctx.font = `700 12px ${font()}`; fctx.fillText('live wire loose, touching the case', 580, 236);
+    fctx.fillStyle = '#c62828'; fctx.font = `700 13px ${font()}`; fctx.fillText('live wire loose, touching the case', 580, 236);
   }
   // A hand touching the case
   if (state.fault) {

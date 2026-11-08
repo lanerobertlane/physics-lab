@@ -94,7 +94,7 @@ function drawRub() {
   rx.fillStyle = r.col; rx.strokeStyle = '#607d8b'; rx.lineWidth = 2;
   rx.beginPath(); rx.roundRect(rodX, rodY, 260, 40, 20); rx.fill(); rx.stroke();
   charges(rx, rodX, rodY, 260, 40, base, base + (toRod ? landed : -landed), 1);
-  text(rx, `${r.name} rod`, rodX + 130, rodY - 14, { s: 12 });
+  text(rx, `${r.name} rod`, rodX + 130, rodY - 14, { s: 13 });
   // The cloth (stays behind)
   const wob = rub.rubbing ? Math.sin(rub.t * 22) * 60 : 0;
   if (rub.away < 0.3) {
@@ -102,7 +102,7 @@ function drawRub() {
     rx.globalAlpha = 1 - rub.away * 3;
     rx.fillStyle = '#bcaaa4'; rx.strokeStyle = '#8d6e63'; rx.beginPath(); rx.roundRect(cx, cy, 160, 60, 10); rx.fill(); rx.stroke();
     charges(rx, cx, cy + 6, 160, 50, base, base + (toRod ? -landed : landed), 7);
-    text(rx, 'cloth', cx + 80, cy + 74, { s: 12 });
+    text(rx, 'cloth', cx + 80, cy + 74, { s: 13 });
     rx.globalAlpha = 1;
   }
   // Electrons in flight
@@ -120,7 +120,7 @@ function drawRub() {
   rx.beginPath(); rx.roundRect(-16, 130, 32, 150, 16); rx.fill(); rx.stroke();
   charges(rx, -16, 130, 32, 150, h.sign > 0 ? 9 : 4, h.sign < 0 ? 9 : 4, 3);
   rx.restore();
-  text(rx, `hanging ${h.name} rod (${h.sign < 0 ? '−' : '+'})`, px, 330, { s: 12 });
+  text(rx, `hanging ${h.name} rod (${h.sign < 0 ? '−' : '+'})`, px, 330, { s: 13 });
   // Overall charge labels
   if (rub.charged) {
     text(rx, `rod: ${PK.ansText(r.sign < 0 ? 'negative' : 'positive')}`, rodX + 130, rodY - 34, { s: 14, w: 800, col: r.sign < 0 ? '#1e63c6' : '#c62828' });
@@ -130,7 +130,7 @@ function drawRub() {
     const same = r.sign === h.sign;
     text(rx, PK.ansText(same ? 'Repel!' : 'Attract!'), 440, 120, { s: 22, w: 800, col: same ? '#c62828' : '#2e7d32' });
   }
-  text(rx, '+ positive charge    − negative charge (electron)', 20, RH - 16, { a: 'left', s: 12, col: PK.cssVar('--muted') });
+  text(rx, '+ positive charge    − negative charge (electron)', 20, RH - 16, { a: 'left', s: 13, col: PK.cssVar('--muted') });
 }
 
 // ---------- Electric fields ----------
@@ -188,9 +188,9 @@ function drawField() {
     fx.save(); fx.translate(T.x + ux * len, T.y + uy * len); fx.rotate(Math.atan2(uy, ux)); fx.beginPath(); fx.moveTo(8, 0); fx.lineTo(-6, -6); fx.lineTo(-6, 6); fx.closePath(); fx.fill(); fx.restore();
   }
   fx.fillStyle = '#2e7d32'; fx.beginPath(); fx.arc(T.x, T.y, 8, 0, Math.PI * 2); fx.fill();
-  text(fx, '+', T.x, T.y + 0.5, { s: 12, w: 800, col: '#fff' });
-  text(fx, 'test charge: drag me', T.x, T.y - 18, { s: 11, col: '#2e7d32' });
-  text(fx, fld.charges.length ? 'Tap to add or remove charges. Green arrow: the force on a small positive charge.' : 'Tap to add a charge.', 14, FH - 14, { a: 'left', s: 12, col: PK.cssVar('--muted') });
+  text(fx, '+', T.x, T.y + 0.5, { s: 13, w: 800, col: '#fff' });
+  text(fx, 'test charge: drag me', T.x, T.y - 18, { s: 13, col: '#2e7d32' });
+  text(fx, fld.charges.length ? 'Tap to add or remove charges. Green arrow: the force on a small positive charge.' : 'Tap to add a charge.', 14, FH - 14, { a: 'left', s: 13, col: PK.cssVar('--muted') });
 }
 function point(e) { const r = fc.getBoundingClientRect(); return { x: ((e.clientX - r.left) / r.width) * FW, y: ((e.clientY - r.top) / r.height) * FH }; }
 fc.addEventListener('pointerdown', (e) => {
@@ -252,7 +252,7 @@ function drawBal() {
     text(rx, '+', x, y, { s: 15, w: 800, col: '#ffcdd2' });
     if (i >= bal.e) text(rx, '−', x + 12, y + 2, { s: 16, w: 800, col: '#bbdefb' });
   }
-  text(rx, `woolly jumper${bal.e ? ` (${PK.ansText('positive')})` : ''}`, J.x + J.w / 2, J.y + J.h + 14, { s: 12 });
+  text(rx, `woolly jumper${bal.e ? ` (${PK.ansText('positive')})` : ''}`, J.x + J.w / 2, J.y + J.h + 14, { s: 13 });
   // Wall, with charges in its surface pushed by the balloon
   rx.fillStyle = '#d7ccc8'; rx.fillRect(WALL_X, 0, RW - WALL_X, FLOOR);
   rx.strokeStyle = '#bcaaa4'; rx.lineWidth = 1;
@@ -262,7 +262,7 @@ function drawBal() {
     text(rx, '+', x - push * 6, y, { s: 13, w: 800, col: '#c62828' });
     text(rx, '−', x + 10 + push * 10, y, { s: 14, w: 800, col: '#1e63c6' });
   }
-  text(rx, 'wall', WALL_X + 55, FLOOR + 10, { s: 12 });
+  text(rx, 'wall', WALL_X + 55, FLOOR + 10, { s: 13 });
   // Electrons in flight
   for (const f of bal.flying) text(rx, '−', f.x0 + (bal.x - f.x0) * f.t, f.y0 + (bal.y - f.y0) * f.t, { s: 20, w: 800, col: '#1e63c6' });
   // The balloon and its string
@@ -276,9 +276,9 @@ function drawBal() {
     const a = (i / MAX_E) * Math.PI * 2 - Math.PI / 2;
     text(rx, '−', bal.x + Math.cos(a) * 24, bal.y + Math.sin(a) * 30, { s: 17, w: 800, col: '#fff' });
   }
-  if (bal.e) text(rx, `balloon (${PK.ansText('negative')})`, bal.x, bal.y - BR - 18, { s: 12 });
+  if (bal.e) text(rx, `balloon (${PK.ansText('negative')})`, bal.x, bal.y - BR - 18, { s: 13 });
   if (bal.stuck) text(rx, PK.ansText('Stuck!'), bal.x - BR - 14, bal.y, { a: 'right', s: 20, w: 800, col: '#2e7d32' });
-  text(rx, '− electron', 20, RH - 6, { a: 'left', b: 'bottom', s: 12, col: PK.cssVar('--muted') });
+  text(rx, '− electron', 20, RH - 6, { a: 'left', b: 'bottom', s: 13, col: PK.cssVar('--muted') });
 }
 rc.addEventListener('pointerdown', (e) => {
   if (rubMode !== 'balloon') return;

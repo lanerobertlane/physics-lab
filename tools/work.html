@@ -23,9 +23,6 @@
   <style>
     #work { aspect-ratio: 800 / 360; }
     .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
-    .ctl { margin-bottom: 12px; }
-    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
-    .ctl label b { color: var(--text); }
     .readout dd { white-space: nowrap; }
   </style>
 </head>
@@ -63,9 +60,9 @@
       <aside>
         <div class="panel">
           <h2>Set up</h2>
-          <div class="ctl" id="force-ctl"><label for="force">Pushing force <b id="force-val"></b></label><input type="range" id="force" min="0" max="200" step="5" value="80"></div>
-          <div class="ctl" id="mass-ctl" hidden><label for="mass">Mass lifted <b id="mass-val"></b></label><input type="range" id="mass" min="1" max="50" step="1" value="10"></div>
-          <div class="ctl"><label for="dist" id="dist-label">Distance to push it <b id="dist-val"></b></label><input type="range" id="dist" min="1" max="10" step="0.5" value="5"></div>
+          <div class="num-row" id="force-ctl"><label for="force">Pushing force</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: pushing force">−</button><input type="number" id="force" min="0" max="200" step="any" data-inc="5" value="80" inputmode="decimal"><span class="unit">N</span><button data-step="1" aria-label="More: pushing force">+</button></div></div>
+          <div class="num-row" id="mass-ctl" hidden><label for="mass">Mass lifted</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: mass lifted">−</button><input type="number" id="mass" min="1" max="50" step="any" data-inc="1" value="10" inputmode="decimal"><span class="unit">kg</span><button data-step="1" aria-label="More: mass lifted">+</button></div></div>
+          <div class="num-row"><label for="dist"><span id="dist-label">Distance to push it </span></label><div class="stepper" data-num><button data-step="-1" aria-label="Less: distance">−</button><input type="number" id="dist" min="1" max="10" step="any" data-inc="0.5" value="5" inputmode="decimal"><span class="unit">m</span><button data-step="1" aria-label="More: distance">+</button></div></div>
           <dl class="readout" id="readout"></dl>
         </div>
       </aside>

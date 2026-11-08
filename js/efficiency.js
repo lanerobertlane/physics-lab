@@ -85,7 +85,7 @@ function drawSankey(cv, { total, useful, unit, usefulName, wastedName, numbers, 
   // Scale
   ctx.fillStyle = PK.cssVar('--surface'); ctx.fillRect(44, H - 34, 148, 26);
   ctx.strokeStyle = ink; ctx.lineWidth = 1.5; ctx.strokeRect(50, H - 28, S, S);
-  say(`= ${num(per)} ${unit}`, 50 + S + 8, H - 28 + S / 2, { a: 'left', s: 12 });
+  say(`= ${num(per)} ${unit}`, 50 + S + 8, H - 28 + S / 2, { a: 'left', s: 13 });
 }
 
 // ---------- Work it out for a device ----------

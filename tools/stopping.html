@@ -24,9 +24,6 @@
     #road { aspect-ratio: 800 / 230; }
     #chart { width: 100%; aspect-ratio: 800 / 280; display: block; }
     .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
-    .ctl { margin-bottom: 12px; }
-    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
-    .ctl label b { color: var(--text); }
   </style>
 </head>
 <body>
@@ -59,22 +56,12 @@
         </div>
         <div class="panel">
           <h2>Conditions</h2>
-          <div class="ctl"><label for="speed">Speed <b id="speed-val"></b></label><input type="range" id="speed" min="20" max="70" step="10" value="30"></div>
-          <div class="field"><label for="driver">Driver (reaction time)</label>
-            <select class="select" id="driver">
-              <option value="0.67">Alert (0.67 s)</option>
-              <option value="1.0">Tired (1.0 s)</option>
-              <option value="1.3">Using a phone (1.3 s)</option>
-              <option value="1.5">After drinking alcohol (1.5 s)</option>
-            </select></div>
-          <div class="field"><label for="road-type">Road</label>
-            <select class="select" id="road-type">
-              <option value="6.6">Dry road</option>
-              <option value="3.3">Wet road</option>
-              <option value="1.1">Icy road</option>
-            </select></div>
+          <div class="num-row"><label for="speed">Speed</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: speed">−</button><input type="number" id="speed" min="20" max="70" step="any" data-inc="10" data-whole value="30" inputmode="numeric"><span class="unit">mph</span><button data-step="1" aria-label="More: speed">+</button></div></div>
+          <p class="note" id="speed-ms" style="margin:-6px 0 10px"></p>
+          <div class="field"><span class="label">Driver (reaction time)</span><div class="chip-group" id="driver" aria-label="Driver"><button class="chip" data-v="0.67" aria-pressed="true">Alert 0.67 s</button><button class="chip" data-v="1.0" aria-pressed="false">Tired 1.0 s</button><button class="chip" data-v="1.3" aria-pressed="false">On a phone 1.3 s</button><button class="chip" data-v="1.5" aria-pressed="false">Alcohol 1.5 s</button></div></div>
+          <div class="field"><span class="label">Road</span><div class="chip-group" id="road-type" aria-label="Road"><button class="chip" data-v="6.6" aria-pressed="true">Dry</button><button class="chip" data-v="3.3" aria-pressed="false">Wet</button><button class="chip" data-v="1.1" aria-pressed="false">Icy</button></div></div>
           <label class="toggle"><input type="checkbox" id="worn"> Worn brakes and tyres</label>
-          <div class="ctl" style="margin-top:8px"><label for="mass">Mass of car <b id="mass-val"></b></label><input type="range" id="mass" min="800" max="2000" step="100" value="1200"></div>
+          <div class="num-row"><label for="mass">Mass of car</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: mass of the car">−</button><input type="number" id="mass" min="800" max="2000" step="any" data-inc="100" value="1200" inputmode="decimal"><span class="unit">kg</span><button data-step="1" aria-label="More: mass of the car">+</button></div></div>
         </div>
       </aside>
     </div>

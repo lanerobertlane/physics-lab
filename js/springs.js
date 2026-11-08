@@ -56,6 +56,9 @@ function sizeAll() {
   const fe = $('fe'); fe.width = Math.round(fe.clientWidth * dpr); fe.height = Math.round(fe.clientWidth * (220 / 270) * dpr);
 }
 
+const TRAY = { x: 145, y: 518 };
+let carried = null;
+
 function draw(dt) {
   // Spring bounces to its new length (damped), like a real one
   const target = (sp().L0 / 100 + extension(force())) * 100 * PX_CM;
@@ -78,7 +81,7 @@ function draw(dt) {
   ctx.fillRect(RULER_X, R0 - 6, 54, 62 * PX_CM);
   if (state.moveRuler) ctx.restore();
   ctx.strokeRect(RULER_X, R0 - 6, 54, 62 * PX_CM);
-  ctx.strokeStyle = '#222'; ctx.fillStyle = '#222'; ctx.font = `700 10px ${c.font}`; ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+  ctx.strokeStyle = '#222'; ctx.fillStyle = '#222'; ctx.font = `700 13px ${c.font}`; ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
   for (let mm = 0; mm <= 600; mm++) {
     const y = R0 + (mm / 10) * PX_CM;
     if (mm % 10 && PX_CM < 6) continue;
@@ -90,7 +93,7 @@ function draw(dt) {
   }
   ctx.textAlign = 'center'; ctx.fillText('cm', RULER_X + 27, R0 - 14);
   if (state.moveRuler) {
-    ctx.fillStyle = c.muted; ctx.font = `700 12px ${c.font}`; ctx.textAlign = 'left';
+    ctx.fillStyle = c.muted; ctx.font = `700 13px ${c.font}`; ctx.textAlign = 'left';
     ctx.fillText('↕ drag the ruler', RULER_X + 60, R0 + 20);
   }
 
@@ -115,6 +118,14 @@ function draw(dt) {
     ctx.strokeStyle = '#6b5532'; ctx.lineWidth = 1; ctx.strokeRect(x - 30, my, 60, 11);
   }
   if (n) { ctx.fillStyle = c.text; ctx.font = `700 13px ${c.font}`; ctx.textAlign = 'right'; ctx.textBaseline = 'middle'; ctx.fillText(`${state.grams} g`, x - 38, y1 + 16 + n * 6); }
+  // Tray of 100 g masses to drag onto the hanger
+  for (let i = 0; i < 4; i++) {
+    ctx.fillStyle = i % 2 ? '#b08d57' : '#c9a66b'; ctx.fillRect(TRAY.x - 30, TRAY.y - i * 12, 60, 11);
+    ctx.strokeStyle = '#6b5532'; ctx.lineWidth = 1; ctx.strokeRect(TRAY.x - 30, TRAY.y - i * 12, 60, 11);
+  }
+  ctx.fillStyle = c.muted; ctx.font = `700 13px ${c.font}`; ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
+  ctx.fillText('100 g masses', TRAY.x, TRAY.y - 44); ctx.fillText('drag one on', TRAY.x, TRAY.y - 58 - 2);
+  if (carried && carried.moved) { ctx.fillStyle = '#c9a66b'; ctx.fillRect(carried.x - 30, carried.y - 6, 60, 11); ctx.strokeStyle = '#6b5532'; ctx.strokeRect(carried.x - 30, carried.y - 6, 60, 11); }
 }
 
 // ---------- Panel, table and graph ----------
@@ -161,13 +172,13 @@ function drawGraph() {
   const L = 40, R = 10, T = 10, B = 34, pw = GW - L - R, ph = GH - T - B;
   const eMax = Math.max(10, Math.ceil(Math.max(0, ...state.rows.map((r) => r.e)) / 5) * 5), fMax = 8;
   const X = (e) => L + (e / eMax) * pw, Y = (f) => T + ph - (f / fMax) * ph;
-  g.strokeStyle = c.grid; g.fillStyle = c.muted; g.font = `600 10px ${c.font}`; g.lineWidth = 1;
+  g.strokeStyle = c.grid; g.fillStyle = c.muted; g.font = `600 13px ${c.font}`; g.lineWidth = 1;
   g.textAlign = 'right'; g.textBaseline = 'middle';
   for (let f = 0; f <= fMax; f += 2) { g.beginPath(); g.moveTo(L, Y(f)); g.lineTo(L + pw, Y(f)); g.stroke(); g.fillText(f, L - 4, Y(f)); }
   g.textAlign = 'center'; g.textBaseline = 'top';
   for (let e = 0; e <= eMax; e += eMax / 5) { g.beginPath(); g.moveTo(X(e), T); g.lineTo(X(e), T + ph); g.stroke(); g.fillText(Math.round(e), X(e), T + ph + 3); }
   g.strokeStyle = c.text; g.lineWidth = 1.5; g.beginPath(); g.moveTo(L, T); g.lineTo(L, T + ph); g.lineTo(L + pw, T + ph); g.stroke();
-  g.fillStyle = c.text; g.font = `700 11px ${c.font}`; g.fillText('extension / cm', L + pw / 2, GH - 15);
+  g.fillStyle = c.text; g.font = `700 13px ${c.font}`; g.fillText('extension / cm', L + pw / 2, GH - 15);
   g.save(); g.translate(10, T + ph / 2); g.rotate(-Math.PI / 2); g.textBaseline = 'middle'; g.fillText('force / N', 0, 0); g.restore();
   g.strokeStyle = c.point; g.lineWidth = 2;
   for (const r of state.rows) { const x = X(r.e), y = Y(r.F); g.beginPath(); g.moveTo(x - 4, y - 4); g.lineTo(x + 4, y + 4); g.moveTo(x - 4, y + 4); g.lineTo(x + 4, y - 4); g.stroke(); }
@@ -199,7 +210,6 @@ $('move-ruler').addEventListener('change', (e) => {
   if (!state.moveRuler) state.rulerCm = 0;
   $('ruler-nudge').hidden = !state.moveRuler;
   $('ruler-tip').hidden = !state.moveRuler;
-  rig.style.touchAction = state.moveRuler ? 'none' : '';   // stop iPads scrolling while dragging
   if (state.rows.length) { state.rows = []; PK.toast('Results cleared for the new set-up'); }
   render();
 });
@@ -226,6 +236,24 @@ rig.addEventListener('pointermove', (e) => {
 const endDrag = () => { drag = null; rig.style.cursor = ''; };
 rig.addEventListener('pointerup', endDrag);
 rig.addEventListener('pointercancel', endDrag);
+
+// Masses: drag one from the tray onto the hanger, or drag one off (a tap works too)
+const y1 = () => TOP + state.y;
+PK.dragOn(rig, W, H, {
+  hit: (p) => {
+    if (Math.abs(p.x - TRAY.x) < 40 && p.y > TRAY.y - 48 && p.y < TRAY.y + 16) return { from: 'tray' };
+    const n = state.grams / 100;
+    return n && Math.abs(p.x - 240) < 40 && p.y > y1() + 10 && p.y < y1() + 22 + n * 12 ? { from: 'hanger' } : null;
+  },
+  move: (d, p) => { carried = Object.assign(d, { x: p.x, y: p.y, moved: true }); },
+  end: (d) => {
+    carried = null;
+    const near = Math.abs(d.x - 240) < 90 && d.y > TOP;
+    if (d.from === 'tray' && near) load(100);
+    if (d.from === 'hanger' && !near) load(-100);
+  },
+  tap: (d) => load(d.from === 'tray' ? 100 : -100),
+});
 
 let last = performance.now();
 function frame(now) {

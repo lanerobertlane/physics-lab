@@ -5,8 +5,9 @@ PK.header({
   title: 'Transformers',
   answers: true,
   spec: [
-    { code: '4.2.4.3', text: 'The National Grid: step-up and step-down transformers; Vp × Ip = Vs × Is for a 100% efficient transformer', ht: true },
+    { code: '4.2.4.3', text: 'The National Grid: step-up transformers increase the potential difference and step-down transformers decrease it' },
     { code: '4.7.3.4', text: 'Transformers: a primary and a secondary coil on an iron core; an alternating current induces an alternating p.d.; Vp / Vs = np / ns', po: true, ht: true },
+    { code: '4.7.3.4', text: 'Vs × Is = Vp × Ip for a 100% efficient transformer', po: true, ht: true },
   ],
 });
 
@@ -37,8 +38,6 @@ function render() {
   const c = calc();
   if (c.vs > 1.6 * load().v && !state.blown && state.ac) { state.blown = true; return render(); }
   const kind = !state.ac ? 'none (d.c.)' : state.ns > state.np ? 'step-up' : state.ns < state.np ? 'step-down' : 'neither (same turns)';
-  $('np-val').textContent = `${state.np} turns`;
-  $('ns-val').textContent = `${state.ns} turns`;
   $('readout').innerHTML = `
     <dt>Type of transformer</dt><dd>${state.ac ? PK.ans(kind) : kind}</dd>
     <dt>Primary p.d., V<sub>p</sub></dt><dd>${state.vp} V ${state.ac ? 'a.c.' : 'd.c.'}</dd>
@@ -142,8 +141,9 @@ function draw(dt) {
   // Coils
   coil(280, 110, 290, state.np, phase, 1, '#c77845');
   coil(520, 110, 290, state.ns, phase, 1, '#c77845');
-  label(`primary: ${state.np} turns`, 230, 360, { s: 12 });
-  label(`secondary: ${state.ns} turns`, 570, 360, { s: 12 });
+  label(`primary: ${state.np} turns`, 230, 360, { s: 14 });
+  label(`secondary: ${state.ns} turns`, 570, 360, { s: 14 });
+  label('Drag a coil up or down to change its turns', 400, 385, { s: 14 });
   // Supply and wires
   wire([[246, 115], [140, 115], [140, 285], [246, 285]], state.ac ? c.ip * 3 : 0.5, phase);
   ctx.fillStyle = PK.cssVar('--surface'); ctx.strokeStyle = PK.cssVar('--text'); ctx.lineWidth = 2;
@@ -168,8 +168,15 @@ function draw(dt) {
 // ---------- Controls ----------
 
 function setTurns(which, v) { state[which] = v; if (state.blown && (state.vp * state.ns) / state.np <= 1.6 * load().v) state.blown = false; render(); }
-$('np').addEventListener('input', (e) => setTurns('np', Number(e.target.value)));
-$('ns').addEventListener('input', (e) => setTurns('ns', Number(e.target.value)));
+PK.dragOn(cv, W, H, {
+  hit: (p) => { if (p.y < 95 || p.y > 305) return null; return Math.abs(p.x - 280) < 75 ? { k: 'np', n: state.np } : Math.abs(p.x - 520) < 75 ? { k: 'ns', n: state.ns } : null; },
+  move: (d, p, s) => {
+    const n = Math.max(10, Math.min(2000, Math.round((d.n + (s.y - p.y) * 5) / 10) * 10));
+    PK.setNum(d.k, n); setTurns(d.k, n);
+  },
+});
+$('np').addEventListener('input', () => setTurns('np', PK.num('np')));
+$('ns').addEventListener('input', () => setTurns('ns', PK.num('ns')));
 document.querySelectorAll('#vp .chip').forEach((b) => b.addEventListener('click', () => {
   state.vp = Number(b.dataset.v);
   // Sensible starting turns for each supply, giving 12 V

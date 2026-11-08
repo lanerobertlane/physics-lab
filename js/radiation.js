@@ -97,7 +97,7 @@ function draw() {
   ctx.fillStyle = c.surface; ctx.fillRect(0, 0, W, H);
 
   // Ruler along the bottom
-  ctx.strokeStyle = c.muted; ctx.fillStyle = c.muted; ctx.lineWidth = 1; ctx.font = `600 11px ${c.font}`; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+  ctx.strokeStyle = c.muted; ctx.fillStyle = c.muted; ctx.lineWidth = 1; ctx.font = `600 13px ${c.font}`; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
   for (let cm = 0; cm <= 22; cm++) {
     const x = SRC_X + 30 + cm * PX_CM;
     if (x > W - 10) break;
@@ -108,7 +108,7 @@ function draw() {
   // Source in a lead holder
   ctx.fillStyle = '#4b525d'; ctx.fillRect(SRC_X - 50, CY - 40, 80, 80);
   ctx.fillStyle = state.source === 'none' ? '#888' : '#ffd23f'; ctx.fillRect(SRC_X + 20, CY - 10, 10, 20);
-  ctx.fillStyle = '#fff'; ctx.font = `700 12px ${c.font}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillStyle = '#fff'; ctx.font = `700 13px ${c.font}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
   ctx.fillText(state.source === 'none' ? 'no source' : `${state.source} source`, SRC_X - 10, CY + 54 > 0 ? CY : CY);
   if (state.source !== 'none') { ctx.fillStyle = '#ffd23f'; ctx.font = `800 18px ${c.font}`; ctx.fillText('☢', SRC_X - 10, CY - 22); }
 
@@ -143,9 +143,9 @@ function draw() {
   const recent = clicks.length && t - clicks[clicks.length - 1] < 0.08;
   ctx.fillStyle = recent ? '#ff3b30' : '#555';
   ctx.beginPath(); ctx.arc(dx + 75, CY - 30, 7, 0, Math.PI * 2); ctx.fill();
-  ctx.fillStyle = c.text; ctx.font = `700 12px ${c.font}`; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+  ctx.fillStyle = c.text; ctx.font = `700 13px ${c.font}`; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
   ctx.fillText('G–M tube', dx + 45, CY + 22);
-  ctx.fillStyle = c.muted; ctx.font = `600 11px ${c.font}`;
+  ctx.fillStyle = c.muted; ctx.font = `600 13px ${c.font}`;
   ctx.fillText('↔ drag to move', dx + 45, CY + 38);
 }
 

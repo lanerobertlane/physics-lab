@@ -50,20 +50,23 @@
     <div class="tool-layout">
       <div class="main-col">
         <div class="panel stage" data-tab="day">
-          <canvas id="dayview" aria-label="The Earth lit by the Sun, spinning"></canvas>
+          <canvas id="dayview" class="drag" aria-label="The Earth lit by the Sun, spinning"></canvas>
+          <p class="note" style="margin:8px 12px 0">Drag the Earth sideways to spin it.</p>
           <div class="stage-bar">
             <button class="btn primary" id="spin">❚❚ Stop spinning</button>
             <label class="toggle"><input type="checkbox" id="heat"> Show light and heat on the surface</label>
           </div>
         </div>
         <div class="panel stage" data-tab="seasons" hidden>
-          <canvas id="seasons" aria-label="The Earth's orbit, its tilted axis, and the angle of the midday Sun in the UK"></canvas>
+          <canvas id="seasons" class="drag" aria-label="The Earth's orbit, its tilted axis, and the angle of the midday Sun in the UK"></canvas>
+          <p class="note" style="margin:8px 12px 0">Drag the Earth round its orbit.</p>
           <div class="stage-bar">
             <label class="toggle"><input type="checkbox" id="four"> Show all four seasons</label>
           </div>
         </div>
         <div class="panel stage" data-tab="moon" hidden>
-          <canvas id="moon" aria-label="The Moon orbiting the Earth and the phase we see"></canvas>
+          <canvas id="moon" class="drag" aria-label="The Moon orbiting the Earth and the phase we see"></canvas>
+          <p class="note" style="margin:8px 12px 0">Drag the Moon round its orbit.</p>
           <div class="stage-bar">
             <button class="btn primary" id="m-play">▶ Play</button>
           </div>

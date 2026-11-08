@@ -23,9 +23,6 @@
   <style>
     #grid { aspect-ratio: 800 / 330; }
     .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
-    .ctl { margin-bottom: 12px; }
-    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
-    .ctl label b { color: var(--text); }
     .bar { display: flex; height: 26px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border-strong); margin: 8px 0 4px; }
     .bar .ok { background: #43a047; }
     .bar .lost { background: #e65100; }
@@ -73,7 +70,7 @@
         </div>
         <div class="panel">
           <h2>Demand</h2>
-          <div class="ctl"><label for="power">Power sent from the power station <b id="power-val"></b></label><input type="range" id="power" min="100" max="1000" step="50" value="500"></div>
+          <div class="num-row"><label for="power">Power sent from the power station</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: power sent">−</button><input type="number" id="power" min="100" max="1000" step="any" data-inc="50" value="500" inputmode="decimal"><span class="unit">MW</span><button data-step="1" aria-label="More: power sent">+</button></div></div>
           <p class="note">Demand goes up in the evening, when people get home and switch things on.</p>
         </div>
       </aside>

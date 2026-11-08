@@ -127,7 +127,7 @@ function ruler(c, x, groundY, pxPerM, maxM) {
   ctx.fillStyle = c.muted;
   ctx.lineWidth = 1.5;
   ctx.beginPath(); ctx.moveTo(x, groundY); ctx.lineTo(x, groundY - maxM * pxPerM); ctx.stroke();
-  ctx.font = `600 12px ${c.font}`;
+  ctx.font = `600 13px ${c.font}`;
   ctx.textAlign = 'right';
   ctx.textBaseline = 'middle';
   for (let mtr = 0; mtr <= maxM + 1e-9; mtr++) {
@@ -198,6 +198,17 @@ function drawScene() {
   ctx.textAlign = 'right';
   ctx.textBaseline = 'bottom';
   ctx.fillText(`h = ${height().toFixed(2)} m    v = ${speed().toFixed(2)} m/s    t = ${sim.t.toFixed(1)} s`, W - 16, H - 8);
+  if (!state.running && sim.t === 0) {
+    ctx.fillStyle = c.muted; ctx.font = `700 16px ${c.font}`; ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+    ctx.fillText('Drag it up or down to change the starting height', 16, 12);
+  }
+}
+
+// Where the object is drawn, and how many pixels make a metre when it is dragged
+function objectAt() {
+  if (state.scene === 'ball') return { x: 400, y: 430 - sim.y * 37 - 16, ppm: 37 };
+  if (state.scene === 'ramp') { const ppm = Math.min(60, 360 / state.h0); return { x: 400 + sim.x * 64, y: 420 - rampH(sim.x) * ppm - 16, ppm: 40 }; }
+  return { x: 400 + Math.sin(sim.th) * PEND_L * 70, y: 40 + Math.cos(sim.th) * PEND_L * 70, ppm: 70 };
 }
 
 function ball(x, y, r, c) {
@@ -217,7 +228,7 @@ function dashedLine(c, x1, y1, x2, y2, label) {
   ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
   ctx.setLineDash([]);
   ctx.fillStyle = c.muted;
-  ctx.font = `600 12px ${c.font}`;
+  ctx.font = `600 13px ${c.font}`;
   ctx.textAlign = 'left';
   ctx.textBaseline = 'bottom';
   ctx.fillText(label, x2 + 4 > W - 90 ? x2 - 80 : x2 + 4, y1 - 3);
@@ -303,7 +314,7 @@ function drawGraph() {
 
   g.strokeStyle = c.grid; g.lineWidth = 1;
   g.fillStyle = c.muted;
-  g.font = `600 11px ${c.font}`;
+  g.font = `600 13px ${c.font}`;
   g.textAlign = 'right'; g.textBaseline = 'middle';
   for (let i = 0; i <= 4; i++) {
     const e = (e0 * i) / 4;
@@ -318,7 +329,7 @@ function drawGraph() {
   g.strokeStyle = c.text; g.lineWidth = 1.5;
   g.beginPath(); g.moveTo(L, T); g.lineTo(L, T + ph); g.lineTo(L + pw, T + ph); g.stroke();
   g.fillStyle = c.text;
-  g.font = `700 12px ${c.font}`;
+  g.font = `700 13px ${c.font}`;
   g.fillText('time / s', L + pw / 2, GH - 16);
   g.save(); g.translate(14, T + ph / 2); g.rotate(-Math.PI / 2); g.textBaseline = 'middle'; g.fillText('energy / J', 0, 0); g.restore();
 
@@ -341,7 +352,7 @@ function drawGraph() {
   g.restore();
   g.setLineDash([]);
   g.textAlign = 'left'; g.textBaseline = 'middle';
-  g.font = `700 12px ${c.font}`;
+  g.font = `700 13px ${c.font}`;
   series.forEach((s, i) => {
     const y = T + 12 + i * 20;
     g.strokeStyle = s.col; g.lineWidth = 3; g.setLineDash(s.dash ? [6, 5] : []);
@@ -376,12 +387,13 @@ function frame(now) {
 
 function setRunning(on) {
   state.running = on;
+  canvas.classList.toggle('drag', !on);   // the page can scroll over the picture while it plays
   $('play').textContent = on ? '❚❚ Pause' : '▶ Play';
 }
 
 $('play').addEventListener('click', () => setRunning(!state.running));
 $('reset').addEventListener('click', () => { setRunning(false); reset(); });
-$('speed').addEventListener('change', (e) => { state.speed = Number(e.target.value); });
+PK.chips('speed', (v) => { state.speed = v; });
 $('friction').addEventListener('change', (e) => { state.friction = e.target.checked; setRunning(false); reset(); saveHash(); });
 $('show-graph').addEventListener('change', (e) => { state.showGraph = e.target.checked; $('graph-panel').hidden = !state.showGraph; });
 
@@ -391,12 +403,17 @@ function syncSliders() {
   state.h0 = Math.min(state.h0, Number(hs.max));
   hs.value = state.h0;
   $('mass').value = state.m;
-  $('mass-val').textContent = `${state.m} kg`;
-  $('height-val').textContent = `${state.h0} m`;
 }
 
-$('mass').addEventListener('input', (e) => { state.m = Number(e.target.value); syncSliders(); setRunning(false); reset(); saveHash(); });
-$('height').addEventListener('input', (e) => { state.h0 = Number(e.target.value); syncSliders(); setRunning(false); reset(); saveHash(); });
+$('mass').addEventListener('input', () => { state.m = PK.num('mass'); setRunning(false); reset(); saveHash(); });
+PK.dragOn(canvas, W, H, {
+  hit: (p) => { if (state.running) return null; const o = objectAt(); return Math.hypot(p.x - o.x, p.y - o.y) < 48 ? { h: state.h0, ppm: o.ppm } : null; },
+  move: (d, p, s) => {
+    const h = Math.max(1, Math.min(Number($('height').max), Math.round((d.h + (s.y - p.y) / d.ppm) * 2) / 2));
+    if (h !== state.h0) { state.h0 = h; PK.setNum('height', h); reset(); saveHash(); }
+  },
+});
+$('height').addEventListener('input', () => { state.h0 = PK.num('height'); setRunning(false); reset(); saveHash(); });
 
 $('scenes').innerHTML = Object.entries(SCENES).map(([id, s]) => `<button class="btn" data-scene="${id}">${s.name}</button>`).join('');
 $('scenes').addEventListener('click', (e) => {

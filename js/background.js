@@ -64,7 +64,7 @@ function drawPie() {
     pctx.fillStyle = x.col; pctx.fillRect(380, y - 8, 16, 16);
     text(pctx, x.k, 404, y, { a: 'left', s: 13 });
     text(pctx, `${x.v.toFixed(2)} mSv`, 680, y, { a: 'right', s: 13, w: 800 });
-    text(pctx, x.natural ? 'natural' : 'man-made', 770, y, { a: 'right', s: 11, col: PK.cssVar('--muted') });
+    text(pctx, x.natural ? 'natural' : 'man-made', 770, y, { a: 'right', s: 13, col: PK.cssVar('--muted') });
     y += 30;
   }
   pctx.strokeStyle = PK.cssVar('--border-strong'); pctx.lineWidth = 1; pctx.beginPath(); pctx.moveTo(380, y - 10); pctx.lineTo(770, y - 10); pctx.stroke();
@@ -180,20 +180,20 @@ function drawScene() {
     sctx.fillStyle = '#8d6e63'; sctx.fillRect(SRC - 40, FLOOR - 30, 80, 30);
     sctx.fillStyle = '#607d8b'; sctx.fillRect(SRC - 14, FLOOR - 56, 28, 26);
     trefoil(sctx, SRC, FLOOR - 43, 9);
-    text(sctx, 'sealed source', SRC, FLOOR + 16, { s: 12 });
+    text(sctx, 'sealed source', SRC, FLOOR + 16, { s: 13 });
   } else {
     sctx.fillStyle = 'rgba(205, 220, 57, .8)';
     for (let i = 0; i < 40; i++) { sctx.beginPath(); sctx.arc(SRC - 60 + ((i * 37) % 120), FLOOR - 2 + ((i * 7) % 5) - 2, 3, 0, Math.PI * 2); sctx.fill(); }
     trefoil(sctx, SRC, FLOOR - 70, 12);
-    text(sctx, 'spilt radioactive powder', SRC, FLOOR + 16, { s: 12 });
+    text(sctx, 'spilt radioactive powder', SRC, FLOOR + 16, { s: 13 });
   }
   // Monitor by the door
   sctx.fillStyle = '#455a64'; sctx.fillRect(MONITOR, FLOOR - 150, 70, 150);
   sctx.fillStyle = '#0b1a10'; sctx.fillRect(MONITOR + 8, FLOOR - 140, 54, 34);
   const cpm = readingCpm();
   text(sctx, cpm === null ? '---' : String(cpm), MONITOR + 35, FLOOR - 123, { s: 15, w: 800, col: cpm > 100 ? '#ff5252' : '#7CFF8A' });
-  text(sctx, 'counts/min', MONITOR + 35, FLOOR - 94, { s: 10, col: '#fff' });
-  text(sctx, 'radiation monitor', MONITOR + 35, FLOOR + 16, { s: 12 });
+  text(sctx, 'counts/min', MONITOR + 35, FLOOR - 94, { s: 13, col: '#fff' });
+  text(sctx, 'radiation monitor', MONITOR + 35, FLOOR + 16, { s: 13 });
   // Radiation
   sctx.strokeStyle = '#8e24aa'; sctx.lineWidth = 2;
   for (const p of walk.parts) { sctx.beginPath(); sctx.moveTo(p.x, p.y); sctx.lineTo(p.x - p.vx * 0.03, p.y - p.vy * 0.03); sctx.stroke(); }
