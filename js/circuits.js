@@ -762,11 +762,13 @@ function saveHash() {
   if (parts.length) p.set('c', parts.join('_'));
   if (state.light !== 50) p.set('light', state.light);
   if (state.temp !== 20) p.set('temp', state.temp);
-  history.replaceState(null, '', parts.length ? '#' + p.toString() : location.pathname);
+  // A cleared board still needs a mark in the link, or it would open with the first example
+  history.replaceState(null, '', parts.length ? '#' + p.toString() : '#empty');
 }
 
 function loadHash() {
   if (!location.hash) return false;
+  if (location.hash === '#empty') return true;
   const p = new URLSearchParams(location.hash.slice(1));
   const raw = p.get('c');
   if (!raw) return false;
@@ -985,6 +987,17 @@ $('show-table').addEventListener('change', (e) => { results.table = e.target.che
 $('show-graph').addEventListener('change', (e) => { results.graph = e.target.checked; renderResults(); });
 $('join').addEventListener('change', (e) => { results.join = e.target.checked; drawGraph(); });
 window.addEventListener('resize', () => { if (results.graph) drawGraph(); });
+
+// Share: the readings go with the link, so the table and graph open as they are now
+PK.shareState = {
+  get: () => (results.rows.length ? { r: results.rows.map((x) => [Number(x.V.toPrecision(6)), Number(x.I.toPrecision(6))]), n: results.sign } : {}),
+  set: (o) => {
+    if (!Array.isArray(o.r)) return;
+    results.rows = o.r.map(([V, I]) => ({ V: Number(V), I: Number(I) }));
+    results.sign = Number(o.n) || 0;
+    renderResults();
+  },
+};
 
 // ---------- Update cycle ----------
 

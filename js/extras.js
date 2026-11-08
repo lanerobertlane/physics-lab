@@ -310,9 +310,15 @@
   }
   const enc = (o) => btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
   const dec = (t) => JSON.parse(decodeURIComponent(escape(atob(t.replace(/-/g, '+').replace(/_/g, '/')))));
-  function shareUrl() {
+  // Called with true or false when making a link to share. Without it (keeping the address bar
+  // up to date) whatever the page was opened with stays in the address.
+  function shareUrl(hideAnswers) {
     const u = new URL(location.href);
     u.searchParams.delete('s');
+    if (hideAnswers !== undefined) {
+      u.searchParams.delete('fromquiz'); u.searchParams.delete('answers');
+      if (hideAnswers) u.searchParams.set('answers', 'hide');
+    }
     const s = captureState();
     if (Object.keys(s).length) u.searchParams.set('s', enc(s));
     return u.toString();
@@ -329,7 +335,10 @@
       if (chip && chip.getAttribute('aria-pressed') !== 'true') chip.click();
     }
     const els = Object.keys(s).filter((k) => !k.startsWith('@')).map((k) => [document.getElementById(k), s[k]]).filter(([el]) => el);
-    for (const [el, v] of els) if (el.tagName === 'SELECT' && el.value !== v) { el.value = v; fire(el, 'change'); }
+    // An example list rebuilds the whole set-up. When the tool has already loaded its set-up from
+    // the part of the link after the # (a circuit, say), the list only needs to show the right name.
+    const rebuilds = (el) => el.id === 'preset' && location.hash;
+    for (const [el, v] of els) if (el.tagName === 'SELECT' && el.value !== v) { el.value = v; if (!rebuilds(el)) fire(el, 'change'); }
     for (const [el, v] of els) if (el.type === 'range' || el.type === 'number') { if (el.value !== v) { el.value = v; fire(el, 'input'); fire(el, 'change'); } }
     for (const [el, v] of els) if (el.type === 'checkbox' && el.checked !== Boolean(v)) el.click();
     // The tool's own extra details last, so a button above can't reset them
@@ -338,12 +347,12 @@
   }
 
   let qrLoading = null;
-  const QR_SRC = 'https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js';
+  const QR_SRC = `${PK.root}js/qrcode.min.js`;
   function loadQr() {
     if (window.qrcode) return Promise.resolve();
     if (!qrLoading) qrLoading = new Promise((res, rej) => {
       const s = document.createElement('script');
-      s.src = QR_SRC; s.crossOrigin = 'anonymous'; s.referrerPolicy = 'no-referrer';
+      s.src = QR_SRC;
       s.onload = res; s.onerror = rej; document.head.appendChild(s);
     });
     return qrLoading;
@@ -362,13 +371,15 @@
   PK.qr = { load: loadQr, draw: drawQr };
   function openShare() {
     if (typeof window.saveHash === 'function') { try { window.saveHash(); } catch { /* ignore */ } }
-    const url = shareUrl();
+    let url = shareUrl(new URLSearchParams(location.search).get('answers') === 'hide');
+    const hasAnswers = Boolean(document.getElementById('pk-answers'));
     const m = document.createElement('div');
     m.className = 'pk-modal'; m.setAttribute('role', 'dialog'); m.setAttribute('aria-modal', 'true'); m.setAttribute('aria-label', 'Share this page');
     m.innerHTML = `<div class="pk-modal-box">
         <h2>Scan to open this page</h2>
         <p class="note" style="margin-top:0">Opens ${esc(document.title.split(' · ')[0])} set up exactly as it is now.</p>
         <div class="pk-qr"><canvas aria-label="QR code for this page"></canvas><p class="note" id="pk-qr-msg">Making the QR code…</p></div>
+        ${hasAnswers ? '<label class="toggle" style="margin-bottom:8px"><input type="checkbox" id="pk-share-hide"> Hide the answers for students who open this</label>' : ''}
         <input class="pk-link" readonly value="${esc(url)}" aria-label="Link to this page">
         <div class="btn-row" style="justify-content:flex-end;margin-top:10px">
           <button class="btn" id="pk-copy-link">Copy link</button>
@@ -382,10 +393,13 @@
     m.querySelector('#pk-close-share').addEventListener('click', close);
     m.querySelector('#pk-copy-link').addEventListener('click', () => PK.copyLink(url));
     m.querySelector('#pk-close-share').focus();
-    loadQr().then(() => {
+    const makeQr = () => loadQr().then(() => {
       const ok = drawQr(m.querySelector('canvas'), url);
       m.querySelector('#pk-qr-msg').textContent = ok ? '' : 'This set-up is too big for a QR code. Use Copy link instead.';
     }).catch(() => { m.querySelector('#pk-qr-msg').textContent = 'The QR code couldn’t be made (are you offline?). Use Copy link instead.'; m.querySelector('canvas').hidden = true; });
+    makeQr();
+    const hide = m.querySelector('#pk-share-hide');
+    if (hide) hide.addEventListener('change', () => { url = shareUrl(hide.checked); m.querySelector('.pk-link').value = url; makeQr(); });
   }
   function addShareButton() {
     const actions = document.querySelector('.site-header .header-actions');

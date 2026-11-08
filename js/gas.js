@@ -319,3 +319,14 @@ sizeCanvas();
 syncLabels();
 renderResults();
 requestAnimationFrame(frame);
+
+// Share: the readings go with the link, so the table and graph open as they are now
+PK.shareState = {
+  get: () => ({ r: results.map((x) => [Number(x.V.toFixed(4)), Number(x.T.toFixed(2)), Number(x.p.toFixed(2))]) }),
+  set: (o) => {
+    if (!Array.isArray(o.r)) return;
+    results.length = 0;
+    o.r.forEach(([V, T, p]) => results.push({ V: Number(V), T: Number(T), p: Number(p) }));
+    renderResults();
+  },
+};

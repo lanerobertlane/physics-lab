@@ -3,7 +3,9 @@
 // ---- Site name: change it here and it updates everywhere. ----
 const SITE = {
   name: "Mr Lane's Physics Lab",
-  byline: 'KS3 & AQA GCSE Physics', // shown under the name in the header
+  byline: 'KS3 & AQA GCSE Physics · Beta', // shown under the name in the header
+  version: 47,   // shown in the footer; keep it the same as VERSION in sw.js
+  bugEmail: 'bug@lanerobertlane.space',
 };
 
 const PK = (() => {
@@ -71,7 +73,9 @@ const PK = (() => {
 
   // Show / hide answers, so students can work values out for themselves. One setting for
   // the whole site. Wrap a value in PK.ans() for HTML; use PK.ansText() for canvas text.
-  const answersShown = () => store.get('answers', true) !== false;
+  // A shared link can hide the answers for whoever opens it, without changing their own setting
+  const linkHidesAnswers = new URLSearchParams(location.search).get('answers') === 'hide';
+  const answersShown = () => !linkHidesAnswers && store.get('answers', true) !== false;
   function applyAnswers(on) {
     if (on) delete document.documentElement.dataset.hideAnswers;
     else document.documentElement.dataset.hideAnswers = '';
@@ -89,6 +93,9 @@ const PK = (() => {
 
   function header({ title = '', isHome = false, spec = null, answers = false, specNote = null, back = null } = {}) {
     document.title = title ? `${title} · ${SITE.name}` : SITE.name;
+    // Opened from a Revise link on a quiz's score screen: the back button returns to the score
+    const fromQuiz = new URLSearchParams(location.search).has('fromquiz');
+    if (fromQuiz) back = { href: `${root}tools/quiz.html`, label: 'Back to my score' };
 
     const el = document.createElement('header');
     el.className = isHome ? 'site-header' : 'site-header tool';
@@ -101,7 +108,7 @@ const PK = (() => {
       ${title ? `<span class="header-title">${title}</span>` : ''}
       <span class="header-spacer"></span>
       <div class="header-actions">
-        ${answers ? `<button class="icon-btn" id="pk-answers" aria-pressed="false">${icons.eye}<span class="label">Answers</span></button>` : ''}
+        ${answers && !linkHidesAnswers ? `<button class="icon-btn" id="pk-answers" aria-pressed="false">${icons.eye}<span class="label">Answers</span></button>` : ''}
         ${fsEnabled() ? `<button class="icon-btn fs-btn" id="pk-fullscreen" title="Full screen (F11)">${icons.fullscreen}<span class="label">Full screen</span></button>` : ''}
         <label class="icon-btn theme-select" title="Colour theme">${icons.palette}
           <select id="pk-theme" aria-label="Colour theme">
@@ -110,6 +117,7 @@ const PK = (() => {
         </label>
       </div>`;
     document.body.prepend(el);
+    if (fromQuiz) el.querySelector('#pk-back').addEventListener('click', (e) => { if (history.length > 1) { e.preventDefault(); history.back(); } });
 
     const themeSel = el.querySelector('#pk-theme');
     themeSel.value = savedTheme();
@@ -162,8 +170,15 @@ const PK = (() => {
       <span>Free and open source under the <a href="https://www.gnu.org/licenses/gpl-3.0.html" rel="license noopener" target="_blank">GNU GPL v3</a></span>
       <a href="${root}terms.html">Terms of use</a>
       <a href="${root}privacy.html">Privacy</a>
+      <a id="pk-report" href="mailto:${SITE.bugEmail}">Report a problem</a>
+      <span>Beta v${SITE.version}</span>
       <label class="footer-beyond"><input type="checkbox" id="pk-beyond"${beyondShown() ? ' checked' : ''}> Show content beyond the spec</label>`;
     document.body.appendChild(el);
+    // The email is filled in when the link is pressed, so it describes the page as it is then
+    el.querySelector('#pk-report').addEventListener('click', (e) => {
+      const lines = ['What went wrong?', '', '', '---- Please leave this part in ----', `Page: ${document.title.split(' · ')[0]}`, `Address: ${location.href.slice(0, 400)}`, `Version: v${SITE.version}`, `Device: ${navigator.userAgent}`, `Window: ${window.innerWidth} × ${window.innerHeight}`];
+      e.currentTarget.href = `mailto:${SITE.bugEmail}?subject=${encodeURIComponent(`Physics Lab problem: ${document.title.split(' · ')[0]}`)}&body=${encodeURIComponent(lines.join('\n'))}`;
+    });
     el.querySelector('#pk-beyond').addEventListener('change', (e) => {
       store.set('beyond', e.target.checked);
       applyBeyond();

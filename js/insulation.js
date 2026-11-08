@@ -156,12 +156,18 @@ renderPicks();
 reset();
 requestAnimationFrame(frame);
 
-// Share: the number of layers and the material on each beaker
+// Share: the number of layers, the material on each beaker, and the readings from a run
 PK.shareState = {
-  get: () => ({ L: state.layers, p: state.picks }),
+  get: () => ({ L: state.layers, p: state.picks, ...(state.t ? { t: Number(state.t.toFixed(1)), T: state.temps.map((x) => Number(x.toFixed(4))), log: state.log.map((r) => [r.t, ...r.temps.map((x) => Number(x.toFixed(1)))]) } : {}) }),
   set: (o) => {
     if (o.L) state.layers = o.L;
     if (Array.isArray(o.p)) { state.picks = o.p; $('picks').querySelectorAll('select').forEach((s) => { s.value = state.picks[Number(s.dataset.i)]; }); }
     reset();
+    if (Array.isArray(o.log) && o.log.length) {
+      state.log = o.log.map(([t, ...temps]) => ({ t: Number(t), temps: temps.map(Number) }));
+      state.t = Number(o.t) || 0;
+      if (Array.isArray(o.T)) state.temps = o.T.map(Number);
+      render();
+    }
   },
 };

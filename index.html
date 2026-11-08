@@ -59,7 +59,7 @@
       favs: PK.store.get('home.favs', []) || [],
       q: '',
       level: PK.store.get('home.level', 'all'),
-      readyOnly: PK.store.get('home.readyOnly', false),
+      readyOnly: PK.store.get('home.readyOnly', true),
     };
 
     const levelOk = (t) => {
