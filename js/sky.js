@@ -204,11 +204,11 @@ function drawDay() {
   if (state.heat) {
     const gx = 640, gy = 380, gw = 140;
     for (let i = 0; i < gw; i++) { const c = heatColour(i / gw); dctx.fillStyle = `rgb(${c[0]},${c[1]},${c[2]})`; dctx.fillRect(gx + i, gy, 1, 12); }
-    dctx.fillStyle = '#fff'; dctx.font = `700 11px ${font()}`; dctx.textAlign = 'left'; dctx.textBaseline = 'top';
+    dctx.fillStyle = '#fff'; dctx.font = `700 13px ${font()}`; dctx.textAlign = 'left'; dctx.textBaseline = 'top';
     dctx.fillText('none', gx, gy + 16); dctx.textAlign = 'right'; dctx.fillText('most', gx + gw, gy + 16);
     dctx.textAlign = 'center'; dctx.textBaseline = 'bottom'; dctx.fillText('Sun’s energy per m²', gx + gw / 2, gy - 4);
   }
-  dctx.fillStyle = 'rgba(255,255,255,.75)'; dctx.font = `600 11px ${font()}`; dctx.textAlign = 'right'; dctx.textBaseline = 'bottom';
+  dctx.fillStyle = 'rgba(255,255,255,.75)'; dctx.font = `600 13px ${font()}`; dctx.textAlign = 'right'; dctx.textBaseline = 'bottom';
   dctx.fillText('Not to scale. The Sun is really about 100 times wider than the Earth.', DW - 10, DH - 8);
   return p;
 }
@@ -265,7 +265,7 @@ function drawSeasons() {
   const g = sctx.createRadialGradient(OX, OY, 4, OX, OY, 46); g.addColorStop(0, '#fff7c2'); g.addColorStop(0.5, '#ffd23f'); g.addColorStop(1, 'rgba(255,180,0,0)');
   const drawSun = () => {
     sctx.fillStyle = g; sctx.beginPath(); sctx.arc(OX, OY, 46, 0, Math.PI * 2); sctx.fill();
-    sctx.fillStyle = '#5a3d00'; sctx.font = `800 12px ${font()}`; sctx.textAlign = 'center'; sctx.textBaseline = 'middle'; sctx.fillText('Sun', OX, OY);
+    sctx.fillStyle = '#5a3d00'; sctx.font = `800 13px ${font()}`; sctx.textAlign = 'center'; sctx.textBaseline = 'middle'; sctx.fillText('Sun', OX, OY);
   };
   // Earths further away (higher up the picture) are drawn first, then the Sun, then nearer ones
   const four = state.four ? [[79, 'spring'], [171, 'summer'], [264, 'autumn'], [354, 'winter']] : [];
@@ -280,7 +280,7 @@ function drawSeasons() {
   if (!sunDrawn) drawSun();
   // Month names round the orbit
   if (!state.four) {
-    sctx.fillStyle = 'rgba(255,255,255,.6)'; sctx.font = `700 11px ${font()}`; sctx.textAlign = 'center'; sctx.textBaseline = 'middle';
+    sctx.fillStyle = 'rgba(255,255,255,.6)'; sctx.font = `700 13px ${font()}`; sctx.textAlign = 'center'; sctx.textBaseline = 'middle';
     for (const [day, name] of [[171, 'June'], [264, 'September'], [354, 'December'], [79, 'March']]) {
       const q = orbitPos(day);
       sctx.fillText(name, q.x, q.y < OY - 10 ? q.y - 50 : q.y + 50);
@@ -289,7 +289,7 @@ function drawSeasons() {
   const dl = decl(state.day, state.tilt);
   sctx.fillStyle = '#ffe082'; sctx.font = `700 13px ${font()}`; sctx.textAlign = 'left'; sctx.textBaseline = 'top';
   sctx.fillText(state.tilt < 1 ? 'No tilt: neither pole leans towards the Sun' : leanText(dl), 14, 12);
-  sctx.fillStyle = 'rgba(255,255,255,.7)'; sctx.font = `600 11px ${font()}`; sctx.textBaseline = 'bottom';
+  sctx.fillStyle = 'rgba(255,255,255,.7)'; sctx.font = `600 13px ${font()}`; sctx.textBaseline = 'bottom';
   sctx.fillText(`The axis always points the same way in space (tilted ${state.tilt.toFixed(state.tilt < 1 ? 0 : 1)}°). Not to scale.`, 14, SH - 8);
 
   // Midday sunshine: a beam of the same width spreads over more ground when the Sun is low
@@ -299,7 +299,7 @@ function drawSeasons() {
   sctx.fillStyle = '#fff'; sctx.font = `800 13px ${font()}`; sctx.textAlign = 'center'; sctx.textBaseline = 'top';
   sctx.fillText(planet === 'earth' ? 'Midday sunshine in the UK' : 'Midday sunshine at the UK’s latitude', 605, 40);
   if (h <= 0.5) {
-    sctx.font = `700 12px ${font()}`; sctx.fillText('The Sun doesn’t rise at all today', 605, 62);
+    sctx.font = `700 13px ${font()}`; sctx.fillText('The Sun doesn’t rise at all today', 605, 62);
     sctx.fillText('It is dark all day: no heating from the Sun', 605, GY + 18);
     return;
   }
@@ -319,7 +319,7 @@ function drawSeasons() {
   const sg = sctx.createRadialGradient(sunX, sunY, 2, sunX, sunY, 26); sg.addColorStop(0, '#fff7c2'); sg.addColorStop(0.5, '#ffd23f'); sg.addColorStop(1, 'rgba(255,180,0,0)');
   sctx.fillStyle = sg; sctx.beginPath(); sctx.arc(sunX, sunY, 26, 0, Math.PI * 2); sctx.fill();
   sctx.restore();
-  sctx.fillStyle = '#fff'; sctx.font = `700 12px ${font()}`;
+  sctx.fillStyle = '#fff'; sctx.font = `700 13px ${font()}`;
   sctx.fillText(`Sun ${h.toFixed(0)}° above the horizon`, 605, 62);
   sctx.fillText(`The light is spread over ${(1 / Math.sin(a)).toFixed(1)} × the area`, 605, GY + 18);
   sctx.fillText('it would cover if the Sun were overhead', 605, GY + 34);
@@ -373,7 +373,7 @@ function drawMoon() {
   mctx.strokeStyle = 'rgba(255,255,255,.3)'; mctx.setLineDash([4, 6]); mctx.beginPath(); mctx.arc(EXm, EYm, R, 0, Math.PI * 2); mctx.stroke(); mctx.setLineDash([]);
   mctx.fillStyle = '#2f7fd0'; mctx.beginPath(); mctx.arc(EXm, EYm, 26, 0, Math.PI * 2); mctx.fill();
   mctx.fillStyle = 'rgba(0,0,0,.55)'; mctx.beginPath(); mctx.arc(EXm, EYm, 26, -Math.PI / 2, Math.PI / 2); mctx.closePath(); mctx.fill();
-  mctx.fillStyle = '#fff'; mctx.font = `700 12px ${font()}`; mctx.textAlign = 'center'; mctx.fillText('Earth', EXm, EYm + 32);
+  mctx.fillStyle = '#fff'; mctx.font = `700 13px ${font()}`; mctx.textAlign = 'center'; mctx.fillText('Earth', EXm, EYm + 32);
   // The Moon: always half lit (the half facing the Sun)
   const ang = Math.PI + (2 * Math.PI * state.moonDay) / PERIOD;   // starts between the Earth and the Sun
   const mx = EXm + R * Math.cos(ang), my = EYm - R * Math.sin(ang);
@@ -381,14 +381,14 @@ function drawMoon() {
   mctx.fillStyle = '#2b2f3a'; mctx.beginPath(); mctx.arc(mx, my, 14, -Math.PI / 2, Math.PI / 2); mctx.closePath(); mctx.fill();
   mctx.strokeStyle = 'rgba(255,255,255,.45)'; mctx.setLineDash([3, 4]); mctx.beginPath(); mctx.moveTo(EXm, EYm); mctx.lineTo(mx, my); mctx.stroke(); mctx.setLineDash([]);
   mctx.fillStyle = '#fff'; mctx.fillText('Moon', mx, my + 18);
-  mctx.fillStyle = 'rgba(255,255,255,.6)'; mctx.font = `600 11px ${font()}`; mctx.fillText('view from above the North Pole', EXm, 372);
+  mctx.fillStyle = 'rgba(255,255,255,.6)'; mctx.font = `600 13px ${font()}`; mctx.fillText('view from above the North Pole', EXm, 372);
   // What we see from Earth
   mctx.fillStyle = '#11151f'; mctx.fillRect(500, 40, 280, 320);
   mctx.fillStyle = '#fff'; mctx.font = `800 14px ${font()}`; mctx.fillText('What we see from the UK', 640, 52);
   moonDisc(mctx, 640, 200, 90, state.moonDay);
   mctx.font = `800 18px ${font()}`; mctx.fillText(phaseName(state.moonDay), 640, 304);
   const lit = (1 - Math.cos((2 * Math.PI * state.moonDay) / PERIOD)) / 2;
-  mctx.font = `600 12px ${font()}`; mctx.fillText(`${Math.round(lit * 100)}% of the side facing us is lit`, 640, 330);
+  mctx.font = `600 13px ${font()}`; mctx.fillText(`${Math.round(lit * 100)}% of the side facing us is lit`, 640, 330);
 }
 
 function renderMoonPanel() {
@@ -408,6 +408,33 @@ function showTab(t) {
 document.querySelectorAll('#tabs .chip').forEach((b) => b.addEventListener('click', () => showTab(b.dataset.t)));
 
 function setDay(d) { state.day = d; $('date').value = d; $('s-date').value = d; renderSeasonsPanel(); }
+
+// Dragging on the pictures
+PK.dragOn(dc, DW, DH, {
+  hit: (p) => (Math.hypot(p.x - EX, p.y - EY) < ER + 10 ? { hour: state.hour } : null),
+  move: (d, p, s) => {
+    state.hour = (d.hour + ((p.x - s.x) / ER) * 6 + 24) % 24; state.spin = false;
+    $('hour').value = state.hour; $('spin').textContent = '▶ Spin';
+  },
+});
+PK.dragOn(sc, SW, SH, {
+  hit: (p) => { const q = orbitPos(state.day); return Math.hypot(p.x - q.x, p.y - q.y) < 60 ? 'earth' : null; },
+  move: (d, p) => {
+    const a = Math.atan2(-(p.y - OY) / RY, (p.x - OX) / RX);
+    setDay((Math.round(((a - Math.PI) * 365) / (2 * Math.PI) + 171) % 365 + 365) % 365);
+  },
+});
+PK.dragOn(mc, MW2, MH2, {
+  hit: (p) => {
+    const ang = Math.PI + (2 * Math.PI * state.moonDay) / PERIOD;
+    return Math.hypot(p.x - (270 + 140 * Math.cos(ang)), p.y - (200 - 140 * Math.sin(ang))) < 40 ? 'moon' : null;
+  },
+  move: (d, p) => {
+    const a = Math.atan2(-(p.y - 200), p.x - 270);
+    state.moonDay = ((((a - Math.PI) / (2 * Math.PI)) * PERIOD) % PERIOD + PERIOD) % PERIOD;
+    state.moonPlay = false; $('m-day').value = state.moonDay; $('m-play').textContent = '▶ Play'; renderMoonPanel();
+  },
+});
 $('date').addEventListener('input', (e) => setDay(Number(e.target.value)));
 $('s-date').addEventListener('input', (e) => setDay(Number(e.target.value)));
 document.querySelectorAll('.quick-date').forEach((b) => b.addEventListener('click', () => setDay(Number(b.dataset.d))));

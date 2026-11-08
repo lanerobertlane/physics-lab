@@ -83,16 +83,17 @@ $('parts').innerHTML = PARTS.map(([k, label, col]) => `
   <div class="part"><span class="dot" style="background:${col}"></span><b>${label}</b>
     <div class="stepper"><button data-k="${k}" data-d="-1" aria-label="Remove ${label}">−</button><output id="${k}-val"></output><button data-k="${k}" data-d="1" aria-label="Add ${label}">+</button></div>
   </div>`).join('');
-$('parts').addEventListener('click', (ev) => {
-  const b = ev.target.closest('button[data-k]');
-  if (!b) return;
-  const k = b.dataset.k;
-  state[k] = Math.max(LIMITS[k][0], Math.min(LIMITS[k][1], state[k] + Number(b.dataset.d)));
+function changeParticle(k, by) {
+  state[k] = Math.max(LIMITS[k][0], Math.min(LIMITS[k][1], state[k] + by));
   state.excited = null;
   $('preset').value = '0';
   layoutNucleus();
   render();
   saveHash();
+}
+$('parts').addEventListener('click', (ev) => {
+  const b = ev.target.closest('button[data-k]');
+  if (b) changeParticle(b.dataset.k, Number(b.dataset.d));
 });
 
 $('preset').innerHTML = PRESETS.map(([name], i) => `<option value="${i}">${name}</option>`).join('');
@@ -110,6 +111,8 @@ $('preset').addEventListener('change', (ev) => {
 
 const canvas = $('atom'), ctx = canvas.getContext('2d');
 const W = 800, H = 520, CX = 400, CY = 260;
+const TRAY_X = 75, TRAY = [{ k: 'p', name: 'proton', sym: '+', col: '#e2483d', y: 180 }, { k: 'n', name: 'neutron', sym: '', col: '#8d939c', y: 260 }, { k: 'e', name: 'electron', sym: '−', col: '#2f7fe0', y: 340 }];
+let carried = null, drawnElectrons = [];
 let nucleus = [];
 
 // Pack protons and neutrons in a sunflower spiral, mixed together.
@@ -168,12 +171,13 @@ function frame(now) {
     ctx.strokeStyle = 'rgba(0,0,0,.35)'; ctx.lineWidth = 1;
     ctx.beginPath(); ctx.arc(CX + b.x, CY + b.y, 8, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
     if (nucleus.length <= 12) {
-      ctx.fillStyle = '#fff'; ctx.font = `800 10px ${c.font}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillStyle = '#fff'; ctx.font = `800 13px ${c.font}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
       ctx.fillText(b.t === 'p' ? '+' : '', CX + b.x, CY + b.y + 0.5);
     }
   }
 
   // Electrons
+  drawnElectrons = [];
   sh.forEach((count, s) => {
     for (let i = 0; i < count; i++) {
       let ring = s;
@@ -182,10 +186,26 @@ function frame(now) {
       const a = spin * (1 - ring * 0.18) + (i / count) * Math.PI * 2 + s * 0.4;
       ctx.fillStyle = '#2f7fe0';
       ctx.beginPath(); ctx.arc(CX + Math.cos(a) * r, CY + Math.sin(a) * r, 7, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = '#fff'; ctx.font = `800 11px ${c.font}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillStyle = '#fff'; ctx.font = `800 13px ${c.font}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
       ctx.fillText('−', CX + Math.cos(a) * r, CY + Math.sin(a) * r);
+      drawnElectrons.push({ x: CX + Math.cos(a) * r, y: CY + Math.sin(a) * r });
     }
   });
+
+  // Tray of particles to drag on
+  ctx.fillStyle = c.muted; ctx.font = `700 15px ${c.font}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText('Drag on', TRAY_X, TRAY[0].y - 42);
+  for (const t of TRAY) {
+    ctx.fillStyle = t.col; ctx.beginPath(); ctx.arc(TRAY_X, t.y, 18, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#fff'; ctx.font = `800 18px ${c.font}`; ctx.fillText(t.sym, TRAY_X, t.y + 1);
+    ctx.fillStyle = c.text; ctx.font = `700 14px ${c.font}`; ctx.fillText(t.name, TRAY_X, t.y + 29);
+  }
+  ctx.fillStyle = c.muted; ctx.font = `700 15px ${c.font}`; ctx.fillText('Drag one out', TRAY_X, TRAY[2].y + 62); ctx.fillText('to remove it', TRAY_X, TRAY[2].y + 80);
+  if (carried && carried.moved) {
+    const t = TRAY.find((q) => q.k === carried.k);
+    ctx.fillStyle = t.col; ctx.beginPath(); ctx.arc(carried.x, carried.y, 15, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#fff'; ctx.font = `800 16px ${c.font}`; ctx.fillText(t.sym, carried.x, carried.y + 1);
+  }
 
   // Photon (wavy arrow)
   if (photon && photon.phase !== 'excited') {
@@ -204,7 +224,7 @@ function frame(now) {
     ctx.stroke();
   }
   ctx.fillStyle = c.muted; ctx.font = `600 13px ${c.font}`; ctx.textAlign = 'left'; ctx.textBaseline = 'top';
-  const msg = !photon ? 'Not to scale: the real nucleus is about 100 000 times smaller than the atom.'
+  const msg = !photon ? 'Not to scale: the radius of the real nucleus is less than 1/10 000 of the radius of the atom.'
     : photon.phase === 'in' ? 'Light (electromagnetic radiation) arrives…'
       : photon.phase === 'excited' ? 'The electron absorbed the energy and moved to a higher energy level.'
         : 'It drops back down and gives out the energy as electromagnetic radiation.';
@@ -226,6 +246,25 @@ function loadHash() {
     if (q.has(k) && v >= LIMITS[k][0] && v <= LIMITS[k][1]) state[k] = v;
   }
 }
+
+// Particles: drag one from the tray into the atom, or drag one out of the atom (a tap on the tray adds one too)
+PK.dragOn(canvas, W, H, {
+  hit: (p) => {
+    const t = TRAY.find((q) => Math.hypot(p.x - TRAY_X, p.y - q.y) < 30);
+    if (t) return { from: 'tray', k: t.k };
+    const b = nucleus.find((q) => Math.hypot(p.x - (CX + q.x), p.y - (CY + q.y)) < 11);
+    if (b) return { from: 'atom', k: b.t };
+    return drawnElectrons.some((q) => Math.hypot(p.x - q.x, p.y - q.y) < 22) ? { from: 'atom', k: 'e' } : null;
+  },
+  move: (d, p) => { carried = Object.assign(d, { x: p.x, y: p.y, moved: true }); },
+  end: (d) => {
+    carried = null;
+    const inside = Math.hypot(d.x - CX, d.y - CY) < 245;
+    if (d.from === 'tray' && inside) changeParticle(d.k, 1);
+    if (d.from === 'atom' && !inside) changeParticle(d.k, -1);
+  },
+  tap: (d) => { if (d.from === 'tray') changeParticle(d.k, 1); },
+});
 
 window.addEventListener('resize', sizeCanvas);
 loadHash();

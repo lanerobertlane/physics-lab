@@ -81,6 +81,10 @@ const PK = (() => {
   // Apply saved settings straight away to avoid a flash.
   applyTheme(savedTheme());
   applyAnswers(answersShown());
+  // Content beyond the specification stays hidden unless the box in the footer is ticked
+  const beyondShown = () => store.get('beyond', false) === true;
+  const applyBeyond = () => document.documentElement.classList.toggle('show-beyond', beyondShown());
+  applyBeyond();
 
   function header({ title = '', isHome = false, spec = null, answers = false, specNote = null } = {}) {
     document.title = title ? `${title} · ${SITE.name}` : SITE.name;
@@ -156,8 +160,14 @@ const PK = (() => {
       <span>© 2026 Robert Lane</span>
       <span>Free and open source under the <a href="https://www.gnu.org/licenses/gpl-3.0.html" rel="license noopener" target="_blank">GNU GPL v3</a></span>
       <a href="${root}terms.html">Terms of use</a>
-      <a href="${root}privacy.html">Privacy</a>`;
+      <a href="${root}privacy.html">Privacy</a>
+      <label class="footer-beyond"><input type="checkbox" id="pk-beyond"${beyondShown() ? ' checked' : ''}> Show content beyond the spec</label>`;
     document.body.appendChild(el);
+    el.querySelector('#pk-beyond').addEventListener('change', (e) => {
+      store.set('beyond', e.target.checked);
+      applyBeyond();
+      window.dispatchEvent(new Event('pk-beyond'));
+    });
   }
 
   // spec: [{ code: '4.5.1.4', text: 'Resultant forces', ht?: true }, { code: 'KS3', text: '…' }]
@@ -222,6 +232,36 @@ const PK = (() => {
     return String(parseFloat(x.toPrecision(n)));
   }
 
+  // Dragging on a canvas drawn in W × H units. hit(p) returns what is under the finger (or null);
+  // move(what, p, start) follows the drag; end(what) runs after a drag and tap(what) after a tap.
+  function dragOn(cv, W, H, { hit, move, end, tap }) {
+    const at = (e) => { const r = cv.getBoundingClientRect(); return { x: ((e.clientX - r.left) / r.width) * W, y: ((e.clientY - r.top) / r.height) * H }; };
+    let held = null, start = null, moved = false, over = false;
+    cv.addEventListener('pointerdown', (e) => {
+      const p = at(e), h = hit(p);
+      if (!h) return;
+      held = h; start = p; moved = false;
+      cv.setPointerCapture(e.pointerId);
+      cv.style.cursor = 'grabbing';
+      e.preventDefault();
+    });
+    cv.addEventListener('pointermove', (e) => {
+      const p = at(e);
+      if (!held) { const h = Boolean(hit(p)); if (h !== over) { over = h; cv.style.cursor = h ? 'grab' : ''; } return; }
+      if (!moved && Math.hypot(p.x - start.x, p.y - start.y) < 6) return;
+      moved = true;
+      if (move) move(held, p, start);
+    });
+    const stop = () => {
+      if (!held) return;
+      const h = held;
+      held = null; over = false; cv.style.cursor = '';
+      if (moved) { if (end) end(h); } else if (tap) tap(h);
+    };
+    cv.addEventListener('pointerup', stop);
+    cv.addEventListener('pointercancel', stop);
+  }
+
   // Number boxes: <div class="stepper" data-num> holding an <input type="number" data-inc="…">
   // between − and + buttons (data-step="-1" and "1"). Type a value, tap, or hold to keep going.
   function numberOf(el, raw) {
@@ -233,6 +273,11 @@ const PK = (() => {
   }
   const num = (id) => { const el = document.getElementById(id); return numberOf(el, el.value); };
   const setNum = (id, v) => { const el = document.getElementById(id); el.value = numberOf(el, v); };
+  // A group of chips with data-v values: tapping one presses it and passes on its number
+  function chips(id, fn) {
+    const all = document.querySelectorAll(`#${id} .chip`);
+    all.forEach((b) => b.addEventListener('click', () => { all.forEach((c) => c.setAttribute('aria-pressed', String(c === b))); fn(Number(b.dataset.v)); }));
+  }
   const stepButton = (t) => t.closest && t.closest('.stepper[data-num] button[data-step]');
   function bump(b) {
     const el = b.parentElement.querySelector('input');
@@ -251,6 +296,8 @@ const PK = (() => {
   });
   document.addEventListener('pointerup', (e) => { if (held && !held.repeated && stepButton(e.target) === held.b) bump(held.b); letGo(); });
   document.addEventListener('pointercancel', letGo);
+  // Older iPads can still zoom on a quick double tap, so a number box's buttons cancel it themselves
+  document.addEventListener('touchend', (e) => { if (stepButton(e.target)) e.preventDefault(); }, { passive: false });
   document.addEventListener('click', (e) => { const b = stepButton(e.target); if (b && e.detail === 0) bump(b); });   // keyboard
   document.addEventListener('change', (e) => {
     const el = e.target;
@@ -281,5 +328,5 @@ const PK = (() => {
   extras.src = `${root}js/extras.js`;
   document.head.appendChild(extras);
 
-  return { root, store, header, toast, copyLink, cssVar, sig, isDark, ans, ansText, answersShown, toggleFullscreen, fullscreenEnabled: fsEnabled, initialHash, num, setNum };
+  return { root, store, header, toast, copyLink, cssVar, sig, isDark, ans, ansText, answersShown, toggleFullscreen, fullscreenEnabled: fsEnabled, initialHash, num, setNum, beyondShown, chips, dragOn };
 })();

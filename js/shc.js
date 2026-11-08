@@ -126,13 +126,13 @@ function drawGraph() {
   const eMax = Math.max(10000, Math.ceil(Math.max(0, ...state.rows.map((r) => r.E)) / 10000) * 10000);
   const tMax = Math.max(40, Math.ceil(Math.max(0, ...state.rows.map((r) => r.T)) / 10) * 10);
   const X = (e) => L + (e / eMax) * pw, Y = (t) => T + ph - ((t - 0) / tMax) * ph;
-  g.strokeStyle = c.grid; g.fillStyle = c.muted; g.font = `600 10px ${c.font}`; g.lineWidth = 1;
+  g.strokeStyle = c.grid; g.fillStyle = c.muted; g.font = `600 13px ${c.font}`; g.lineWidth = 1;
   g.textAlign = 'right'; g.textBaseline = 'middle';
   for (let t = 0; t <= tMax; t += tMax / 4) { g.beginPath(); g.moveTo(L, Y(t)); g.lineTo(L + pw, Y(t)); g.stroke(); g.fillText(Math.round(t), L - 4, Y(t)); }
   g.textAlign = 'center'; g.textBaseline = 'top';
   for (let e = 0; e <= eMax; e += eMax / 4) { g.beginPath(); g.moveTo(X(e), T); g.lineTo(X(e), T + ph); g.stroke(); g.fillText(`${e / 1000}k`, X(e), T + ph + 3); }
   g.strokeStyle = c.text; g.lineWidth = 1.5; g.beginPath(); g.moveTo(L, T); g.lineTo(L, T + ph); g.lineTo(L + pw, T + ph); g.stroke();
-  g.fillStyle = c.text; g.font = `700 11px ${c.font}`; g.fillText('energy supplied / J', L + pw / 2, GH - 15);
+  g.fillStyle = c.text; g.font = `700 13px ${c.font}`; g.fillText('energy supplied / J', L + pw / 2, GH - 15);
   g.save(); g.translate(10, T + ph / 2); g.rotate(-Math.PI / 2); g.textBaseline = 'middle'; g.fillText('temperature / °C', 0, 0); g.restore();
   g.strokeStyle = c.point; g.lineWidth = 2;
   for (const r of state.rows) { const x = X(r.E), y = Y(r.T); g.beginPath(); g.moveTo(x - 4, y - 4); g.lineTo(x + 4, y + 4); g.moveTo(x - 4, y + 4); g.lineTo(x + 4, y - 4); g.stroke(); }
@@ -143,7 +143,7 @@ function drawGraph() {
 function resetAll() { Object.assign(state, { on: false, t: 0, E: 0, temp: ROOM, rows: [] }); $('heat').textContent = '🔥 Switch heater on'; renderPanel(); renderResults(); }
 $('heat').addEventListener('click', () => { state.on = !state.on; $('heat').textContent = state.on ? '■ Switch heater off' : '🔥 Switch heater on'; });
 $('reset').addEventListener('click', resetAll);
-$('speed').addEventListener('change', (e) => { state.speed = Number(e.target.value); });
+PK.chips('speed', (v) => { state.speed = v; });
 $('mat').addEventListener('change', (e) => { state.mat = e.target.value; resetAll(); });
 $('insulate').addEventListener('change', (e) => { state.insulated = e.target.checked; });
 $('record').addEventListener('click', () => { state.rows.push({ t: state.t, E: state.E, T: state.temp }); renderResults(); });

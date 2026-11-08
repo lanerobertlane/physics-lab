@@ -23,9 +23,6 @@
   <style>
     #optics { aspect-ratio: 800 / 500; }
     .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
-    .ctl { margin-bottom: 12px; }
-    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
-    .ctl label b { color: var(--text); }
   </style>
 </head>
 <body>
@@ -40,7 +37,7 @@
     <div class="tool-layout">
       <div class="main-col">
         <div class="panel stage">
-          <canvas id="optics" aria-label="Light rays"></canvas>
+          <canvas id="optics" class="drag" aria-label="Light rays"></canvas>
           <div class="stage-bar" id="box-bar">
             <button class="btn" data-turn="-5">⟲ 5°</button>
             <button class="btn" data-turn="-1">⟲ 1°</button>
@@ -73,6 +70,6 @@
   <script src="../js/quiz-images.js"></script>
   <script src="../js/quiz-core.js"></script>
   <script src="../js/quiz-pages/light-box.js"></script>
-  <script src="../js/practice-tab.js"></script>
+  <script src="../js/practice-tab.js" data-eqs="magnification"></script>
 </body>
 </html>

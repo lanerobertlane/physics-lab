@@ -103,7 +103,7 @@ function centre(x, y, z) {
     const nr = 12;
     const g = ctx.createRadialGradient(x - 4, y - 4, 1, x, y, nr); g.addColorStop(0, '#ff9e94'); g.addColorStop(1, '#c62828');
     ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, nr, 0, Math.PI * 2); ctx.fill();
-    text(S(z), x, y + 0.5, { col: '#fff', s: 11, w: 800 });
+    text(S(z), x, y + 0.5, { col: '#fff', s: 13, w: 800 });
   } else text(S(z), x, y + 1, { s: state.all ? 14 : 19, w: 800 });
 }
 function text(t, x, y, o = {}) {
@@ -174,7 +174,7 @@ function drawIonic() {
       text(isM ? EL.chargeText(I.qm) : EL.chargeText(-I.qx), a.x + r + 4, a.y - r + 2, { a: 'left', s: 17, w: 800, col: isM ? COL.metal : COL.non });
     }
     const shellsNow = done ? (isM ? ionShells : [...sh.slice(0, -1), 8]) : sh;
-    text(`${label}  ${shellsNow.join(',')}`, a.x, a.y + outerR(n) + (done ? 32 : 20), { s: 12, col: PK.cssVar('--muted') });
+    text(`${label}  ${shellsNow.join(',')}`, a.x, a.y + outerR(n) + (done ? 32 : 20), { s: 13, col: PK.cssVar('--muted') });
   }
   // Losing and gaining: the metal's outer electrons disappear, then the non-metal's appear.
   // Nothing is shown travelling between them.
@@ -255,7 +255,7 @@ function drawCovalent() {
   } else text(t === 0 ? 'Press “Bond”: the atoms will move together and share electrons.' : 'The outer shells overlap and electrons are shared…', 400, H - 18, { s: 13, col: PK.cssVar('--muted') });
 }
 function drawDisplayed(I, x, y) {
-  text('Displayed formula', x, y - 50, { s: 11, col: PK.cssVar('--muted') });
+  text('Displayed formula', x, y - 50, { s: 13, col: PK.cssVar('--muted') });
   const dirs = DIRS[I.n], L = 34, cx = I.n === 1 ? x - L / 2 : x;
   ctx.strokeStyle = PK.cssVar('--text'); ctx.lineWidth = 2;
   for (const a of dirs) {
@@ -304,7 +304,7 @@ function drawMetallic() {
   }
   for (const e of metalElectrons) {
     ctx.fillStyle = '#1e63c6'; ctx.beginPath(); ctx.arc(e.x, e.y, 4.5, 0, Math.PI * 2); ctx.fill();
-    if (state.view !== 'model') text('−', e.x, e.y - 0.5, { s: 9, w: 800, col: '#fff' });
+    if (state.view !== 'model') text('−', e.x, e.y - 0.5, { s: 13, w: 800, col: '#fff' });
   }
   if (state.pd) { text('−', 50, 195, { s: 26, w: 800, col: '#1e63c6' }); text('+', 752, 195, { s: 26, w: 800, col: '#c62828' }); }
   const hot = state.temp > 55;
@@ -312,7 +312,7 @@ function drawMetallic() {
     ? (hot ? 'Hot: the ions vibrate more, so electrons bump into them more often. The resistance goes up and the current goes down.' : 'With a potential difference, the delocalised electrons drift through the metal: a current flows.')
     : (hot ? 'Hot: the ions vibrate more, but they stay in their lattice positions while the metal is solid.' : `${S(I.m)}${EL.chargeText(I.q)} ions in a regular lattice, in a “sea” of delocalised electrons`), 400, H - 30, { s: 13 });
   if (state.pd) { const f = driftSpeed() / 90; text(`Current: ${f > 0.6 ? 'high' : f > 0.35 ? 'medium' : 'low'}`, 400, 22, { s: 13, w: 800 }); }
-  text(`Each ${N(I.m)} atom gives ${pl(I.q, 'electron')} to the sea.`, 400, H - 10, { s: 12, col: PK.cssVar('--muted') });
+  text(`Each ${N(I.m)} atom gives ${pl(I.q, 'electron')} to the sea.`, 400, H - 10, { s: 13, col: PK.cssVar('--muted') });
 }
 
 // ---------- The exam answer ----------
@@ -432,8 +432,8 @@ function draw(dt) {
   if (info.type === 'ionic' || info.type === 'covalent') {
     const [c1, c2, l1, l2] = info.type === 'ionic' ? [COL.metal, COL.non, `${N(info.m)} electron`, `${N(info.x)} electron`] : [COL.a, COL.b, `${N(info.central)} electron`, `${N(info.lig)} electron`];
     const k1 = info.type === 'ionic' ? 'x' : 'o', k2 = info.type === 'ionic' ? 'o' : 'x';
-    mark(20, 18, k1, c1); text(l1, 32, 18, { a: 'left', s: 12 });
-    mark(20, 38, k2, c2); text(l2, 32, 38, { a: 'left', s: 12 });
+    mark(20, 18, k1, c1); text(l1, 32, 18, { a: 'left', s: 13 });
+    mark(20, 38, k2, c2); text(l2, 32, 38, { a: 'left', s: 13 });
   }
 }
 let last = performance.now();

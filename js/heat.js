@@ -7,7 +7,7 @@ PK.header({
   title: 'Conduction, convection & radiation',
   spec: [
     { code: 'KS3', text: 'Energy transfer by heating: conduction, convection and radiation; insulators and conductors' },
-    { code: '4.1.2.1', text: 'Thermal conductivity: the higher it is, the higher the rate of energy transfer by conduction', po: true },
+    { code: '4.1.2.1', text: 'Thermal conductivity: the higher it is, the higher the rate of energy transfer by conduction' },
     { code: '4.3.1.1', text: 'Density: particles spread out when heated, so a fluid becomes less dense' },
     { code: '4.6.3.1', text: 'All bodies emit and absorb infrared radiation; dark matt surfaces are the best absorbers and emitters', po: true },
   ],
@@ -118,7 +118,7 @@ function drawCond(dt) {
     cx.font = `700 13px ${font()}`; cx.textAlign = 'right';
     cx.fillText(`far end ${cond.T[r][N - 1].toFixed(0)} °C`, X1, y - 8);
   });
-  cx.fillStyle = PK.cssVar('--muted'); cx.font = `700 12px ${font()}`; cx.textAlign = 'left'; cx.textBaseline = 'bottom';
+  cx.fillStyle = PK.cssVar('--muted'); cx.font = `700 13px ${font()}`; cx.textAlign = 'left'; cx.textBaseline = 'bottom';
   cx.fillText(`time: ${cond.t.toFixed(0)} s`, 12, CH - 8);
 }
 
@@ -262,7 +262,7 @@ function drawRad() {
     rx.fillText(`${rad.T[i].toFixed(1)} °C`, x, 300);
     rx.font = `700 13px ${font()}`; rx.fillText(s.name, x, 326);
   });
-  rx.fillStyle = $('r-vacuum').checked ? '#cfd8dc' : PK.cssVar('--muted'); rx.font = `700 12px ${font()}`; rx.textAlign = 'left'; rx.textBaseline = 'top';
+  rx.fillStyle = $('r-vacuum').checked ? '#cfd8dc' : PK.cssVar('--muted'); rx.font = `700 13px ${font()}`; rx.textAlign = 'left'; rx.textBaseline = 'top';
   rx.fillText($('r-vacuum').checked ? 'In a vacuum: no particles, but infrared still gets through.' : 'Infrared radiation: an electromagnetic wave', 12, 12);
   rx.textAlign = 'right'; rx.fillText(`time: ${rad.t.toFixed(0)} s`, RW - 12, 12);
 }

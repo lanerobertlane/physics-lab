@@ -8,7 +8,9 @@ PK.header({
     { code: '4.5.6.3.1', text: 'Stopping distance = thinking distance + braking distance' },
     { code: '4.5.6.3.2', text: 'Reaction time: typically 0.2–0.9 s; affected by tiredness, drugs, alcohol and distractions' },
     { code: '4.5.6.3.3', text: 'Factors affecting braking distance: wet or icy roads, poor brakes or tyres; the braking force does work to transfer kinetic energy' },
-    { code: '4.5.6.3.4', text: 'Large decelerations and the work done by the brakes (W = F s = ½ m v²)', ht: true, po: true },
+    { code: '4.5.6.3.4', text: 'Large decelerations and the work done by the brakes (W = F s = ½ m v²)' },
+    { code: '4.5.6.3.4', text: 'Estimating the forces involved in the deceleration of road vehicles', ht: true },
+    { code: '4.5.6.3.1', text: 'Estimating how the stopping distance varies over a range of typical speeds, and using graphs of speed against stopping distance', po: true },
   ],
 });
 
@@ -58,7 +60,7 @@ function drawRoad() {
   const ppm = 700 / maxStop, x0 = 60;
   rctx.fillStyle = '#fff';
   for (let m = 0; m <= maxStop; m += 10) rctx.fillRect(x0 + m * ppm - 6, 123, 12, 3);
-  rctx.fillStyle = '#1b1f2a'; rctx.font = `600 11px ${font}`; rctx.textAlign = 'center'; rctx.textBaseline = 'top';
+  rctx.fillStyle = '#1b1f2a'; rctx.font = `600 13px ${font}`; rctx.textAlign = 'center'; rctx.textBaseline = 'top';
   for (let m = 0; m <= maxStop; m += tick) rctx.fillText(`${m} m`, x0 + m * ppm, 166);
 
   // Thinking and braking bars
@@ -94,7 +96,7 @@ function drawChart() {
   const max = Math.max(100, Math.ceil(Math.max(...rows.map((r) => r.th + r.br)) / 50) * 50);
   const L = 70, R = 20, T = 10, rowH = (GH - T - 30) / speeds.length;
   const X = (m) => L + (m / max) * (GW - L - R);
-  cctx.strokeStyle = c.grid; cctx.fillStyle = c.muted; cctx.font = `600 11px ${c.font}`; cctx.textAlign = 'center'; cctx.textBaseline = 'top';
+  cctx.strokeStyle = c.grid; cctx.fillStyle = c.muted; cctx.font = `600 13px ${c.font}`; cctx.textAlign = 'center'; cctx.textBaseline = 'top';
   for (let m = 0; m <= max; m += 50) { cctx.beginPath(); cctx.moveTo(X(m), T); cctx.lineTo(X(m), GH - 28); cctx.stroke(); cctx.fillText(`${m} m`, X(m), GH - 24); }
   rows.forEach((r, i) => {
     const y = T + i * rowH + 4, h = rowH - 8;
@@ -103,15 +105,14 @@ function drawChart() {
     cctx.fillStyle = r.s === state.mph ? c.text : c.muted;
     cctx.font = `${r.s === state.mph ? 800 : 600} 12px ${c.font}`; cctx.textAlign = 'right'; cctx.textBaseline = 'middle';
     cctx.fillText(`${r.s} mph`, L - 8, y + h / 2);
-    cctx.textAlign = 'left'; cctx.fillStyle = c.text; cctx.font = `700 11px ${c.font}`;
+    cctx.textAlign = 'left'; cctx.fillStyle = c.text; cctx.font = `700 13px ${c.font}`;
     cctx.fillText(`${PK.ansText((r.th + r.br).toFixed(0))} m`, X(r.th + r.br) + 6, y + h / 2);
   });
 }
 
 function renderPanel() {
   const vv = v(), th = thinking(), br = braking(), ke = 0.5 * state.mass * vv * vv, F = ke / br;
-  $('speed-val').textContent = `${state.mph} mph (${vv.toFixed(1)} m/s)`;
-  $('mass-val').textContent = `${state.mass} kg`;
+  $('speed-ms').textContent = `${state.mph} mph is ${vv.toFixed(1)} m/s.`;
   $('readout').innerHTML = `
     <dt>Thinking distance</dt><dd>${PK.ans(`${th.toFixed(1)} m`)}</dd>
     <dt>Braking distance</dt><dd>${br.toFixed(1)} m</dd>
@@ -129,12 +130,12 @@ function renderPanel() {
 
 $('go').addEventListener('click', () => { reset(); state.phase = 'thinking'; $('go').disabled = true; });
 $('reset').addEventListener('click', reset);
-$('speed').addEventListener('input', (e) => { state.mph = Number(e.target.value); reset(); renderPanel(); });
-$('driver').addEventListener('change', (e) => { state.react = Number(e.target.value); reset(); renderPanel(); });
-$('road-type').addEventListener('change', (e) => { state.decel = Number(e.target.value); reset(); renderPanel(); });
+$('speed').addEventListener('input', () => { state.mph = PK.num('speed'); reset(); renderPanel(); });
+PK.chips('driver', (v) => { state.react = v; reset(); renderPanel(); });
+PK.chips('road-type', (v) => { state.decel = v; reset(); renderPanel(); });
 $('worn').addEventListener('change', (e) => { state.worn = e.target.checked; reset(); renderPanel(); });
-$('mass').addEventListener('input', (e) => {
-  state.mass = Number(e.target.value); reset(); renderPanel();
+$('mass').addEventListener('input', () => {
+  state.mass = PK.num('mass'); reset(); renderPanel();
 });
 
 let last = performance.now();

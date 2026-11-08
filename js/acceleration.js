@@ -74,14 +74,14 @@ function draw() {
   ctx.beginPath(); ctx.moveTo(tx + 80, BENCH_Y - 26); ctx.lineTo(px, py - 12); ctx.moveTo(px + 12, py); ctx.lineTo(px + 12, Math.min(300, hangY)); ctx.stroke();
   // Hanging masses
   for (let i = 0; i < state.hang; i++) { ctx.fillStyle = i % 2 ? '#b08d57' : '#c9a66b'; ctx.fillRect(px - 4, Math.min(300, hangY) + i * 9, 32, 8); }
-  ctx.fillStyle = c.text; ctx.font = `700 12px ${font}`; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+  ctx.fillStyle = c.text; ctx.font = `700 13px ${font}`; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
   ctx.fillText(`${state.hang * 100} g`, px + 32, Math.min(300, hangY) + 8);
   // Light gates
   for (const [gx, label] of [[GATE1, 'light gate 1'], [GATE2, 'light gate 2']]) {
     const x = X0 + gx * PPM + 40;
     ctx.fillStyle = '#39414d'; ctx.fillRect(x - 6, BENCH_Y - 90, 12, 82);
     ctx.fillRect(x - 6, BENCH_Y - 96, 40, 10);
-    ctx.fillStyle = c.muted; ctx.font = `600 11px ${font}`; ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
+    ctx.fillStyle = c.muted; ctx.font = `600 13px ${font}`; ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
     ctx.fillText(label, x, BENCH_Y - 100);
   }
   // Trolley with card
@@ -124,13 +124,13 @@ function drawGraph() {
   const L = 40, R = 10, T = 10, B = 34, pw = GW - L - R, ph = GH - T - B;
   const xMax = byF ? 5 : 1.6, yMax = Math.max(2, Math.ceil(Math.max(0, ...state.rows.map((r) => r.a))));
   const X = (x) => L + (x / xMax) * pw, Y = (y) => T + ph - (y / yMax) * ph;
-  g.strokeStyle = c.grid; g.fillStyle = c.muted; g.font = `600 10px ${c.font}`; g.lineWidth = 1;
+  g.strokeStyle = c.grid; g.fillStyle = c.muted; g.font = `600 13px ${c.font}`; g.lineWidth = 1;
   g.textAlign = 'right'; g.textBaseline = 'middle';
   for (let i = 0; i <= 4; i++) { const y = (yMax * i) / 4; g.beginPath(); g.moveTo(L, Y(y)); g.lineTo(L + pw, Y(y)); g.stroke(); g.fillText(parseFloat(y.toFixed(1)), L - 4, Y(y)); }
   g.textAlign = 'center'; g.textBaseline = 'top';
   for (let i = 0; i <= 4; i++) { const x = (xMax * i) / 4; g.beginPath(); g.moveTo(X(x), T); g.lineTo(X(x), T + ph); g.stroke(); g.fillText(parseFloat(x.toFixed(2)), X(x), T + ph + 3); }
   g.strokeStyle = c.text; g.lineWidth = 1.5; g.beginPath(); g.moveTo(L, T); g.lineTo(L, T + ph); g.lineTo(L + pw, T + ph); g.stroke();
-  g.fillStyle = c.text; g.font = `700 11px ${c.font}`; g.fillText(byF ? 'force / N' : 'total mass / kg', L + pw / 2, GH - 15);
+  g.fillStyle = c.text; g.font = `700 13px ${c.font}`; g.fillText(byF ? 'force / N' : 'total mass / kg', L + pw / 2, GH - 15);
   g.save(); g.translate(10, T + ph / 2); g.rotate(-Math.PI / 2); g.textBaseline = 'middle'; g.fillText('acceleration / m/s²', 0, 0); g.restore();
   g.strokeStyle = c.point; g.lineWidth = 2;
   for (const r of state.rows) { const x = X(byF ? r.F : r.m), y = Y(r.a); g.beginPath(); g.moveTo(x - 4, y - 4); g.lineTo(x + 4, y + 4); g.moveTo(x - 4, y + 4); g.lineTo(x + 4, y - 4); g.stroke(); }

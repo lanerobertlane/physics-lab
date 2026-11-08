@@ -71,7 +71,7 @@ function doubleArrow(x1, y1, x2, y2, colour, label, c, labelSide = -1) {
 function drawTransverse(cy, c) {
   const A = state.A * PX;
   ctx.fillStyle = c.muted; ctx.font = `700 15px ${c.font}`; ctx.textAlign = 'left'; ctx.textBaseline = 'top';
-  ctx.fillText('Transverse wave', X0, cy - 100);
+  ctx.fillText('Transverse wave (drag up or down to change the amplitude)', X0, cy - 100);
 
   ctx.strokeStyle = c.muted; ctx.setLineDash([6, 6]); ctx.lineWidth = 1;
   ctx.beginPath(); ctx.moveTo(X0, cy); ctx.lineTo(X1, cy); ctx.stroke(); ctx.setLineDash([]);
@@ -179,8 +179,6 @@ function draw() {
 
 function renderWorking() {
   const lam = lambda();
-  $('freq-val').textContent = `${state.f.toFixed(2)} Hz`;
-  $('vel-val').textContent = `${state.v} cm/s`;
   $('amp-val').textContent = `${state.A.toFixed(1)} cm`;
   $('working').innerHTML = `
     <p>Period: T = 1 ÷ f = 1 ÷ ${state.f.toFixed(2)} = <b>${PK.ans(`${(1 / state.f).toFixed(2)} s`)}</b></p>
@@ -207,14 +205,14 @@ function setMode(m) {
 
 $('modes').addEventListener('click', (e) => { const b = e.target.closest('[data-mode]'); if (b) setMode(b.dataset.mode); });
 $('pause').addEventListener('click', () => { state.running = !state.running; $('pause').textContent = state.running ? '❚❚ Pause' : '▶ Play'; });
-$('speed').addEventListener('change', (e) => { state.speed = Number(e.target.value); });
+PK.chips('speed', (v) => { state.speed = v; });
 $('labels').addEventListener('change', (e) => { state.labels = e.target.checked; });
 $('graph').addEventListener('change', (e) => { state.graph = e.target.checked; });
 for (const [id, key] of [['freq', 'f'], ['vel', 'v'], ['amp', 'A']]) {
   $(id).addEventListener('input', (e) => {
     // Keep the wave where it is when f changes, so it doesn't jump.
-    if (key === 'f') state.t *= state.f / Number(e.target.value);
-    state[key] = Number(e.target.value);
+    if (key === 'f') state.t *= state.f / PK.num(id);
+    state[key] = PK.num(id);
     renderWorking();
     saveHash();
   });
@@ -230,6 +228,14 @@ function loadHash() {
   $('freq').value = state.f; $('vel').value = state.v; $('amp').value = state.A;
   setMode(['both', 'transverse', 'longitudinal'].includes(p.get('m')) ? p.get('m') : 'both');
 }
+
+PK.dragOn(canvas, W, H, {
+  hit: (p) => { if (state.mode === 'longitudinal') return null; const cy = state.mode === 'both' ? 130 : 260; return Math.abs(p.y - cy) < 90 && p.x > X0 && p.x < X1 ? { cy } : null; },
+  move: (d, p) => {
+    state.A = Math.max(0.5, Math.min(3, Math.round((Math.abs(p.y - d.cy) / PX) * 10) / 10));
+    $('amp').value = state.A; renderWorking(); saveHash();
+  },
+});
 
 window.addEventListener('resize', sizeCanvas);
 sizeCanvas();

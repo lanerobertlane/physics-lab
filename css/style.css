@@ -281,7 +281,7 @@
 
 [hidden] { display: none !important; }
 
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; touch-action: manipulation; }   /* no double-tap zoom on iPads; pinch still works */
 
 body {
   margin: 0;
@@ -656,7 +656,11 @@ a.tool-card:focus-visible { outline: 3px solid var(--accent); outline-offset: 2p
 
 .stage { padding: 0; overflow: hidden; }
 
-.stage svg, .stage canvas { display: block; width: 100%; height: auto; touch-action: none; user-select: none; -webkit-user-select: none; }
+.stage svg, .stage canvas { display: block; width: 100%; height: auto; user-select: none; -webkit-user-select: none; }
+canvas.drag, svg.drag { touch-action: none; }   /* only pictures you drag on stop the page scrolling */
+
+/* iPads zoom in when you tap into a box with text smaller than 16px */
+@media (pointer: coarse) { input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), select, textarea { font-size: 16px; } }
 
 .btn-row { display: flex; flex-wrap: wrap; gap: 8px; }
 
@@ -752,6 +756,7 @@ a.tool-card:focus-visible { outline: 3px solid var(--accent); outline-offset: 2p
 .stepper[data-num] input { width: 62px; text-align: right; padding-right: 4px; }
 .stepper .unit { min-width: 2.6em; padding-right: 6px; font-weight: 700; font-size: .88rem; color: var(--muted); }
 .num-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: center; margin-bottom: 10px; font-size: .92rem; font-weight: 700; color: var(--muted); }
+.num-row[hidden] { display: none; }
 
 .stepper output {
   min-width: 56px;
@@ -816,6 +821,9 @@ input[type="range"] { width: 100%; accent-color: var(--accent); min-height: 32px
 }
 
 .site-footer a { color: var(--muted); }
+.footer-beyond { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; }
+.footer-beyond input { width: 15px; height: 15px; accent-color: var(--accent); }
+:root:not(.show-beyond) .beyond { display: none !important; }   /* content beyond the spec, shown by the tick box in the footer */
 .site-footer a:hover { color: var(--accent); }
 
 /* ---------- Text pages (terms, privacy) ---------- */

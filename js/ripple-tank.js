@@ -7,7 +7,8 @@ PK.header({
   spec: [
     { code: '4.6.1.2', text: 'Properties of waves: wavelength, frequency, period and wave speed; v = f λ' },
     { code: '4.6.1.2', text: 'Required practical: measure the frequency, wavelength and speed of waves in a ripple tank' },
-    { code: '4.6.1.3', text: 'Reflection and refraction of waves at a boundary', po: true },
+    { code: '4.6.1.3', text: 'Reflection of waves at a boundary', po: true },
+    { code: '4.6.2.2', text: 'Refraction: waves change speed at a boundary, shown with wave front diagrams', ht: true },
     { code: 'KS3', text: 'Waves on water as undulations which travel through water with transverse motion; reflection' },
   ],
 });
@@ -236,7 +237,7 @@ function drawRuler(font) {
   ctx.strokeRect(0, 0, L, T);
   ctx.strokeStyle = '#222';
   ctx.fillStyle = '#222';
-  ctx.font = `700 11px ${font}`;
+  ctx.font = `700 13px ${font}`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
   for (let mm = 0; mm <= r.len * 10; mm++) {
@@ -246,7 +247,7 @@ function drawRuler(font) {
     ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
     if (mm % 10 === 0) ctx.fillText(String(mm / 10), x, 16);
   }
-  ctx.font = `600 10px ${font}`;
+  ctx.font = `600 13px ${font}`;
   ctx.textAlign = 'right';
   ctx.fillText('cm', L - 4, 28);
   ctx.restore();
@@ -310,7 +311,6 @@ canvas.addEventListener('pointercancel', endDrag);
 // ---------- Controls ----------
 
 function renderValues() {
-  $('freq-val').textContent = `${state.f} Hz`;
   const lam = V_DEEP / state.f;
   const box = $('values');
   let html = `<p>f = <b>${state.f} Hz</b></p><p>λ = <b>${PK.ans(`${lam.toFixed(1)} cm`)}</b> (deep water)</p><p>v = f λ = ${state.f} × ${PK.ans(lam.toFixed(1))} = <b>${PK.ans(`${V_DEEP} cm/s`)}</b></p>`;
@@ -346,12 +346,12 @@ function setMode(id) {
   saveHash();
 }
 
-$('modes').innerHTML = Object.entries(MODES).map(([id, m]) => `<button class="btn" data-mode="${id}">${m.name}</button>`).join('');
+$('modes').innerHTML = Object.entries(MODES).map(([id, m]) => `<button class="btn${id === 'diffract' ? ' beyond' : ''}" data-mode="${id}">${m.name}</button>`).join('');
 $('modes').addEventListener('click', (e) => { const b = e.target.closest('[data-mode]'); if (b) setMode(b.dataset.mode); });
 
-$('freq').addEventListener('input', (e) => { state.f = Number(e.target.value); renderValues(); saveHash(); });
+$('freq').addEventListener('input', () => { state.f = PK.num('freq'); renderValues(); saveHash(); });
 $('source').addEventListener('change', (e) => { state.source = e.target.value; build(); clearWaves(); saveHash(); });
-$('speed').addEventListener('change', (e) => { state.speed = Number(e.target.value); });
+PK.chips('speed', (v) => { state.speed = v; });
 $('freeze').addEventListener('click', () => {
   state.frozen = !state.frozen;
   $('freeze').textContent = state.frozen ? '▶ Run' : '❚❚ Freeze (strobe)';
@@ -378,6 +378,8 @@ $('watch-reset').addEventListener('click', () => {
   $('count').textContent = '0';
 });
 
+window.addEventListener('pk-beyond', () => { if (state.mode === 'diffract' && !PK.beyondShown()) setMode('measure'); });
+
 function saveHash() {
   const p = new URLSearchParams({ m: state.mode, f: state.f, s: state.source });
   if (state.param != null) p.set('p', state.param);
@@ -391,7 +393,7 @@ function loadHash() {
   if (p.get('s') === 'point') state.source = 'point';
   $('freq').value = state.f;
   $('source').value = state.source;
-  const mode = MODES[p.get('m')] ? p.get('m') : 'measure';
+  const mode = MODES[p.get('m')] && (p.get('m') !== 'diffract' || PK.beyondShown()) ? p.get('m') : 'measure';
   setMode(mode);
   const s = MODES[mode].slider;
   const v = Number(p.get('p'));

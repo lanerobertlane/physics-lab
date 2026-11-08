@@ -25,6 +25,9 @@ const state = {
 
 const CYL_MASS = 82.4;   // empty measuring cylinder, g
 
+// Tap or drag the object to lower it into the eureka can, and again to take it out
+function toggleObject() { const b = $(state.dropped ? 'out' : 'drop'); if (b) b.click(); }
+
 function measurement() {
   if (state.mode === 'regular') {
     const [l, w, h] = state.dims, V = l * w * h, m = V * SOLIDS[state.solid][1];
@@ -58,7 +61,7 @@ function cylinder(x, y0, vol, maxVol, colour, c, label = true) {
   ctx.strokeStyle = c.text; ctx.lineWidth = 2;
   ctx.beginPath(); ctx.moveTo(x - w / 2, top); ctx.lineTo(x - w / 2, top + h); ctx.lineTo(x + w / 2, top + h); ctx.lineTo(x + w / 2, top); ctx.stroke();
   ctx.fillRect(x - w / 2 - 10, top + h, w + 20, 6);
-  ctx.lineWidth = 1; ctx.fillStyle = c.text; ctx.font = `600 9px ${c.font}`; ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+  ctx.lineWidth = 1; ctx.fillStyle = c.text; ctx.font = `600 13px ${c.font}`; ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
   for (let v = 0; v <= maxVol; v += maxVol / 20) {
     const yy = top + h - (v / maxVol) * (h - 10);
     const major = Math.round(v) % (maxVol / 4) === 0;
@@ -137,7 +140,7 @@ function renderControls() {
     bar.innerHTML = '<button class="btn" id="newblock">🎲 A different-sized block</button>';
     $('newblock').addEventListener('click', () => { const r = () => (2 + Math.round(Math.random() * 8) / 2); state.dims = [r() + 1, r(), r() - 0.5]; });
   } else if (state.mode === 'irregular') {
-    $('intro').textContent = 'Fill a eureka can to the spout. Lower the object in: the water it pushes out (displaces) flows into the measuring cylinder. That volume equals the object’s volume.';
+    $('intro').textContent = 'Fill a eureka can to the spout. Lower the object in: the water it pushes out (displaces) flows into the measuring cylinder. That volume equals the object’s volume. Tap or drag the object to lower it in.';
     el.innerHTML = `<h2>Object</h2><div class="field"><label for="obj">Object</label><select class="select" id="obj">${Object.entries(OBJECTS).map(([id, o]) => `<option value="${id}">${o[0]}</option>`).join('')}</select></div>`;
     $('obj').value = state.object;
     $('obj').addEventListener('change', (e) => { state.object = e.target.value; state.dropped = false; });
@@ -147,10 +150,10 @@ function renderControls() {
   } else {
     $('intro').textContent = 'Put an empty measuring cylinder on the balance and zero it. Pour in some liquid, then read the volume from the cylinder and the mass from the balance.';
     el.innerHTML = `<h2>Liquid</h2><div class="field"><label for="liq">Liquid</label><select class="select" id="liq">${Object.entries(LIQUIDS).map(([id, l]) => `<option value="${id}">${l[0]}</option>`).join('')}</select></div>
-      <div class="ctl"><label for="vol">Volume poured <b id="vol-val">${state.poured} cm³</b></label><input type="range" id="vol" min="10" max="100" step="5" value="${state.poured}"></div>`;
+      <div class="num-row"><label for="vol">Volume poured</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: volume poured">−</button><input type="number" id="vol" min="10" max="100" step="any" data-inc="5" value="${state.poured}" inputmode="decimal"><span class="unit">cm³</span><button data-step="1" aria-label="More: volume poured">+</button></div></div>`;
     $('liq').value = state.liquid;
     $('liq').addEventListener('change', (e) => { state.liquid = e.target.value; });
-    $('vol').addEventListener('input', (e) => { state.poured = Number(e.target.value); $('vol-val').textContent = `${state.poured} cm³`; });
+    $('vol').addEventListener('input', () => { state.poured = PK.num('vol'); });
     bar.innerHTML = `<button class="btn" id="tare">${state.tared ? 'Un-zero the balance' : '⓪ Zero (tare) the balance'}</button>`;
     $('tare').addEventListener('click', () => { state.tared = !state.tared; renderControls(); });
   }
@@ -180,6 +183,12 @@ sizeCanvas();
 renderControls();
 renderTable();
 requestAnimationFrame(frame);
+
+PK.dragOn(cv, W, H, {
+  hit: (p) => (state.mode === 'irregular' && Math.hypot(p.x - 220, p.y - (state.dropped ? 270 : 80)) < 50 ? 'object' : null),
+  end: toggleObject,
+  tap: toggleObject,
+});
 
 // Share: the block's size, whether the balance is zeroed, and the results so far
 PK.shareState = {

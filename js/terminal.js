@@ -6,10 +6,11 @@ PK.header({
   title: 'Terminal velocity',
   answers: true,
   spec: [
-    { code: '4.5.6.1.5', text: 'An object falling through a fluid first accelerates due to gravity; eventually the resultant force is zero and it moves at its terminal velocity', po: true },
+    { code: '4.5.6.1.5', text: 'An object falling through a fluid first accelerates due to gravity; eventually the resultant force is zero and it moves at its terminal velocity' },
     { code: '4.5.6.2.1', text: "Newton's first law: zero resultant force means constant velocity" },
     { code: '4.5.6.2.2', text: "Newton's second law: F = m a" },
     { code: '4.5.6.1.5', text: 'Velocity–time graphs: the gradient is the acceleration' },
+    { code: '4.5.6.1.5', text: 'Drawing and interpreting velocity–time graphs for objects that reach terminal velocity, and explaining the motion in terms of the forces', po: true },
     { code: 'KS3', text: 'Forces: air resistance, balanced and unbalanced forces, speed' },
   ],
 });
@@ -146,7 +147,7 @@ function drawScene() {
   ctx.fillStyle = '#6aa84f'; ctx.fillRect(580, 386, 24, 4);
   const hy = 150 + 236 * (1 - sim.h / H0);
   ctx.fillStyle = '#e53935'; ctx.beginPath(); ctx.arc(592, hy, 7, 0, Math.PI * 2); ctx.fill();
-  ctx.fillStyle = '#1b1f2a'; ctx.font = `600 11px ${font}`; ctx.fillText(`${H0} m`, 612, 146); ctx.fillText('ground', 612, 382);
+  ctx.fillStyle = '#1b1f2a'; ctx.font = `600 13px ${font}`; ctx.fillText(`${H0} m`, 612, 146); ctx.fillText('ground', 612, 382);
   // What is happening
   ctx.font = `700 13px ${font}`;
   wrap(ctx, phaseText(), 612, 200, 175, 17);
@@ -178,18 +179,18 @@ function drawGraph() {
   const tMax = Math.max(60, Math.ceil(sim.t / 30) * 30);
   const vMax = Math.max(60, Math.ceil(terminal(K[state.body]) / 20) * 20);
   const X = (t) => L + (t / tMax) * pw, Y = (v) => T + ph - (Math.min(v, vMax) / vMax) * ph;
-  gctx.strokeStyle = c.grid; gctx.fillStyle = c.muted; gctx.font = `600 11px ${c.font}`; gctx.lineWidth = 1;
+  gctx.strokeStyle = c.grid; gctx.fillStyle = c.muted; gctx.font = `600 13px ${c.font}`; gctx.lineWidth = 1;
   gctx.textAlign = 'right'; gctx.textBaseline = 'middle';
   for (let v = 0; v <= vMax; v += 10) { gctx.beginPath(); gctx.moveTo(L, Y(v)); gctx.lineTo(L + pw, Y(v)); gctx.stroke(); gctx.fillText(v, L - 6, Y(v)); }
   gctx.textAlign = 'center'; gctx.textBaseline = 'top';
   const step = tMax > 120 ? 20 : 10;
   for (let t = 0; t <= tMax; t += step) { gctx.beginPath(); gctx.moveTo(X(t), T); gctx.lineTo(X(t), T + ph); gctx.stroke(); gctx.fillText(t, X(t), T + ph + 4); }
   gctx.strokeStyle = c.text; gctx.lineWidth = 1.5; gctx.beginPath(); gctx.moveTo(L, T); gctx.lineTo(L, T + ph); gctx.lineTo(L + pw, T + ph); gctx.stroke();
-  gctx.fillStyle = c.text; gctx.font = `700 12px ${c.font}`; gctx.fillText('time / s', L + pw / 2, GH - 18);
+  gctx.fillStyle = c.text; gctx.font = `700 13px ${c.font}`; gctx.fillText('time / s', L + pw / 2, GH - 18);
   gctx.save(); gctx.translate(16, T + ph / 2); gctx.rotate(-Math.PI / 2); gctx.textBaseline = 'middle'; gctx.fillText('velocity / m/s', 0, 0); gctx.restore();
   // Terminal velocities as dashed lines
   if ($('show-vt').checked) {
-    gctx.setLineDash([6, 5]); gctx.lineWidth = 1.5; gctx.textAlign = 'right'; gctx.textBaseline = 'bottom'; gctx.font = `700 11px ${c.font}`;
+    gctx.setLineDash([6, 5]); gctx.lineWidth = 1.5; gctx.textAlign = 'right'; gctx.textBaseline = 'bottom'; gctx.font = `700 13px ${c.font}`;
     for (const [kk, label, col] of [[K[state.body], 'terminal velocity (no parachute)', '#1e63c6'], [K.chute, 'terminal velocity (parachute open)', '#e53935']]) {
       const vt = terminal(kk);
       gctx.strokeStyle = col; gctx.fillStyle = col;
@@ -209,7 +210,6 @@ function drawGraph() {
 
 function renderPanel() {
   const D = drag(), Wt = weight(), F = sim.phase === 'falling' ? Wt - D : 0;
-  $('mass-val').textContent = `${state.m} kg`;
   $('readout').innerHTML = `
     <dt>Weight (W = m g)</dt><dd>${PK.ans(`${Wt.toFixed(0)} N`)}</dd>
     <dt>Air resistance</dt><dd>${D.toFixed(0)} N</dd>
@@ -226,7 +226,7 @@ $('jump').addEventListener('click', () => {
 });
 $('chute').addEventListener('click', () => { sim.opening = true; $('chute').disabled = true; });
 $('reset').addEventListener('click', reset);
-$('mass').addEventListener('input', (e) => { state.m = Number(e.target.value); renderPanel(); });
+$('mass').addEventListener('input', () => { state.m = PK.num('mass'); renderPanel(); });
 document.querySelectorAll('#body .chip').forEach((b) => b.addEventListener('click', () => {
   state.body = b.dataset.b;
   document.querySelectorAll('#body .chip').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));

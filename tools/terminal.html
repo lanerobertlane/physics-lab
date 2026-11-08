@@ -24,9 +24,6 @@
     #scene { aspect-ratio: 800 / 420; }
     #graph { width: 100%; aspect-ratio: 800 / 260; display: block; }
     .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
-    .ctl { margin-bottom: 12px; }
-    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
-    .ctl label b { color: var(--text); }
   </style>
 </head>
 <body>
@@ -65,7 +62,7 @@
         </div>
         <div class="panel">
           <h2>The skydiver</h2>
-          <div class="ctl"><label for="mass">Mass (with kit) <b id="mass-val"></b></label><input type="range" id="mass" min="50" max="120" step="5" value="80"></div>
+          <div class="num-row"><label for="mass">Mass (with kit)</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: mass">−</button><input type="number" id="mass" min="50" max="120" step="any" data-inc="5" value="80" inputmode="decimal"><span class="unit">kg</span><button data-step="1" aria-label="More: mass">+</button></div></div>
           <div class="field"><span class="label">Body position</span>
             <div class="chip-group" id="body">
               <button class="chip" data-b="spread" aria-pressed="true">Spread out</button>

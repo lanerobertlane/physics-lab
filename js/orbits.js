@@ -5,7 +5,7 @@
 PK.header({
   title: 'Orbits',
   spec: [
-    { code: '4.8.1.1', text: 'Our solar system: planets, moons and artificial satellites' },
+    { code: '4.8.1.1', text: 'Our solar system: planets, moons and artificial satellites', po: true },
     { code: '4.8.1.3', text: 'Orbital motion, natural and artificial satellites: gravity provides the force for circular orbits', po: true },
     { code: '4.8.1.3', text: 'In a circular orbit speed is constant but velocity changes; a change in speed needs a change in radius', po: true, ht: true },
   ],
@@ -27,6 +27,8 @@ function launch(r0 = state.r0, pct = state.pct) {
   sats.push({ x: CX, y: CY - r0, vx: v, vy: 0, trail: [], col: COLS[ci++ % COLS.length], status: 'flying', pct, r0, t: 0 });
   if (sats.length > 8) sats.shift();
 }
+
+const launchLen = () => (state.pct / 160) * 150;
 
 function outcome(pct) {
   if (pct === 0) return 'falls straight down';
@@ -83,7 +85,13 @@ function draw() {
   // Launch point preview
   ctx.strokeStyle = 'rgba(255,255,255,.35)'; ctx.setLineDash([4, 6]); ctx.lineWidth = 1.5;
   ctx.beginPath(); ctx.arc(CX, CY, state.r0, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
-  ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(CX, CY - state.r0, 4, 0, Math.PI * 2); ctx.fill();
+  // Launch point and speed: both can be dragged
+  const ly = CY - state.r0, tipX = CX + launchLen();
+  if (state.pct > 0) arrow(CX, ly, tipX, ly, '#7ee787');
+  ctx.fillStyle = '#fff'; ctx.strokeStyle = '#05070f'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(CX, ly, 11, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = '#7ee787'; ctx.beginPath(); ctx.arc(tipX + 18, ly, 11, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = '#fff'; ctx.font = `700 16px ${font}`; ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+  ctx.fillText('Drag the white dot to change the height, and the green dot to change the speed', 16, 12);
 
   for (const s of sats) {
     ctx.strokeStyle = s.col; ctx.lineWidth = 2; ctx.globalAlpha = 0.8;
@@ -117,6 +125,19 @@ function renderPanel() {
     <dt>Distance from centre</dt><dd>${r.toFixed(0)} units</dd>
     <dt>Speed</dt><dd>${v.toFixed(0)} units/s</dd>`;
 }
+
+PK.dragOn(canvas, W, H, {
+  hit: (p) => {
+    const ly = CY - state.r0;
+    if (Math.hypot(p.x - (CX + launchLen() + 18), p.y - ly) < 30) return 'speed';
+    return Math.hypot(p.x - CX, p.y - ly) < 30 ? 'height' : null;
+  },
+  move: (what, p) => {
+    if (what === 'speed') { state.pct = Math.max(0, Math.min(160, Math.round((((p.x - 18 - CX) / 150) * 160) / 5) * 5)); $('speed').value = state.pct; }
+    else { state.r0 = Math.max(90, Math.min(230, Math.round((CY - p.y) / 5) * 5)); $('height').value = state.r0; }
+    renderPanel();
+  },
+});
 
 $('launch').addEventListener('click', () => launch());
 $('compare').addEventListener('click', () => { sats = []; for (const r of [100, 160, 230]) launch(r, 100); });

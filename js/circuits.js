@@ -454,7 +454,7 @@ function paletteIcon(type) {
   if (type === 'ammeter' || type === 'voltmeter') {
     g.setTransform(dpr, 0, 0, dpr, 0, 0);
     g.fillStyle = PK.cssVar('--text');
-    g.font = '700 11px sans-serif';
+    g.font = '700 13px sans-serif';
     g.textAlign = 'center'; g.textBaseline = 'middle';
     g.fillText(type === 'ammeter' ? 'A' : 'V', 30, 17.5);
   }
@@ -898,7 +898,7 @@ function drawGraph() {
 
   // Grid and tick labels
   g.lineWidth = 1;
-  g.font = `600 11px ${font}`;
+  g.font = `600 13px ${font}`;
   g.fillStyle = col.muted;
   g.textAlign = 'center';
   g.textBaseline = 'top';
@@ -924,7 +924,7 @@ function drawGraph() {
   g.beginPath(); g.moveTo(L, Y(0)); g.lineTo(L + pw, Y(0)); g.stroke();
 
   g.fillStyle = col.text;
-  g.font = `700 12px ${font}`;
+  g.font = `700 13px ${font}`;
   g.textAlign = 'center';
   g.textBaseline = 'bottom';
   g.fillText('potential difference / V', L + pw / 2, GH - 2);
@@ -937,7 +937,7 @@ function drawGraph() {
 
   if (!rows.length) {
     g.fillStyle = col.muted;
-    g.font = `600 12px ${font}`;
+    g.font = `600 13px ${font}`;
     g.textAlign = 'center';
     g.textBaseline = 'middle';
     g.fillText('Record readings to plot the graph', L + pw / 2, T + ph / 3);

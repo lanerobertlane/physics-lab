@@ -103,7 +103,7 @@ function drawSpectra(z) {
     if (x2 > GW - R) continue;
     sctx.setLineDash([3, 3]); sctx.beginPath(); sctx.moveTo(x1, 72); sctx.lineTo(x2, 108); sctx.stroke(); sctx.setLineDash([]);
   }
-  sctx.font = `600 12px ${c.font}`; sctx.textAlign = 'left'; sctx.textBaseline = 'top';
+  sctx.font = `600 13px ${c.font}`; sctx.textAlign = 'left'; sctx.textBaseline = 'top';
   sctx.fillText('violet (short wavelength)', L, 172);
   sctx.textAlign = 'right'; sctx.fillText('red (long wavelength) →', GW - R, 172);
 }

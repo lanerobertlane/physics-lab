@@ -201,12 +201,12 @@ const PQ = (() => {
       c('A bow is pulled back before an arrow is fired.', { k: r(300, 800, 10), e: r(0.2, 0.6, 0.05) }),
       c('The spring in a pinball launcher is squashed.', { k: r(50, 300, 10), e: r(0.02, 0.1, 0.01) }),
     ] },
-    shc: { free: { m: r(0.2, 5, 0.1), c: [4200, 2100, 900, 450, 390, 130], dth: r(2, 60, 1) }, contexts: [
+    shc: { free: { m: r(0.2, 5, 0.1), c: [4200, 2100, 900, 450, 385, 130], dth: r(2, 60, 1) }, contexts: [
       c('A block is heated with an electric heater.'),
       c('Water is heated in a kettle.', { c: [4200], m: r(0.5, 1.7, 0.1), dth: r(20, 80, 1) }),
       c('A swimming pool is warmed up.', { c: [4200], m: r(100000, 500000, 10000), dth: r(1, 5, 1) }),
       c('An aluminium saucepan is heated on a hob.', { c: [900], m: r(0.5, 2, 0.1), dth: r(20, 150, 5) }),
-      c('A copper pipe is warmed by hot water.', { c: [390], m: r(0.2, 3, 0.1), dth: r(10, 50, 1) }),
+      c('A copper pipe is warmed by hot water.', { c: [385], m: r(0.2, 3, 0.1), dth: r(10, 50, 1) }),
       c('Cooking oil is heated in a fryer.', { c: [2000], m: r(1, 5, 0.5), dth: r(100, 160, 5) }),
     ] },
     period: { free: { f: r(0.5, 50, 0.5) }, contexts: [

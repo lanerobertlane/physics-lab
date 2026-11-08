@@ -206,8 +206,8 @@ function drawGauge(c, font) {
 
 function renderResults() {
   $('table').innerHTML = results.length ? `<table class="results">
-    <thead><tr><th>V (L)</th><th>T (K)</th><th>p (kPa)</th><th>p × V</th><th></th></tr></thead>
-    <tbody>${results.map((r, i) => `<tr><td class="n">${r.V.toFixed(2)}</td><td class="n">${r.T.toFixed(0)}</td><td class="n">${r.p.toFixed(0)}</td><td class="n">${PK.ans((r.p * r.V).toFixed(0))}</td>
+    <thead><tr><th>V (L)</th><th>T (${PK.beyondShown() ? 'K' : '°C'})</th><th>p (kPa)</th><th>p × V</th><th></th></tr></thead>
+    <tbody>${results.map((r, i) => `<tr><td class="n">${r.V.toFixed(2)}</td><td class="n">${(PK.beyondShown() ? r.T : r.T - 273).toFixed(0)}</td><td class="n">${r.p.toFixed(0)}</td><td class="n">${PK.ans((r.p * r.V).toFixed(0))}</td>
       <td><button class="del" data-i="${i}" aria-label="Delete">✕</button></td></tr>`).join('')}</tbody></table>`
     : '<p class="note">No readings yet. Change the volume or temperature between readings.</p>';
   drawGraph();
@@ -222,21 +222,22 @@ function drawGraph() {
   g.fillStyle = c.surface; g.fillRect(0, 0, GW, GH);
   const byV = $('axis').value === 'V';
   const L = 44, Rm = 10, T = 10, B = 36, pw = GW - L - Rm, ph = GH - T - B;
-  const xMax = byV ? V_FULL : 600, yMax = Math.max(100, Math.ceil(Math.max(0, ...results.map((r) => r.p)) / 100) * 100);
-  const X = (x) => L + (x / xMax) * pw, Y = (y) => T + ph - (y / yMax) * ph;
-  g.strokeStyle = c.grid; g.lineWidth = 1; g.fillStyle = c.muted; g.font = `600 10px ${font}`;
+  const kelvin = PK.beyondShown(), xMin = byV || kelvin ? 0 : -200, xN = byV || kelvin ? 4 : 6;
+  const xMax = byV ? V_FULL : kelvin ? 600 : 400, yMax = Math.max(100, Math.ceil(Math.max(0, ...results.map((r) => r.p)) / 100) * 100);
+  const X = (x) => L + ((x - xMin) / (xMax - xMin)) * pw, Y = (y) => T + ph - (y / yMax) * ph;
+  g.strokeStyle = c.grid; g.lineWidth = 1; g.fillStyle = c.muted; g.font = `600 13px ${font}`;
   g.textAlign = 'right'; g.textBaseline = 'middle';
   for (let i = 0; i <= 4; i++) { const y = (yMax * i) / 4; g.beginPath(); g.moveTo(L, Y(y)); g.lineTo(L + pw, Y(y)); g.stroke(); g.fillText(y, L - 4, Y(y)); }
   g.textAlign = 'center'; g.textBaseline = 'top';
-  for (let i = 0; i <= 4; i++) { const x = (xMax * i) / 4; g.beginPath(); g.moveTo(X(x), T); g.lineTo(X(x), T + ph); g.stroke(); g.fillText(byV ? x.toFixed(1) : x, X(x), T + ph + 3); }
+  for (let i = 0; i <= xN; i++) { const x = xMin + ((xMax - xMin) * i) / xN; g.beginPath(); g.moveTo(X(x), T); g.lineTo(X(x), T + ph); g.stroke(); g.fillText(byV ? x.toFixed(1) : x, X(x), T + ph + 3); }
   g.strokeStyle = c.text; g.lineWidth = 1.5;
   g.beginPath(); g.moveTo(L, T); g.lineTo(L, T + ph); g.lineTo(L + pw, T + ph); g.stroke();
-  g.fillStyle = c.text; g.font = `700 11px ${font}`;
-  g.fillText(byV ? 'volume / L' : 'temperature / K', L + pw / 2, GH - 15);
+  g.fillStyle = c.text; g.font = `700 13px ${font}`;
+  g.fillText(byV ? 'volume / L' : kelvin ? 'temperature / K' : 'temperature / °C', L + pw / 2, GH - 15);
   g.save(); g.translate(11, T + ph / 2); g.rotate(-Math.PI / 2); g.textBaseline = 'middle'; g.fillText('pressure / kPa', 0, 0); g.restore();
   g.strokeStyle = c.point; g.lineWidth = 2;
   for (const r of results) {
-    const x = X(byV ? r.V : r.T), y = Y(r.p);
+    const x = X(byV ? r.V : kelvin ? r.T : r.T - 273), y = Y(r.p);
     g.beginPath(); g.moveTo(x - 4, y - 4); g.lineTo(x + 4, y + 4); g.moveTo(x - 4, y + 4); g.lineTo(x + 4, y - 4); g.stroke();
   }
 }
@@ -249,20 +250,19 @@ $('axis').addEventListener('change', drawGraph);
 // ---------- Controls ----------
 
 function syncLabels() {
-  $('volume-val').textContent = `${(V_FULL * (state.targetXp - X0) / LMAX).toFixed(2)} L`;
-  $('temp-val').textContent = `${state.T} K (${state.T - 273} °C)`;
+  $('temp-k').textContent = `${state.T - 273} °C is ${state.T} K.`;
   $('count-val').textContent = state.n;
   $('iso-note').innerHTML = state.iso
     ? 'The temperature is held constant (the gas can lose or gain heat through the cylinder walls).'
     : '<b>Insulated:</b> push the piston in quickly and the gas heats up, because work is done on it. Pull it out and the gas cools.';
 }
 
-$('volume').addEventListener('input', (e) => { state.targetXp = X0 + (LMAX * Number(e.target.value)) / 100; syncLabels(); });
-$('temp').addEventListener('input', (e) => { state.T = Number(e.target.value); rescaleTo(state.T); syncLabels(); });
+$('volume').addEventListener('input', () => { state.targetXp = X0 + (LMAX * PK.num('volume')) / V_FULL; syncLabels(); });
+$('temp').addEventListener('input', () => { state.T = PK.num('temp') + 273; rescaleTo(state.T); syncLabels(); });
 $('count').addEventListener('input', (e) => { state.n = Number(e.target.value); setCount(state.n); syncLabels(); });
 $('iso').addEventListener('change', (e) => {
   state.iso = e.target.checked;
-  if (state.iso) { state.T = Math.round(measuredT() / 10) * 10; state.T = Math.max(100, Math.min(600, state.T)); $('temp').value = state.T; }
+  if (state.iso) { state.T = Math.round(measuredT() / 10) * 10; state.T = Math.max(100, Math.min(600, state.T)); $('temp').value = state.T - 273; }
   syncLabels();
 });
 $('trail').addEventListener('change', (e) => { state.trail = e.target.checked; trail = []; });
@@ -286,7 +286,7 @@ canvas.addEventListener('pointermove', (e) => {
   canvas.style.cursor = dragging || p.x > state.xp - 10 ? 'ew-resize' : 'default';
   if (!dragging) return;
   state.targetXp = Math.max(X0 + LMAX * 0.25, Math.min(X0 + LMAX, p.x + grabDx));
-  $('volume').value = Math.round(((state.targetXp - X0) / LMAX) * 100);
+  $('volume').value = (((state.targetXp - X0) / LMAX) * V_FULL).toFixed(2);
   syncLabels();
 });
 const endDrag = () => { dragging = false; };
@@ -301,8 +301,9 @@ function frame(now) {
   lastT = now;
   for (let i = 0; i < 4; i++) step(dt / 4);
   if (!state.iso && frameCount++ % 10 === 0) {
-    // Insulated: show the gas's own temperature on the slider label.
-    $('temp-val').textContent = `${measuredT().toFixed(0)} K (${(measuredT() - 273).toFixed(0)} °C)`;
+    // Insulated: show the gas's own temperature in the box (unless someone is typing in it).
+    if (document.activeElement !== $('temp')) $('temp').value = (measuredT() - 273).toFixed(0);
+    $('temp-k').textContent = `${(measuredT() - 273).toFixed(0)} °C is ${measuredT().toFixed(0)} K.`;
   }
   draw();
   requestAnimationFrame(frame);
@@ -310,6 +311,7 @@ function frame(now) {
 
 window.addEventListener('resize', () => { sizeCanvas(); drawGraph(); });
 window.addEventListener('pk-theme', drawGraph);
+window.addEventListener('pk-beyond', () => { renderResults(); drawGraph(); });
 
 setCount(state.n);
 pressure = 100;

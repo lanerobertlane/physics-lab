@@ -7,7 +7,7 @@ PK.header({
   answers: true,
   spec: [
     { code: '4.1.2.1', text: 'Required practical: investigate the effectiveness of different materials as thermal insulators, and the factors that affect this (such as thickness)', po: true },
-    { code: '4.1.2.1', text: 'The higher the thermal conductivity of a material, the higher the rate of energy transfer by conduction', po: true },
+    { code: '4.1.2.1', text: 'The higher the thermal conductivity of a material, the higher the rate of energy transfer by conduction' },
   ],
 });
 
@@ -93,19 +93,19 @@ function drawCurve() {
   cctx.fillStyle = c.surface; cctx.fillRect(0, 0, GW, GH);
   const L = 56, R = 150, T = 12, B = 40, pw = GW - L - R, ph = GH - T - B;
   const X = (t) => L + (t / T_END) * pw, Y = (v) => T + ph - ((v - 20) / 65) * ph;
-  cctx.strokeStyle = c.grid; cctx.fillStyle = c.muted; cctx.font = `600 11px ${c.font}`; cctx.lineWidth = 1;
+  cctx.strokeStyle = c.grid; cctx.fillStyle = c.muted; cctx.font = `600 13px ${c.font}`; cctx.lineWidth = 1;
   cctx.textAlign = 'right'; cctx.textBaseline = 'middle';
   for (let v = 20; v <= 80; v += 10) { cctx.beginPath(); cctx.moveTo(L, Y(v)); cctx.lineTo(L + pw, Y(v)); cctx.stroke(); cctx.fillText(v, L - 6, Y(v)); }
   cctx.textAlign = 'center'; cctx.textBaseline = 'top';
   for (let m = 0; m <= 20; m += 2) { cctx.beginPath(); cctx.moveTo(X(m * 60), T); cctx.lineTo(X(m * 60), T + ph); cctx.stroke(); cctx.fillText(m, X(m * 60), T + ph + 4); }
   cctx.strokeStyle = c.text; cctx.lineWidth = 1.5; cctx.beginPath(); cctx.moveTo(L, T); cctx.lineTo(L, T + ph); cctx.lineTo(L + pw, T + ph); cctx.stroke();
-  cctx.fillStyle = c.text; cctx.font = `700 12px ${c.font}`; cctx.fillText('time / minutes', L + pw / 2, GH - 16);
+  cctx.fillStyle = c.text; cctx.font = `700 13px ${c.font}`; cctx.fillText('time / minutes', L + pw / 2, GH - 16);
   cctx.save(); cctx.translate(14, T + ph / 2); cctx.rotate(-Math.PI / 2); cctx.textBaseline = 'middle'; cctx.fillText('temperature / °C', 0, 0); cctx.restore();
   const pts = [...state.log, { t: state.t, temps: state.temps }];
   for (let i = 0; i < 4; i++) {
     cctx.strokeStyle = COLS[i]; cctx.lineWidth = 2.5;
     cctx.beginPath(); pts.forEach((p, j) => (j ? cctx.lineTo(X(p.t), Y(p.temps[i])) : cctx.moveTo(X(p.t), Y(p.temps[i])))); cctx.stroke();
-    cctx.fillStyle = COLS[i]; cctx.font = `700 12px ${c.font}`; cctx.textAlign = 'left'; cctx.textBaseline = 'middle';
+    cctx.fillStyle = COLS[i]; cctx.font = `700 13px ${c.font}`; cctx.textAlign = 'left'; cctx.textBaseline = 'middle';
     cctx.fillText(`${'ABCD'[i]}: ${MATERIALS[state.picks[i]].name}`, L + pw + 10, T + 14 + i * 20);
   }
 }
@@ -136,7 +136,7 @@ $('go').addEventListener('click', () => {
   $('go').textContent = state.running ? '❚❚ Pause' : '▶ Start the stopwatch';
 });
 $('reset').addEventListener('click', reset);
-$('speed').addEventListener('change', (e) => { state.speed = Number(e.target.value); });
+PK.chips('speed', (v) => { state.speed = v; });
 $('less').addEventListener('click', () => { state.layers = Math.max(1, state.layers - 1); reset(); });
 $('more').addEventListener('click', () => { state.layers = Math.min(4, state.layers + 1); reset(); });
 $('lid').addEventListener('change', (e) => { state.lid = e.target.checked; reset(); });

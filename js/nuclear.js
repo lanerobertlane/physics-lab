@@ -18,7 +18,7 @@ const font = () => PK.cssVar('--font-body') || 'sans-serif';
 const SYMBOLS = ('H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn Fr Ra Ac Th Pa U Np Pu Am Cm').split(' ');
 const NAMES = ('hydrogen helium lithium beryllium boron carbon nitrogen oxygen fluorine neon sodium magnesium aluminium silicon phosphorus sulfur chlorine argon potassium calcium scandium titanium vanadium chromium manganese iron cobalt nickel copper zinc gallium germanium arsenic selenium bromine krypton rubidium strontium yttrium zirconium niobium molybdenum technetium ruthenium rhodium palladium silver cadmium indium tin antimony tellurium iodine xenon caesium barium lanthanum cerium praseodymium neodymium promethium samarium europium gadolinium terbium dysprosium holmium erbium thulium ytterbium lutetium hafnium tantalum tungsten rhenium osmium iridium platinum gold mercury thallium lead bismuth polonium astatine radon francium radium actinium thorium protactinium uranium neptunium plutonium americium curium').split(' ');
 const sym = (z) => SYMBOLS[z - 1] || '?';
-const nameOf = (z) => NAMES[z - 1] || '';
+const isotopeName = (z) => NAMES[z - 1] || '';
 const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 
 // [mass number, atomic number, decay]
@@ -59,7 +59,7 @@ const box = (id, label) => `<input class="num" id="${id}" type="number" inputmod
 
 function render() {
   const q = state.q, p = PARTICLE[q.decay];
-  const nm = `${cap(nameOf(q.Z))}-${q.A}`;
+  const nm = `${cap(isotopeName(q.Z))}-${q.A}`;
   $('question').innerHTML = q.decay === 'gamma'
     ? `An excited nucleus of <b>${nm}</b> gives out <b>a gamma ray</b>. Complete the equation.`
     : `<b>${nm}</b> decays by giving out <b>${p.word}</b>. Complete the equation.`;
@@ -87,7 +87,7 @@ function updateSymbol() {
   const ok = Number.isInteger(z) && z >= 1 && z <= SYMBOLS.length;
   $('dSym').textContent = ok ? sym(z) : '?';
   $('dSym').classList.toggle('unknown', !ok);
-  $('el-name').textContent = ok ? `Atomic number ${z} is ${nameOf(z)} (${sym(z)}).` : '';
+  $('el-name').textContent = ok ? `Atomic number ${z} is ${isotopeName(z)} (${sym(z)}).` : '';
 }
 
 function check() {
@@ -101,7 +101,7 @@ function check() {
   state.tried++;
   if (allRight) {
     state.right++; state.solved = true;
-    $('result').textContent = `Correct! ${cap(nameOf(q.Z))}-${q.A} → ${cap(nameOf(d.Z))}-${d.A}.${q.decay === 'gamma' ? ' Gamma emission doesn’t change the nucleus: it just loses energy.' : ''}`;
+    $('result').textContent = `Correct! ${cap(isotopeName(q.Z))}-${q.A} → ${cap(isotopeName(d.Z))}-${d.A}.${q.decay === 'gamma' ? ' Gamma emission doesn’t change the nucleus: it just loses energy.' : ''}`;
     $('result').className = 'result ok';
     play();
   } else {
@@ -121,7 +121,7 @@ function showMe() {
   updateSymbol();
   for (const id of ['dA', 'dZ', 'pM', 'pC']) { $(id).classList.remove('bad'); $(id).classList.add('ok'); }
   state.solved = true;
-  $('result').textContent = `${cap(nameOf(q.Z))}-${q.A} → ${cap(nameOf(d.Z))}-${d.A}.`;
+  $('result').textContent = `${cap(isotopeName(q.Z))}-${q.A} → ${cap(isotopeName(d.Z))}-${d.A}.`;
   $('result').className = 'result ok';
   play();
 }
@@ -218,17 +218,17 @@ function draw(dt) {
   const decayed = anim && t >= 0.5;
   const nowZ = decayed ? daughter(q).Z : q.Z, nowA = decayed ? daughter(q).A : q.A;
   ctx.fillStyle = ink; ctx.font = `800 15px ${font()}`; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
-  ctx.fillText(`${cap(nameOf(nowZ))}-${nowA}`, NX, H - 52);
+  ctx.fillText(`${cap(isotopeName(nowZ))}-${nowA}`, NX, H - 52);
   ctx.font = `700 13px ${font()}`;
   ctx.fillStyle = '#c62828'; ctx.fillText(`${nowZ} protons`, NX - 55, H - 30);
   ctx.fillStyle = PK.cssVar('--muted'); ctx.fillText(`${nowA - nowZ} neutrons`, NX + 55, H - 30);
   // Key
   ball(W - 120, 22, 7, true); ball(W - 120, 44, 7, false);
-  ctx.fillStyle = ink; ctx.font = `700 12px ${font()}`; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+  ctx.fillStyle = ink; ctx.font = `700 13px ${font()}`; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
   ctx.fillText('proton', W - 106, 22); ctx.fillText('neutron', W - 106, 44);
 }
 function label(x, y, text, col) {
-  ctx.fillStyle = col; ctx.font = `700 12px ${font()}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillStyle = col; ctx.font = `700 13px ${font()}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
   ctx.fillText(text, Math.min(W - 130, Math.max(130, x)), y);
 }
 

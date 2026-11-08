@@ -10,6 +10,7 @@ PK.header({
     { code: '4.5.4', text: 'Moment of a force: M = F d, where d is the perpendicular distance from the pivot', po: true },
     { code: '4.5.4', text: 'If an object is balanced, the total clockwise moment about a pivot equals the total anticlockwise moment', po: true },
     { code: '4.5.4', text: 'A simple lever and a simple gear system can both be used to transmit the rotational effects of forces', po: true },
+    { code: 'KS3', text: 'Simple machines give a bigger force at the expense of a smaller movement; moment as the turning effect of a force' },
   ],
 });
 
@@ -71,7 +72,7 @@ function geom() {
   const pL = at(l.sL), pE = at(l.sE);
   const loadLen = clamp(l.L * scale, 14, 100), effLen = l.E > 0 ? clamp(l.E * scale, 14, 95) : 0;
   const bw = 44 + l.L * 0.05, bh = 30 + l.L * 0.05;
-  return { l, a, x0, at, pL, pE, loadLen, effLen, bw, bh, scale, gripL: pL.y + 12 + loadLen + 11, gripE: pE.y - 12 - effLen - 12 };
+  return { l, a, x0, at, pL, pE, loadLen, effLen, bw, bh, scale, gripL: Math.max(pL.y - 9 - bh / 2 + loadLen + 11, pL.y + 26), gripE: pE.y - 12 - effLen - 12 };
 }
 
 function drawGrip(x, y, colour) {
@@ -90,7 +91,7 @@ function drawLever(dt, c) {
   state.angle += (target - state.angle) * Math.min(1, dt * 5);
   const G = geom(), { l, x0, pL, pE, loadLen, effLen, bw, bh, a } = G;
 
-  ctx.font = `600 14px ${c.font}`; ctx.fillStyle = c.muted; ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+  ctx.font = `700 16px ${c.font}`; ctx.fillStyle = c.muted; ctx.textAlign = 'left'; ctx.textBaseline = 'top';
   ctx.fillText('Drag the pivot, the load or the effort. Pull a round handle to change a force.', 16, 10);
 
   // Ground and pivot
@@ -110,10 +111,13 @@ function drawLever(dt, c) {
   ctx.fillStyle = '#6b7380'; ctx.strokeStyle = c.text; ctx.lineWidth = 1.5;
   ctx.fillRect(pL.x - bw / 2, pL.y - 9 - bh, bw, bh); ctx.strokeRect(pL.x - bw / 2, pL.y - 9 - bh, bw, bh);
   ctx.fillStyle = '#fff'; ctx.font = `800 15px ${c.font}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-  ctx.fillText(`${fmt(l.L, 1)} N`, pL.x, pL.y - 9 - bh / 2);
-  arrowLine(pL.x, pL.y + 12, pL.x, pL.y + 12 + loadLen, LOAD_COL);
+  ctx.fillText(`${fmt(l.L, 1)} N`, pL.x, pL.y - 9 - bh * 0.76);
+  // The weight acts at the centre of mass: the middle of the box
+  const com = pL.y - 9 - bh / 2;
+  arrowLine(pL.x, com, pL.x, com + loadLen, LOAD_COL);
+  ctx.fillStyle = LOAD_COL; ctx.beginPath(); ctx.arc(pL.x, com, 4.5, 0, Math.PI * 2); ctx.fill();
   ctx.fillStyle = LOAD_COL; ctx.font = `800 15px ${c.font}`; ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
-  ctx.fillText('load', pL.x - 16, pL.y + 16 + loadLen / 2);
+  ctx.fillText('load', pL.x - 16, pL.y + 30);
   drawGrip(pL.x, G.gripL, LOAD_COL);
 
   // Effort: on the other side of the pivot from the load it pushes down; on the same side it pulls up
@@ -361,7 +365,7 @@ function drawGears(dt, c) {
     ctx.fillStyle = 'rgba(0, 0, 0, .6)'; ctx.fillRect(cx - w / 2, ly - 9, w, 18);
     ctx.fillStyle = '#ffe082'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(label, cx, ly);
   }
-  ctx.fillStyle = c.muted; ctx.font = `600 13px ${c.font}`; ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+  ctx.fillStyle = c.muted; ctx.font = `700 16px ${c.font}`; ctx.textAlign = 'left'; ctx.textBaseline = 'top';
   ctx.fillText('White arrow: the moment on each gear. Yellow: the force where the teeth meet, and each radius.', 16, 10);
 }
 
@@ -394,6 +398,7 @@ function showTab(t) {
   const isLever = t === 'lever';
   $('p-lever').hidden = $('p-lever-result').hidden = $('lever-bar').hidden = !isLever;
   $('p-gears').hidden = $('p-gears-result').hidden = $('gear-bar').hidden = isLever;
+  canvas.classList.toggle('drag', isLever);      // the gears have nothing to drag, so the page can scroll over them
   if (location.hash !== '#practice') history.replaceState(null, '', isLever ? location.pathname + location.search : '#gears');
 }
 

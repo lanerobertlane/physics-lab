@@ -9,9 +9,9 @@ PK.header({
   spec: [
     { code: '4.5.7.1', text: 'Momentum is a property of moving objects: p = m v', ht: true },
     { code: '4.5.7.2', text: 'Conservation of momentum: in a closed system, the total momentum before an event is equal to the total momentum after the event', ht: true },
-    { code: '4.5.7.2', text: 'Collisions and explosions: calculating velocities from conservation of momentum', ht: true },
+    { code: '4.5.7.2', text: 'Collisions and explosions: calculating velocities from conservation of momentum', ht: true, po: true },
     { code: '4.5.7.3', text: 'Changes in momentum: F = m Δv ÷ Δt; force equals the rate of change of momentum', ht: true, po: true },
-    { code: '4.5.7.3', text: 'Safety features that increase the time taken for a change in momentum: air bags, seat belts, crumple zones, cushioned surfaces, cycle helmets', ht: true, po: true },
+    { code: '4.5.7.3', text: 'Safety features that increase the time taken for a change in momentum: air bags, seat belts, gymnasium crash mats, cushioned surfaces for playgrounds and cycle helmets', ht: true, po: true },
   ],
 });
 
@@ -100,7 +100,7 @@ const sgn = (x) => (Math.abs(x) < 0.005 ? '0.00' : (x > 0 ? '+' : '−') + Math.
 const ke = (m, v) => 0.5 * m * v * v;
 
 function render() {
-  $('dir-note').textContent = state.tab === 'safety' ? `The crash itself is shown ${SLOW} times slower than real life.` : 'Velocities to the right are positive.';
+  $('dir-note').textContent = state.tab === 'safety' ? `The crash itself is shown ${SLOW} times slower than real life.` : state.tab === 'collide' ? 'Velocities to the right are positive. Drag the round handles to change them.' : 'Velocities to the right are positive.';
   if (state.tab === 'safety') return renderSafety();
   renderGliders();
 }
@@ -110,7 +110,7 @@ function renderGliders() {
   const ma = num(explode ? 'ea' : 'ma'), mb = num(explode ? 'eb' : 'mb');
   const ua = explode ? 0 : num('ua'), ub = explode ? 0 : num('ub');
   const after = explode ? explodeAfter(ma, mb, num('espring')) : collideAfter(ma, ua, mb, ub, state.kind);
-  const showKe = $('show-ke').checked || explode;
+  const showKe = PK.beyondShown() && ($('show-ke').checked || explode);
   const happened = sim.hit;
   const neverMeet = !explode && ua <= ub;
   const row = (who, m, v, ans) => `<tr><td>${who}</td><td>${f2(m)}</td><td>${ans ? PK.ans(sgn(v)) : sgn(v)}</td><td>${PK.ans(sgn(m * v))}</td>${showKe ? `<td>${PK.ans(ke(m, v).toFixed(3))}</td>` : ''}</tr>`;
@@ -175,6 +175,9 @@ function arrow(x, y, len, col, label, font) {
   if (label) { ctx.font = `700 12px ${font}`; ctx.textAlign = 'center'; ctx.textBaseline = 'bottom'; ctx.fillText(label, x + len / 2, y - 6); }
 }
 
+const canSetVelocity = () => state.tab === 'collide' && sim.phase === 'ready';
+const velocityHandle = (id) => ({ x: X0 + (id === 'ua' ? sim.xa : sim.xb) * PPM + (WID * PPM) / 2 + num(id) * 70, y: TRACK_Y - 68 });
+
 function drawGlider(x, colour, letter, m, v, c) {
   const px = X0 + x * PPM, w = WID * PPM, top = TRACK_Y - 34;
   // Body: an upside-down V sitting on the track, with a flag
@@ -189,6 +192,10 @@ function drawGlider(x, colour, letter, m, v, c) {
   ctx.fillText(`${m.toFixed(1)} kg`, px + w / 2, TRACK_Y + 26);
   // Velocity arrow
   arrow(px + w / 2, top - 34, v * 70, colour, `${sgn(v)} m/s`, c.font);
+  if (canSetVelocity()) {
+    ctx.fillStyle = colour; ctx.strokeStyle = '#fff'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(px + w / 2 + v * 70, top - 34, 11, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  }
 }
 
 function drawTrack(c) {
@@ -262,6 +269,7 @@ function showTab(t) {
   state.tab = t;
   document.querySelectorAll('#tabs .chip').forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.t === t)));
   $('p-collide').hidden = t !== 'collide'; $('p-explode').hidden = t !== 'explode'; $('p-safety').hidden = t !== 'safety';
+  cv.classList.toggle('drag', t === 'collide');
   if (location.hash !== '#practice') history.replaceState(null, '', t === 'collide' ? location.pathname + location.search : `#${t}`);
   reset();
 }
@@ -273,6 +281,18 @@ document.querySelectorAll('#kind .chip').forEach((b) => b.addEventListener('clic
 }));
 for (const id of ['ma', 'ua', 'mb', 'ub', 'ea', 'eb', 'espring', 'cm', 'cv']) $(id).addEventListener('input', reset);
 $('show-ke').addEventListener('change', render);
+window.addEventListener('pk-beyond', render);
+PK.dragOn(cv, W, H, {
+  hit: (p) => {
+    if (!canSetVelocity()) return null;
+    return ['ub', 'ua'].find((id) => { const h = velocityHandle(id); return Math.hypot(p.x - h.x, p.y - h.y) < 30; }) || null;
+  },
+  move: (id, p) => {
+    const cx = X0 + (id === 'ua' ? sim.xa : sim.xb) * PPM + (WID * PPM) / 2;
+    PK.setNum(id, Math.round(((p.x - cx) / 70) * 10) / 10);
+    reset();
+  },
+});
 $('crumple').addEventListener('change', reset);
 $('go').addEventListener('click', go);
 $('reset').addEventListener('click', reset);

@@ -392,8 +392,7 @@ window.SPEC_INDEX = [
    },
    {
     "code": "4.1.2.1",
-    "text": "Thermal conductivity: the higher it is, the higher the rate of energy transfer by conduction",
-    "po": 1
+    "text": "Thermal conductivity: the higher it is, the higher the rate of energy transfer by conduction"
    },
    {
     "code": "4.3.1.1",
@@ -412,7 +411,7 @@ window.SPEC_INDEX = [
   "course": "physics",
   "spec": [
    {
-    "code": "4.6.3.1",
+    "code": "4.6.2.2",
     "text": "Required practical: investigate how the amount of infrared radiation absorbed or radiated by a surface depends on the nature of that surface"
    },
    {
@@ -434,8 +433,7 @@ window.SPEC_INDEX = [
    },
    {
     "code": "4.1.2.1",
-    "text": "The higher the thermal conductivity of a material, the higher the rate of energy transfer by conduction",
-    "po": 1
+    "text": "The higher the thermal conductivity of a material, the higher the rate of energy transfer by conduction"
    }
   ]
  },
@@ -458,6 +456,10 @@ window.SPEC_INDEX = [
     "code": "4.5.4",
     "text": "A simple lever and a simple gear system can both be used to transmit the rotational effects of forces",
     "po": 1
+   },
+   {
+    "code": "KS3",
+    "text": "Simple machines give a bigger force at the expense of a smaller movement; moment as the turning effect of a force"
    }
   ]
  },
@@ -468,7 +470,8 @@ window.SPEC_INDEX = [
   "spec": [
    {
     "code": "4.6.2.2",
-    "text": "Refraction at a boundary, shown with ray diagrams"
+    "text": "Refraction at a boundary, shown with ray diagrams",
+    "ht": 1
    },
    {
     "code": "4.6.1.3",
@@ -525,11 +528,11 @@ window.SPEC_INDEX = [
    },
    {
     "code": "4.2.4.1",
-    "text": "Power: P = V I, used to choose a fuse"
+    "text": "Power: P = V I"
    },
    {
     "code": "KS3",
-    "text": "Electricity in the home: fuses, the cost of electricity and safety"
+    "text": "Domestic electricity: comparing the power ratings of appliances in watts and kilowatts"
    }
   ]
  },
@@ -567,7 +570,8 @@ window.SPEC_INDEX = [
    {
     "code": "4.5.7.2",
     "text": "Collisions and explosions: calculating velocities from conservation of momentum",
-    "ht": 1
+    "ht": 1,
+    "po": 1
    },
    {
     "code": "4.5.7.3",
@@ -577,7 +581,7 @@ window.SPEC_INDEX = [
    },
    {
     "code": "4.5.7.3",
-    "text": "Safety features that increase the time taken for a change in momentum: air bags, seat belts, crumple zones, cushioned surfaces, cycle helmets",
+    "text": "Safety features that increase the time taken for a change in momentum: air bags, seat belts, gymnasium crash mats, cushioned surfaces for playgrounds and cycle helmets",
     "ht": 1,
     "po": 1
    }
@@ -637,7 +641,8 @@ window.SPEC_INDEX = [
   "spec": [
    {
     "code": "4.8.1.1",
-    "text": "Our solar system: planets, moons and artificial satellites"
+    "text": "Our solar system: planets, moons and artificial satellites",
+    "po": 1
    },
    {
     "code": "4.8.1.3",
@@ -805,8 +810,13 @@ window.SPEC_INDEX = [
    },
    {
     "code": "4.6.1.3",
-    "text": "Reflection and refraction of waves at a boundary",
+    "text": "Reflection of waves at a boundary",
     "po": 1
+   },
+   {
+    "code": "4.6.2.2",
+    "text": "Refraction: waves change speed at a boundary, shown with wave front diagrams",
+    "ht": 1
    },
    {
     "code": "KS3",
@@ -982,8 +992,16 @@ window.SPEC_INDEX = [
    },
    {
     "code": "4.5.6.3.4",
-    "text": "Large decelerations and the work done by the brakes (W = F s = ½ m v²)",
-    "ht": 1,
+    "text": "Large decelerations and the work done by the brakes (W = F s = ½ m v²)"
+   },
+   {
+    "code": "4.5.6.3.4",
+    "text": "Estimating the forces involved in the deceleration of road vehicles",
+    "ht": 1
+   },
+   {
+    "code": "4.5.6.3.1",
+    "text": "Estimating how the stopping distance varies over a range of typical speeds, and using graphs of speed against stopping distance",
     "po": 1
    }
   ]
@@ -995,8 +1013,7 @@ window.SPEC_INDEX = [
   "spec": [
    {
     "code": "4.5.6.1.5",
-    "text": "An object falling through a fluid first accelerates due to gravity; eventually the resultant force is zero and it moves at its terminal velocity",
-    "po": 1
+    "text": "An object falling through a fluid first accelerates due to gravity; eventually the resultant force is zero and it moves at its terminal velocity"
    },
    {
     "code": "4.5.6.2.1",
@@ -1009,6 +1026,11 @@ window.SPEC_INDEX = [
    {
     "code": "4.5.6.1.5",
     "text": "Velocity–time graphs: the gradient is the acceleration"
+   },
+   {
+    "code": "4.5.6.1.5",
+    "text": "Drawing and interpreting velocity–time graphs for objects that reach terminal velocity, and explaining the motion in terms of the forces",
+    "po": 1
    },
    {
     "code": "KS3",
@@ -1046,12 +1068,17 @@ window.SPEC_INDEX = [
   "spec": [
    {
     "code": "4.2.4.3",
-    "text": "The National Grid: step-up and step-down transformers; Vp × Ip = Vs × Is for a 100% efficient transformer",
-    "ht": 1
+    "text": "The National Grid: step-up transformers increase the potential difference and step-down transformers decrease it"
    },
    {
     "code": "4.7.3.4",
     "text": "Transformers: a primary and a secondary coil on an iron core; an alternating current induces an alternating p.d.; Vp / Vs = np / ns",
+    "ht": 1,
+    "po": 1
+   },
+   {
+    "code": "4.7.3.4",
+    "text": "Vs × Is = Vp × Ip for a 100% efficient transformer",
     "ht": 1,
     "po": 1
    }

@@ -45,6 +45,8 @@ newMystery();
 // ---------- Drawing ----------
 
 const rig = $('rig'), ctx = rig.getContext('2d');
+const TRAY = { x: 88, y: 584 };
+let carried = null;
 const W = 520, H = 620;
 const X = 250, HOOK_Y = 62, ZERO_Y = 104, SCALE = 170, BODY_BOTTOM = ZERO_Y + SCALE + 22, GROUND = 600;
 
@@ -104,7 +106,7 @@ function draw(dt) {
   drawMeter(d, font);
   ctx.restore();
   ctx.strokeStyle = '#3a3f48'; ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(LX, LY, LR, 0, Math.PI * 2); ctx.stroke();
-  ctx.font = `700 12px ${font}`; ctx.textAlign = 'center';
+  ctx.font = `700 13px ${font}`; ctx.textAlign = 'center';
   const mt = 'magnified', mw = ctx.measureText(mt).width + 12;
   ctx.fillStyle = 'rgba(255, 255, 255, .88)'; roundRect(LX - mw / 2, LY + LR + 6, mw, 18, 5); ctx.fill();
   ctx.fillStyle = '#1b1f27'; ctx.fillText(mt, LX, LY + LR + 15);
@@ -129,12 +131,23 @@ function draw(dt) {
     ctx.fillStyle = 'rgba(255, 255, 255, .85)'; roundRect(X - 40 - tw - 6, ty - 10, tw + 12, 20, 5); ctx.fill();
     ctx.fillStyle = '#1b1f27'; ctx.fillText(t, X - 40, ty);
   }
+  // Tray of 100 g masses to drag onto the hanger
+  for (let i = 0; i < 4; i++) {
+    ctx.fillStyle = i % 2 ? '#b08d57' : '#c9a66b'; ctx.fillRect(TRAY.x - 28, TRAY.y - i * 7, 56, 6);
+    ctx.strokeStyle = '#6b5532'; ctx.lineWidth = 1; ctx.strokeRect(TRAY.x - 28, TRAY.y - i * 7, 56, 6);
+  }
+  ctx.font = `700 13px ${font}`; ctx.textAlign = 'center';
+  { const t = 'drag on: 100 g', tw = ctx.measureText(t).width + 12; ctx.fillStyle = 'rgba(255, 255, 255, .85)'; roundRect(TRAY.x - tw / 2, TRAY.y - 52, tw, 20, 5); ctx.fill(); ctx.fillStyle = '#1b1f27'; ctx.fillText(t, TRAY.x, TRAY.y - 42); }
+  if (carried && carried.moved) { ctx.fillStyle = '#c9a66b'; ctx.fillRect(carried.x - 28, carried.y - 3, 56, 6); ctx.strokeStyle = '#6b5532'; ctx.strokeRect(carried.x - 28, carried.y - 3, 56, 6); }
+
   // Weight arrow
   if (state.grams) {
-    const ay = hy + 12 + n * 7 + 4, len = 14 + Math.min(1, weight() / 25) * 36;
+    // Weight acts at the centre of mass: the middle of the stack
+    const ay = hy + 12 + n * 3.5, len = Math.min(GROUND - 6 - ay, 20 + Math.min(1, weight() / 25) * 60);
     ctx.strokeStyle = ctx.fillStyle = '#e53935'; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.moveTo(X, ay); ctx.lineTo(X, ay + len); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(X - 7, ay + len - 8); ctx.lineTo(X, ay + len + 2); ctx.lineTo(X + 7, ay + len - 8); ctx.fill();
+    ctx.beginPath(); ctx.arc(X, ay, 4.5, 0, Math.PI * 2); ctx.fill();
     ctx.font = `800 13px ${font}`; ctx.textAlign = 'left';
     const t = 'weight', tw = ctx.measureText(t).width;
     ctx.fillStyle = 'rgba(255, 255, 255, .85)'; roundRect(X + 10, ay + len / 2 - 10, tw + 12, 20, 5); ctx.fill();
@@ -147,7 +160,7 @@ function drawMeter(d, font) {
   const bx = X - 30, bw = 60, top = HOOK_Y + 6, py = ZERO_Y + d;
   ctx.fillStyle = '#eef1f5'; ctx.strokeStyle = '#4b525d'; ctx.lineWidth = 2;
   roundRect(bx, top, bw, BODY_BOTTOM - top, 8); ctx.fill(); ctx.stroke();
-  ctx.fillStyle = '#d33'; ctx.font = `800 12px ${font}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('N', X, top + 18);
+  ctx.fillStyle = '#d33'; ctx.font = `800 13px ${font}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('N', X, top + 18);
   // Slot with the spring
   ctx.fillStyle = '#c9ced6'; ctx.fillRect(X + 2, ZERO_Y - 8, 12, SCALE + 16);
   const coils = 14;
@@ -157,7 +170,7 @@ function drawMeter(d, font) {
   // Scale: small, middle and numbered marks
   const minor = state.meter === 10 ? 0.1 : 1, midEvery = state.meter === 10 ? 0.5 : 5, labelEvery = state.meter === 10 ? 1 : 10;
   const on = (n, step) => Math.abs(n / step - Math.round(n / step)) < 1e-6;
-  ctx.strokeStyle = '#1b1f27'; ctx.fillStyle = '#1b1f27'; ctx.font = `700 11px ${font}`; ctx.textAlign = 'right';
+  ctx.strokeStyle = '#1b1f27'; ctx.fillStyle = '#1b1f27'; ctx.font = `700 13px ${font}`; ctx.textAlign = 'right';
   for (let i = 0; i <= Math.round(state.meter / minor); i++) {
     const n = i * minor, y = ZERO_Y + (n / state.meter) * SCALE;
     const big = on(n, labelEvery), mid = !big && on(n, midEvery);
@@ -226,13 +239,13 @@ function drawGraph() {
   const fTop = Math.max(...state.rows.map((r) => r.F), 0);
   const fMax = fTop <= 10 ? 10 : Math.ceil(fTop / 5) * 5, fStep = fMax <= 10 ? 2 : fMax <= 30 ? 5 : 10, mMax = 1;
   const Xp = (m) => L + (m / mMax) * pw, Yp = (f) => T + ph - (f / fMax) * ph;
-  g.strokeStyle = c.grid; g.fillStyle = c.muted; g.font = `600 10px ${c.font}`; g.lineWidth = 1;
+  g.strokeStyle = c.grid; g.fillStyle = c.muted; g.font = `600 13px ${c.font}`; g.lineWidth = 1;
   g.textAlign = 'right'; g.textBaseline = 'middle';
   for (let f = 0; f <= fMax; f += fStep) { g.beginPath(); g.moveTo(L, Yp(f)); g.lineTo(L + pw, Yp(f)); g.stroke(); g.fillText(f, L - 4, Yp(f)); }
   g.textAlign = 'center'; g.textBaseline = 'top';
   for (let m = 0; m <= 10; m += 2) { const x = Xp(m / 10); g.beginPath(); g.moveTo(x, T); g.lineTo(x, T + ph); g.stroke(); g.fillText((m / 10).toFixed(1), x, T + ph + 3); }
   g.strokeStyle = c.text; g.lineWidth = 1.5; g.beginPath(); g.moveTo(L, T); g.lineTo(L, T + ph); g.lineTo(L + pw, T + ph); g.stroke();
-  g.fillStyle = c.text; g.font = `700 11px ${c.font}`; g.fillText('mass / kg', L + pw / 2, GH - 15);
+  g.fillStyle = c.text; g.font = `700 13px ${c.font}`; g.fillText('mass / kg', L + pw / 2, GH - 15);
   g.save(); g.translate(10, T + ph / 2); g.rotate(-Math.PI / 2); g.textBaseline = 'middle'; g.fillText('weight / N', 0, 0); g.restore();
   g.save(); g.beginPath(); g.rect(L, T, pw, ph); g.clip();
   for (const key of ORDER) {
@@ -286,6 +299,23 @@ $('record').addEventListener('click', () => {
 $('clear').addEventListener('click', () => { state.rows = []; renderTable(); });
 $('show-reading').addEventListener('change', (e) => { state.show = e.target.checked; render(); });
 $('you').addEventListener('input', renderBars);
+
+// Masses: drag one from the tray onto the hanger, or drag one off (a tap works too)
+PK.dragOn(rig, W, H, {
+  hit: (p) => {
+    if (Math.abs(p.x - TRAY.x) < 40 && p.y > TRAY.y - 34 && p.y < TRAY.y + 14) return { from: 'tray' };
+    const hy = BODY_BOTTOM + 22 + state.y, n = state.grams / 100;
+    return n && Math.abs(p.x - X) < 40 && p.y > hy && p.y < hy + 18 + n * 7 ? { from: 'hanger' } : null;
+  },
+  move: (d, p) => { carried = Object.assign(d, { x: p.x, y: p.y, moved: true }); },
+  end: (d) => {
+    carried = null;
+    const near = Math.abs(d.x - X) < 90;
+    if (d.from === 'tray' && near) load(100);
+    if (d.from === 'hanger' && !near) load(-100);
+  },
+  tap: (d) => load(d.from === 'tray' ? 100 : -100),
+});
 
 let last = performance.now();
 function frame(now) {

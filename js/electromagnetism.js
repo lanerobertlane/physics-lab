@@ -148,7 +148,7 @@ const wireMode = {
     const s = S.wire;
     return `<h2>What's happening</h2>
       <p style="margin:0">Current is flowing <b>${s.out ? 'out of the page (•)' : 'into the page (×)'}</b>, so the field goes <b>${s.out ? 'anticlockwise' : 'clockwise'}</b>.</p>
-      <p class="note"><b>Right-hand grip rule:</b> point your right thumb along the current; your fingers curl the way the field goes.</p>
+      <p class="note beyond"><b>Right-hand grip rule:</b> point your right thumb along the current; your fingers curl the way the field goes.</p>
       <p class="note">The field is strongest close to the wire (circles closer together) and gets stronger with a bigger current.</p>`;
   },
   draw(c) {
@@ -205,14 +205,14 @@ const solenoidMode = {
   controls() {
     const s = S.sol;
     return `<h2>Solenoid</h2>
-      <div class="ctl"><label for="s-i">Current <b id="s-i-val">${s.I} A</b></label><input type="range" id="s-i" min="0" max="5" step="0.5" value="${s.I}"></div>
-      <div class="ctl"><label for="s-n">Number of turns <b id="s-n-val">${s.turns}</b></label><input type="range" id="s-n" min="4" max="20" step="1" value="${s.turns}"></div>
+      <div class="num-row"><label for="s-i">Current</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: current">−</button><input type="number" id="s-i" min="0" max="5" step="any" data-inc="0.5" value="${s.I}" inputmode="decimal"><span class="unit">A</span><button data-step="1" aria-label="More: current">+</button></div></div>
+      <div class="num-row"><label for="s-n">Number of turns</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: number of turns">−</button><input type="number" id="s-n" min="4" max="20" step="any" data-inc="1" data-whole value="${s.turns}" inputmode="numeric"><span class="unit">turns</span><button data-step="1" aria-label="More: number of turns">+</button></div></div>
       <label class="toggle"><input type="checkbox" id="s-core" ${s.core ? 'checked' : ''}> Iron core</label>
       <div class="btn-row" style="margin-top:6px"><button class="btn" id="s-dir">⇄ Reverse current</button></div>`;
   },
   bind() {
-    $('s-i').addEventListener('input', (e) => { S.sol.I = Number(e.target.value); $('s-i-val').textContent = `${S.sol.I} A`; solCache = null; renderInfo(); });
-    $('s-n').addEventListener('input', (e) => { S.sol.turns = Number(e.target.value); $('s-n-val').textContent = S.sol.turns; solCache = null; renderInfo(); });
+    $('s-i').addEventListener('input', () => { S.sol.I = PK.num('s-i'); solCache = null; renderInfo(); });
+    $('s-n').addEventListener('input', () => { S.sol.turns = PK.num('s-n'); solCache = null; renderInfo(); });
     $('s-core').addEventListener('change', (e) => { S.sol.core = e.target.checked; renderInfo(); });
     $('s-dir').addEventListener('click', () => { S.sol.dir *= -1; solCache = null; renderInfo(); });
   },
@@ -270,16 +270,16 @@ const motorMode = {
   controls() {
     const s = S.motor;
     return `<h2>Wire in a field</h2>
-      <div class="ctl"><label for="m-b">Magnetic flux density (B) <b id="m-b-val">${s.B} T</b></label><input type="range" id="m-b" min="0.1" max="1" step="0.05" value="${s.B}"></div>
-      <div class="ctl"><label for="m-i">Current (I) <b id="m-i-val">${s.I} A</b></label><input type="range" id="m-i" min="0" max="5" step="0.5" value="${s.I}"></div>
-      <div class="ctl"><label for="m-l">Length of wire in the field (l) <b id="m-l-val">${s.l} m</b></label><input type="range" id="m-l" min="0.05" max="0.25" step="0.01" value="${s.l}"></div>
+      <div class="num-row"><label for="m-b">Magnetic flux density (B)</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: magnetic flux density">−</button><input type="number" id="m-b" min="0.1" max="1" step="any" data-inc="0.05" value="${s.B}" inputmode="decimal"><span class="unit">T</span><button data-step="1" aria-label="More: magnetic flux density">+</button></div></div>
+      <div class="num-row"><label for="m-i">Current (I)</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: current">−</button><input type="number" id="m-i" min="0" max="5" step="any" data-inc="0.5" value="${s.I}" inputmode="decimal"><span class="unit">A</span><button data-step="1" aria-label="More: current">+</button></div></div>
+      <div class="num-row"><label for="m-l">Length of wire in the field (l)</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: length of wire">−</button><input type="number" id="m-l" min="0.05" max="0.25" step="any" data-inc="0.01" value="${s.l}" inputmode="decimal"><span class="unit">m</span><button data-step="1" aria-label="More: length of wire">+</button></div></div>
       <div class="btn-row"><button class="btn" id="m-fi">⇄ Reverse current</button><button class="btn" id="m-fb">⇄ Swap the magnets</button></div>
       <label class="toggle" style="margin-top:6px"><input type="checkbox" id="m-comb" ${s.combined ? 'checked' : ''}> Show the combined field</label>`;
   },
   bind() {
     const s = S.motor;
-    for (const [id, k, u] of [['m-b', 'B', 'T'], ['m-i', 'I', 'A'], ['m-l', 'l', 'm']]) {
-      $(id).addEventListener('input', (e) => { s[k] = Number(e.target.value); $(`${id}-val`).textContent = `${s[k]} ${u}`; renderInfo(); });
+    for (const [id, k] of [['m-b', 'B'], ['m-i', 'I'], ['m-l', 'l']]) {
+      $(id).addEventListener('input', () => { s[k] = PK.num(id); renderInfo(); });
     }
     $('m-fi').addEventListener('click', () => { s.flipI = !s.flipI; renderInfo(); });
     $('m-fb').addEventListener('click', () => { s.flipB = !s.flipB; renderInfo(); });
@@ -347,12 +347,12 @@ const motorMode = {
   fleming(c, d) {
     const ox = 715, oy = 420;
     ctx.fillStyle = c.surface2; ctx.fillRect(630, 330, 165, 145);
-    ctx.fillStyle = c.text; ctx.font = `700 12px ${c.font}`; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    ctx.fillStyle = c.text; ctx.font = `700 13px ${c.font}`; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
     ctx.fillText("Fleming's left-hand rule", 712, 334);
     arrow(ox, oy, ox + (d.bRight ? 50 : -50), oy, c.field, 3, 9);
     arrow(ox, oy, ox + (d.out ? -30 : 30), oy + (d.out ? 26 : -26), c.current, 3, 9);
     if (S.motor.I > 0) arrow(ox, oy, ox, oy + (d.up ? -55 : 55), c.force, 3, 9);
-    ctx.font = `700 11px ${c.font}`; ctx.textBaseline = 'middle';
+    ctx.font = `700 13px ${c.font}`; ctx.textBaseline = 'middle';
     ctx.fillStyle = c.field; ctx.textAlign = d.bRight ? 'left' : 'right'; ctx.fillText('Field', ox + (d.bRight ? 54 : -54), oy);
     ctx.fillStyle = c.current; ctx.textAlign = 'center'; ctx.fillText(d.out ? 'Current (out)' : 'Current (in)', ox + (d.out ? -30 : 30), oy + (d.out ? 40 : -38));
     if (S.motor.I > 0) { ctx.fillStyle = c.force; ctx.textAlign = 'left'; ctx.fillText('Force', ox + 6, oy + (d.up ? -50 : 50)); }
@@ -518,7 +518,7 @@ const inductionMode = {
     const na = -Math.PI / 2 + s.needle * 1.2;
     ctx.strokeStyle = '#e53935'; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.moveTo(mx, my + 6); ctx.lineTo(mx + Math.cos(na) * 40, my + Math.sin(na) * 40); ctx.stroke();
-    ctx.fillStyle = '#333'; ctx.font = `700 10px ${c.font}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillStyle = '#333'; ctx.font = `700 13px ${c.font}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     ctx.fillText('0', mx, my - 30);
 
     // Magnet (draggable)
@@ -538,7 +538,7 @@ const inductionMode = {
       ctx.font = `800 24px ${c.font}`;
       ctx.fillStyle = induced === 'N' ? RED : BLUE;
       ctx.fillText(induced, COIL.x0 - 4, COIL.cy - COIL.R - 22);
-      ctx.fillStyle = c.muted; ctx.font = `600 12px ${c.font}`;
+      ctx.fillStyle = c.muted; ctx.font = `600 13px ${c.font}`;
       ctx.fillText(approaching ? 'induced pole repels the magnet' : 'induced pole attracts the magnet back', COIL.x0 + 40, COIL.cy + COIL.R + 22);
     }
 
@@ -550,7 +550,7 @@ const inductionMode = {
     ctx.beginPath();
     s.trace.forEach((p, i) => { const x = gx + gw - ((s.t - p.t) / 8) * gw, y = gy - p.v * (gh / 2 - 4); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); });
     ctx.stroke();
-    ctx.fillStyle = c.muted; ctx.font = `600 12px ${c.font}`; ctx.textAlign = 'left'; ctx.textBaseline = 'bottom';
+    ctx.fillStyle = c.muted; ctx.font = `600 13px ${c.font}`; ctx.textAlign = 'left'; ctx.textBaseline = 'bottom';
     ctx.fillText('induced current against time (last 8 s)', gx, gy - gh / 2 - 4);
     ctx.textBaseline = 'top';
     ctx.fillText('Drag the magnet into and out of the coil.', 16, 12);

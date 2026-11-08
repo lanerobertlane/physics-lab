@@ -30,9 +30,6 @@
     .bar-labels { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding: 6px 4px 0; text-align: center; font-size: .82rem; font-weight: 700; line-height: 1.2; }
     .bar-labels .val { display: block; font-variant-numeric: tabular-nums; color: var(--answer, var(--text)); font-size: .92rem; }
     .transfer { margin: 12px 0 0; padding: 10px 12px; background: var(--surface-2); border-radius: var(--radius-sm); font-weight: 700; min-height: 2.6em; }
-    .ctl { margin-bottom: 12px; }
-    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
-    .ctl label b { color: var(--text); }
     #graph { width: 100%; aspect-ratio: 800 / 220; display: block; }
   </style>
 </head>
@@ -48,15 +45,11 @@
     <div class="tool-layout">
       <div class="main-col">
         <div class="panel stage">
-          <canvas id="scene" aria-label="Energy simulation"></canvas>
+          <canvas id="scene" class="drag" aria-label="Energy simulation"></canvas>
           <div class="stage-bar">
             <button class="btn primary" id="play">▶ Play</button>
             <button class="btn" id="reset">↺ Reset</button>
-            <select class="select" id="speed" aria-label="Speed">
-              <option value="1">Normal speed</option>
-              <option value="0.5">Slow motion</option>
-              <option value="0.2">Very slow</option>
-            </select>
+            <div class="chip-group" id="speed" aria-label="Speed"><button class="chip" data-v="1" aria-pressed="true">Normal</button><button class="chip" data-v="0.5" aria-pressed="false">Slow</button><button class="chip" data-v="0.2" aria-pressed="false">Very slow</button></div>
             <span class="spacer"></span>
             <label class="toggle"><input type="checkbox" id="friction"> Friction &amp; air resistance</label>
           </div>
@@ -83,14 +76,8 @@
 
         <div class="panel">
           <h2>Settings</h2>
-          <div class="ctl">
-            <label for="mass">Mass <b id="mass-val"></b></label>
-            <input type="range" id="mass" min="0.5" max="5" step="0.5" value="2">
-          </div>
-          <div class="ctl">
-            <label for="height">Starting height <b id="height-val"></b></label>
-            <input type="range" id="height" min="1" max="10" step="0.5" value="5">
-          </div>
+          <div class="num-row"><label for="mass">Mass</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: mass">−</button><input type="number" id="mass" min="0.5" max="5" step="any" data-inc="0.5" value="2" inputmode="decimal"><span class="unit">kg</span><button data-step="1" aria-label="More: mass">+</button></div></div>
+          <div class="num-row"><label for="height">Starting height</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: starting height">−</button><input type="number" id="height" min="1" max="10" step="any" data-inc="0.5" value="5" inputmode="decimal"><span class="unit">m</span><button data-step="1" aria-label="More: starting height">+</button></div></div>
           <label class="toggle"><input type="checkbox" id="show-graph" checked> Show energy–time graph</label>
           <p class="note">Gravitational field strength g = 9.8 N/kg.</p>
         </div>

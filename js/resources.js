@@ -63,10 +63,10 @@ function drawDay() {
   const maxY = 60, X = (h) => G.x + (h / 24) * G.w, Y = (v) => G.y + G.h - (v / maxY) * G.h;
   // Grid
   ctx.strokeStyle = PK.cssVar('--border'); ctx.lineWidth = 1;
-  ctx.fillStyle = PK.cssVar('--muted'); ctx.font = `600 11px ${font()}`;
+  ctx.fillStyle = PK.cssVar('--muted'); ctx.font = `600 13px ${font()}`;
   for (let v = 0; v <= maxY; v += 10) { ctx.beginPath(); ctx.moveTo(G.x, Y(v)); ctx.lineTo(G.x + G.w, Y(v)); ctx.stroke(); ctx.textAlign = 'right'; ctx.textBaseline = 'middle'; ctx.fillText(v, G.x - 6, Y(v)); }
   for (let h = 0; h <= 24; h += 3) { ctx.textAlign = 'center'; ctx.textBaseline = 'top'; ctx.fillText(`${String(h).padStart(2, '0')}:00`, X(h), G.y + G.h + 6); }
-  ctx.save(); ctx.translate(16, G.y + G.h / 2); ctx.rotate(-Math.PI / 2); ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.font = `700 12px ${font()}`; ctx.fillText('Power (GW)', 0, 0); ctx.restore();
+  ctx.save(); ctx.translate(16, G.y + G.h / 2); ctx.rotate(-Math.PI / 2); ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.font = `700 13px ${font()}`; ctx.fillText('Power (GW)', 0, 0); ctx.restore();
   // Stacked areas
   const order = ['nuclear', 'wind', 'solar', 'hydro', 'gas', 'coal'];
   const stack = hrs.map(() => 0);
@@ -85,12 +85,12 @@ function drawDay() {
   // Demand line
   ctx.strokeStyle = PK.cssVar('--text'); ctx.lineWidth = 3; ctx.setLineDash([]);
   ctx.beginPath(); hrs.forEach((p, i) => (i ? ctx.lineTo(X(p.h), Y(p.d)) : ctx.moveTo(X(p.h), Y(p.d)))); ctx.stroke();
-  ctx.fillStyle = PK.cssVar('--text'); ctx.font = `800 12px ${font()}`; ctx.textAlign = 'left'; ctx.textBaseline = 'bottom';
+  ctx.fillStyle = PK.cssVar('--text'); ctx.font = `800 13px ${font()}`; ctx.textAlign = 'left'; ctx.textBaseline = 'bottom';
   const peak = hrs.reduce((a, b) => (b.d > a.d ? b : a));
   ctx.fillText('demand', X(peak.h) + 8, Y(peak.d) - 4);
   // Key
   let kx = G.x + 8;
-  ctx.font = `700 11px ${font()}`; ctx.textBaseline = 'middle';
+  ctx.font = `700 13px ${font()}`; ctx.textBaseline = 'middle';
   for (const S of SOURCES) { ctx.fillStyle = S.col; ctx.fillRect(kx, G.y + 6, 11, 11); ctx.fillStyle = PK.cssVar('--text'); ctx.textAlign = 'left'; ctx.fillText(S.name, kx + 15, G.y + 12); kx += ctx.measureText(S.name).width + 32; }
   ctx.fillStyle = 'rgba(229, 57, 53, .6)'; ctx.fillRect(kx, G.y + 6, 11, 11); ctx.fillStyle = PK.cssVar('--text'); ctx.fillText('not enough!', kx + 15, G.y + 12);
   return hrs;
@@ -127,7 +127,7 @@ function renderSliders() {
 // ---------- Compare resources ----------
 
 const RES = [
-  { n: 'Coal', r: false, use: 'Electricity (being phased out in the UK)', plus: ['Reliable: can be turned on when needed', 'Large amounts available'], minus: ['Releases carbon dioxide (climate change)', 'Sulfur dioxide causes acid rain', 'Will run out'] },
+  { n: 'Coal', r: false, use: 'Electricity (still used worldwide, but the UK’s last coal power station closed in 2024)', plus: ['Reliable: can be turned on when needed', 'Large amounts available'], minus: ['Releases carbon dioxide (climate change)', 'Sulfur dioxide causes acid rain', 'Will run out'] },
   { n: 'Oil', r: false, use: 'Transport (petrol, diesel), heating', plus: ['Reliable', 'Easy to transport as a liquid'], minus: ['Releases carbon dioxide', 'Oil spills harm wildlife', 'Will run out'] },
   { n: 'Natural gas', r: false, use: 'Electricity, heating, cooking', plus: ['Reliable, and quick to start up to meet demand', 'Less carbon dioxide than coal'], minus: ['Still releases carbon dioxide', 'Will run out'] },
   { n: 'Nuclear', r: false, use: 'Electricity', plus: ['No carbon dioxide while running', 'Reliable: runs all the time', 'A lot of energy from a little fuel'], minus: ['Radioactive waste lasts thousands of years', 'Expensive to build and to close down', 'Risk of major accidents'] },

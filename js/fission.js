@@ -99,7 +99,7 @@ function drawFission() {
   // Control rods
   const depth = rodDepth();
   for (const rx of RODS) { fx.fillStyle = '#37474f'; fx.fillRect(rx - 7, 0, 14, depth); }
-  if (fis.rods > 0) text(fx, 'control rods', RODS[0] + 12, 14, { a: 'left', s: 11, col: PK.cssVar('--muted') });
+  if (fis.rods > 0) text(fx, 'control rods', RODS[0] + 12, 14, { a: 'left', s: 13, col: PK.cssVar('--muted') });
   for (const u of fis.nuclei) {
     if (u.state === 'gone') continue;
     const wob = u.state === 'wobble' ? Math.sin(u.t * 80) * 3 : 0;
@@ -112,10 +112,10 @@ function drawFission() {
   for (const n of fis.neutrons) blob(fx, n.x, n.y, 4.5, '#616161', '#e0e0e0');
   // Key
   const ky = BOT + 22;
-  blob(fx, 30, ky, 9, '#1565c0', '#90caf9'); text(fx, 'uranium-235', 46, ky, { a: 'left', s: 12 });
-  blob(fx, 160, ky, 4.5, '#616161', '#e0e0e0'); text(fx, 'neutron', 172, ky, { a: 'left', s: 12 });
-  blob(fx, 250, ky, 7, '#fb8c00', '#fff3e0'); blob(fx, 266, ky, 6, '#43a047', '#fff3e0'); text(fx, 'smaller nuclei (e.g. barium + krypton)', 280, ky, { a: 'left', s: 12 });
-  fx.strokeStyle = '#8e24aa'; fx.beginPath(); for (let s = 0; s <= 16; s += 2) fx.lineTo(520 + s, ky + Math.sin(s) * 3); fx.stroke(); text(fx, 'gamma ray', 542, ky, { a: 'left', s: 12 });
+  blob(fx, 30, ky, 9, '#1565c0', '#90caf9'); text(fx, 'uranium-235', 46, ky, { a: 'left', s: 13 });
+  blob(fx, 160, ky, 4.5, '#616161', '#e0e0e0'); text(fx, 'neutron', 172, ky, { a: 'left', s: 13 });
+  blob(fx, 250, ky, 7, '#fb8c00', '#fff3e0'); blob(fx, 266, ky, 6, '#43a047', '#fff3e0'); text(fx, 'smaller nuclei (e.g. barium + krypton)', 280, ky, { a: 'left', s: 13 });
+  fx.strokeStyle = '#8e24aa'; fx.beginPath(); for (let s = 0; s <= 16; s += 2) fx.lineTo(520 + s, ky + Math.sin(s) * 3); fx.stroke(); text(fx, 'gamma ray', 542, ky, { a: 'left', s: 13 });
   // Graph of fissions over time
   const gx = 20, gy = BOT + 42, gw = FW - 40, gh = 40;
   fx.strokeStyle = PK.cssVar('--border-strong'); fx.lineWidth = 1; fx.strokeRect(gx, gy, gw, gh);
@@ -123,7 +123,7 @@ function drawFission() {
   fx.strokeStyle = '#e53935'; fx.lineWidth = 2; fx.beginPath();
   fis.hist.forEach((v, i) => { const x = gx + (i / 59) * gw, y = gy + gh - (v / max) * (gh - 4); if (i) fx.lineTo(x, y); else fx.moveTo(x, y); });
   fx.stroke();
-  text(fx, 'fissions every ½ second (last 30 s)', gx + 6, gy + 9, { a: 'left', s: 10, col: PK.cssVar('--muted') });
+  text(fx, 'fissions every ½ second (last 30 s)', gx + 6, gy + 9, { a: 'left', s: 13, col: PK.cssVar('--muted') });
   if (!fis.count && !fis.neutrons.length) text(fx, 'Fire a neutron at the uranium.', FW / 2, (TOP + BOT) / 2, { s: 15, w: 800 });
 }
 
@@ -220,17 +220,17 @@ function drawFusion() {
   // Key and equation
   const kx = 600;
   text(ux, 'Key', kx, 34, { a: 'left', s: 13, w: 800 });
-  nucleus(ux, { kind: 'D', x: kx + 12, y: 62 }); text(ux, 'deuterium (hydrogen-2)', kx + 30, 62, { a: 'left', s: 12 });
-  nucleus(ux, { kind: 'T', x: kx + 12, y: 92 }); text(ux, 'tritium (hydrogen-3)', kx + 30, 92, { a: 'left', s: 12 });
-  nucleus(ux, { kind: 'He', x: kx + 12, y: 124 }); text(ux, 'helium-4', kx + 30, 124, { a: 'left', s: 12 });
-  nucleus(ux, { kind: 'n', x: kx + 12, y: 152 }); text(ux, 'neutron', kx + 30, 152, { a: 'left', s: 12 });
-  blob(ux, kx + 8, 180, 5, '#c62828', '#ff8a80'); text(ux, 'proton', kx + 20, 180, { a: 'left', s: 12 });
-  blob(ux, kx + 80, 180, 5, '#757575', '#e0e0e0'); text(ux, 'neutron', kx + 92, 180, { a: 'left', s: 12 });
+  nucleus(ux, { kind: 'D', x: kx + 12, y: 62 }); text(ux, 'deuterium (hydrogen-2)', kx + 30, 62, { a: 'left', s: 13 });
+  nucleus(ux, { kind: 'T', x: kx + 12, y: 92 }); text(ux, 'tritium (hydrogen-3)', kx + 30, 92, { a: 'left', s: 13 });
+  nucleus(ux, { kind: 'He', x: kx + 12, y: 124 }); text(ux, 'helium-4', kx + 30, 124, { a: 'left', s: 13 });
+  nucleus(ux, { kind: 'n', x: kx + 12, y: 152 }); text(ux, 'neutron', kx + 30, 152, { a: 'left', s: 13 });
+  blob(ux, kx + 8, 180, 5, '#c62828', '#ff8a80'); text(ux, 'proton', kx + 20, 180, { a: 'left', s: 13 });
+  blob(ux, kx + 80, 180, 5, '#757575', '#e0e0e0'); text(ux, 'neutron', kx + 92, 180, { a: 'left', s: 13 });
   text(ux, 'H-2 + H-3 → He-4 + n', kx + 90, 226, { s: 14, w: 800 });
   text(ux, '+ energy', kx + 90, 248, { s: 14, w: 800, col: '#ef6c00' });
   const verdict = fus.temp < 30 ? 'Too cold: the nuclei repel' : fus.temp < 80 ? 'Fusion is rare' : 'Hot enough: lots of fusion';
   text(ux, verdict, kx + 90, 300, { s: 13, w: 800, col: fus.temp < 30 ? '#1e63c6' : fus.temp < 80 ? '#ef6c00' : '#2e7d32' });
-  if (fus.temp < 30) { text(ux, 'The Sun manages fusion at 15 million °C', kx + 90, 324, { s: 11 }); text(ux, 'because of the huge pressure in its core.', kx + 90, 340, { s: 11 }); }
+  if (fus.temp < 30) { text(ux, 'The Sun manages fusion at 15 million °C', kx + 90, 324, { s: 13 }); text(ux, 'because of the huge pressure in its core.', kx + 90, 340, { s: 13 }); }
 }
 function renderFusion() {
   const fuel = fus.parts.filter((p) => p.kind === 'D' || p.kind === 'T').length;
