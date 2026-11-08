@@ -3,7 +3,8 @@
 // Nothing is sent anywhere: scores stay on the student's device.
 // Questions are drawn and marked by js/quiz-core.js (QZ), shared with each tool's Practice tab.
 /* global QUIZ_BANK, TOPICS, TOOLS, QZ */
-PK.header({ title: 'Quick quizzes' });
+// While a quiz is being played, the back button returns to the list of quizzes rather than the home page
+PK.header({ title: 'Quick quizzes', back: new URLSearchParams(location.search).get('play') ? { href: 'quiz.html', label: 'All quizzes' } : null });
 
 const $ = (id) => document.getElementById(id);
 const { esc, norm, answerText, rng, shuffled } = QZ;
@@ -40,6 +41,10 @@ function startPlay() {
     title = quiz.title; ids = quiz.qs.slice();
   }
   if (!ids.length) { $('play').innerHTML = '<div class="panel"><h2>No questions</h2><p>This link has no questions in it.</p></div>'; return; }
+  // Coming from the list, going back keeps their place on the page; from a QR code it opens the list
+  const fromList = (() => { try { const r = new URL(document.referrer); return r.pathname === location.pathname && !r.searchParams.get('play'); } catch { return false; } })();
+  const backToList = (e) => { if (fromList) { e.preventDefault(); history.back(); } };
+  $('pk-back').addEventListener('click', backToList);
   const key = `quiz.run.${playId}.${params.get('q') || ''}`;
   let run = PK.store.get(key, null);
   if (!run || run.ids.join() !== ids.join()) run = newRun(ids);
@@ -80,10 +85,11 @@ function startPlay() {
       <p class="qz-score"><b>${right}</b> out of ${total}</p>
       <p class="qz-msg">${msg}</p>
       <ol class="qz-review">${run.order.map((id) => { const q = Q.get(id), r = run.res[id] || {}; return `<li class="${r.ok ? 'good' : 'bad'}"><span class="mk" aria-label="${r.ok ? 'right' : 'wrong'}">${r.ok ? '✓' : '✗'}</span> ${esc(q.q)}${r.ok ? '' : `<br><small>Answer: ${esc(answerText(q))}</small>`}</li>`; }).join('')}</ol>
-      <div class="btn-row qz-actions">${wrong.length ? '<button class="btn primary qz-big" id="qz-redo">Try the ones I got wrong</button>' : ''}<button class="btn qz-big" id="qz-again">Start again</button></div>
+      <div class="btn-row qz-actions">${wrong.length ? '<button class="btn primary qz-big" id="qz-redo">Try the ones I got wrong</button>' : ''}<button class="btn qz-big" id="qz-again">Start again</button><a class="btn ${wrong.length ? '' : 'primary '}qz-big" id="qz-back" href="quiz.html">Back to all quizzes</a></div>
     </div>`;
     if ($('qz-redo')) $('qz-redo').addEventListener('click', () => { run = { ...newRun(run.ids), order: wrong }; save(); render(); });
     $('qz-again').addEventListener('click', () => { run = newRun(run.ids); save(); render(); });
+    $('qz-back').addEventListener('click', backToList);
   }
   render();
 }
@@ -151,8 +157,8 @@ function startTeacher() {
     const z = BANK.quizzes.find((x) => x.id === (b.dataset.try || b.dataset.board || b.dataset.preview));
     if (!z) return;
     const url = () => playUrl({ play: z.id });
-    if (b.dataset.preview) showPreview(z.title, z.qs, () => window.open(url(), '_blank'), () => showBoard(z.title, z.qs.length, url()), b);
-    else if (b.dataset.try) window.open(url(), '_blank'); else showBoard(z.title, z.qs.length, url());
+    if (b.dataset.preview) showPreview(z.title, z.qs, () => { location.href = url(); }, () => showBoard(z.title, z.qs.length, url()), b);
+    else if (b.dataset.try) location.href = url(); else showBoard(z.title, z.qs.length, url());
   });
 
   // --- Build by topic ---
@@ -206,10 +212,10 @@ function startTeacher() {
     return { ids, title, url: playUrl({ play: 'mix', q: ids.join('.'), t: title }) };
   }
   $('qz-build-board').addEventListener('click', () => { const m = buildMix(); showBoard(m.title, m.ids.length, m.url); });
-  $('qz-build-try').addEventListener('click', () => { const m = buildMix(); window.open(m.url, '_blank'); });
+  $('qz-build-try').addEventListener('click', () => { location.href = buildMix().url; });
   $('qz-build-preview').addEventListener('click', (e) => {
     const m = buildMix();
-    showPreview(m.title, m.ids, () => window.open(m.url, '_blank'), () => showBoard(m.title, m.ids.length, m.url), e.currentTarget, 'These are picked at random, so you get a different set each time you press Preview.');
+    showPreview(m.title, m.ids, () => { location.href = m.url; }, () => showBoard(m.title, m.ids.length, m.url), e.currentTarget, 'These are picked at random, so you get a different set each time you press Preview.');
   });
 
   // --- Level: all, KS3 or GCSE ---

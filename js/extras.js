@@ -143,7 +143,7 @@
     };
     for (const [id, text] of Object.entries(btnTips)) { const el = document.getElementById(id); if (el && !el.dataset.tip) { el.dataset.tip = text; el.removeAttribute('title'); } }
     const theme = document.querySelector('.theme-select');
-    if (theme && !theme.dataset.tip) { theme.dataset.tip = 'Changes the colours. Lesson matches the classroom slides; Dark is easier on the eyes in a dim room.'; theme.removeAttribute('title'); }
+    if (theme && !theme.dataset.tip) { theme.dataset.tip = 'Changes the colours. Lesson matches the classroom slides, and Pink Noise is the same in pinks; Dark is easier on the eyes in a dim room.'; theme.removeAttribute('title'); }
   }
 
   // ---------- Copy picture ----------
