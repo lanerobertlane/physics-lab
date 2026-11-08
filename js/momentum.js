@@ -21,7 +21,7 @@ const CRUMPLE_T = 0.12, RIGID_T = 0.03;  // stopping times in the crash (s)
 const SLOW = 12;                         // the crash is shown this many times slower than real life
 
 const state = { tab: 'collide', kind: 'stick' };
-const num = (id) => Number($(id).value);
+const num = PK.num;
 
 // ---------- Physics ----------
 
@@ -100,11 +100,6 @@ const sgn = (x) => (Math.abs(x) < 0.005 ? '0.00' : (x > 0 ? '+' : '−') + Math.
 const ke = (m, v) => 0.5 * m * v * v;
 
 function render() {
-  for (const id of ['ma', 'mb', 'ea', 'eb']) $(`${id}-val`).textContent = `${num(id).toFixed(1)} kg`;
-  for (const id of ['ua', 'ub']) $(`${id}-val`).textContent = `${sgn(num(id))} m/s`;
-  $('espring-val').textContent = `${num('espring').toFixed(2)} J`;
-  $('cm-val').textContent = `${num('cm')} kg`;
-  $('cv-val').textContent = `${num('cv')} m/s`;
   $('dir-note').textContent = state.tab === 'safety' ? `The crash itself is shown ${SLOW} times slower than real life.` : 'Velocities to the right are positive.';
   if (state.tab === 'safety') return renderSafety();
   renderGliders();

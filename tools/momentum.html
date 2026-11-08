@@ -23,9 +23,6 @@
   <style>
     #track { aspect-ratio: 800 / 300; }
     .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
-    .ctl { margin-bottom: 12px; }
-    .ctl label { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 700; color: var(--muted); }
-    .ctl label b { color: var(--text); }
     .mtable { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: .92rem; }
     .mtable th, .mtable td { border: 1px solid var(--border-strong); padding: 5px 6px; text-align: center; }
     .mtable th { background: var(--surface-2); }
@@ -71,10 +68,10 @@
       <aside>
         <div class="panel" id="p-collide">
           <h2>Gliders</h2>
-          <div class="ctl"><label for="ma"><span><span class="glider-a">A</span> mass</span> <b id="ma-val"></b></label><input type="range" id="ma" min="0.1" max="1" step="0.1" value="0.4"></div>
-          <div class="ctl"><label for="ua"><span><span class="glider-a">A</span> velocity</span> <b id="ua-val"></b></label><input type="range" id="ua" min="0" max="1.5" step="0.1" value="0.8"></div>
-          <div class="ctl"><label for="mb"><span><span class="glider-b">B</span> mass</span> <b id="mb-val"></b></label><input type="range" id="mb" min="0.1" max="1" step="0.1" value="0.4"></div>
-          <div class="ctl"><label for="ub"><span><span class="glider-b">B</span> velocity</span> <b id="ub-val"></b></label><input type="range" id="ub" min="-1.5" max="1.5" step="0.1" value="0"></div>
+          <div class="num-row"><label for="ma"><span><span class="glider-a">A</span> mass</span></label><div class="stepper" data-num><button data-step="-1" aria-label="Less: mass of A">−</button><input type="number" id="ma" min="0.1" max="1" step="any" data-inc="0.1" value="0.4" inputmode="decimal"><span class="unit">kg</span><button data-step="1" aria-label="More: mass of A">+</button></div></div>
+          <div class="num-row"><label for="ua"><span><span class="glider-a">A</span> velocity</span></label><div class="stepper" data-num><button data-step="-1" aria-label="Less: velocity of A">−</button><input type="number" id="ua" min="0" max="1.5" step="any" data-inc="0.1" value="0.8" inputmode="decimal"><span class="unit">m/s</span><button data-step="1" aria-label="More: velocity of A">+</button></div></div>
+          <div class="num-row"><label for="mb"><span><span class="glider-b">B</span> mass</span></label><div class="stepper" data-num><button data-step="-1" aria-label="Less: mass of B">−</button><input type="number" id="mb" min="0.1" max="1" step="any" data-inc="0.1" value="0.4" inputmode="decimal"><span class="unit">kg</span><button data-step="1" aria-label="More: mass of B">+</button></div></div>
+          <div class="num-row"><label for="ub"><span><span class="glider-b">B</span> velocity</span></label><div class="stepper" data-num><button data-step="-1" aria-label="Less: velocity of B">−</button><input type="number" id="ub" min="-1.5" max="1.5" step="any" data-inc="0.1" value="0"><span class="unit">m/s</span><button data-step="1" aria-label="More: velocity of B">+</button></div></div>
           <div class="field"><span class="label">When they collide</span>
             <div class="chip-group" id="kind">
               <button class="chip" data-k="stick" aria-pressed="true">Stick together</button>
@@ -86,14 +83,14 @@
         <div class="panel" id="p-explode" hidden>
           <h2>Explosion</h2>
           <p class="note" style="margin-top:0">The gliders start together, at rest, with a squashed spring between them. Releasing the spring pushes them apart.</p>
-          <div class="ctl"><label for="ea"><span><span class="glider-a">A</span> mass</span> <b id="ea-val"></b></label><input type="range" id="ea" min="0.1" max="1" step="0.1" value="0.2"></div>
-          <div class="ctl"><label for="eb"><span><span class="glider-b">B</span> mass</span> <b id="eb-val"></b></label><input type="range" id="eb" min="0.1" max="1" step="0.1" value="0.4"></div>
-          <div class="ctl"><label for="espring">Energy in the spring <b id="espring-val"></b></label><input type="range" id="espring" min="0.02" max="0.2" step="0.02" value="0.08"></div>
+          <div class="num-row"><label for="ea"><span><span class="glider-a">A</span> mass</span></label><div class="stepper" data-num><button data-step="-1" aria-label="Less: mass of A">−</button><input type="number" id="ea" min="0.1" max="1" step="any" data-inc="0.1" value="0.2" inputmode="decimal"><span class="unit">kg</span><button data-step="1" aria-label="More: mass of A">+</button></div></div>
+          <div class="num-row"><label for="eb"><span><span class="glider-b">B</span> mass</span></label><div class="stepper" data-num><button data-step="-1" aria-label="Less: mass of B">−</button><input type="number" id="eb" min="0.1" max="1" step="any" data-inc="0.1" value="0.4" inputmode="decimal"><span class="unit">kg</span><button data-step="1" aria-label="More: mass of B">+</button></div></div>
+          <div class="num-row"><label for="espring">Energy in the spring</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: energy in the spring">−</button><input type="number" id="espring" min="0.02" max="0.2" step="any" data-inc="0.02" value="0.08" inputmode="decimal"><span class="unit">J</span><button data-step="1" aria-label="More: energy in the spring">+</button></div></div>
         </div>
         <div class="panel" id="p-safety" hidden>
           <h2>The crash</h2>
-          <div class="ctl"><label for="cm">Mass of the car <b id="cm-val"></b></label><input type="range" id="cm" min="800" max="2000" step="100" value="1200"></div>
-          <div class="ctl"><label for="cv">Speed <b id="cv-val"></b></label><input type="range" id="cv" min="5" max="30" step="1" value="15"></div>
+          <div class="num-row"><label for="cm">Mass of the car</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: mass of the car">−</button><input type="number" id="cm" min="800" max="2000" step="any" data-inc="100" value="1200" inputmode="decimal"><span class="unit">kg</span><button data-step="1" aria-label="More: mass of the car">+</button></div></div>
+          <div class="num-row"><label for="cv">Speed</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: speed">−</button><input type="number" id="cv" min="5" max="30" step="any" data-inc="1" value="15" inputmode="decimal"><span class="unit">m/s</span><button data-step="1" aria-label="More: speed">+</button></div></div>
           <label class="toggle"><input type="checkbox" id="crumple" checked> Crumple zone</label>
           <p class="note">A crumple zone squashes slowly, so the car takes longer to stop. Air bags, seat belts, cycle helmets and crash mats work in the same way.</p>
           <dl class="readout" id="safety-readout"></dl>

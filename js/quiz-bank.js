@@ -3022,6 +3022,164 @@ window.QUIZ_BANK = {
    "pg": "momentum"
   },
   {
+   "type": "short",
+   "topic": "forces",
+   "tool": "Levers & gears",
+   "q": "What is the point that a lever turns about called?",
+   "lv": "both",
+   "accept": [
+    "pivot",
+    "the pivot",
+    "fulcrum",
+    "the fulcrum"
+   ],
+   "id": "for1fw5p",
+   "pg": "levers"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Levers & gears",
+   "q": "Where should you push on a crowbar to lift a heavy rock with the smallest force?",
+   "lv": "both",
+   "opts": [
+    "As far from the pivot as you can",
+    "As close to the pivot as you can",
+    "Exactly on the pivot",
+    "It makes no difference"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Moment = force × distance, so a bigger distance means a smaller force gives the same moment.",
+   "id": "for1tdte",
+   "pg": "levers"
+  },
+  {
+   "type": "multi",
+   "topic": "forces",
+   "tool": "Levers & gears",
+   "q": "Which of these are levers? (tick 3)",
+   "lv": "both",
+   "opts": [
+    "A crowbar",
+    "A wheelbarrow",
+    "A pair of scissors",
+    "A ramp"
+   ],
+   "ans": [
+    0,
+    1,
+    2
+   ],
+   "exp": "A lever turns about a pivot. A ramp is a simple machine, but it doesn't turn.",
+   "id": "fori363i",
+   "pg": "levers"
+  },
+  {
+   "type": "num",
+   "topic": "forces",
+   "tool": "Levers & gears",
+   "q": "A 600 N load is 0.2 m from the pivot of a lever. The effort is 1.2 m from the pivot. What effort balances the load?",
+   "lv": "ks4",
+   "num": 100,
+   "unit": "N",
+   "exp": "Moment of the load = 600 × 0.2 = 120 N m. Effort = 120 ÷ 1.2 = 100 N.",
+   "id": "forkxvc2",
+   "pg": "levers"
+  },
+  {
+   "type": "tf",
+   "topic": "forces",
+   "tool": "Levers & gears",
+   "q": "A lever that lets you use a smaller force also means the effort has to move further.",
+   "lv": "both",
+   "ans": true,
+   "exp": "You get a bigger force at the expense of a smaller movement of the load.",
+   "id": "forn782c",
+   "pg": "levers"
+  },
+  {
+   "type": "open",
+   "topic": "forces",
+   "tool": "Levers & gears",
+   "q": "Explain how a long spanner makes it easier to undo a tight nut.",
+   "lv": "ks4",
+   "model": "The moment is force × perpendicular distance from the pivot. A longer spanner has a bigger distance, so the same moment can be produced with a smaller force.",
+   "id": "for1t2gx",
+   "pg": "levers"
+  },
+  {
+   "type": "tf",
+   "topic": "forces",
+   "tool": "Levers & gears",
+   "q": "Two gears that are meshed together turn in opposite directions.",
+   "lv": "ks4",
+   "ans": true,
+   "id": "for1mwbk",
+   "pg": "levers"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Levers & gears",
+   "q": "A gear with 10 teeth drives a gear with 30 teeth. How does the driven gear turn compared with the driver?",
+   "lv": "ks4",
+   "opts": [
+    "More slowly, with a bigger moment",
+    "Faster, with a bigger moment",
+    "More slowly, with a smaller moment",
+    "At the same speed, with the same moment"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The driven gear has 3 times the teeth, so it turns 3 times more slowly with 3 times the moment.",
+   "id": "foruuuor",
+   "pg": "levers"
+  },
+  {
+   "type": "num",
+   "topic": "forces",
+   "tool": "Levers & gears",
+   "q": "A moment of 5 N m turns a gear with 10 teeth. It drives a gear with 40 teeth. What is the moment on the bigger gear?",
+   "lv": "ks4",
+   "num": 20,
+   "unit": "N m",
+   "exp": "The driven gear has 4 times the teeth, so it has 4 times the radius and 4 times the moment: 5 × 4 = 20 N m.",
+   "id": "forpkcqr",
+   "pg": "levers"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Levers & gears",
+   "q": "Why is an extra gear sometimes put between two gears?",
+   "lv": "ks4",
+   "opts": [
+    "To make the last gear turn the same way as the first",
+    "To increase the moment",
+    "To increase the speed",
+    "To reduce the number of teeth"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Each pair of meshed gears reverses the direction. The extra gear doesn't change the speed or moment of the last gear.",
+   "id": "for1exeh",
+   "pg": "levers"
+  },
+  {
+   "type": "open",
+   "topic": "forces",
+   "tool": "Levers & gears",
+   "q": "Explain how gears pass on the turning effect of a force.",
+   "lv": "ks4",
+   "model": "The teeth of the driving gear push on the teeth of the next gear, so a force is passed on. The moment on each gear is that force × its radius, so a bigger gear has a bigger moment but turns more slowly.",
+   "id": "for19il1",
+   "pg": "levers"
+  },
+  {
    "type": "mc",
    "topic": "forces",
    "tool": "Stopping distances",
@@ -7729,7 +7887,8 @@ window.QUIZ_BANK = {
    "ans": [
     0
    ],
-   "id": "for600i4"
+   "id": "for600i4",
+   "pg": "speed"
   },
   {
    "type": "mc",
@@ -7746,7 +7905,8 @@ window.QUIZ_BANK = {
    "ans": [
     1
    ],
-   "id": "for1eeas"
+   "id": "for1eeas",
+   "pg": "speed"
   },
   {
    "type": "short",
@@ -7792,7 +7952,8 @@ window.QUIZ_BANK = {
    "ans": [
     1
    ],
-   "id": "forriz0s"
+   "id": "forriz0s",
+   "pg": "speed"
   },
   {
    "type": "multi",
@@ -7810,7 +7971,8 @@ window.QUIZ_BANK = {
     0,
     1
    ],
-   "id": "forc8mht"
+   "id": "forc8mht",
+   "pg": "speed"
   },
   {
    "type": "mc",
@@ -7827,7 +7989,8 @@ window.QUIZ_BANK = {
    "ans": [
     1
    ],
-   "id": "for7ua47"
+   "id": "for7ua47",
+   "pg": "speed"
   },
   {
    "type": "short",
@@ -7843,7 +8006,8 @@ window.QUIZ_BANK = {
     "m s-1",
     "mps"
    ],
-   "id": "forzlmv9"
+   "id": "forzlmv9",
+   "pg": "speed"
   },
   {
    "type": "mc",
@@ -7861,7 +8025,8 @@ window.QUIZ_BANK = {
     1
    ],
    "exp": "Speed = distance ÷ time = 200 ÷ 40 = 5 m/s.",
-   "id": "for10631"
+   "id": "for10631",
+   "pg": "speed"
   },
   {
    "type": "short",
@@ -7875,7 +8040,8 @@ window.QUIZ_BANK = {
     "30 mi"
    ],
    "exp": "60 minutes is one hour, so it goes 30 miles.",
-   "id": "forguzyv"
+   "id": "forguzyv",
+   "pg": "speed"
   },
   {
    "type": "short",
@@ -7944,7 +8110,8 @@ window.QUIZ_BANK = {
    "ans": [
     1
    ],
-   "id": "forwrwbl"
+   "id": "forwrwbl",
+   "pg": "speed"
   },
   {
    "type": "mc",
@@ -8007,7 +8174,8 @@ window.QUIZ_BANK = {
     1
    ],
    "exp": "Two cars each doing 30 mph towards each other close the gap at 60 mph.",
-   "id": "forej1pe"
+   "id": "forej1pe",
+   "pg": "speed"
   },
   {
    "type": "mc",
@@ -8025,7 +8193,8 @@ window.QUIZ_BANK = {
     2
    ],
    "exp": "A car doing 70 mph overtakes one doing 60 mph at 10 mph.",
-   "id": "for96b8h"
+   "id": "for96b8h",
+   "pg": "speed"
   },
   {
    "type": "short",
@@ -8084,7 +8253,8 @@ window.QUIZ_BANK = {
     1
    ],
    "exp": "Its relative speed is the difference between the two speeds. A car doing 70 mph passes one doing 60 mph at 10 mph.",
-   "id": "for1b39k"
+   "id": "for1b39k",
+   "pg": "speed"
   },
   {
    "type": "mc",
@@ -8112,7 +8282,8 @@ window.QUIZ_BANK = {
    "lv": "ks3",
    "ans": false,
    "exp": "Speed = distance ÷ time.",
-   "id": "for159t9"
+   "id": "for159t9",
+   "pg": "speed"
   },
   {
    "type": "short",
@@ -8351,7 +8522,8 @@ window.QUIZ_BANK = {
    "q": "Define speed.",
    "lv": "ks3",
    "model": "Speed is the distance travelled per unit time (speed = distance ÷ time).",
-   "id": "for1a2k9"
+   "id": "for1a2k9",
+   "pg": "speed"
   },
   {
    "type": "short",
@@ -11116,7 +11288,8 @@ window.QUIZ_BANK = {
    "q": "What equation links speed, distance and time?",
    "lv": "ks4",
    "model": "Speed = distance ÷ time (or distance = speed × time).",
-   "id": "forihdhs"
+   "id": "forihdhs",
+   "pg": "speed"
   },
   {
    "type": "short",
@@ -11131,7 +11304,8 @@ window.QUIZ_BANK = {
     "ms-1",
     "m s-1"
    ],
-   "id": "for7sibn"
+   "id": "for7sibn",
+   "pg": "speed"
   },
   {
    "type": "num",
@@ -11142,7 +11316,8 @@ window.QUIZ_BANK = {
    "num": 20,
    "unit": "m/s",
    "exp": "Speed = distance ÷ time = 200 ÷ 10 = 20 m/s",
-   "id": "for6kx9u"
+   "id": "for6kx9u",
+   "pg": "speed"
   },
   {
    "type": "open",
@@ -11151,7 +11326,8 @@ window.QUIZ_BANK = {
    "q": "A road has lampposts every 20 metres. Explain how you could calculate the speed of a car travelling along the road.",
    "lv": "ks4",
    "model": "Use a stopwatch to time how long the car takes to travel between two lampposts (or several, for a longer distance). Divide the distance (20 m per gap) by the time.",
-   "id": "for1ds4p"
+   "id": "for1ds4p",
+   "pg": "speed"
   },
   {
    "type": "tf",
@@ -11476,7 +11652,8 @@ window.QUIZ_BANK = {
    "ans": [
     1
    ],
-   "id": "fork9448"
+   "id": "fork9448",
+   "pg": "speed"
   },
   {
    "type": "tf",
@@ -11587,7 +11764,8 @@ window.QUIZ_BANK = {
    "q": "What units do we measure distance and time in?",
    "lv": "both",
    "model": "Distance in metres (m), time in seconds (s).",
-   "id": "for1f6yt"
+   "id": "for1f6yt",
+   "pg": "speed"
   },
   {
    "type": "short",

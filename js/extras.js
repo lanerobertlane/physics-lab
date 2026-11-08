@@ -85,6 +85,8 @@
     'r-vacuum': 'Removes the air. Infrared still reaches the cans, because radiation doesn’t need particles to travel.',
     'ruler-on': 'Shows a ruler for measuring the wavelength.',
     'show-config': 'Writes the electronic structure (like 2,8,1) on each of the first 20 elements.',
+    idler: 'Adds a gear between the driver and the driven gear, so you can see what it changes and what it doesn’t.',
+    ride: 'Shows the road as it looks from inside car A, so you can see the relative speed of car B.',
     'show-ke': 'Adds kinetic energy to the table. Momentum is always conserved, but kinetic energy is only kept when the gliders bounce perfectly.',
     crumple: 'Gives the car a crumple zone, so it takes longer to stop. The same change in momentum over a longer time means a smaller force.',
     'circuits#show-graph': 'Plots an I–V graph from your readings.',

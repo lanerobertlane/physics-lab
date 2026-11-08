@@ -222,6 +222,43 @@ const PK = (() => {
     return String(parseFloat(x.toPrecision(n)));
   }
 
+  // Number boxes: <div class="stepper" data-num> holding an <input type="number" data-inc="…">
+  // between − and + buttons (data-step="-1" and "1"). Type a value, tap, or hold to keep going.
+  function numberOf(el, raw) {
+    const hi = el.max === '' ? Infinity : Number(el.max), lo = el.min === '' ? -Infinity : Number(el.min);
+    let v = Number(raw === '' ? el.defaultValue : raw);
+    if (!Number.isFinite(v)) v = Number(el.defaultValue);
+    v = Math.max(lo, Math.min(hi, v));
+    return 'whole' in el.dataset ? Math.round(v) : parseFloat(v.toFixed(6));
+  }
+  const num = (id) => { const el = document.getElementById(id); return numberOf(el, el.value); };
+  const setNum = (id, v) => { const el = document.getElementById(id); el.value = numberOf(el, v); };
+  const stepButton = (t) => t.closest && t.closest('.stepper[data-num] button[data-step]');
+  function bump(b) {
+    const el = b.parentElement.querySelector('input');
+    el.value = numberOf(el, numberOf(el, el.value) + Number(b.dataset.step) * (Number(el.dataset.inc) || 1));
+    el.dispatchEvent(new Event('input', { bubbles: true }));
+  }
+  let held = null;
+  const letGo = () => { if (held) { clearTimeout(held.wait); clearInterval(held.again); held = null; } };
+  document.addEventListener('pointerdown', (e) => {
+    const b = stepButton(e.target);
+    if (!b) return;
+    letGo();
+    const h = { b, repeated: false };
+    h.wait = setTimeout(() => { h.repeated = true; bump(b); h.again = setInterval(() => bump(b), 90); }, 450);
+    held = h;
+  });
+  document.addEventListener('pointerup', (e) => { if (held && !held.repeated && stepButton(e.target) === held.b) bump(held.b); letGo(); });
+  document.addEventListener('pointercancel', letGo);
+  document.addEventListener('click', (e) => { const b = stepButton(e.target); if (b && e.detail === 0) bump(b); });   // keyboard
+  document.addEventListener('change', (e) => {
+    const el = e.target;
+    if (!el.closest || !el.closest('.stepper[data-num]') || el.tagName !== 'INPUT') return;
+    const v = String(numberOf(el, el.value));
+    if (v !== el.value) { el.value = v; el.dispatchEvent(new Event('input', { bubbles: true })); }
+  });
+
   // Cache the site for offline use (only works over http/https).
   if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
     window.addEventListener('load', () => {
@@ -244,5 +281,5 @@ const PK = (() => {
   extras.src = `${root}js/extras.js`;
   document.head.appendChild(extras);
 
-  return { root, store, header, toast, copyLink, cssVar, sig, isDark, ans, ansText, answersShown, toggleFullscreen, fullscreenEnabled: fsEnabled, initialHash };
+  return { root, store, header, toast, copyLink, cssVar, sig, isDark, ans, ansText, answersShown, toggleFullscreen, fullscreenEnabled: fsEnabled, initialHash, num, setNum };
 })();

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Speed &amp; Distance–Time · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Race runners, cars and animals and plot their distance–time graphs. Work out average speed on a journey, and see relative speed as two cars pass.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="physics, forces, speed, distance, time, distance-time graph, relative motion, education, school, KS3, science, simulation, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/speed.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Speed &amp; distance–time">
+  <meta property="og:description" content="Race runners, cars and animals and plot their distance–time graphs. Work out average speed on a journey, and see relative speed as two cars pass.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/speed.html">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Speed & distance–time", "description": "Race runners, cars and animals and plot their distance–time graphs. Work out average speed on a journey, and see relative speed as two cars pass.", "url": "https://lanerobertlane.space/tools/speed.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["Key Stage 3"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #scene { aspect-ratio: 560 / 220; }
+    #dt { width: 100%; aspect-ratio: 560 / 330; display: block; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .results { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: .9rem; }
+    .results th, .results td { border: 1px solid var(--border-strong); padding: 4px 6px; text-align: center; }
+    .results th { background: var(--surface-2); }
+    .results tr.sum td { background: var(--surface-2); font-weight: 800; }
+    .stage-card { border: 1px solid var(--border); border-left: 6px solid var(--stage); border-radius: var(--radius-sm); padding: 10px 12px 2px; margin-bottom: 10px; }
+    .stage-card h3 { margin: 0; font-size: 1rem; color: var(--stage); }
+    .stage-card .say { margin: 0 0 8px; font-size: .9rem; color: var(--text); }
+    #p-race .field { margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Speed and distance–time graphs</h1>
+      <p>Speed tells you how far something goes each second: <b>speed = distance ÷ time</b>. Run a race, plan a journey with stops, or watch two cars pass each other, and see each one drawn on a distance–time graph.</p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px" aria-label="Show">
+      <button class="chip" data-t="race" aria-pressed="true">Race</button>
+      <button class="chip" data-t="journey" aria-pressed="false">Journey</button>
+      <button class="chip" data-t="pass" aria-pressed="false">Passing cars</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="scene" aria-label="The objects moving along a track"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="go">▶ Go</button>
+            <button class="btn" id="reset">↺ Reset</button>
+            <div class="chip-group" id="warp" aria-label="How fast to play it">
+              <button class="chip" data-w="1" aria-pressed="true">1×</button>
+              <button class="chip" data-w="2" aria-pressed="false">2×</button>
+              <button class="chip" data-w="5" aria-pressed="false">5×</button>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <h2 id="graph-title">Distance–time graph</h2>
+          <canvas id="dt" aria-label="Distance against time graph"></canvas>
+          <p class="note" id="graph-note"></p>
+        </div>
+      </div>
+      <aside>
+        <div class="panel" id="p-race">
+          <h2>Who is racing?</h2>
+          <div class="field"><span class="label">Lane 1</span><select class="select" id="lane1" aria-label="Lane 1"></select></div>
+          <div class="field"><span class="label">Lane 2</span><select class="select" id="lane2" aria-label="Lane 2"></select></div>
+          <div class="field"><span class="label">Lane 3</span><select class="select" id="lane3" aria-label="Lane 3"></select></div>
+        </div>
+        <div class="panel" id="p-journey" hidden>
+          <h2>Plan the journey</h2>
+          <div class="stage-card" style="--stage:#1e88e5">
+            <h3>Stage 1</h3>
+            <p class="say" id="say1"></p>
+            <div class="num-row"><label for="v1">Speed</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: speed in stage 1">−</button><input type="number" id="v1" min="0" max="5" step="any" data-inc="0.5" value="2" inputmode="decimal"><span class="unit">m/s</span><button data-step="1" aria-label="More: speed in stage 1">+</button></div></div>
+            <div class="num-row"><label for="t1">Lasts for</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: time in stage 1">−</button><input type="number" id="t1" min="5" max="60" step="any" data-inc="5" value="30" inputmode="decimal"><span class="unit">s</span><button data-step="1" aria-label="More: time in stage 1">+</button></div></div>
+          </div>
+          <div class="stage-card" style="--stage:#f57c00">
+            <h3>Stage 2</h3>
+            <p class="say" id="say2"></p>
+            <div class="num-row"><label for="v2">Speed</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: speed in stage 2">−</button><input type="number" id="v2" min="0" max="5" step="any" data-inc="0.5" value="0" inputmode="decimal"><span class="unit">m/s</span><button data-step="1" aria-label="More: speed in stage 2">+</button></div></div>
+            <div class="num-row"><label for="t2">Lasts for</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: time in stage 2">−</button><input type="number" id="t2" min="5" max="60" step="any" data-inc="5" value="20" inputmode="decimal"><span class="unit">s</span><button data-step="1" aria-label="More: time in stage 2">+</button></div></div>
+          </div>
+          <div class="stage-card" style="--stage:#2e9e4f">
+            <h3>Stage 3</h3>
+            <p class="say" id="say3"></p>
+            <div class="num-row"><label for="v3">Speed</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: speed in stage 3">−</button><input type="number" id="v3" min="0" max="5" step="any" data-inc="0.5" value="4" inputmode="decimal"><span class="unit">m/s</span><button data-step="1" aria-label="More: speed in stage 3">+</button></div></div>
+            <div class="num-row"><label for="t3">Lasts for</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: time in stage 3">−</button><input type="number" id="t3" min="5" max="60" step="any" data-inc="5" value="30" inputmode="decimal"><span class="unit">s</span><button data-step="1" aria-label="More: time in stage 3">+</button></div></div>
+          </div>
+        </div>
+        <div class="panel" id="p-pass" hidden>
+          <h2>The two cars</h2>
+          <div class="field"><span class="label">Directions</span>
+            <div class="chip-group" id="dir">
+              <button class="chip" data-d="opposite" aria-pressed="true">Opposite</button>
+              <button class="chip" data-d="same" aria-pressed="false">Same way</button>
+            </div>
+          </div>
+          <div class="num-row"><label for="va">Car A speed</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: speed of car A">−</button><input type="number" id="va" min="5" max="30" step="any" data-inc="1" value="20" inputmode="decimal"><span class="unit">m/s</span><button data-step="1" aria-label="More: speed of car A">+</button></div></div>
+          <div class="num-row"><label for="vb">Car B speed</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: speed of car B">−</button><input type="number" id="vb" min="5" max="30" step="any" data-inc="1" value="15" inputmode="decimal"><span class="unit">m/s</span><button data-step="1" aria-label="More: speed of car B">+</button></div></div>
+          <label class="toggle"><input type="checkbox" id="ride"> Ride in car A</label>
+        </div>
+        <div class="panel">
+          <h2 id="results-title">Results</h2>
+          <div id="results"></div>
+          <div class="working" id="working" style="margin-top:10px"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/speed.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/quiz-pages/speed.js"></script>
+  <script src="../js/practice-tab.js" data-eqs="speed"></script>
+</body>
+</html>
