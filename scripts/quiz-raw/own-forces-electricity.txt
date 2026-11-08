@@ -23,6 +23,19 @@ multi | forces | Momentum & collisions | Which of these reduce the force on a pe
 num | forces | Momentum & collisions | A 1200 kg car travelling at 15 m/s stops in 0.12 s in a crash. What is the average force on the car? {ks4} | NUM: 150000 N | EXP: F = m Δv ÷ Δt = 1200 × 15 ÷ 0.12 = 150 000 N.
 tf | forces | Momentum & collisions | When two gliders stick together after a collision, kinetic energy is conserved. {ks4} | FALSE | EXP: Momentum is conserved, but some kinetic energy is transferred to other stores, such as by heating and sound.
 
+## Levers & gears
+short | forces | Levers & gears | What is the point that a lever turns about called? {both} | ACCEPT: pivot; the pivot; fulcrum; the fulcrum
+mc | forces | Levers & gears | Where should you push on a crowbar to lift a heavy rock with the smallest force? {both} | *As far from the pivot as you can; As close to the pivot as you can; Exactly on the pivot; It makes no difference | EXP: Moment = force × distance, so a bigger distance means a smaller force gives the same moment.
+multi | forces | Levers & gears | Which of these are levers? (tick 3) {both} | *A crowbar; *A wheelbarrow; *A pair of scissors; A ramp | EXP: A lever turns about a pivot. A ramp is a simple machine, but it doesn't turn.
+num | forces | Levers & gears | A 600 N load is 0.2 m from the pivot of a lever. The effort is 1.2 m from the pivot. What effort balances the load? {ks4} | NUM: 100 N | EXP: Moment of the load = 600 × 0.2 = 120 N m. Effort = 120 ÷ 1.2 = 100 N.
+tf | forces | Levers & gears | A lever that lets you use a smaller force also means the effort has to move further. {both} | TRUE | EXP: You get a bigger force at the expense of a smaller movement of the load.
+open | forces | Levers & gears | Explain how a long spanner makes it easier to undo a tight nut. {ks4} | MODEL: The moment is force × perpendicular distance from the pivot. A longer spanner has a bigger distance, so the same moment can be produced with a smaller force.
+tf | forces | Levers & gears | Two gears that are meshed together turn in opposite directions. {ks4} | TRUE
+mc | forces | Levers & gears | A gear with 10 teeth drives a gear with 30 teeth. How does the driven gear turn compared with the driver? {ks4} | *More slowly, with a bigger moment; Faster, with a bigger moment; More slowly, with a smaller moment; At the same speed, with the same moment | EXP: The driven gear has 3 times the teeth, so it turns 3 times more slowly with 3 times the moment.
+num | forces | Levers & gears | A moment of 5 N m turns a gear with 10 teeth. It drives a gear with 40 teeth. What is the moment on the bigger gear? {ks4} | NUM: 20 N m | EXP: The driven gear has 4 times the teeth, so it has 4 times the radius and 4 times the moment: 5 × 4 = 20 N m.
+mc | forces | Levers & gears | Why is an extra gear sometimes put between two gears? {ks4} | *To make the last gear turn the same way as the first; To increase the moment; To increase the speed; To reduce the number of teeth | EXP: Each pair of meshed gears reverses the direction. The extra gear doesn't change the speed or moment of the last gear.
+open | forces | Levers & gears | Explain how gears pass on the turning effect of a force. {ks4} | MODEL: The teeth of the driving gear push on the teeth of the next gear, so a force is passed on. The moment on each gear is that force × its radius, so a bigger gear has a bigger moment but turns more slowly.
+
 ## Stopping distances
 mc | forces | Stopping distances | Stopping distance is... {ks4} | Thinking distance × braking distance; *Thinking distance + braking distance; Braking distance − thinking distance; Just the braking distance
 mc | forces | Stopping distances | Which of these increases the thinking distance? {ks4} | Wet roads; Worn tyres; *Drinking alcohol; Worn brakes | EXP: Alcohol, drugs, tiredness and distractions slow the driver's reaction time. Road and car conditions affect the braking distance.

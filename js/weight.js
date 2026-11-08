@@ -253,8 +253,7 @@ function drawGraph() {
 
 // "What would you weigh?" on every world
 function renderBars() {
-  const m = Number($('you').value);
-  $('you-val').textContent = `${m} kg`;
+  const m = PK.num('you');
   const top = Math.max(...ORDER.filter((k) => k !== 'mystery').map((k) => WORLDS[k].g));
   $('bars').innerHTML = ORDER.filter((k) => k !== 'mystery').map((k) => {
     const w = WORLDS[k], F = m * w.g;

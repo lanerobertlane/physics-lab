@@ -440,6 +440,28 @@ window.SPEC_INDEX = [
   ]
  },
  {
+  "page": "levers",
+  "title": "Levers & gears",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "4.5.4",
+    "text": "Moment of a force: M = F d, where d is the perpendicular distance from the pivot",
+    "po": 1
+   },
+   {
+    "code": "4.5.4",
+    "text": "If an object is balanced, the total clockwise moment about a pivot equals the total anticlockwise moment",
+    "po": 1
+   },
+   {
+    "code": "4.5.4",
+    "text": "A simple lever and a simple gear system can both be used to transmit the rotational effects of forces",
+    "po": 1
+   }
+  ]
+ },
+ {
   "page": "light-box",
   "title": "Light box & lenses",
   "course": "physics",
@@ -831,6 +853,25 @@ window.SPEC_INDEX = [
    {
     "code": "KS3",
     "text": "The Sun is a star; the solar system; a year, a month and a day"
+   }
+  ]
+ },
+ {
+  "page": "speed",
+  "title": "Speed & distance–time",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "KS3",
+    "text": "Speed and the quantitative relationship between average speed, distance and time (speed = distance ÷ time)"
+   },
+   {
+    "code": "KS3",
+    "text": "The representation of a journey on a distance–time graph"
+   },
+   {
+    "code": "KS3",
+    "text": "Relative motion: trains and cars passing one another"
    }
   ]
  },
