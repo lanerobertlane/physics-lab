@@ -2,7 +2,7 @@
 // Network first (so updates show straight away), falling back to the saved copy.
 // Bump VERSION when adding new files to PRECACHE.
 
-const VERSION = 'physkit-v45';
+const VERSION = 'physkit-v46';
 const PRECACHE = [
   './',
   'index.html',

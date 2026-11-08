@@ -11,6 +11,7 @@ const PK = (() => {
   // Theme id -> label in the menu. Lesson is the default for anyone who hasn't chosen.
   const THEMES = {
     lesson: 'Lesson',
+    pink: 'Pink Noise',
     light: 'Light',
     classroom: 'ClassCharts',
     sparx: 'Sparx',
@@ -86,13 +87,13 @@ const PK = (() => {
   const applyBeyond = () => document.documentElement.classList.toggle('show-beyond', beyondShown());
   applyBeyond();
 
-  function header({ title = '', isHome = false, spec = null, answers = false, specNote = null } = {}) {
+  function header({ title = '', isHome = false, spec = null, answers = false, specNote = null, back = null } = {}) {
     document.title = title ? `${title} · ${SITE.name}` : SITE.name;
 
     const el = document.createElement('header');
     el.className = isHome ? 'site-header' : 'site-header tool';
     el.innerHTML = `
-      ${isHome ? '' : `<a class="icon-btn" href="${root}index.html" aria-label="All tools">${icons.back}<span class="label">All tools</span></a>`}
+      ${isHome ? '' : `<a class="icon-btn" id="pk-back" href="${back ? back.href : `${root}index.html`}" aria-label="${back ? back.label : 'All tools'}">${icons.back}<span class="label">${back ? back.label : 'All tools'}</span></a>`}
       <a class="brand" href="${root}index.html">
         <span class="brand-mark" aria-hidden="true">${icons.cradle}</span>
         <span class="brand-text"><span class="brand-name">${SITE.name}</span>${SITE.byline ? `<span class="brand-by">${SITE.byline}</span>` : ''}</span>

@@ -125,17 +125,45 @@
 }
 
 :root[data-theme="lesson"] .site-header { border-bottom: 2px solid #FF0000; }
-:root[data-theme="lesson"] h1,
-:root[data-theme="lesson"] h2,
-:root[data-theme="lesson"] h3,
-:root[data-theme="lesson"] .panel h2,
-:root[data-theme="lesson"] .tool-name,
-:root[data-theme="lesson"] .brand-name { color: var(--title); font-weight: 700; }
+/* Pink Noise: the Lesson theme in pinks. (Pink noise is the physics name for sound whose
+   power falls as the frequency rises.) */
+:root[data-theme="pink"] {
+  --bg: #FCE3F0;
+  --surface: #ffffff;
+  --surface-2: #FDEEF6;
+  --text: #000000;
+  --muted: #4A2B3B;
+  --border: #F4C4DC;
+  --border-strong: #E58FBA;
+  --accent: #C2187A;
+  --accent-soft: #FBD5E8;
+  --accent-ink: #ffffff;
+  --grid: #F9DDEB;
+  --art: #9A6B85;
+  --header-bg: #ffffff;
+  --header-ink: #000000;
+  --header-btn: rgba(0, 0, 0, .04);
+  --header-btn-border: rgba(0, 0, 0, .2);
+  --title: #C9006B;
+  --answer: #C9006B;
+  --font-body: Calibri, Carlito, "Segoe UI", -apple-system, Arial, sans-serif;
+  --font-head: Calibri, Carlito, "Segoe UI", -apple-system, Arial, sans-serif;
+}
+
+:root[data-theme="pink"] .site-header { border-bottom: 2px solid #FF1493; }
+:root[data-theme="pink"] .brand-mark { background: #C9006B; color: #fff; }
+
+:root:is([data-theme="lesson"], [data-theme="pink"]) h1,
+:root:is([data-theme="lesson"], [data-theme="pink"]) h2,
+:root:is([data-theme="lesson"], [data-theme="pink"]) h3,
+:root:is([data-theme="lesson"], [data-theme="pink"]) .panel h2,
+:root:is([data-theme="lesson"], [data-theme="pink"]) .tool-name,
+:root:is([data-theme="lesson"], [data-theme="pink"]) .brand-name { color: var(--title); font-weight: 700; }
 
 /* Calibri throughout, including the equation symbols. */
-:root[data-theme="lesson"] .eq-main,
-:root[data-theme="lesson"] .var-btn .vs,
-:root[data-theme="lesson"] .sym-chip b { font-family: var(--font-body); }
+:root:is([data-theme="lesson"], [data-theme="pink"]) .eq-main,
+:root:is([data-theme="lesson"], [data-theme="pink"]) .var-btn .vs,
+:root:is([data-theme="lesson"], [data-theme="pink"]) .sym-chip b { font-family: var(--font-body); }
 
 /* Written answers / results: red in the Lesson theme, unchanged elsewhere. */
 .big-number, .calc-out .ans, .working b, .readouts .v { color: var(--answer, inherit); }
@@ -184,7 +212,7 @@
 :root[data-theme="classroom"] .results th { background: var(--surface-2); }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]):not([data-theme="classroom"]):not([data-theme="sparx"]):not([data-theme="lesson"]) {
+  :root:not([data-theme="light"]):not([data-theme="classroom"]):not([data-theme="sparx"]):not([data-theme="lesson"]):not([data-theme="pink"]) {
     --bg: #0e1117;
     --surface: #161a22;
     --surface-2: #1f2430;

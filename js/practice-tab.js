@@ -63,7 +63,7 @@
     .pq-present .p-bar { position: fixed; left: 0; right: 0; bottom: 0; display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end;
       padding: 12px clamp(16px, 3vw, 56px); background: linear-gradient(transparent, var(--bg) 35%); }
     body.pq-presenting { overflow: hidden; }
-    :root[data-theme="lesson"] .pq .eq-show, :root[data-theme="lesson"] .pq-present .eq-show { font-family: var(--font-body); }`;
+    :root:is([data-theme="lesson"], [data-theme="pink"]) .pq .eq-show, :root:is([data-theme="lesson"], [data-theme="pink"]) .pq-present .eq-show { font-family: var(--font-body); }`;
   document.head.appendChild(css);
 
   // ---------- Layout: wrap the tool, and add the practice pane ----------
