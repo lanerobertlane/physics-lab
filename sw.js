@@ -1,8 +1,10 @@
 // Offline support: keeps a copy of the site so it still works if school Wi-Fi drops.
 // Network first (so updates show straight away), falling back to the saved copy.
-// Bump VERSION when adding new files to PRECACHE.
+// Bump VERSION when anything changes, and keep it the same as SITE.version in js/common.js.
 
-const VERSION = 'physkit-v46';
+const VERSION = 'physkit-v47';
+// Written by scripts/build-quiz-bank.js: the pages that have quiz questions for their Practice tab
+const QUIZ_PAGES = ['acceleration', 'atom', 'atom-history', 'background', 'bonding', 'circuits', 'density', 'efficiency', 'electromagnetism', 'em-spectrum', 'energy', 'fission', 'gas', 'grid', 'half-life', 'heat', 'infrared', 'insulation', 'levers', 'light-box', 'magnets', 'mains', 'moments', 'momentum', 'motion-graphs', 'nuclear', 'orbits', 'periodic-table', 'radiation', 'redshift', 'resources', 'resultant-forces', 'ripple-tank', 'shc', 'sky', 'speed', 'springs', 'star-life', 'states', 'static', 'stopping', 'terminal', 'third-law', 'transformers', 'uses', 'waves', 'weight', 'work'];
 const PRECACHE = [
   './',
   'index.html',
@@ -92,7 +94,8 @@ const PRECACHE = [
   'tools/third-law.html',
   'tools/em-spectrum.html',
   'tools/equations.html',
-];
+  'js/qrcode.min.js',
+].concat(QUIZ_PAGES.map((p) => `js/quiz-pages/${p}.js`));
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(VERSION).then((cache) => cache.addAll(PRECACHE)).then(() => self.skipWaiting()));

@@ -274,3 +274,13 @@ const startTab = location.hash.slice(1);
 showTab(['background', 'contamination', 'sort'].includes(startTab) ? startTab : 'background');
 renderDose(); renderDanger(); renderSort();
 requestAnimationFrame(frame);
+
+// Share: the counts already taken go with the link
+PK.shareState = {
+  get: () => ({ b: counting.bg, s: counting.src }),
+  set: (o) => {
+    counting.bg = o.b == null ? null : Number(o.b);
+    counting.src = o.s == null ? null : Number(o.s);
+    renderResults();
+  },
+};

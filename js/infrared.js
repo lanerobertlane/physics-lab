@@ -187,3 +187,20 @@ window.addEventListener('resize', sizeCanvas);
 sizeCanvas();
 renderControls();
 requestAnimationFrame(frame);
+
+// Share: the readings go with the link, and so does the face the detector is pointing at.
+// Surfaces travel as their place in the list, which keeps the link short.
+const surfaceIndex = (name) => SURFACES.findIndex((s) => s.name === name);
+PK.shareState = {
+  get: () => ({
+    f: state.face,
+    r: state.rows.map((x) => [surfaceIndex(x.name), x.T, Math.round(x.r)]),
+    a: state.absorbRows.map((x) => [surfaceIndex(x.name), Math.round(x.t)]),
+  }),
+  set: (o) => {
+    if (SURFACES[o.f]) state.face = Number(o.f);
+    if (Array.isArray(o.r)) state.rows = o.r.filter(([i]) => SURFACES[i]).map(([i, T, r]) => ({ name: SURFACES[i].name, T: Number(T), r: Number(r) }));
+    if (Array.isArray(o.a)) state.absorbRows = o.a.filter(([i]) => SURFACES[i]).map(([i, t]) => ({ name: SURFACES[i].name, t: Number(t) }));
+    renderControls();
+  },
+};

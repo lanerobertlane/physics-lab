@@ -47,7 +47,11 @@ function startPlay() {
   $('pk-back').addEventListener('click', backToList);
   const key = `quiz.run.${playId}.${params.get('q') || ''}`;
   let run = PK.store.get(key, null);
-  if (!run || run.ids.join() !== ids.join()) run = newRun(ids);
+  // A finished quiz starts again when it is opened afresh. Coming back to it from a Revise link,
+  // or reloading the page, keeps the score on screen.
+  const arrival = (performance.getEntriesByType('navigation')[0] || {}).type;
+  const cameBack = arrival === 'back_forward' || arrival === 'reload';
+  if (!run || run.ids.join() !== ids.join() || (run.i >= run.order.length && !cameBack)) run = newRun(ids);
   function newRun(list) {
     const seed = Math.floor(Math.random() * 1e9);
     const order = params.get('o') === '1' ? shuffled(list, rng(seed)) : list.slice();
@@ -74,6 +78,12 @@ function startPlay() {
     });
   }
 
+  // A wrong answer links to the tool that teaches it, if there is one
+  function reviseLink(q) {
+    const tool = q.pg && TOOLS.find((t) => t.href && t.href.split('#')[0] === `tools/${q.pg}.html`);
+    return tool ? `<br><a class="qz-revise" href="${q.pg}.html?fromquiz=1">Revise this: ${esc(tool.name)} →</a>` : '';
+  }
+
   function renderEnd() {
     const total = run.order.length;
     const right = run.order.filter((id) => run.res[id] && run.res[id].ok).length;
@@ -84,7 +94,7 @@ function startPlay() {
     $('play-card').innerHTML = `<div class="qz-end">
       <p class="qz-score"><b>${right}</b> out of ${total}</p>
       <p class="qz-msg">${msg}</p>
-      <ol class="qz-review">${run.order.map((id) => { const q = Q.get(id), r = run.res[id] || {}; return `<li class="${r.ok ? 'good' : 'bad'}"><span class="mk" aria-label="${r.ok ? 'right' : 'wrong'}">${r.ok ? '✓' : '✗'}</span> ${esc(q.q)}${r.ok ? '' : `<br><small>Answer: ${esc(answerText(q))}</small>`}</li>`; }).join('')}</ol>
+      <ol class="qz-review">${run.order.map((id) => { const q = Q.get(id), r = run.res[id] || {}; return `<li class="${r.ok ? 'good' : 'bad'}"><span class="mk" aria-label="${r.ok ? 'right' : 'wrong'}">${r.ok ? '✓' : '✗'}</span> ${esc(q.q)}${r.ok ? '' : `<br><small>Answer: ${esc(answerText(q))}</small>${reviseLink(q)}`}</li>`; }).join('')}</ol>
       <div class="btn-row qz-actions">${wrong.length ? '<button class="btn primary qz-big" id="qz-redo">Try the ones I got wrong</button>' : ''}<button class="btn qz-big" id="qz-again">Start again</button><a class="btn ${wrong.length ? '' : 'primary '}qz-big" id="qz-back" href="quiz.html">Back to all quizzes</a></div>
     </div>`;
     if ($('qz-redo')) $('qz-redo').addEventListener('click', () => { run = { ...newRun(run.ids), order: wrong }; save(); render(); });

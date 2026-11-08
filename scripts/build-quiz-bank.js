@@ -147,6 +147,10 @@ for (const pg of byPage.keys()) {
   else html = html.replace(/\n<\/body>/, `\n${tags}  <script src="../js/practice-tab.js"></script>\n</body>`);
   if (html !== before) { fs.writeFileSync(file, html.replace(/\n/g, eol)); added.push(pg); }
 }
+// Keep the offline list in step with the quiz pages
+const swFile = path.join(root, 'sw.js');
+const sw = fs.readFileSync(swFile, 'utf8');
+fs.writeFileSync(swFile, sw.replace(/const QUIZ_PAGES = \[.*\];/, `const QUIZ_PAGES = [${[...byPage.keys()].sort().map((p) => `'${p}'`).join(', ')}];`));
 if (added.length) console.log(`Practice tab scripts added to: ${added.join(', ')}`);
 const unlinked = questions.filter((q) => !q.pg).length;
 console.log(`${quizzes.length} quizzes, ${questions.length} questions on ${byPage.size} tool pages${unlinked ? ` (${unlinked} on tools not built yet)` : ''}`);

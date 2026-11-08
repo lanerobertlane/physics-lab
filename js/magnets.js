@@ -611,10 +611,12 @@ function saveHash() {
     ...state.objs.map((o) => `${o.kind === 'magnet' ? 'm' : 'i'}.${Math.round(o.x)}.${Math.round(o.y)}.${o.angle}`),
     ...state.compasses.map((c) => `c.${Math.round(c.x)}.${Math.round(c.y)}`),
   ];
-  history.replaceState(null, '', items.length ? `#o=${items.join('_')}` : location.pathname);
+  // A cleared board still needs a mark in the link, or it would open with the first example
+  history.replaceState(null, '', items.length ? `#o=${items.join('_')}` : '#empty');
 }
 
 function loadHash() {
+  if (location.hash === '#empty') return true;
   const raw = new URLSearchParams(location.hash.slice(1)).get('o');
   if (!raw) return false;
   for (const item of raw.split('_')) {
