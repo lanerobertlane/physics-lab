@@ -54,8 +54,8 @@ const TOOLS = [
     desc: 'Follow a journey with bends and see why distance and displacement, and speed and velocity, are different.' },
   { topic: 'forces', icon: 'graph', name: 'Tangents on distance–time graphs', gcse: true, ht: true,
     desc: 'Draw a tangent on a curved distance–time graph to find the speed at an instant.' },
-  { topic: 'forces', icon: 'car', name: 'Reaction time test', gcse: true, ks3: true,
-    desc: 'Measure your reaction time, and see how distractions change it.' },
+  { topic: 'forces', icon: 'car', name: 'Reaction time test', href: 'tools/reaction.html', gcse: true, ks3: true,
+    desc: 'Measure your reaction time by braking for the car in front or catching a falling ruler. See how distractions change it, and what that does to thinking distance.' },
 
   // Electricity
   { topic: 'electricity', icon: 'circuit', name: 'Circuit builder', href: 'tools/circuits.html', gcse: true, ks3: true, rp: true,
@@ -72,8 +72,8 @@ const TOOLS = [
     desc: 'Change the turns on each coil to step the p.d. up or down, and see why transformers only work with a.c.' },
   { topic: 'electricity', icon: 'static', name: 'Static electricity & electric fields', href: 'tools/static.html', gcse: true, po: true, ks3: true,
     desc: 'Rub rods to charge them, see attraction and repulsion, and draw the electric field around charges.' },
-  { topic: 'electricity', icon: 'circuit', name: 'Resistance of a wire', gcse: true, rp: true,
-    desc: 'Required practical: how the length of a wire affects its resistance.' },
+  { topic: 'electricity', icon: 'circuit', name: 'Resistance of a wire', href: 'tools/wire-resistance.html', gcse: true, rp: true,
+    desc: 'Required practical: slide a crocodile clip along a wire, read the meters and plot resistance against length.' },
 
   // Magnetism
   { topic: 'magnetism', icon: 'magnet', name: 'Bar magnet fields', href: 'tools/magnets.html', gcse: true, ks3: true,
@@ -84,7 +84,7 @@ const TOOLS = [
     desc: 'Move a magnet in and out of a coil: induced p.d., alternating current and the generator effect.' },
   { topic: 'magnetism', icon: 'motor', name: 'Generators, loudspeakers & microphones', gcse: true, po: true, ht: true,
     desc: 'Compare the output traces of alternators and dynamos, and find out how loudspeakers and microphones work.' },
-  { topic: 'magnetism', icon: 'magnet', name: 'Earth’s magnetic field', gcse: true, ks3: true,
+  { topic: 'magnetism', icon: 'magnet', name: 'Earth’s magnetic field', href: 'tools/earth-field.html', gcse: true, ks3: true,
     desc: 'Use a compass to find the Earth’s field, and see why it is evidence for a magnetic core.' },
 
   // Waves

@@ -4,7 +4,7 @@
 const SITE = {
   name: "Mr Lane's Physics Lab",
   byline: 'KS3 & AQA GCSE Physics · Beta', // shown under the name in the header
-  version: 52,   // shown in the footer; keep it the same as VERSION in sw.js
+  version: 53,   // shown in the footer; keep it the same as VERSION in sw.js
   bugEmail: 'bug@lanerobertlane.space',
 };
 

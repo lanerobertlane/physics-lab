@@ -13,7 +13,7 @@ mc | particles | States of matter | Describe the movement of particles in a soli
 mc | particles | States of matter | Why are there spaces between the particles in a gas? {both} | They spread out to fill the room; *The forces between the particles are very weak; The particles get bigger when they are a gas | EXP: The forces between gas particles are too weak to hold them together, so they move apart. The particles don't change size.
 tf | particles | States of matter | You can compress (squash) a liquid. {both} | FALSE | EXP: The particles in a liquid are already touching, so there's almost no space to squash them into.
 short | magnetism | Bar magnet fields | Name a magnetic metal. {both} | ACCEPT: iron; nickel; cobalt; steel
-mc | magnetism | Bar magnet fields | Why does a compass point north? {both} | The weight pulls the bottom of the compass down; *The compass needle lines up with the Earth's magnetic field; It doesn't, you have to move it to point north
+mc | magnetism | Earth’s magnetic field | Why does a compass point north? {both} | The weight pulls the bottom of the compass down; *The compass needle lines up with the Earth's magnetic field; It doesn't, you have to move it to point north
 
 ## 3. Density RP   (Q4 repeats quiz 1, skip)
 mc | particles | Density | Which of these is a correct unit for density? {both} | cm³/g; *g/cm³; g cm³; cm g³ | EXP: Density = mass ÷ volume, so the unit is g/cm³ (or kg/m³).

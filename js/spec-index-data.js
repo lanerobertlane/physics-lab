@@ -159,6 +159,29 @@ window.SPEC_INDEX = [
   ]
  },
  {
+  "page": "earth-field",
+  "title": "Earth’s magnetic field",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "4.7.1.2",
+    "text": "A magnetic compass contains a small bar magnet. The Earth has a magnetic field"
+   },
+   {
+    "code": "4.7.1.2",
+    "text": "The compass needle points in the direction of the Earth’s magnetic field"
+   },
+   {
+    "code": "4.7.1.2",
+    "text": "Explain how the behaviour of a magnetic compass is related to evidence that the core of the Earth must be magnetic"
+   },
+   {
+    "code": "KS3",
+    "text": "Earth’s magnetism, compass and navigation"
+   }
+  ]
+ },
+ {
   "page": "echo",
   "title": "Echo sounding & ultrasound scans",
   "course": "physics",
@@ -776,6 +799,37 @@ window.SPEC_INDEX = [
   ]
  },
  {
+  "page": "reaction",
+  "title": "Reaction time test",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "4.5.6.3.2",
+    "text": "Reaction times vary from person to person. Typical values range from 0.2 s to 0.9 s"
+   },
+   {
+    "code": "4.5.6.3.2",
+    "text": "A driver’s reaction time can be affected by tiredness, drugs and alcohol. Distractions may also affect a driver’s ability to react"
+   },
+   {
+    "code": "4.5.6.3.2",
+    "text": "Explain methods used to measure human reaction times, and interpret and evaluate the results"
+   },
+   {
+    "code": "4.5.6.3.2",
+    "text": "Evaluate the effect of various factors on thinking distance"
+   },
+   {
+    "code": "KS3",
+    "text": "Speed = distance ÷ time"
+   },
+   {
+    "code": "KS3",
+    "text": "Working scientifically: repeat readings, work out a mean and spot anomalies"
+   }
+  ]
+ },
+ {
   "page": "redshift",
   "title": "Red-shift",
   "course": "physics",
@@ -1259,6 +1313,21 @@ window.SPEC_INDEX = [
    {
     "code": "KS3",
     "text": "Space physics: gravity force and weight on other planets"
+   }
+  ]
+ },
+ {
+  "page": "wire-resistance",
+  "title": "Resistance of a wire",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "4.2.1.3",
+    "text": "Required practical: use circuit diagrams to set up and check circuits to investigate the factors affecting resistance, including the length of a wire at constant temperature"
+   },
+   {
+    "code": "4.2.1.3",
+    "text": "Potential difference = current × resistance: V = I R"
    }
   ]
  },

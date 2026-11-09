@@ -44,6 +44,7 @@ window.PK_GLOSSARY = {
   'scalar': { def: 'A quantity with size (magnitude) only, such as speed, distance or mass.', also: ['scalars'] },
   'friction': { def: 'A force that acts against the motion when two surfaces slide (or try to slide) over each other.' },
   'air resistance': { def: 'A frictional force that acts against an object moving through air. It increases as speed increases.' },
+  'reaction time': { def: 'The time between something happening and a person responding to it. It is typically between 0.2 s and 0.9 s.', also: ['reaction times'] },
   'thinking distance': { def: 'The distance a vehicle travels during the driver’s reaction time.' },
   'braking distance': { def: 'The distance a vehicle travels under the braking force, once the brakes are applied.' },
   'stopping distance': { def: 'Thinking distance + braking distance.' },

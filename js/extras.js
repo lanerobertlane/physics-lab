@@ -47,6 +47,10 @@
   // ---------- Tooltips for settings ----------
   // Keys are element ids; "page#id" when the same id means different things on different pages.
   const TIPS = {
+    'earth-field#trail': 'Each time you drag a compass, it leaves arrows behind showing the direction of the field, as plotting with a real compass does.',
+    'earth-field#lines': 'Draws the field lines around the Earth, so you can compare them with what your compasses show.',
+    'earth-field#inside': 'Cuts the Earth open to show its core, with a bar magnet as a model of the field.',
+    'earth-field#tilt': 'The Earth’s magnetic poles are not quite at the geographic poles. The field is tilted by about 11°.',
     'echo#hide': 'Covers up what’s really there, so you have to work it out from the echoes, as a real scanner does.',
     'speed-of-sound#auto': 'Times the sound perfectly, with no reaction time, so you can compare it with timing by hand.',
     'quiz#qz-order': 'Each student gets the questions in a different order, so they can’t copy the person next to them.',

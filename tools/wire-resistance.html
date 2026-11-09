@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resistance of a Wire · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Required practical: slide a crocodile clip along a wire, read the ammeter and voltmeter, work out the resistance and plot it against length.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="physics, electricity, resistance, length of a wire, required practical, ammeter, voltmeter, potential difference, current, zero error, education, school, GCSE, AQA, science, simulation, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/wire-resistance.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Resistance of a wire">
+  <meta property="og:description" content="Required practical: slide a crocodile clip along a wire, read the ammeter and voltmeter, work out the resistance and plot it against length.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/wire-resistance.html">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Resistance of a wire", "description": "Required practical: slide a crocodile clip along a wire, read the ammeter and voltmeter, work out the resistance and plot it against length.", "url": "https://lanerobertlane.space/tools/wire-resistance.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["GCSE"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #bench { aspect-ratio: 800 / 440; }
+    #graph { width: 100%; aspect-ratio: 800 / 340; display: block; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    #diagram { width: 100%; max-width: 380px; aspect-ratio: 270 / 190; display: block; margin: 0 auto; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .status { margin: 0; padding: 0 12px 12px; min-height: 2.6em; }
+    .results { width: 100%; border-collapse: collapse; margin-top: 10px; font-variant-numeric: tabular-nums; font-size: .9rem; }
+    .results th, .results td { border: 1px solid var(--border-strong); padding: 4px 6px; text-align: center; }
+    .results th { background: var(--surface-2); }
+    .del { border: 0; background: none; color: var(--muted); font: inherit; cursor: pointer; padding: 2px 6px; }
+    #how ol, #what ul { margin: 0; padding-left: 1.3em; display: grid; gap: 4px; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Resistance of a wire</h1>
+      <p><b>Required practical:</b> how does the length of a wire affect its resistance? Move the clip to change the length, read the two meters and use <b>resistance = potential difference ÷ current</b>.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="bench" class="drag" aria-label="A wire stretched along a metre ruler, connected to a cell, a switch, an ammeter and a voltmeter. Drag the red crocodile clip to change the length of wire, and tap the switch to close it."></canvas>
+          <div class="stage-bar">
+            <button class="btn" id="sw-btn">Close the switch</button>
+            <button class="btn primary" id="rec">＋ Record reading</button>
+            <button class="btn" id="new-wire" hidden>Put on a new wire</button>
+          </div>
+          <p class="note status" id="status" aria-live="polite"></p>
+        </div>
+
+        <div class="panel after-aside">
+          <h2>Resistance against length</h2>
+          <canvas id="graph" aria-label="Graph of resistance against length of wire"></canvas>
+          <p class="note" id="grad"></p>
+          <div id="what" class="hide-when-no-answers">
+            <ul>
+              <li>The line is straight, so every extra centimetre adds the same resistance. <b>Resistance is directly proportional to length.</b></li>
+              <li>In a longer wire, the electrons have more ions to collide with on their way through, so it’s harder for the current to flow.</li>
+              <li>The line should go through the origin. If it doesn’t, that’s a <b>zero error</b>: the clips and their connections have a small resistance of their own, or the first clip isn’t exactly at 0 cm. It moves the whole line up, but the gradient stays the same.</li>
+            </ul>
+          </div>
+          <p class="note">This required practical also covers resistors in series and in parallel. You can build those in the <a href="circuits.html">Circuit builder</a>.</p>
+        </div>
+
+        <div class="panel after-aside">
+          <h2>How to do it for real</h2>
+          <div id="how" class="hide-when-no-answers">
+            <ol>
+              <li>Tape the wire along a metre ruler. Put one crocodile clip at 0 cm.</li>
+              <li>Connect the cell, switch and ammeter in series with the wire, and the voltmeter in parallel with the length you’re testing.</li>
+              <li>Put the other clip at a measured length, such as 10 cm.</li>
+              <li>Close the switch, read both meters, then open the switch straight away.</li>
+              <li>Work out the resistance: R = V ÷ I.</li>
+              <li>Repeat for at least five lengths, then take a second set of readings and work out the means.</li>
+              <li>Plot resistance against length, and draw a line of best fit.</li>
+            </ol>
+            <p class="note"><b>Independent variable:</b> the length. <b>Dependent variable:</b> the resistance. <b>Control variables:</b> the material and thickness of the wire, and its temperature. The current heats the wire and that raises its resistance, so use a low p.d. and open the switch between readings. A very short length with a high p.d. can get hot enough to burn you, or to melt.</p>
+          </div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Set-up</h2>
+          <div class="num-row"><label for="len">Length of wire</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: length of wire">−</button><input type="number" id="len" min="5" max="100" step="any" data-inc="1" data-whole value="30" inputmode="numeric"><span class="unit">cm</span><button data-step="1" aria-label="More: length of wire">+</button></div></div>
+          <div class="num-row"><label for="cells">Number of cells</label><div class="stepper" data-num><button data-step="-1" aria-label="Fewer cells">−</button><input type="number" id="cells" min="1" max="4" step="any" data-inc="1" data-whole value="1" inputmode="numeric"><span class="unit">× 1.5 V</span><button data-step="1" aria-label="More cells">+</button></div></div>
+          <div class="field beyond" style="margin-bottom:0"><label for="wire">Wire</label>
+            <select class="select" id="wire"><option value="nichrome">Nichrome, 0.32 mm thick</option><option value="thick">Nichrome, 0.56 mm thick</option><option value="constantan">Constantan, 0.32 mm thick</option></select></div>
+        </div>
+        <div class="panel">
+          <h2>Circuit diagram</h2>
+          <canvas id="diagram" aria-label="Circuit diagram: cell, switch and ammeter in series with the test wire, and a voltmeter in parallel with the wire"></canvas>
+        </div>
+        <div class="panel">
+          <h2>Results</h2>
+          <div id="table"></div>
+          <p class="note" id="working"></p>
+          <div class="btn-row"><button class="btn" id="clear">Clear</button></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/wire-resistance.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/quiz-pages/wire-resistance.js"></script>
+  <script src="../js/practice-tab.js" data-eqs="ohm"></script>
+</body>
+</html>
