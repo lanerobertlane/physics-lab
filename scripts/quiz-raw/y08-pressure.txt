@@ -16,7 +16,7 @@ mc | forces | Pressure on solids | What is the unit of pressure? | N m²; N m; N
 num | forces | Pressure on solids | A force of 20 N acts on an area of 5 m². Calculate the pressure. | NUM: 4 N/m² | EXP: Pressure = force ÷ area = 20 ÷ 5 = 4 N/m².
 tf | space | Earth, Sun & Moon | The distances between all the planets in the solar system are very similar. | FALSE | EXP: The inner rocky planets are close together; the outer gas giants are much further apart.
 short | waves | Sound on an oscilloscope | If the frequency of a sound wave increases, how does the sound change? | ACCEPT: higher pitch; higher; it gets higher; higher pitched; pitch increases; the pitch gets higher; pitch goes up
-open | waves | Sound on an oscilloscope | Why do we see lightning before we hear thunder? | MODEL: Light travels much faster than sound (about 300 000 000 m/s compared with about 340 m/s in air), so the light reaches us first.
+open | waves | Measuring the speed of sound | Why do we see lightning before we hear thunder? | MODEL: Light travels much faster than sound (about 300 000 000 m/s compared with about 340 m/s in air), so the light reaches us first.
 
 ## 4. Upthrust and floating/sinking   (Q1, Q2, Q6, Q8 repeat existing questions; Q4 sugar-stirring variables dropped)
 open | forces | Pressure on solids | Why are tractor tyres much wider than car tyres? | MODEL: Wide tyres spread the tractor's heavy weight over a bigger area, so the pressure on the ground is lower and it doesn't sink into soft fields.

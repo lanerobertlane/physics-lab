@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Measuring the Speed of Sound · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Three ways to measure the speed of sound in air: time a bang across a field, clap in step with an echo, or read two microphones on an oscilloscope.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="physics, waves, sound, speed of sound, echo, reaction time, stopwatch, oscilloscope, microphones, method, education, school, KS3, GCSE, AQA, science, simulation, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/speed-of-sound.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Measuring the speed of sound">
+  <meta property="og:description" content="Three ways to measure the speed of sound in air: time a bang across a field, clap in step with an echo, or read two microphones on an oscilloscope.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/speed-of-sound.html">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Measuring the speed of sound", "description": "Three ways to measure the speed of sound in air: time a bang across a field, clap in step with an echo, or read two microphones on an oscilloscope.", "url": "https://lanerobertlane.space/tools/speed-of-sound.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["Key Stage 3", "GCSE"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #scene { aspect-ratio: 800 / 300; }
+    #cro { width: 100%; aspect-ratio: 800 / 420; display: block; border-radius: var(--radius-sm); }
+    #graph { width: 100%; aspect-ratio: 270 / 220; display: block; margin-top: 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    #status { margin: 0; padding: 0 12px 12px; min-height: 2.6em; }
+    #watch { font-size: 1.1rem; padding: 12px 22px; touch-action: manipulation; }
+    #sw { font-size: 1.5rem; font-weight: 800; font-variant-numeric: tabular-nums; min-width: 4.2em; text-align: center; }
+    .results { width: 100%; border-collapse: collapse; margin-top: 10px; font-variant-numeric: tabular-nums; font-size: .9rem; }
+    .results th, .results td { border: 1px solid var(--border-strong); padding: 4px 6px; text-align: center; }
+    .results th { background: var(--surface-2); }
+    .results td.n { color: var(--answer, inherit); }
+    .del { border: 0; background: none; color: var(--muted); font: inherit; cursor: pointer; padding: 2px 6px; }
+    #how ol { margin: 0; padding-left: 1.3em; display: grid; gap: 4px; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Measuring the speed of sound</h1>
+      <p>To find the speed of sound you need a distance and a time: <b>speed = distance ÷ time</b>. Sound is quick, so the hard part is measuring the time. Try three methods and see which gives the most reliable result.</p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px" aria-label="Method">
+      <button class="chip" data-t="field" aria-pressed="true">Across a field</button>
+      <button class="chip" data-t="echo" aria-pressed="false">Echo off a wall</button>
+      <button class="chip" data-t="mics" aria-pressed="false">Two microphones</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="scene" class="drag" aria-label="The experiment. Drag the person, the wall or the microphone to change the distance."></canvas>
+          <div class="stage-bar" data-for="field">
+            <button class="btn" id="fire">👏 Bang the blocks</button>
+            <button class="btn primary" id="watch">⏱ Start the stopwatch</button>
+            <output id="sw">0.00 s</output>
+            <label class="toggle"><input type="checkbox" id="auto"> Let a computer do the timing</label>
+          </div>
+          <div class="stage-bar" data-for="echo" hidden>
+            <button class="btn" id="clap">▶ Start clapping</button>
+            <button class="btn primary" id="time20">⏱ Time 20 claps</button>
+          </div>
+          <div class="stage-bar" data-for="mics" hidden>
+            <button class="btn" id="mic-clap">👏 Clap</button>
+            <button class="btn primary" id="mic-rec">＋ Record reading</button>
+          </div>
+          <p class="note" id="status" aria-live="polite"></p>
+        </div>
+
+        <div class="panel" data-for="mics" hidden>
+          <h2>Oscilloscope</h2>
+          <canvas id="cro" class="drag" aria-label="Traces from the two microphones. Drag the two dashed lines onto the start of each pulse."></canvas>
+        </div>
+
+        <div class="panel after-aside">
+          <h2>How to do it for real</h2>
+          <div id="how" class="hide-when-no-answers"></div>
+        </div>
+
+        <div class="panel after-aside">
+          <h2>Comparing the methods</h2>
+          <div id="compare"></div>
+          <p class="note">AQA gives a typical speed of sound in air as about 330 m/s. The real value depends on the temperature, and this page uses 340 m/s.</p>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Set-up</h2>
+          <div class="num-row" data-for="field"><label for="dist">Distance between you</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: distance">−</button><input type="number" id="dist" min="50" max="600" step="any" data-inc="10" value="300" inputmode="decimal"><span class="unit">m</span><button data-step="1" aria-label="More: distance">+</button></div></div>
+          <div class="num-row" data-for="echo" hidden><label for="wall">Distance to the wall</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: distance to the wall">−</button><input type="number" id="wall" min="20" max="200" step="any" data-inc="5" value="100" inputmode="decimal"><span class="unit">m</span><button data-step="1" aria-label="More: distance to the wall">+</button></div></div>
+          <div class="num-row" data-for="echo" hidden><label for="gap">Time between claps</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: time between claps">−</button><input type="number" id="gap" min="0.1" max="1.5" step="any" data-inc="0.01" value="0.5" inputmode="decimal"><span class="unit">s</span><button data-step="1" aria-label="More: time between claps">+</button></div></div>
+          <div class="num-row" data-for="mics" hidden><label for="mic-d">Between the microphones</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: distance between the microphones">−</button><input type="number" id="mic-d" min="0.2" max="2" step="any" data-inc="0.1" value="1" inputmode="decimal"><span class="unit">m</span><button data-step="1" aria-label="More: distance between the microphones">+</button></div></div>
+          <div class="field" data-for="mics" hidden style="margin-bottom:0"><label for="tdiv">Time-base (time per square)</label>
+            <select class="select" id="tdiv"><option value="0.5">0.5 ms</option><option value="1" selected>1 ms</option><option value="2">2 ms</option></select></div>
+        </div>
+        <div class="panel">
+          <h2>Results</h2>
+          <div id="table"></div>
+          <p id="mean" style="margin:8px 0 0;font-weight:700"></p>
+          <canvas id="graph" aria-label="Distance against time graph"></canvas>
+          <p class="note" id="grad"></p>
+          <div class="btn-row"><button class="btn" id="clear">Clear</button></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/scope.js"></script>
+  <script src="../js/speed-of-sound.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/quiz-pages/speed-of-sound.js"></script>
+  <script src="../js/practice-tab.js" data-eqs="speed"></script>
+</body>
+</html>

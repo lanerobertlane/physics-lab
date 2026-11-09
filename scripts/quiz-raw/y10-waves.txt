@@ -18,10 +18,10 @@ tf | energy | Energy stores | Energy cannot be created or destroyed. {both} | TR
 mc | energy | Energy resources | What is the main source of energy for the Earth? {both} | Wind; Geothermal; *The Sun (solar); Nuclear
 
 ## waves   (Q5 plant cell, Q6 mixtures: not on site, dropped)
-open | waves | Sound on an oscilloscope | What happens when a sound wave reflects? {both} | MODEL: It bounces back off a surface and we hear an echo.
+open | waves | Echo sounding & ultrasound scans | What happens when a sound wave reflects? {both} | MODEL: It bounces back off a surface and we hear an echo.
 open | waves | Transverse & longitudinal waves | What is the frequency of a wave? {both} | MODEL: The number of waves passing a point each second, measured in hertz (Hz).
 open | waves | Sound on an oscilloscope | What happens to a sound if you increase the amplitude? {both} | MODEL: It gets louder.   [could be short: louder]
-open | waves | Sound on an oscilloscope | Why do cinemas have materials on the walls that absorb sound? {both} | MODEL: Soft materials absorb sound rather than reflecting it, so there are fewer echoes and the sound is clearer.
+open | waves | Echo sounding & ultrasound scans | Why do cinemas have materials on the walls that absorb sound? {both} | MODEL: Soft materials absorb sound rather than reflecting it, so there are fewer echoes and the sound is clearer.
 
 ## Wave speed   (Q2 transverse vs longitudinal: duplicate, skip)
 mc | waves | Transverse & longitudinal waves | In which direction do the air particles move when a sound wave travels through air? | In random directions; Perpendicular to the wave direction; *Parallel to the wave direction; Outwards from the source in all directions

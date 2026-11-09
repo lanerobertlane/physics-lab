@@ -72,6 +72,10 @@ window.PK_GLOSSARY = {
   'evaporation': { def: 'When particles escape from the surface of a liquid to become a gas.' },
   'pressure': { def: 'Force per unit area, acting at right angles (normal) to a surface: p = F ÷ A.' },
   // Waves
+  'echo': { def: 'A sound that has reflected from a surface and come back to you.', also: ['echoes'] },
+  'ultrasound': { def: 'Sound with a frequency above 20 kHz, too high for humans to hear.' },
+  'oscilloscope': { def: 'A device that draws how a voltage changes with time as a trace on a screen. Connected to a microphone, it shows a sound wave.' },
+  'pitch': { def: 'How high or low a sound is. A higher frequency gives a higher pitch.' },
   'frequency': { def: 'The number of waves passing a point each second, in hertz (Hz).' },
   'wavelength': { def: 'The distance from a point on one wave to the same point on the next wave.' },
   'amplitude': { def: 'The maximum displacement of a point on a wave away from its undisturbed position.' },

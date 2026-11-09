@@ -4587,6 +4587,228 @@ window.QUIZ_BANK = {
    "pg": "electromagnetism"
   },
   {
+   "type": "num",
+   "topic": "waves",
+   "tool": "Echo sounding & ultrasound scans",
+   "q": "A ship sends a pulse of sound down to the sea bed. The echo comes back after 4 s. Sound travels at 1500 m/s in sea water. How deep is the water?",
+   "lv": "ks4",
+   "num": 3000,
+   "unit": "m",
+   "exp": "There and back: s = v × t = 1500 × 4 = 6000 m. The depth is half of that, 3000 m.",
+   "id": "wavr7twm",
+   "pg": "echo"
+  },
+  {
+   "type": "num",
+   "topic": "waves",
+   "tool": "Echo sounding & ultrasound scans",
+   "q": "An ultrasound pulse travels through soft tissue at 1500 m/s. An echo returns after 0.00008 s. How deep is the boundary, in metres?",
+   "lv": "ks4",
+   "num": 0.06,
+   "unit": "m",
+   "exp": "There and back: s = 1500 × 0.00008 = 0.12 m. The depth is half of that, 0.06 m (6 cm).",
+   "id": "wav1f41o",
+   "pg": "echo"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Echo sounding & ultrasound scans",
+   "q": "Why do you halve the distance worked out from the time of an echo?",
+   "lv": "both",
+   "opts": [
+    "The pulse travels to the boundary and back",
+    "The sound slows down on the way back",
+    "Half of the sound is absorbed",
+    "The echo is half as loud"
+   ],
+   "ans": [
+    0
+   ],
+   "id": "wav154mm",
+   "pg": "echo"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Echo sounding & ultrasound scans",
+   "q": "What happens to an ultrasound pulse when it meets a boundary between two different materials?",
+   "lv": "ks4",
+   "opts": [
+    "Part is reflected and the rest carries on",
+    "All of it is reflected",
+    "All of it is absorbed",
+    "It stops completely"
+   ],
+   "ans": [
+    0
+   ],
+   "id": "wav1w793",
+   "pg": "echo"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Echo sounding & ultrasound scans",
+   "q": "A ship’s echo sounder picks up a weak echo before the echo from the sea bed. What could have caused it?",
+   "lv": "ks4",
+   "opts": [
+    "A shoal of fish below the ship",
+    "The sea bed being very deep",
+    "The ship moving forwards",
+    "Waves on the surface of the sea"
+   ],
+   "ans": [
+    0
+   ],
+   "id": "wav86jp8",
+   "pg": "echo"
+  },
+  {
+   "type": "open",
+   "topic": "waves",
+   "tool": "Echo sounding & ultrasound scans",
+   "q": "Explain how ultrasound can be used to find a crack inside a metal block.",
+   "lv": "ks4",
+   "model": "A pulse of ultrasound is sent into the metal. Part of it reflects from the crack and comes back before the echo from the far side of the block. The time of the early echo gives the depth of the crack: depth = speed × time ÷ 2.",
+   "id": "wav1idaa",
+   "pg": "echo"
+  },
+  {
+   "type": "tf",
+   "topic": "waves",
+   "tool": "Echo sounding & ultrasound scans",
+   "q": "People can hear ultrasound.",
+   "lv": "both",
+   "ans": false,
+   "exp": "Ultrasound has a frequency above 20 kHz, which is the upper limit of human hearing.",
+   "id": "wav1opwl",
+   "pg": "echo"
+  },
+  {
+   "type": "num",
+   "topic": "waves",
+   "tool": "Echo sounding & ultrasound scans",
+   "q": "You shout at a cliff 170 m away and hear the echo. How far has the sound travelled?",
+   "lv": "both",
+   "num": 340,
+   "unit": "m",
+   "exp": "It goes to the cliff and back: 2 × 170 = 340 m.",
+   "id": "wavz5bqp",
+   "pg": "echo"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Measuring the speed of sound",
+   "q": "Two students measure the speed of sound across a field. When should the student with the stopwatch start timing?",
+   "lv": "both",
+   "opts": [
+    "When they see the blocks hit",
+    "When they hear the sound",
+    "Just before the blocks hit",
+    "When the sound stops"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Light reaches them almost instantly, so seeing the blocks hit shows the moment the sound sets off.",
+   "id": "wav1r4tl",
+   "pg": "speed-of-sound"
+  },
+  {
+   "type": "num",
+   "topic": "waves",
+   "tool": "Measuring the speed of sound",
+   "q": "Two students stand 510 m apart. The sound of two blocks banging takes 1.5 s to reach one of them. What is the speed of sound?",
+   "lv": "both",
+   "num": 340,
+   "unit": "m/s",
+   "exp": "speed = distance ÷ time = 510 ÷ 1.5 = 340 m/s.",
+   "id": "wavand34",
+   "pg": "speed-of-sound"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Measuring the speed of sound",
+   "q": "What is the biggest cause of error when timing a bang across a field with a stopwatch?",
+   "lv": "both",
+   "opts": [
+    "Human reaction time",
+    "The colour of the blocks",
+    "The loudness of the bang",
+    "The mass of the blocks"
+   ],
+   "ans": [
+    0
+   ],
+   "id": "wavjddlr",
+   "pg": "speed-of-sound"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Measuring the speed of sound",
+   "q": "How can you reduce the effect of reaction time when timing a bang across a field?",
+   "lv": "both",
+   "opts": [
+    "Use a longer distance and repeat the readings",
+    "Use a shorter distance",
+    "Use lighter blocks",
+    "Take only one reading"
+   ],
+   "ans": [
+    0
+   ],
+   "id": "wav1qi02",
+   "pg": "speed-of-sound"
+  },
+  {
+   "type": "num",
+   "topic": "waves",
+   "tool": "Measuring the speed of sound",
+   "q": "A student stands 85 m from a wall and claps in step with the echo. The time between claps is 0.5 s. What is the speed of sound?",
+   "lv": "ks4",
+   "num": 340,
+   "unit": "m/s",
+   "exp": "The sound goes there and back: 2 × 85 = 170 m in 0.5 s. speed = 170 ÷ 0.5 = 340 m/s.",
+   "id": "wav41vwa",
+   "pg": "speed-of-sound"
+  },
+  {
+   "type": "num",
+   "topic": "waves",
+   "tool": "Measuring the speed of sound",
+   "q": "Two microphones are 1.02 m apart. An oscilloscope shows the sound takes 0.003 s to travel from one to the other. What is the speed of sound?",
+   "lv": "ks4",
+   "num": 340,
+   "unit": "m/s",
+   "exp": "speed = distance ÷ time = 1.02 ÷ 0.003 = 340 m/s.",
+   "id": "wav1at5s",
+   "pg": "speed-of-sound"
+  },
+  {
+   "type": "open",
+   "topic": "waves",
+   "tool": "Measuring the speed of sound",
+   "q": "Describe a method to measure the speed of sound in air.",
+   "lv": "ks4",
+   "model": "Measure a long distance (at least 100 m) with a trundle wheel. One person bangs two blocks together. Another starts a stopwatch on seeing the blocks hit and stops it on hearing the bang. Repeat and find a mean time. Speed = distance ÷ time.",
+   "id": "wav1m9p3",
+   "pg": "speed-of-sound"
+  },
+  {
+   "type": "tf",
+   "topic": "waves",
+   "tool": "Measuring the speed of sound",
+   "q": "A typical value for the speed of sound in air is about 330 m/s.",
+   "lv": "both",
+   "ans": true,
+   "id": "wav1noj4",
+   "pg": "speed-of-sound"
+  },
+  {
    "type": "open",
    "topic": "particles",
    "tool": "States of matter",
@@ -5671,7 +5893,8 @@ window.QUIZ_BANK = {
     "a longitudinal wave",
     "longitudinal wave"
    ],
-   "id": "wavcxytx"
+   "id": "wavcxytx",
+   "pg": "sound"
   },
   {
    "type": "open",
@@ -5695,7 +5918,8 @@ window.QUIZ_BANK = {
     "a solid"
    ],
    "exp": "The particles in a solid are closest together, so the vibrations pass along fastest.",
-   "id": "wav1xsvj"
+   "id": "wav1xsvj",
+   "pg": "sound"
   },
   {
    "type": "num",
@@ -5706,7 +5930,8 @@ window.QUIZ_BANK = {
    "num": 20000,
    "unit": "Hz",
    "exp": "Humans can hear up to about 20 000 Hz (20 kHz). Ultrasound is higher than that.",
-   "id": "wav3t48r"
+   "id": "wav3t48r",
+   "pg": "echo"
   },
   {
    "type": "open",
@@ -5715,7 +5940,8 @@ window.QUIZ_BANK = {
    "q": "What do we use ultrasound for?",
    "lv": "both",
    "model": "Scanning unborn babies (pre-natal scans). Also: scanning organs, cleaning jewellery, and echo sounding to find the depth of the sea.",
-   "id": "wavf4yht"
+   "id": "wavf4yht",
+   "pg": "echo"
   },
   {
    "type": "mc",
@@ -5920,7 +6146,8 @@ window.QUIZ_BANK = {
    "ans": [
     1
    ],
-   "id": "wav1hwnk"
+   "id": "wav1hwnk",
+   "pg": "sound"
   },
   {
    "type": "mc",
@@ -6057,7 +6284,8 @@ window.QUIZ_BANK = {
     "vibrating objects",
     "a vibrating object"
    ],
-   "id": "wavcara3"
+   "id": "wavcara3",
+   "pg": "sound"
   },
   {
    "type": "short",
@@ -6118,7 +6346,8 @@ window.QUIZ_BANK = {
    "ans": [
     2
    ],
-   "id": "wavu15wr"
+   "id": "wavu15wr",
+   "pg": "sound"
   },
   {
    "type": "short",
@@ -6156,7 +6385,8 @@ window.QUIZ_BANK = {
    "ans": [
     2
    ],
-   "id": "wav1x62v"
+   "id": "wav1x62v",
+   "pg": "sound"
   },
   {
    "type": "short",
@@ -6194,7 +6424,8 @@ window.QUIZ_BANK = {
    "lv": "both",
    "ans": true,
    "exp": "Sound needs particles (a solid, liquid or gas) to pass the vibrations along. A vacuum has no particles.",
-   "id": "wav7gcy6"
+   "id": "wav7gcy6",
+   "pg": "sound"
   },
   {
    "type": "open",
@@ -6224,12 +6455,13 @@ window.QUIZ_BANK = {
    "lv": "ks3",
    "ans": true,
    "exp": "That's why you can hear people talking in another room if they're loud enough.",
-   "id": "wav1ajoh"
+   "id": "wav1ajoh",
+   "pg": "sound"
   },
   {
    "type": "short",
    "topic": "waves",
-   "tool": "Sound on an oscilloscope",
+   "tool": "Echo sounding & ultrasound scans",
    "q": "If you scream into a pillow, is the sound mostly absorbed or reflected?",
    "lv": "ks3",
    "accept": [
@@ -6238,7 +6470,8 @@ window.QUIZ_BANK = {
     "it is absorbed"
    ],
    "exp": "Soft materials absorb sound. Hard, smooth surfaces reflect it.",
-   "id": "wav11pgu"
+   "id": "wav11pgu",
+   "pg": "echo"
   },
   {
    "type": "mc",
@@ -6256,7 +6489,8 @@ window.QUIZ_BANK = {
     0
    ],
    "exp": "Bigger amplitude means a louder sound.",
-   "id": "wav1jtsp"
+   "id": "wav1jtsp",
+   "pg": "sound"
   },
   {
    "type": "tf",
@@ -6272,11 +6506,12 @@ window.QUIZ_BANK = {
   {
    "type": "open",
    "topic": "waves",
-   "tool": "Sound on an oscilloscope",
+   "tool": "Echo sounding & ultrasound scans",
    "q": "Describe a material that would reflect a sound wave well.",
    "lv": "ks3",
    "model": "A hard, smooth, flat surface, such as a tiled wall, glass or concrete.",
-   "id": "wav1m77q"
+   "id": "wav1m77q",
+   "pg": "echo"
   },
   {
    "type": "mc",
@@ -6294,7 +6529,8 @@ window.QUIZ_BANK = {
     1
    ],
    "exp": "Higher frequency means a higher pitch.",
-   "id": "wavqts8c"
+   "id": "wavqts8c",
+   "pg": "sound"
   },
   {
    "type": "tf",
@@ -6303,7 +6539,8 @@ window.QUIZ_BANK = {
    "q": "Sound is an example of a longitudinal wave.",
    "lv": "both",
    "ans": true,
-   "id": "wav1tauc"
+   "id": "wav1tauc",
+   "pg": "sound"
   },
   {
    "type": "mc",
@@ -6325,11 +6562,12 @@ window.QUIZ_BANK = {
   {
    "type": "open",
    "topic": "waves",
-   "tool": "Sound on an oscilloscope",
+   "tool": "Echo sounding & ultrasound scans",
    "q": "What does \"transmission\" of a wave mean?",
    "lv": "ks3",
    "model": "The wave passes through a material and carries on out the other side.",
-   "id": "wav1518s"
+   "id": "wav1518s",
+   "pg": "echo"
   },
   {
    "type": "mc",
@@ -7077,7 +7315,8 @@ window.QUIZ_BANK = {
    "ans": [
     0
    ],
-   "id": "wavz7fz1"
+   "id": "wavz7fz1",
+   "pg": "sound"
   },
   {
    "type": "short",
@@ -7091,7 +7330,8 @@ window.QUIZ_BANK = {
     "get louder",
     "it gets louder"
    ],
-   "id": "wav3be9e"
+   "id": "wav3be9e",
+   "pg": "sound"
   },
   {
    "type": "mc",
@@ -7544,7 +7784,8 @@ window.QUIZ_BANK = {
     "an echo",
     "echoes"
    ],
-   "id": "wavzj6sd"
+   "id": "wavzj6sd",
+   "pg": "echo"
   },
   {
    "type": "multi",
@@ -7661,16 +7902,18 @@ window.QUIZ_BANK = {
     "the pitch gets higher",
     "pitch goes up"
    ],
-   "id": "wav1t9ar"
+   "id": "wav1t9ar",
+   "pg": "sound"
   },
   {
    "type": "open",
    "topic": "waves",
-   "tool": "Sound on an oscilloscope",
+   "tool": "Measuring the speed of sound",
    "q": "Why do we see lightning before we hear thunder?",
    "lv": "ks3",
    "model": "Light travels much faster than sound (about 300 000 000 m/s compared with about 340 m/s in air), so the light reaches us first.",
-   "id": "wav47d0a"
+   "id": "wav47d0a",
+   "pg": "speed-of-sound"
   },
   {
    "type": "open",
@@ -8450,16 +8693,18 @@ window.QUIZ_BANK = {
     "the volume goes down",
     "lower volume"
    ],
-   "id": "wav1e956"
+   "id": "wav1e956",
+   "pg": "sound"
   },
   {
    "type": "open",
    "topic": "waves",
-   "tool": "Sound on an oscilloscope",
+   "tool": "Echo sounding & ultrasound scans",
    "q": "What three things can happen to a sound wave when it hits a surface?",
    "lv": "ks3",
    "model": "It can be reflected (bounce back as an echo), absorbed (taken in by the material) or transmitted (pass through).",
-   "id": "wav52w6x"
+   "id": "wav52w6x",
+   "pg": "echo"
   },
   {
    "type": "mc",
@@ -8610,7 +8855,8 @@ window.QUIZ_BANK = {
     1
    ],
    "exp": "A higher frequency gives a higher pitch. (In the same material the wavelength changes too, but it's the frequency that sets the pitch.)",
-   "id": "wavdbnch"
+   "id": "wavdbnch",
+   "pg": "sound"
   },
   {
    "type": "open",
@@ -8628,7 +8874,8 @@ window.QUIZ_BANK = {
    "q": "Give two uses of ultrasound.",
    "lv": "ks3",
    "model": "Any two of: scanning unborn babies, scanning organs, breaking up kidney stones, cleaning jewellery, echo sounding (finding the depth of the sea), checking for cracks in metal.",
-   "id": "wav1qpv0"
+   "id": "wav1qpv0",
+   "pg": "echo"
   },
   {
    "type": "mc",
@@ -8645,7 +8892,8 @@ window.QUIZ_BANK = {
     0
    ],
    "exp": "Humans hear from about 20 Hz to 20 000 Hz. Ultrasound is higher than we can hear.",
-   "id": "wavn79yv"
+   "id": "wavn79yv",
+   "pg": "echo"
   },
   {
    "type": "short",
@@ -9009,7 +9257,8 @@ window.QUIZ_BANK = {
    "ans": [
     0
    ],
-   "id": "wav19dyh"
+   "id": "wav19dyh",
+   "pg": "echo"
   },
   {
    "type": "multi",
@@ -12908,11 +13157,12 @@ window.QUIZ_BANK = {
   {
    "type": "open",
    "topic": "waves",
-   "tool": "Sound on an oscilloscope",
+   "tool": "Echo sounding & ultrasound scans",
    "q": "What happens when a sound wave reflects?",
    "lv": "both",
    "model": "It bounces back off a surface and we hear an echo.",
-   "id": "wavolmh2"
+   "id": "wavolmh2",
+   "pg": "echo"
   },
   {
    "type": "open",
@@ -12931,16 +13181,18 @@ window.QUIZ_BANK = {
    "q": "What happens to a sound if you increase the amplitude?",
    "lv": "both",
    "model": "It gets louder.",
-   "id": "wavip4ks"
+   "id": "wavip4ks",
+   "pg": "sound"
   },
   {
    "type": "open",
    "topic": "waves",
-   "tool": "Sound on an oscilloscope",
+   "tool": "Echo sounding & ultrasound scans",
    "q": "Why do cinemas have materials on the walls that absorb sound?",
    "lv": "both",
    "model": "Soft materials absorb sound rather than reflecting it, so there are fewer echoes and the sound is clearer.",
-   "id": "wavbwwh4"
+   "id": "wavbwwh4",
+   "pg": "echo"
   },
   {
    "type": "mc",

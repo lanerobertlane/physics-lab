@@ -22,12 +22,12 @@ open | atomic | Atom builder | Describe the structure of an atom. {both} | MODEL
 ## Speed of Sound   (Q1 repeats an earlier question. [NOTE for Rob: Q3 accepts "pitch" as the meaning of frequency; frequency is the number of waves per second, and pitch depends on it. Left out, as the bank already has the correct version. Q4 "What do we see in a mirror?" has no correct answer ticked and is ambiguous; left out])
 tf | waves | Transverse & longitudinal waves | A wave transfers energy. {both} | TRUE
 tf | waves | Sound on an oscilloscope | Sound can be transmitted through walls and doors. | TRUE | EXP: That's why you can hear people talking in another room if they're loud enough.
-short | waves | Sound on an oscilloscope | If you scream into a pillow, is the sound mostly absorbed or reflected? | ACCEPT: absorbed; absorption; it is absorbed | EXP: Soft materials absorb sound. Hard, smooth surfaces reflect it.
+short | waves | Echo sounding & ultrasound scans | If you scream into a pillow, is the sound mostly absorbed or reflected? | ACCEPT: absorbed; absorption; it is absorbed | EXP: Soft materials absorb sound. Hard, smooth surfaces reflect it.
 
 ## The Ear   (Q6 lab safety dropped. [NOTE for Rob: Q1 and Q4 had no correct answer ticked; set to "volume increased" and "pitch increased"])
 mc | waves | Sound on an oscilloscope | The amplitude of a sound wave increases. What changes about the sound? | *The volume increases; The pitch increases; The volume decreases; The pitch decreases | EXP: Bigger amplitude means a louder sound.
 tf | waves | Transverse & longitudinal waves | Waves transfer matter. | FALSE | EXP: Waves transfer energy, not matter.
-open | waves | Sound on an oscilloscope | Describe a material that would reflect a sound wave well. | MODEL: A hard, smooth, flat surface, such as a tiled wall, glass or concrete.
+open | waves | Echo sounding & ultrasound scans | Describe a material that would reflect a sound wave well. | MODEL: A hard, smooth, flat surface, such as a tiled wall, glass or concrete.
 mc | waves | Sound on an oscilloscope | The frequency of a sound wave increases. What changes about the sound? | The volume increases; *The pitch gets higher; The volume decreases; The pitch gets lower | EXP: Higher frequency means a higher pitch.
 tf | waves | Sound on an oscilloscope | Sound is an example of a longitudinal wave. {both} | TRUE
 
@@ -35,4 +35,4 @@ tf | waves | Sound on an oscilloscope | Sound is an example of a longitudinal wa
 mc | particles | Density | Which piece of equipment do we use to measure mass? | Conical flask; *Balance; Measuring cylinder
 
 ## Wave speed   (Q2–Q5 repeat existing questions; Q6 biology and Q7 mixtures dropped)
-open | waves | Sound on an oscilloscope | What does "transmission" of a wave mean? | MODEL: The wave passes through a material and carries on out the other side.
+open | waves | Echo sounding & ultrasound scans | What does "transmission" of a wave mean? | MODEL: The wave passes through a material and carries on out the other side.
