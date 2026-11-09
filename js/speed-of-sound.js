@@ -16,7 +16,7 @@ const $ = (id) => document.getElementById(id);
 const font = () => PK.cssVar('--font-body') || 'sans-serif';
 const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
 const sig = (x, n = 3) => Number(x.toPrecision(n));
-const V = 340;   // m/s in the air on this page
+const V = 330;   // m/s in air: the typical value AQA gives
 const state = { tab: 'field', rows: { field: [], echo: [], mics: [] }, moved: { field: false, echo: false, mics: false }, cur: [1, 5], clapped: false, tdiv: 1 };
 const round2 = (x) => Math.round(x * 100) / 100;
 
