@@ -23,6 +23,7 @@
   <style>
     #bond { aspect-ratio: 800 / 420; }
     .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    #step-of { font-size: .9rem; font-weight: 700; color: var(--muted); }
     .pickers { display: flex; flex-wrap: wrap; gap: 0 28px; }
     .picker { position: relative; display: grid; grid-template-columns: repeat(7, 40px); gap: 3px; width: max-content; max-width: 100%; margin: 4px 0 14px; }
     .pick-side { font-size: .85rem; font-weight: 700; text-align: center; }
@@ -76,6 +77,9 @@
             </div>
             <label class="toggle" id="all-wrap"><input type="checkbox" id="all"> Show all shells</label>
             <button class="btn primary" id="go">🔗 Bond</button>
+            <button class="btn" id="step-back" disabled>◀ Back a step</button>
+            <button class="btn" id="step-next">Next step ▶</button>
+            <span id="step-of" aria-live="polite"></span>
             <div class="ctl" id="temp-wrap" hidden style="flex:1;min-width:200px;margin:0"><label for="temp">Temperature <b id="temp-val"></b></label><input type="range" id="temp" min="0" max="100" step="1" value="30"></div>
           </div>
         </div>

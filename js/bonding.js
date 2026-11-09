@@ -37,7 +37,7 @@ const words = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'e
 const pl = (n, w) => `${n} ${w}${n === 1 ? '' : 's'}`;
 const aOrAn = (word) => (/^[aeiou]/i.test(word) ? 'an' : 'a');
 
-const state = { a: 11, b: 17, view: 'dc', all: false, t: 0, dir: 0, pd: false, temp: 30 };
+const state = { a: 11, b: 17, view: 'dc', all: false, t: 0, dir: 0, stop: null, stepping: false, pd: false, temp: 30 };
 let info = null, metalElectrons = [];
 
 // ---------- What kind of bonding? ----------
@@ -191,7 +191,8 @@ function drawIonic() {
   }
   // Losing and gaining: the metal's outer electrons disappear, then the non-metal's appear.
   // Nothing is shown travelling between them.
-  const lose = Math.min(1, tt / LOST), gain = Math.max(0, Math.min(1, (tt - GAIN_FROM) / (GAINED - GAIN_FROM)));
+  // The fades finish just before each stage ends, so a step can rest on the finished picture
+  const lose = Math.min(1, tt / 0.22), gain = Math.max(0, Math.min(1, (tt - GAIN_FROM) / 0.22));
   for (const mv of moves) {
     const rF = outerR(EL.shells(mv.from.z).length), rT = outerR(EL.shells(mv.to.z).length);
     const a0 = slots(I.qm)[mv.e], a1 = slots(8)[mv.slot];
@@ -207,11 +208,10 @@ function drawIonic() {
     }
   }
   // Say what is happening above each atom while it happens
-  const phase = (v) => v > 0.001 && v < 0.999;
   for (const a of atoms) {
     const r = outerR(EL.shells(a.z).length);
-    if (a.kind === 'M' && phase(lose)) text(`loses ${pl(I.qm, 'electron')}`, a.x, a.y - r - 18, { s: 14, w: 800, col: COL.metal });
-    if (a.kind === 'X' && phase(gain)) text(`gains ${pl(I.qx, 'electron')}`, a.x, a.y - r - 18, { s: 14, w: 800, col: COL.non });
+    if (a.kind === 'M' && tt > 0 && tt < LOST) text(`loses ${pl(I.qm, 'electron')}`, a.x, a.y - r - 18, { s: 14, w: 800, col: COL.metal });
+    if (a.kind === 'X' && tt >= GAIN_FROM && tt < GAINED) text(`gains ${pl(I.qx, 'electron')}`, a.x, a.y - r - 18, { s: 14, w: 800, col: COL.non });
     if (a.kind === 'M' && tt >= LOST && tt < GAIN_FROM) text(`becomes ${metalIon}`, a.x, a.y - r - 18, { s: 14, w: 800, col: COL.metal });
     if (a.kind === 'X' && tt >= GAINED && !allDone) text(`becomes ${nonIon}`, a.x, a.y - r - 18, { s: 14, w: 800, col: COL.non });
   }
@@ -268,7 +268,12 @@ function drawCovalent() {
   if (bonded) {
     drawDisplayed(I, 680, 340);
     text(`${pl(I.n * I.order, 'shared pair')} of electrons = ${pl(I.n, I.order === 1 ? 'single bond' : I.order === 2 ? 'double bond' : 'triple bond')}`, 330, H - 18, { s: 13 });
-  } else text(t === 0 ? 'Press “Bond”: the atoms will move together and share electrons.' : 'The outer shells overlap and electrons are shared…', 400, H - 18, { s: 13, col: PK.cssVar('--muted') });
+  } else text(t === 0 ? 'Press “Bond”: the atoms will move together and share electrons.' : state.stepping && t < 0.2 ? covalentNeeds(I) : 'The outer shells overlap and electrons are shared…', 400, H - 18, { s: 13, col: PK.cssVar('--muted') });
+}
+function covalentNeeds(I) {
+  const c = I.central, l = I.lig;
+  if (c === l) return `Each ${N(c)} atom has ${pl(EL.outer(c), 'outer electron')} and needs ${valence(c)} more.`;
+  return `${NN(c)} has ${pl(EL.outer(c), 'outer electron')} and needs ${valence(c)} more. ${NN(l)} has ${EL.outer(l)} and needs ${valence(l)} more.`;
 }
 function drawDisplayed(I, x, y) {
   text('Displayed formula', x, y - 50, { s: 13, col: PK.cssVar('--muted') });
@@ -408,10 +413,26 @@ function renderPickers() {
   $('pick2').querySelectorAll('button:not(.off)').forEach((b) => b.addEventListener('click', () => choose(state.a, Number(b.dataset.z))));
 }
 function choose(a, b) {
-  state.a = a; state.b = b; state.t = 0; state.dir = 0; state.pd = false;
+  state.a = a; state.b = b; state.t = 0; state.dir = 0; state.stop = null; state.stepping = false; state.pd = false;
   info = analyse(a, b);
   if (info.type === 'metallic') resetMetal();
   renderPickers(); renderSummary(); renderAnswer(); renderControls();
+}
+// Where the Next and Back buttons stop. Each one rests on a finished picture with its caption.
+function stops() {
+  if (info.type === 'ionic') return [0, 0.168, 0.315, 0.518, 0.665, 0.7, 1];   // loses, becomes an ion, gains, becomes an ion, attract, together
+  if (info.type === 'covalent') return [0, 0.04, 0.55, 1];   // what each atom needs, shells overlap, shared pairs
+  return null;
+}
+function step(dir) {
+  const list = stops();
+  if (!list) return;
+  // A second press while still moving finishes this step at once and starts the next
+  if (state.stop != null && state.dir === dir) state.t = state.stop;
+  const to = dir > 0 ? list.find((s) => s > state.t + 1e-3) : [...list].reverse().find((s) => s < state.t - 1e-3);
+  if (to === undefined) return;
+  state.stop = to; state.dir = dir; state.stepping = true;
+  renderControls();
 }
 function renderControls() {
   const go = $('go');
@@ -419,6 +440,14 @@ function renderControls() {
   if (info.type === 'ionic' || info.type === 'covalent') go.textContent = state.t >= 0.999 ? '↺ Separate the atoms' : '🔗 Bond';
   if (info.type === 'metallic') go.textContent = state.pd ? '⏹ Switch off the p.d.' : '⚡ Apply a potential difference';
   $('all-wrap').hidden = info.type === 'metallic' || info.type === 'none';
+  const list = stops(), at = state.stop ?? state.t;
+  for (const id of ['step-back', 'step-next', 'step-of']) $(id).hidden = !list;
+  if (list) {
+    const n = list.filter((s) => s <= at + 1e-3).length - 1;
+    $('step-back').disabled = at <= 1e-3;
+    $('step-next').disabled = at >= 1 - 1e-3;
+    $('step-of').textContent = n ? `Step ${n} of ${list.length - 1}` : '';
+  }
   $('temp-wrap').hidden = info.type !== 'metallic';
 }
 const EXAMPLES = [['NaCl', 11, 17], ['MgO', 12, 8], ['MgCl₂', 12, 17], ['Al₂O₃', 13, 8], ['CaF₂', 20, 9], ['K₂O', 19, 8], ['H₂', 1, 1], ['Cl₂', 17, 17], ['O₂', 8, 8], ['N₂', 7, 7], ['HCl', 1, 17], ['H₂O', 8, 1], ['NH₃', 7, 1], ['CH₄', 6, 1], ['CO₂', 6, 8], ['Na', 11, 11], ['Mg', 12, 12], ['Al', 13, 13]];
@@ -426,10 +455,12 @@ $('examples').innerHTML = EXAMPLES.map(([l, a, b]) => `<button class="chip" data
 document.querySelectorAll('#examples .chip').forEach((b) => b.addEventListener('click', () => choose(Number(b.dataset.a), Number(b.dataset.b))));
 
 $('go').addEventListener('click', () => {
-  if (info.type === 'ionic' || info.type === 'covalent') state.dir = state.t >= 0.999 ? -1 : 1;
+  if (info.type === 'ionic' || info.type === 'covalent') { state.dir = state.t >= 0.999 ? -1 : 1; state.stop = null; state.stepping = false; }
   if (info.type === 'metallic') state.pd = !state.pd;
   renderControls();
 });
+$('step-next').addEventListener('click', () => step(1));
+$('step-back').addEventListener('click', () => step(-1));
 document.querySelectorAll('#view .chip').forEach((b) => b.addEventListener('click', () => {
   state.view = b.dataset.v;
   document.querySelectorAll('#view .chip').forEach((c) => c.setAttribute('aria-pressed', String(c === b)));
@@ -447,7 +478,10 @@ function draw(dt) {
   const k = cv.width / W;
   ctx.setTransform(k, 0, 0, k, 0, 0);
   ctx.fillStyle = PK.cssVar('--surface'); ctx.fillRect(0, 0, W, H);
-  if (state.dir) { state.t = Math.max(0, Math.min(1, state.t + state.dir * dt / (info.type === 'ionic' ? 5 : 1.6))); if (state.t === 0 || state.t === 1) { state.dir = 0; renderControls(); } }
+  if (state.dir) {
+    const next = state.t + state.dir * dt / (info.type === 'ionic' ? 5 : 1.6), end = state.stop ?? (state.dir > 0 ? 1 : 0);
+    if (state.dir > 0 ? next >= end : next <= end) { state.t = end; state.dir = 0; state.stop = null; renderControls(); } else state.t = next;
+  }
   if (info.type === 'ionic') drawIonic();
   else if (info.type === 'covalent') drawCovalent();
   else if (info.type === 'metallic') { stepMetal(dt); drawMetallic(); }
@@ -564,7 +598,7 @@ $('p-see').addEventListener('click', () => { choose(P.a, P.b); setMode('explore'
 if (PK.initialHash === '#practice') setMode('practice');
 // Share: the two elements and whether they have bonded (the view and tick boxes are shared anyway)
 PK.shareState = {
-  get: () => ({ a: state.a, b: state.b, bonded: state.t >= 0.999 ? 1 : 0, pd: state.pd ? 1 : 0, temp: state.temp }),
-  set: (o) => { choose(o.a, o.b); if (o.bonded) state.t = 1; if (o.pd) state.pd = true; if (o.temp != null) { state.temp = o.temp; $('temp').value = o.temp; } renderControls(); },
+  get: () => ({ a: state.a, b: state.b, bonded: state.t >= 0.999 ? 1 : 0, s: Number((state.stop ?? state.t).toFixed(3)), pd: state.pd ? 1 : 0, temp: state.temp }),
+  set: (o) => { choose(o.a, o.b); if (o.bonded) state.t = 1; else if (Number(o.s) > 0 && Number(o.s) < 1) { state.t = Number(o.s); state.stepping = true; } if (o.pd) state.pd = true; if (o.temp != null) { state.temp = o.temp; $('temp').value = o.temp; } renderControls(); },
 };
 if (P.total) $('p-score').textContent = `${P.right} out of ${P.total} gaps right first time.`;
