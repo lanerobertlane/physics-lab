@@ -3765,6 +3765,284 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "forces",
+   "tool": "Reaction time test",
+   "q": "Which of these is a typical human reaction time?",
+   "lv": "both",
+   "opts": [
+    "0.002 s",
+    "0.02 s",
+    "0.4 s",
+    "4 s"
+   ],
+   "ans": [
+    2
+   ],
+   "exp": "Reaction times vary from person to person, but are typically between 0.2 s and 0.9 s.",
+   "id": "forzahjk",
+   "pg": "reaction"
+  },
+  {
+   "type": "multi",
+   "topic": "forces",
+   "tool": "Reaction time test",
+   "q": "Which of these can make a driver's reaction time longer? (tick 3)",
+   "lv": "both",
+   "opts": [
+    "Being tired",
+    "Drinking alcohol",
+    "Using a phone",
+    "Wet roads"
+   ],
+   "ans": [
+    0,
+    1,
+    2
+   ],
+   "exp": "Wet roads affect the braking distance. Reaction time depends on the driver.",
+   "id": "forx6ufq",
+   "pg": "reaction"
+  },
+  {
+   "type": "tf",
+   "topic": "forces",
+   "tool": "Reaction time test",
+   "q": "Reaction times are the same for everybody.",
+   "lv": "both",
+   "ans": false,
+   "exp": "Reaction times vary from person to person.",
+   "id": "forfysoq",
+   "pg": "reaction"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Reaction time test",
+   "q": "In a ruler drop test, what does a shorter distance fallen tell you?",
+   "lv": "both",
+   "opts": [
+    "The person has a shorter reaction time",
+    "The person has a longer reaction time",
+    "The ruler was heavier",
+    "The ruler was dropped from higher up"
+   ],
+   "ans": [
+    0
+   ],
+   "id": "forrqzre",
+   "pg": "reaction"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Reaction time test",
+   "q": "Why must the ruler be dropped without any warning?",
+   "lv": "both",
+   "opts": [
+    "So that the catcher can't predict when it will fall",
+    "So that the ruler falls faster",
+    "So that the ruler falls straight",
+    "So that the catcher uses the right hand"
+   ],
+   "ans": [
+    0
+   ],
+   "id": "for1dybo",
+   "pg": "reaction"
+  },
+  {
+   "type": "open",
+   "topic": "forces",
+   "tool": "Reaction time test",
+   "q": "Describe how to use a ruler to measure someone's reaction time.",
+   "lv": "both",
+   "model": "One person holds a ruler upright with the zero mark level with the other person's thumb. They let go without warning, and the other person catches it as quickly as they can. Read the distance the ruler fell, and use a conversion table to find the time. Repeat several times and work out a mean.",
+   "id": "forx2hpl",
+   "pg": "reaction"
+  },
+  {
+   "type": "num",
+   "topic": "forces",
+   "tool": "Reaction time test",
+   "q": "Five reaction times are 0.30 s, 0.32 s, 0.28 s, 0.31 s and 0.29 s. What is the mean?",
+   "lv": "both",
+   "num": 0.3,
+   "unit": "s",
+   "exp": "(0.30 + 0.32 + 0.28 + 0.31 + 0.29) ÷ 5 = 0.30 s",
+   "id": "fory6pqk",
+   "pg": "reaction"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Reaction time test",
+   "q": "A student's ruler drop readings are 20 cm, 19 cm, 38 cm and 21 cm. Which reading is an anomaly?",
+   "lv": "both",
+   "opts": [
+    "19 cm",
+    "20 cm",
+    "21 cm",
+    "38 cm"
+   ],
+   "ans": [
+    3
+   ],
+   "exp": "An anomaly doesn't fit the pattern of the other readings. Leave it out when you work out the mean.",
+   "id": "for1i2vk",
+   "pg": "reaction"
+  },
+  {
+   "type": "num",
+   "topic": "forces",
+   "tool": "Reaction time test",
+   "q": "A car travels at 30 m/s and the driver's reaction time is 0.5 s. What is the thinking distance?",
+   "lv": "ks4",
+   "num": 15,
+   "unit": "m",
+   "exp": "Thinking distance = speed × reaction time = 30 × 0.5 = 15 m",
+   "id": "for1ri0p",
+   "pg": "reaction"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Reaction time test",
+   "q": "A driver starts using a phone. What happens to the stopping distance, and why?",
+   "lv": "ks4",
+   "opts": [
+    "It increases, because the thinking distance increases",
+    "It increases, because the braking distance increases",
+    "It decreases, because the car slows down",
+    "It stays the same"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Distractions can increase the driver's reaction time, so the car travels further before the brakes are applied.",
+   "id": "for1baja",
+   "pg": "reaction"
+  },
+  {
+   "type": "mc",
+   "topic": "electricity",
+   "tool": "Resistance of a wire",
+   "q": "What happens to the resistance of a wire when its length is doubled?",
+   "lv": "ks4",
+   "opts": [
+    "It doubles",
+    "It halves",
+    "It stays the same",
+    "It becomes four times bigger"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Resistance is directly proportional to the length of the wire.",
+   "id": "elevjpo8",
+   "pg": "wire-resistance"
+  },
+  {
+   "type": "mc",
+   "topic": "electricity",
+   "tool": "Resistance of a wire",
+   "q": "When investigating how length affects the resistance of a wire, what is the independent variable?",
+   "lv": "ks4",
+   "opts": [
+    "The length of the wire",
+    "The resistance of the wire",
+    "The thickness of the wire",
+    "The material of the wire"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The independent variable is the one you change.",
+   "id": "ele1en1k",
+   "pg": "wire-resistance"
+  },
+  {
+   "type": "multi",
+   "topic": "electricity",
+   "tool": "Resistance of a wire",
+   "q": "Which of these should be kept the same in this investigation? (tick 2)",
+   "lv": "ks4",
+   "opts": [
+    "The material of the wire",
+    "The thickness of the wire",
+    "The length of the wire",
+    "The reading on the ammeter"
+   ],
+   "ans": [
+    0,
+    1
+   ],
+   "id": "elemu548",
+   "pg": "wire-resistance"
+  },
+  {
+   "type": "mc",
+   "topic": "electricity",
+   "tool": "Resistance of a wire",
+   "q": "How should the voltmeter be connected in this investigation?",
+   "lv": "ks4",
+   "opts": [
+    "In parallel with the length of wire being tested",
+    "In series with the wire",
+    "In series with the ammeter",
+    "Across the switch"
+   ],
+   "ans": [
+    0
+   ],
+   "id": "ele1agq1",
+   "pg": "wire-resistance"
+  },
+  {
+   "type": "num",
+   "topic": "electricity",
+   "tool": "Resistance of a wire",
+   "q": "The p.d. across a length of wire is 3.0 V and the current is 0.6 A. What is its resistance?",
+   "lv": "ks4",
+   "num": 5,
+   "unit": "Ω",
+   "exp": "Resistance = p.d. ÷ current = 3.0 ÷ 0.6 = 5 Ω",
+   "id": "elebea69",
+   "pg": "wire-resistance"
+  },
+  {
+   "type": "num",
+   "topic": "electricity",
+   "tool": "Resistance of a wire",
+   "q": "A 50 cm length of wire has a resistance of 4 Ω. What is the resistance of 25 cm of the same wire?",
+   "lv": "ks4",
+   "num": 2,
+   "unit": "Ω",
+   "exp": "Half the length has half the resistance.",
+   "id": "elem5fjt",
+   "pg": "wire-resistance"
+  },
+  {
+   "type": "open",
+   "topic": "electricity",
+   "tool": "Resistance of a wire",
+   "q": "Why should the switch be opened between readings?",
+   "lv": "ks4",
+   "model": "The current heats the wire, and this increases its resistance. Opening the switch lets the wire cool, so the temperature stays the same for each reading.",
+   "id": "eleg7gky",
+   "pg": "wire-resistance"
+  },
+  {
+   "type": "open",
+   "topic": "electricity",
+   "tool": "Resistance of a wire",
+   "q": "A graph of resistance against length does not go through the origin. Suggest why.",
+   "lv": "ks4",
+   "model": "There is a zero error. The first clip may not be exactly at 0 cm, or the clips and their connections have some resistance of their own.",
+   "id": "elehdv7o",
+   "pg": "wire-resistance"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
    "tool": "Newton's third law pairs",
    "q": "When you sit on a chair, you push down on it. What does the chair do?",
    "lv": "ks3",
@@ -4807,6 +5085,110 @@ window.QUIZ_BANK = {
    "ans": true,
    "id": "wav1noj4",
    "pg": "speed-of-sound"
+  },
+  {
+   "type": "mc",
+   "topic": "magnetism",
+   "tool": "Earth’s magnetic field",
+   "q": "What does a magnetic compass contain?",
+   "lv": "both",
+   "opts": [
+    "A small bar magnet",
+    "A small electric motor",
+    "A piece of copper",
+    "A small battery"
+   ],
+   "ans": [
+    0
+   ],
+   "id": "mag447mm",
+   "pg": "earth-field"
+  },
+  {
+   "type": "tf",
+   "topic": "magnetism",
+   "tool": "Earth’s magnetic field",
+   "q": "A compass needle can be moved by a bar magnet held close to it.",
+   "lv": "both",
+   "ans": true,
+   "exp": "Close to a magnet, the magnet's field is much stronger than the Earth's.",
+   "id": "magcxqj2",
+   "pg": "earth-field"
+  },
+  {
+   "type": "mc",
+   "topic": "magnetism",
+   "tool": "Earth’s magnetic field",
+   "q": "The Earth's magnetic field has the same shape as the field around...",
+   "lv": "both",
+   "opts": [
+    "A bar magnet",
+    "A single straight wire",
+    "A charged sphere",
+    "A horseshoe magnet"
+   ],
+   "ans": [
+    0
+   ],
+   "id": "magahnyr",
+   "pg": "earth-field"
+  },
+  {
+   "type": "mc",
+   "topic": "magnetism",
+   "tool": "Earth’s magnetic field",
+   "q": "A compass case is turned around on a table, far from any magnets. What happens to the needle?",
+   "lv": "both",
+   "opts": [
+    "It keeps pointing the same way",
+    "It turns with the case",
+    "It spins round and round",
+    "It points at the person holding it"
+   ],
+   "ans": [
+    0
+   ],
+   "id": "mag143t1",
+   "pg": "earth-field"
+  },
+  {
+   "type": "mc",
+   "topic": "magnetism",
+   "tool": "Earth’s magnetic field",
+   "q": "The north pole of a compass points towards the Arctic. What kind of magnetic pole must be there?",
+   "lv": "both",
+   "opts": [
+    "A magnetic south pole",
+    "A magnetic north pole",
+    "No magnetic pole",
+    "Both kinds of pole"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Opposite poles attract, so the north pole of the needle is attracted to a south pole.",
+   "id": "magzqz01",
+   "pg": "earth-field"
+  },
+  {
+   "type": "open",
+   "topic": "magnetism",
+   "tool": "Earth’s magnetic field",
+   "q": "Explain how the behaviour of a magnetic compass is evidence that the core of the Earth must be magnetic.",
+   "lv": "ks4",
+   "model": "A compass needle is a small magnet that lines up with a magnetic field. With no magnet nearby it still points north, wherever you are on the Earth. So the Earth must have a magnetic field, with the same shape as the field around a bar magnet. This means that the core of the Earth must be magnetic.",
+   "id": "mag1qnyn",
+   "pg": "earth-field"
+  },
+  {
+   "type": "open",
+   "topic": "magnetism",
+   "tool": "Earth’s magnetic field",
+   "q": "How can a compass be used to find which way is east?",
+   "lv": "ks3",
+   "model": "Hold the compass flat and let the needle settle. Turn the dial until N lines up with the red end of the needle. East is then shown by the E on the dial.",
+   "id": "magib4nm",
+   "pg": "earth-field"
   },
   {
    "type": "open",
@@ -7680,7 +8062,7 @@ window.QUIZ_BANK = {
   {
    "type": "short",
    "topic": "magnetism",
-   "tool": "Bar magnet fields",
+   "tool": "Earth’s magnetic field",
    "q": "Which direction does a compass point?",
    "lv": "ks3",
    "accept": [
@@ -7690,7 +8072,7 @@ window.QUIZ_BANK = {
     "towards north"
    ],
    "id": "mag1anmn",
-   "pg": "magnets"
+   "pg": "earth-field"
   },
   {
    "type": "short",
@@ -9992,7 +10374,7 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "magnetism",
-   "tool": "Bar magnet fields",
+   "tool": "Earth’s magnetic field",
    "q": "Why does a compass point north?",
    "lv": "both",
    "opts": [
@@ -10004,7 +10386,7 @@ window.QUIZ_BANK = {
     1
    ],
    "id": "mag1dan4",
-   "pg": "magnets"
+   "pg": "earth-field"
   },
   {
    "type": "mc",

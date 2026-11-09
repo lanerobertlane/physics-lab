@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Earth’s Magnetic Field · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Move and turn a compass, bring a magnet near it, then plot the field around the whole Earth and see why it is evidence for a magnetic core.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="physics, magnetism, Earth's magnetic field, compass, navigation, magnetic core, field lines, bar magnet, north pole, education, school, KS3, GCSE, AQA, science, simulation, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/earth-field.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Earth’s magnetic field">
+  <meta property="og:description" content="Move and turn a compass, bring a magnet near it, then plot the field around the whole Earth and see why it is evidence for a magnetic core.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/earth-field.html">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Earth’s magnetic field", "description": "Move and turn a compass, bring a magnet near it, then plot the field around the whole Earth and see why it is evidence for a magnetic core.", "url": "https://lanerobertlane.space/tools/earth-field.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["Key Stage 3", "GCSE"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #desk { aspect-ratio: 800 / 460; }
+    #globe { aspect-ratio: 800 / 540; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .status { margin: 0; padding: 0 12px 12px; min-height: 2.6em; }
+    .answer p { margin: 0 0 8px; line-height: 1.55; }
+    .try { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; }
+    .toggle { display: flex; margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Earth’s magnetic field</h1>
+      <p>A magnetic <b>compass</b> contains a small bar magnet. Find out which way it points, what can change that, and why it tells us that the core of the Earth must be magnetic.</p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px" aria-label="View">
+      <button class="chip" data-t="desk" aria-pressed="true">On your desk</button>
+      <button class="chip" data-t="earth" aria-pressed="false">Around the Earth</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage" data-for="desk">
+          <canvas id="desk" class="drag" aria-label="A compass on a desk, seen from above. Drag it to move it, drag its ring to turn it, and tap it to nudge the needle."></canvas>
+          <div class="stage-bar">
+            <button class="btn" id="magnet">＋ Bring a magnet</button>
+          </div>
+          <p class="note status" id="d-status" aria-live="polite"></p>
+        </div>
+        <div class="panel stage" data-for="earth" hidden>
+          <canvas id="globe" class="drag" aria-label="The Earth in space with compasses around it. Drag a compass to see which way it points."></canvas>
+          <div class="stage-bar">
+            <button class="btn" id="add">＋ Add a compass</button>
+            <button class="btn" id="fill">Fill the space with compasses</button>
+            <button class="btn" id="clear">Clear</button>
+          </div>
+          <p class="note status" id="e-status" aria-live="polite"></p>
+        </div>
+
+        <div class="panel after-aside answer">
+          <h2>Why the core must be magnetic</h2>
+          <div id="answer"></div>
+          <p class="note hide-when-no-answers" style="margin:0"><b>Which pole is at the Arctic?</b> The north pole of a compass is attracted to a <b>south</b> pole. So the magnetic pole near the North Pole is really a magnetic south pole.</p>
+          <p class="note beyond" style="margin:8px 0 0">The core isn’t really a bar magnet, because it’s far too hot to stay magnetised. The field comes from molten iron moving around in the outer core. The bar magnet is a model that shows the shape of the field. In the UK the real field also tilts steeply down into the ground, but a compass held flat can only show the direction along the ground.</p>
+        </div>
+      </div>
+      <aside>
+        <div class="panel" data-for="earth" hidden>
+          <h2>Show</h2>
+          <label class="toggle"><input type="checkbox" id="trail" checked> Leave arrows as I drag</label>
+          <label class="toggle"><input type="checkbox" id="lines"> Field lines</label>
+          <label class="toggle" style="margin-bottom:0"><input type="checkbox" id="inside"> Inside the Earth</label>
+          <label class="toggle beyond" style="margin:8px 0 0"><input type="checkbox" id="tilt"> The real tilt of the field</label>
+        </div>
+        <div class="panel" data-for="desk">
+          <h2>Try this</h2>
+          <ol class="try">
+            <li>Drag the compass around the desk. Which way does the red end point?</li>
+            <li>Drag the brass ring to turn the compass. Does the needle turn with it?</li>
+            <li>Line up the N on the dial with the needle. Now the dial shows the real directions.</li>
+            <li>Bring a magnet close, then take it away again.</li>
+          </ol>
+        </div>
+        <div class="panel" data-for="earth" hidden>
+          <h2>Try this</h2>
+          <ol class="try">
+            <li>Drag a compass all the way round the Earth.</li>
+            <li>Fill the space with compasses. What shape do the needles make?</li>
+            <li>Tick <b>Field lines</b>. Where have you seen that pattern before?</li>
+            <li>Tick <b>Inside the Earth</b>, and tap the magnet to turn it round. Which way round matches real compasses?</li>
+          </ol>
+        </div>
+        <div class="panel">
+          <h2>How a compass works</h2>
+          <p class="note" style="margin:0">The needle is a small bar magnet on a pivot, so it’s free to turn. The red end is its north pole. It lines up with the magnetic field where it is, so it points in the <b>direction of the field</b>.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/earth-field.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/quiz-pages/earth-field.js"></script>
+  <script src="../js/practice-tab.js"></script>
+</body>
+</html>

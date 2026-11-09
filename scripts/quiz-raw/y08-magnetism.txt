@@ -21,7 +21,7 @@ short | energy | Energy resources | Give an example of a renewable energy resour
 
 ## 4. Electromagnet investigation   (Q7 repeats an existing question. [NOTE for Rob: Q5 marks magnetic field lines as going "South to North"; they go from north to south (outside the magnet). Fixed])
 short | magnetism | Bar magnet fields | Where is the magnetic field of a bar magnet strongest? {both} | ACCEPT: at the poles; the poles; poles; at the ends; the ends; ends; at each pole
-short | magnetism | Bar magnet fields | Which direction does a compass point? | ACCEPT: north; magnetic north; to the north; towards north
+short | magnetism | Earth’s magnetic field | Which direction does a compass point? | ACCEPT: north; magnetic north; to the north; towards north
 short | magnetism | Electromagnets & the motor effect | When an electric current flows through a wire, what does it produce around the wire? {both} | ACCEPT: magnetic field; a magnetic field; field; magnetism
 open | magnetism | Electromagnets & the motor effect | How can you make the magnetic field around a wire stronger? {both} | MODEL: Wind the wire into a coil (more turns), put an iron core inside the coil, or increase the current.
 mc | magnetism | Bar magnet fields | Which way do magnetic field lines point? {both} | *From north to south; From south to north | EXP: Outside the magnet, field lines go from the north pole to the south pole.

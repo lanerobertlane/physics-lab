@@ -2,9 +2,9 @@
 // Network first (so updates show straight away), falling back to the saved copy.
 // Bump VERSION when anything changes, and keep it the same as SITE.version in js/common.js.
 
-const VERSION = 'physkit-v52';
+const VERSION = 'physkit-v53';
 // Written by scripts/build-quiz-bank.js: the pages that have quiz questions for their Practice tab
-const QUIZ_PAGES = ['acceleration', 'atom', 'atom-history', 'background', 'bonding', 'circuits', 'density', 'echo', 'efficiency', 'electromagnetism', 'em-spectrum', 'energy', 'fission', 'gas', 'grid', 'half-life', 'heat', 'infrared', 'insulation', 'levers', 'light-box', 'magnets', 'mains', 'moments', 'momentum', 'motion-graphs', 'nuclear', 'orbits', 'periodic-table', 'radiation', 'redshift', 'resources', 'resultant-forces', 'ripple-tank', 'shc', 'sky', 'sound', 'speed', 'speed-of-sound', 'springs', 'star-life', 'states', 'static', 'stopping', 'terminal', 'third-law', 'transformers', 'uses', 'waves', 'weight', 'work'];
+const QUIZ_PAGES = ['acceleration', 'atom', 'atom-history', 'background', 'bonding', 'circuits', 'density', 'earth-field', 'echo', 'efficiency', 'electromagnetism', 'em-spectrum', 'energy', 'fission', 'gas', 'grid', 'half-life', 'heat', 'infrared', 'insulation', 'levers', 'light-box', 'magnets', 'mains', 'moments', 'momentum', 'motion-graphs', 'nuclear', 'orbits', 'periodic-table', 'radiation', 'reaction', 'redshift', 'resources', 'resultant-forces', 'ripple-tank', 'shc', 'sky', 'sound', 'speed', 'speed-of-sound', 'springs', 'star-life', 'states', 'static', 'stopping', 'terminal', 'third-law', 'transformers', 'uses', 'waves', 'weight', 'wire-resistance', 'work'];
 const PRECACHE = [
   './',
   'index.html',
@@ -81,6 +81,12 @@ const PRECACHE = [
   'tools/echo.html',
   'js/speed-of-sound.js',
   'tools/speed-of-sound.html',
+  'js/reaction.js',
+  'tools/reaction.html',
+  'js/wire-resistance.js',
+  'tools/wire-resistance.html',
+  'js/earth-field.js',
+  'tools/earth-field.html',
   'js/infrared.js',
   'tools/infrared.html',
   'js/insulation.js',
