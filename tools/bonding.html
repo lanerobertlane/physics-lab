@@ -23,7 +23,10 @@
   <style>
     #bond { aspect-ratio: 800 / 420; }
     .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
-    .picker { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0 12px; }
+    .picker { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 4px 0 12px; }
+    .pick-group { min-width: 0; max-width: 100%; }
+    .pick-type { display: block; font-size: .8rem; font-weight: 700; margin-bottom: 3px; }
+    .pick-row { display: flex; flex-wrap: wrap; gap: 4px; }
     .picker button { width: 42px; height: 42px; border-radius: 6px; border: 1px solid rgba(0,0,0,.2); font: inherit; font-weight: 800; font-size: 1rem; cursor: pointer; color: #111; }
     .picker button[aria-pressed="true"] { outline: 3px solid var(--text); outline-offset: 1px; }
     .picker button.off { opacity: .28; filter: grayscale(1); cursor: not-allowed; }

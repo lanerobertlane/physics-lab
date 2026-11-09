@@ -27,6 +27,7 @@ const gcd = (a, b) => (b ? gcd(b, a % b) : a);
 const valence = (z) => (z === 1 ? 1 : 8 - EL.gcseGroup(z));
 const words = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'];
 const pl = (n, w) => `${n} ${w}${n === 1 ? '' : 's'}`;
+const aOrAn = (word) => (/^[aeiou]/i.test(word) ? 'an' : 'a');
 
 const state = { a: 11, b: 17, view: 'dc', all: false, t: 0, dir: 0, pd: false, temp: 30 };
 let info = null, metalElectrons = [];
@@ -136,15 +137,19 @@ function ionicLayout() {
 }
 function drawIonic() {
   const I = info, { atoms, moves } = ionicLayout(), t = state.t;
-  // 0–0.7: electrons transfer; 0.7–1: the oppositely charged ions pull together
-  const tt = Math.min(1, t / 0.7), done = tt >= 0.999;
+  // 0–0.7: one atom at a time, so losing goes with + and gaining goes with −.
+  // The metal loses electrons and becomes an ion, then the non-metal gains them and becomes an ion.
+  // 0.7–1: the oppositely charged ions pull together
+  const tt = Math.min(1, t / 0.7), allDone = tt >= 0.999;
+  const LOST = 0.25, GAIN_FROM = 0.5, GAINED = 0.75;
+  const metalIon = `${S(I.m)}${EL.chargeText(I.qm)}`, nonIon = `${S(I.x)}${EL.chargeText(-I.qx)}`;
   const sq = Math.max(0, Math.min(1, (t - 0.7) / 0.3)), sqE = sq * sq * (3 - 2 * sq);
   const single = I.nM === 1 && I.nX === 1;
   for (const a of atoms) { if (single) a.x = 400 + (a.x - 400) * (1 - 0.2 * sqE); else a.y = 210 + (a.y - 210) * (1 - 0.14 * sqE); }
   const own = { M: COL.metal, X: COL.non };
   for (const a of atoms) {
     const sh = EL.shells(a.z), n = sh.length;
-    const isM = a.kind === 'M';
+    const isM = a.kind === 'M', done = tt >= (isM ? LOST : GAINED);
     // Shells after the transfer
     const ionShells = isM && done ? sh.slice(0, -1) : sh;
     const drawN = ionShells.length;
@@ -178,7 +183,7 @@ function drawIonic() {
   }
   // Losing and gaining: the metal's outer electrons disappear, then the non-metal's appear.
   // Nothing is shown travelling between them.
-  const lose = Math.min(1, tt / 0.45), gain = Math.max(0, Math.min(1, (tt - 0.55) / 0.45));
+  const lose = Math.min(1, tt / LOST), gain = Math.max(0, Math.min(1, (tt - GAIN_FROM) / (GAINED - GAIN_FROM)));
   for (const mv of moves) {
     const rF = outerR(EL.shells(mv.from.z).length), rT = outerR(EL.shells(mv.to.z).length);
     const a0 = slots(I.qm)[mv.e], a1 = slots(8)[mv.slot];
@@ -199,12 +204,15 @@ function drawIonic() {
     const r = outerR(EL.shells(a.z).length);
     if (a.kind === 'M' && phase(lose)) text(`loses ${pl(I.qm, 'electron')}`, a.x, a.y - r - 18, { s: 14, w: 800, col: COL.metal });
     if (a.kind === 'X' && phase(gain)) text(`gains ${pl(I.qx, 'electron')}`, a.x, a.y - r - 18, { s: 14, w: 800, col: COL.non });
+    if (a.kind === 'M' && tt >= LOST && tt < GAIN_FROM) text(`becomes ${metalIon}`, a.x, a.y - r - 18, { s: 14, w: 800, col: COL.metal });
+    if (a.kind === 'X' && tt >= GAINED && !allDone) text(`becomes ${nonIon}`, a.x, a.y - r - 18, { s: 14, w: 800, col: COL.non });
   }
-  if (done && t < 0.999) text('The oppositely charged ions attract each other…', 400, H - 18, { s: 13, col: PK.cssVar('--muted') });
-  else if (done) text(`Formula: ${S(I.m)}${I.nM > 1 ? I.nM : ''}${S(I.x)}${I.nX > 1 ? I.nX : ''}  (charges balance: ${I.nM} × ${I.qm}+ = ${I.nX} × ${I.qx}−)`, 400, H - 18, { s: 13 });
+  if (allDone && t < 0.999) text('The oppositely charged ions attract each other…', 400, H - 18, { s: 13, col: PK.cssVar('--muted') });
+  else if (allDone) text(`Formula: ${S(I.m)}${I.nM > 1 ? I.nM : ''}${S(I.x)}${I.nX > 1 ? I.nX : ''}  (charges balance: ${I.nM} × ${I.qm}+ = ${I.nX} × ${I.qx}−)`, 400, H - 18, { s: 13 });
   else text(t === 0 ? `Press “Bond”: ${N(I.m)} will lose electrons and ${N(I.x)} will gain them.`
-    : lose < 0.999 ? `${NN(I.m)} loses ${pl(I.qm, 'electron')}${I.nM > 1 ? ' (each atom)' : ''}…`
-      : gain > 0.001 ? `${NN(I.x)} gains ${pl(I.qx, 'electron')}${I.nX > 1 ? ' (each atom)' : ''}…` : `${NN(I.m)} has lost ${pl(I.qm, 'electron')}…`, 400, H - 18, { s: 13, col: PK.cssVar('--muted') });
+    : tt < LOST ? `${NN(I.m)} loses ${pl(I.qm, 'electron')}${I.nM > 1 ? ' (each atom)' : ''}…`
+      : tt < GAIN_FROM ? `${NN(I.m)} becomes ${aOrAn(N(I.m))} ${metalIon} ion.`
+        : tt < GAINED ? `${NN(I.x)} gains ${pl(I.qx, 'electron')}${I.nX > 1 ? ' (each atom)' : ''}…` : `${NN(I.x)} becomes ${aOrAn(ANION[I.x])} ${nonIon} ion.`, 400, H - 18, { s: 13, col: PK.cssVar('--muted') });
 }
 
 // ---------- Covalent ----------
@@ -322,10 +330,15 @@ function renderAnswer() {
   if (I.type === 'ionic') {
     const M = NN(I.m), X = N(I.x), mOut = EL.shells(I.m), xOut = EL.shells(I.x);
     const many = I.nM > 1 || I.nX > 1;
-    const p1 = `${M} loses ${pl(I.qm, 'electron')} and ${X} gains ${pl(I.qx, 'electron')}.${many ? ` In ${I.formula}, ${I.nM === 1 ? 'one' : words[I.nM]} ${N(I.m)} atom${I.nM > 1 ? 's' : ''} transfer${I.nM > 1 ? '' : 's'} ${I.nM * I.qm} electrons to ${I.nX === 1 ? 'one' : words[I.nX]} ${X} atom${I.nX > 1 ? 's' : ''}.` : ''}`;
-    const p2 = `The ${N(I.m)} ion (${EL.ionHtml(I.m, I.qm)}) has a ${I.qm}+ charge and the ${ANION[I.x]} ion (${EL.ionHtml(I.x, -I.qx)}) has a ${I.qx}− charge.`;
-    // The 4 marks: what each atom loses or gains, and the charge on each ion
-    html = [p1, p2].map((p) => `<p>${PK.ans(p)}</p>`).join('');
+    // The 4 marks, in this order so that losing goes with + and gaining goes with −
+    const p = [
+      `${M} loses ${pl(I.qm, 'electron')}.`,
+      `${M} becomes ${aOrAn(N(I.m))} ${EL.ionHtml(I.m, I.qm)} ion.`,
+      `${NN(I.x)} gains ${pl(I.qx, 'electron')}.`,
+      `${NN(I.x)} becomes ${aOrAn(ANION[I.x])} ${EL.ionHtml(I.x, -I.qx)} ion.`,
+    ];
+    if (many) p.push(`In ${I.formula}, ${I.nM === 1 ? 'one' : words[I.nM]} ${N(I.m)} atom${I.nM > 1 ? 's' : ''} transfer${I.nM > 1 ? '' : 's'} ${I.nM * I.qm} electrons to ${I.nX === 1 ? 'one' : words[I.nX]} ${X} atom${I.nX > 1 ? 's' : ''}.`);
+    html = p.map((x) => `<p>${PK.ans(x)}</p>`).join('');
   } else if (I.type === 'covalent') {
     const C = NN(I.central), c = N(I.central), l = N(I.lig), same = I.central === I.lig;
     const needC = valence(I.central), needL = valence(I.lig);
@@ -365,11 +378,13 @@ function renderSummary() {
 // ---------- Choosing elements ----------
 
 function pickerHtml(which) {
-  return CHOICES.map((z) => {
+  const button = (z) => {
     // Grey out second elements that don't make a simple bond with the first
     const off = which === 'b' && analyse(state.a, z).type === 'none';
     return `<button data-z="${z}" style="background:${EL.CATEGORIES[EL.category(z)].col}" aria-pressed="${state[which] === z}" aria-label="${EL.Name(z)}"${off ? ' class="off" disabled' : ''}>${S(z)}</button>`;
-  }).join('');
+  };
+  const group = (title, list) => `<div class="pick-group"><span class="pick-type">${title}</span><div class="pick-row">${list.map(button).join('')}</div></div>`;
+  return group('Metals', CHOICES.filter(EL.isMetal)) + group('Non-metals', CHOICES.filter((z) => !EL.isMetal(z)));
 }
 function renderPickers() {
   $('pick1').innerHTML = pickerHtml('a'); $('pick2').innerHTML = pickerHtml('b');
@@ -423,7 +438,7 @@ function draw(dt) {
   const k = cv.width / W;
   ctx.setTransform(k, 0, 0, k, 0, 0);
   ctx.fillStyle = PK.cssVar('--surface'); ctx.fillRect(0, 0, W, H);
-  if (state.dir) { state.t = Math.max(0, Math.min(1, state.t + state.dir * dt / (info.type === 'ionic' ? 2.4 : 1.6))); if (state.t === 0 || state.t === 1) { state.dir = 0; renderControls(); } }
+  if (state.dir) { state.t = Math.max(0, Math.min(1, state.t + state.dir * dt / (info.type === 'ionic' ? 5 : 1.6))); if (state.t === 0 || state.t === 1) { state.dir = 0; renderControls(); } }
   if (info.type === 'ionic') drawIonic();
   else if (info.type === 'covalent') drawCovalent();
   else if (info.type === 'metallic') { stepMetal(dt); drawMetallic(); }
@@ -475,8 +490,9 @@ function newPractice() {
     $('p-title').textContent = `Ionic bonding in ${EL.cap(I.name)}`;
     html = `
       <p>${cap1(m)} ${gap('v1', ['loses', 'gains', 'shares'], 'loses')} ${gap('n1', range(1, 3), I.qm)} electron(s).</p>
+      <p>The ${m} ion has a ${gap('c1', CHARGES, `${I.qm}+`)} charge.</p>
       <p>${cap1(x)} ${gap('v2', ['loses', 'gains', 'shares'], 'gains')} ${gap('n2', range(1, 3), I.qx)} electron(s).</p>
-      <p>The ${m} ion has a ${gap('c1', CHARGES, `${I.qm}+`)} charge and the ${an} ion has a ${gap('c2', CHARGES, `${I.qx}−`)} charge.</p>
+      <p>The ${an} ion has a ${gap('c2', CHARGES, `${I.qx}−`)} charge.</p>
       <p>Both ions now have a full outer shell: the same electronic structure as a ${gap('ng', ['noble gas', 'halogen', 'alkali metal'], 'noble gas')}.</p>
       <p>The oppositely charged ions are held together by strong ${gap('f', ['electrostatic', 'magnetic', 'gravitational'], 'electrostatic')} forces of attraction. This is ${gap('bt', ['ionic', 'covalent', 'metallic'], 'ionic')} bonding.</p>
       <p>For every ${gap('k1', range(1, 3), I.nM)} ${m} ion(s) there are ${gap('k2', range(1, 3), I.nX)} ${an} ion(s), so the charges add up to zero.</p>
