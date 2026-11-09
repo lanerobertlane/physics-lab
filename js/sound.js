@@ -21,7 +21,7 @@ const font = () => PK.cssVar('--font-body') || 'sans-serif';
 const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
 const sig = (x, n = 3) => Number(x.toPrecision(n));
 const MEDIA = {
-  air: { name: 'air', v: 340, fill: null, show: 110 },
+  air: { name: 'air', v: 330, fill: null, show: 110 },
   water: { name: 'water', v: 1500, fill: 'rgba(60, 140, 220, .2)', show: 170 },
   steel: { name: 'steel', v: 6000, fill: 'rgba(120, 132, 148, .3)', show: 240 },
   none: { name: 'a vacuum', v: 0, fill: null, show: 0 },

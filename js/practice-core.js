@@ -59,7 +59,7 @@ const PQ = (() => {
       c('A runner runs a race at a steady speed.', { v: r(4, 9, 0.5), t: r(10, 300, 5) }),
       c('A train travels between two stations.', { v: r(20, 60, 1), t: r(60, 1800, 60) }),
       c('A snail crawls across a path.', { v: r(0.001, 0.005, 0.001), t: r(60, 1200, 60) }),
-      c('Sound travels from a firework to someone watching.', { v: [330, 340], t: r(0.5, 5, 0.5) }),
+      c('Sound travels from a firework to someone watching.', { v: [330], t: r(0.5, 5, 0.5) }),
       c('A car drives along a motorway at a steady speed.', { v: r(25, 35, 1), t: r(60, 3600, 60) }),
     ] },
     accel: { free: { dv: r(2, 30, 1), t: r(2, 20, 0.5) }, contexts: [
@@ -175,7 +175,7 @@ const PQ = (() => {
     ] },
     wave: { free: { f: r(0.5, 20, 0.5), lam: r(0.05, 5, 0.05) }, contexts: [
       c('A wave travels across the surface of some water.'),
-      c('A guitar plays a note, and the sound travels through the air.', { v: [330, 340], f: r(100, 2000, 50) }),
+      c('A guitar plays a note, and the sound travels through the air.', { v: [330], f: r(100, 2000, 50) }),
       c('Ocean waves roll in towards a beach.', { f: r(0.05, 0.3, 0.05), lam: r(10, 100, 5) }),
       c('A radio station broadcasts its signal.', { v: [300000000], f: r(88e6, 108e6, 1e6) }, { ks3: false }),
       c('An ultrasound scanner sends pulses into the body.', { v: [1500], f: r(1e6, 10e6, 0.5e6) }, { ks3: false }),
