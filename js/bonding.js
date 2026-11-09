@@ -19,6 +19,14 @@ const $ = (id) => document.getElementById(id);
 const font = () => PK.cssVar('--font-body') || 'sans-serif';
 const S = EL.sym, N = EL.name, NN = EL.Name;
 const CHOICES = ['H', 'Li', 'C', 'N', 'O', 'F', 'Na', 'Mg', 'Al', 'P', 'S', 'Cl', 'K', 'Ca', 'Br'].map(EL.z);
+// Set out like the periodic table: groups 1 to 7 across and periods down. Every metal here is
+// left of the line and every non-metal right of it, so hydrogen sits on the non-metal side.
+const TABLE = [
+  [0, 0, 0, 'H', 0, 0, 0],
+  ['Li', 0, 0, 'C', 'N', 'O', 'F'],
+  ['Na', 'Mg', 'Al', 0, 'P', 'S', 'Cl'],
+  ['K', 'Ca', 0, 0, 0, 0, 'Br'],
+];
 const ANION = { 1: 'hydride', 7: 'nitride', 8: 'oxide', 9: 'fluoride', 15: 'phosphide', 16: 'sulfide', 17: 'chloride', 35: 'bromide' };
 const MOLECULE = { H2: 'hydrogen', O2: 'oxygen', N2: 'nitrogen', F2: 'fluorine', Cl2: 'chlorine', Br2: 'bromine', H2O: 'water', CH4: 'methane', NH3: 'ammonia', HCl: 'hydrogen chloride', HF: 'hydrogen fluoride', HBr: 'hydrogen bromide', CO2: 'carbon dioxide', CS2: 'carbon disulfide', H2S: 'hydrogen sulfide', PH3: 'phosphine', CCl4: 'tetrachloromethane', PCl3: 'phosphorus trichloride', NCl3: 'nitrogen trichloride' };
 const COL = { metal: '#e65100', non: '#1e63c6', a: '#1e63c6', b: '#e65100' };
@@ -383,8 +391,9 @@ function pickerHtml(which) {
     const off = which === 'b' && analyse(state.a, z).type === 'none';
     return `<button data-z="${z}" style="background:${EL.CATEGORIES[EL.category(z)].col}" aria-pressed="${state[which] === z}" aria-label="${EL.Name(z)}"${off ? ' class="off" disabled' : ''}>${S(z)}</button>`;
   };
-  const group = (title, list) => `<div class="pick-group"><span class="pick-type">${title}</span><div class="pick-row">${list.map(button).join('')}</div></div>`;
-  return group('Metals', CHOICES.filter(EL.isMetal)) + group('Non-metals', CHOICES.filter((z) => !EL.isMetal(z)));
+  const cell = (s) => (s ? button(EL.z(s)) : '<span class="pick-gap" aria-hidden="true"></span>');
+  const numbers = [1, 2, 3, 4, 5, 6, 7].map((n) => `<span class="pick-no" aria-hidden="true">${n}</span>`).join('');
+  return `<span class="pick-line" aria-hidden="true"></span><span class="pick-side" style="grid-column:1/4">Metals</span><span class="pick-side" style="grid-column:4/8">Non-metals</span>${numbers}${TABLE.flat().map(cell).join('')}`;
 }
 function renderPickers() {
   $('pick1').innerHTML = pickerHtml('a'); $('pick2').innerHTML = pickerHtml('b');
