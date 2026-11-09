@@ -159,6 +159,50 @@ window.SPEC_INDEX = [
   ]
  },
  {
+  "page": "echo",
+  "title": "Echo sounding & ultrasound scans",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "4.6.1.3",
+    "text": "Waves can be reflected, absorbed or transmitted at the boundary between two different materials",
+    "po": 1
+   },
+   {
+    "code": "4.6.1.5",
+    "text": "Ultrasound waves have a frequency higher than the upper limit of hearing for humans",
+    "ht": 1,
+    "po": 1
+   },
+   {
+    "code": "4.6.1.5",
+    "text": "Ultrasound waves are partially reflected when they meet a boundary between two different media",
+    "ht": 1,
+    "po": 1
+   },
+   {
+    "code": "4.6.1.5",
+    "text": "The time taken for reflections to reach a detector can be used to find how far away a boundary is, for medical and industrial imaging",
+    "ht": 1,
+    "po": 1
+   },
+   {
+    "code": "4.6.1.5",
+    "text": "Echo sounding, using high frequency sound waves, is used to detect objects in deep water and measure water depth",
+    "ht": 1,
+    "po": 1
+   },
+   {
+    "code": "KS3",
+    "text": "Sound: echoes, and the reflection and absorption of sound"
+   },
+   {
+    "code": "KS3",
+    "text": "Ultrasound is a pressure wave that transfers energy"
+   }
+  ]
+ },
+ {
   "page": "efficiency",
   "title": "Efficiency",
   "course": "physics",
@@ -863,6 +907,73 @@ window.SPEC_INDEX = [
    {
     "code": "KS3",
     "text": "The Sun is a star; the solar system; a year, a month and a day"
+   }
+  ]
+ },
+ {
+  "page": "sound",
+  "title": "Sound on an oscilloscope",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "4.6.1.1",
+    "text": "Sound waves travelling through air are longitudinal"
+   },
+   {
+    "code": "4.6.1.2",
+    "text": "Describe wave motion in terms of amplitude, wavelength, frequency and period"
+   },
+   {
+    "code": "4.6.1.2",
+    "text": "Period = 1 ÷ frequency, and wave speed = frequency × wavelength"
+   },
+   {
+    "code": "4.6.1.2",
+    "text": "How speed, frequency and wavelength are linked when sound passes from one medium to another",
+    "po": 1
+   },
+   {
+    "code": "4.6.1.4",
+    "text": "Sound waves make the ear drum and other parts vibrate. This only works over a limited frequency range",
+    "ht": 1,
+    "po": 1
+   },
+   {
+    "code": "4.6.1.4",
+    "text": "The range of normal human hearing is from 20 Hz to 20 kHz",
+    "ht": 1,
+    "po": 1
+   },
+   {
+    "code": "KS3",
+    "text": "Sound is produced by vibrating objects and detected by a microphone diaphragm and the ear drum. Frequency is measured in hertz"
+   },
+   {
+    "code": "KS3",
+    "text": "Sound needs a medium to travel. The speed of sound in air, in water and in solids. The auditory range of humans and animals"
+   }
+  ]
+ },
+ {
+  "page": "speed-of-sound",
+  "title": "Measuring the speed of sound",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "4.6.1.2",
+    "text": "Describe a method to measure the speed of sound waves in air"
+   },
+   {
+    "code": "4.5.6.1.2",
+    "text": "Speed = distance ÷ time. A typical value for the speed of sound in air is 330 m/s"
+   },
+   {
+    "code": "KS3",
+    "text": "Sound: echoes, and the speed of sound in air"
+   },
+   {
+    "code": "KS3",
+    "text": "Speed = distance ÷ time"
    }
   ]
  },

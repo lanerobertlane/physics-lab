@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sound on an Oscilloscope · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Change the frequency and amplitude of a sound, hear the result and read the trace on an oscilloscope. Pitch, loudness, period and the range of human hearing.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="physics, waves, sound, oscilloscope, frequency, amplitude, pitch, loudness, period, hearing range, ultrasound, education, school, KS3, GCSE, AQA, science, simulation, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/sound.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Sound on an oscilloscope">
+  <meta property="og:description" content="Change the frequency and amplitude of a sound, hear the result and read the trace on an oscilloscope. Pitch, loudness, period and the range of human hearing.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/sound.html">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Sound on an oscilloscope", "description": "Change the frequency and amplitude of a sound, hear the result and read the trace on an oscilloscope. Pitch, loudness, period and the range of human hearing.", "url": "https://lanerobertlane.space/tools/sound.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["Key Stage 3", "GCSE"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #scope { aspect-ratio: 800 / 420; }
+    #air { width: 100%; aspect-ratio: 800 / 180; display: block; border-radius: var(--radius-sm); }
+    #range { width: 100%; aspect-ratio: 800 / 300; display: block; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    #freq { width: 6.2em; }
+    #what-you-hear { font-weight: 700; margin: 8px 0 0; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Sound on an oscilloscope</h1>
+      <p>Sounds are made by things vibrating. A microphone turns a sound into a trace on an oscilloscope, so you can see the vibrations. Change the <b>frequency</b> and <b>amplitude</b>, listen to the difference, and read the period and frequency from the screen.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="scope" class="drag" aria-label="Oscilloscope trace of the sound. Drag up or down to change the amplitude, or sideways to change the frequency."></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="sound-btn">🔊 Turn the sound on</button>
+            <button class="btn" id="keep">📌 Keep this trace</button>
+            <button class="btn" id="fit">↔ Fit the wave to the screen</button>
+            <button class="btn" id="mystery">❓ Mystery sound</button>
+          </div>
+          <p class="note" id="sound-note" style="margin:0;padding:0 12px 10px" hidden>Keep your volume low. If you can’t hear anything, check the sound isn’t muted on this device. Small speakers can’t play the very lowest notes.</p>
+        </div>
+
+        <div class="panel after-aside">
+          <h2>The sound on its way to the microphone</h2>
+          <div class="chip-group" id="medium" style="margin-bottom:10px" aria-label="What the sound travels through">
+            <button class="chip" data-m="air" aria-pressed="true">Air</button>
+            <button class="chip" data-m="water" aria-pressed="false">Water</button>
+            <button class="chip" data-m="steel" aria-pressed="false">Steel</button>
+            <button class="chip" data-m="none" aria-pressed="false">Nothing (a vacuum)</button>
+          </div>
+          <canvas id="air" aria-label="A loudspeaker sending a longitudinal sound wave to a microphone"></canvas>
+          <p class="note" id="air-note"></p>
+        </div>
+
+        <div class="panel after-aside">
+          <h2>Who can hear it?</h2>
+          <canvas id="range" class="drag" aria-label="Hearing ranges of people and animals. Drag along the chart to change the frequency."></canvas>
+          <p class="note"><b>Why is there a limit?</b> Sound makes your ear drum and the small parts behind it vibrate. These only pass on vibrations over a limited range of frequencies, so normal human hearing runs from <b>20 Hz to 20 kHz</b>. The top of your range drops as you get older. Sound above 20 kHz is called <b>ultrasound</b>.</p>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Signal generator</h2>
+          <div id="gen-rows">
+            <div class="num-row"><label for="freq">Frequency</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: frequency">−</button><input type="number" id="freq" min="10" max="100000" step="any" data-inc="10" value="440" inputmode="decimal"><span class="unit">Hz</span><button data-step="1" aria-label="More: frequency">+</button></div></div>
+            <div class="num-row"><label for="amp">Amplitude</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: amplitude">−</button><input type="number" id="amp" min="0" max="4" step="any" data-inc="0.5" value="2" inputmode="decimal"><span class="unit">V</span><button data-step="1" aria-label="More: amplitude">+</button></div></div>
+            <div class="btn-row" id="examples">
+              <button class="btn" data-f="100">Low hum</button>
+              <button class="btn" data-f="440">Tuning fork</button>
+              <button class="btn" data-f="2000">Whistle</button>
+              <button class="btn" data-f="20000">Top of hearing</button>
+              <button class="btn" data-f="40000">Ultrasound</button>
+            </div>
+          </div>
+          <p class="note" id="mystery-note" hidden>Read the time-base and count the squares for one wave to find the period. Then use <b>f = 1 ÷ T</b>. Press <b>Reveal</b> to check.</p>
+          <p id="what-you-hear" aria-live="polite"></p>
+        </div>
+        <div class="panel">
+          <h2>Oscilloscope</h2>
+          <div class="field"><label for="vdiv">Y-gain (volts per square)</label>
+            <select class="select" id="vdiv"><option value="0.5">0.5 V</option><option value="1" selected>1 V</option><option value="2">2 V</option></select></div>
+          <div class="field"><label for="tdiv">Time-base (time per square)</label>
+            <select class="select" id="tdiv">
+              <option value="50">50 ms</option><option value="20">20 ms</option><option value="10">10 ms</option><option value="5">5 ms</option><option value="2">2 ms</option><option value="1" selected>1 ms</option>
+              <option value="0.5">0.5 ms</option><option value="0.2">0.2 ms</option><option value="0.1">0.1 ms</option><option value="0.05">0.05 ms</option><option value="0.02">0.02 ms</option><option value="0.01">0.01 ms</option>
+            </select></div>
+          <p class="note" style="margin-top:0">These two change the picture, not the sound.</p>
+          <dl class="readout" id="read"></dl>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/scope.js"></script>
+  <script src="../js/sound.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/quiz-pages/sound.js"></script>
+  <script src="../js/practice-tab.js" data-eqs="wave period"></script>
+</body>
+</html>

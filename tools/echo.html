@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Echo Sounding &amp; Ultrasound Scans · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Time an echo to map the sea bed, build up an ultrasound picture of an unborn baby and find a hidden crack in a steel block.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="physics, waves, echo sounding, ultrasound, sonar, reflection, boundary, sea bed, prenatal scan, crack detection, education, school, KS3, GCSE, AQA, science, simulation, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/echo.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Echo sounding &amp; ultrasound scans">
+  <meta property="og:description" content="Time an echo to map the sea bed, build up an ultrasound picture of an unborn baby and find a hidden crack in a steel block.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/echo.html">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Echo sounding & ultrasound scans", "description": "Time an echo to map the sea bed, build up an ultrasound picture of an unborn baby and find a hidden crack in a steel block.", "url": "https://lanerobertlane.space/tools/echo.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["Key Stage 3", "GCSE"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #scene { aspect-ratio: 800 / 420; }
+    #trace { width: 100%; aspect-ratio: 800 / 200; display: block; border-radius: var(--radius-sm); cursor: pointer; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .results { width: 100%; border-collapse: collapse; margin-top: 10px; font-variant-numeric: tabular-nums; font-size: .9rem; }
+    .results th, .results td { border: 1px solid var(--border-strong); padding: 4px 6px; text-align: center; }
+    .results th { background: var(--surface-2); }
+    .results td.n { color: var(--answer, inherit); }
+    .del { border: 0; background: none; color: var(--muted); font: inherit; cursor: pointer; padding: 2px 6px; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Echo sounding &amp; ultrasound scans</h1>
+      <p>A pulse of sound is partly reflected at a boundary between two materials. The time the echo takes to come back tells you how far away that boundary is, even when you can’t see it. Use it to map the sea bed, scan an unborn baby and find a hidden crack in steel.</p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px" aria-label="Show">
+      <button class="chip" data-t="sea" aria-pressed="true">Sea bed</button>
+      <button class="chip" data-t="body" aria-pressed="false">Baby scan</button>
+      <button class="chip" data-t="metal" aria-pressed="false">Cracks in metal</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="scene" class="drag" aria-label="A pulse of sound travelling down and its echoes coming back"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="go">📡 Send a pulse</button>
+            <button class="btn" id="sweep">▶ Sail and map</button>
+            <button class="btn" id="wipe">Clear the map</button>
+            <button class="btn" id="fresh">New sea bed</button>
+            <label class="toggle"><input type="checkbox" id="hide"> Hide what’s underneath</label>
+          </div>
+        </div>
+        <div class="panel">
+          <h2>What the receiver picks up</h2>
+          <canvas id="trace" aria-label="The pulse and its echoes against time. Tap an echo to work out how far away it came from."></canvas>
+          <p class="note" id="trace-note"></p>
+        </div>
+        <div class="panel after-aside">
+          <h2>What’s going on</h2>
+          <div id="explain"></div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Working out the distance</h2>
+          <div class="working" id="work" style="margin-top:0"></div>
+          <div class="btn-row" style="margin-top:10px">
+            <button class="btn primary" id="record">＋ Record reading</button>
+          </div>
+        </div>
+        <div class="panel">
+          <h2>Results</h2>
+          <div id="table"></div>
+          <div class="btn-row" style="margin-top:8px"><button class="btn" id="clear">Clear</button></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/scope.js"></script>
+  <script src="../js/echo.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/quiz-pages/echo.js"></script>
+  <script src="../js/practice-tab.js" data-eqs="speed"></script>
+</body>
+</html>

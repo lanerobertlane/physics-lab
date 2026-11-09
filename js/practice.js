@@ -54,7 +54,7 @@ const TOOL_FOR = {
   'eff-e': ['efficiency.html', 'Efficiency'], 'eff-p': ['efficiency.html', 'Efficiency'],
   charge: ['circuits.html', 'Circuit builder'], ohm: ['circuits.html', 'Circuit builder'], 'energy-qv': ['circuits.html', 'Circuit builder'],
   'power-vi': ['mains.html#safe', 'Mains electricity (earth wire & fuse)'], 'power-i2r': ['grid.html', 'The National Grid'],
-  density: ['density.html', 'Density'], wave: ['waves.html', 'Waves'], period: ['waves.html', 'Waves'],
+  density: ['density.html', 'Density'], wave: ['waves.html', 'Waves'], period: ['sound.html', 'Sound on an oscilloscope'],
   shc: ['shc.html', 'Specific heat capacity'], latent: ['states.html', 'States of matter'], gas: ['gas.html', 'Gas pressure'],
   fbil: ['electromagnetism.html', 'Electromagnetism'], 'transformer-ratio': ['transformers.html', 'Transformers'], 'transformer-power': ['transformers.html', 'Transformers'],
 };

@@ -47,6 +47,8 @@
   // ---------- Tooltips for settings ----------
   // Keys are element ids; "page#id" when the same id means different things on different pages.
   const TIPS = {
+    'echo#hide': 'Covers up what’s really there, so you have to work it out from the echoes, as a real scanner does.',
+    'speed-of-sound#auto': 'Times the sound perfectly, with no reaction time, so you can compare it with timing by hand.',
     'quiz#qz-order': 'Each student gets the questions in a different order, so they can’t copy the person next to them.',
     // Practice questions (Calculation practice and every tool's Practice tab)
     rearrange: 'Sometimes asks for a quantity that isn’t the subject of the equation, so you have to rearrange it first.',

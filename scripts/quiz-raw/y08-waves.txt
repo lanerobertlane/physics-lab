@@ -14,7 +14,7 @@ short | forces | Work done | What is the word equation for work done? | ACCEPT: 
 
 ## Reflection do now   (Q1, Q4 repeat existing questions)
 short | waves | Sound on an oscilloscope | When the amplitude of a sound wave decreases, what happens to the sound? | ACCEPT: quieter; it gets quieter; gets quieter; it is quieter; softer; less loud; volume decreases; the volume goes down; lower volume
-open | waves | Sound on an oscilloscope | What three things can happen to a sound wave when it hits a surface? | MODEL: It can be reflected (bounce back as an echo), absorbed (taken in by the material) or transmitted (pass through).
+open | waves | Echo sounding & ultrasound scans | What three things can happen to a sound wave when it hits a surface? | MODEL: It can be reflected (bounce back as an echo), absorbed (taken in by the material) or transmitted (pass through).
 
 ## Refraction   (Q5 repeats an existing question)
 mc | waves | Transverse & longitudinal waves | In which type of wave are the oscillations perpendicular to the direction of energy transfer? | Longitudinal; *Transverse
