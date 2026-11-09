@@ -23,11 +23,13 @@
   <style>
     #bond { aspect-ratio: 800 / 420; }
     .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
-    .picker { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 4px 0 12px; }
-    .pick-group { min-width: 0; max-width: 100%; }
-    .pick-type { display: block; font-size: .8rem; font-weight: 700; margin-bottom: 3px; }
-    .pick-row { display: flex; flex-wrap: wrap; gap: 4px; }
-    .picker button { width: 42px; height: 42px; border-radius: 6px; border: 1px solid rgba(0,0,0,.2); font: inherit; font-weight: 800; font-size: 1rem; cursor: pointer; color: #111; }
+    .pickers { display: flex; flex-wrap: wrap; gap: 0 28px; }
+    .picker { position: relative; display: grid; grid-template-columns: repeat(7, 40px); gap: 3px; width: max-content; max-width: 100%; margin: 4px 0 14px; }
+    .pick-side { font-size: .85rem; font-weight: 700; text-align: center; }
+    .pick-no { font-size: .78rem; text-align: center; color: var(--muted); }
+    .pick-gap { width: 40px; height: 40px; box-sizing: border-box; border: 1px dashed var(--grid); border-radius: 6px; }
+    .pick-line { position: absolute; left: 126.5px; top: 0; bottom: 0; width: 2px; background: var(--art); pointer-events: none; }
+    .picker button { width: 40px; height: 40px; border-radius: 6px; border: 1px solid rgba(0,0,0,.2); font: inherit; font-weight: 800; font-size: 1rem; cursor: pointer; color: #111; }
     .picker button[aria-pressed="true"] { outline: 3px solid var(--text); outline-offset: 1px; }
     .picker button.off { opacity: .28; filter: grayscale(1); cursor: not-allowed; }
     .pick-label { font-size: .9rem; font-weight: 700; color: var(--muted); }
@@ -84,10 +86,10 @@
       </div>
       <aside>
         <div class="panel">
-          <span class="pick-label">First element</span>
-          <div class="picker" id="pick1"></div>
-          <span class="pick-label">Second element</span>
-          <div class="picker" id="pick2"></div>
+          <div class="pickers">
+            <div><span class="pick-label">First element</span><div class="picker" id="pick1"></div></div>
+            <div><span class="pick-label">Second element</span><div class="picker" id="pick2"></div></div>
+          </div>
           <div class="pick-key" id="pick-key"></div>
           <div id="summary"></div>
         </div>
