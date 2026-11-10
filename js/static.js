@@ -1,5 +1,6 @@
 // Static electricity: charging by friction (electrons transfer), attraction and repulsion,
-// and electric field lines around point charges with a draggable test charge.
+// electric field lines around point charges with a draggable test charge, and a Van de Graaff
+// generator with a negatively charged dome.
 
 PK.header({
   title: 'Static electricity & electric fields',
@@ -329,6 +330,275 @@ function setRubMode(m) {
 document.querySelectorAll('#rub-mode .chip').forEach((b) => b.addEventListener('click', () => setRubMode(b.dataset.m)));
 $('bal-reset').addEventListener('click', resetBal);
 
+// ---------- Van de Graaff generator ----------
+// A rubber belt rubs against the bottom roller, which moves electrons onto it. The belt carries them
+// up to a metal comb, which passes them to the dome, so the dome becomes negatively charged. V is how
+// charged the dome is, from 0 to 1. A person touching it shares the charge, and an earthed sphere
+// brought close enough makes a spark.
+
+const vc = $('vdg'), vx = vc.getContext('2d');
+const VW = 800, VH = 440, VFLOOR = 410;
+const DOME = { x: 360, y: 150, r: 70 }, SPH_R = 24, GMAX = 115, TOUCH_X = 215, ARM = 64;
+const vdg = { on: false, V: 0, Vp: 0, belt: 0, px: 80, s: { x: 640, y: 160 }, sparkAt: -1e9, drainAt: -1e9, path: null, movedP: false, movedS: false };
+const touching = () => vdg.px >= TOUCH_X - 0.5;
+const sphereGap = () => Math.hypot(vdg.s.x - DOME.x, vdg.s.y - DOME.y) - DOME.r - SPH_R;
+
+// The crack of a spark (it needs a tap first before a browser will play sound)
+let audio = null;
+function ensureAudio() {
+  try { audio = audio || new (window.AudioContext || window.webkitAudioContext)(); if (audio.state === 'suspended') audio.resume(); } catch { audio = null; }
+}
+function crack(level) {
+  if (!audio) return;
+  const n = Math.round(audio.sampleRate * 0.05), buf = audio.createBuffer(1, n, audio.sampleRate), data = buf.getChannelData(0);
+  for (let i = 0; i < n; i++) data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (n * 0.12));
+  const s = audio.createBufferSource(), g = audio.createGain(), f = audio.createBiquadFilter();
+  s.buffer = buf; g.gain.value = level; f.type = 'highpass'; f.frequency.value = 1800;
+  s.connect(f); f.connect(g); g.connect(audio.destination); s.start();
+}
+
+function spark(now) {
+  const ux = (vdg.s.x - DOME.x), uy = (vdg.s.y - DOME.y), d = Math.hypot(ux, uy), u = [ux / d, uy / d];
+  const a = [DOME.x + u[0] * DOME.r, DOME.y + u[1] * DOME.r], b = [vdg.s.x - u[0] * SPH_R, vdg.s.y - u[1] * SPH_R];
+  const gap = Math.hypot(b[0] - a[0], b[1] - a[1]), n = Math.max(4, Math.round(gap / 12)), pts = [a];
+  for (let i = 1; i < n; i++) { const f = i / n, off = (Math.random() - 0.5) * 18; pts.push([a[0] + (b[0] - a[0]) * f - u[1] * off, a[1] + (b[1] - a[1]) * f + u[0] * off]); }
+  pts.push(b);
+  crack(0.25 + 0.5 * vdg.V);
+  vdg.path = pts; vdg.sparkAt = now;
+  vdg.V = 0.02; if (touching()) vdg.Vp = 0.02;
+}
+function stepVdg(dt, now) {
+  if (vdg.on) vdg.belt = (vdg.belt + dt * 70) % 24;
+  // The person shares the dome's charge while touching it, so it builds up more slowly
+  const C = touching() ? 1.6 : 1;
+  if (vdg.on) vdg.V += ((0.45 * (1 - vdg.V)) / C) * dt;
+  else vdg.V *= Math.exp(-dt / 40);   // the charge slowly leaks away into the air
+  if (touching()) vdg.Vp = vdg.V;
+  else if (onMat()) vdg.Vp *= Math.exp(-dt / 40);
+  else {   // on the floor the person is earthed, so their charge flows away into the ground
+    if (vdg.Vp > 0.1 && now - vdg.drainAt > 900) vdg.drainAt = now;
+    vdg.Vp *= Math.exp(-dt / 0.15);
+  }
+  // A spark when the field in the gap is strong enough: more charge, or a smaller gap
+  if (vdg.V > 0.06 && sphereGap() < vdg.V * GMAX && now - vdg.sparkAt > 120) spark(now);
+}
+
+// The field of the dome (a negative charge at its centre) and the positive charge it pulls onto the
+// earthed sphere (modelled as an image charge inside the sphere)
+function vdgE(x, y) {
+  const q = -vdg.V * DOME.r, d = Math.hypot(vdg.s.x - DOME.x, vdg.s.y - DOME.y), ux = (DOME.x - vdg.s.x) / d, uy = (DOME.y - vdg.s.y) / d;
+  const qi = (-q * SPH_R) / d, ix = vdg.s.x + ux * ((SPH_R * SPH_R) / d), iy = vdg.s.y + uy * ((SPH_R * SPH_R) / d);
+  let ex = 0, ey = 0;
+  for (const [cq, cx, cy] of [[q, DOME.x, DOME.y], [qi, ix, iy]]) { const dx = x - cx, dy = y - cy, r2 = dx * dx + dy * dy + 30, r = Math.sqrt(r2); ex += (cq * dx) / (r2 * r); ey += (cq * dy) / (r2 * r); }
+  return [ex, ey];
+}
+function drawVdgField() {
+  if (vdg.V < 0.05) return;
+  const c = vx, col = '#7c3aed';
+  c.globalAlpha = Math.min(1, vdg.V * 2.5); c.strokeStyle = col; c.fillStyle = col; c.lineWidth = 1.6;
+  for (let i = 0; i < 18; i++) {
+    const a0 = (i / 18) * Math.PI * 2 + 0.17;
+    let x = DOME.x + Math.cos(a0) * (DOME.r + 3), y = DOME.y + Math.sin(a0) * (DOME.r + 3);
+    const pts = [[x, y]];
+    // Followed outwards from the dome, against the field, until it reaches the sphere or the edge
+    for (let k = 0; k < 260; k++) {
+      const [ex, ey] = vdgE(x, y), m = Math.hypot(ex, ey);
+      if (!m) break;
+      x -= (ex / m) * 4; y -= (ey / m) * 4; pts.push([x, y]);
+      if (x < -10 || x > VW + 10 || y < -10 || y > VFLOOR || Math.hypot(x - vdg.s.x, y - vdg.s.y) < SPH_R) break;
+    }
+    c.beginPath(); pts.forEach(([px, py], n) => (n ? c.lineTo(px, py) : c.moveTo(px, py))); c.stroke();
+    // An arrow pointing the way the field acts: towards the negative dome
+    if (pts.length > 14) {
+      const [x1, y1] = pts[12], [x0, y0] = pts[8], ang = Math.atan2(y0 - y1, x0 - x1);
+      c.save(); c.translate(x0, y0); c.rotate(ang); c.beginPath(); c.moveTo(6, 0); c.lineTo(-5, -5); c.lineTo(-5, 5); c.closePath(); c.fill(); c.restore();
+    }
+  }
+  c.globalAlpha = 1;
+}
+function vPill(s, x, y) {
+  const c = vx;
+  c.font = `800 14px ${font()}`;
+  const w = c.measureText(s).width + 18, left = Math.max(6, Math.min(VW - w - 6, x - w / 2));
+  c.fillStyle = PK.cssVar('--accent-soft'); c.beginPath(); c.roundRect(left, y - 13, w, 26, 8); c.fill();
+  text(c, s, left + w / 2, y + 1, { s: 14, w: 800, col: PK.cssVar('--text') });
+}
+// A label with the background behind it, so it can be read over the field lines
+function tag(s, x, y, col, size = 13) {
+  const c = vx;
+  c.font = `800 ${size}px ${font()}`;
+  const w = c.measureText(s).width + 10;
+  c.fillStyle = PK.cssVar('--surface'); c.globalAlpha = 0.9; c.fillRect(x - w / 2, y - size / 2 - 3, w, size + 6); c.globalAlpha = 1;
+  text(c, s, x, y, { s: size, w: 800, col });
+}
+// The insulating mat stays put. On it the person keeps their charge; off it, standing on the
+// floor, they are earthed and the charge flows through them into the ground.
+const MAT = { x1: 150, x2: 280 }, MAT_TOP = 400;
+const onMat = () => vdg.px >= MAT.x1 + 14;
+function arrowTip(c, x, y, ux, uy) {
+  c.beginPath(); c.moveTo(x + ux * 5, y + uy * 5); c.lineTo(x - uy * 4, y + ux * 4); c.lineTo(x + uy * 4, y - ux * 4); c.closePath(); c.fill();
+}
+function drawPerson(now) {
+  const c = vx, x = vdg.px, drop = onMat() ? 0 : VFLOOR - MAT_TOP, len = 28;
+  const feet = MAT_TOP + drop, hip = 334 + drop, sh = 288 + drop, hy = 258 + drop, hr = 21;
+  c.fillStyle = '#37474f'; c.fillRect(MAT.x1, MAT_TOP, MAT.x2 - MAT.x1, VFLOOR - MAT_TOP);
+  text(c, 'insulating mat', (MAT.x1 + MAT.x2) / 2, VFLOOR + 15, { s: 12, col: PK.cssVar('--muted') });
+  c.strokeStyle = '#20262e'; c.lineWidth = 4; c.lineCap = 'round';
+  c.beginPath();
+  c.moveTo(x, hy + hr); c.lineTo(x, hip);
+  c.moveTo(x, hip); c.lineTo(x - 13, feet); c.moveTo(x, hip); c.lineTo(x + 13, feet);
+  c.moveTo(x, sh); c.lineTo(x - 20, sh + 50);
+  if (touching()) {
+    // The arm reaches up to the nearest point on the dome
+    const dx = x - DOME.x, dy = sh - DOME.y, d = Math.hypot(dx, dy), hx = DOME.x + (dx / d) * DOME.r, hyy = DOME.y + (dy / d) * DOME.r;
+    const L = Math.min(Math.hypot(hx - x, hyy - sh), 2 * ARM - 1), mx = (x + hx) / 2, my = (sh + hyy) / 2, h = Math.sqrt(ARM * ARM - (L / 2) ** 2);
+    const nx = -(hyy - sh) / L, ny = (hx - x) / L, ex = mx + nx * h * (ny > 0 ? 1 : -1), ey = my + ny * h * (ny > 0 ? 1 : -1);
+    c.moveTo(x, sh); c.lineTo(ex, ey); c.lineTo(hx, hyy);
+  } else { c.moveTo(x, sh); c.lineTo(x + 20, sh + 50); }
+  c.stroke();
+  c.fillStyle = PK.cssVar('--surface'); c.beginPath(); c.arc(x, hy, hr, 0, Math.PI * 2); c.fill(); c.stroke();
+  // Hair: lying flat when uncharged, standing on end when charged
+  const up = Math.max(0, Math.min(1, vdg.Vp * 1.3)), tips = [];
+  c.strokeStyle = '#5d4037'; c.lineWidth = 2.5;
+  for (let i = 0; i < 10; i++) {
+    const phi = -Math.PI + ((i + 0.5) * Math.PI) / 10, rx0 = x + Math.cos(phi) * hr, ry0 = hy + Math.sin(phi) * hr;
+    const flat = phi < -Math.PI / 2 ? phi - Math.PI / 2 : phi + Math.PI / 2, dir = flat + (phi - flat) * up;
+    const tx = rx0 + Math.cos(dir) * len, ty = ry0 + Math.sin(dir) * len;
+    c.beginPath(); c.moveTo(rx0, ry0);
+    c.quadraticCurveTo(rx0 + Math.cos(phi) * len * 0.45, ry0 + Math.sin(phi) * len * 0.45, tx, ty);
+    c.stroke();
+    tips.push({ x: tx + Math.cos(dir) * 9, y: ty + Math.sin(dir) * 9 });
+  }
+  c.lineCap = 'butt';
+  // Every hair has the same negative charge, so neighbouring hairs push each other apart
+  if (vdg.Vp > 0.15) {
+    const charged = tips.filter((_, i) => i % 2 === 0);
+    for (const t of charged) text(c, '−', t.x, t.y, { s: 19, w: 900, col: '#1e63c6' });
+    if (vdg.Vp > 0.3) {
+      c.strokeStyle = '#e65100'; c.fillStyle = '#e65100'; c.lineWidth = 2.5;
+      for (let i = 0; i + 1 < charged.length; i++) {
+        const a = charged[i], b = charged[i + 1], d = Math.hypot(b.x - a.x, b.y - a.y) || 1, ux = (b.x - a.x) / d, uy = (b.y - a.y) / d;
+        const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2, half = Math.max(3, Math.min(8, d / 2 - 8));
+        c.beginPath(); c.moveTo(mx - ux * half, my - uy * half); c.lineTo(mx + ux * half, my + uy * half); c.stroke();
+        arrowTip(c, mx + ux * half, my + uy * half, ux, uy); arrowTip(c, mx - ux * half, my - uy * half, -ux, -uy);
+      }
+      tag('like charges repel', x, hy - hr - len - 28, '#e65100');
+    }
+  }
+  if (vdg.Vp > 0.1) tag(`person: ${PK.ansText('negative')}`, x, hy - hr - len - (vdg.Vp > 0.3 ? 50 : 28), '#1e63c6');
+  // Stepping off the mat: electrons flow down through their feet into the ground
+  const age = now - vdg.drainAt;
+  if (age >= 0 && age < 900) {
+    for (let i = 0; i < 4; i++) { const f = (age / 900 + i * 0.25) % 1, side = i % 2 ? 1 : -1; text(c, '−', x + side * (8 + 13 * f), hip + (feet - hip) * f, { s: 16, w: 800, col: '#1e63c6' }); }
+  }
+  if (age >= 0 && age < 2500) tag('to earth ↓', x + 56, VFLOOR - 12, '#1e63c6');
+}
+function drawVdg(now) {
+  const c = vx, k = vc.width / VW;
+  c.setTransform(k, 0, 0, k, 0, 0);
+  c.fillStyle = PK.cssVar('--surface'); c.fillRect(0, 0, VW, VH);
+  c.fillStyle = PK.cssVar('--surface-2'); c.fillRect(0, VFLOOR, VW, VH - VFLOOR);
+  if ($('vdg-field').checked) drawVdgField();
+
+  // Base, motor, column, belt and rollers
+  c.fillStyle = '#455a64'; c.beginPath(); c.roundRect(300, 360, 120, 50, 8); c.fill();
+  c.fillStyle = vdg.on ? '#66bb6a' : '#90a4ae'; c.beginPath(); c.arc(404, 374, 6, 0, Math.PI * 2); c.fill();
+  text(c, vdg.on ? 'motor on' : 'motor off', 352, 390, { s: 13, w: 800, col: '#fff' });
+  c.fillStyle = 'rgba(144, 202, 249, .25)'; c.strokeStyle = '#90a4ae'; c.lineWidth = 1.5;
+  c.fillRect(338, 205, 44, 155); c.strokeRect(338, 205, 44, 155);
+  c.strokeStyle = '#6d4c41'; c.lineWidth = 4;
+  c.beginPath(); c.moveTo(349, 214); c.lineTo(349, 356); c.moveTo(371, 214); c.lineTo(371, 356); c.stroke();
+  for (const y of [214, 356]) { c.fillStyle = '#cfd8dc'; c.strokeStyle = '#78909c'; c.lineWidth = 1.5; c.beginPath(); c.arc(360, y, 11, 0, Math.PI * 2); c.fill(); c.stroke(); }
+  text(c, '+', 360, 357, { s: 13, w: 800, col: '#c62828' });
+  if (vdg.on) for (let i = 0; i < 6; i++) { const y = 352 - ((i * 24 + vdg.belt) % 134); text(c, '−', 341, y, { s: 15, w: 800, col: '#1e63c6' }); }
+
+  // The metal dome, with the comb and top roller seen through it
+  const g = c.createRadialGradient(DOME.x - 22, DOME.y - 26, 6, DOME.x, DOME.y, DOME.r);
+  g.addColorStop(0, '#f5f7f8'); g.addColorStop(1, '#90a4ae');
+  c.fillStyle = g; c.beginPath(); c.arc(DOME.x, DOME.y, DOME.r, 0, Math.PI * 2); c.fill();
+  c.strokeStyle = '#78909c'; c.lineWidth = 2; c.stroke();
+  c.globalAlpha = 0.55; c.strokeStyle = '#37474f'; c.lineWidth = 1.5;
+  c.beginPath(); c.arc(360, 214, 11, Math.PI, Math.PI * 2); c.stroke();
+  c.beginPath(); c.moveTo(326, 205); c.lineTo(326, 222);
+  for (let y = 207; y <= 221; y += 4) { c.moveTo(326, y); c.lineTo(344, y); }
+  c.stroke(); c.globalAlpha = 1;
+  const n = Math.round(vdg.V * 24);
+  for (let i = 0; i < n; i++) { const a = (i / n) * Math.PI * 2 - Math.PI / 2; text(c, '−', DOME.x + Math.cos(a) * (DOME.r - 11), DOME.y + Math.sin(a) * (DOME.r - 11), { s: 17, w: 800, col: '#1e63c6' }); }
+  if (vdg.V > 0.1) tag(`dome: ${PK.ansText('negative')}`, DOME.x, DOME.y - DOME.r - 14, '#1e63c6', 14);
+
+  // The earthed sphere, on an insulating handle, with a wire to earth
+  const s = vdg.s, ex = s.x + 56;
+  c.strokeStyle = '#2e7d32'; c.lineWidth = 3; c.beginPath(); c.moveTo(s.x, s.y + SPH_R); c.bezierCurveTo(s.x, s.y + 90, ex, VFLOOR - 80, ex, VFLOOR - 14); c.stroke();
+  c.strokeStyle = '#fbc02d'; c.setLineDash([7, 7]); c.stroke(); c.setLineDash([]);
+  c.strokeStyle = PK.cssVar('--text'); c.lineWidth = 2;
+  for (const [w, y] of [[22, VFLOOR - 14], [14, VFLOOR - 8], [6, VFLOOR - 2]]) { c.beginPath(); c.moveTo(ex - w / 2, y); c.lineTo(ex + w / 2, y); c.stroke(); }
+  c.strokeStyle = '#8d6e63'; c.lineWidth = 9; c.lineCap = 'round'; c.beginPath(); c.moveTo(s.x + 14, s.y + 14); c.lineTo(s.x + 70, s.y + 70); c.stroke(); c.lineCap = 'butt';
+  const sg = c.createRadialGradient(s.x - 8, s.y - 9, 3, s.x, s.y, SPH_R);
+  sg.addColorStop(0, '#f5f7f8'); sg.addColorStop(1, '#90a4ae');
+  c.fillStyle = sg; c.beginPath(); c.arc(s.x, s.y, SPH_R, 0, Math.PI * 2); c.fill(); c.strokeStyle = '#78909c'; c.lineWidth = 2; c.stroke();
+  tag('earthed sphere', s.x, s.y - SPH_R - 12, PK.cssVar('--muted'));
+
+  drawPerson(now);
+
+  // The spark
+  if (vdg.path && now - vdg.sparkAt < 200) {
+    c.lineJoin = 'round';
+    for (const [w, col] of [[11, 'rgba(110, 150, 255, .4)'], [4, '#3b5bdb'], [1.5, '#ffffff']]) {   // seen on light and dark backgrounds
+      c.strokeStyle = col; c.lineWidth = w; c.beginPath(); vdg.path.forEach(([px, py], i) => (i ? c.lineTo(px, py) : c.moveTo(px, py))); c.stroke();
+    }
+  }
+
+  if (!vdg.movedP) vPill('Drag the person to the dome', Math.max(150, vdg.px + 40), 200);
+  if (!vdg.movedS) vPill('Drag the sphere close to the dome', s.x, s.y + SPH_R + 26);
+  text(c, '− electron    + positive charge', VW - 14, VH - 14, { a: 'right', s: 13, col: PK.cssVar('--muted') });
+}
+function vdgStatus(now) {
+  if (now - vdg.sparkAt < 2500) return PK.ans('<b>Crack!</b> The electric field between the dome and the earthed sphere got strong enough to pull electrons off air particles. That let electrons jump across the gap and away to earth: a <b>spark</b>.') + (vdg.on ? ' The motor is still running, so the dome charges up again.' : '');
+  if (now - vdg.drainAt < 3000) return PK.ans('The person stepped off the mat onto the floor. Their charge flowed down through them into the ground, to <b>earth</b>, so they aren’t charged any more and their hair falls flat.');
+  if (touching() && vdg.V > 0.2) return PK.ans('Electrons spread from the dome onto the person and into every hair. Each hair has the same negative charge, so the hairs repel each other and stand on end.') + ' The insulating mat stops the charge flowing away to earth through their feet.';
+  if (!touching() && vdg.Vp > 0.2) return PK.ans('The person keeps their charge after letting go, because the mat stops it flowing away to earth. Their hair stays up.') + ' Drag them off the mat to see what happens.';
+  if (vdg.on && vdg.V < 0.9) return PK.ans('The belt is carrying electrons up to the dome, so the dome is gaining electrons and becoming <b>negatively charged</b>.');
+  if (vdg.V >= 0.2) return PK.ans('The dome has a large <b>negative</b> charge: lots of extra electrons, spread over the outside of the metal.') + ' Bring the earthed sphere close to make a spark, or drag the person to the dome.';
+  return 'Turn the motor on. The belt rubs on the bottom roller and starts carrying electrons up to the dome.';
+}
+function setMotor(on) {
+  vdg.on = on;
+  $('motor').textContent = on ? '⏸ Turn the motor off' : '▶ Turn the motor on';
+  $('motor').classList.toggle('primary', !on);
+}
+function resetVdg() {
+  Object.assign(vdg, { V: 0, Vp: 0, belt: 0, px: 80, s: { x: 640, y: 160 }, sparkAt: -1e9, drainAt: -1e9, path: null, movedP: false, movedS: false });
+  setMotor(false);
+}
+$('motor').addEventListener('click', () => { ensureAudio(); setMotor(!vdg.on); });
+$('vdg-reset').addEventListener('click', resetVdg);
+vc.addEventListener('pointerdown', ensureAudio);
+PK.dragOn(vc, VW, VH, {
+  hit: (p) => {
+    if (Math.hypot(p.x - vdg.s.x, p.y - vdg.s.y) < SPH_R + 10) return { what: 'sphere', dx: vdg.s.x - p.x, dy: vdg.s.y - p.y };
+    if (Math.abs(p.x - vdg.px) < 40 && p.y > 230 && p.y < VFLOOR) return { what: 'person', dx: vdg.px - p.x };
+    if (p.x > 300 && p.x < 420 && p.y > 360 && p.y < VFLOOR) return { what: 'motor' };
+    return null;
+  },
+  move: (d, p) => {
+    if (d.what === 'sphere') {
+      let x = Math.max(30, Math.min(VW - 80, p.x + d.dx)), y = Math.max(30, Math.min(320, p.y + d.dy));
+      const dx = x - DOME.x, dy = y - DOME.y, r = Math.hypot(dx, dy) || 1, min = DOME.r + SPH_R + 3;
+      if (r < min) { x = DOME.x + (dx / r) * min; y = DOME.y + (dy / r) * min; }
+      vdg.s = { x, y }; vdg.movedS = true;
+    } else if (d.what === 'person') {
+      const was = touching();
+      let x = Math.max(50, Math.min(TOUCH_X, p.x + d.dx));
+      if (x > MAT.x1 - 20 && x < MAT.x1 + 14) x = x < MAT.x1 - 3 ? MAT.x1 - 20 : MAT.x1 + 14;   // clearly on the mat or clearly off it
+      if (x > TOUCH_X - 14) x = TOUCH_X;
+      vdg.px = x; vdg.movedP = true;
+      // Touching shares out the charge between the dome and the person
+      if (touching() && !was) { const v = (vdg.V + 0.6 * vdg.Vp) / 1.6; vdg.V = v; vdg.Vp = v; }
+    }
+  },
+  tap: (d) => { if (d.what === 'motor') { ensureAudio(); setMotor(!vdg.on); } },
+});
+
 // ---------- Tabs, controls and loop ----------
 
 $('do-rub').addEventListener('click', () => { if (rub.rubbing) return; resetRub(); rub.rubbing = true; renderRub(); });
@@ -366,17 +636,31 @@ function showTab(t) {
   sizeAll();
   window.history.replaceState(null, '', `#${t}`);
 }
-function sizeAll() { if (tab === 'rub') size(rc, RW, RH); else size(fc, FW, FH); }
+function sizeAll() { if (tab === 'rub') size(rc, RW, RH); else if (tab === 'field') size(fc, FW, FH); else size(vc, VW, VH); }
 document.querySelectorAll('#tabs .chip').forEach((b) => b.addEventListener('click', () => showTab(b.dataset.t)));
 window.addEventListener('pk-answers', () => { if (rubMode === 'rods') renderRub(); else renderBal(); });
 window.addEventListener('resize', sizeAll);
 
-let last = performance.now();
+let last = performance.now(), lastVdg = '';
 function frame(now) {
   const dt = Math.min(0.05, (now - last) / 1000); last = now;
-  if (tab === 'rub') { if (rubMode === 'rods') { stepRub(dt); drawRub(); } else { stepBal(dt); drawBal(); } } else drawField();
+  stepVdg(dt, now);   // keeps charging (or leaking away) on the other tabs too
+  if (tab === 'rub') { if (rubMode === 'rods') { stepRub(dt); drawRub(); } else { stepBal(dt); drawBal(); } }
+  else if (tab === 'field') drawField();
+  else { drawVdg(now); const s = vdgStatus(now); if (s !== lastVdg) { lastVdg = s; $('vdg-text').innerHTML = s; } }
   requestAnimationFrame(frame);
 }
-showTab(location.hash.slice(1) === 'field' ? 'field' : 'rub');
+showTab(['field', 'vdg'].includes(location.hash.slice(1)) ? location.hash.slice(1) : 'rub');
 resetRub();
 requestAnimationFrame(frame);
+
+// Share: the Van de Graaff set-up (the tab and tick box are shared anyway)
+PK.shareState = {
+  get: () => ({ g: [vdg.on ? 1 : 0, Number(vdg.V.toFixed(3)), Number(vdg.Vp.toFixed(3)), Math.round(vdg.px), Math.round(vdg.s.x), Math.round(vdg.s.y)] }),
+  set: (o) => {
+    if (!Array.isArray(o.g)) return;
+    const [on, V, Vp, px, sx, sy] = o.g.map(Number), ok = (v, a, b, d) => (Number.isFinite(v) ? Math.max(a, Math.min(b, v)) : d);
+    Object.assign(vdg, { V: ok(V, 0, 1, 0), Vp: ok(Vp, 0, 1, 0), px: ok(px, 50, TOUCH_X, 80), s: { x: ok(sx, 30, VW - 80, 640), y: ok(sy, 30, 320, 160) }, movedP: true, movedS: true });
+    setMotor(Boolean(on));
+  },
+};

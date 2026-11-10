@@ -4042,6 +4042,113 @@ window.QUIZ_BANK = {
   },
   {
    "type": "mc",
+   "topic": "electricity",
+   "tool": "Static electricity & electric fields",
+   "q": "A Van de Graaff generator's belt carries electrons up to the dome. What charge does the dome build up?",
+   "lv": "both",
+   "opts": [
+    "Negative",
+    "Positive",
+    "No charge",
+    "It keeps changing between positive and negative"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The dome gains electrons, so it becomes negatively charged.",
+   "id": "ele68s3k",
+   "pg": "static"
+  },
+  {
+   "type": "mc",
+   "topic": "electricity",
+   "tool": "Static electricity & electric fields",
+   "q": "How does the belt of a Van de Graaff generator pick up electrons?",
+   "lv": "both",
+   "opts": [
+    "By rubbing against the bottom roller",
+    "From the mains supply",
+    "From the air around it",
+    "From the metal dome"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Rubbing two materials together transfers electrons from one to the other.",
+   "id": "ele1auoh",
+   "pg": "static"
+  },
+  {
+   "type": "open",
+   "topic": "electricity",
+   "tool": "Static electricity & electric fields",
+   "q": "Why does a person's hair stand on end when they touch the charged dome of a Van de Graaff generator?",
+   "lv": "both",
+   "model": "Electrons spread from the dome onto the person and into each hair. Every hair has the same negative charge, so the hairs repel each other and stand up.",
+   "id": "ele1f1ol",
+   "pg": "static"
+  },
+  {
+   "type": "mc",
+   "topic": "electricity",
+   "tool": "Static electricity & electric fields",
+   "q": "Why does the person touching the dome stand on an insulating mat?",
+   "lv": "both",
+   "opts": [
+    "So the charge can't flow away to earth through their feet",
+    "So their feet don't get hot",
+    "So the dome turns faster",
+    "To stop them falling over"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "An insulator stops the charge flowing to the ground, so it stays on the person.",
+   "id": "eleak3ok",
+   "pg": "static"
+  },
+  {
+   "type": "tf",
+   "topic": "electricity",
+   "tool": "Static electricity & electric fields",
+   "q": "Moving an earthed sphere closer to a charged dome makes a spark jump with less charge on the dome.",
+   "lv": "both",
+   "ans": true,
+   "exp": "The electric field across a smaller gap is stronger, so it is strong enough to make a spark sooner.",
+   "id": "elerx2o9",
+   "pg": "static"
+  },
+  {
+   "type": "open",
+   "topic": "electricity",
+   "tool": "Static electricity & electric fields",
+   "q": "Explain why a spark jumps from a charged Van de Graaff dome to an earthed sphere held close to it.",
+   "lv": "ks4",
+   "model": "The charged dome has an electric field around it, which is strongest in the small gap. When the field is strong enough it pulls electrons off air particles, so the air conducts and electrons jump across to the sphere and away to earth.",
+   "id": "ele1k94p",
+   "pg": "static"
+  },
+  {
+   "type": "mc",
+   "topic": "electricity",
+   "tool": "Static electricity & electric fields",
+   "q": "Which way do the electric field lines point around the negatively charged dome?",
+   "lv": "ks4",
+   "opts": [
+    "Towards the dome",
+    "Away from the dome",
+    "In circles around the dome",
+    "There are no field lines"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Field lines show the direction of the force on a small positive charge, which is attracted to the negative dome.",
+   "id": "elebmg2j",
+   "pg": "static"
+  },
+  {
+   "type": "mc",
    "topic": "forces",
    "tool": "Newton's third law pairs",
    "q": "When you sit on a chair, you push down on it. What does the chair do?",
