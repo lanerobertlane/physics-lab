@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Static Electricity · Mr Lane's Physics Lab</title>
   <!-- About this page, for search engines and school web filters -->
-  <meta name="description" content="Rub rods to charge them, see attraction and repulsion, and draw the electric field around charges.">
+  <meta name="description" content="Rub rods to charge them, see attraction and repulsion, draw the electric field around charges, and make sparks with a Van de Graaff generator.">
   <meta name="rating" content="general">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Robert Lane">
@@ -14,15 +14,17 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Mr Lane’s Physics Lab">
   <meta property="og:title" content="Static electricity &amp; electric fields">
-  <meta property="og:description" content="Rub rods to charge them, see attraction and repulsion, and draw the electric field around charges.">
+  <meta property="og:description" content="Rub rods to charge them, see attraction and repulsion, draw the electric field around charges, and make sparks with a Van de Graaff generator.">
   <meta property="og:url" content="https://lanerobertlane.space/tools/static.html">
   <meta property="og:locale" content="en_GB">
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Static electricity & electric fields", "description": "Rub rods to charge them, see attraction and repulsion, and draw the electric field around charges.", "url": "https://lanerobertlane.space/tools/static.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["Key Stage 3", "GCSE"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Static electricity & electric fields", "description": "Rub rods to charge them, see attraction and repulsion, draw the electric field around charges, and make sparks with a Van de Graaff generator.", "url": "https://lanerobertlane.space/tools/static.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["Key Stage 3", "GCSE"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
   <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../css/style.css">
   <style>
     #rub { aspect-ratio: 800 / 400; touch-action: pan-y; }
     #field { aspect-ratio: 800 / 440; touch-action: none; cursor: crosshair; }
+    #vdg { aspect-ratio: 800 / 440; touch-action: none; }
+    .vdg-steps { margin: 0; padding-left: 1.4em; display: grid; gap: 8px; line-height: 1.45; }
     .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
   </style>
 </head>
@@ -36,6 +38,7 @@
     <div class="chip-group" id="tabs" style="margin-bottom:12px">
       <button class="chip" data-t="rub" aria-pressed="true">Charging by rubbing</button>
       <button class="chip" data-t="field" aria-pressed="false">Electric fields</button>
+      <button class="chip" data-t="vdg" aria-pressed="false">Van de Graaff generator</button>
     </div>
 
     <div class="tool-layout">
@@ -73,6 +76,18 @@
             </div>
           </div>
         </div>
+        <div class="panel stage" data-tab="vdg" hidden>
+          <canvas id="vdg" aria-label="A Van de Graaff generator, a person, an insulating mat and an earthed sphere. Drag the person onto the mat and up to the dome, drag them off the mat to discharge them, or drag the sphere close to make a spark."></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="motor">▶ Turn the motor on</button>
+            <label class="toggle"><input type="checkbox" id="vdg-field"> Show the electric field</label>
+            <button class="btn" id="vdg-reset">↺ Start again</button>
+          </div>
+        </div>
+        <div class="panel after-aside" data-tab="vdg" hidden>
+          <h2>What’s happening?</h2>
+          <p style="margin:0" id="vdg-text"></p>
+        </div>
       </div>
       <aside>
         <div class="panel" data-tab="rub" id="rod-choices">
@@ -101,6 +116,16 @@
           <p class="note" style="margin-top:0">A charged object has an electric field around it. Another charge placed in the field feels a force. The lines show the direction of the force on a small <b>positive</b> charge: away from +, towards −.</p>
           <p class="note">The field is strongest close to the charge, where the lines are closest together. Drag the small test charge to see the force on it.</p>
           <p class="note">A strong enough field can pull electrons off air particles, making a spark.</p>
+        </div>
+        <div class="panel" data-tab="vdg" hidden>
+          <h2>How it works</h2>
+          <ol class="vdg-steps">
+            <li>A motor turns a rubber belt. Where the belt rubs on the bottom roller, <b>electrons</b> are rubbed onto the belt.</li>
+            <li>The moving belt carries the electrons up inside the insulating column.</li>
+            <li>At the top, a metal comb picks the electrons off the belt.</li>
+            <li>The electrons spread out over the outside of the metal dome, so the dome builds up a large <b>negative</b> charge.</li>
+          </ol>
+          <p class="note">The column is an insulator, so the charge can’t flow back down.</p>
         </div>
       </aside>
     </div>

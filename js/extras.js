@@ -51,6 +51,7 @@
     'earth-field#lines': 'Draws the field lines around the Earth, so you can compare them with what your compasses show.',
     'earth-field#inside': 'Cuts the Earth open to show its core, with a bar magnet as a model of the field.',
     'earth-field#tilt': 'The Earth’s magnetic poles are not quite at the geographic poles. The field is tilted by about 11°.',
+    'vdg-field': 'Draws the electric field around the dome. The lines show the way a small positive charge would be pushed: towards the negative dome.',
     'echo#hide': 'Covers up what’s really there, so you have to work it out from the echoes, as a real scanner does.',
     'speed-of-sound#auto': 'Times the sound perfectly, with no reaction time, so you can compare it with timing by hand.',
     'quiz#qz-order': 'Each student gets the questions in a different order, so they can’t copy the person next to them.',

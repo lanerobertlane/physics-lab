@@ -71,7 +71,7 @@ const TOOLS = [
   { topic: 'electricity', icon: 'transformer', name: 'Transformers', href: 'tools/transformers.html', gcse: true, ht: true,
     desc: 'Change the turns on each coil to step the p.d. up or down, and see why transformers only work with a.c.' },
   { topic: 'electricity', icon: 'static', name: 'Static electricity & electric fields', href: 'tools/static.html', gcse: true, po: true, ks3: true,
-    desc: 'Rub rods to charge them, see attraction and repulsion, and draw the electric field around charges.' },
+    desc: 'Rub rods to charge them, see attraction and repulsion, draw the electric field around charges, and make sparks with a Van de Graaff generator.' },
   { topic: 'electricity', icon: 'circuit', name: 'Resistance of a wire', href: 'tools/wire-resistance.html', gcse: true, rp: true,
     desc: 'Required practical: slide a crocodile clip along a wire, read the meters and plot resistance against length.' },
 
