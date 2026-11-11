@@ -159,6 +159,43 @@ window.SPEC_INDEX = [
   ]
  },
  {
+  "page": "displacement",
+  "title": "Distance, displacement, speed & velocity",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "4.5.1.1",
+    "text": "Scalar and vector quantities"
+   },
+   {
+    "code": "4.5.6.1.1",
+    "text": "Distance is a scalar. Displacement is a vector: a distance in a straight line from the start, and its direction"
+   },
+   {
+    "code": "4.5.6.1.2",
+    "text": "Speed is a scalar. Distance travelled = speed × time"
+   },
+   {
+    "code": "4.5.6.1.3",
+    "text": "Velocity is speed in a given direction, a vector"
+   },
+   {
+    "code": "4.5.6.1.3",
+    "text": "Motion in a circle: a constant speed but a changing velocity",
+    "ht": 1
+   },
+   {
+    "code": "4.5.6.1.4",
+    "text": "Speed from the gradient of a distance–time graph"
+   },
+   {
+    "code": "4.5.6.1.4",
+    "text": "The speed at an instant from the gradient of a tangent to a curved distance–time graph",
+    "ht": 1
+   }
+  ]
+ },
+ {
   "page": "earth-field",
   "title": "Earth’s magnetic field",
   "course": "physics",
@@ -911,6 +948,11 @@ window.SPEC_INDEX = [
    {
     "code": "4.5.1.4",
     "text": "Scale vector diagrams to find the resultant of forces at angles",
+    "ht": 1
+   },
+   {
+    "code": "4.5.1.4",
+    "text": "Resolving a single force into two components at right angles, using scale drawings",
     "ht": 1
    },
    {

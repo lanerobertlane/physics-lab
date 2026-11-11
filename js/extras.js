@@ -433,7 +433,8 @@
       const walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
         acceptNode(n) {
           for (let p = n.parentElement; p && p !== main; p = p.parentElement) {
-            if (SKIP_TAGS.has(p.tagName) || p.classList.contains('pk-term') || p.classList.contains('pk-ans') || p.classList.contains('readout') || p.classList.contains('spec-panel') || p.classList.contains('chip-group') || p.isContentEditable) return NodeFilter.FILTER_REJECT;
+            // Inline SVG keeps its tag names in lower case, and a span can't show inside SVG text
+            if (SKIP_TAGS.has(p.tagName.toUpperCase()) || p.classList.contains('pk-term') || p.classList.contains('pk-ans') || p.classList.contains('readout') || p.classList.contains('spec-panel') || p.classList.contains('chip-group') || p.isContentEditable) return NodeFilter.FILTER_REJECT;
           }
           return n.nodeValue.trim().length > 3 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
         },

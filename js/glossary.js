@@ -42,6 +42,8 @@ window.PK_GLOSSARY = {
   'displacement': { def: 'The distance an object has moved from its start, in a stated direction. It is a vector quantity.' },
   'vector': { def: 'A quantity with both size (magnitude) and direction, such as force or velocity.', also: ['vectors'] },
   'scalar': { def: 'A quantity with size (magnitude) only, such as speed, distance or mass.', also: ['scalars'] },
+  'tangent': { def: 'A straight line that just touches a curve at one point, and is exactly as steep as the curve there.', also: ['tangents'] },
+  'gradient': { def: 'How steep a line on a graph is: the change in the value up the side ÷ the change in the value along the bottom.' },
   'friction': { def: 'A force that acts against the motion when two surfaces slide (or try to slide) over each other.' },
   'air resistance': { def: 'A frictional force that acts against an object moving through air. It increases as speed increases.' },
   'reaction time': { def: 'The time between something happening and a person responding to it. It is typically between 0.2 s and 0.9 s.', also: ['reaction times'] },

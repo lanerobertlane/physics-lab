@@ -35,6 +35,8 @@
     #arena .handle { cursor: grab; }
     #arena .handle:active { cursor: grabbing; }
     .reveal-box { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    #rs-main, #rs-scale { display: block; width: 100%; }
+    #rs-main .rs-handle { cursor: grab; }
   </style>
 </head>
 <body>
@@ -44,7 +46,12 @@
       <p>Drag the arrow heads (or use + and −) to put forces on the object. The thick purple arrow is the resultant force. Press <b>Play</b> to see what happens.</p>
     </div>
 
-    <div class="tool-layout">
+    <div class="chip-group" id="rf-tabs" style="margin-bottom:12px" aria-label="Show">
+      <button class="chip" data-t="resultant" aria-pressed="true">Resultant forces</button>
+      <button class="chip" data-t="resolve" aria-pressed="false">Resolving a force (Higher)</button>
+    </div>
+
+    <div class="tool-layout" id="rf-resultant">
       <div class="main-col">
         <div class="panel stage">
           <svg id="arena" class="drag" viewBox="0 0 640 480" role="img" aria-label="Box with force arrows"></svg>
@@ -68,6 +75,7 @@
         <div class="panel after-aside" id="vector-panel">
           <h2>Scale drawing (tip-to-tail)</h2>
           <svg id="vector" viewBox="0 0 640 300" role="img" aria-label="Tip-to-tail vector diagram"></svg>
+          <div class="num-row" style="margin:10px 0 0"><label for="vec-scale">Scale: 1 square =</label><select class="select" id="vec-scale" style="width:auto"><option value="1">1 N</option><option value="2">2 N</option><option value="5">5 N</option></select></div>
           <p class="note" id="vector-note"></p>
         </div>
       </div>
@@ -117,10 +125,42 @@
         </div>
       </aside>
     </div>
+
+    <div class="tool-layout" id="rf-resolve" hidden>
+      <div class="main-col">
+        <div class="panel stage">
+          <svg id="rs-main" class="drag" viewBox="0 0 640 400" role="img" aria-label="A force and its two components"></svg>
+        </div>
+        <div class="panel after-aside" id="rs-scale-panel">
+          <h2>Scale drawing</h2>
+          <svg id="rs-scale" viewBox="0 0 640 400" role="img" aria-label="Scale drawing of the force and its two components on squared paper"></svg>
+          <p class="note" id="rs-scale-note"></p>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Set-up</h2>
+          <div class="chip-group" id="rs-ex" aria-label="Example" style="margin-bottom:12px">
+            <button class="chip" data-v="0" aria-pressed="true">Any force</button>
+            <button class="chip" data-v="1" aria-pressed="false">Pulling a sledge</button>
+            <button class="chip" data-v="2" aria-pressed="false">Box on a slope</button>
+          </div>
+          <div class="num-row"><label for="rs-F" id="rs-F-label">Size of the force</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: size of the force">−</button><input type="number" id="rs-F" min="1" max="200" step="any" data-inc="1" value="10" inputmode="decimal"><span class="unit">N</span><button data-step="1" aria-label="More: size of the force">+</button></div></div>
+          <div class="num-row"><label for="rs-a" id="rs-a-label">Angle above the horizontal</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: angle">−</button><input type="number" id="rs-a" min="0" max="90" step="any" data-inc="1" value="37" inputmode="decimal"><span class="unit">°</span><button data-step="1" aria-label="More: angle">+</button></div></div>
+          <div class="num-row"><label for="rs-per-square">Scale drawing: 1 square =</label><select class="select" id="rs-per-square" style="width:auto"><option value="1">1 N</option><option value="2">2 N</option><option value="5">5 N</option><option value="10">10 N</option><option value="20">20 N</option></select></div>
+          <label class="toggle" id="rs-others-row" hidden><input type="checkbox" id="rs-others"> Show the other forces on the box</label>
+        </div>
+        <div class="panel">
+          <h2>The two components</h2>
+          <div id="rs-result"></div>
+        </div>
+      </aside>
+    </div>
   </main>
 
   <script src="../js/common.js"></script>
   <script src="../js/resultant-forces.js"></script>
+  <script src="../js/resolving.js"></script>
   <script src="../js/equations-data.js"></script>
   <script src="../js/practice-core.js"></script>
   <script src="../js/circuit-symbols.js"></script>
