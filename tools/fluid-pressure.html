@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pressure in Fluids &amp; Upthrust · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Drag a pressure sensor down the face of a dam, open the spouts on a water tower, and see why things float or sink: p = h ρ g.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="physics, forces, pressure, fluids, liquid pressure, dam, depth, upthrust, floating, sinking, density, p = h rho g, education, school, KS3, GCSE, AQA, science, simulation, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/fluid-pressure.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Pressure in fluids &amp; upthrust">
+  <meta property="og:description" content="Drag a pressure sensor down the face of a dam, open the spouts on a water tower, and see why things float or sink: p = h ρ g.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/fluid-pressure.html">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Pressure in fluids & upthrust", "description": "Drag a pressure sensor down the face of a dam, open the spouts on a water tower, and see why things float or sink: p = h ρ g.", "url": "https://lanerobertlane.space/tools/fluid-pressure.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["Key Stage 3", "GCSE"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="Physics Lab">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #scene { aspect-ratio: 800 / 460; }
+    .status { margin: 0; padding: 10px 12px 12px; min-height: 2.6em; border-top: 1px solid var(--border); }
+    .results { width: 100%; border-collapse: collapse; margin-top: 6px; font-variant-numeric: tabular-nums; font-size: .9rem; }
+    .results th, .results td { border: 1px solid var(--border-strong); padding: 4px 6px; text-align: center; }
+    .results th { background: var(--surface-2); }
+    #work p, #explain p { margin: 0 0 8px; line-height: 1.5; }
+    .toggle { display: flex; margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Pressure in fluids &amp; upthrust</h1>
+      <p>Liquids and gases push on every surface they touch, at right angles to it. In a liquid the pressure gets bigger the deeper you go, because there’s more liquid above pushing down.</p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px" aria-label="Example">
+      <button class="chip" data-t="dam" aria-pressed="true">Dam</button>
+      <button class="chip" data-t="spouts" aria-pressed="false">Tower with three spouts</button>
+      <button class="chip" data-t="float" aria-pressed="false">Floating and sinking</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="scene" class="drag" aria-label="The example for this tab. The words underneath say what to drag or tap."></canvas>
+          <p class="note status" id="status" aria-live="polite"></p>
+        </div>
+        <div class="panel after-aside">
+          <h2 id="exp-title">Why?</h2>
+          <div id="explain" class="hide-when-no-answers"></div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel" data-for="dam">
+          <h2>Set-up</h2>
+          <div class="num-row"><label for="depth">Depth of water</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: depth of water">−</button><input type="number" id="depth" min="10" max="68" step="any" data-inc="1" data-whole value="50" inputmode="numeric"><span class="unit">m</span><button data-step="1" aria-label="More: depth of water">+</button></div></div>
+          <div class="field"><label for="liquid">Liquid behind the dam</label>
+            <select class="select" id="liquid"><option value="water">Fresh water (1000 kg/m³)</option><option value="sea">Sea water (1030 kg/m³)</option><option value="oil">Oil (910 kg/m³)</option></select></div>
+          <label class="toggle" style="margin-bottom:0"><input type="checkbox" id="two"> Use two sensors</label>
+        </div>
+        <div class="panel" data-for="spouts" hidden>
+          <h2>Set-up</h2>
+          <label class="toggle"><input type="checkbox" id="full" checked> Keep the tank topped up</label>
+          <button class="btn" id="refill">Fill the tank</button>
+        </div>
+        <div class="panel" data-for="float" hidden>
+          <h2>Set-up</h2>
+          <div class="field"><label for="fliquid">Liquid in the tank</label>
+            <select class="select" id="fliquid"><option value="water">Water (1000 kg/m³)</option><option value="salty">Very salty water (1200 kg/m³)</option><option value="alcohol">Alcohol (790 kg/m³)</option></select></div>
+          <label class="toggle"><input type="checkbox" id="faces"> Show the pressure on each face</label>
+          <button class="btn" id="tidy">Put everything back</button>
+        </div>
+        <div class="panel">
+          <h2 id="work-title">Pressure</h2>
+          <div id="work"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/fluid-pressure.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/quiz-pages/fluid-pressure.js"></script>
+  <script src="../js/practice-tab.js" data-eqs="liquid"></script>
+</body>
+</html>

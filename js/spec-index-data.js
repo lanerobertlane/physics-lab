@@ -382,6 +382,40 @@ window.SPEC_INDEX = [
   ]
  },
  {
+  "page": "fluid-pressure",
+  "title": "Pressure in fluids & upthrust",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "4.5.5.1.1",
+    "text": "A fluid can be either a liquid or a gas. The pressure in fluids causes a force normal (at right angles) to any surface",
+    "po": 1
+   },
+   {
+    "code": "4.5.5.1.2",
+    "text": "The pressure due to a column of liquid: p = h ρ g. Pressure at a point increases with the height of the column of liquid above it, and with the density of the liquid",
+    "ht": 1,
+    "po": 1
+   },
+   {
+    "code": "4.5.5.1.2",
+    "text": "Calculate the differences in pressure at different depths in a liquid",
+    "ht": 1,
+    "po": 1
+   },
+   {
+    "code": "4.5.5.1.2",
+    "text": "A submerged object has a greater pressure on its bottom surface than its top, giving a resultant force upwards: the upthrust. The factors that influence floating and sinking",
+    "ht": 1,
+    "po": 1
+   },
+   {
+    "code": "KS3",
+    "text": "Pressure in liquids, increasing with depth; upthrust effects, floating and sinking"
+   }
+  ]
+ },
+ {
   "page": "gas",
   "title": "Gas pressure",
   "course": "physics",
@@ -961,6 +995,21 @@ window.SPEC_INDEX = [
    {
     "code": "KS3",
     "text": "The Sun is a star; the solar system; a year, a month and a day"
+   }
+  ]
+ },
+ {
+  "page": "solid-pressure",
+  "title": "Pressure on solids",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "KS3",
+    "text": "Pressure measured by the ratio of force over area, acting normal to any surface"
+   },
+   {
+    "code": "KS3",
+    "text": "Pressure = force ÷ area, in newtons per square metre (N/m²) or newtons per square centimetre (N/cm²)"
    }
   ]
  },
