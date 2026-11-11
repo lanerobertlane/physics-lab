@@ -4148,6 +4148,178 @@ window.QUIZ_BANK = {
    "pg": "static"
   },
   {
+   "type": "open",
+   "topic": "forces",
+   "tool": "Pressure in fluids & upthrust",
+   "q": "Why is a dam built much thicker at the bottom than at the top?",
+   "lv": "both",
+   "model": "The pressure in water increases with depth, because there is a taller column of water above pushing down. The water pushes hardest at the bottom, so the dam needs to be strongest there.",
+   "id": "for1i776",
+   "pg": "fluid-pressure"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Pressure in fluids & upthrust",
+   "q": "Water squirts out of three holes in the side of a tall can. Which jet goes furthest?",
+   "lv": "both",
+   "opts": [
+    "The top one",
+    "The middle one",
+    "The bottom one",
+    "They all go the same distance"
+   ],
+   "ans": [
+    2
+   ],
+   "exp": "The bottom hole has the most water above it, so the pressure there is greatest and the water comes out fastest.",
+   "id": "fore9byx",
+   "pg": "fluid-pressure"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Pressure in fluids & upthrust",
+   "q": "In which direction does the water push on the face of a dam?",
+   "lv": "ks4",
+   "opts": [
+    "At right angles to the face",
+    "Straight down",
+    "Along the face",
+    "Straight up"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The pressure in a fluid causes a force at right angles to any surface.",
+   "id": "for1vo46",
+   "pg": "fluid-pressure"
+  },
+  {
+   "type": "num",
+   "topic": "forces",
+   "tool": "Pressure in fluids & upthrust",
+   "q": "Calculate the pressure due to the water 20 m below the surface of a lake. The density of water is 1000 kg/m³ and g = 9.8 N/kg.",
+   "lv": "ks4",
+   "num": 196000,
+   "unit": "Pa",
+   "exp": "p = h ρ g = 20 × 1000 × 9.8 = 196 000 Pa",
+   "id": "for1um42",
+   "pg": "fluid-pressure"
+  },
+  {
+   "type": "num",
+   "topic": "forces",
+   "tool": "Pressure in fluids & upthrust",
+   "q": "How much bigger is the pressure 30 m down in water than 10 m down? The density of water is 1000 kg/m³ and g = 9.8 N/kg.",
+   "lv": "ks4",
+   "num": 196000,
+   "unit": "Pa",
+   "exp": "Difference = Δh × ρ × g = 20 × 1000 × 9.8 = 196 000 Pa",
+   "id": "foregk5c",
+   "pg": "fluid-pressure"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Pressure in fluids & upthrust",
+   "q": "An egg sinks in tap water but floats in very salty water. Why?",
+   "lv": "both",
+   "opts": [
+    "The salty water is denser than the egg",
+    "The salty water is less dense than the egg",
+    "Salt makes the egg lighter",
+    "The egg absorbs salt"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "An object floats in a liquid that is denser than it is.",
+   "id": "forsmdb5",
+   "pg": "fluid-pressure"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Pressure in fluids & upthrust",
+   "q": "A floating block of wood is still. How does the upthrust compare with its weight?",
+   "lv": "both",
+   "opts": [
+    "It is equal to the weight",
+    "It is bigger than the weight",
+    "It is smaller than the weight",
+    "There is no upthrust"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The forces on a floating object are balanced.",
+   "id": "for1p42k",
+   "pg": "fluid-pressure"
+  },
+  {
+   "type": "open",
+   "topic": "forces",
+   "tool": "Pressure in fluids & upthrust",
+   "q": "Explain why an object in water has an upthrust on it.",
+   "lv": "ks4",
+   "model": "The bottom of the object is deeper than its top, so the water pressure on the bottom is greater than on the top. This gives a resultant force upwards, which is the upthrust.",
+   "id": "for1cvfj",
+   "pg": "fluid-pressure"
+  },
+  {
+   "type": "num",
+   "topic": "forces",
+   "tool": "Pressure on solids",
+   "q": "A person weighing 600 N steps on one stiletto heel with an area of 1 cm². What is the pressure under the heel?",
+   "lv": "both",
+   "num": 600,
+   "unit": "N/cm²",
+   "exp": "Pressure = force ÷ area = 600 ÷ 1 = 600 N/cm²",
+   "id": "for15h1t",
+   "pg": "solid-pressure"
+  },
+  {
+   "type": "num",
+   "topic": "forces",
+   "tool": "Pressure on solids",
+   "q": "The same 600 N person stands on one snowshoe with an area of 1500 cm². What is the pressure on the snow?",
+   "lv": "both",
+   "num": 0.4,
+   "unit": "N/cm²",
+   "exp": "Pressure = force ÷ area = 600 ÷ 1500 = 0.4 N/cm²",
+   "id": "forcmtrg",
+   "pg": "solid-pressure"
+  },
+  {
+   "type": "open",
+   "topic": "forces",
+   "tool": "Pressure on solids",
+   "q": "When you push in a drawing pin, why does the point go into the board but the head doesn't hurt your thumb?",
+   "lv": "both",
+   "model": "The force is the same at both ends. The head has a large area, so the pressure on your thumb is small. The point has a tiny area, so the pressure there is very large, big enough to push into the board.",
+   "id": "for1fxop",
+   "pg": "solid-pressure"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Pressure on solids",
+   "q": "Why does a sharp knife cut more easily than a blunt one?",
+   "lv": "both",
+   "opts": [
+    "Its edge has a smaller area, so the same force gives a bigger pressure",
+    "Its edge has a bigger area",
+    "It is heavier",
+    "It pushes with a smaller force"
+   ],
+   "ans": [
+    0
+   ],
+   "id": "forksb8d",
+   "pg": "solid-pressure"
+  },
+  {
    "type": "mc",
    "topic": "forces",
    "tool": "Newton's third law pairs",
@@ -7612,7 +7784,8 @@ window.QUIZ_BANK = {
    "accept": [
     "pressure"
    ],
-   "id": "for1vudk"
+   "id": "for1vudk",
+   "pg": "solid-pressure"
   },
   {
    "type": "tf",
@@ -7622,7 +7795,8 @@ window.QUIZ_BANK = {
    "lv": "ks3",
    "ans": false,
    "exp": "Liquids and gases exert pressure too, for example water pressure and air pressure.",
-   "id": "for15ykq"
+   "id": "for15ykq",
+   "pg": "fluid-pressure"
   },
   {
    "type": "mc",
@@ -7679,7 +7853,8 @@ window.QUIZ_BANK = {
    "lv": "ks3",
    "model": "The large area spreads your weight out, so the pressure on the snow is lower and you don't sink in.",
    "exp": "pressure = force ÷ area.",
-   "id": "for1ggfv"
+   "id": "for1ggfv",
+   "pg": "solid-pressure"
   },
   {
    "type": "mc",
@@ -7695,7 +7870,8 @@ window.QUIZ_BANK = {
    "ans": [
     0
    ],
-   "id": "for3qdhb"
+   "id": "for3qdhb",
+   "pg": "solid-pressure"
   },
   {
    "type": "open",
@@ -7704,7 +7880,8 @@ window.QUIZ_BANK = {
    "q": "Why do your ears pop when you dive deeper underwater?",
    "lv": "ks3",
    "model": "Pressure in water increases with depth, because there is more water above you pushing down. The extra pressure pushes on your eardrums.",
-   "id": "for12917"
+   "id": "for12917",
+   "pg": "fluid-pressure"
   },
   {
    "type": "open",
@@ -7752,7 +7929,8 @@ window.QUIZ_BANK = {
    "q": "Explain why a tractor with large tyres is less likely to sink into mud. Use the word pressure.",
    "lv": "ks3",
    "model": "The large tyres spread the tractor's weight over a bigger area, so the pressure on the mud is lower and the tractor doesn't sink in.",
-   "id": "for1h1qz"
+   "id": "for1h1qz",
+   "pg": "solid-pressure"
   },
   {
    "type": "mc",
@@ -7768,7 +7946,8 @@ window.QUIZ_BANK = {
    "ans": [
     2
    ],
-   "id": "for1wtgv"
+   "id": "for1wtgv",
+   "pg": "solid-pressure"
   },
   {
    "type": "multi",
@@ -7837,7 +8016,8 @@ window.QUIZ_BANK = {
    "ans": [
     2
    ],
-   "id": "for684bw"
+   "id": "for684bw",
+   "pg": "fluid-pressure"
   },
   {
    "type": "mc",
@@ -7900,7 +8080,8 @@ window.QUIZ_BANK = {
    "ans": [
     0
    ],
-   "id": "forubt48"
+   "id": "forubt48",
+   "pg": "fluid-pressure"
   },
   {
    "type": "open",
@@ -7909,7 +8090,8 @@ window.QUIZ_BANK = {
    "q": "Why is the pressure from water usually greater than the pressure from the air?",
    "lv": "ks3",
    "model": "Water is much denser than air, so the same depth of water has far more weight pushing down.",
-   "id": "forbtjxo"
+   "id": "forbtjxo",
+   "pg": "fluid-pressure"
   },
   {
    "type": "mc",
@@ -7926,7 +8108,8 @@ window.QUIZ_BANK = {
    "ans": [
     1
    ],
-   "id": "forsxpks"
+   "id": "forsxpks",
+   "pg": "fluid-pressure"
   },
   {
    "type": "mc",
@@ -7943,7 +8126,8 @@ window.QUIZ_BANK = {
    "ans": [
     2
    ],
-   "id": "forvz4tr"
+   "id": "forvz4tr",
+   "pg": "solid-pressure"
   },
   {
    "type": "short",
@@ -7985,7 +8169,8 @@ window.QUIZ_BANK = {
    "ans": [
     2
    ],
-   "id": "forvp9yd"
+   "id": "forvp9yd",
+   "pg": "fluid-pressure"
   },
   {
    "type": "mc",
@@ -8292,7 +8477,8 @@ window.QUIZ_BANK = {
     1,
     2
    ],
-   "id": "fordxt54"
+   "id": "fordxt54",
+   "pg": "solid-pressure"
   },
   {
    "type": "mc",
@@ -8352,7 +8538,8 @@ window.QUIZ_BANK = {
     3
    ],
    "exp": "Pressure = force ÷ area, so newtons per square metre (N/m²), also called pascals (Pa).",
-   "id": "for1x7h6"
+   "id": "for1x7h6",
+   "pg": "solid-pressure"
   },
   {
    "type": "num",
@@ -8363,7 +8550,8 @@ window.QUIZ_BANK = {
    "num": 4,
    "unit": "N/m²",
    "exp": "Pressure = force ÷ area = 20 ÷ 5 = 4 N/m².",
-   "id": "forytjnr"
+   "id": "forytjnr",
+   "pg": "solid-pressure"
   },
   {
    "type": "tf",
@@ -8411,7 +8599,8 @@ window.QUIZ_BANK = {
    "q": "Why are tractor tyres much wider than car tyres?",
    "lv": "ks3",
    "model": "Wide tyres spread the tractor's heavy weight over a bigger area, so the pressure on the ground is lower and it doesn't sink into soft fields.",
-   "id": "for1u8x2"
+   "id": "for1u8x2",
+   "pg": "solid-pressure"
   },
   {
    "type": "tf",
@@ -8446,7 +8635,8 @@ window.QUIZ_BANK = {
     "buoyancy",
     "buoyant force"
    ],
-   "id": "forhkxrh"
+   "id": "forhkxrh",
+   "pg": "fluid-pressure"
   },
   {
    "type": "mc",
@@ -8464,7 +8654,8 @@ window.QUIZ_BANK = {
     2
    ],
    "exp": "Anything less dense than water floats. \"Lighter\" isn't enough: a huge log floats, but a tiny pebble sinks.",
-   "id": "for1om4i"
+   "id": "for1om4i",
+   "pg": "fluid-pressure"
   },
   {
    "type": "tf",
@@ -8474,7 +8665,8 @@ window.QUIZ_BANK = {
    "lv": "ks3",
    "ans": true,
    "exp": "Newtons per square metre, also called pascals (Pa).",
-   "id": "for1l3ll"
+   "id": "for1l3ll",
+   "pg": "solid-pressure"
   },
   {
    "type": "mc",
@@ -9354,7 +9546,8 @@ window.QUIZ_BANK = {
    "q": "Which two forces must be balanced for an object to float in water?",
    "lv": "ks3",
    "model": "Its weight (down) and upthrust (up).",
-   "id": "for1et2e"
+   "id": "for1et2e",
+   "pg": "fluid-pressure"
   },
   {
    "type": "open",
@@ -9619,7 +9812,8 @@ window.QUIZ_BANK = {
     1,
     2
    ],
-   "id": "for1axdh"
+   "id": "for1axdh",
+   "pg": "solid-pressure"
   },
   {
    "type": "short",
@@ -9634,7 +9828,8 @@ window.QUIZ_BANK = {
     "all",
     "everywhere"
    ],
-   "id": "forqm2dr"
+   "id": "forqm2dr",
+   "pg": "fluid-pressure"
   },
   {
    "type": "mc",
@@ -10015,7 +10210,8 @@ window.QUIZ_BANK = {
    "lv": "both",
    "model": "The large area spreads the tractor's weight out, so the pressure on the ground is lower and the tractor doesn't sink into soft mud.",
    "exp": "pressure = force ÷ area, so a bigger area gives a smaller pressure.",
-   "id": "for19evz"
+   "id": "for19evz",
+   "pg": "solid-pressure"
   },
   {
    "type": "mc",
@@ -11544,7 +11740,8 @@ window.QUIZ_BANK = {
    "ans": [
     3
    ],
-   "id": "forut1wm"
+   "id": "forut1wm",
+   "pg": "solid-pressure"
   },
   {
    "type": "short",
@@ -11563,7 +11760,8 @@ window.QUIZ_BANK = {
     "N/cm^2",
     "newtons per centimetre squared"
    ],
-   "id": "for1296r"
+   "id": "for1296r",
+   "pg": "solid-pressure"
   },
   {
    "type": "mc",
@@ -11623,7 +11821,8 @@ window.QUIZ_BANK = {
    "ans": [
     2
    ],
-   "id": "for1x6r6"
+   "id": "for1x6r6",
+   "pg": "fluid-pressure"
   },
   {
    "type": "mc",
@@ -11847,7 +12046,8 @@ window.QUIZ_BANK = {
    "lv": "ks4",
    "ans": true,
    "exp": "The deeper you go, the greater the weight of liquid above pushing down.",
-   "id": "fory7lbt"
+   "id": "fory7lbt",
+   "pg": "fluid-pressure"
   },
   {
    "type": "tf",
@@ -11857,7 +12057,8 @@ window.QUIZ_BANK = {
    "lv": "ks4",
    "ans": false,
    "exp": "Pressure = force ÷ area, so a bigger area gives a smaller pressure.",
-   "id": "for1d3wb"
+   "id": "for1d3wb",
+   "pg": "solid-pressure"
   },
   {
    "type": "mc",
@@ -11971,7 +12172,8 @@ window.QUIZ_BANK = {
     "up thrust",
     "buoyancy"
    ],
-   "id": "for171vw"
+   "id": "for171vw",
+   "pg": "fluid-pressure"
   },
   {
    "type": "tf",
@@ -11981,7 +12183,8 @@ window.QUIZ_BANK = {
    "lv": "ks4",
    "ans": true,
    "exp": "1 N/m² is 1 pascal (Pa).",
-   "id": "fornp3a9"
+   "id": "fornp3a9",
+   "pg": "solid-pressure"
   },
   {
    "type": "mc",
@@ -14155,7 +14358,8 @@ window.QUIZ_BANK = {
    "ans": [
     3
    ],
-   "id": "for1scth"
+   "id": "for1scth",
+   "pg": "fluid-pressure"
   },
   {
    "type": "mc",
@@ -14172,7 +14376,8 @@ window.QUIZ_BANK = {
    "ans": [
     0
    ],
-   "id": "for148hs"
+   "id": "for148hs",
+   "pg": "fluid-pressure"
   },
   {
    "type": "mc",

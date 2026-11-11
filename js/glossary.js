@@ -71,6 +71,8 @@ window.PK_GLOSSARY = {
   'density': { def: 'Mass per unit volume: ρ = m ÷ V, in kg/m³.' },
   'latent heat': { def: 'The energy needed for a substance to change state, with no change in temperature.' },
   'evaporation': { def: 'When particles escape from the surface of a liquid to become a gas.' },
+  'upthrust': { def: 'The upward force on an object in a fluid, caused by the pressure on its bottom being greater than on its top.' },
+  'fluid': { def: 'A liquid or a gas: a substance that can flow.', also: ['fluids'] },
   'pressure': { def: 'Force per unit area, acting at right angles (normal) to a surface: p = F ÷ A.' },
   // Waves
   'echo': { def: 'A sound that has reflected from a surface and come back to you.', also: ['echoes'] },
