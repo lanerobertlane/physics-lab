@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Distance, Displacement, Speed &amp; Velocity · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Follow journeys with bends and see why distance and displacement, and speed and velocity, are different. Draw a tangent on a curved distance–time graph to find the speed at an instant.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="physics, forces, motion, distance, displacement, speed, velocity, scalar, vector, distance-time graph, gradient, tangent, education, school, GCSE, AQA, science, simulation, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/displacement.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Distance, displacement, speed &amp; velocity">
+  <meta property="og:description" content="Follow journeys with bends and see why distance and displacement, and speed and velocity, are different. Draw a tangent on a curved distance–time graph to find the speed at an instant.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/displacement.html">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Distance, displacement, speed & velocity", "description": "Follow journeys with bends and see why distance and displacement, and speed and velocity, are different. Draw a tangent on a curved distance–time graph to find the speed at an instant.", "url": "https://lanerobertlane.space/tools/displacement.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["GCSE"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="Physics Lab">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #scene { display: block; width: 100%; aspect-ratio: 560 / 320; }
+    #graph { display: block; width: 100%; aspect-ratio: 560 / 330; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .results { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: .9rem; }
+    .results th, .results td { border: 1px solid var(--border-strong); padding: 5px 6px; text-align: center; }
+    .results th { background: var(--surface-2); }
+    .results td:first-child { text-align: left; font-weight: 700; }
+    .working { font-size: .92rem; margin: 10px 0 0; padding: 10px 12px; background: var(--surface-2); border-radius: var(--radius-sm); font-variant-numeric: tabular-nums; }
+    .working p { margin: 2px 0 6px; }
+    .key { display: flex; flex-wrap: wrap; gap: 14px; margin: 6px 0 0; font-size: .88rem; font-weight: 700; color: var(--muted); }
+    .key span::before { content: ''; display: inline-block; width: 18px; height: 4px; border-radius: 2px; background: var(--c); vertical-align: middle; margin-right: 6px; }
+    .readout dd small { color: var(--muted); font-weight: 600; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Distance, displacement, speed and velocity</h1>
+      <p id="intro"></p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px" aria-label="Show">
+      <button class="chip" data-t="journey" aria-pressed="true">Distance and displacement</button>
+      <button class="chip" data-t="tangent" aria-pressed="false">Tangents (Higher)</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="scene" class="drag" aria-label="A map of the journey"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="go">▶ Go</button>
+            <button class="btn" id="reset">↺ Reset</button>
+            <div class="chip-group" id="warp" aria-label="How fast to play it">
+              <button class="chip" data-w="1" aria-pressed="true">1×</button>
+              <button class="chip" data-w="2" aria-pressed="false">2×</button>
+              <button class="chip" data-w="5" aria-pressed="false">5×</button>
+              <button class="chip" data-w="10" aria-pressed="false">10×</button>
+            </div>
+          </div>
+        </div>
+        <div class="panel after-aside">
+          <h2 id="graph-title">Distance–time graph</h2>
+          <canvas id="graph" class="drag" aria-label="Distance against time graph"></canvas>
+          <div class="key" id="key"></div>
+          <p class="note" id="graph-note"></p>
+        </div>
+      </div>
+      <aside>
+        <div class="panel" id="p-journey">
+          <h2>Journey</h2>
+          <div class="chip-group" id="route" aria-label="Journey">
+            <button class="chip" data-v="0" aria-pressed="true">Walk to the shop</button>
+            <button class="chip" data-v="1" aria-pressed="false">Lap of a track</button>
+            <button class="chip" data-v="2" aria-pressed="false">There and back</button>
+            <button class="chip" data-v="3" aria-pressed="false">Roundabout</button>
+            <button class="chip" data-v="4" aria-pressed="false">Draw your own</button>
+          </div>
+          <div class="btn-row" id="own-btns" style="margin-top:10px" hidden>
+            <button class="btn" id="undo">Undo last corner</button>
+            <button class="btn" id="clear">Clear</button>
+          </div>
+          <p class="note" id="route-note" style="margin-bottom:0"></p>
+        </div>
+        <div class="panel" id="p-now">
+          <h2>Right now</h2>
+          <dl class="readout" id="now"></dl>
+        </div>
+        <div class="panel" id="p-whole">
+          <h2>The whole journey</h2>
+          <div id="whole"></div>
+        </div>
+
+        <div class="panel" id="p-tangent" hidden>
+          <h2>Journey</h2>
+          <div class="chip-group" id="tj" aria-label="Journey">
+            <button class="chip" data-v="0" aria-pressed="true">Steady speed</button>
+            <button class="chip" data-v="1" aria-pressed="false">Speeding up</button>
+            <button class="chip" data-v="2" aria-pressed="false">Slowing down</button>
+            <button class="chip" data-v="3" aria-pressed="false">Sprinter</button>
+          </div>
+          <div class="num-row" style="margin-top:12px"><label for="tp">Tangent at time</label><div class="stepper" data-num><button data-step="-1" aria-label="Earlier: tangent time">−</button><input type="number" id="tp" min="0.5" max="10" step="any" data-inc="0.5" value="5" inputmode="decimal"><span class="unit">s</span><button data-step="1" aria-label="Later: tangent time">+</button></div></div>
+          <p class="note" id="tj-note" style="margin:0"></p>
+        </div>
+        <div class="panel" id="p-gradient" hidden>
+          <h2>Your tangent</h2>
+          <div id="mine"></div>
+          <div class="btn-row" style="margin-top:10px">
+            <button class="btn primary" id="check">Check my tangent</button>
+          </div>
+          <div id="checked"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/displacement.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/quiz-pages/displacement.js"></script>
+  <script src="../js/practice-tab.js" data-eqs="speed"></script>
+</body>
+</html>

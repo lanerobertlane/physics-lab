@@ -4322,6 +4322,375 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "forces",
+   "tool": "Resolving forces",
+   "q": "What does it mean to resolve a force?",
+   "lv": "ks4",
+   "opts": [
+    "Split it into two forces at right angles that together have the same effect",
+    "Add several forces together to find the resultant",
+    "Measure the force with a newtonmeter",
+    "Balance it with an equal and opposite force"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The two parts are called components. Together they have exactly the same effect as the single force.",
+   "id": "for3gtiv",
+   "pg": "resultant-forces"
+  },
+  {
+   "type": "tf",
+   "topic": "forces",
+   "tool": "Resolving forces",
+   "q": "The two components of a resolved force are at right angles to each other.",
+   "lv": "ks4",
+   "ans": true,
+   "exp": "A force is split into two components at 90° to each other, such as horizontal and vertical.",
+   "id": "for1bnvi",
+   "pg": "resultant-forces"
+  },
+  {
+   "type": "num",
+   "topic": "forces",
+   "tool": "Resolving forces",
+   "q": "On a scale drawing, 1 square represents 5 N. The horizontal component of a force is 6 squares long. What is the horizontal component?",
+   "lv": "ks4",
+   "num": 30,
+   "unit": "N",
+   "exp": "6 squares × 5 N = 30 N.",
+   "id": "for1uzjz",
+   "pg": "resultant-forces"
+  },
+  {
+   "type": "num",
+   "topic": "forces",
+   "tool": "Resolving forces",
+   "q": "A 10 N force is resolved into two components at right angles. The horizontal component is 8 N. What is the vertical component?",
+   "lv": "ks4",
+   "num": 6,
+   "unit": "N",
+   "exp": "The force and its two components make a right-angled triangle: √(10² − 8²) = √36 = 6 N.",
+   "id": "for8diw7",
+   "pg": "resultant-forces"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Resolving forces",
+   "q": "A rope pulls a sledge at 30° above the horizontal. Which part of the pull moves the sledge along the snow?",
+   "lv": "ks4",
+   "opts": [
+    "The horizontal component",
+    "The vertical component",
+    "The whole of the pull",
+    "None of it"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The sledge moves horizontally, so only the horizontal (forward) component pulls it along.",
+   "id": "for140gm",
+   "pg": "resultant-forces"
+  },
+  {
+   "type": "open",
+   "topic": "forces",
+   "tool": "Resolving forces",
+   "q": "Explain why it is easier to pull a sledge along with the rope nearly horizontal than with the rope at a steep angle.",
+   "lv": "ks4",
+   "model": "Only the horizontal component of the pull moves the sledge forward. With the rope nearly horizontal, more of the force is horizontal, so the forward component is bigger for the same pull.",
+   "id": "for1awui",
+   "pg": "resultant-forces"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Resolving forces",
+   "q": "A box rests on a slope. What does the component of its weight down the slope tend to do?",
+   "lv": "ks4",
+   "opts": [
+    "Make the box slide down the slope",
+    "Press the box into the slope",
+    "Lift the box off the slope",
+    "Nothing at all"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "While the box stays still, friction balances the component down the slope, and the normal contact force balances the component into the slope.",
+   "id": "for10qmy",
+   "pg": "resultant-forces"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Resolving forces",
+   "q": "The slope under a box is made steeper. What happens to the component of the box's weight down the slope?",
+   "lv": "ks4",
+   "opts": [
+    "It gets bigger",
+    "It gets smaller",
+    "It stays the same",
+    "It becomes zero"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The steeper the slope, the more of the weight acts down the slope, and the less acts into it.",
+   "id": "for82f4q",
+   "pg": "resultant-forces"
+  },
+  {
+   "type": "multi",
+   "topic": "forces",
+   "tool": "Resolving forces",
+   "q": "Which two steps find the components of a force with a scale drawing? (tick 2)",
+   "lv": "ks4",
+   "opts": [
+    "Draw the force to scale, at the right angle",
+    "Draw lines from the tip across to the horizontal and vertical, then measure them and use the scale",
+    "Add the size of the force to its angle",
+    "Halve the force to get each component"
+   ],
+   "ans": [
+    0,
+    1
+   ],
+   "exp": "Measure the length of each component and multiply by the scale, for example 1 cm = 5 N.",
+   "id": "for1wegf",
+   "pg": "resultant-forces"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Distance, displacement, speed & velocity",
+   "q": "Which of these is a vector quantity?",
+   "lv": "ks4",
+   "opts": [
+    "Displacement",
+    "Distance",
+    "Speed",
+    "Time"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Displacement has a size and a direction. Distance, speed and time have a size only.",
+   "id": "forup4ep",
+   "pg": "displacement"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Distance, displacement, speed & velocity",
+   "q": "A runner completes one 400 m lap of a track and finishes where they started. What is their displacement?",
+   "lv": "ks4",
+   "opts": [
+    "0 m",
+    "400 m",
+    "200 m",
+    "800 m"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Displacement is measured in a straight line from the start to the finish. They finish at the start, so it is 0.",
+   "id": "for115zj",
+   "pg": "displacement"
+  },
+  {
+   "type": "num",
+   "topic": "forces",
+   "tool": "Distance, displacement, speed & velocity",
+   "q": "A student walks 40 m east, then 30 m north. What is the size of their displacement?",
+   "lv": "ks4",
+   "num": 50,
+   "unit": "m",
+   "exp": "√(40² + 30²) = √2500 = 50 m. The distance they travelled is 70 m.",
+   "id": "for1ptvb",
+   "pg": "displacement"
+  },
+  {
+   "type": "num",
+   "topic": "forces",
+   "tool": "Distance, displacement, speed & velocity",
+   "q": "A dog runs 50 m east to fetch a ball, then 30 m back west. What distance does it travel?",
+   "lv": "ks4",
+   "num": 80,
+   "unit": "m",
+   "exp": "Distance doesn't depend on direction: 50 + 30 = 80 m. Its displacement is only 20 m east.",
+   "id": "forudseu",
+   "pg": "displacement"
+  },
+  {
+   "type": "short",
+   "topic": "forces",
+   "tool": "Distance, displacement, speed & velocity",
+   "q": "A dog runs 50 m east, then 30 m back west. What is its displacement? Give the size and the direction.",
+   "lv": "ks4",
+   "accept": [
+    "20 m east",
+    "20m east",
+    "20 metres east",
+    "20 m to the east",
+    "20 meters east"
+   ],
+   "exp": "50 − 30 = 20 m, and it ends up east of where it started.",
+   "id": "for8r8gb",
+   "pg": "displacement"
+  },
+  {
+   "type": "tf",
+   "topic": "forces",
+   "tool": "Distance, displacement, speed & velocity",
+   "q": "Two cars travelling at 20 m/s in opposite directions have the same velocity.",
+   "lv": "ks4",
+   "ans": false,
+   "exp": "They have the same speed, but velocity includes direction, so their velocities are different.",
+   "id": "for1gq7d",
+   "pg": "displacement"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Distance, displacement, speed & velocity",
+   "q": "A car goes round a roundabout at a steady 10 m/s. Which statement is true?",
+   "lv": "ks4",
+   "opts": [
+    "Its speed is constant but its velocity is changing",
+    "Its speed and velocity are both constant",
+    "Its velocity is constant but its speed is changing",
+    "Its speed and its velocity are both changing"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Velocity includes direction. Going round in a circle, the direction keeps changing, so the velocity changes even though the speed doesn't.",
+   "id": "for1ppzc",
+   "pg": "displacement"
+  },
+  {
+   "type": "open",
+   "topic": "forces",
+   "tool": "Distance, displacement, speed & velocity",
+   "q": "Explain the difference between speed and velocity.",
+   "lv": "ks4",
+   "model": "Speed is how fast something moves: a scalar, with a size only. Velocity is speed in a given direction: a vector, with a size and a direction.",
+   "id": "foraeb56",
+   "pg": "displacement"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Distance, displacement, speed & velocity",
+   "q": "What does the gradient of a distance–time graph give?",
+   "lv": "ks4",
+   "opts": [
+    "Speed",
+    "Acceleration",
+    "Distance travelled",
+    "Time taken"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Gradient = change in distance ÷ change in time, which is the speed.",
+   "id": "forwi54c",
+   "pg": "displacement"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Tangents on distance–time graphs",
+   "q": "What does a curved line on a distance–time graph show?",
+   "lv": "ks4",
+   "opts": [
+    "The speed is changing",
+    "The object is stationary",
+    "The speed is constant",
+    "The object is moving backwards"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The gradient (steepness) is changing, so the speed is changing.",
+   "id": "for1qomb",
+   "pg": "displacement"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Tangents on distance–time graphs",
+   "q": "How do you find the speed at one instant from a curved distance–time graph?",
+   "lv": "ks4",
+   "opts": [
+    "Draw a tangent at that time and find its gradient",
+    "Read the distance at that time",
+    "Divide the total distance by the total time",
+    "Find the area under the graph"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The tangent just touches the curve at that point. Its gradient (change in distance ÷ change in time) is the speed at that instant.",
+   "id": "for1ru2h",
+   "pg": "displacement"
+  },
+  {
+   "type": "num",
+   "topic": "forces",
+   "tool": "Tangents on distance–time graphs",
+   "q": "A tangent drawn on a distance–time graph rises 40 m over 4 s. What is the speed at that point?",
+   "lv": "ks4",
+   "num": 10,
+   "unit": "m/s",
+   "exp": "Gradient = 40 ÷ 4 = 10 m/s.",
+   "id": "forjhcdn",
+   "pg": "displacement"
+  },
+  {
+   "type": "tf",
+   "topic": "forces",
+   "tool": "Tangents on distance–time graphs",
+   "q": "On a distance–time graph, a curve that gets steeper shows an object speeding up.",
+   "lv": "ks4",
+   "ans": true,
+   "exp": "A steeper gradient means a higher speed.",
+   "id": "for11pnt",
+   "pg": "displacement"
+  },
+  {
+   "type": "open",
+   "topic": "forces",
+   "tool": "Tangents on distance–time graphs",
+   "q": "Describe how to find the speed at 5 s from a curved distance–time graph.",
+   "lv": "ks4",
+   "model": "Put a ruler against the curve at 5 s so it just touches it there and is as steep as the curve, and draw the tangent. Draw a large right-angled triangle on the tangent, then divide the change in distance by the change in time.",
+   "id": "for1mrj9",
+   "pg": "displacement"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Tangents on distance–time graphs",
+   "q": "Why should you draw a large triangle to find the gradient of a tangent?",
+   "lv": "ks4",
+   "opts": [
+    "It makes the readings more accurate",
+    "It makes the speed bigger",
+    "It changes the shape of the curve",
+    "A small triangle gives the acceleration instead"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "With bigger changes in distance and time, small reading errors matter less.",
+   "id": "for1l7nn",
+   "pg": "displacement"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
    "tool": "Newton's third law pairs",
    "q": "When you sit on a chair, you push down on it. What does the chair do?",
    "lv": "ks3",
@@ -12599,24 +12968,24 @@ window.QUIZ_BANK = {
   {
    "type": "tf",
    "topic": "forces",
-   "tool": "Motion graphs",
+   "tool": "Distance, displacement, speed & velocity",
    "q": "Speed is a scalar quantity.",
    "lv": "ks4",
    "ans": true,
    "exp": "Speed has a size only. Velocity is a vector: it has a size and a direction.",
    "id": "for1inkr",
-   "pg": "motion-graphs"
+   "pg": "displacement"
   },
   {
    "type": "tf",
    "topic": "forces",
-   "tool": "Motion graphs",
+   "tool": "Distance, displacement, speed & velocity",
    "q": "Velocity is a scalar quantity.",
    "lv": "ks4",
    "ans": false,
    "exp": "Velocity is a vector: it has a size (speed) and a direction.",
    "id": "for34hnr",
-   "pg": "motion-graphs"
+   "pg": "displacement"
   },
   {
    "type": "open",

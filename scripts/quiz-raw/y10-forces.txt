@@ -63,10 +63,10 @@ tf | forces | Weight on other planets | The weight of an object is the same as i
 mc | forces | Resultant forces | Which of the following is an example of a contact force? {both} | Gravity; Magnetic force; Electrostatic force; *Friction
 tf | forces | Resultant forces | An object in equilibrium has no resultant force acting on it. | TRUE | EXP: The forces are balanced, so the object stays at rest or keeps moving at a constant velocity.
 mc | forces | Speed & distance–time | What is the equation for speed? {both} | Time divided by distance; *Distance divided by time; Distance multiplied by speed; Time multiplied by distance
-tf | forces | Motion graphs | Speed is a scalar quantity. | TRUE | EXP: Speed has a size only. Velocity is a vector: it has a size and a direction.
+tf | forces | Distance, displacement, speed & velocity | Speed is a scalar quantity. | TRUE | EXP: Speed has a size only. Velocity is a vector: it has a size and a direction.
 
 ## Newtons 2nd Law   (Q1-4 duplicates of Newtons 1st law, skip)
-tf | forces | Motion graphs | Velocity is a scalar quantity. | FALSE | EXP: Velocity is a vector: it has a size (speed) and a direction.
+tf | forces | Distance, displacement, speed & velocity | Velocity is a scalar quantity. | FALSE | EXP: Velocity is a vector: it has a size (speed) and a direction.
 
 ## Pressure in Fluids   (Q4-7 duplicates, skip)
 open | forces | Motion graphs | What does a horizontal line on a distance–time graph tell you? {both} | MODEL: The object is stationary (not moving).

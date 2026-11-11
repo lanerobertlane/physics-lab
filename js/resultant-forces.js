@@ -8,6 +8,7 @@ PK.header({
     { code: '4.5.1.1', text: 'Scalar and vector quantities — forces drawn as arrows' },
     { code: '4.5.1.4', text: 'Resultant forces: calculating the resultant of forces in a line' },
     { code: '4.5.1.4', text: 'Scale vector diagrams to find the resultant of forces at angles', ht: true },
+    { code: '4.5.1.4', text: 'Resolving a single force into two components at right angles, using scale drawings', ht: true },
     { code: '4.5.6.2.1', text: "Newton's first law: balanced forces mean constant velocity (or at rest)" },
     { code: '4.5.6.2.2', text: "Newton's second law: F = m a" },
     { code: 'KS3', text: 'Forces as arrows, adding forces in one dimension, balanced and unbalanced forces' },
@@ -46,7 +47,7 @@ const PRESETS = [
     f: { S: 15, N: 3 }, l: { S: 'Weight', N: 'Air resistance' } },
   { id: 'sky-terminal', name: 'Skydiver at terminal velocity', m: 2, start: 'S', shape: 'person',
     f: { S: 15, N: 15 }, l: { S: 'Weight', N: 'Air resistance' } },
-  { id: 'rocket', name: 'Rocket launch', m: 2, shape: 'rocket',
+  { id: 'rocket', name: 'Rocket launch', m: 2, shape: 'rocket', sc: 2,
     f: { N: 18, S: 10 }, l: { N: 'Thrust', S: 'Weight' } },
   { id: '345', name: 'Two forces at right angles (scale drawing)', m: 2, f: { E: 6, N: 8 } },
   { id: 'diag', name: 'A force at 45° (Higher)', m: 2, diag: true, f: { NE: 10, W: 4 } },
@@ -78,6 +79,7 @@ const state = {
   showVector: true,
   start: 'rest',
   preset: 'custom',
+  perSq: 1,          // newtons per square on the scale drawing
 };
 
 const sim = { running: false, t: 0, x: 0, y: 0, vx: 0, vy: 0, trail: [], last: 0, stopped: false };
@@ -332,6 +334,7 @@ function renderPanel() {
   $('vector-panel').hidden = !state.showVector;
   $('start').value = state.start;
   $('preset').value = state.preset;
+  $('vec-scale').value = String(state.perSq);
 
   const r = resultant();
   const hidden = !PK.answersShown() && !state.revealed;
@@ -393,7 +396,7 @@ function drawVector() {
   if (!state.showVector) return;
   const c = (n) => PK.cssVar(n);
   const stroke = parseFloat(PK.cssVar('--stroke')) || 1;
-  const VW = 640, VH = 300, PAD = 30;
+  const VW = 640, VH = 300;
   const hidden = !PK.answersShown() && !state.revealed;
 
   const forces = activeDirs().filter((d) => state.f[d.id] > 0);
@@ -405,9 +408,9 @@ function drawVector() {
   const xs = pts.map((p) => p.x), ys = pts.map((p) => p.y);
   const minX = Math.min(...xs), maxX = Math.max(...xs), minY = Math.min(...ys), maxY = Math.max(...ys);
   const spanX = Math.max(maxX - minX, 4), spanY = Math.max(maxY - minY, 4);
-  const scale = Math.min((VW - PAD * 2) / spanX, (VH - PAD * 2) / spanY, 26);
-  // Grid size in newtons, chosen so squares stay readable.
-  const step = scale >= 10 ? 1 : scale >= 5 ? 2 : 5;
+  // The scale only changes when someone picks a new one: a drawing that zooms by itself is confusing
+  const step = state.perSq, scale = 16 / step;   // 16 px squares
+  const fitsPaper = spanX * scale <= VW - 32 && spanY * scale <= VH - 32;
   const midX = (minX + maxX) / 2, midY = (minY + maxY) / 2;
   const toX = (x) => VW / 2 + (x - midX) * scale;
   const toY = (y) => VH / 2 - (y - midY) * scale;
@@ -437,6 +440,10 @@ function drawVector() {
     s += tag(toX(0), toY(0), forces.length ? 'start = end' : 'start');
   }
   s += `<text x="12" y="${VH - 12}" font-size="13" font-weight="700" fill="${c('--muted')}">1 square = ${step} N</text>`;
+  if (!fitsPaper) {
+    s += `<rect x="${VW / 2 - 190}" y="10" width="380" height="32" rx="8" fill="${c('--surface')}" stroke="${c('--bad')}" stroke-width="2"/>
+      <text x="${VW / 2}" y="31" text-anchor="middle" font-size="14" font-weight="800" fill="${c('--bad')}">Too big for the paper: choose a bigger scale</text>`;
+  }
 
   vectorSvg.innerHTML = s;
 
@@ -525,6 +532,7 @@ function applyPreset(id) {
   state.shape = p.shape || 'box';
   state.diag = Boolean(p.diag);
   state.start = p.start || 'rest';
+  state.perSq = p.sc || 1;
   state.preset = id;
   resetSim();
   $('play').disabled = false;
@@ -545,6 +553,7 @@ $('diag').addEventListener('change', (e) => {
 });
 window.addEventListener('pk-answers', () => { state.revealed = false; render(); });
 $('show-vector').addEventListener('change', (e) => { state.showVector = e.target.checked; render(); });
+$('vec-scale').addEventListener('change', (e) => { state.perSq = Number(e.target.value) || 1; render(); saveHash(); });
 $('start').addEventListener('change', (e) => {
   state.start = e.target.value;
   resetSim();
@@ -558,6 +567,9 @@ $('share').addEventListener('click', () => { saveHash(); PK.copyLink(); });
 // ---------- Shareable link (state lives in the URL hash) ----------
 
 function saveHash() {
+  // The Resolving tab (js/resolving.js) keeps its own link
+  if (window.RF_RESOLVE && window.RF_RESOLVE.on()) { window.RF_RESOLVE.saveHash(); return; }
+  if (!window.RF_RESOLVE && /(^#|&)t=resolve/.test(PK.initialHash)) return;   // opening on that tab
   const p = new URLSearchParams();
   const f = DIRS.filter((d) => state.f[d.id] > 0).map((d) => `${d.id}:${state.f[d.id]}`).join(',');
   if (f) p.set('f', f);
@@ -567,12 +579,14 @@ function saveHash() {
   if (state.shape !== 'box') p.set('o', state.shape);
   if (state.diag) p.set('d', '1');
   if (state.start !== 'rest') p.set('s', state.start);
+  if (state.perSq !== 1) p.set('sc', state.perSq);
   history.replaceState(null, '', '#' + p.toString());
 }
 
 function loadHash() {
-  if (!location.hash) return false;
+  if (!location.hash || location.hash === '#practice') return false;
   const p = new URLSearchParams(location.hash.slice(1));
+  if (p.get('t') === 'resolve') return false;
   for (const pair of (p.get('f') || '').split(',').filter(Boolean)) {
     const [id, v] = pair.split(':');
     if (DIR[id]) state.f[id] = Math.max(0, Math.min(MAX_F, Number(v) || 0));
@@ -586,6 +600,7 @@ function loadHash() {
   state.shape = SHAPES[p.get('o')] ? p.get('o') : 'box';
   state.diag = p.get('d') === '1';
   state.start = DIR[p.get('s')] ? p.get('s') : 'rest';
+  state.perSq = [2, 5].includes(Number(p.get('sc'))) ? Number(p.get('sc')) : 1;
   return true;
 }
 
