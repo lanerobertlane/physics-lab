@@ -50,12 +50,13 @@ function render() {
     return;
   }
   const A = (x) => PK.ans(x);   // every number hides with the answers
-  // VESRAU: values, equation, substitution, rearrangement, answer and unit
+  // VESRAU: values, equation, substitution, rearrangement, answer and unit. The value being found
+  // is written as its own symbol (Vs = Vs), not a question mark.
   const v = (sym, val) => `<span class="v">${sym} = ${val}</span>`;
   const step = (title, lines) => `<div class="vesrau"><h3>${title}</h3>${lines.map((l, i) => `<div${i === lines.length - 1 ? ' class="ans"' : ''}>${l}</div>`).join('')}</div>`;
   const Vs = fmt(c.vs), Is = fmt(c.is), Ip = fmt(c.ip);
   const s1 = step('1. The p.d. across the secondary coil', [
-    `${v('V<sub>p</sub>', `${A(state.vp)} V`)}${v('n<sub>p</sub>', A(state.np))}${v('n<sub>s</sub>', A(state.ns))}${v('V<sub>s</sub>', '?')}`,
+    `${v('V<sub>p</sub>', `${A(state.vp)} V`)}${v('n<sub>p</sub>', A(state.np))}${v('n<sub>s</sub>', A(state.ns))}${v('V<sub>s</sub>', 'V<sub>s</sub>')}`,
     'V<sub>p</sub> ÷ V<sub>s</sub> = n<sub>p</sub> ÷ n<sub>s</sub>',
     `${A(state.vp)} ÷ V<sub>s</sub> = ${A(state.np)} ÷ ${A(state.ns)}`,
     `V<sub>s</sub> = ${A(state.vp)} × ${A(state.ns)} ÷ ${A(state.np)}`,
@@ -66,14 +67,14 @@ function render() {
     return;
   }
   const s2 = step(`2. The current in the ${load().name}`, [
-    `${v('V<sub>s</sub>', PK.ans(`${Vs} V`))}${v('R', `${A(fmt(load().r))} Ω`)}${v('I<sub>s</sub>', '?')}`,
+    `${v('V<sub>s</sub>', PK.ans(`${Vs} V`))}${v('R', `${A(fmt(load().r))} Ω`)}${v('I<sub>s</sub>', 'I<sub>s</sub>')}`,
     'V = I R',
     `${PK.ans(Vs)} = I<sub>s</sub> × ${A(fmt(load().r))}`,
     `I<sub>s</sub> = ${PK.ans(Vs)} ÷ ${A(fmt(load().r))}`,
     `I<sub>s</sub> = ${PK.ans(`${Is} A`)}`,
   ]);
   const s3 = step('3. The current in the primary coil', [
-    `${v('V<sub>p</sub>', `${A(state.vp)} V`)}${v('V<sub>s</sub>', PK.ans(`${Vs} V`))}${v('I<sub>s</sub>', PK.ans(`${Is} A`))}${v('I<sub>p</sub>', '?')}`,
+    `${v('V<sub>p</sub>', `${A(state.vp)} V`)}${v('V<sub>s</sub>', PK.ans(`${Vs} V`))}${v('I<sub>s</sub>', PK.ans(`${Is} A`))}${v('I<sub>p</sub>', 'I<sub>p</sub>')}`,
     'V<sub>p</sub> × I<sub>p</sub> = V<sub>s</sub> × I<sub>s</sub>',
     `${A(state.vp)} × I<sub>p</sub> = ${PK.ans(Vs)} × ${PK.ans(Is)}`,
     `I<sub>p</sub> = ${PK.ans(Vs)} × ${PK.ans(Is)} ÷ ${A(state.vp)}`,

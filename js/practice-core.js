@@ -420,7 +420,8 @@ const PQ = (() => {
     const blocks = [];
     const written = WRITTEN[eq.id];
     blocks.push((written ? written.order : varsOf(eq)).map((id) => {
-      if (id === subject) return `<span class="v">${symOf(eq, id)} = ?</span>`;
+      // The value you're finding is written as its own symbol (W = W), not a question mark
+      if (id === subject) return `<span class="v">${symOf(eq, id)} = ${symOf(eq, id)}</span>`;
       const sh = shown[id];
       return `<span class="v">${symOf(eq, id)} = ${fmt(sh.value)}${unitText(sh.unit)}${sh.f !== 1 ? ` = ${fmt(x[id])}${unitText(unitOf(id))}` : ''}</span>`;
     }).join(''));
