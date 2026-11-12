@@ -4,7 +4,7 @@
 const SITE = {
   name: "Mr Lane's Physics Lab",
   byline: 'KS3 & AQA GCSE Physics · Beta', // shown under the name in the header
-  version: 58,   // shown in the footer; keep it the same as VERSION in sw.js
+  version: 59,   // shown in the footer; keep it the same as VERSION in sw.js
   bugEmail: 'bug@lanerobertlane.space',
 };
 
@@ -167,7 +167,6 @@ const PK = (() => {
     el.className = 'site-footer';
     el.innerHTML = `
       <span>© 2026 Robert Lane</span>
-      <span>Free and open source under the <a href="https://www.gnu.org/licenses/gpl-3.0.html" rel="license noopener" target="_blank">GNU GPL v3</a></span>
       <a href="${root}terms.html">Terms of use</a>
       <a href="${root}privacy.html">Privacy</a>
       <a id="pk-report" href="mailto:${SITE.bugEmail}">Report a problem</a>
