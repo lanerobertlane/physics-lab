@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en-GB" data-root="./">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Support the Physics Lab · Mr Lane's Physics Lab</title>
+  <!-- Not linked from the site yet, and kept out of search results and the sitemap -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Training, custom tools and lesson packs for schools, and ways to support Mr Lane’s Physics Lab, which stays free for students with no logins and no adverts.">
+  <meta name="author" content="Robert Lane">
+  <link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="Physics Lab">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .hero { max-width: 75ch; }
+    .hero p { font-size: 1.05rem; line-height: 1.6; margin: 6px 0 0; }
+    .offers { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin-top: 18px; }
+    .offers > .panel.offer { display: flex; flex-direction: column; border-top: 6px solid var(--c, var(--accent)); margin: 0; }
+    .offer h2 { font-family: var(--font-head); font-size: 1.2rem; text-transform: none; letter-spacing: 0; color: var(--title, var(--text)); margin: 0 0 4px; }
+    .offer .who { margin: 0 0 10px; font-size: .85rem; font-weight: 700; color: var(--muted); }
+    .offer p, .offer li { line-height: 1.55; }
+    .offer ul { padding-left: 20px; margin: 0 0 12px; }
+    .offer .btn-row { margin-top: auto; padding-top: 8px; }
+    .offer .btn[aria-disabled="true"] { opacity: .6; pointer-events: none; }
+    .faq { margin-top: 16px; }
+    .faq h3 { margin: 16px 0 4px; font-size: 1rem; }
+    .faq p { margin: 0; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro hero">
+      <h1>Support the Physics Lab</h1>
+      <p>Mr Lane’s Physics Lab is free for every student and teacher, with <b>no logins and no adverts</b>. It’s made by Robert Lane, a physics teacher, in his own time.</p>
+      <p>If your department finds it useful, here’s how to get more from it, and how to help keep it going.</p>
+    </div>
+
+    <div class="offers">
+      <section class="panel offer" style="--c:#1e88e5">
+        <h2>Training for your department</h2>
+        <p class="who">For departments and trusts</p>
+        <p>A twilight session or INSET on teaching physics with simulations:</p>
+        <ul>
+          <li>using the tools for demonstrations and starters;</li>
+          <li>practicals you can’t do in your lab;</li>
+          <li>setting the practice questions as homework, and presenting them in lessons.</li>
+        </ul>
+        <div class="btn-row"><a class="btn primary" data-mail="Training enquiry">Ask about training</a></div>
+      </section>
+
+      <section class="panel offer" style="--c:#2e9e4f">
+        <h2>Made for your school or trust</h2>
+        <p class="who">For departments and trusts</p>
+        <ul>
+          <li>A tool your department needs that isn’t here yet.</li>
+          <li>Your own questions added to the Practice tabs.</li>
+          <li>Your own copy of the site, with your school’s name and colours, on your own web address, kept up to date each year.</li>
+        </ul>
+        <div class="btn-row"><a class="btn primary" data-mail="Custom work enquiry">Ask about custom work</a></div>
+      </section>
+
+      <section class="panel offer" style="--c:#7c3aed">
+        <h2>Become a supporting school</h2>
+        <p class="who">For departments</p>
+        <p>A yearly contribution, paid by invoice like any other school purchase. Nothing is locked: every student keeps full access. Your department gets:</p>
+        <ul>
+          <li>a named contact for problems and requests;</li>
+          <li>first say on which tools are built next;</li>
+          <li>your school listed as a supporter, if you’d like.</li>
+        </ul>
+        <div class="btn-row"><a class="btn primary" data-mail="Supporting school">Ask for an invoice</a></div>
+      </section>
+
+      <section class="panel offer" style="--c:#f57c00">
+        <h2>Lesson packs</h2>
+        <p class="who">For teachers</p>
+        <p>Worksheets, slides and homework sets that go with the tools, ready to print or share with your classes.</p>
+        <div class="btn-row"><span class="btn" aria-disabled="true">Coming soon</span></div>
+      </section>
+
+      <section class="panel offer" style="--c:#db2777">
+        <h2>Buy me a coffee</h2>
+        <p class="who">For anyone</p>
+        <p>If the site has saved you some time, you can say thanks with a one-off tip.</p>
+        <div class="btn-row"><a class="btn primary" href="https://ko-fi.com/lanerobertlanedotspace" target="_blank" rel="noopener">☕ Buy me a coffee on Ko-fi</a></div>
+      </section>
+    </div>
+
+    <div class="panel prose faq">
+      <h2>Questions</h2>
+      <h3>Do students have to log in or pay?</h3>
+      <p>No. Students don’t need an account and never pay for anything. Supporting the site doesn’t unlock anything extra for them: it helps keep the site going.</p>
+      <h3>Can my school pay by invoice?</h3>
+      <p>Yes. Training, custom work and supporting-school contributions are all invoiced, so they can go through your school’s usual purchasing.</p>
+      <h3>How much does it cost?</h3>
+      <p>Get in touch with what you have in mind, and you’ll get a price before anything is agreed.</p>
+      <h3>Is the site linked to AQA?</h3>
+      <p>No. The tools follow the AQA GCSE Physics and Combined Science specifications and the KS3 curriculum, but the site is independent. It isn’t produced or endorsed by AQA.</p>
+    </div>
+  </main>
+
+  <script src="js/common.js"></script>
+  <script>
+    PK.header({ title: 'Support the Physics Lab' });
+    // Each enquiry button opens an email with its own subject line
+    const EMAIL = 'hello@lanerobertlane.space';
+    document.querySelectorAll('[data-mail]').forEach((a) => { a.href = `mailto:${EMAIL}?subject=${encodeURIComponent(`Physics Lab: ${a.dataset.mail}`)}`; });
+  </script>
+</body>
+</html>
