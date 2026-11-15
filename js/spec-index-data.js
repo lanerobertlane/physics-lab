@@ -74,6 +74,51 @@ window.SPEC_INDEX = [
   ]
  },
  {
+  "page": "black-body",
+  "title": "Black body radiation",
+  "course": "chemistry",
+  "spec": [
+   {
+    "code": "4.6.3.1",
+    "text": "All bodies emit and absorb infrared radiation. The hotter the body, the more infrared radiation it emits in a given time",
+    "po": 1
+   },
+   {
+    "code": "4.6.3.2",
+    "text": "A perfect black body absorbs all the radiation that falls on it, and is the best possible emitter",
+    "po": 1
+   },
+   {
+    "code": "4.6.3.2",
+    "text": "The intensity and wavelength distribution of the radiation a body emits depends on its temperature",
+    "po": 1
+   },
+   {
+    "code": "4.6.3.2",
+    "text": "A body at a constant temperature absorbs radiation at the same rate as it emits it. Its temperature rises when it absorbs radiation faster than it emits it",
+    "po": 1
+   },
+   {
+    "code": "4.6.3.2",
+    "text": "The temperature of the Earth depends on the rates of absorption and emission of radiation, and the reflection of radiation into space",
+    "ht": 1,
+    "po": 1
+   },
+   {
+    "code": "Chem 4.9.2.1",
+    "text": "Greenhouse gases (carbon dioxide, water vapour and methane) keep the Earth warm enough to support life by absorbing infrared radiation"
+   },
+   {
+    "code": "Chem 4.9.2.2",
+    "text": "Human activities that increase the amount of greenhouse gases in the atmosphere"
+   },
+   {
+    "code": "KS3",
+    "text": "The production of carbon dioxide by human activity and the impact on climate"
+   }
+  ]
+ },
+ {
   "page": "bonding",
   "title": "Bonding",
   "course": "chemistry",
@@ -287,6 +332,42 @@ window.SPEC_INDEX = [
   ]
  },
  {
+  "page": "electrolysis",
+  "title": "Electrolysis",
+  "course": "chemistry",
+  "spec": [
+   {
+    "code": "4.4.3.1",
+    "text": "When an ionic compound is melted or dissolved, the ions are free to move and it conducts (an electrolyte). Positive ions move to the cathode (negative electrode) and negative ions to the anode (positive electrode)"
+   },
+   {
+    "code": "4.4.3.2",
+    "text": "Electrolysis of molten ionic compounds: the metal forms at the cathode and the non-metal at the anode"
+   },
+   {
+    "code": "4.4.3.3",
+    "text": "Extracting aluminium by electrolysis of aluminium oxide mixed with cryolite, using carbon anodes that have to be replaced"
+   },
+   {
+    "code": "4.4.3.4",
+    "text": "Electrolysis of aqueous solutions: hydrogen at the cathode if the metal is more reactive than hydrogen; oxygen at the anode unless halide ions are present, when the halogen is produced"
+   },
+   {
+    "code": "4.4.3.4",
+    "text": "Required practical: investigate what happens when aqueous solutions are electrolysed using inert electrodes"
+   },
+   {
+    "code": "4.4.3.5",
+    "text": "Represent the reactions at the electrodes as half equations",
+    "ht": 1
+   },
+   {
+    "code": "4.8.2",
+    "text": "Tests for hydrogen (a squeaky pop), oxygen (relights a glowing splint) and chlorine (bleaches damp litmus paper)"
+   }
+  ]
+ },
+ {
   "page": "electromagnetism",
   "title": "Electromagnetism",
   "course": "physics",
@@ -447,8 +528,17 @@ window.SPEC_INDEX = [
     "po": 1
    },
    {
+    "code": "4.5.5.2",
+    "text": "Atmospheric pressure: air molecules colliding with a surface create a pressure. The atmosphere gets less dense with height, and there is less air above, so the pressure decreases as height increases",
+    "po": 1
+   },
+   {
     "code": "KS3",
     "text": "Pressure in liquids, increasing with depth; upthrust effects, floating and sinking"
+   },
+   {
+    "code": "KS3",
+    "text": "Atmospheric pressure, decreasing with height above the ground"
    }
   ]
  },
@@ -475,6 +565,33 @@ window.SPEC_INDEX = [
    {
     "code": "KS3",
     "text": "Pressure in gases as a result of particles colliding with the walls"
+   }
+  ]
+ },
+ {
+  "page": "graph-plotter",
+  "title": "Practical graph plotter",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "WS 2",
+    "text": "Independent, dependent and control variables"
+   },
+   {
+    "code": "WS 3",
+    "text": "Present results as a graph: choose suitable scales, plot the points, and draw a line of best fit, either a straight line or a smooth curve"
+   },
+   {
+    "code": "WS 3",
+    "text": "Identify anomalous results"
+   },
+   {
+    "code": "MS 4",
+    "text": "Plot two variables from data, find the gradient and intercept of a straight line, understand y = m x + c, and recognise direct proportion"
+   },
+   {
+    "code": "KS3",
+    "text": "Present data using tables and graphs, and interpret it to identify patterns"
    }
   ]
  },
@@ -866,6 +983,78 @@ window.SPEC_INDEX = [
     "code": "4.4.3.1",
     "text": "Background radiation from natural and man-made sources",
     "po": 1
+   }
+  ]
+ },
+ {
+  "page": "rates",
+  "title": "Rates of reaction",
+  "course": "chemistry",
+  "spec": [
+   {
+    "code": "4.6.1.1",
+    "text": "The mean rate of a reaction = quantity of product formed (or reactant used) ÷ time taken, in cm³/s or g/s"
+   },
+   {
+    "code": "4.6.1.1",
+    "text": "Draw and interpret graphs of the quantity of product formed against time: the steeper the line, the faster the reaction"
+   },
+   {
+    "code": "4.6.1.1",
+    "text": "Draw a tangent to the curve and use its gradient as the rate at a particular time",
+    "ht": 1
+   },
+   {
+    "code": "4.6.1.2",
+    "text": "The effect of concentration, temperature, surface area and catalysts on the rate of a reaction"
+   },
+   {
+    "code": "4.6.1.2",
+    "text": "Required practical: how concentration affects the rate, by measuring the volume of gas produced and by a change in turbidity (the disappearing cross)"
+   },
+   {
+    "code": "4.6.1.3",
+    "text": "Collision theory: reactions happen when particles collide with enough energy (the activation energy). More frequent or more energetic collisions make the rate faster"
+   },
+   {
+    "code": "4.6.1.4",
+    "text": "Catalysts change the rate of a reaction but are not used up. They provide a different pathway with a lower activation energy"
+   },
+   {
+    "code": "KS3",
+    "text": "What catalysts do"
+   }
+  ]
+ },
+ {
+  "page": "reaction-profiles",
+  "title": "Reaction profiles & energy changes",
+  "course": "chemistry",
+  "spec": [
+   {
+    "code": "4.5.1.1",
+    "text": "Exothermic reactions transfer energy to the surroundings, so the temperature rises. Endothermic reactions take in energy from the surroundings, so the temperature falls. Examples and everyday uses"
+   },
+   {
+    "code": "4.5.1.1",
+    "text": "Required practical: the variables that affect temperature changes in reacting solutions"
+   },
+   {
+    "code": "4.5.1.2",
+    "text": "Reaction profiles: the relative energies of the reactants and products, the activation energy and the overall energy change"
+   },
+   {
+    "code": "4.5.1.3",
+    "text": "Breaking bonds takes in energy and making bonds gives out energy. Calculate the energy change of a reaction from bond energies",
+    "ht": 1
+   },
+   {
+    "code": "4.6.1.4",
+    "text": "A catalyst provides a different pathway with a lower activation energy. The reaction profile for a catalysed reaction"
+   },
+   {
+    "code": "KS3",
+    "text": "Exothermic and endothermic chemical reactions (qualitative)"
    }
   ]
  },
@@ -1337,6 +1526,33 @@ window.SPEC_INDEX = [
     "text": "Vs × Is = Vp × Ip for a 100% efficient transformer",
     "ht": 1,
     "po": 1
+   }
+  ]
+ },
+ {
+  "page": "uncertainty",
+  "title": "Uncertainty & means",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "WS 2",
+    "text": "Make and record measurements using a range of apparatus, reading scales correctly. The resolution of an instrument"
+   },
+   {
+    "code": "WS 3",
+    "text": "Calculate the mean of repeat readings, leaving out anomalous results, and use the range to estimate the uncertainty"
+   },
+   {
+    "code": "WS 3",
+    "text": "Evaluate data in terms of accuracy, precision, repeatability and reproducibility, and identify random and systematic errors"
+   },
+   {
+    "code": "MS 2",
+    "text": "Find arithmetic means"
+   },
+   {
+    "code": "KS3",
+    "text": "Make and record measurements using a range of methods, and evaluate the reliability of methods"
    }
   ]
  },

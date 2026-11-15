@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Practical Graph Plotter · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Type in your practical results and plot them: a line of best fit or a curve, the gradient, the equation of the line, and any anomalous results highlighted.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="science, graph, line of best fit, gradient, intercept, directly proportional, anomalous results, independent variable, dependent variable, required practical, working scientifically, education, school, KS3, GCSE, AQA, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/graph-plotter.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Practical graph plotter">
+  <meta property="og:description" content="Type in your practical results and plot them: a line of best fit or a curve, the gradient, the equation of the line, and any anomalous results highlighted.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/graph-plotter.html">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Practical graph plotter", "description": "Type in your practical results and plot them: a line of best fit or a curve, the gradient, the equation of the line, and any anomalous results highlighted.", "url": "https://lanerobertlane.space/tools/graph-plotter.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["Key Stage 3", "GCSE"], "about": {"@type": "Thing", "name": "Science"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="Physics Lab">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #plot { display: block; width: 100%; aspect-ratio: 560 / 440; }
+    .working { font-size: .92rem; margin: 10px 0 0; padding: 10px 12px; background: var(--surface-2); border-radius: var(--radius-sm); font-variant-numeric: tabular-nums; }
+    .working p { margin: 2px 0 6px; }
+    #explain p { margin: 0 0 8px; line-height: 1.5; }
+    .data { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    .data th { text-align: left; font-size: .8rem; color: var(--muted); padding: 0 4px 4px; }
+    .data td { padding: 2px 4px; }
+    .data input, .names input { width: 100%; min-height: 36px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); padding: 3px 7px; font: inherit; font-weight: 700; color: var(--text); background: var(--surface); font-variant-numeric: tabular-nums; }
+    .data tr.out input { text-decoration: line-through; color: var(--muted); background: var(--surface-2); }
+    .names { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 6px 8px; align-items: end; margin-bottom: 10px; }
+    .names label { font-size: .8rem; font-weight: 700; color: var(--muted); display: block; margin-bottom: 2px; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Practical graph plotter</h1>
+      <p>Type in your results, or pick an example. The <b>independent variable</b> (the one you change) goes along the bottom, and the <b>dependent variable</b> (the one you measure) goes up the side. Look at the pattern, then choose a line of best fit. Tap a point to leave it out.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="plot" class="drag" aria-label="A graph of your results"></canvas>
+        </div>
+        <div class="panel after-aside">
+          <h2>Why?</h2>
+          <div id="explain">
+            <p><b>Axes.</b> Label each axis with the quantity and its unit, for example “Force / N” or “Force in N”. The independent variable goes along the bottom.</p>
+            <p><b>Scales.</b> Go up in steps of 1, 2 or 5 (or 10, 20, 50…), never 3s, and make the points cover at least half the grid each way. The axes don’t have to start at zero: this one starts at zero only when the points still fill at least half of it.</p>
+            <p><b>Plotting.</b> Plot each point as a small, neat cross, to within half a small square. Use a sharp pencil.</p>
+            <p><b>A line of best fit</b> is one thin straight line or smooth curve through the middle of the points, with about as many above it as below. Never join the dots.</p>
+            <p><b>Anomalous results</b> are a long way from the line. Ignore them when you draw it, and repeat them if you can.</p>
+            <p><b>The gradient</b> of a straight line = change in y ÷ change in x. Draw a big triangle, using at least half of the line, so your readings are more accurate.</p>
+            <p><b>Directly proportional</b> means a straight line that goes through the origin: double one, and the other doubles too.</p>
+          </div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Set-up</h2>
+          <div class="field"><label for="example">Example</label>
+            <select class="select" id="example"></select></div>
+          <div class="names">
+            <div><label for="xname">Independent variable (x)</label><input id="xname" type="text" autocomplete="off"></div>
+            <div><label for="xunit">Unit</label><input id="xunit" type="text" autocomplete="off"></div>
+            <div><label for="yname">Dependent variable (y)</label><input id="yname" type="text" autocomplete="off"></div>
+            <div><label for="yunit">Unit</label><input id="yunit" type="text" autocomplete="off"></div>
+          </div>
+          <div class="field" style="margin-bottom:0"><span class="label">Line of best fit</span>
+            <div class="chip-group" id="fit" aria-label="Line of best fit" style="margin-top:4px">
+              <button class="chip" data-v="-1" aria-pressed="true">None</button>
+              <button class="chip" data-v="0" aria-pressed="false">Straight</button>
+              <button class="chip" data-v="1" aria-pressed="false">Through the origin</button>
+              <button class="chip" data-v="2" aria-pressed="false">Curve</button>
+            </div></div>
+        </div>
+        <div class="panel">
+          <h2>Results</h2>
+          <table class="data"><thead><tr><th id="xhead">x</th><th id="yhead">y</th></tr></thead><tbody id="rows"></tbody></table>
+          <div class="btn-row" style="margin-top:8px"><button class="btn" id="clear">Clear the table</button></div>
+        </div>
+        <div class="panel">
+          <h2>What the graph shows</h2>
+          <div id="info"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/graph-plotter.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/quiz-pages/graph-plotter.js"></script>
+  <script src="../js/practice-tab.js"></script>
+</body>
+</html>

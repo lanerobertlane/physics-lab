@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pressure in Fluids &amp; Upthrust · Mr Lane's Physics Lab</title>
   <!-- About this page, for search engines and school web filters -->
-  <meta name="description" content="Drag a pressure sensor down the face of a dam, open the spouts on a water tower, and see why things float or sink: p = h ρ g.">
+  <meta name="description" content="Drag a pressure sensor down the face of a dam, open the spouts on a water tower, see why things float or sink (p = h ρ g), and see why air pressure falls as you climb.">
   <meta name="rating" content="general">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Robert Lane">
@@ -14,10 +14,10 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Mr Lane’s Physics Lab">
   <meta property="og:title" content="Pressure in fluids &amp; upthrust">
-  <meta property="og:description" content="Drag a pressure sensor down the face of a dam, open the spouts on a water tower, and see why things float or sink: p = h ρ g.">
+  <meta property="og:description" content="Drag a pressure sensor down the face of a dam, open the spouts on a water tower, see why things float or sink (p = h ρ g), and see why air pressure falls as you climb.">
   <meta property="og:url" content="https://lanerobertlane.space/tools/fluid-pressure.html">
   <meta property="og:locale" content="en_GB">
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Pressure in fluids & upthrust", "description": "Drag a pressure sensor down the face of a dam, open the spouts on a water tower, and see why things float or sink: p = h ρ g.", "url": "https://lanerobertlane.space/tools/fluid-pressure.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["Key Stage 3", "GCSE"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Pressure in fluids & upthrust", "description": "Drag a pressure sensor down the face of a dam, open the spouts on a water tower, see why things float or sink (p = h ρ g), and see why air pressure falls as you climb.", "url": "https://lanerobertlane.space/tools/fluid-pressure.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["Key Stage 3", "GCSE"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
   <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-title" content="Physics Lab">
@@ -36,13 +36,14 @@
   <main class="tool-page">
     <div class="tool-intro">
       <h1>Pressure in fluids &amp; upthrust</h1>
-      <p>Liquids and gases push on every surface they touch, at right angles to it. In a liquid the pressure gets bigger the deeper you go, because there’s more liquid above pushing down.</p>
+      <p>Liquids and gases push on every surface they touch, at right angles to it. In a liquid the pressure gets bigger the deeper you go, because there’s more liquid above pushing down. In the air it’s the other way round: the higher you go, the less air there is above you.</p>
     </div>
 
     <div class="chip-group" id="tabs" style="margin-bottom:12px" aria-label="Example">
       <button class="chip" data-t="dam" aria-pressed="true">Dam</button>
       <button class="chip" data-t="spouts" aria-pressed="false">Tower with three spouts</button>
       <button class="chip" data-t="float" aria-pressed="false">Floating and sinking</button>
+      <button class="chip" data-t="air" aria-pressed="false">Atmospheric pressure</button>
     </div>
 
     <div class="tool-layout">
@@ -75,6 +76,19 @@
             <select class="select" id="fliquid"><option value="water">Water (1000 kg/m³)</option><option value="salty">Very salty water (1200 kg/m³)</option><option value="alcohol">Alcohol (790 kg/m³)</option></select></div>
           <label class="toggle"><input type="checkbox" id="faces"> Show the pressure on each face</label>
           <button class="btn" id="tidy">Put everything back</button>
+        </div>
+        <div class="panel" data-for="air" hidden>
+          <h2>Set-up</h2>
+          <div class="num-row"><label for="alt">Height above sea level</label><div class="stepper" data-num><button data-step="-1" aria-label="Lower">−</button><input type="number" id="alt" min="0" max="12" step="any" data-inc="0.5" value="0" inputmode="decimal"><span class="unit">km</span><button data-step="1" aria-label="Higher">+</button></div></div>
+          <div class="field" style="margin-bottom:0"><span class="label">Go to</span>
+            <div class="chip-group" id="places" aria-label="Go to">
+              <button class="chip" data-h="0" aria-pressed="true">Sea level</button>
+              <button class="chip" data-h="1.3" aria-pressed="false">Ben Nevis</button>
+              <button class="chip" data-h="4.8" aria-pressed="false">Mont Blanc</button>
+              <button class="chip" data-h="8.8" aria-pressed="false">Everest</button>
+              <button class="chip" data-h="11" aria-pressed="false">Airliner</button>
+            </div>
+          </div>
         </div>
         <div class="panel">
           <h2 id="work-title">Pressure</h2>
