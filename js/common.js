@@ -4,7 +4,7 @@
 const SITE = {
   name: "Mr Lane's Physics Lab",
   byline: 'KS3 & AQA GCSE Physics · Beta', // shown under the name in the header
-  version: 62,   // shown in the footer; keep it the same as VERSION in sw.js
+  version: 63,   // shown in the footer; keep it the same as VERSION in sw.js
   bugEmail: 'bug@lanerobertlane.space',
 };
 
@@ -62,7 +62,9 @@ const PK = (() => {
   const fsElement = () => document.fullscreenElement || document.webkitFullscreenElement;
   // The address's #part when the page opened, before a tool changes it (e.g. #practice)
   const initialHash = location.hash;
-  const fsEnabled = () => Boolean(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  // Opened from the Home Screen as an app, there are no browser bars to hide, so no Full screen button
+  const asApp = () => navigator.standalone === true || ['standalone', 'fullscreen'].some((m) => window.matchMedia && window.matchMedia(`(display-mode: ${m})`).matches);
+  const fsEnabled = () => !asApp() && Boolean(document.fullscreenEnabled || document.webkitFullscreenEnabled);
   function toggleFullscreen() {
     const de = document.documentElement;
     const p = fsElement()
