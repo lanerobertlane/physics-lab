@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Units, Prefixes &amp; Standard Form · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Convert between prefixes such as kilo, milli and micro on a ladder of powers of ten, watch the decimal point move to write numbers in standard form, and test yourself with random, self-marking conversion questions.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="science, physics, units, SI units, prefixes, kilo, mega, giga, tera, milli, micro, nano, centi, standard form, powers of ten, decimal point, converting units, km/h to m/s, minutes to seconds, maths skills, education, school, KS3, GCSE, AQA, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/units.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Units, prefixes &amp; standard form">
+  <meta property="og:description" content="Convert between prefixes such as kilo, milli and micro on a ladder of powers of ten, watch the decimal point move to write numbers in standard form, and test yourself with random, self-marking conversion questions.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/units.html">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Units, prefixes & standard form", "description": "Convert between prefixes such as kilo, milli and micro on a ladder of powers of ten, watch the decimal point move to write numbers in standard form, and test yourself with random, self-marking conversion questions.", "url": "https://lanerobertlane.space/tools/units.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["Key Stage 3", "GCSE"], "about": {"@type": "Thing", "name": "Science"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="Physics Lab">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #scene { display: block; width: 100%; aspect-ratio: 560 / 320; }
+    #explain p { margin: 0 0 8px; line-height: 1.5; }
+    .field .chip-group { margin-top: 4px; }
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .steps { margin: 0; padding-left: 1.3em; line-height: 1.5; }
+    .steps li { margin-bottom: 6px; }
+    .answer-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 10px; font-weight: 700; }
+    .answer-row input, .sf-row input { min-height: 42px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); padding: 4px 8px; font: inherit; font-weight: 700; color: var(--text); background: var(--surface); font-variant-numeric: tabular-nums; }
+    .sf-row { display: flex; align-items: flex-start; gap: 4px; font-weight: 800; font-size: 1.1rem; }
+    .sf-row .a { width: 5em; }
+    .sf-row .n { width: 3.6em; margin-top: -10px; font-size: .95rem; min-height: 36px; }
+    .sf-row span { padding-top: 9px; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Units, prefixes &amp; standard form</h1>
+      <p id="intro"></p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px" aria-label="Show">
+      <button class="chip" data-t="prefixes" aria-pressed="true">Prefixes</button>
+      <button class="chip" data-t="sform" aria-pressed="false">Standard form</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="scene" aria-label="A ladder of prefixes"></canvas>
+        </div>
+        <div class="panel after-aside">
+          <h2>Why?</h2>
+          <div id="explain"></div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel" data-for="prefixes">
+          <h2>Set-up</h2>
+          <div class="num-row"><label for="val">Value</label><div class="stepper" data-num><button data-step="-1" aria-label="Less">−</button><input type="number" id="val" step="any" data-inc="1" value="4.7" inputmode="decimal"><span class="unit" id="val-unit">kΩ</span><button data-step="1" aria-label="More">+</button></div></div>
+          <div class="field"><label for="unit">Unit</label>
+            <select class="select" id="unit"></select></div>
+          <div class="two">
+            <div class="field"><label for="from">From</label><select class="select" id="from"></select></div>
+            <div class="field"><label for="to">To</label><select class="select" id="to"></select></div>
+          </div>
+          <div class="field" style="margin-bottom:0"><span class="label">Examples</span>
+            <div class="chip-group" id="pegs" aria-label="Examples"></div></div>
+        </div>
+
+        <div class="panel" data-for="sform" hidden>
+          <h2>Set-up</h2>
+          <div class="field"><span class="label">Which way?</span>
+            <div class="chip-group" id="dir" aria-label="Which way">
+              <button class="chip" data-v="0" aria-pressed="true">A number → standard form</button>
+              <button class="chip" data-v="1" aria-pressed="false">Standard form → a number</button>
+            </div></div>
+          <div class="field" id="num-field"><label for="big">The number</label>
+            <div class="answer-row" style="margin:4px 0 0"><input type="number" id="big" step="any" inputmode="decimal" value="0.00034" style="width:100%"></div></div>
+          <div class="field" id="sf-field" hidden><span class="label">In standard form</span>
+            <div class="sf-row" style="margin-top:4px"><input class="a" type="number" id="sfa" step="any" inputmode="decimal" value="3.4" aria-label="The number from 1 to 10"><span>× 10</span><input class="n" type="number" id="sfn" step="1" inputmode="numeric" value="-4" aria-label="The power of ten"></div></div>
+          <div class="field" style="margin-bottom:0"><span class="label">Examples</span>
+            <div class="chip-group" id="segs" aria-label="Examples"></div></div>
+        </div>
+
+        <div class="panel">
+          <h2 id="info-title">What’s happening</h2>
+          <div id="info"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/units.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/quiz-pages/units.js"></script>
+  <script src="../js/practice-tab.js"></script>
+</body>
+</html>

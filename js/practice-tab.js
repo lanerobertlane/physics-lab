@@ -5,6 +5,9 @@
 // question file. List the equations, if the tool has any:
 //   <script src="../js/practice-tab.js" data-eqs="hooke epe"></script>
 // It adds an Explore / Practice questions switch under the introduction.
+// A tool can also make its own questions, new every time, in the question bank's format:
+//   PK.practiceGen = { make: () => question, encode: (q) => small object, decode: (o) => question or null, share: 0.75 }
+// They're mixed in with the bank's questions (share is roughly how often one comes up).
 
 (() => {
   const me = document.currentScript;
@@ -12,7 +15,8 @@
   const eqs = ids.map((id) => EQUATIONS.find((e) => e.id === id)).filter((e) => e && PQ.SETUPS[e.id]);
   const page = location.pathname.split('/').pop().replace('.html', '');
   const bank = window.QZ && window.QUIZ_BANK ? window.QUIZ_BANK.questions.filter((q) => q.pg === page) : [];
-  if (!eqs.length && !bank.length) return;
+  const gen = window.QZ && PK.practiceGen ? PK.practiceGen : null;
+  if (!eqs.length && !bank.length && !gen) return;
   const el = (id) => document.getElementById(`pq-${id}`);
   const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
@@ -129,7 +133,7 @@
             <label class="toggle"><input type="checkbox" id="pq-keep"> Same question, new numbers</label>
             <p class="note">Calculations within 1% are marked correct, so 3 significant figures is fine. Use g = <span id="pq-g">9.8</span> N/kg. For every equation, try <a href="${PK.root}tools/practice.html">Calculation practice</a>.</p>
           </div>` : ''}
-          ${bank.length ? `<p class="note" id="pq-banknote"></p>` : ''}
+          ${bank.length || gen ? `<p class="note" id="pq-banknote"></p>` : ''}
         </div>
       </aside>
     </div>`;
@@ -196,6 +200,14 @@
   // A calculation or a bank question. With both, bank questions get a share that grows with how
   // many there are (half at most), and the same bank question never comes up twice running.
   function next() {
+    // A question the tool makes for itself, new every time
+    if (gen && !state.calcOnly && (Math.random() < (gen.share || 0.75) || (!bankPool().length && !eqs.length))) {
+      if (tools) tools.clear();
+      state.b = gen.make(); state.bres = null;
+      shown.push('g');
+      render();
+      return;
+    }
     const canCalc = eqs.length > 0;
     const n = state.calcOnly ? 0 : bankPool().length;
     const fresh = state.calcOnly ? 0 : freshBank().length;
@@ -281,7 +293,8 @@
     if (!el('banknote')) return;
     const n = bankPool().length;
     el('banknote').textContent = state.calcOnly ? `${n} other question${n === 1 ? '' : 's'} on this topic are switched off.`
-      : `${n} question${n === 1 ? '' : 's'} on this topic${eqs.length ? ', mixed with calculations' : ''}. Written answers have a model answer to mark yourself against.`;
+      : gen ? `New questions every time${n ? `, mixed with ${n} from the question bank` : ''}.`
+        : `${n} question${n === 1 ? '' : 's'} on this topic${eqs.length ? ', mixed with calculations' : ''}. Written answers have a model answer to mark yourself against.`;
   }
 
   // ---------- Presentation view ----------
@@ -382,8 +395,9 @@
   if (PK.initialHash === '#practice') show('practice');
   // Share: the exact question on screen
   PK.shareQuestion = {
-    get: () => (pane.hidden ? null : state.b ? { b: state.b.id } : PQ.encodeQ(state.q)),
+    get: () => (pane.hidden ? null : state.b ? (state.b.gen && gen ? { g: gen.encode(state.b) } : { b: state.b.id }) : PQ.encodeQ(state.q)),
     set: (o) => {
+      if (o && o.g && gen) { const b = gen.decode(o.g); if (b) { state.b = b; state.bres = null; render(); } return; }
       if (o && o.b) { const b = bank.find((q) => q.id === o.b); if (b) { state.b = b; state.bres = null; render(); } return; }
       const q = PQ.decodeQ(o); if (q) { state.b = null; state.q = q; render(); }
     },

@@ -13,7 +13,7 @@ const TOPICS = [
   { id: 'atomic', name: 'Atomic structure', ref: 'AQA 4.4', colour: '--t-atomic' },
   { id: 'space', name: 'Space physics', ref: 'AQA 4.8', colour: '--t-space' },
   { id: 'chemistry', name: 'Chemistry', ref: 'AQA Chemistry 4.1, 4.2, 4.4–4.6', colour: '--t-chemistry' },
-  { id: 'reference', name: 'Reference', ref: '', colour: '--t-reference' },
+  { id: 'reference', name: 'Skills & reference', ref: '', colour: '--t-reference' },
 ];
 
 const TOOLS = [
@@ -185,7 +185,7 @@ const TOOLS = [
   { topic: 'chemistry', icon: 'flask', name: 'Rates of reaction', href: 'tools/rates.html', gcse: true, ht: true, rp: true,
     desc: 'Collect gas in a syringe, time the disappearing cross and watch particles collide. Concentration, temperature, surface area and catalysts, and the rate from a tangent.' },
 
-  // Reference
+  // Skills and reference
   { topic: 'reference', icon: 'equation', name: 'Equation explorer', href: 'tools/equations.html', ks3: true, gcse: true, ht: true,
     desc: 'Every AQA equation in one place. Rearrange any of them and calculate.' },
   { topic: 'reference', icon: 'graph', name: 'Practical graph plotter', href: 'tools/graph-plotter.html', ks3: true, gcse: true, rp: true,
@@ -196,8 +196,8 @@ const TOOLS = [
     desc: 'Self-marking quizzes. Do one on your own for revision, or show the QR code on the board so the whole class can answer on their iPads.' },
   { topic: 'reference', icon: 'list', name: 'Spec index', href: 'tools/spec.html', ks3: true, gcse: true,
     desc: 'Find any AQA or KS3 specification point and go straight to the tools that cover it.' },
-  { topic: 'reference', icon: 'units', name: 'Units, prefixes & standard form', ks3: true, gcse: true,
-    desc: 'Practise converting kJ to J, mA to A and numbers into standard form.' },
+  { topic: 'reference', icon: 'units', name: 'Units, prefixes & standard form', href: 'tools/units.html', ks3: true, gcse: true,
+    desc: 'Convert between prefixes such as kilo, milli and nano on a ladder of powers of ten, and watch the decimal point move to write numbers in standard form. New practice questions every time.' },
   { topic: 'reference', icon: 'stores', name: 'Uncertainty & means', href: 'tools/uncertainty.html', ks3: true, gcse: true,
     desc: 'Read the scales on a ruler, measuring cylinder, thermometer, newtonmeter and ammeter. Find the mean and ± uncertainty of repeat readings, and see accuracy against precision.' },
 ];
