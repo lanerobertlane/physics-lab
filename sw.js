@@ -2,9 +2,9 @@
 // Network first (so updates show straight away), falling back to the saved copy.
 // Bump VERSION when anything changes, and keep it the same as SITE.version in js/common.js.
 
-const VERSION = 'physkit-v61';
+const VERSION = 'physkit-v62';
 // Written by scripts/build-quiz-bank.js: the pages that have quiz questions for their Practice tab
-const QUIZ_PAGES = ['acceleration', 'atom', 'atom-history', 'background', 'black-body', 'bonding', 'circuits', 'density', 'displacement', 'earth-field', 'echo', 'efficiency', 'electrolysis', 'electromagnetism', 'em-spectrum', 'energy', 'fission', 'fluid-pressure', 'gas', 'graph-plotter', 'grid', 'half-life', 'heat', 'infrared', 'insulation', 'levers', 'light-box', 'magnets', 'mains', 'moments', 'momentum', 'motion-graphs', 'nuclear', 'orbits', 'periodic-table', 'radiation', 'rates', 'reaction', 'reaction-profiles', 'redshift', 'resources', 'resultant-forces', 'ripple-tank', 'shc', 'sky', 'solid-pressure', 'sound', 'speed', 'speed-of-sound', 'springs', 'star-life', 'states', 'static', 'stopping', 'terminal', 'third-law', 'transformers', 'uncertainty', 'uses', 'waves', 'weight', 'wire-resistance', 'work'];
+const QUIZ_PAGES = ['acceleration', 'atom', 'atom-history', 'background', 'black-body', 'bonding', 'circuits', 'density', 'displacement', 'earth-field', 'echo', 'efficiency', 'electrolysis', 'electromagnetism', 'em-spectrum', 'energy', 'fission', 'fluid-pressure', 'gas', 'graph-plotter', 'grid', 'half-life', 'heat', 'infrared', 'insulation', 'levers', 'light-box', 'magnets', 'mains', 'moments', 'momentum', 'motion-graphs', 'nuclear', 'orbits', 'periodic-table', 'radiation', 'rates', 'reaction', 'reaction-profiles', 'redshift', 'resources', 'resultant-forces', 'ripple-tank', 'shc', 'sky', 'solid-pressure', 'sound', 'speed', 'speed-of-sound', 'springs', 'star-life', 'states', 'static', 'stopping', 'terminal', 'third-law', 'transformers', 'uncertainty', 'units', 'uses', 'waves', 'weight', 'wire-resistance', 'work'];
 const PRECACHE = [
   './',
   'index.html',
@@ -106,6 +106,8 @@ const PRECACHE = [
   'tools/uncertainty.html',
   'js/graph-plotter.js',
   'tools/graph-plotter.html',
+  'js/units.js',
+  'tools/units.html',
   'js/infrared.js',
   'tools/infrared.html',
   'js/insulation.js',

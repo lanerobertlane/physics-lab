@@ -41,7 +41,7 @@ window.QZ = (() => {
     if (q.type === 'mc' || q.type === 'multi') return q.ans.map((k) => q.opts[k]).join(', ');
     if (q.type === 'tf') return q.ans ? 'True' : 'False';
     if (q.type === 'short') return q.accept[0];
-    if (q.type === 'num') return `${q.num.toLocaleString('en-GB')}${q.unit ? ` ${q.unit}` : ''}`;
+    if (q.type === 'num') return `${q.numText || q.num.toLocaleString('en-GB', { maximumSignificantDigits: 10 })}${q.unit ? ` ${q.unit}` : ''}`;
     return q.model;
   };
   const levelName = (lv) => ({ ks3: 'KS3', ks4: 'GCSE', both: 'KS3 and GCSE' }[lv] || '');

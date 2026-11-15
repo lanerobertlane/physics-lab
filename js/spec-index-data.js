@@ -1557,6 +1557,29 @@ window.SPEC_INDEX = [
   ]
  },
  {
+  "page": "units",
+  "title": "Units, prefixes & standard form",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "WS 4",
+    "text": "Use SI units (for example kg, g, mg; km, m, mm; kJ, J) and interconvert units"
+   },
+   {
+    "code": "WS 4",
+    "text": "Use prefixes and powers of ten for orders of magnitude: tera, giga, mega, kilo, centi, milli, micro and nano"
+   },
+   {
+    "code": "MS 1",
+    "text": "Recognise and use expressions in decimal form and in standard form"
+   },
+   {
+    "code": "KS3",
+    "text": "Understand and use SI units"
+   }
+  ]
+ },
+ {
   "page": "uses",
   "title": "Uses of radiation",
   "course": "physics",
