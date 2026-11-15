@@ -4,7 +4,7 @@
 const SITE = {
   name: "Mr Lane's Physics Lab",
   byline: 'KS3 & AQA GCSE Physics · Beta', // shown under the name in the header
-  version: 59,   // shown in the footer; keep it the same as VERSION in sw.js
+  version: 60,   // shown in the footer; keep it the same as VERSION in sw.js
   bugEmail: 'bug@lanerobertlane.space',
 };
 
@@ -329,12 +329,14 @@ const PK = (() => {
   }
 
   // Anonymous page-view counts (Cloudflare Web Analytics): no cookies and nothing stored on the
-  // device. Only on the live site, so testing locally isn't counted.
+  // device. Only on the live site, so testing locally isn't counted. "spa": false stops it counting
+  // every change to the address as a new page view: the tools update the address as you drag and
+  // type (so Share links stay current), which made one visit look like dozens of page views.
   if (location.hostname === 'lanerobertlane.space') {
     const beacon = document.createElement('script');
     beacon.defer = true;   // a classic script, so the beacon can find its own tag (document.currentScript)
     beacon.src = 'https://static.cloudflareinsights.com/beacon.min.js';
-    beacon.setAttribute('data-cf-beacon', '{"token": "abeb8a6480974a32b24aafb4d792e58d"}');
+    beacon.setAttribute('data-cf-beacon', '{"token": "abeb8a6480974a32b24aafb4d792e58d", "spa": false}');
     document.head.appendChild(beacon);
   }
 
