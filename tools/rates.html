@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rates of Reaction · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Collect gas in a syringe, time the disappearing cross, and watch particles collide. See how concentration, temperature, surface area and catalysts change the rate of a reaction, and find a rate from a tangent.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="chemistry, rate of reaction, collision theory, activation energy, catalyst, concentration, temperature, surface area, gas syringe, disappearing cross, tangent, required practical, education, school, GCSE, AQA, science, simulation, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/rates.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Rates of reaction">
+  <meta property="og:description" content="Collect gas in a syringe, time the disappearing cross, and watch particles collide. See how concentration, temperature, surface area and catalysts change the rate of a reaction, and find a rate from a tangent.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/rates.html">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Rates of reaction", "description": "Collect gas in a syringe, time the disappearing cross, and watch particles collide. See how concentration, temperature, surface area and catalysts change the rate of a reaction, and find a rate from a tangent.", "url": "https://lanerobertlane.space/tools/rates.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["GCSE"], "about": {"@type": "Thing", "name": "Chemistry"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="Physics Lab">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #scene { display: block; width: 100%; aspect-ratio: 560 / 300; }
+    #graph { display: block; width: 100%; aspect-ratio: 560 / 380; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .results { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: .9rem; }
+    .results th, .results td { border: 1px solid var(--border-strong); padding: 4px 6px; text-align: center; }
+    .results th { background: var(--surface-2); }
+    .working { font-size: .92rem; margin: 10px 0 0; padding: 10px 12px; background: var(--surface-2); border-radius: var(--radius-sm); font-variant-numeric: tabular-nums; }
+    .working p { margin: 2px 0 6px; }
+    .key { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 6px 0 0; font-size: .86rem; font-weight: 700; color: var(--muted); }
+    .key span::before { content: ''; display: inline-block; width: 18px; height: 4px; border-radius: 2px; background: var(--c); vertical-align: middle; margin-right: 6px; }
+    #explain p { margin: 0 0 8px; line-height: 1.5; }
+    .field .chip-group { margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Rates of reaction</h1>
+      <p id="intro"></p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px" aria-label="Show">
+      <button class="chip" data-t="gas" aria-pressed="true">Gas collected</button>
+      <button class="chip" data-t="cross" aria-pressed="false">Disappearing cross</button>
+      <button class="chip" data-t="collide" aria-pressed="false">Collisions</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="scene" aria-label="The apparatus for the reaction"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="go">▶ Start</button>
+            <button class="btn" id="stop" hidden>The cross has gone!</button>
+            <button class="btn" id="reset">↺ Reset</button>
+            <div class="chip-group" id="warp" aria-label="How fast to play it">
+              <button class="chip" data-w="1" aria-pressed="true">1×</button>
+              <button class="chip" data-w="2" aria-pressed="false">2×</button>
+              <button class="chip" data-w="5" aria-pressed="false">5×</button>
+            </div>
+          </div>
+        </div>
+        <div class="panel after-aside" id="graph-panel">
+          <h2 id="graph-title">Volume of gas against time</h2>
+          <canvas id="graph" class="drag" aria-label="Graph of the results"></canvas>
+          <div class="key" id="key"></div>
+          <p class="note" id="graph-note"></p>
+        </div>
+        <div class="panel after-aside">
+          <h2>Why?</h2>
+          <div id="explain"></div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel" data-for="gas">
+          <h2>Set-up</h2>
+          <div class="field"><label for="reaction">Reaction</label>
+            <select class="select" id="reaction">
+              <option value="mg">Magnesium + hydrochloric acid → hydrogen</option>
+              <option value="h2o2">Hydrogen peroxide → water + oxygen</option>
+            </select></div>
+          <div class="field" data-only="mg"><span class="label">Concentration of the acid</span>
+            <div class="chip-group" id="conc" aria-label="Concentration of the acid">
+              <button class="chip" data-v="0.5" aria-pressed="false">0.5</button>
+              <button class="chip" data-v="1" aria-pressed="true">1.0</button>
+              <button class="chip" data-v="1.5" aria-pressed="false">1.5</button>
+              <button class="chip" data-v="2" aria-pressed="false">2.0 mol/dm³</button>
+            </div></div>
+          <div class="field" data-only="mg"><span class="label">Magnesium</span>
+            <div class="chip-group" id="form" aria-label="Magnesium">
+              <button class="chip" data-v="0" aria-pressed="true">Ribbon</button>
+              <button class="chip" data-v="1" aria-pressed="false">Powder</button>
+            </div></div>
+          <div class="field" data-only="h2o2" hidden><span class="label">Catalyst</span>
+            <div class="chip-group" id="cat" aria-label="Catalyst">
+              <button class="chip" data-v="0" aria-pressed="true">None</button>
+              <button class="chip" data-v="1" aria-pressed="false">Manganese(IV) oxide</button>
+            </div></div>
+          <div class="field" style="margin-bottom:0"><span class="label">Temperature</span>
+            <div class="chip-group" id="temp" aria-label="Temperature">
+              <button class="chip" data-v="20" aria-pressed="true">20</button>
+              <button class="chip" data-v="30" aria-pressed="false">30</button>
+              <button class="chip" data-v="40" aria-pressed="false">40</button>
+              <button class="chip" data-v="50" aria-pressed="false">50 °C</button>
+            </div></div>
+          <div class="btn-row" style="margin-top:12px"><button class="btn" id="clear-runs">Clear the graph</button></div>
+        </div>
+        <div class="panel" data-for="gas">
+          <h2>Readings</h2>
+          <div id="readings"></div>
+        </div>
+        <div class="panel" data-for="gas">
+          <h2>Rate</h2>
+          <div class="num-row"><label for="tp">At time</label><div class="stepper" data-num><button data-step="-1" aria-label="Earlier">−</button><input type="number" id="tp" min="5" max="180" step="any" data-inc="5" data-whole value="30" inputmode="numeric"><span class="unit">s</span><button data-step="1" aria-label="Later">+</button></div></div>
+          <div id="rate"></div>
+          <div class="btn-row" style="margin-top:10px"><button class="btn primary" id="check">Check my tangent</button></div>
+          <div id="checked"></div>
+        </div>
+
+        <div class="panel" data-for="cross" hidden>
+          <h2>Set-up</h2>
+          <div class="num-row"><label for="thio">Sodium thiosulfate</label><div class="stepper" data-num><button data-step="-1" aria-label="Less sodium thiosulfate">−</button><input type="number" id="thio" min="10" max="50" step="any" data-inc="10" data-whole value="50" inputmode="numeric"><span class="unit">cm³</span><button data-step="1" aria-label="More sodium thiosulfate">+</button></div></div>
+          <p class="note" id="mix" style="margin-top:0"></p>
+          <div class="field" style="margin-bottom:0"><span class="label">Temperature</span>
+            <div class="chip-group" id="ctemp" aria-label="Temperature">
+              <button class="chip" data-v="20" aria-pressed="true">20</button>
+              <button class="chip" data-v="30" aria-pressed="false">30</button>
+              <button class="chip" data-v="40" aria-pressed="false">40</button>
+              <button class="chip" data-v="50" aria-pressed="false">50 °C</button>
+            </div></div>
+        </div>
+        <div class="panel" data-for="cross" hidden>
+          <h2>Results</h2>
+          <div id="cross-results"></div>
+          <div class="btn-row" style="margin-top:8px"><button class="btn" id="clear-cross">Clear the results</button></div>
+        </div>
+
+        <div class="panel" data-for="collide" hidden>
+          <h2>Set-up</h2>
+          <div class="field"><span class="label">Concentration of the acid</span>
+            <div class="chip-group" id="nconc" aria-label="Concentration of the acid">
+              <button class="chip" data-v="20" aria-pressed="false">Low</button>
+              <button class="chip" data-v="40" aria-pressed="true">Medium</button>
+              <button class="chip" data-v="70" aria-pressed="false">High</button>
+            </div></div>
+          <div class="field"><span class="label">Temperature</span>
+            <div class="chip-group" id="ntemp" aria-label="Temperature">
+              <button class="chip" data-v="0.7" aria-pressed="false">Cold</button>
+              <button class="chip" data-v="1" aria-pressed="true">Room</button>
+              <button class="chip" data-v="1.4" aria-pressed="false">Hot</button>
+            </div></div>
+          <div class="field"><span class="label">The solid</span>
+            <div class="chip-group" id="pieces" aria-label="The solid">
+              <button class="chip" data-v="1" aria-pressed="true">One lump</button>
+              <button class="chip" data-v="4" aria-pressed="false">Four pieces</button>
+              <button class="chip" data-v="12" aria-pressed="false">Powder</button>
+            </div></div>
+          <label class="toggle" style="margin-bottom:0"><input type="checkbox" id="ncat"> Add a catalyst</label>
+        </div>
+        <div class="panel" data-for="collide" hidden>
+          <h2>Collisions</h2>
+          <dl class="readout" id="counts"></dl>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/rates.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/quiz-pages/rates.js"></script>
+  <script src="../js/practice-tab.js"></script>
+</body>
+</html>

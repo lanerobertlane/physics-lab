@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Electrolysis · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Watch ions move to the electrodes in molten compounds and solutions, predict and test the products, and see how aluminium is extracted with cryolite and carbon anodes.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="chemistry, electrolysis, ions, cathode, anode, electrolyte, molten, aqueous solution, half equations, aluminium extraction, cryolite, gas tests, required practical, education, school, GCSE, AQA, science, simulation, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/electrolysis.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Electrolysis">
+  <meta property="og:description" content="Watch ions move to the electrodes in molten compounds and solutions, predict and test the products, and see how aluminium is extracted with cryolite and carbon anodes.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/electrolysis.html">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Electrolysis", "description": "Watch ions move to the electrodes in molten compounds and solutions, predict and test the products, and see how aluminium is extracted with cryolite and carbon anodes.", "url": "https://lanerobertlane.space/tools/electrolysis.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["GCSE"], "about": {"@type": "Thing", "name": "Chemistry"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="Physics Lab">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #scene { display: block; width: 100%; aspect-ratio: 560 / 380; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .working { font-size: .92rem; margin: 10px 0 0; padding: 10px 12px; background: var(--surface-2); border-radius: var(--radius-sm); }
+    .working p { margin: 2px 0 6px; }
+    #explain p { margin: 0 0 8px; line-height: 1.5; }
+    .ions { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 0; }
+    .ion { display: inline-block; padding: 2px 9px; border-radius: 999px; font-weight: 800; font-size: .9rem; color: #fff; }
+    .ion.pos { background: #d84315; } .ion.neg { background: #1565c0; }
+    .test-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) 1fr 1fr; gap: 8px; align-items: center; margin-bottom: 10px; }
+    .test-grid b { font-size: .85rem; color: var(--muted); text-align: center; }
+    .test-grid span { font-weight: 700; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Electrolysis</h1>
+      <p id="intro"></p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px" aria-label="Show">
+      <button class="chip" data-t="molten" aria-pressed="true">Molten compounds</button>
+      <button class="chip" data-t="solution" aria-pressed="false">Solutions</button>
+      <button class="chip" data-t="alu" aria-pressed="false">Extracting aluminium</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="scene" aria-label="Electrolysis apparatus"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="power">⚡ Switch on</button>
+            <button class="btn" id="heat">🔥 Heat it</button>
+            <button class="btn" id="reset">↺ Reset</button>
+          </div>
+        </div>
+        <div class="panel" data-for="solution" hidden>
+          <h2>Test the products</h2>
+          <p class="note" style="margin-top:0">Hold a test at the top of the tube over each electrode.</p>
+          <div class="test-grid">
+            <span></span><b>At the cathode (−)</b><b>At the anode (+)</b>
+            <span>🔥 A lit splint</span><button class="btn" data-test="lit" data-where="cat">Test</button><button class="btn" data-test="lit" data-where="an">Test</button>
+            <span>✨ A glowing splint</span><button class="btn" data-test="glow" data-where="cat">Test</button><button class="btn" data-test="glow" data-where="an">Test</button>
+            <span>📄 Damp blue litmus</span><button class="btn" data-test="litmus" data-where="cat">Test</button><button class="btn" data-test="litmus" data-where="an">Test</button>
+          </div>
+          <p class="note" id="test-result" style="margin-bottom:0;font-weight:700;color:var(--text)"></p>
+        </div>
+        <div class="panel after-aside">
+          <h2>Why?</h2>
+          <div id="explain"></div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel" data-for="molten">
+          <h2>Set-up</h2>
+          <div class="field" style="margin-bottom:0"><label for="mcomp">Compound</label>
+            <select class="select" id="mcomp">
+              <option value="pbbr2">Lead(II) bromide, PbBr₂</option>
+              <option value="zncl2">Zinc chloride, ZnCl₂</option>
+              <option value="nacl">Sodium chloride, NaCl</option>
+            </select></div>
+        </div>
+        <div class="panel" data-for="solution" hidden>
+          <h2>Set-up</h2>
+          <div class="field"><label for="scomp">Solution</label>
+            <select class="select" id="scomp">
+              <option value="cucl2">Copper(II) chloride</option>
+              <option value="nacl">Sodium chloride</option>
+              <option value="cuso4">Copper(II) sulfate</option>
+              <option value="na2so4">Sodium sulfate</option>
+              <option value="kbr">Potassium bromide</option>
+            </select></div>
+          <label class="toggle" style="margin-bottom:0"><input type="checkbox" id="water" checked> Show the H⁺ and OH⁻ ions from the water</label>
+        </div>
+        <div class="panel" data-for="solution" hidden>
+          <h2>Your prediction</h2>
+          <p class="note" style="margin-top:0">Before you switch on: what will form at each electrode?</p>
+          <div class="field"><label for="pcat">At the cathode (−)</label>
+            <select class="select" id="pcat"><option value="">Choose…</option></select></div>
+          <div class="field" style="margin-bottom:0"><label for="pan">At the anode (+)</label>
+            <select class="select" id="pan"><option value="">Choose…</option></select></div>
+        </div>
+        <div class="panel" data-for="alu" hidden>
+          <h2>Set-up</h2>
+          <label class="toggle"><input type="checkbox" id="alu-ions"> Show the ions</label>
+          <div class="btn-row"><button class="btn" id="anodes">Replace the anodes</button></div>
+        </div>
+        <div class="panel">
+          <h2>What happens</h2>
+          <div id="info"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/electrolysis.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/quiz-pages/electrolysis.js"></script>
+  <script src="../js/practice-tab.js"></script>
+</body>
+</html>

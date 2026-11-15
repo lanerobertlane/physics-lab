@@ -1,5 +1,5 @@
-// Pressure in fluids: the water pushing on a dam, a water tower with three spouts, and
-// floating and sinking. The pressure due to a column of liquid is p = h ρ g.
+// Pressure in fluids: the water pushing on a dam, a water tower with three spouts, floating and
+// sinking, and the atmosphere. The pressure due to a column of liquid is p = h ρ g.
 
 PK.header({
   title: 'Pressure in fluids & upthrust',
@@ -9,7 +9,9 @@ PK.header({
     { code: '4.5.5.1.2', text: 'The pressure due to a column of liquid: p = h ρ g. Pressure at a point increases with the height of the column of liquid above it, and with the density of the liquid', po: true, ht: true },
     { code: '4.5.5.1.2', text: 'Calculate the differences in pressure at different depths in a liquid', po: true, ht: true },
     { code: '4.5.5.1.2', text: 'A submerged object has a greater pressure on its bottom surface than its top, giving a resultant force upwards: the upthrust. The factors that influence floating and sinking', po: true, ht: true },
+    { code: '4.5.5.2', text: 'Atmospheric pressure: air molecules colliding with a surface create a pressure. The atmosphere gets less dense with height, and there is less air above, so the pressure decreases as height increases', po: true },
     { code: 'KS3', text: 'Pressure in liquids, increasing with depth; upthrust effects, floating and sinking' },
+    { code: 'KS3', text: 'Atmospheric pressure, decreasing with height above the ground' },
   ],
 });
 
@@ -358,12 +360,153 @@ const FLOAT_WHY = `<p><b>Where does upthrust come from?</b> The bottom of an obj
   <p><b>Float or sink?</b> An object less dense than the liquid floats: it sinks in only until the upthrust equals its weight. An object denser than the liquid sinks, because even when it’s right under the surface the upthrust is less than its weight.</p>
   <p>Try the egg in water and then in very salty water, or the ice in water and then in alcohol.</p>`;
 
+// ---------- Atmospheric pressure ----------
+
+// The International Standard Atmosphere: pressure (kPa) and density (kg/m³) at a height in km
+function airP(h) {
+  const m = h * 1000;
+  return m <= 11000 ? 101.325 * (1 - 2.25577e-5 * m) ** 5.25588 : 22.632 * Math.exp(-(m - 11000) / 6341.6);
+}
+const airRho = (h) => (airP(h) * 1000) / (287.05 * (288.15 - 6.5 * Math.min(h, 11)));
+const A = { ground: 420, top: 40, max: 12, packetX: 330 };
+const altY = (h) => A.ground - (h / A.max) * (A.ground - A.top);
+const yAlt = (y) => ((A.ground - y) / (A.ground - A.top)) * A.max;
+const air = { moved: false, dots: [] };
+// Air particles, spread with height the way the density falls off
+(() => {
+  const cum = [0];
+  for (let i = 1; i <= 240; i++) cum.push(cum[i - 1] + airRho((i - 0.5) * A.max / 240));
+  for (let n = 0; n < 230; n++) {
+    const u = Math.random() * cum[240];
+    let i = 1; while (cum[i] < u) i++;
+    const h = ((i - 1 + Math.random()) * A.max) / 240;
+    air.dots.push({ x: 14 + Math.random() * 520, y: altY(h), vx: (Math.random() - 0.5) * 40, vy: (Math.random() - 0.5) * 12, y0: altY(h) });
+  }
+})();
+const altNow = () => PK.num('alt');
+function stepAir(dt) {
+  for (const d of air.dots) {
+    d.x += d.vx * dt; d.y += d.vy * dt;
+    if (d.x < 12 || d.x > 538) d.vx = -d.vx;
+    if (Math.abs(d.y - d.y0) > 5) d.vy = -d.vy;
+  }
+}
+function drawAir() {
+  // The sky darkens as the air thins
+  const g = c.createLinearGradient(0, A.top, 0, A.ground);
+  g.addColorStop(0, '#24385e'); g.addColorStop(0.45, '#4f86c6'); g.addColorStop(1, '#bfe3f7');
+  c.fillStyle = g; c.fillRect(0, 0, 550, A.ground);
+  // Everest, with its neighbours
+  c.fillStyle = '#7d8a99';
+  c.beginPath(); c.moveTo(250, A.ground); c.lineTo(345, altY(5.2)); c.lineTo(390, altY(6.4)); c.lineTo(445, altY(8.8)); c.lineTo(495, altY(6.9)); c.lineTo(550, altY(4.5)); c.lineTo(550, A.ground); c.closePath(); c.fill();
+  c.fillStyle = '#f4f7fb';
+  c.beginPath(); c.moveTo(398, altY(6.6)); c.lineTo(445, altY(8.8)); c.lineTo(488, altY(7.1)); c.lineTo(462, altY(7.4)); c.lineTo(445, altY(7.0)); c.lineTo(420, altY(7.3)); c.closePath(); c.fill();
+  c.fillStyle = '#6c9b4f'; c.fillRect(0, A.ground, 550, H - A.ground);
+  // The air particles
+  c.fillStyle = 'rgba(255,255,255,.85)';
+  for (const d of air.dots) { c.beginPath(); c.arc(d.x, d.y, 2.2, 0, Math.PI * 2); c.fill(); }
+  // Height scale and landmarks
+  c.strokeStyle = 'rgba(255,255,255,.9)'; c.lineWidth = 2;
+  for (let k = 0; k <= A.max; k += 2) {
+    const y = altY(k);
+    c.beginPath(); c.moveTo(0, y); c.lineTo(12, y); c.stroke();
+    text(`${k} km`, 16, y, { s: 14, a: 'left', col: '#fff' });
+  }
+  emoji('✈️', 150, altY(11), 26);
+  text('airliner, 11 km', 150, altY(11) + 22, { s: 14, w: 800, col: '#fff' });
+  text('Everest, 8.8 km', 445, altY(8.8) - 16, { s: 14, w: 800, col: '#fff' });
+  // The crisp packet, sealed at sea level: the air inside keeps it as big as the outside lets it
+  const h = altNow(), p = airP(h), grow = Math.min(3, airP(0) / p);
+  const pw = 34 * Math.sqrt(grow), ph = 46 * Math.sqrt(grow), x = A.packetX, y = altY(h) - ph / 2 - 8;   // it sits just above its height
+  c.save(); c.translate(x, y);
+  c.fillStyle = '#f2b632'; c.strokeStyle = '#8a5a00'; c.lineWidth = 2;
+  const bulge = 4 + 6 * (grow - 1);
+  c.beginPath();
+  c.moveTo(-pw / 2, -ph / 2); c.quadraticCurveTo(0, -ph / 2 - 3, pw / 2, -ph / 2);
+  c.quadraticCurveTo(pw / 2 + bulge, 0, pw / 2, ph / 2);
+  c.quadraticCurveTo(0, ph / 2 + 3, -pw / 2, ph / 2);
+  c.quadraticCurveTo(-pw / 2 - bulge, 0, -pw / 2, -ph / 2); c.closePath(); c.fill(); c.stroke();
+  c.fillStyle = '#8a5a00'; c.fillRect(-pw / 2, -ph / 2 - 3, pw, 4); c.fillRect(-pw / 2, ph / 2 - 1, pw, 4);
+  text('crisps', 0, 2, { s: 11, w: 900, col: '#8a2a00' });
+  c.restore();
+  // The air pushing on it from every side, at right angles to its surface
+  const len = 6 + (p / 101.325) * 22;
+  for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+    const ex = x + dx * (pw / 2 + 6), ey = y + dy * (ph / 2 + 6);
+    arrow(ex + dx * len, ey + dy * len, ex, ey, PUSH, 3, 9);
+  }
+  pill(`${h.toFixed(1)} km up · ${p.toFixed(0)} kPa`, x, y - ph / 2 - len - 20, '#1e3a5f', 13);
+  if (!air.moved) pill('← Drag it up and down', x + pw / 2 + len + 84, y);
+
+  // A pressure gauge
+  c.fillStyle = PK.cssVar('--surface'); c.fillRect(550, 0, W - 550, H);
+  const gx = 675, gy = 120, gr = 72;
+  c.fillStyle = '#fff'; c.strokeStyle = '#3a424c'; c.lineWidth = 4; c.beginPath(); c.arc(gx, gy, gr, 0, Math.PI * 2); c.fill(); c.stroke();
+  const ang = (v) => Math.PI * (0.75 + 1.5 * (v / 120));
+  c.lineWidth = 2;
+  for (let v = 0; v <= 120; v += 10) {
+    const a = ang(v), r1 = v % 20 ? gr - 10 : gr - 16;
+    c.beginPath(); c.moveTo(gx + Math.cos(a) * r1, gy + Math.sin(a) * r1); c.lineTo(gx + Math.cos(a) * (gr - 4), gy + Math.sin(a) * (gr - 4)); c.stroke();
+    if (v % 20 === 0) text(String(v), gx + Math.cos(a) * (gr - 28), gy + Math.sin(a) * (gr - 28), { s: 11, w: 700 });
+  }
+  const a = ang(p);
+  c.strokeStyle = '#c62828'; c.lineWidth = 3; c.beginPath(); c.moveTo(gx, gy); c.lineTo(gx + Math.cos(a) * (gr - 14), gy + Math.sin(a) * (gr - 14)); c.stroke();
+  c.fillStyle = '#3a424c'; c.beginPath(); c.arc(gx, gy, 5, 0, Math.PI * 2); c.fill();
+  text('kPa', gx, gy + 34, { s: 12, w: 800 });
+  text('Air pressure', gx, gy + gr + 18, { s: 14, w: 800, col: PK.cssVar('--text') });
+
+  // The atmosphere drawn to scale on part of the Earth
+  const ex = 675, R = 420, ey = 330 + R, thick = (100 / 6371) * R;
+  c.save(); c.beginPath(); c.rect(560, 250, W - 570, H - 260); c.clip();
+  c.fillStyle = '#8fcdf2'; c.beginPath(); c.arc(ex, ey, R + thick, 0, Math.PI * 2); c.fill();
+  c.fillStyle = '#4f8f3c'; c.beginPath(); c.arc(ex, ey, R, 0, Math.PI * 2); c.fill();
+  c.restore();
+  text('The atmosphere to scale:', ex, 268, { s: 13, w: 800, col: PK.cssVar('--text') });
+  text('a thin layer round the Earth', ex, 285, { s: 13, w: 700, col: PK.cssVar('--muted') });
+  arrow(ex + 70, 304, ex + 40, 327, PK.cssVar('--muted'), 2, 8);
+}
+function emoji(s, x, y, size) {
+  c.font = `${size}px "Segoe UI Emoji", "Apple Color Emoji", sans-serif`; c.textAlign = 'center'; c.textBaseline = 'middle';
+  c.fillStyle = '#000'; c.fillText(s, x, y);
+}
+function airHit(p) {
+  const h = altNow(), grow = Math.min(3, airP(0) / airP(h)), y = altY(h) - 23 * Math.sqrt(grow) - 8;
+  return Math.abs(p.x - A.packetX) < 24 * Math.sqrt(grow) + 14 && Math.abs(p.y - y) < 30 * Math.sqrt(grow) + 14 ? { what: 'packet', dy: altY(h) - p.y } : null;
+}
+function airMove(d, p) {
+  PK.setNum('alt', Math.round(clamp(yAlt(p.y + d.dy), 0, A.max) * 10) / 10);   // keeps the packet where you grabbed it
+  air.moved = true;
+  document.querySelectorAll('#places .chip').forEach((b) => b.setAttribute('aria-pressed', 'false'));
+}
+function airStatus() {
+  const h = altNow();
+  return h < 0.05 ? 'At sea level, about 100 kPa: the weight of all the air above pushing down.'
+    : `${(100 * airP(h) / airP(0)).toFixed(0)}% of the pressure at sea level. There is less air above, so less weight pushing down, and the air is thinner, so fewer particles hit the packet each second.`;
+}
+function airWork() {
+  const h = altNow(), p = airP(h), kg = Math.round((p * 1000) / G / 10) * 10, grow = airP(0) / p;
+  return `<dl class="readout">
+      <dt>Height above sea level</dt><dd>${h.toFixed(1)} km</dd>
+      <dt>Air pressure</dt><dd>${p.toFixed(1)} kPa</dd>
+      <dt>Air above each square metre</dt><dd>about ${big(kg)} kg</dd>
+      <dt>Density of the air</dt><dd>${airRho(h).toFixed(2)} kg/m³</dd>
+      <dt>Size of the sealed packet</dt><dd>${grow < 1.05 ? 'as packed' : `about ${grow.toFixed(1)}× bigger`}</dd>
+    </dl>
+    <p class="note" style="margin:8px 0 0">The pressure at the bottom of the air is the weight of all the air above each square metre: ${PK.ans(`${big(p * 1000)} N on every square metre here`)}.</p>
+    ${grow > 3 ? '<p class="note" style="margin:6px 0 0">A real crisp packet would have burst before getting this big.</p>' : ''}`;
+}
+const AIR_WHY = `<p><b>What makes air pressure?</b> Air particles move about fast and collide with every surface. Each collision pushes on the surface, and together they make atmospheric pressure, at right angles to the surface.</p>
+  <p><b>Why does it fall as you go up?</b> Higher up there is less air above you, so less weight of air pressing down. The air also gets less dense, so fewer particles hit each square centimetre every second.</p>
+  <p><b>Why does the packet puff up?</b> It was sealed at sea level. The air inside still pushes out hard, but the air outside pushes in less, so the packet swells. On a plane the cabin is kept at about the pressure 2 km up, which is still enough to puff a packet up.</p>
+  <p><b>Why not p = h ρ g?</b> That works for a liquid, which has the same density all the way down. Air gets less dense the higher you go, so the pressure doesn’t fall in a straight line.</p>`;
+
 // ---------- Tabs, dragging and start ----------
 
 const SCENES = {
   dam: { draw: drawDam, hit: damHit, move: damMove, status: damStatus, work: damWork, why: DAM_WHY, title: 'Pressure at the sensors', exp: 'The dam' },
   spouts: { draw: drawSpouts, hit: spoutHit, status: spoutStatus, work: spoutWork, why: SPOUT_WHY, title: 'Pressure at each spout', exp: 'The three spouts' },
   float: { draw: drawFloat, hit: floatHit, move: floatMove, end: floatEnd, status: floatStatus, work: floatWork, why: FLOAT_WHY, title: 'Float or sink?', exp: 'Upthrust' },
+  air: { draw: drawAir, hit: airHit, move: airMove, status: airStatus, work: airWork, why: AIR_WHY, title: 'Air pressure', exp: 'Atmospheric pressure' },
 };
 PK.dragOn(cv, W, H, {
   hit: (p) => SCENES[tab].hit(p),
@@ -377,6 +520,11 @@ PK.dragOn(cv, W, H, {
 $('refill').addEventListener('click', () => { sp.level = FULL; });
 $('tidy').addEventListener('click', () => { THINGS.forEach((t) => Object.assign(t, { x: t.home, y: SHELF - t.h, vy: 0, where: 'shelf' })); fl.sel = null; });
 $('depth').addEventListener('input', () => { dam.movedLevel = true; });
+$('alt').addEventListener('input', () => { document.querySelectorAll('#places .chip').forEach((b) => b.setAttribute('aria-pressed', String(Number(b.dataset.h) === altNow()))); });
+document.querySelectorAll('#places .chip').forEach((b) => b.addEventListener('click', () => {
+  PK.setNum('alt', Number(b.dataset.h)); air.moved = true;
+  document.querySelectorAll('#places .chip').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+}));
 
 function sizeAll() { const dpr = window.devicePixelRatio || 1; if (!cv.clientWidth) return; cv.width = Math.round(cv.clientWidth * dpr); cv.height = Math.round(cv.clientWidth * (H / W) * dpr); }
 function showTab(t) {
@@ -394,7 +542,7 @@ let last = {}, lastFrame = null;
 function setHTML(id, html) { if (last[id] !== html) { last[id] = html; $(id).innerHTML = html; } }
 function frame(now) {
   const dt = lastFrame === null ? 0 : Math.min(0.05, Math.max(0, now - lastFrame) / 1000); lastFrame = now;
-  stepSpouts(dt); stepFloat(dt);
+  stepSpouts(dt); stepFloat(dt); if (tab === 'air') stepAir(dt);
   c.setTransform(cv.width / W, 0, 0, cv.width / W, 0, 0);
   const s = SCENES[tab];
   s.draw();
@@ -404,7 +552,7 @@ function frame(now) {
 }
 window.addEventListener('resize', sizeAll);
 window.addEventListener('pk-answers', () => { last = {}; });
-showTab('dam');
+showTab(PK.initialHash === '#air' ? 'air' : 'dam');
 requestAnimationFrame(frame);
 
 // Share: where the sensors and objects are, and which spouts are open (the tab, number box,
@@ -425,6 +573,6 @@ PK.shareState = {
       if (Number(inTank)) Object.assign(t, { where: 'tank', x: clamp(Number(x), F.left + 4, F.right - t.w - 4), y: clamp(Number(y), 0, F.bottom - t.h), vy: 0 });
     });
     fl.sel = THINGS[Number(o.k)] || null;
-    dam.movedLevel = dam.movedSensor = true; sp.tapped = true; fl.moved = true;
+    dam.movedLevel = dam.movedSensor = true; sp.tapped = true; fl.moved = true; air.moved = true;
   },
 };

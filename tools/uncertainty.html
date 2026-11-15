@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Uncertainty &amp; Means · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Read the scales on a ruler, measuring cylinder, thermometer, newtonmeter and ammeter. Cross out anomalies, find the mean and the uncertainty of repeat readings, and see the difference between accuracy and precision.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="science, working scientifically, measurement, resolution, reading scales, meniscus, parallax, mean, range, uncertainty, anomalous results, accuracy, precision, repeatable, reproducible, random error, systematic error, zero error, education, school, KS3, GCSE, AQA, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/uncertainty.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Uncertainty &amp; means">
+  <meta property="og:description" content="Read the scales on a ruler, measuring cylinder, thermometer, newtonmeter and ammeter. Cross out anomalies, find the mean and the uncertainty of repeat readings, and see the difference between accuracy and precision.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/uncertainty.html">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Uncertainty & means", "description": "Read the scales on a ruler, measuring cylinder, thermometer, newtonmeter and ammeter. Cross out anomalies, find the mean and the uncertainty of repeat readings, and see the difference between accuracy and precision.", "url": "https://lanerobertlane.space/tools/uncertainty.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["Key Stage 3", "GCSE"], "about": {"@type": "Thing", "name": "Science"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="Physics Lab">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #scene { display: block; width: 100%; aspect-ratio: 560 / 300; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .working { font-size: .92rem; margin: 10px 0 0; padding: 10px 12px; background: var(--surface-2); border-radius: var(--radius-sm); font-variant-numeric: tabular-nums; }
+    .working p { margin: 2px 0 6px; }
+    #explain p { margin: 0 0 8px; line-height: 1.5; }
+    .field .chip-group { margin-top: 4px; }
+    .reading-row { display: grid; grid-template-columns: 5.5em minmax(0, 1fr) auto; gap: 8px; align-items: center; margin-bottom: 6px; font-weight: 700; color: var(--muted); font-size: .9rem; }
+    .reading-row input { width: 100%; min-height: 40px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); padding: 4px 8px; font: inherit; font-weight: 700; color: var(--text); background: var(--surface); font-variant-numeric: tabular-nums; }
+    .reading-row.out input { text-decoration: line-through; color: var(--muted); background: var(--surface-2); }
+    .reading-row .btn { min-height: 40px; padding: 4px 10px; font-size: .85rem; }
+    .answer-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 8px; }
+    .answer-row label { width: 6.5em; font-weight: 700; font-size: .9rem; color: var(--muted); }
+    .answer-row input { width: 7em; min-height: 40px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); padding: 4px 8px; font: inherit; font-weight: 700; color: var(--text); background: var(--surface); }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Uncertainty &amp; means</h1>
+      <p id="intro"></p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px" aria-label="Show">
+      <button class="chip" data-t="scales" aria-pressed="true">Reading scales</button>
+      <button class="chip" data-t="means" aria-pressed="false">Repeats &amp; means</button>
+      <button class="chip" data-t="accuracy" aria-pressed="false">Accuracy &amp; precision</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="scene" aria-label="An instrument to read"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="go">↻ New reading</button>
+          </div>
+        </div>
+        <div class="panel after-aside">
+          <h2>Why?</h2>
+          <div id="explain"></div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel" data-for="scales">
+          <h2>Instrument</h2>
+          <div class="chip-group" id="inst" aria-label="Instrument">
+            <button class="chip" data-v="0" aria-pressed="true">Ruler</button>
+            <button class="chip" data-v="1" aria-pressed="false">Measuring cylinder</button>
+            <button class="chip" data-v="2" aria-pressed="false">Thermometer</button>
+            <button class="chip" data-v="3" aria-pressed="false">Newtonmeter</button>
+            <button class="chip" data-v="4" aria-pressed="false">Ammeter</button>
+          </div>
+          <div class="field" id="eye-field" style="margin:12px 0 0" hidden><span class="label">Where your eye is</span>
+            <div class="chip-group" id="eye" aria-label="Where your eye is">
+              <button class="chip" data-v="-1" aria-pressed="false">Above</button>
+              <button class="chip" data-v="0" aria-pressed="true">Level</button>
+              <button class="chip" data-v="1" aria-pressed="false">Below</button>
+            </div></div>
+        </div>
+        <div class="panel" data-for="scales">
+          <h2>Your reading</h2>
+          <div class="answer-row"><label for="guess">Reading</label><input type="number" id="guess" step="any" inputmode="decimal"><span id="guess-unit" style="font-weight:700"></span></div>
+          <div class="answer-row"><label for="guess-res">Resolution</label><input type="number" id="guess-res" step="any" inputmode="decimal"><span id="res-unit" style="font-weight:700"></span></div>
+          <div class="btn-row"><button class="btn primary" id="check">Check</button><button class="btn" id="reveal">Show the answers</button></div>
+          <div id="scale-info" style="margin-top:10px"></div>
+        </div>
+
+        <div class="panel" data-for="means" hidden>
+          <h2>Repeat readings</h2>
+          <div class="field"><label for="example">Readings</label>
+            <select class="select" id="example"></select>
+            <p class="note" id="rand-what" style="margin:6px 0 0;font-weight:700;color:var(--text)"></p></div>
+          <div id="rows"></div>
+          <p class="note" style="margin:6px 0 10px">Tap “Cross out” to leave an anomalous reading out of the mean.</p>
+          <div class="btn-row"><button class="btn primary" id="check-anom">Check what I crossed out</button></div>
+          <p id="anom-result" style="margin:8px 0 0"></p>
+        </div>
+        <div class="panel" data-for="means" hidden>
+          <h2>Mean and uncertainty</h2>
+          <div id="mean-info"></div>
+        </div>
+
+        <div class="panel" data-for="accuracy" hidden>
+          <h2>Set-up</h2>
+          <div class="field"><span class="label">Random errors</span>
+            <div class="chip-group" id="rand" aria-label="Random errors">
+              <button class="chip" data-v="0" aria-pressed="true">Small</button>
+              <button class="chip" data-v="1" aria-pressed="false">Large</button>
+            </div></div>
+          <div class="field" style="margin-bottom:0"><span class="label">Systematic error</span>
+            <div class="chip-group" id="sys" aria-label="Systematic error">
+              <button class="chip" data-v="0" aria-pressed="true">None</button>
+              <button class="chip" data-v="1" aria-pressed="false">Zero error</button>
+            </div></div>
+        </div>
+        <div class="panel" data-for="accuracy" hidden>
+          <h2>Your readings</h2>
+          <div id="acc-info"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/uncertainty.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/quiz-pages/uncertainty.js"></script>
+  <script src="../js/practice-tab.js"></script>
+</body>
+</html>

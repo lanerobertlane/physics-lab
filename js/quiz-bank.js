@@ -2731,6 +2731,517 @@ window.QUIZ_BANK = {
   },
   {
    "type": "mc",
+   "topic": "chemistry",
+   "tool": "Rates of reaction",
+   "q": "Which of these will NOT increase the rate of a reaction?",
+   "lv": "ks4",
+   "opts": [
+    "Using larger lumps of the solid",
+    "Increasing the temperature",
+    "Increasing the concentration",
+    "Adding a catalyst"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Larger lumps have a smaller surface area for their volume, so fewer particles can be hit and the rate goes down.",
+   "id": "che1rmwg",
+   "pg": "rates"
+  },
+  {
+   "type": "num",
+   "topic": "chemistry",
+   "tool": "Rates of reaction",
+   "q": "A reaction makes 60 cm³ of gas in 30 s. What is the mean rate of the reaction?",
+   "lv": "ks4",
+   "num": 2,
+   "unit": "cm³/s",
+   "exp": "Mean rate = volume ÷ time = 60 ÷ 30 = 2 cm³/s.",
+   "id": "chevu6w3",
+   "pg": "rates"
+  },
+  {
+   "type": "mc",
+   "topic": "chemistry",
+   "tool": "Rates of reaction",
+   "q": "According to collision theory, what must happen for particles to react?",
+   "lv": "ks4",
+   "opts": [
+    "They must collide with at least the activation energy",
+    "They must collide, with any amount of energy",
+    "They must be in the same state",
+    "They must be heated"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Most collisions don’t have enough energy, and the particles just bounce off.",
+   "id": "chehgc1y",
+   "pg": "rates"
+  },
+  {
+   "type": "mc",
+   "topic": "chemistry",
+   "tool": "Rates of reaction",
+   "q": "Why does increasing the temperature increase the rate of a reaction?",
+   "lv": "ks4",
+   "opts": [
+    "Particles collide more often and more collisions have enough energy",
+    "Particles collide more often, but with the same energy",
+    "The activation energy gets lower",
+    "There are more particles"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Faster particles collide more often, and a bigger fraction of the collisions have at least the activation energy.",
+   "id": "chen46e2",
+   "pg": "rates"
+  },
+  {
+   "type": "tf",
+   "topic": "chemistry",
+   "tool": "Rates of reaction",
+   "q": "A catalyst is used up in the reaction it speeds up.",
+   "lv": "ks4",
+   "ans": false,
+   "exp": "A catalyst is not used up. It provides a different pathway for the reaction with a lower activation energy.",
+   "id": "che19go2",
+   "pg": "rates"
+  },
+  {
+   "type": "mc",
+   "topic": "chemistry",
+   "tool": "Rates of reaction",
+   "q": "Why does powdered magnesium react faster with acid than a single strip?",
+   "lv": "ks4",
+   "opts": [
+    "It has a bigger surface area, so collisions happen more often",
+    "It has more magnesium",
+    "It is hotter",
+    "Its particles have more energy"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "More of the magnesium is exposed to the acid particles, so there are more collisions each second.",
+   "id": "che19eom",
+   "pg": "rates"
+  },
+  {
+   "type": "short",
+   "topic": "chemistry",
+   "tool": "Rates of reaction",
+   "q": "In the disappearing cross experiment, what makes the cross disappear?",
+   "lv": "ks4",
+   "accept": [
+    "sulfur",
+    "a precipitate",
+    "sulfur precipitate",
+    "the sulfur",
+    "a precipitate of sulfur"
+   ],
+   "exp": "The reaction makes sulfur, which doesn’t dissolve, so the liquid turns cloudy.",
+   "id": "che1medz",
+   "pg": "rates"
+  },
+  {
+   "type": "mc",
+   "topic": "chemistry",
+   "tool": "Rates of reaction",
+   "q": "In the disappearing cross experiment, what is used as a measure of the rate?",
+   "lv": "ks4",
+   "opts": [
+    "1 ÷ time",
+    "The time",
+    "The volume of gas",
+    "The temperature rise"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "A faster reaction gives a shorter time, so 1 ÷ time gets bigger as the rate increases.",
+   "id": "cheln5ma",
+   "pg": "rates"
+  },
+  {
+   "type": "mc",
+   "topic": "chemistry",
+   "tool": "Rates of reaction",
+   "q": "On a graph of volume of gas against time, what does a steeper line show?",
+   "lv": "ks4",
+   "opts": [
+    "A faster reaction",
+    "A slower reaction",
+    "More product in total",
+    "The reaction has stopped"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The gradient of the line is the rate: the steeper it is, the more gas is made each second.",
+   "id": "chelf687",
+   "pg": "rates"
+  },
+  {
+   "type": "open",
+   "topic": "chemistry",
+   "tool": "Rates of reaction",
+   "q": "Higher: describe how to find the rate of a reaction at 30 s from a graph of volume of gas against time.",
+   "lv": "ks4",
+   "model": "Draw a tangent to the curve at 30 s, so it just touches the curve there. Draw a large right-angled triangle on the tangent and divide the change in volume by the change in time. The answer is the rate in cm³/s.",
+   "id": "checdld6",
+   "pg": "rates"
+  },
+  {
+   "type": "multi",
+   "topic": "chemistry",
+   "tool": "Rates of reaction",
+   "q": "Which two things should be kept the same when investigating how concentration affects the rate? (tick 2)",
+   "lv": "ks4",
+   "opts": [
+    "The temperature",
+    "The total volume of liquid",
+    "The concentration of the acid",
+    "The time taken"
+   ],
+   "ans": [
+    0,
+    1
+   ],
+   "exp": "Only the concentration should change, so everything else, such as the temperature and the total volume, is kept the same.",
+   "id": "che1oc28",
+   "pg": "rates"
+  },
+  {
+   "type": "mc",
+   "topic": "chemistry",
+   "tool": "Reaction profiles & energy changes",
+   "q": "In an exothermic reaction, what happens to the temperature of the surroundings?",
+   "lv": "both",
+   "opts": [
+    "It goes up",
+    "It goes down",
+    "It stays the same",
+    "It goes up, then back down to where it started"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Energy is transferred from the reaction to the surroundings, so they get warmer.",
+   "id": "che19puf",
+   "pg": "reaction-profiles"
+  },
+  {
+   "type": "multi",
+   "topic": "chemistry",
+   "tool": "Reaction profiles & energy changes",
+   "q": "Which of these are exothermic reactions? (tick 3)",
+   "lv": "both",
+   "opts": [
+    "Combustion",
+    "Neutralisation",
+    "Oxidation",
+    "Thermal decomposition"
+   ],
+   "ans": [
+    0,
+    1,
+    2
+   ],
+   "exp": "Thermal decomposition is endothermic: it takes in energy and only keeps going while it is heated.",
+   "id": "checbyp5",
+   "pg": "reaction-profiles"
+  },
+  {
+   "type": "tf",
+   "topic": "chemistry",
+   "tool": "Reaction profiles & energy changes",
+   "q": "In an endothermic reaction, the products have more energy than the reactants.",
+   "lv": "ks4",
+   "ans": true,
+   "exp": "Energy is taken in from the surroundings, so the products end up with more energy and the surroundings get colder.",
+   "id": "che1hvxl",
+   "pg": "reaction-profiles"
+  },
+  {
+   "type": "mc",
+   "topic": "chemistry",
+   "tool": "Reaction profiles & energy changes",
+   "q": "On a reaction profile, what is the activation energy?",
+   "lv": "ks4",
+   "opts": [
+    "The energy from the reactants up to the top of the hump",
+    "The energy from the reactants down to the products",
+    "The energy of the products",
+    "The total energy of the reactants"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "It is the minimum energy the particles need when they collide for them to react.",
+   "id": "che1h516",
+   "pg": "reaction-profiles"
+  },
+  {
+   "type": "mc",
+   "topic": "chemistry",
+   "tool": "Reaction profiles & energy changes",
+   "q": "What does a catalyst change on a reaction profile?",
+   "lv": "ks4",
+   "opts": [
+    "It lowers the activation energy",
+    "It lowers the energy of the products",
+    "It raises the energy of the reactants",
+    "It changes the overall energy change"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "A catalyst gives a different pathway with a lower activation energy. The reactants, products and overall energy change stay the same.",
+   "id": "chejzdkn",
+   "pg": "reaction-profiles"
+  },
+  {
+   "type": "mc",
+   "topic": "chemistry",
+   "tool": "Reaction profiles & energy changes",
+   "q": "Why is a polystyrene cup used to measure the temperature change of a reaction?",
+   "lv": "ks4",
+   "opts": [
+    "It is a good insulator, so less energy is lost to the surroundings",
+    "It doesn’t react with the chemicals",
+    "It is cheap",
+    "It makes the reaction faster"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Less energy is transferred to or from the surroundings, so the temperature change measured is closer to the true value.",
+   "id": "cheni76z",
+   "pg": "reaction-profiles"
+  },
+  {
+   "type": "short",
+   "topic": "chemistry",
+   "tool": "Reaction profiles & energy changes",
+   "q": "Higher: breaking bonds takes in energy. What happens to energy when bonds are made?",
+   "lv": "ks4",
+   "accept": [
+    "it is given out",
+    "given out",
+    "released",
+    "it is released",
+    "energy is released",
+    "energy is given out"
+   ],
+   "exp": "Making bonds gives out energy. The overall energy change is energy in − energy out.",
+   "id": "che1chkl",
+   "pg": "reaction-profiles"
+  },
+  {
+   "type": "num",
+   "topic": "chemistry",
+   "tool": "Reaction profiles & energy changes",
+   "q": "Higher: in a reaction, breaking bonds takes in 2648 kJ and making bonds gives out 3466 kJ. What is the overall energy change?",
+   "lv": "ks4",
+   "num": -818,
+   "unit": "kJ",
+   "exp": "Overall energy change = energy in − energy out = 2648 − 3466 = −818 kJ. It is negative, so the reaction is exothermic.",
+   "id": "che1neff",
+   "pg": "reaction-profiles"
+  },
+  {
+   "type": "mc",
+   "topic": "chemistry",
+   "tool": "Reaction profiles & energy changes",
+   "q": "Which of these uses an endothermic reaction or change?",
+   "lv": "ks4",
+   "opts": [
+    "A sports injury cold pack",
+    "A hand warmer",
+    "A self-heating can",
+    "A camping stove"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "An endothermic change takes in energy from its surroundings, so the pack feels cold.",
+   "id": "che1ppza",
+   "pg": "reaction-profiles"
+  },
+  {
+   "type": "mc",
+   "topic": "chemistry",
+   "tool": "Electrolysis",
+   "q": "Why must an ionic compound be molten or dissolved for electrolysis to work?",
+   "lv": "ks4",
+   "opts": [
+    "So the ions are free to move",
+    "So the electrons can move",
+    "So it gets hot enough to react",
+    "So the electrodes don’t corrode"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "In a solid the ions are held in a lattice. When it is melted or dissolved, the ions can move to the electrodes and carry the current.",
+   "id": "che1wtzc",
+   "pg": "electrolysis"
+  },
+  {
+   "type": "mc",
+   "topic": "chemistry",
+   "tool": "Electrolysis",
+   "q": "During electrolysis, which electrode do positive ions move to?",
+   "lv": "ks4",
+   "opts": [
+    "The cathode (negative electrode)",
+    "The anode (positive electrode)",
+    "Both electrodes equally",
+    "Neither electrode"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Opposite charges attract, so positive metal ions move to the negative electrode, the cathode.",
+   "id": "chejysnf",
+   "pg": "electrolysis"
+  },
+  {
+   "type": "mc",
+   "topic": "chemistry",
+   "tool": "Electrolysis",
+   "q": "Molten lead bromide is electrolysed. What forms at the anode?",
+   "lv": "ks4",
+   "opts": [
+    "Bromine",
+    "Lead",
+    "Hydrogen",
+    "Oxygen"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Negative bromide ions move to the positive anode, lose electrons and form bromine.",
+   "id": "che4sfm8",
+   "pg": "electrolysis"
+  },
+  {
+   "type": "mc",
+   "topic": "chemistry",
+   "tool": "Electrolysis",
+   "q": "Sodium chloride solution is electrolysed. What forms at the cathode?",
+   "lv": "ks4",
+   "opts": [
+    "Hydrogen",
+    "Sodium",
+    "Chlorine",
+    "Oxygen"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Sodium is more reactive than hydrogen, so hydrogen is produced at the cathode instead.",
+   "id": "che1r2ln",
+   "pg": "electrolysis"
+  },
+  {
+   "type": "mc",
+   "topic": "chemistry",
+   "tool": "Electrolysis",
+   "q": "Copper(II) sulfate solution is electrolysed with inert electrodes. What forms at the anode?",
+   "lv": "ks4",
+   "opts": [
+    "Oxygen",
+    "Sulfur",
+    "Copper",
+    "Hydrogen"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "There are no halide ions, so oxygen is produced from the hydroxide ions in the water.",
+   "id": "che1e2we",
+   "pg": "electrolysis"
+  },
+  {
+   "type": "mc",
+   "topic": "chemistry",
+   "tool": "Electrolysis",
+   "q": "What is the test for chlorine?",
+   "lv": "ks4",
+   "opts": [
+    "It bleaches damp litmus paper",
+    "It relights a glowing splint",
+    "It makes a squeaky pop with a lit splint",
+    "It turns limewater milky"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Damp blue litmus paper turns red and is then bleached white.",
+   "id": "cheyh9eu",
+   "pg": "electrolysis"
+  },
+  {
+   "type": "mc",
+   "topic": "chemistry",
+   "tool": "Electrolysis",
+   "q": "Why is aluminium oxide mixed with cryolite before electrolysis?",
+   "lv": "ks4",
+   "opts": [
+    "To lower its melting point, which saves energy",
+    "To make the aluminium purer",
+    "To stop the anodes burning away",
+    "To make it a better colour"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Aluminium oxide melts at over 2000 °C. Dissolved in molten cryolite, it can be electrolysed at about 950 °C.",
+   "id": "che1q6wu",
+   "pg": "electrolysis"
+  },
+  {
+   "type": "open",
+   "topic": "chemistry",
+   "tool": "Electrolysis",
+   "q": "Explain why the carbon anodes must be replaced regularly when aluminium is extracted.",
+   "lv": "ks4",
+   "model": "Oxygen is produced at the anodes. At the high temperature it reacts with the carbon to make carbon dioxide, so the anodes gradually burn away.",
+   "id": "che1vzyx",
+   "pg": "electrolysis"
+  },
+  {
+   "type": "short",
+   "topic": "chemistry",
+   "tool": "Electrolysis",
+   "q": "Higher: complete the half equation for lead forming at the cathode: Pb²⁺ + ___ → Pb",
+   "lv": "ks4",
+   "accept": [
+    "2e-",
+    "2e⁻",
+    "2 electrons",
+    "2e"
+   ],
+   "exp": "Each lead ion gains two electrons: Pb²⁺ + 2e⁻ → Pb. Gaining electrons is reduction.",
+   "id": "chedptpf",
+   "pg": "electrolysis"
+  },
+  {
+   "type": "tf",
+   "topic": "chemistry",
+   "tool": "Electrolysis",
+   "q": "In electrolysis of a solution, oxygen is produced at the anode unless halide ions are present.",
+   "lv": "ks4",
+   "ans": true,
+   "exp": "With chloride, bromide or iodide ions present, the halogen is produced instead.",
+   "id": "cheshrhy",
+   "pg": "electrolysis"
+  },
+  {
+   "type": "mc",
    "topic": "forces",
    "tool": "Acceleration",
    "q": "In the acceleration required practical, what is the independent variable when you investigate the effect of force?",
@@ -4268,6 +4779,88 @@ window.QUIZ_BANK = {
    "pg": "fluid-pressure"
   },
   {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Pressure in fluids & upthrust",
+   "q": "Why does atmospheric pressure decrease as you go higher?",
+   "lv": "both",
+   "opts": [
+    "There is less air above, so less weight of air pushing down",
+    "The air gets warmer higher up",
+    "Gravity gets much stronger higher up",
+    "The air particles move faster higher up"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Higher up there is less air above you. The air is also less dense, so fewer particles hit each square centimetre every second.",
+   "id": "forbgfk6",
+   "pg": "fluid-pressure"
+  },
+  {
+   "type": "tf",
+   "topic": "forces",
+   "tool": "Pressure in fluids & upthrust",
+   "q": "Atmospheric pressure is caused by air molecules colliding with surfaces.",
+   "lv": "both",
+   "ans": true,
+   "exp": "Each collision pushes on the surface. Together they make a pressure that acts at right angles to the surface.",
+   "id": "for3xtsp",
+   "pg": "fluid-pressure"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Pressure in fluids & upthrust",
+   "q": "A sealed crisp packet is carried from sea level to the top of a mountain. What happens to it?",
+   "lv": "both",
+   "opts": [
+    "It swells, because the air pressure outside is lower",
+    "It gets crushed, because the air pressure outside is higher",
+    "It stays exactly the same size",
+    "It gets heavier"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The air sealed inside keeps pushing out, but the air outside pushes in less, so the packet puffs up.",
+   "id": "for127wk",
+   "pg": "fluid-pressure"
+  },
+  {
+   "type": "tf",
+   "topic": "forces",
+   "tool": "Pressure in fluids & upthrust",
+   "q": "The atmosphere gets less dense as the height above the ground increases.",
+   "lv": "ks4",
+   "ans": true,
+   "exp": "There are fewer air molecules in each cubic metre higher up, which is one reason the pressure is lower.",
+   "id": "for1bwt1",
+   "pg": "fluid-pressure"
+  },
+  {
+   "type": "num",
+   "topic": "forces",
+   "tool": "Pressure in fluids & upthrust",
+   "q": "Atmospheric pressure is about 100 000 Pa. What force does the air exert on a table top with an area of 2 m²?",
+   "lv": "ks4",
+   "num": 200000,
+   "unit": "N",
+   "exp": "F = p × A = 100 000 × 2 = 200 000 N. The air pushes up from underneath too, so the forces balance.",
+   "id": "for1lrd2",
+   "pg": "fluid-pressure"
+  },
+  {
+   "type": "open",
+   "topic": "forces",
+   "tool": "Pressure in fluids & upthrust",
+   "q": "Explain why atmospheric pressure is lower at the top of a mountain than at sea level.",
+   "lv": "ks4",
+   "model": "Atmospheric pressure is caused by air molecules colliding with surfaces. At the top of the mountain there is less air above, so less weight of air pushing down. The air is also less dense, so there are fewer collisions each second on each square metre.",
+   "id": "for1395e",
+   "pg": "fluid-pressure"
+  },
+  {
    "type": "num",
    "topic": "forces",
    "tool": "Pressure on solids",
@@ -4900,6 +5493,246 @@ window.QUIZ_BANK = {
    ],
    "id": "che1dsdv",
    "pg": "bonding"
+  },
+  {
+   "type": "num",
+   "topic": "reference",
+   "tool": "Uncertainty & means",
+   "q": "A student measures the same length three times: 12.4 cm, 12.6 cm and 12.5 cm. What is the mean?",
+   "lv": "both",
+   "num": 12.5,
+   "unit": "cm",
+   "exp": "Mean = (12.4 + 12.6 + 12.5) ÷ 3 = 37.5 ÷ 3 = 12.5 cm.",
+   "id": "ref1sp4i",
+   "pg": "uncertainty"
+  },
+  {
+   "type": "num",
+   "topic": "reference",
+   "tool": "Uncertainty & means",
+   "q": "Repeat readings are 2.1 Ω, 2.3 Ω and 2.2 Ω. What is the uncertainty, using half the range?",
+   "lv": "ks4",
+   "num": 0.1,
+   "unit": "Ω",
+   "exp": "Range = 2.3 − 2.1 = 0.2 Ω. Uncertainty = ± 0.2 ÷ 2 = ± 0.1 Ω.",
+   "id": "refac1ks",
+   "pg": "uncertainty"
+  },
+  {
+   "type": "mc",
+   "topic": "reference",
+   "tool": "Uncertainty & means",
+   "q": "Readings of 15.2 s, 15.4 s, 21.0 s and 15.3 s are taken. What should you do with 21.0 s?",
+   "lv": "both",
+   "opts": [
+    "Leave it out of the mean as an anomalous result",
+    "Include it in the mean",
+    "Change it to 15.3 s",
+    "Leave out all the readings"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "It doesn’t fit the pattern of the others, so it is anomalous. Leave it out of the mean, and repeat it if you can.",
+   "id": "ref8xvvp",
+   "pg": "uncertainty"
+  },
+  {
+   "type": "mc",
+   "topic": "reference",
+   "tool": "Uncertainty & means",
+   "q": "What is the resolution of a ruler marked in millimetres?",
+   "lv": "both",
+   "opts": [
+    "1 mm",
+    "1 cm",
+    "0.1 mm",
+    "10 cm"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The resolution is the smallest division on the scale, which is 1 mm.",
+   "id": "ref1dml6",
+   "pg": "uncertainty"
+  },
+  {
+   "type": "mc",
+   "topic": "reference",
+   "tool": "Uncertainty & means",
+   "q": "Where should your eye be when you read a measuring cylinder?",
+   "lv": "both",
+   "opts": [
+    "Level with the bottom of the meniscus",
+    "Above the top of the liquid",
+    "Below the bottom of the cylinder",
+    "It doesn’t matter"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Looking from above or below gives a parallax error. Read the bottom of the meniscus with your eye level with it.",
+   "id": "ref1seio",
+   "pg": "uncertainty"
+  },
+  {
+   "type": "mc",
+   "topic": "reference",
+   "tool": "Uncertainty & means",
+   "q": "A balance reads 0.3 g with nothing on it. What kind of error is this?",
+   "lv": "ks4",
+   "opts": [
+    "A zero error, which is a systematic error",
+    "A random error",
+    "An anomalous result",
+    "A resolution error"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Every reading will be 0.3 g too high, so the results are not accurate. Repeating doesn’t help: you subtract 0.3 g or zero the balance.",
+   "id": "ref1saw8",
+   "pg": "uncertainty"
+  },
+  {
+   "type": "tf",
+   "topic": "reference",
+   "tool": "Uncertainty & means",
+   "q": "Repeating readings and taking a mean reduces the effect of random errors.",
+   "lv": "both",
+   "ans": true,
+   "exp": "Random errors make readings spread above and below the true value, so they partly cancel out in a mean.",
+   "id": "ref1holr",
+   "pg": "uncertainty"
+  },
+  {
+   "type": "mc",
+   "topic": "reference",
+   "tool": "Practical graph plotter",
+   "q": "Which variable goes along the bottom (the x-axis) of a graph?",
+   "lv": "both",
+   "opts": [
+    "The independent variable",
+    "The dependent variable",
+    "A control variable",
+    "The anomalous result"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The variable you change goes along the bottom. The variable you measure goes up the side.",
+   "id": "refthkom",
+   "pg": "graph-plotter"
+  },
+  {
+   "type": "mc",
+   "topic": "reference",
+   "tool": "Practical graph plotter",
+   "q": "What does a straight line through the origin show?",
+   "lv": "both",
+   "opts": [
+    "The two quantities are directly proportional",
+    "There is no relationship",
+    "One quantity is constant",
+    "The results are anomalous"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "If one quantity doubles, the other doubles too.",
+   "id": "ref1m9nz",
+   "pg": "graph-plotter"
+  },
+  {
+   "type": "tf",
+   "topic": "reference",
+   "tool": "Practical graph plotter",
+   "q": "You should join the points on a graph dot to dot.",
+   "lv": "both",
+   "ans": false,
+   "exp": "Draw a line of best fit: a straight line or smooth curve through the middle of the points.",
+   "id": "ref1n48y",
+   "pg": "graph-plotter"
+  },
+  {
+   "type": "num",
+   "topic": "reference",
+   "tool": "Practical graph plotter",
+   "q": "A straight line of best fit goes up by 12 cm over 6 N. What is its gradient?",
+   "lv": "ks4",
+   "num": 2,
+   "unit": "cm/N",
+   "exp": "Gradient = change in y ÷ change in x = 12 ÷ 6 = 2 cm/N.",
+   "id": "ref15gl2",
+   "pg": "graph-plotter"
+  },
+  {
+   "type": "mc",
+   "topic": "reference",
+   "tool": "Practical graph plotter",
+   "q": "Why should you draw a large triangle to find the gradient of a line?",
+   "lv": "ks4",
+   "opts": [
+    "It makes the readings more accurate",
+    "It changes the gradient",
+    "It makes the line straighter",
+    "It removes anomalies"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Bigger changes in x and y mean that small errors reading the graph matter less.",
+   "id": "refhwa3f",
+   "pg": "graph-plotter"
+  },
+  {
+   "type": "mc",
+   "topic": "reference",
+   "tool": "Practical graph plotter",
+   "q": "When you choose the scales for a graph, how much of the grid should your points cover?",
+   "lv": "both",
+   "opts": [
+    "At least half of it, in each direction",
+    "About a quarter of it",
+    "Just the bottom row of squares",
+    "It doesn't matter"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Choose scales so the points spread over at least half the grid each way. Then you can plot them and read the graph more accurately.",
+   "id": "ref16c81",
+   "pg": "graph-plotter"
+  },
+  {
+   "type": "tf",
+   "topic": "reference",
+   "tool": "Practical graph plotter",
+   "q": "The axes of a graph must always start at zero.",
+   "lv": "both",
+   "ans": false,
+   "exp": "They don't have to. If starting at zero would squash your points into a small part of the grid, start the axis at a sensible value below your smallest reading.",
+   "id": "refw0rob",
+   "pg": "graph-plotter"
+  },
+  {
+   "type": "mc",
+   "topic": "reference",
+   "tool": "Practical graph plotter",
+   "q": "Which of these is the best set of steps for the scale on an axis?",
+   "lv": "both",
+   "opts": [
+    "0, 5, 10, 15, 20",
+    "0, 3, 6, 9, 12",
+    "0, 7, 14, 21, 28",
+    "0, 6, 12, 18, 24"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Go up in steps of 1, 2 or 5 (or 10, 20, 50 and so on). Steps of 3, 6 or 7 make it hard to plot points between the lines.",
+   "id": "ref604ws",
+   "pg": "graph-plotter"
   },
   {
    "type": "mc",
@@ -5837,6 +6670,143 @@ window.QUIZ_BANK = {
    "model": "Hold the compass flat and let the needle settle. Turn the dial until N lines up with the red end of the needle. East is then shown by the E on the dial.",
    "id": "magib4nm",
    "pg": "earth-field"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Black body radiation & the greenhouse effect",
+   "q": "What is a perfect black body?",
+   "lv": "ks4",
+   "opts": [
+    "An object that absorbs all the radiation that falls on it",
+    "An object that reflects all the radiation that falls on it",
+    "An object that gives out no radiation",
+    "Any object painted black"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "A perfect black body absorbs all the radiation that falls on it, and it is also the best possible emitter.",
+   "id": "wav1u6bk",
+   "pg": "black-body"
+  },
+  {
+   "type": "tf",
+   "topic": "waves",
+   "tool": "Black body radiation & the greenhouse effect",
+   "q": "All objects give out infrared radiation, whatever their temperature.",
+   "lv": "both",
+   "ans": true,
+   "exp": "Every object emits and absorbs infrared radiation. The hotter it is, the more it emits each second.",
+   "id": "wavz0mmm",
+   "pg": "black-body"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Black body radiation & the greenhouse effect",
+   "q": "A piece of metal is heated until it glows. What happens to the radiation as it gets hotter?",
+   "lv": "ks4",
+   "opts": [
+    "It gives out more radiation, and the peak moves to shorter wavelengths",
+    "It gives out less radiation",
+    "It gives out the same radiation but more brightly",
+    "The peak moves to longer wavelengths"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "That’s why it glows red, then orange, then white as it gets hotter.",
+   "id": "wavn1leu",
+   "pg": "black-body"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Black body radiation & the greenhouse effect",
+   "q": "An object’s temperature is not changing. What does that tell you?",
+   "lv": "ks4",
+   "opts": [
+    "It is absorbing and emitting radiation at the same rate",
+    "It is not absorbing any radiation",
+    "It is not emitting any radiation",
+    "It is absorbing faster than it emits"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "If it absorbed faster than it emitted, its temperature would rise.",
+   "id": "wavntk9p",
+   "pg": "black-body"
+  },
+  {
+   "type": "multi",
+   "topic": "waves",
+   "tool": "Black body radiation & the greenhouse effect",
+   "q": "Which of these are greenhouse gases? (tick 3)",
+   "lv": "both",
+   "opts": [
+    "Carbon dioxide",
+    "Methane",
+    "Water vapour",
+    "Oxygen"
+   ],
+   "ans": [
+    0,
+    1,
+    2
+   ],
+   "exp": "Greenhouse gases absorb infrared radiation given out by the Earth. Oxygen and nitrogen don’t.",
+   "id": "wav1wr3d",
+   "pg": "black-body"
+  },
+  {
+   "type": "open",
+   "topic": "waves",
+   "tool": "Black body radiation & the greenhouse effect",
+   "q": "Explain how greenhouse gases keep the Earth warm.",
+   "lv": "both",
+   "model": "Short-wavelength radiation from the Sun passes through the atmosphere and warms the Earth. The Earth gives out longer-wavelength infrared radiation. Greenhouse gases absorb some of this and give it out again in all directions, including back towards the Earth, so less energy escapes to space.",
+   "id": "wavpr3gg",
+   "pg": "black-body"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Black body radiation & the greenhouse effect",
+   "q": "Higher: which of these would make the Earth’s temperature settle at a higher value?",
+   "lv": "ks4",
+   "opts": [
+    "Less ice and cloud reflecting sunlight",
+    "More ice and cloud reflecting sunlight",
+    "Fewer greenhouse gases",
+    "More radiation escaping to space"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Less sunlight is reflected, so more is absorbed. The Earth warms until it emits as fast as it absorbs.",
+   "id": "wavdn4zu",
+   "pg": "black-body"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Black body radiation & the greenhouse effect",
+   "q": "Which human activity increases the amount of carbon dioxide in the atmosphere?",
+   "lv": "both",
+   "opts": [
+    "Burning fossil fuels",
+    "Planting trees",
+    "Using solar panels",
+    "Recycling plastic"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Burning coal, oil and gas releases carbon dioxide, a greenhouse gas.",
+   "id": "wav181dj",
+   "pg": "black-body"
   },
   {
    "type": "open",
@@ -8979,7 +9949,8 @@ window.QUIZ_BANK = {
    "lv": "ks3",
    "ans": false,
    "exp": "You keep as many variables the same as you can (lots of control variables), but change only one (the independent variable).",
-   "id": "refbdap1"
+   "id": "refbdap1",
+   "pg": "graph-plotter"
   },
   {
    "type": "tf",
@@ -10275,7 +11246,8 @@ window.QUIZ_BANK = {
     0
    ],
    "exp": "The independent variable is the one you change: here, the mass.",
-   "id": "refz8rz4"
+   "id": "refz8rz4",
+   "pg": "graph-plotter"
   },
   {
    "type": "mc",
@@ -10293,7 +11265,8 @@ window.QUIZ_BANK = {
     2
    ],
    "exp": "The dependent variable is the one you measure: here, the time taken to fall.",
-   "id": "ref1hbuw"
+   "id": "ref1hbuw",
+   "pg": "graph-plotter"
   },
   {
    "type": "mc",
@@ -10380,7 +11353,8 @@ window.QUIZ_BANK = {
    "ans": [
     1
    ],
-   "id": "ref1legv"
+   "id": "ref1legv",
+   "pg": "graph-plotter"
   },
   {
    "type": "tf",
@@ -10451,7 +11425,8 @@ window.QUIZ_BANK = {
    "ans": [
     1
    ],
-   "id": "ref68txp"
+   "id": "ref68txp",
+   "pg": "graph-plotter"
   },
   {
    "type": "tf",
@@ -12569,7 +13544,8 @@ window.QUIZ_BANK = {
    "ans": [
     0
    ],
-   "id": "refjwlp6"
+   "id": "refjwlp6",
+   "pg": "graph-plotter"
   },
   {
    "type": "open",
@@ -13090,7 +14066,8 @@ window.QUIZ_BANK = {
     "controlled",
     "controlled variable"
    ],
-   "id": "ref1ctiz"
+   "id": "ref1ctiz",
+   "pg": "graph-plotter"
   },
   {
    "type": "tf",
@@ -14977,7 +15954,8 @@ window.QUIZ_BANK = {
    "ans": [
     0
    ],
-   "id": "ref1odlq"
+   "id": "ref1odlq",
+   "pg": "graph-plotter"
   },
   {
    "type": "mc",
@@ -15440,7 +16418,8 @@ window.QUIZ_BANK = {
     "dependant variable",
     "the dependent variable"
    ],
-   "id": "refxhd8k"
+   "id": "refxhd8k",
+   "pg": "graph-plotter"
   },
   {
    "type": "short",
@@ -15519,7 +16498,8 @@ window.QUIZ_BANK = {
    "q": "An investigation should only have one independent variable.",
    "lv": "ks4",
    "ans": true,
-   "id": "refhbvgg"
+   "id": "refhbvgg",
+   "pg": "graph-plotter"
   },
   {
    "type": "mc",
@@ -15535,7 +16515,8 @@ window.QUIZ_BANK = {
    "ans": [
     1
    ],
-   "id": "refik5ok"
+   "id": "refik5ok",
+   "pg": "uncertainty"
   },
   {
    "type": "mc",
@@ -15551,7 +16532,8 @@ window.QUIZ_BANK = {
    "ans": [
     0
    ],
-   "id": "ref6q5x5"
+   "id": "ref6q5x5",
+   "pg": "uncertainty"
   },
   {
    "type": "mc",
@@ -15567,7 +16549,8 @@ window.QUIZ_BANK = {
    "ans": [
     2
    ],
-   "id": "reft6j1i"
+   "id": "reft6j1i",
+   "pg": "uncertainty"
   },
   {
    "type": "mc",
@@ -15869,7 +16852,8 @@ window.QUIZ_BANK = {
     1
    ],
    "exp": "The mean (27.0 g) is close to the true value, so they are accurate, but they are spread out, so they are not precise.",
-   "id": "ref1p5a2"
+   "id": "ref1p5a2",
+   "pg": "uncertainty"
   }
  ]
 };

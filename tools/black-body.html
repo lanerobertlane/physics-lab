@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Black Body Radiation &amp; the Greenhouse Effect · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="See how the radiation an object gives out depends on its temperature, why an object’s temperature levels off when it absorbs and emits at the same rate, and how greenhouse gases keep the Earth warm.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="physics, black body radiation, infrared, emission spectrum, temperature, absorb, emit, greenhouse effect, greenhouse gases, carbon dioxide, climate change, Earth's temperature, education, school, KS3, GCSE, AQA, science, simulation, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/black-body.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Black body radiation &amp; the greenhouse effect">
+  <meta property="og:description" content="See how the radiation an object gives out depends on its temperature, why an object’s temperature levels off when it absorbs and emits at the same rate, and how greenhouse gases keep the Earth warm.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/black-body.html">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Black body radiation & the greenhouse effect", "description": "See how the radiation an object gives out depends on its temperature, why an object’s temperature levels off when it absorbs and emits at the same rate, and how greenhouse gases keep the Earth warm.", "url": "https://lanerobertlane.space/tools/black-body.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["Key Stage 3", "GCSE"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="Physics Lab">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #scene { display: block; width: 100%; aspect-ratio: 560 / 300; }
+    #graph { display: block; width: 100%; aspect-ratio: 560 / 340; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    #explain p { margin: 0 0 8px; line-height: 1.5; }
+    .field .chip-group { margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Black body radiation &amp; the greenhouse effect</h1>
+      <p id="intro"></p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px" aria-label="Show">
+      <button class="chip" data-t="spectrum" aria-pressed="true">Hotter objects</button>
+      <button class="chip" data-t="balance" aria-pressed="false">Absorbing and emitting</button>
+      <button class="chip" data-t="greenhouse" aria-pressed="false">The greenhouse effect</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="scene" aria-label="The object and the radiation it gives out"></canvas>
+          <div class="stage-bar" id="bar">
+            <button class="btn" id="reset">↺ Reset</button>
+          </div>
+        </div>
+        <div class="panel after-aside" id="graph-panel">
+          <h2 id="graph-title">Radiation given out at each wavelength</h2>
+          <canvas id="graph" class="drag" aria-label="Graph"></canvas>
+          <p class="note" id="graph-note"></p>
+        </div>
+        <div class="panel after-aside">
+          <h2>Why?</h2>
+          <div id="explain"></div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel" data-for="spectrum">
+          <h2>Set-up</h2>
+          <div class="num-row"><label for="tc">Temperature of the object</label><div class="stepper" data-num><button data-step="-1" aria-label="Cooler">−</button><input type="number" id="tc" min="2500" max="6000" step="any" data-inc="250" data-whole value="4000" inputmode="numeric"><span class="unit">°C</span><button data-step="1" aria-label="Hotter">+</button></div></div>
+          <div class="field" style="margin-bottom:0"><span class="label">Examples</span>
+            <div class="chip-group" id="egs" aria-label="Examples">
+              <button class="chip" data-v="2500" aria-pressed="false">Lamp filament</button>
+              <button class="chip" data-v="3000" aria-pressed="false">A red star</button>
+              <button class="chip" data-v="5500" aria-pressed="false">The Sun</button>
+            </div></div>
+        </div>
+        <div class="panel" data-for="balance" hidden>
+          <h2>Set-up</h2>
+          <div class="field" style="margin-bottom:0"><span class="label">The lamp</span>
+            <div class="chip-group" id="lamp" aria-label="The lamp">
+              <button class="chip" data-v="0" aria-pressed="false">Off</button>
+              <button class="chip" data-v="1" aria-pressed="false">Dim</button>
+              <button class="chip" data-v="2" aria-pressed="true">Bright</button>
+            </div></div>
+        </div>
+        <div class="panel" data-for="greenhouse" hidden>
+          <h2>Set-up</h2>
+          <div class="field"><span class="label">Greenhouse gases in the atmosphere</span>
+            <div class="chip-group" id="ghg" aria-label="Greenhouse gases">
+              <button class="chip" data-v="0" aria-pressed="false">None</button>
+              <button class="chip" data-v="1" aria-pressed="false">Half today’s</button>
+              <button class="chip" data-v="2" aria-pressed="true">Today’s</button>
+              <button class="chip" data-v="3" aria-pressed="false">Double today’s</button>
+            </div></div>
+          <div class="field" style="margin-bottom:0"><span class="label">Ice and cloud reflecting sunlight</span>
+            <div class="chip-group" id="albedo" aria-label="Ice and cloud">
+              <button class="chip" data-v="0" aria-pressed="false">Less</button>
+              <button class="chip" data-v="1" aria-pressed="true">Today</button>
+              <button class="chip" data-v="2" aria-pressed="false">More</button>
+            </div></div>
+        </div>
+        <div class="panel">
+          <h2 id="info-title">What’s happening</h2>
+          <div id="info"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/black-body.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/quiz-pages/black-body.js"></script>
+  <script src="../js/practice-tab.js"></script>
+</body>
+</html>
