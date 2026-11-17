@@ -64,8 +64,8 @@ const TOOLS = [
     desc: 'Plot the I–V graph for a resistor, filament lamp and diode, using the circuit builder’s results table.' },
   { topic: 'electricity', icon: 'plug', name: 'Mains electricity', href: 'tools/mains.html', gcse: true, ks3: true,
     desc: 'Compare a.c. and d.c. on an oscilloscope, wire a three-pin plug, and see how the earth wire and fuse keep you safe.' },
-  { topic: 'electricity', icon: 'bill', name: 'Paying for electricity', gcse: true, ks3: true,
-    desc: 'Compare the power of appliances, then work out energy in kWh and the cost: E = P t.' },
+  { topic: 'electricity', icon: 'bill', name: 'Paying for electricity', href: 'tools/electricity-cost.html', gcse: true, ks3: true,
+    desc: 'Switch on appliances and watch the meter count the energy and the cost, then work out E = P t in joules and kWh.' },
   { topic: 'electricity', icon: 'pylon', name: 'The National Grid', href: 'tools/grid.html', gcse: true, ht: true,
     desc: 'See how step-up and step-down transformers work, and why sending power at a high voltage wastes less energy.' },
   { topic: 'electricity', icon: 'transformer', name: 'Transformers', href: 'tools/transformers.html', gcse: true, ht: true,
@@ -128,8 +128,8 @@ const TOOLS = [
     desc: 'Compare renewable and non-renewable resources for reliability, pollution and cost, and meet demand through the day.' },
   { topic: 'energy', icon: 'heat', name: 'Conduction, convection & radiation', href: 'tools/heat.html', ks3: true,
     desc: 'See the three ways energy is transferred by heating, including a convection current in a beaker.' },
-  { topic: 'energy', icon: 'stores', name: 'Power: comparing two motors', gcse: true, ks3: true,
-    desc: 'Two motors lift the same load through the same height in different times. Which has the greater power?' },
+  { topic: 'energy', icon: 'stores', name: 'Power: comparing two motors', href: 'tools/power.html', gcse: true, ks3: true,
+    desc: 'Two motors lift loads through a height. Time them and work out which has the greater power: P = E ÷ t. Try the mystery motors.' },
 
   // Particles
   { topic: 'particles', icon: 'particles', name: 'States of matter', href: 'tools/states.html', gcse: true, ks3: true,
@@ -138,8 +138,8 @@ const TOOLS = [
     desc: 'Change the volume and temperature of a gas in a cylinder and watch the pressure: pV = constant.' },
   { topic: 'particles', icon: 'gas', name: 'Density', href: 'tools/density.html', gcse: true, rp: true, ks3: true,
     desc: 'Measure mass and volume of regular and irregular objects (a eureka can) and liquids, and calculate density.' },
-  { topic: 'particles', icon: 'particles', name: 'Brownian motion & diffusion', ks3: true,
-    desc: 'Watch particles jostle and spread out, and see how this supports the particle model.' },
+  { topic: 'particles', icon: 'particles', name: 'Brownian motion & diffusion', href: 'tools/brownian.html', ks3: true,
+    desc: 'Watch a smoke particle jiggle as air particles hit it, and watch a gas and a liquid spread out by diffusion.' },
 
   // Atomic
   { topic: 'atomic', icon: 'atom', name: 'Atom builder', href: 'tools/atom.html', gcse: true, ks3: true,

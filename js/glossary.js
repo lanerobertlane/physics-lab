@@ -51,6 +51,8 @@ window.PK_GLOSSARY = {
   'braking distance': { def: 'The distance a vehicle travels under the braking force, once the brakes are applied.' },
   'stopping distance': { def: 'Thinking distance + braking distance.' },
   // Electricity
+  'kilowatt-hour': { def: 'A unit of energy: the energy transferred by a 1 kW appliance in 1 hour. 1 kWh = 3 600 000 J.', also: ['kilowatt-hours'] },
+  'power rating': { def: 'The power of an appliance in normal use, in watts (W): how much energy it transfers every second.', also: ['power ratings'] },
   'current': { def: 'The rate of flow of electrical charge, measured in amps (A): I = Q ÷ t.' },
   'potential difference': { def: 'The energy transferred per unit charge between two points in a circuit, measured in volts (V).' },
   'resistance': { def: 'How much a component opposes the current: R = V ÷ I, measured in ohms (Ω).' },
@@ -70,6 +72,8 @@ window.PK_GLOSSARY = {
   'insulator': { def: 'A material that doesn’t let charge (or energy by heating) pass through it easily.', also: ['insulators'] },
   'conductor': { def: 'A material that lets charge (or energy by heating) pass through it easily.', also: ['conductors'] },
   // Particles and matter
+  'Brownian motion': { def: 'The random, jerky movement of small particles, such as smoke in air, caused by collisions with the fast-moving particles of the gas or liquid around them.' },
+  'diffusion': { def: 'The spreading out of particles from where there are lots of them (a high concentration) to where there are fewer (a low concentration), because of their random movement.' },
   'density': { def: 'Mass per unit volume: ρ = m ÷ V, in kg/m³.' },
   'latent heat': { def: 'The energy needed for a substance to change state, with no change in temperature.' },
   'evaporation': { def: 'When particles escape from the surface of a liquid to become a gas.' },

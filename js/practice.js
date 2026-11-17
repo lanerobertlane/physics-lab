@@ -46,14 +46,14 @@ function makeQuestion(keep = state.keep) {
 
 // The tool (and tab) where each equation can be explored
 const TOOL_FOR = {
-  weight: ['weight.html', 'Weight on other planets'], momentum: ['momentum.html', 'Momentum & collisions'], impulse: ['momentum.html#safety', 'Momentum & collisions (crash safety)'], work: ['work.html', 'Work done'], 'power-w': ['work.html', 'Work done'],
+  weight: ['weight.html', 'Weight on other planets'], momentum: ['momentum.html', 'Momentum & collisions'], impulse: ['momentum.html#safety', 'Momentum & collisions (crash safety)'], work: ['work.html', 'Work done'], 'power-w': ['power.html', 'Power: comparing two motors'], 'power-e': ['power.html', 'Power: comparing two motors'],
   hooke: ['springs.html', 'Springs & Hooke’s law'], epe: ['springs.html', 'Springs & Hooke’s law'],
   moment: ['moments.html', 'Moments'], speed: ['speed.html', 'Speed & distance–time'], suvat: ['motion-graphs.html', 'Motion graphs'],
   accel: ['acceleration.html', 'Acceleration'], newton2: ['resultant-forces.html', 'Resultant forces'],
   ke: ['energy.html', 'Energy stores'], gpe: ['work.html#lift', 'Work done (lifting)'],
   'eff-e': ['efficiency.html', 'Efficiency'], 'eff-p': ['efficiency.html', 'Efficiency'],
   charge: ['circuits.html', 'Circuit builder'], ohm: ['circuits.html', 'Circuit builder'], 'energy-qv': ['circuits.html', 'Circuit builder'],
-  'power-vi': ['mains.html#safe', 'Mains electricity (earth wire & fuse)'], 'power-i2r': ['grid.html', 'The National Grid'],
+  'power-vi': ['mains.html#safe', 'Mains electricity (earth wire & fuse)'], 'energy-pt': ['electricity-cost.html#cost', 'Paying for electricity'], 'power-i2r': ['grid.html', 'The National Grid'],
   pressure: ['solid-pressure.html', 'Pressure on solids'], liquid: ['fluid-pressure.html', 'Pressure in fluids'],
   density: ['density.html', 'Density'], wave: ['waves.html', 'Waves'], period: ['waves.html', 'Transverse & longitudinal waves'],
   shc: ['shc.html', 'Specific heat capacity'], latent: ['states.html', 'States of matter'], gas: ['gas.html', 'Gas pressure'],

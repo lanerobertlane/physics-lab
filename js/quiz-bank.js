@@ -5928,6 +5928,369 @@ window.QUIZ_BANK = {
   },
   {
    "type": "mc",
+   "topic": "particles",
+   "tool": "Brownian motion & diffusion",
+   "q": "What do you see when you look at smoke particles in air through a microscope?",
+   "lv": "ks3",
+   "opts": [
+    "They move about in a random, jerky way",
+    "They stay perfectly still",
+    "They all move in the same direction",
+    "They slowly sink to the bottom"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "This random movement is called Brownian motion.",
+   "id": "par1i4cl",
+   "pg": "brownian"
+  },
+  {
+   "type": "mc",
+   "topic": "particles",
+   "tool": "Brownian motion & diffusion",
+   "q": "What causes the Brownian motion of a smoke particle?",
+   "lv": "ks3",
+   "opts": [
+    "Air particles hitting it unevenly from different sides",
+    "The smoke particle is alive",
+    "Light from the lamp pushing it",
+    "The smoke particle is attracted to the glass"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Air particles move fast in random directions. At any one time, more of them hit one side than the other.",
+   "id": "parlep81",
+   "pg": "brownian"
+  },
+  {
+   "type": "tf",
+   "topic": "particles",
+   "tool": "Brownian motion & diffusion",
+   "q": "Brownian motion is evidence that air is made of tiny moving particles.",
+   "lv": "ks3",
+   "ans": true,
+   "exp": "Something too small to see must be hitting the smoke particles to make them move.",
+   "id": "par2qapc",
+   "pg": "brownian"
+  },
+  {
+   "type": "mc",
+   "topic": "particles",
+   "tool": "Brownian motion & diffusion",
+   "q": "The air in a smoke cell is heated. How does the movement of the smoke particles change?",
+   "lv": "ks3",
+   "opts": [
+    "They jiggle more, because the air particles move faster",
+    "They jiggle less, because the air expands",
+    "It doesn't change",
+    "They stop moving"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Hotter air particles move faster, so they hit the smoke particles harder and more often.",
+   "id": "par7tg9p",
+   "pg": "brownian"
+  },
+  {
+   "type": "short",
+   "topic": "particles",
+   "tool": "Brownian motion & diffusion",
+   "q": "What is the name for the spreading out of particles from a high concentration to a low concentration?",
+   "lv": "ks3",
+   "accept": [
+    "diffusion",
+    "diffusing"
+   ],
+   "id": "parfnpbp",
+   "pg": "brownian"
+  },
+  {
+   "type": "mc",
+   "topic": "particles",
+   "tool": "Brownian motion & diffusion",
+   "q": "Why does diffusion happen faster in a gas than in a liquid?",
+   "lv": "ks3",
+   "opts": [
+    "Gas particles are far apart, so they travel further before they bump into another particle",
+    "Gas particles are bigger",
+    "Liquid particles don't move at all",
+    "Gases are heavier than liquids"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Liquid particles are touching, so each one keeps bumping into its neighbours and can't get far.",
+   "id": "pargv196",
+   "pg": "brownian"
+  },
+  {
+   "type": "tf",
+   "topic": "particles",
+   "tool": "Brownian motion & diffusion",
+   "q": "A drop of ink spreads out faster in hot water than in cold water.",
+   "lv": "ks3",
+   "ans": true,
+   "exp": "The particles move faster in hot water, so diffusion is faster.",
+   "id": "parwjja2",
+   "pg": "brownian"
+  },
+  {
+   "type": "mc",
+   "topic": "particles",
+   "tool": "Brownian motion & diffusion",
+   "q": "Why is diffusion in a solid extremely slow?",
+   "lv": "ks3",
+   "opts": [
+    "The particles only vibrate about fixed positions",
+    "Solids have no particles",
+    "The particles in a solid are too far apart",
+    "Solids are always cold"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The particles in a solid can't move from place to place, so they can't spread out.",
+   "id": "pare4b74",
+   "pg": "brownian"
+  },
+  {
+   "type": "open",
+   "topic": "particles",
+   "tool": "Brownian motion & diffusion",
+   "q": "Someone opens a bottle of perfume at the front of a classroom. Explain how people at the back can smell it a little later.",
+   "lv": "ks3",
+   "model": "Perfume particles evaporate and move about at random, colliding with air particles. They spread out from where there are lots of them (near the bottle) to where there are fewer (the rest of the room), so some reach the back. This is diffusion.",
+   "id": "par3q8jv",
+   "pg": "brownian"
+  },
+  {
+   "type": "open",
+   "topic": "particles",
+   "tool": "Brownian motion & diffusion",
+   "q": "Each particle moves in a random direction. Explain why a coloured gas still spreads into the empty half of a box.",
+   "lv": "ks3",
+   "model": "There are more coloured particles on one side, so more of them happen to move across than move back. Overall there is a net movement from high concentration to low concentration, until they are evenly spread.",
+   "id": "parfb02c",
+   "pg": "brownian"
+  },
+  {
+   "type": "mc",
+   "topic": "energy",
+   "tool": "Power: comparing two motors",
+   "q": "Two motors lift the same load through the same height. Motor A takes 4 s and motor B takes 8 s. Which is true?",
+   "lv": "both",
+   "opts": [
+    "Motor A has the greater power",
+    "Motor B has the greater power",
+    "They have the same power",
+    "Motor B transfers more energy"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "They transfer the same energy, but A does it in less time, so A transfers energy at a faster rate.",
+   "id": "eneuz99n",
+   "pg": "power"
+  },
+  {
+   "type": "num",
+   "topic": "energy",
+   "tool": "Power: comparing two motors",
+   "q": "A motor transfers 600 J of energy in 20 s. What is its power?",
+   "lv": "both",
+   "num": 30,
+   "unit": "W",
+   "exp": "P = E ÷ t = 600 ÷ 20 = 30 W.",
+   "id": "ene1ond3",
+   "pg": "power"
+  },
+  {
+   "type": "mc",
+   "topic": "energy",
+   "tool": "Power: comparing two motors",
+   "q": "What does a power of 1 watt mean?",
+   "lv": "both",
+   "opts": [
+    "1 joule of energy is transferred every second",
+    "A force of 1 newton for every metre",
+    "1 joule of energy in total",
+    "It takes 1 second to lift 1 kg"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "1 W = 1 J/s.",
+   "id": "enee35k9",
+   "pg": "power"
+  },
+  {
+   "type": "num",
+   "topic": "energy",
+   "tool": "Power: comparing two motors",
+   "q": "A motor lifts a 5 kg load through 3 m. Gravitational field strength is 9.8 N/kg. How much energy is transferred to the load's gravitational potential energy store?",
+   "lv": "ks4",
+   "num": 147,
+   "unit": "J",
+   "exp": "Ep = m g h = 5 × 9.8 × 3 = 147 J.",
+   "id": "ene1gmc0",
+   "pg": "power"
+  },
+  {
+   "type": "num",
+   "topic": "energy",
+   "tool": "Power: comparing two motors",
+   "q": "A motor lifts a 2 kg load through 5 m in 4 s. Gravitational field strength is 9.8 N/kg. What is its useful power output?",
+   "lv": "ks4",
+   "num": 24.5,
+   "unit": "W",
+   "exp": "E = m g h = 2 × 9.8 × 5 = 98 J. P = E ÷ t = 98 ÷ 4 = 24.5 W.",
+   "id": "ene1ysyd",
+   "pg": "power"
+  },
+  {
+   "type": "tf",
+   "topic": "energy",
+   "tool": "Power: comparing two motors",
+   "q": "A motor that takes longer to do a job always has less power.",
+   "lv": "ks4",
+   "ans": false,
+   "exp": "Only if the jobs are the same. A motor lifting a much heavier load can take longer and still transfer more energy every second.",
+   "id": "enetj8r5",
+   "pg": "power"
+  },
+  {
+   "type": "num",
+   "topic": "energy",
+   "tool": "Power: comparing two motors",
+   "q": "A 50 W motor runs for 2 minutes. How much energy does it transfer?",
+   "lv": "ks4",
+   "num": 6000,
+   "unit": "J",
+   "exp": "t = 2 × 60 = 120 s. E = P t = 50 × 120 = 6000 J.",
+   "id": "ene13jda",
+   "pg": "power"
+  },
+  {
+   "type": "mc",
+   "topic": "energy",
+   "tool": "Power: comparing two motors",
+   "q": "Motor X transfers 400 J in 10 s. Motor Y transfers 600 J in 20 s. Which has the greater power?",
+   "lv": "ks4",
+   "opts": [
+    "Motor X",
+    "Motor Y",
+    "They have the same power"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "X: 400 ÷ 10 = 40 W. Y: 600 ÷ 20 = 30 W. Power is the energy transferred every second, not the total energy.",
+   "id": "ene4u0wf",
+   "pg": "power"
+  },
+  {
+   "type": "open",
+   "topic": "energy",
+   "tool": "Power: comparing two motors",
+   "q": "Describe how you could compare the power of two electric motors.",
+   "lv": "ks4",
+   "model": "Use each motor to lift the same load through the same measured height, and time each one with a stopwatch. Work out the energy transferred, E = m g h, then the power, P = E ÷ t. The motor that takes less time has the greater power.",
+   "id": "ene1dk9a",
+   "pg": "power"
+  },
+  {
+   "type": "num",
+   "topic": "electricity",
+   "tool": "Paying for electricity",
+   "q": "A 2 kW heater is switched on for 3 hours. How much energy does it transfer, in kilowatt-hours?",
+   "lv": "both",
+   "num": 6,
+   "unit": "kWh",
+   "exp": "E = P t = 2 kW × 3 h = 6 kWh.",
+   "id": "eleepoxu",
+   "pg": "electricity-cost"
+  },
+  {
+   "type": "num",
+   "topic": "electricity",
+   "tool": "Paying for electricity",
+   "q": "Electricity costs 25p per kWh. How much does it cost to use 6 kWh, in pence?",
+   "lv": "both",
+   "num": 150,
+   "unit": "p",
+   "exp": "Cost = 6 × 25p = 150p, which is £1.50.",
+   "id": "ele9wci3",
+   "pg": "electricity-cost"
+  },
+  {
+   "type": "num",
+   "topic": "electricity",
+   "tool": "Paying for electricity",
+   "q": "A 3000 W kettle is switched on for 2 minutes. How much energy does it transfer, in joules?",
+   "lv": "ks4",
+   "num": 360000,
+   "unit": "J",
+   "exp": "t = 2 × 60 = 120 s. E = P t = 3000 × 120 = 360 000 J.",
+   "id": "elejhe9v",
+   "pg": "electricity-cost"
+  },
+  {
+   "type": "mc",
+   "topic": "electricity",
+   "tool": "Paying for electricity",
+   "q": "Which of these transfers the most energy?",
+   "lv": "both",
+   "opts": [
+    "A 3 kW kettle used for 5 minutes",
+    "A 100 W television used for 4 hours",
+    "A 10 W LED lamp used for 10 hours",
+    "A 2 kW hairdryer used for 6 minutes"
+   ],
+   "ans": [
+    1
+   ],
+   "exp": "Kettle: 3 × 5 ÷ 60 = 0.25 kWh. Television: 0.1 × 4 = 0.4 kWh. LED lamp: 0.01 × 10 = 0.1 kWh. Hairdryer: 2 × 6 ÷ 60 = 0.2 kWh.",
+   "id": "ele1oo5a",
+   "pg": "electricity-cost"
+  },
+  {
+   "type": "num",
+   "topic": "electricity",
+   "tool": "Paying for electricity",
+   "q": "How many joules are there in 1 kilowatt-hour?",
+   "lv": "both",
+   "num": 3600000,
+   "unit": "J",
+   "exp": "1 kWh = 1000 W × 3600 s = 3 600 000 J.",
+   "id": "ele19yfv",
+   "pg": "electricity-cost"
+  },
+  {
+   "type": "open",
+   "topic": "electricity",
+   "tool": "Paying for electricity",
+   "q": "A kettle has a much greater power than a fridge, but a fridge can cost more to run over a year. Explain why.",
+   "lv": "both",
+   "model": "The energy transferred depends on the power and how long the appliance is switched on. The kettle is only on for a few minutes a day, but the fridge is on all day, every day, so it can transfer more energy in total. The cost depends on the energy transferred.",
+   "id": "eleh326p",
+   "pg": "electricity-cost"
+  },
+  {
+   "type": "tf",
+   "topic": "electricity",
+   "tool": "Paying for electricity",
+   "q": "The energy an appliance transfers depends on its power and how long it is switched on for.",
+   "lv": "ks4",
+   "ans": true,
+   "exp": "E = P t.",
+   "id": "ele11mgm",
+   "pg": "electricity-cost"
+  },
+  {
+   "type": "mc",
    "topic": "waves",
    "tool": "Infrared radiation",
    "q": "Which surface of a Leslie cube emits the most infrared?",
@@ -7496,7 +7859,8 @@ window.QUIZ_BANK = {
    "ans": [
     2
    ],
-   "id": "ele1xqwq"
+   "id": "ele1xqwq",
+   "pg": "electricity-cost"
   },
   {
    "type": "num",
@@ -7507,7 +7871,8 @@ window.QUIZ_BANK = {
    "num": 50,
    "unit": "J",
    "exp": "1 watt is 1 joule per second, so 50 W transfers 50 J every second.",
-   "id": "ele1scaz"
+   "id": "ele1scaz",
+   "pg": "electricity-cost"
   },
   {
    "type": "num",
@@ -7518,7 +7883,8 @@ window.QUIZ_BANK = {
    "num": 2000,
    "unit": "W",
    "exp": "Kilo means 1000, so 2 kW = 2 × 1000 = 2000 W.",
-   "id": "ele1i2li"
+   "id": "ele1i2li",
+   "pg": "electricity-cost"
   },
   {
    "type": "mc",
@@ -7985,7 +8351,8 @@ window.QUIZ_BANK = {
    "lv": "ks3",
    "ans": true,
    "exp": "1 watt = 1 joule per second.",
-   "id": "ele1hzl6"
+   "id": "ele1hzl6",
+   "pg": "electricity-cost"
   },
   {
    "type": "num",
@@ -7996,7 +8363,8 @@ window.QUIZ_BANK = {
    "num": 12,
    "unit": "kW",
    "exp": "Divide by 1000: 12 000 ÷ 1000 = 12 kW.",
-   "id": "elewy7f8"
+   "id": "elewy7f8",
+   "pg": "electricity-cost"
   },
   {
    "type": "tf",
@@ -11863,7 +12231,8 @@ window.QUIZ_BANK = {
    "lv": "both",
    "ans": true,
    "exp": "Power = energy transferred ÷ time.",
-   "id": "elev94iu"
+   "id": "elev94iu",
+   "pg": "electricity-cost"
   },
   {
    "type": "mc",
@@ -11881,7 +12250,8 @@ window.QUIZ_BANK = {
     3
    ],
    "exp": "P = E ÷ t, with power in watts, energy in joules and time in seconds.",
-   "id": "eleb8o3i"
+   "id": "eleb8o3i",
+   "pg": "electricity-cost"
   },
   {
    "type": "open",
@@ -12117,7 +12487,8 @@ window.QUIZ_BANK = {
    "ans": [
     1
    ],
-   "id": "ele14xuy"
+   "id": "ele14xuy",
+   "pg": "electricity-cost"
   },
   {
    "type": "open",

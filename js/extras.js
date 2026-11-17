@@ -56,6 +56,9 @@
     'fluid-pressure#faces': 'Shows the water pushing on each face of the object. The push on the bottom is bigger than on the top, which is the upthrust.',
     'vdg-field': 'Draws the electric field around the dome. The lines show the way a small positive charge would be pushed: towards the negative dome.',
     'echo#hide': 'Covers up what’s really there, so you have to work it out from the echoes, as a real scanner does.',
+    'brownian#air': 'Shows the air particles hitting the smoke particle. In real life they’re far too small to see, even with a microscope.',
+    'brownian#path': 'Draws the path the smoke particle has taken, so you can see its random zigzag.',
+    'brownian#follow': 'Picks out one coloured particle and draws its path, so you can see that each particle moves at random.',
     'speed-of-sound#auto': 'Times the sound perfectly, with no reaction time, so you can compare it with timing by hand.',
     'quiz#qz-order': 'Each student gets the questions in a different order, so they can’t copy the person next to them.',
     // Practice questions (Calculation practice and every tool's Practice tab)
