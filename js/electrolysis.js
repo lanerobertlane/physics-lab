@@ -40,21 +40,29 @@ const MOLTEN = {
 };
 const SOLN = {
   cucl2: { name: 'copper(II) chloride', pos: 'Cu²⁺', neg: 'Cl⁻', nPos: 10, nNeg: 20, cat: 'copper', an: 'chlorine', half: ['Cu²⁺ + 2e⁻ → Cu', '2Cl⁻ → Cl₂ + 2e⁻'],
+    left: 'Copper and chlorine are both taken out, so the solution slowly loses its blue colour. Water is left.',
+    left: 'Na⁺ and OH⁻ ions are left in the solution: it slowly turns into sodium hydroxide solution.',
     why: ['Copper is less reactive than hydrogen, so copper is produced.', 'There are chloride (halide) ions, so chlorine is produced.'] },
   nacl: { name: 'sodium chloride', pos: 'Na⁺', neg: 'Cl⁻', nPos: 12, nNeg: 12, cat: 'hydrogen', an: 'chlorine', half: ['2H⁺ + 2e⁻ → H₂', '2Cl⁻ → Cl₂ + 2e⁻'],
     why: ['Sodium is more reactive than hydrogen, so hydrogen is produced instead.', 'There are chloride (halide) ions, so chlorine is produced.'] },
   cuso4: { name: 'copper(II) sulfate', pos: 'Cu²⁺', neg: 'SO₄²⁻', nPos: 12, nNeg: 12, cat: 'copper', an: 'oxygen', half: ['Cu²⁺ + 2e⁻ → Cu', '4OH⁻ → O₂ + 2H₂O + 4e⁻'],
+    left: 'H⁺ and SO₄²⁻ ions are left in the solution: it slowly turns into sulfuric acid, and loses its blue colour.',
     why: ['Copper is less reactive than hydrogen, so copper is produced.', 'There are no halide ions, so oxygen is produced from the hydroxide ions.'] },
   na2so4: { name: 'sodium sulfate', pos: 'Na⁺', neg: 'SO₄²⁻', nPos: 14, nNeg: 7, cat: 'hydrogen', an: 'oxygen', half: ['2H⁺ + 2e⁻ → H₂', '4OH⁻ → O₂ + 2H₂O + 4e⁻'],
+    left: 'Na⁺ and SO₄²⁻ ions stay in the solution. Only the water is split up, into hydrogen and oxygen.',
     why: ['Sodium is more reactive than hydrogen, so hydrogen is produced instead.', 'There are no halide ions, so oxygen is produced from the hydroxide ions.'] },
   kbr: { name: 'potassium bromide', pos: 'K⁺', neg: 'Br⁻', nPos: 12, nNeg: 12, cat: 'hydrogen', an: 'bromine', half: ['2H⁺ + 2e⁻ → H₂', '2Br⁻ → Br₂ + 2e⁻'],
+    left: 'K⁺ and OH⁻ ions are left in the solution: it slowly turns into potassium hydroxide solution.',
     why: ['Potassium is more reactive than hydrogen, so hydrogen is produced instead.', 'There are bromide (halide) ions, so bromine is produced.'] },
 };
 const GASES = ['hydrogen', 'oxygen', 'chlorine'];
 
 // ---------- Ions ----------
 
-const sim = { ions: [], heat: 0, heating: false, made: { cat: 0, an: 0 }, busy: { cat: 0, an: 0 }, supply: { cat: 1, an: 1 }, bubbles: [], flashes: [], test: null, anodeWear: 0, al: 0 };
+const sim = { ions: [], heat: 0, heating: false, made: { cat: 0, an: 0 }, busy: { cat: 0, an: 0 }, supply: { cat: 1, an: 1 }, bubbles: [], flashes: [], test: null, anodeWear: 0, al: 0,
+  target: {}, events: [], cool: { split: 0, join: 0, inflow: 0 } };
+// In a solution: how many H⁺ and OH⁻ ions, and water molecules, to show
+const H_N = 8, WATER_N = 8;
 const box = () => (state.tab === 'molten' ? { l: 150, r: 410, t: 205, b: 325 } : state.tab === 'solution' ? { l: 116, r: 444, t: 180, b: 336 } : { l: 92, r: 468, t: 186, b: 296 });
 const molten = () => MOLTEN[$('mcomp').value];
 const soln = () => SOLN[$('scomp').value];
@@ -74,7 +82,9 @@ function buildIons() {
     const s = soln();
     for (let i = 0; i < s.nPos; i++) rnd('pos', s.pos);
     for (let i = 0; i < s.nNeg; i++) rnd('neg', s.neg);
-    for (let i = 0; i < 12; i++) { rnd('h', 'H⁺'); rnd('oh', 'OH⁻'); }
+    for (let i = 0; i < H_N; i++) { rnd('h', 'H⁺'); rnd('oh', 'OH⁻'); }
+    for (let i = 0; i < WATER_N; i++) rnd('w', 'H₂O');
+    sim.target = { pos: s.nPos, neg: s.nNeg, w: WATER_N };
   } else {
     for (let i = 0; i < 10; i++) rnd('pos', 'Al³⁺');
     for (let i = 0; i < 15; i++) rnd('neg', 'O²⁻');
@@ -102,14 +112,16 @@ function stepIons(dt) {
     // Random jostling, plus a drift towards the oppositely charged electrode when the power is on
     ion.vx += (Math.random() - 0.5) * 300 * dt; ion.vy += (Math.random() - 0.5) * 300 * dt;
     ion.vx *= 0.9; ion.vy *= 0.9;
-    if (on) {
+    if (ion.a !== undefined && !ion.leaving) ion.a = Math.min(1, ion.a + dt / 0.8);
+    if (ion.leaving) { ion.vx += (ion.x < (b.l + b.r) / 2 ? -80 : 80) * dt; ion.a -= dt / 1.2; if (ion.a <= 0) ion.gone = true; }
+    if (on && ion.kind !== 'w' && !ion.leaving) {
       const toward = ion.kind === 'pos' || ion.kind === 'h';
       if (state.tab === 'alu') { if (toward) ion.vy += 60 * dt; else { const ax = e.an.reduce((a, x) => (Math.abs(x - ion.x) < Math.abs(a - ion.x) ? x : a)); ion.vx += Math.sign(ax - ion.x) * 60 * dt; ion.vy -= 40 * dt; } }
       else ion.vx += (toward ? Math.sign(e.cat - ion.x) : Math.sign(e.an[0] - ion.x)) * 50 * dt;
     }
     ion.x += ion.vx * dt; ion.y += ion.vy * dt;
     ion.x = Math.max(b.l + 9, Math.min(b.r - 9, ion.x)); ion.y = Math.max(b.t + 9, Math.min(b.b - 9, ion.y));
-    if (!on) continue;
+    if (!on || ion.kind === 'w' || ion.leaving) continue;
     // Arriving at an electrode
     const where = discharges(ion);
     let at = null;
@@ -138,6 +150,7 @@ function stepIons(dt) {
     }
   }
   sim.ions = sim.ions.filter((i) => !i.gone);
+  if (state.tab === 'solution') keepGoing(dt);
   sim.busy.cat = Math.max(0, sim.busy.cat - dt); sim.busy.an = Math.max(0, sim.busy.an - dt);
   for (const f of sim.flashes) f.life -= dt;
   sim.flashes = sim.flashes.filter((f) => f.life > 0);
@@ -145,6 +158,96 @@ function stepIons(dt) {
   sim.bubbles = sim.bubbles.filter((bb) => bb.y > b.t - (state.tab === 'solution' ? 70 : 6));
   if (state.tab === 'molten' && sim.heating) sim.heat = Math.min(1, sim.heat + dt / 2);
   if (state.tab === 'alu' && state.power) { sim.anodeWear = Math.min(1, sim.anodeWear + dt / 60); sim.al = Math.min(1, sim.al + dt / 50); }
+}
+
+// ---------- Keeping a solution going ----------
+// A real beaker holds billions of billions of ions, far more than we can draw. As ions are
+// discharged, more drift in from the rest of the solution (in at the sides), so it never runs out.
+// H⁺ and OH⁻ ions come from water: a water molecule can split up, H₂O → H⁺ + OH⁻, and when an H⁺
+// meets an OH⁻ they can join back together into water, H⁺ + OH⁻ → H₂O.
+const count = (k) => sim.ions.filter((i) => i.kind === k && !i.leaving).length;
+const labelOf = (k) => ({ pos: soln().pos, neg: soln().neg, h: 'H⁺', oh: 'OH⁻', w: 'H₂O' })[k];
+const awayFromElectrodes = (i) => Math.abs(i.x - CAT_X) > 40 && Math.abs(i.x - AN_X) > 40;
+function enter(k) {
+  const b = box(), left = Math.random() < 0.5, ion = makeIon(k, labelOf(k), left ? b.l + 12 : b.r - 12, b.t + 14 + Math.random() * (b.b - b.t - 28));
+  ion.a = 0; ion.vx = left ? 40 : -40;
+  sim.ions.push(ion);
+}
+function note(x, y, text) { sim.events.push({ x, y, text, life: 1.8 }); }
+function split() {
+  const ws = sim.ions.filter((i) => i.kind === 'w' && !i.leaving && awayFromElectrodes(i));
+  if (!ws.length) return false;
+  const w = ws[Math.floor(Math.random() * ws.length)], h = makeIon('h', 'H⁺', w.x - 7, w.y), oh = makeIon('oh', 'OH⁻', w.x + 7, w.y);
+  h.vx = -45; oh.vx = 45;
+  w.gone = true;
+  sim.ions.push(h, oh);
+  note(w.x, w.y - 18, 'H₂O → H⁺ + OH⁻');
+  return true;
+}
+function join() {
+  const hs = sim.ions.filter((i) => i.kind === 'h' && !i.leaving && awayFromElectrodes(i)), ohs = sim.ions.filter((i) => i.kind === 'oh' && !i.leaving && awayFromElectrodes(i));
+  for (const h of hs) for (const oh of ohs) {
+    if (Math.hypot(h.x - oh.x, h.y - oh.y) > 20) continue;
+    h.gone = true; oh.gone = true;
+    const w = makeIon('w', 'H₂O', (h.x + oh.x) / 2, (h.y + oh.y) / 2);
+    sim.ions.push(w);
+    note(w.x, w.y - 18, 'H⁺ + OH⁻ → H₂O');
+    return true;
+  }
+  return false;
+}
+function keepGoing(dt) {
+  for (const k of ['split', 'join', 'inflow']) sim.cool[k] = Math.max(0, sim.cool[k] - dt);
+  for (const e of sim.events) { e.life -= dt; e.y -= 8 * dt; }
+  sim.events = sim.events.filter((e) => e.life > 0);
+  // Ions from the compound, and water molecules, that have been used are replaced from the rest of the solution
+  if (!sim.cool.inflow) {
+    let n = 0;
+    for (const k of ['pos', 'neg', 'w']) if (count(k) < (sim.target[k] || 0)) { enter(k); n++; }
+    if (n) sim.cool.inflow = 0.3;
+  }
+  // Water splits up to replace H⁺ or OH⁻ ions, and they join back together into water when they meet
+  const h = count('h'), oh = count('oh');
+  if (!sim.cool.split && (h < H_N || oh < H_N) && split()) sim.cool.split = 0.5;
+  else if (!sim.cool.join && h >= H_N && oh >= H_N && join()) sim.cool.join = 3;
+  // Ions left behind build up (sodium hydroxide, say). Past a point, the extra drift off into the rest of the solution.
+  for (const k of ['h', 'oh']) {
+    if (count(k) <= H_N + 6) continue;
+    const spare = sim.ions.filter((i) => i.kind === k && !i.leaving);
+    if (spare.length) { const ion = spare[Math.floor(Math.random() * spare.length)]; ion.leaving = true; ion.a = ion.a ?? 1; }
+  }
+}
+
+// ---------- Current in the wires (as on the circuit builder) ----------
+// Electrons flow from the − terminal along the wire into the cathode, where positive ions gain them.
+// At the anode, negative ions lose electrons, which flow along the wire back to the + terminal.
+// No electrons go through the electrolyte: the ions carry the charge there.
+// Each path is listed in the direction the electrons go; conventional current goes the other way.
+function wirePaths() {
+  if (state.tab === 'alu') {
+    const ans = electrodes().an.map((x) => [[x, 222], [x, 97], [280, 97], [280, 60]]);
+    return [[[225, 43], [44, 43], [44, 250], [80, 250]], ...ans];
+  }
+  const bottom = box().b - 12;
+  return [[[238, 56], [238, 80], [CAT_X, 80], [CAT_X, bottom]], [[AN_X, bottom], [AN_X, 80], [322, 80], [322, 56]]];
+}
+const flowing = () => state.power && mobile();
+let flowPhase = 0;
+function drawFlow() {
+  const how = $('flow').value;
+  if (how === 'off' || !flowing()) return;
+  ctx.fillStyle = PK.cssVar(how === 'electron' ? '--f1' : '--f2');
+  for (const path of wirePaths()) {
+    const pts = how === 'electron' ? path : [...path].reverse(), lens = [];
+    let total = 0;
+    for (let i = 1; i < pts.length; i++) { const l = Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]); lens.push(l); total += l; }
+    for (let s = flowPhase % 20; s < total; s += 20) {
+      let d = s, i = 0;
+      while (i < lens.length - 1 && d > lens[i]) { d -= lens[i]; i++; }
+      const f = lens[i] ? d / lens[i] : 0, x = pts[i][0] + (pts[i + 1][0] - pts[i][0]) * f, y = pts[i][1] + (pts[i + 1][1] - pts[i][1]) * f;
+      ctx.beginPath(); ctx.arc(x, y, 3.2, 0, Math.PI * 2); ctx.fill();
+    }
+  }
 }
 
 // ---------- Drawing ----------
@@ -177,11 +280,22 @@ function drawIons(c, small) {
   ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
   const water = state.tab !== 'solution' || $('water').checked;
   for (const ion of sim.ions) {
-    if (!water && (ion.kind === 'h' || ion.kind === 'oh')) continue;
+    if (!water && (ion.kind === 'h' || ion.kind === 'oh' || ion.kind === 'w')) continue;
+    ctx.globalAlpha = Math.max(0, Math.min(1, ion.a ?? 1));
+    if (ion.kind === 'w') {
+      // A water molecule: not charged, so drawn pale, with a dark label
+      ctx.fillStyle = '#e3eaee'; ctx.strokeStyle = '#90a4ae'; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc(ion.x, ion.y, 10, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = '#455a64'; ctx.font = `800 8px ${c.font}`; ctx.fillText('H₂O', ion.x, ion.y + 0.5);
+      ctx.globalAlpha = 1;
+      continue;
+    }
     const r = small || ion.kind === 'h' || ion.kind === 'oh' ? 9 : 12, col = ion.kind === 'pos' ? POS : ion.kind === 'neg' ? NEG : WATER;
     ctx.fillStyle = col; ctx.beginPath(); ctx.arc(ion.x, ion.y, r, 0, Math.PI * 2); ctx.fill();
     ctx.fillStyle = '#fff'; ctx.font = `800 ${r > 10 ? 9 : 8}px ${c.font}`; ctx.fillText(ion.label, ion.x, ion.y + 0.5);
+    ctx.globalAlpha = 1;
   }
+  if (water) for (const e of sim.events) { ctx.globalAlpha = Math.min(1, e.life / 0.6); tag(c, e.text, e.x, e.y, '#37474f', 'center', 11); ctx.globalAlpha = 1; }
   for (const f of sim.flashes) { ctx.strokeStyle = '#ffb300'; ctx.globalAlpha = f.life / 0.4; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(f.x, f.y, 13 - f.life * 10, 0, Math.PI * 2); ctx.stroke(); ctx.globalAlpha = 1; }
 }
 function drawBubbles(col) {
@@ -213,6 +327,7 @@ function drawMolten(c) {
   drawCircuit(c, on);
   drawElectrode(c, CAT_X, 112, b.b - 12, 'cathode (−)', 0, m.metal);
   drawElectrode(c, AN_X, 112, b.b - 12, 'anode (+)', 0, '');
+  drawFlow();
   drawIons(c, true);
   drawBubbles(m.gas);
   // What's in the crucible, to the left of it, clear of the electrodes
@@ -227,7 +342,7 @@ function drawSolution(c) {
   // Beaker of solution
   ctx.fillStyle = s.pos === 'Cu²⁺' ? 'rgba(66, 165, 245, .32)' : 'rgba(160, 205, 240, .22)';
   ctx.fillRect(b.l, b.t, b.r - b.l, b.b - b.t);
-  if (s.an === 'bromine' && sim.made.an > 0) { ctx.fillStyle = `rgba(205, 110, 30, ${0.5 * Math.min(1, sim.made.an / sim.supply.an)})`; ctx.beginPath(); ctx.ellipse(AN_X, b.t + 60, 46, 70, 0, 0, Math.PI * 2); ctx.fill(); }
+  if (s.an === 'bromine' && sim.made.an > 0) { ctx.fillStyle = `rgba(205, 110, 30, ${0.5 * (1 - Math.exp(-sim.made.an / 12))})`; ctx.beginPath(); ctx.ellipse(AN_X, b.t + 60, 46, 70, 0, 0, Math.PI * 2); ctx.fill(); }
   ctx.strokeStyle = c.art; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(b.l - 6, 150); ctx.lineTo(b.l - 6, b.b + 6); ctx.lineTo(b.r + 6, b.b + 6); ctx.lineTo(b.r + 6, 150); ctx.stroke();
   // Test tubes over each electrode, collecting any gas
   // Test tubes over each electrode, full of solution at first. Gas collects at the top and pushes
@@ -243,17 +358,20 @@ function drawSolution(c) {
     }
     ctx.strokeStyle = c.art; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x - 18, 258); ctx.lineTo(x - 18, 128); ctx.quadraticCurveTo(x, 108, x + 18, 128); ctx.lineTo(x + 18, 258); ctx.stroke();
   };
-  // Oxygen collects at half the rate of hydrogen, and chlorine partly dissolves
-  tube(CAT_X, gasCat ? 0.85 * sim.made.cat / sim.supply.cat : 0);
-  tube(AN_X, gasAn ? (s.an === 'oxygen' ? 0.45 : s.an === 'chlorine' ? 0.6 : 0.85) * sim.made.an / sim.supply.an : 0);
-  drawTest(c);
+  // The tubes fill up and then stay full. Two H⁺ make one H₂, but four OH⁻ make one O₂, so oxygen
+  // collects half as fast as hydrogen; chlorine partly dissolves, so less of it collects.
+  const fill = (n, per) => 0.92 * (1 - Math.exp(-n / per));
+  tube(CAT_X, gasCat ? fill(sim.made.cat, 24) : 0);
+  tube(AN_X, gasAn ? fill(sim.made.an, s.an === 'oxygen' ? 48 : s.an === 'chlorine' ? 40 : 24) : 0);
   drawCircuit(c, state.power);
-  drawElectrode(c, CAT_X, 112, b.b - 12, 'cathode (−)', s.cat === 'copper' ? (5 * sim.made.cat) / sim.supply.cat : 0, '#b8733d');
+  drawElectrode(c, CAT_X, 112, b.b - 12, 'cathode (−)', s.cat === 'copper' ? 5 * (1 - Math.exp(-sim.made.cat / 12)) : 0, '#b8733d');
   drawElectrode(c, AN_X, 112, b.b - 12, 'anode (+)', 0, '');
+  drawFlow();
   drawIons(c, false);
   drawBubbles('rgba(255,255,255,.95)');
   tag(c, `${s.name} solution`, 280, 348, c.text, 'center', 13);
-  usedUp(c);
+  if (state.power && !sim.tested && !sim.test && (sim.made.cat >= 3 || sim.made.an >= 3)) tag(c, 'Now test the products', 14, 22, '#e65100', 'left', 14);
+  drawTest(c);   // on top of everything else
 }
 // Once every ion that can be discharged has gone, say so
 function usedUp(c) {
@@ -278,6 +396,8 @@ function drawAlu(c) {
     ctx.fillStyle = '#212121'; ctx.fillRect(x - 26, top, 52, 222 - top);
   }
   ctx.strokeStyle = c.text; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(280, 92); ctx.lineTo(280, 60); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(225, 43); ctx.lineTo(44, 43); ctx.lineTo(44, 250); ctx.lineTo(66, 250); ctx.stroke();
+  drawFlow();
   ctx.fillStyle = c.surface2; ctx.strokeStyle = c.art; ctx.beginPath(); ctx.roundRect(225, 26, 110, 34, 6); ctx.fill(); ctx.stroke();
   tag(c, 'd.c. supply', 280, 43, c.text, 'center', 12);
   if ($('alu-ions').checked) drawIons(c, true);
@@ -306,10 +426,11 @@ function renderInfo() {
     const s = soln(), pc = $('pcat').value, pa = $('pan').value, done = sim.made.cat >= 3 || sim.made.an >= 3;
     const mark = (guess, real) => (!guess ? '' : guess === real ? ' <span class="badge good">your prediction was right</span>' : ` <span class="badge bad">you predicted ${guess}</span>`);
     $('info').innerHTML = `<p style="margin-top:0">Ions in the solution:</p>${ions([[s.pos, 'pos'], [s.neg, 'neg'], ['H⁺', 'pos'], ['OH⁻', 'neg']])}
-      <p class="note">H⁺ and OH⁻ come from the water.</p>
+      <p class="note">H⁺ and OH⁻ come from the water. A few water molecules split up into H⁺ and OH⁻, and H⁺ and OH⁻ join back together into water: H₂O ⇌ H⁺ + OH⁻.</p>
       ${done ? `<div class="working">
         <p><b>At the cathode (−):</b> ${s.cat}${mark(pc, s.cat)}<br>${s.why[0]}</p>
         <p><b>At the anode (+):</b> ${s.an}${mark(pa, s.an)}<br>${s.why[1]}</p>
+        <p><b>Left in the solution:</b> ${s.left}</p>
         <p><b>Higher: half equations</b><br>${PK.ans(s.half[0])}<br>${PK.ans(s.half[1])}</p>
       </div>` : `<p class="note" style="margin-bottom:0">${pc && pa ? 'Switch on to see if you were right.' : 'Make your predictions, then switch on.'}</p>`}`;
   } else {
@@ -321,6 +442,13 @@ function renderInfo() {
       <p><b>Why replace the anodes?</b> The oxygen made at the anodes reacts with the hot carbon to make carbon dioxide, so the anodes burn away.</p>
       <p style="margin-bottom:0"><b>Why is it expensive?</b> It takes a lot of energy to melt the electrolyte and to produce the electric current.</p>`;
   }
+  if (flowNote()) $('info').insertAdjacentHTML('beforeend', flowNote());
+}
+function flowNote() {
+  const how = $('flow').value;
+  if (how === 'electron') return '<p class="note" style="margin-bottom:0"><b>Electron flow:</b> electrons flow from the − terminal to the cathode, where positive ions gain them. At the anode, negative ions lose electrons, which flow back to the + terminal. No electrons go through the electrolyte: the moving ions carry the charge there.</p>';
+  if (how === 'conv') return '<p class="note" style="margin-bottom:0"><b>Conventional current</b> flows from + to −, the opposite way to the electrons. In the electrolyte, the moving ions carry the charge.</p>';
+  return '';
 }
 function fillPredictions() {
   for (const [id, key] of [['pcat', 'cat'], ['pan', 'an']]) {
@@ -342,6 +470,7 @@ function test(where, t) {
   // A few short lines for the box on the diagram
   const short = { pop: ['Squeaky pop:', 'hydrogen'], relight: ['It relights:', 'oxygen'], bleach: ['Bleached:', 'chlorine'], bright: ['Burns a little brighter.', 'The test for oxygen is', 'a glowing splint'], none: ['No change'], nogas: what === 'copper' ? ['No gas: copper', 'coats the electrode'] : ['No gas: bromine', 'dissolves'] }[effect];
   sim.test = { where, kind: t, effect, t: 0, short };
+  sim.tested = true;
 }
 // The test, in a box beside the apparatus: the tube of gas from that electrode, held mouth down,
 // with a splint or damp litmus paper at its mouth
@@ -387,10 +516,12 @@ const WHY = {
   molten: `<p><b>Why melt it?</b> In a solid ionic compound the ions are held in a lattice and can’t move, so it doesn’t conduct. When it melts, the ions are free to move and carry the current.</p>
     <p><b>Opposites attract.</b> Positive metal ions move to the negative electrode, the cathode, and gain electrons to become metal atoms. Negative non-metal ions move to the positive electrode, the anode, and lose electrons.</p>
     <p><b>Higher.</b> Gaining electrons is reduction and losing electrons is oxidation: OIL RIG.</p>`,
-  solution: `<p><b>Two kinds of ion.</b> A solution has the ions from the compound and also H⁺ and OH⁻ ions from the water.</p>
+  solution: `<p><b>Two kinds of ion.</b> A solution has the ions from the compound and also H⁺ and OH⁻ ions from the water. A few water molecules split up into H⁺ and OH⁻ ions, and H⁺ and OH⁻ ions join back together to make water, so there are always some: H₂O ⇌ H⁺ + OH⁻.</p>
     <p><b>At the cathode (−):</b> hydrogen is produced if the metal is more reactive than hydrogen. Otherwise the metal is produced.</p>
     <p><b>At the anode (+):</b> oxygen is produced, unless the solution contains halide ions (chloride, bromide or iodide). Then the halogen is produced.</p>
-    <p><b>The required practical</b> uses inert electrodes, such as carbon, so they don’t react themselves.</p>`,
+    <p><b>Ions that aren’t discharged</b> stay in the solution. With sodium chloride, the Na⁺ and OH⁻ ions are left, so the solution slowly turns into sodium hydroxide.</p>
+    <p><b>The required practical</b> uses inert electrodes, such as carbon, so they don’t react themselves.</p>
+    <p class="note">A real beaker holds billions of billions of ions, far more than we can show. As ions are discharged, more move in from the rest of the solution, so it keeps going.</p>`,
   alu: `<p><b>Why electrolysis?</b> Aluminium is more reactive than carbon, so it can’t be extracted by heating its oxide with carbon. Electrolysis is used instead, which takes a lot of energy.</p>
     <p>The aluminium sinks to the bottom and is tapped off. The carbon anodes slowly burn away and have to be replaced regularly.</p>`,
 };
@@ -401,6 +532,7 @@ const INTRO = {
 };
 function reset() {
   sim.made = { cat: 0, an: 0 }; sim.busy = { cat: 0, an: 0 }; sim.bubbles = []; sim.flashes = []; sim.test = null; state.power = false; $('test-result').textContent = '';
+  sim.target = {}; sim.events = []; sim.cool = { split: 0, join: 0, inflow: 0 }; sim.tested = false;
   if (state.tab === 'molten') { sim.heat = 0; sim.heating = false; }
   if (state.tab === 'alu') { sim.anodeWear = 0; sim.al = 0; }
   buildIons(); syncButtons(); renderInfo();
@@ -411,6 +543,7 @@ function syncButtons() {
   $('heat').textContent = sim.heating ? '🔥 Heating' : '🔥 Heat it';
   $('heat').disabled = sim.heating;
 }
+$('flow').addEventListener('change', renderInfo);
 function showTab(t) {
   state.tab = t;
   document.querySelectorAll('#tabs .chip').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.t === t)));
@@ -443,8 +576,9 @@ window.addEventListener('resize', size);
 
 let last = performance.now(), tick = 0, wasMolten = false;
 function frame(now) {
-  const dt = Math.min(0.05, (now - last) / 1000); last = now;
+  const dt = Math.max(0, Math.min(0.05, (now - last) / 1000)); last = now;
   stepIons(dt);
+  flowPhase = (flowPhase + 40 * dt) % 20;
   if (sim.test) { sim.test.t += dt; if (sim.test.t > 4) sim.test = null; }
   if (state.tab === 'alu' && state.power && Math.random() < dt * 6) {
     const xs = electrodes().an, x = xs[Math.floor(Math.random() * xs.length)];

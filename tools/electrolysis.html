@@ -35,9 +35,10 @@
     .ions { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 0; }
     .ion { display: inline-block; padding: 2px 9px; border-radius: 999px; font-weight: 800; font-size: .9rem; color: #fff; }
     .ion.pos { background: #d84315; } .ion.neg { background: #1565c0; }
-    .test-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) 1fr 1fr; gap: 8px; align-items: center; margin-bottom: 10px; }
+    .test-grid { display: grid; grid-template-columns: minmax(0, .9fr) 1fr 1fr; gap: 8px; align-items: center; margin-bottom: 10px; }
     .test-grid b { font-size: .85rem; color: var(--muted); text-align: center; }
-    .test-grid span { font-weight: 700; }
+    .test-grid span { font-weight: 700; font-size: .92rem; }
+    .test-grid .select { width: 100%; min-width: 0; padding-left: 6px; padding-right: 18px; font-size: .85rem; }
   </style>
 </head>
 <body>
@@ -61,18 +62,13 @@
             <button class="btn primary" id="power">⚡ Switch on</button>
             <button class="btn" id="heat">🔥 Heat it</button>
             <button class="btn" id="reset">↺ Reset</button>
+            <span style="flex:1"></span>
+            <select class="select" id="flow" aria-label="Show current" style="width:auto">
+              <option value="conv">Show conventional current</option>
+              <option value="electron">Show electron flow</option>
+              <option value="off" selected>Hide current</option>
+            </select>
           </div>
-        </div>
-        <div class="panel" data-for="solution" hidden>
-          <h2>Test the products</h2>
-          <p class="note" style="margin-top:0">Hold a test at the top of the tube over each electrode.</p>
-          <div class="test-grid">
-            <span></span><b>At the cathode (−)</b><b>At the anode (+)</b>
-            <span>🔥 A lit splint</span><button class="btn" data-test="lit" data-where="cat">Test</button><button class="btn" data-test="lit" data-where="an">Test</button>
-            <span>✨ A glowing splint</span><button class="btn" data-test="glow" data-where="cat">Test</button><button class="btn" data-test="glow" data-where="an">Test</button>
-            <span>📄 Damp blue litmus</span><button class="btn" data-test="litmus" data-where="cat">Test</button><button class="btn" data-test="litmus" data-where="an">Test</button>
-          </div>
-          <p class="note" id="test-result" style="margin-bottom:0;font-weight:700;color:var(--text)"></p>
         </div>
         <div class="panel after-aside">
           <h2>Why?</h2>
@@ -99,15 +95,19 @@
               <option value="na2so4">Sodium sulfate</option>
               <option value="kbr">Potassium bromide</option>
             </select></div>
-          <label class="toggle" style="margin-bottom:0"><input type="checkbox" id="water" checked> Show the H⁺ and OH⁻ ions from the water</label>
+          <label class="toggle" style="margin-bottom:0"><input type="checkbox" id="water" checked> Show water: H₂O, H⁺ and OH⁻</label>
         </div>
         <div class="panel" data-for="solution" hidden>
-          <h2>Your prediction</h2>
-          <p class="note" style="margin-top:0">Before you switch on: what will form at each electrode?</p>
-          <div class="field"><label for="pcat">At the cathode (−)</label>
-            <select class="select" id="pcat"><option value="">Choose…</option></select></div>
-          <div class="field" style="margin-bottom:0"><label for="pan">At the anode (+)</label>
-            <select class="select" id="pan"><option value="">Choose…</option></select></div>
+          <h2>Predict, then test</h2>
+          <p class="note" style="margin-top:0">Predict what will form before you switch on. Then hold each test at the top of a tube.</p>
+          <div class="test-grid">
+            <span></span><b>Cathode (−)</b><b>Anode (+)</b>
+            <span>🤔 Your prediction</span><select class="select" id="pcat" aria-label="Your prediction at the cathode"><option value="">Choose…</option></select><select class="select" id="pan" aria-label="Your prediction at the anode"><option value="">Choose…</option></select>
+            <span>🔥 A lit splint</span><button class="btn" data-test="lit" data-where="cat">Test</button><button class="btn" data-test="lit" data-where="an">Test</button>
+            <span>✨ A glowing splint</span><button class="btn" data-test="glow" data-where="cat">Test</button><button class="btn" data-test="glow" data-where="an">Test</button>
+            <span>📄 Damp blue litmus</span><button class="btn" data-test="litmus" data-where="cat">Test</button><button class="btn" data-test="litmus" data-where="an">Test</button>
+          </div>
+          <p class="note" id="test-result" style="margin-bottom:0;font-weight:700;color:var(--text)"></p>
         </div>
         <div class="panel" data-for="alu" hidden>
           <h2>Set-up</h2>
