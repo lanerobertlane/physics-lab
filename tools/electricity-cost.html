@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paying for Electricity · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Switch on appliances and watch the meter, then work out the energy they transfer in joules and kilowatt-hours, and what it costs: E = P t.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="physics, electricity, education, school, KS3, GCSE, AQA, science, simulation, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/electricity-cost.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Paying for electricity">
+  <meta property="og:description" content="Switch on appliances and watch the meter, then work out the energy they transfer in joules and kilowatt-hours, and what it costs: E = P t.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/electricity-cost.html">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Paying for electricity", "description": "Switch on appliances and watch the meter, then work out the energy they transfer in joules and kilowatt-hours, and what it costs: E = P t.", "url": "https://lanerobertlane.space/tools/electricity-cost.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["Key Stage 3", "GCSE"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="Physics Lab">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #scene { display: block; width: 100%; aspect-ratio: 800 / 400; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .stage-bar .spacer { flex: 1; }
+    #explain p, #info p { margin: 0 0 8px; line-height: 1.5; }
+    #info p:last-child, #explain p:last-child { margin-bottom: 0; }
+    .readout dd { white-space: nowrap; }
+    .apps { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
+    .app { display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; column-gap: 8px; align-items: center; text-align: left;
+      padding: 8px 10px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--surface); color: var(--text); font: inherit; cursor: pointer; }
+    .app .em { grid-row: 1 / 3; font-size: 1.6rem; line-height: 1; }
+    .app .nm { font-size: .85rem; font-weight: 700; line-height: 1.2; }
+    .app .pw { font-size: .85rem; color: var(--muted); font-weight: 700; font-variant-numeric: tabular-nums; }
+    .app[aria-pressed="true"] { background: #fff3c4; border-color: #f2a900; box-shadow: inset 0 0 0 1px #f2a900; color: #3a2a00; }
+    .app[aria-pressed="true"] .pw { color: #6b4e00; }
+    .set-label { font-size: .88rem; font-weight: 700; color: var(--muted); margin: 0 0 6px; }
+    .working p { margin: 0 0 8px; }
+    .working .eq { font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: 1.15rem; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Paying for electricity</h1>
+      <p id="intro"></p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px" aria-label="Show">
+      <button class="chip" data-t="power" aria-pressed="true">Power ratings</button>
+      <button class="chip" data-t="cost" aria-pressed="false">Energy &amp; cost</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="scene" aria-label="An electricity meter"></canvas>
+          <div class="stage-bar">
+            <button class="btn" id="alloff" data-for="power">Switch everything off</button>
+            <button class="btn" id="zero" data-for="power">↺ Reset the meter</button>
+            <button class="btn primary" id="run" data-for="cost" hidden>▶ Switch it on</button>
+            <button class="btn" id="reset" data-for="cost" hidden>↺ Reset</button>
+            <span class="spacer"></span>
+            <div class="chip-group" id="clock" data-for="power" aria-label="How fast the clock runs"><button class="chip" data-v="1" aria-pressed="false">Real time</button><button class="chip" data-v="60" aria-pressed="true">1 s = 1 minute</button><button class="chip" data-v="3600" aria-pressed="false">1 s = 1 hour</button></div>
+          </div>
+        </div>
+        <div class="panel after-aside">
+          <h2 id="explain-h">Why?</h2>
+          <div id="explain"></div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel" data-for="power">
+          <h2>Appliances</h2>
+          <p class="note" style="margin-top:0">Tap an appliance to switch it on or off. Its power rating is shown in watts (W).</p>
+          <div class="apps"></div>
+        </div>
+        <div class="panel" data-for="cost" hidden>
+          <h2>Set up</h2>
+          <div class="field"><label for="app2">Appliance</label><select class="select" id="app2"></select></div>
+          <div class="num-row"><label for="pw">Power</label><div class="stepper" data-num><button data-step="-1" aria-label="Less power">−</button><input type="number" id="pw" min="1" max="20000" step="any" data-inc="100" value="3000" inputmode="decimal"><span class="unit">W</span><button data-step="1" aria-label="More power">+</button></div></div>
+          <div class="num-row" style="margin-bottom:6px"><label for="time">Time switched on</label><div class="stepper" data-num><button data-step="-1" aria-label="Less time">−</button><input type="number" id="time" min="0" max="10000" step="any" data-inc="1" value="4" inputmode="decimal"><span class="unit" id="time-unit">min</span><button data-step="1" aria-label="More time">+</button></div></div>
+          <div class="chip-group" id="tunit" aria-label="Unit of time" style="margin-bottom:0;justify-content:flex-end"><button class="chip" data-v="s" aria-pressed="false">seconds</button><button class="chip" data-v="min" aria-pressed="true">minutes</button><button class="chip" data-v="h" aria-pressed="false">hours</button></div>
+        </div>
+        <div class="panel">
+          <h2>Price of electricity</h2>
+          <div class="num-row"><label for="price">Price per kWh</label><div class="stepper" data-num><button data-step="-1" aria-label="Cheaper">−</button><input type="number" id="price" min="1" max="100" step="any" data-inc="1" value="26" inputmode="decimal"><span class="unit">p</span><button data-step="1" aria-label="Dearer">+</button></div></div>
+          <p class="note" style="margin-bottom:0">From October to December 2026, the price cap for electricity in Great Britain was about 26p per kWh. Look at a real bill to compare.</p>
+        </div>
+        <div class="panel">
+          <h2>What’s happening</h2>
+          <div id="info"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/electricity-cost.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/quiz-pages/electricity-cost.js"></script>
+  <script src="../js/practice-tab.js" data-eqs="energy-pt power-e"></script>
+</body>
+</html>

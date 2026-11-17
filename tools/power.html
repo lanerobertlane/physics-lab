@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Power: Comparing Two Motors · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Two motors lift loads through a height. Time them, find the energy transferred, and work out which has the greater power: P = E ÷ t.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="physics, energy, education, school, KS3, GCSE, AQA, science, simulation, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/power.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Power: comparing two motors">
+  <meta property="og:description" content="Two motors lift loads through a height. Time them, find the energy transferred, and work out which has the greater power: P = E ÷ t.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/power.html">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Power: comparing two motors", "description": "Two motors lift loads through a height. Time them, find the energy transferred, and work out which has the greater power: P = E ÷ t.", "url": "https://lanerobertlane.space/tools/power.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["Key Stage 3", "GCSE"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="Physics Lab">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #scene { display: block; width: 100%; aspect-ratio: 800 / 520; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .stage-bar .spacer { flex: 1; }
+    #explain p, #info p { margin: 0 0 8px; line-height: 1.5; }
+    #info p:last-child, #explain p:last-child { margin-bottom: 0; }
+    .motor-h { display: flex; align-items: center; gap: 8px; }
+    .motor-h .dot { width: 14px; height: 14px; border-radius: 50%; display: inline-block; }
+    .results { width: 100%; border-collapse: collapse; margin: 0 0 10px; font-variant-numeric: tabular-nums; font-size: .92rem; }
+    .results th, .results td { border: 1px solid var(--border-strong); padding: 6px; text-align: center; }
+    .results th { background: var(--surface-2); font-size: .85rem; }
+    .results td:first-child { font-weight: 800; }
+    .working p { margin: 0 0 6px; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Power: comparing two motors</h1>
+      <p id="intro"></p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px" aria-label="Show">
+      <button class="chip" data-t="same" aria-pressed="true">The same job</button>
+      <button class="chip" data-t="different" aria-pressed="false">Different jobs</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="scene" class="drag" aria-label="Two motors lifting loads, with a graph of energy transferred against time"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="go">▶ Go</button>
+            <button class="btn" id="reset">↺ Reset</button>
+            <span class="spacer"></span>
+            <button class="btn" id="mystery">🎲 Mystery motors</button>
+            <button class="btn" id="reveal" hidden>Show their power</button>
+          </div>
+        </div>
+        <div class="panel after-aside">
+          <h2>Results</h2>
+          <div id="results"></div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel" data-for="same">
+          <h2>The job</h2>
+          <p class="note" style="margin-top:0">Both motors lift the same load through the same height.</p>
+          <div class="num-row"><label for="mass">Mass of the load</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: mass">−</button><input type="number" id="mass" min="0.5" max="50" step="any" data-inc="1" value="5" inputmode="decimal"><span class="unit">kg</span><button data-step="1" aria-label="More: mass">+</button></div></div>
+          <div class="num-row"><label for="height">Height to lift it</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: height">−</button><input type="number" id="height" min="0.5" max="5" step="any" data-inc="0.5" value="2" inputmode="decimal"><span class="unit">m</span><button data-step="1" aria-label="More: height">+</button></div></div>
+        </div>
+        <div class="panel">
+          <h2 class="motor-h"><span class="dot" style="background:#1e63c6"></span>Motor A</h2>
+          <div data-for="different" hidden>
+            <div class="num-row"><label for="massA">Mass of the load</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: mass for motor A">−</button><input type="number" id="massA" min="0.5" max="50" step="any" data-inc="1" value="5" inputmode="decimal"><span class="unit">kg</span><button data-step="1" aria-label="More: mass for motor A">+</button></div></div>
+            <div class="num-row"><label for="heightA">Height to lift it</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: height for motor A">−</button><input type="number" id="heightA" min="0.5" max="5" step="any" data-inc="0.5" value="2" inputmode="decimal"><span class="unit">m</span><button data-step="1" aria-label="More: height for motor A">+</button></div></div>
+          </div>
+          <div class="power-row"><div class="num-row"><label for="powerA">Power</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: power of motor A">−</button><input type="number" id="powerA" min="5" max="500" step="any" data-inc="5" value="40" inputmode="decimal"><span class="unit">W</span><button data-step="1" aria-label="More: power of motor A">+</button></div></div></div>
+          <p class="note mystery-note" hidden style="margin:0">Its power is a mystery. Time it, then work it out!</p>
+        </div>
+        <div class="panel">
+          <h2 class="motor-h"><span class="dot" style="background:#e65100"></span>Motor B</h2>
+          <div data-for="different" hidden>
+            <div class="num-row"><label for="massB">Mass of the load</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: mass for motor B">−</button><input type="number" id="massB" min="0.5" max="50" step="any" data-inc="1" value="20" inputmode="decimal"><span class="unit">kg</span><button data-step="1" aria-label="More: mass for motor B">+</button></div></div>
+            <div class="num-row"><label for="heightB">Height to lift it</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: height for motor B">−</button><input type="number" id="heightB" min="0.5" max="5" step="any" data-inc="0.5" value="2" inputmode="decimal"><span class="unit">m</span><button data-step="1" aria-label="More: height for motor B">+</button></div></div>
+          </div>
+          <div class="power-row"><div class="num-row"><label for="powerB">Power</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: power of motor B">−</button><input type="number" id="powerB" min="5" max="500" step="any" data-inc="5" value="60" inputmode="decimal"><span class="unit">W</span><button data-step="1" aria-label="More: power of motor B">+</button></div></div></div>
+          <p class="note mystery-note" hidden style="margin:0">Its power is a mystery. Time it, then work it out!</p>
+        </div>
+        <div class="panel">
+          <h2>What’s happening</h2>
+          <div id="info"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/power.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/quiz-pages/power.js"></script>
+  <script src="../js/practice-tab.js" data-eqs="power-e power-w gpe"></script>
+</body>
+</html>

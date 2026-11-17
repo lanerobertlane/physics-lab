@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brownian Motion &amp; Diffusion · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Watch a smoke particle being pushed about by air particles too small to see, and watch a gas and a liquid spread out by diffusion.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="physics, particles, education, school, KS3, science, simulation, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/brownian.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Brownian motion &amp; diffusion">
+  <meta property="og:description" content="Watch a smoke particle being pushed about by air particles too small to see, and watch a gas and a liquid spread out by diffusion.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/brownian.html">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Brownian motion & diffusion", "description": "Watch a smoke particle being pushed about by air particles too small to see, and watch a gas and a liquid spread out by diffusion.", "url": "https://lanerobertlane.space/tools/brownian.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["Key Stage 3"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="Physics Lab">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #scene { display: block; width: 100%; aspect-ratio: 800 / 470; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .stage-bar .spacer { flex: 1; }
+    .stage-bar [hidden] { display: none !important; }
+    #explain p, #info p { margin: 0 0 8px; line-height: 1.5; }
+    #info p:last-child { margin-bottom: 0; }
+    .set-label { font-size: .88rem; font-weight: 700; color: var(--muted); margin: 0 0 6px; }
+    .readout dd { white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Brownian motion &amp; diffusion</h1>
+      <p id="intro"></p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px" aria-label="Show">
+      <button class="chip" data-t="brownian" aria-pressed="true">Brownian motion</button>
+      <button class="chip" data-t="diffusion" aria-pressed="false">Diffusion</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="scene" aria-label="A smoke particle seen through a microscope"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="lift" data-for="diffusion" hidden>▶ Lift the divider</button>
+            <button class="btn" id="pause">⏸ Pause</button>
+            <button class="btn" id="clear" data-for="brownian">Clear the path</button>
+            <button class="btn" id="reset" data-for="diffusion" hidden>↺ Reset</button>
+            <span class="spacer"></span>
+            <div class="chip-group" id="bspeed" data-for="brownian" aria-label="Speed"><button class="chip" data-v="1" aria-pressed="true">Normal</button><button class="chip" data-v="0.15" aria-pressed="false">Slow motion</button></div>
+            <div class="chip-group" id="dspeed" data-for="diffusion" aria-label="Speed" hidden><button class="chip" data-v="1" aria-pressed="true">Normal</button><button class="chip" data-v="4" aria-pressed="false">Fast ×4</button></div>
+          </div>
+        </div>
+        <div class="panel after-aside">
+          <h2>Why?</h2>
+          <div id="explain"></div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel" data-for="brownian">
+          <h2>Set up</h2>
+          <div class="num-row"><label for="btemp">Temperature of the air</label><div class="stepper" data-num><button data-step="-1" aria-label="Colder">−</button><input type="number" id="btemp" min="0" max="300" step="any" data-inc="20" value="20" inputmode="decimal"><span class="unit">°C</span><button data-step="1" aria-label="Hotter">+</button></div></div>
+          <p class="set-label">Smoke particle</p>
+          <div class="chip-group" id="size" aria-label="Size of the smoke particle" style="margin-bottom:12px"><button class="chip" data-v="small" aria-pressed="true">Small</button><button class="chip" data-v="large" aria-pressed="false">Large</button></div>
+          <label class="toggle"><input type="checkbox" id="air"> Show the air particles</label>
+          <label class="toggle" style="margin-bottom:0"><input type="checkbox" id="path" checked> Draw its path</label>
+        </div>
+        <div class="panel" data-for="diffusion" hidden>
+          <h2>Set up</h2>
+          <p class="set-label">Spreading through</p>
+          <div class="chip-group" id="medium" aria-label="Gas or liquid" style="margin-bottom:12px"><button class="chip" data-v="gas" aria-pressed="true">A gas</button><button class="chip" data-v="liquid" aria-pressed="false">A liquid</button></div>
+          <div class="num-row"><label for="dtemp">Temperature</label><div class="stepper" data-num><button data-step="-1" aria-label="Colder">−</button><input type="number" id="dtemp" min="0" max="300" step="any" data-inc="20" value="20" inputmode="decimal"><span class="unit">°C</span><button data-step="1" aria-label="Hotter">+</button></div></div>
+          <p class="set-label">Show</p>
+          <div class="chip-group" id="view" aria-label="Show" style="margin-bottom:12px"><button class="chip" data-v="particles" aria-pressed="true">The particles</button><button class="chip" data-v="colour" aria-pressed="false">What you’d see</button></div>
+          <label class="toggle" style="margin-bottom:0"><input type="checkbox" id="follow"> Follow one coloured particle</label>
+        </div>
+        <div class="panel">
+          <h2>What’s happening</h2>
+          <div id="info"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/brownian.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/quiz-pages/brownian.js"></script>
+  <script src="../js/practice-tab.js"></script>
+</body>
+</html>

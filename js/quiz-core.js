@@ -33,7 +33,7 @@ window.QZ = (() => {
     return q.accept.find((a) => norm(a) === g) || q.accept.find((a) => { const n = norm(a); return n.length >= 5 && close1(g, n); }) || null;
   }
   function markNum(q, given) {
-    const v = Number(String(given).replace(/[,\s]/g, '').replace(/[a-zA-Z/]+$/, ''));
+    const v = Number(String(given).replace(/[,\s£]/g, '').replace(/[a-zA-Z/]+$/, ''));
     if (!Number.isFinite(v)) return false;
     return Math.abs(v - q.num) <= Math.abs(q.num) * 0.01 + 1e-9;
   }

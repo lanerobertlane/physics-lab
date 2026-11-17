@@ -150,6 +150,25 @@ window.SPEC_INDEX = [
   ]
  },
  {
+  "page": "brownian",
+  "title": "Brownian motion & diffusion",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "KS3",
+    "text": "The particle model: the differences in arrangement, motion and closeness of particles in solids, liquids and gases"
+   },
+   {
+    "code": "KS3",
+    "text": "Brownian motion in gases"
+   },
+   {
+    "code": "KS3",
+    "text": "Diffusion in liquids and gases, driven by differences in concentration"
+   }
+  ]
+ },
+ {
   "page": "circuits",
   "title": "Circuit builder",
   "course": "physics",
@@ -328,6 +347,33 @@ window.SPEC_INDEX = [
    {
     "code": "KS3",
     "text": "Energy changes and transfers; comparing efficiency; wasted energy; Sankey diagrams"
+   }
+  ]
+ },
+ {
+  "page": "electricity-cost",
+  "title": "Paying for electricity",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "4.1.1.4",
+    "text": "Power is the rate at which energy is transferred: P = E ÷ t. An energy transfer of 1 joule per second is a power of 1 watt"
+   },
+   {
+    "code": "4.2.4.2",
+    "text": "Energy transfers in everyday appliances: the energy transferred depends on the power of the appliance and how long it is switched on for. E = P t"
+   },
+   {
+    "code": "4.2.4.2",
+    "text": "How appliances transfer energy from the mains to the kinetic energy of electric motors or the energy of heating devices"
+   },
+   {
+    "code": "KS3",
+    "text": "Comparing power ratings of appliances in watts (W, kW)"
+   },
+   {
+    "code": "KS3",
+    "text": "Comparing amounts of energy transferred (J, kJ, kW hour); domestic fuel bills, fuel use and costs"
    }
   ]
  },
@@ -940,6 +986,33 @@ window.SPEC_INDEX = [
    {
     "code": "KS3",
     "text": "The periodic table: groups, periods, metals and non-metals"
+   }
+  ]
+ },
+ {
+  "page": "power",
+  "title": "Power: comparing two motors",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "4.1.1.4",
+    "text": "Power is the rate at which energy is transferred or the rate at which work is done: P = E ÷ t and P = W ÷ t. An energy transfer of 1 joule per second is a power of 1 watt"
+   },
+   {
+    "code": "4.1.1.4",
+    "text": "Examples that illustrate power, such as two electric motors that lift the same weight through the same height, one faster than the other"
+   },
+   {
+    "code": "4.1.1.2",
+    "text": "Gravitational potential energy: Ep = m g h"
+   },
+   {
+    "code": "4.5.2",
+    "text": "Work done: W = F s. Lifting a load, the work done is its weight × the height"
+   },
+   {
+    "code": "KS3",
+    "text": "Power as the rate of transfer of energy, in watts (W) and kilowatts (kW)"
    }
   ]
  },
