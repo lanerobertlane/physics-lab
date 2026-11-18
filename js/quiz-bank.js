@@ -3242,6 +3242,65 @@ window.QUIZ_BANK = {
   },
   {
    "type": "mc",
+   "topic": "particles",
+   "tool": "Gas pressure",
+   "q": "Why does a balloon get bigger when you blow more air into it?",
+   "lv": "both",
+   "opts": [
+    "More particles hit the inside of the rubber every second, so the pressure inside increases",
+    "The particles inside get bigger",
+    "The air outside is sucked in",
+    "The rubber gets warmer"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "More particles means more collisions with the rubber every second. The pressure inside goes up and pushes the rubber out until it balances the push from outside.",
+   "id": "par1a0y8",
+   "pg": "gas"
+  },
+  {
+   "type": "mc",
+   "topic": "particles",
+   "tool": "Gas pressure",
+   "q": "A blown-up balloon is put into a freezer. What happens to it?",
+   "lv": "ks3",
+   "opts": [
+    "It gets smaller, because the particles inside move more slowly",
+    "It gets bigger, because cold air expands",
+    "It stays the same size",
+    "It bursts"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Colder particles move more slowly, so they hit the rubber less hard and less often. The pressure inside falls and the balloon shrinks.",
+   "id": "parhgxwz",
+   "pg": "gas"
+  },
+  {
+   "type": "tf",
+   "topic": "particles",
+   "tool": "Gas pressure",
+   "q": "A weather balloon gets bigger as it rises, because the air pressure outside it gets lower.",
+   "lv": "both",
+   "ans": true,
+   "exp": "Higher up there is less air above, so fewer air particles hit the outside of the balloon. The air inside pushes the rubber further out, until it bursts.",
+   "id": "par5n3xl",
+   "pg": "gas"
+  },
+  {
+   "type": "open",
+   "topic": "particles",
+   "tool": "Gas pressure",
+   "q": "Use the particle model to explain why a blown-up balloon stays the same size.",
+   "lv": "both",
+   "model": "The air particles inside move fast in random directions and keep hitting the inside of the rubber, pushing it outwards. Air particles outside hit the outside and push inwards. The balloon stays at the size where the push from inside balances the push from outside and the squeeze of the stretched rubber.",
+   "id": "paru1zss",
+   "pg": "gas"
+  },
+  {
+   "type": "mc",
    "topic": "forces",
    "tool": "Acceleration",
    "q": "In the acceleration required practical, what is the independent variable when you investigate the effect of force?",

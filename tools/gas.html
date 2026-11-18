@@ -38,13 +38,22 @@
     .results th { background: var(--surface-2); }
     .results td.n { color: var(--answer, inherit); }
     .results .del { border: 0; background: none; color: var(--muted); cursor: pointer; }
+    .stage-bar .spacer { flex: 1; }
+    #info p { margin: 0 0 8px; line-height: 1.5; }
+    #info p:last-child { margin-bottom: 0; }
+    .readout dd { white-space: nowrap; }
   </style>
 </head>
 <body>
   <main class="tool-page">
     <div class="tool-intro">
       <h1>Gas pressure</h1>
-      <p>Gas particles move randomly and hit the walls of the container. Each collision pushes on the wall, which is what causes the pressure. Drag the piston to change the volume, or change the temperature.</p>
+      <p id="intro">Gas particles move randomly and hit the walls of the container. Each collision pushes on the wall, which is what causes the pressure. Drag the piston to change the volume, or change the temperature.</p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px" aria-label="Show">
+      <button class="chip" data-t="cylinder" aria-pressed="true">Cylinder and piston</button>
+      <button class="chip" data-t="balloon" aria-pressed="false">Blowing up a balloon</button>
     </div>
 
     <div class="tool-layout">
@@ -52,14 +61,28 @@
         <div class="panel stage">
           <canvas id="gas" class="drag" aria-label="Gas particles in a cylinder with a piston"></canvas>
           <div class="stage-bar">
-            <label class="toggle"><input type="checkbox" id="iso" checked> Keep the temperature constant</label>
-            <label class="toggle"><input type="checkbox" id="trail"> Follow one particle</label>
+            <label class="toggle" data-for="cylinder"><input type="checkbox" id="iso" checked> Keep the temperature constant</label>
+            <label class="toggle" data-for="cylinder"><input type="checkbox" id="trail"> Follow one particle</label>
+            <button class="btn primary" id="pump" data-for="balloon" hidden>＋ Pump in some air</button>
+            <button class="btn" id="letout" data-for="balloon" hidden>− Let some out</button>
+            <button class="btn" id="newb" data-for="balloon" hidden>🎈 New balloon</button>
           </div>
         </div>
       </div>
 
       <aside>
-        <div class="panel">
+        <div class="panel" data-for="balloon" hidden>
+          <h2>The balloon</h2>
+          <div class="num-row"><label for="btemp">Temperature of the air inside</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: temperature inside">−</button><input type="number" id="btemp" min="-196" max="100" step="any" data-inc="10" value="20" inputmode="decimal" data-whole><span class="unit">°C</span><button data-step="1" aria-label="More: temperature inside">+</button></div></div>
+          <div class="num-row"><label for="bout">Air pressure outside</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: pressure outside">−</button><input type="number" id="bout" min="30" max="110" step="any" data-inc="10" value="100" inputmode="decimal" data-whole><span class="unit">kPa</span><button data-step="1" aria-label="More: pressure outside">+</button></div></div>
+          <p class="note" style="margin:-4px 0 10px">About 100 kPa at sea level, and about 33 kPa at the top of Mount Everest.</p>
+          <label class="toggle" style="margin-bottom:0"><input type="checkbox" id="arrows" checked> Show the forces on the balloon</label>
+        </div>
+        <div class="panel" data-for="balloon" hidden>
+          <h2>What’s happening</h2>
+          <div id="info"></div>
+        </div>
+        <div class="panel" data-for="cylinder">
           <h2>Controls</h2>
           <div class="num-row"><label for="volume">Volume</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: volume">−</button><input type="number" id="volume" min="0.5" max="2" step="any" data-inc="0.1" value="2" inputmode="decimal"><span class="unit">L</span><button data-step="1" aria-label="More: volume">+</button></div></div>
           <div class="num-row"><label for="temp">Temperature</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: temperature">−</button><input type="number" id="temp" min="-173" max="327" step="any" data-inc="10" data-whole value="27"><span class="unit">°C</span><button data-step="1" aria-label="More: temperature">+</button></div></div>
@@ -71,7 +94,7 @@
           <p class="note" id="iso-note"></p>
         </div>
 
-        <div class="panel">
+        <div class="panel" data-for="cylinder">
           <h2>Results</h2>
           <div class="btn-row">
             <button class="btn primary" id="record">＋ Record reading</button>

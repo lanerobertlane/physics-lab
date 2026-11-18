@@ -151,6 +151,7 @@ function stepIons(dt) {
   }
   sim.ions = sim.ions.filter((i) => !i.gone);
   if (state.tab === 'solution') keepGoing(dt);
+  if (state.tab === 'alu') keepAluGoing(dt);
   sim.busy.cat = Math.max(0, sim.busy.cat - dt); sim.busy.an = Math.max(0, sim.busy.an - dt);
   for (const f of sim.flashes) f.life -= dt;
   sim.flashes = sim.flashes.filter((f) => f.life > 0);
@@ -216,6 +217,27 @@ function keepGoing(dt) {
     const spare = sim.ions.filter((i) => i.kind === k && !i.leaving);
     if (spare.length) { const ion = spare[Math.floor(Math.random() * spare.length)]; ion.leaving = true; ion.a = ion.a ?? 1; }
   }
+}
+
+// ---------- Keeping the aluminium cell going ----------
+// A real cell runs day and night: fresh aluminium oxide is added as it's used up (its ions dissolve
+// into the cryolite), and the molten aluminium is tapped off from the bottom when it gets deep.
+const ALU_IONS = { pos: ['Al³⁺', 10], neg: ['O²⁻', 15] };
+function keepAluGoing(dt) {
+  sim.cool.inflow = Math.max(0, sim.cool.inflow - dt);
+  if (!sim.cool.inflow) {
+    const b = box();
+    let added = false;
+    for (const [k, [label, n]] of Object.entries(ALU_IONS)) {
+      if (count(k) >= n) continue;
+      const ion = makeIon(k, label, b.l + 14 + Math.random() * (b.r - b.l - 28), b.t + 50 + Math.random() * (b.b - b.t - 64));
+      ion.a = 0; sim.ions.push(ion); added = true;
+    }
+    if (added) sim.cool.inflow = 0.2;
+  }
+  // Tap off the molten aluminium when the layer gets deep
+  if (sim.tapping) { sim.al = Math.max(0.15, sim.al - dt / 6); if (sim.al <= 0.15) sim.tapping = false; }
+  else if (sim.al >= 1) sim.tapping = true;
 }
 
 // ---------- Current in the wires (as on the circuit builder) ----------
@@ -405,6 +427,15 @@ function drawAlu(c) {
   tag(c, 'carbon anodes (+)', 280, 82, POS, 'center', 12);
   tag(c, 'aluminium oxide dissolved in molten cryolite, about 950 °C', 280, 262, '#5d2f00', 'center', 12);
   tag(c, 'molten aluminium', 280, 318 - al / 2 + 4, '#37474f', 'center', 12);
+  if (sim.tapping) {
+    // A siphon draws the aluminium off into a ladle outside the cell
+    ctx.strokeStyle = '#b0bec5'; ctx.lineWidth = 6; ctx.lineJoin = 'round';
+    ctx.beginPath(); ctx.moveTo(458, 322); ctx.lineTo(458, 132); ctx.lineTo(526, 132); ctx.lineTo(526, 196); ctx.stroke(); ctx.lineWidth = 1;
+    ctx.fillStyle = '#cfd8dc'; ctx.fillRect(523, 196, 6, 14 + 6 * Math.sin(performance.now() / 120));
+    ctx.fillStyle = '#5d4037'; ctx.beginPath(); ctx.moveTo(506, 214); ctx.lineTo(546, 214); ctx.lineTo(540, 246); ctx.lineTo(512, 246); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = '#cfd8dc'; ctx.fillRect(510, 220, 32, 8);
+    tag(c, 'tapping', 526, 258, '#37474f', 'center', 11); tag(c, 'it off', 526, 272, '#37474f', 'center', 11);
+  }
   tag(c, 'carbon lining: cathode (−)', 280, 362, NEG, 'center', 12);
   tag(c, wear > 0.8 ? 'The anodes have nearly burnt away: replace them' : state.power ? 'Oxygen reacts with the hot carbon anodes, making carbon dioxide' : 'Switch on to start', 280, 16, wear > 0.8 ? '#c62828' : c.muted, 'center', 12, 700);
 }
@@ -439,6 +470,7 @@ function renderInfo() {
         <p><b>At the anode (+):</b> oxide ions lose electrons and become oxygen.<br>${PK.ans('2O²⁻ → O₂ + 4e⁻')}</p>
       </div>
       <p><b>Why cryolite?</b> Aluminium oxide melts at over 2000 °C. Dissolving it in molten cryolite lowers the temperature needed to about 950 °C, saving energy.</p>
+      <p><b>Why does it keep going?</b> More aluminium oxide is added as it’s used up, and the molten aluminium is tapped off from the bottom, so the cell runs all the time.</p>
       <p><b>Why replace the anodes?</b> The oxygen made at the anodes reacts with the hot carbon to make carbon dioxide, so the anodes burn away.</p>
       <p style="margin-bottom:0"><b>Why is it expensive?</b> It takes a lot of energy to melt the electrolyte and to produce the electric current.</p>`;
   }
@@ -523,7 +555,7 @@ const WHY = {
     <p><b>The required practical</b> uses inert electrodes, such as carbon, so they don’t react themselves.</p>
     <p class="note">A real beaker holds billions of billions of ions, far more than we can show. As ions are discharged, more move in from the rest of the solution, so it keeps going.</p>`,
   alu: `<p><b>Why electrolysis?</b> Aluminium is more reactive than carbon, so it can’t be extracted by heating its oxide with carbon. Electrolysis is used instead, which takes a lot of energy.</p>
-    <p>The aluminium sinks to the bottom and is tapped off. The carbon anodes slowly burn away and have to be replaced regularly.</p>`,
+    <p>The aluminium sinks to the bottom and is tapped off. More aluminium oxide is added as it’s used up, so a cell runs day and night. The carbon anodes slowly burn away and have to be replaced regularly.</p>`,
 };
 const INTRO = {
   molten: 'Pass a current through a molten ionic compound. The ions move to the electrodes and are discharged: the metal at the cathode and the non-metal at the anode.',
@@ -532,7 +564,7 @@ const INTRO = {
 };
 function reset() {
   sim.made = { cat: 0, an: 0 }; sim.busy = { cat: 0, an: 0 }; sim.bubbles = []; sim.flashes = []; sim.test = null; state.power = false; $('test-result').textContent = '';
-  sim.target = {}; sim.events = []; sim.cool = { split: 0, join: 0, inflow: 0 }; sim.tested = false;
+  sim.target = {}; sim.events = []; sim.cool = { split: 0, join: 0, inflow: 0 }; sim.tested = false; sim.tapping = false;
   if (state.tab === 'molten') { sim.heat = 0; sim.heating = false; }
   if (state.tab === 'alu') { sim.anodeWear = 0; sim.al = 0; }
   buildIons(); syncButtons(); renderInfo();
