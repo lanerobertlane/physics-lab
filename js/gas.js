@@ -1,6 +1,7 @@
 // Gas pressure: an ideal gas of particles bouncing in a cylinder with a movable piston.
 // Pressure is measured from the impulses of collisions with the walls. Pushing the piston
 // in does work on the gas, which heats it unless the temperature is held constant.
+// The second tab blows up a balloon: the forces of the air inside and outside on the rubber balance.
 
 PK.header({
   title: 'Gas pressure',
@@ -10,6 +11,7 @@ PK.header({
     { code: '4.3.3.2', text: 'Pressure in gases: p V = constant for a fixed mass of gas at constant temperature', po: true },
     { code: '4.3.3.3', text: 'Increasing the pressure of a gas: doing work on a gas increases its temperature (e.g. a bike pump)', po: true, ht: true },
     { code: 'KS3', text: 'Pressure in gases as a result of particles colliding with the walls' },
+    { code: 'KS3', text: 'Atmospheric pressure decreases with increasing height, as the weight of air above decreases' },
   ],
 });
 
@@ -25,7 +27,7 @@ const V_FULL = 2.0;                   // litres when the piston is fully out
 // In 2D, p = N <v²> / (2 A). Scale so 100 particles at 300 K in the full cylinder read 100 kPa.
 const KCONV = 100 / ((100 * V_REF * V_REF) / (2 * LMAX * HC));
 
-const state = { xp: X0 + LMAX, targetXp: X0 + LMAX, T: 300, n: 100, iso: true, trail: false };
+const state = { tab: 'cylinder', xp: X0 + LMAX, targetXp: X0 + LMAX, T: 300, n: 100, iso: true, trail: false };
 let parts = [];
 let pressure = 0;            // smoothed, kPa
 let trail = [];
@@ -274,6 +276,7 @@ function point(e) {
 }
 let dragging = false, grabDx = 0;
 canvas.addEventListener('pointerdown', (e) => {
+  if (state.tab !== 'cylinder') return;
   const p = point(e);
   if (p.x > state.xp - 10 && p.y > Y0 - 10 && p.y < Y1 + 10) {
     dragging = true; grabDx = state.targetXp - p.x;
@@ -282,6 +285,7 @@ canvas.addEventListener('pointerdown', (e) => {
   }
 });
 canvas.addEventListener('pointermove', (e) => {
+  if (state.tab !== 'cylinder') { canvas.style.cursor = 'default'; return; }
   const p = point(e);
   canvas.style.cursor = dragging || p.x > state.xp - 10 ? 'ew-resize' : 'default';
   if (!dragging) return;
@@ -293,12 +297,301 @@ const endDrag = () => { dragging = false; };
 canvas.addEventListener('pointerup', endDrag);
 canvas.addEventListener('pointercancel', endDrag);
 
+// ---------- Blowing up a balloon ----------
+// The balloon is a circle of radius R (px). The air inside pushes the rubber out; the air outside
+// and the stretched rubber push it in. R moves smoothly to where they balance:
+//   inside pressure C N T / R²  =  outside pressure + S (1 − R0 / R)
+// The inside pressure shown comes from that formula (what the collisions average to), so it reads
+// steadily; the particles show why.
+// C is set so that 160 particles at 293 K fill a 150 px balloon at about 106 kPa: lots of particles, so lots of collisions
+const BL = { cx: 320, cy: 215, C: 33.9, S: 8, R0: 34, BURST: 200, START: 160, PUMP: 20, TOUT: 293 };
+const bl = { in: [], out: [], R: 0, T: 293, pout: 100, popped: false, popT: 0, shreds: [], tick: 0, hits: [] };
+const blSD = (T) => (V_REF * Math.sqrt(T / 300)) / Math.SQRT2;
+const blPin = () => (bl.popped ? bl.pout : (BL.C * bl.in.length * bl.T) / (bl.R * bl.R));
+const rubber = (R) => (R > BL.R0 ? BL.S * (1 - BL.R0 / R) : 0);
+// The radius where the forces balance (bisection: the difference only gets smaller as R grows)
+function blBalance() {
+  const f = (R) => (BL.C * bl.in.length * bl.T) / (R * R) - bl.pout - rubber(R);
+  if (f(BL.R0) <= 0) return BL.R0;   // too little air: the rubber stays floppy
+  let lo = BL.R0, hi = 2000;
+  for (let i = 0; i < 50; i++) { const m = (lo + hi) / 2; if (f(m) > 0) lo = m; else hi = m; }
+  return lo;
+}
+function blInsideParticle(atNeck) {
+  const sd = blSD(bl.T);
+  if (atNeck) return { x: BL.cx + (Math.random() - 0.5) * 10, y: BL.cy + bl.R - 6, vx: gauss() * sd * 0.5, vy: -Math.abs(gauss() * sd) - sd };
+  const a = Math.random() * Math.PI * 2, r = Math.sqrt(Math.random()) * (bl.R - 4);
+  return { x: BL.cx + r * Math.cos(a), y: BL.cy + r * Math.sin(a), vx: gauss() * sd, vy: gauss() * sd };
+}
+function blOutsideParticle() {
+  const sd = blSD(BL.TOUT);
+  for (let tries = 0; tries < 50; tries++) {
+    const x = 3 + Math.random() * (W - 6), y = 3 + Math.random() * (H - 6);
+    if (!bl.popped && Math.hypot(x - BL.cx, y - BL.cy) < bl.R + 4) continue;
+    return { x, y, vx: gauss() * sd, vy: gauss() * sd };
+  }
+  return null;
+}
+// The outside air keeps the same density for its pressure: N = p A / (C π T)
+const blOutTarget = () => Math.round((bl.pout * (W * H - (bl.popped ? 0 : Math.PI * bl.R * bl.R))) / (BL.C * Math.PI * BL.TOUT));
+function blNew(n = BL.START) {
+  Object.assign(bl, { in: [], popped: false, popT: 0, shreds: [], hits: [] });
+  bl.R = 60;
+  for (let i = 0; i < n; i++) bl.in.push(blInsideParticle(false));
+  bl.R = blBalance();
+  bl.in = bl.in.map(() => blInsideParticle(false));
+  bl.out = [];
+  for (let i = 0, n2 = blOutTarget(); i < n2; i++) { const p = blOutsideParticle(); if (p) bl.out.push(p); }
+  blRender();
+}
+function blPop() {
+  bl.popped = true; bl.popT = 0; bl.hits = [];
+  bl.out.push(...bl.in.map((p) => ({ ...p })));
+  bl.in = [];
+  bl.shreds = Array.from({ length: 10 }, (_, i) => {
+    const a = (i / 10) * Math.PI * 2 + Math.random() * 0.4;
+    return { x: BL.cx + Math.cos(a) * bl.R, y: BL.cy + Math.sin(a) * bl.R, vx: Math.cos(a) * 160, vy: Math.sin(a) * 160, a, spin: (Math.random() - 0.5) * 6 };
+  });
+  blRender();
+}
+function blStep(dt) {
+  if (!bl.popped) {
+    const target = blBalance(), dR = Math.max(-120 * dt, Math.min(120 * dt, (target - bl.R) * Math.min(1, dt * 3)));
+    bl.R += dR;
+    if (bl.R >= BL.BURST) { blPop(); return; }
+  }
+  const R = bl.R, cx = BL.cx, cy = BL.cy;
+  for (const p of bl.in) {
+    p.x += p.vx * dt; p.y += p.vy * dt;
+    const dx = p.x - cx, dy = p.y - cy, d = Math.hypot(dx, dy), lim = R - 3;
+    if (d > lim) {
+      const nx = dx / d, ny = dy / d, vn = p.vx * nx + p.vy * ny;
+      if (vn > 0) {
+        // Bounce off the rubber, a little off true, as rubber isn't perfectly smooth
+        let vx = p.vx - 2 * vn * nx, vy = p.vy - 2 * vn * ny;
+        const turn = (Math.random() - 0.5) * 0.6, c = Math.cos(turn), s = Math.sin(turn);
+        [vx, vy] = [vx * c - vy * s, vx * s + vy * c];
+        if (vx * nx + vy * ny > 0) { vx = p.vx - 2 * vn * nx; vy = p.vy - 2 * vn * ny; }
+        p.vx = vx; p.vy = vy;
+        bl.hits.push({ ang: Math.atan2(ny, nx), age: 0, inside: true });
+      }
+      p.x = cx + nx * lim; p.y = cy + ny * lim;
+    }
+  }
+  // Keep the air inside at its temperature (the rubber lets heat in and out, slowly)
+  if (bl.in.length) {
+    const v2 = bl.in.reduce((a, p) => a + p.vx * p.vx + p.vy * p.vy, 0) / bl.in.length;
+    const k = 1 + (Math.sqrt((2 * blSD(bl.T) ** 2) / v2) - 1) * Math.min(1, dt * 2);
+    for (const p of bl.in) { p.vx *= k; p.vy *= k; }
+  }
+  for (const p of bl.out) {
+    p.x += p.vx * dt; p.y += p.vy * dt;
+    if (p.x < 3) { p.x = 3; p.vx = Math.abs(p.vx); }
+    if (p.x > W - 3) { p.x = W - 3; p.vx = -Math.abs(p.vx); }
+    if (p.y < 3) { p.y = 3; p.vy = Math.abs(p.vy); }
+    if (p.y > H - 3) { p.y = H - 3; p.vy = -Math.abs(p.vy); }
+    if (bl.popped) continue;
+    const dx = p.x - cx, dy = p.y - cy, d = Math.hypot(dx, dy), lim = R + 3;
+    if (d < lim) {
+      const nx = dx / d, ny = dy / d, vn = p.vx * nx + p.vy * ny;
+      if (vn < 0) { p.vx -= 2 * vn * nx; p.vy -= 2 * vn * ny; bl.hits.push({ ang: Math.atan2(ny, nx), age: 0, inside: false }); }
+      p.x = cx + nx * lim; p.y = cy + ny * lim;
+    }
+  }
+  for (const h of bl.hits) h.age += dt;
+  bl.hits = bl.hits.filter((h) => h.age < 0.35);
+  // Outside, the same density of air whatever size the balloon is
+  const want = blOutTarget();
+  for (let i = 0; i < 3 && bl.out.length < want; i++) { const p = blOutsideParticle(); if (p) bl.out.push(p); }
+  for (let i = 0; i < 3 && bl.out.length > want; i++) bl.out.splice(Math.floor(Math.random() * bl.out.length), 1);
+  if (bl.popped) {
+    bl.popT += dt;
+    for (const s of bl.shreds) {
+      s.x += s.vx * dt; s.y += s.vy * dt; s.vy += 200 * dt; s.a += s.spin * dt; s.vx *= 1 - dt;
+      s.x = Math.max(10, Math.min(550, s.x));
+      if (s.y > H - 8) { s.y = H - 8; s.vy = 0; s.vx *= 0.8; s.spin *= 0.8; }   // the bits land on the floor
+    }
+  }
+  bl.tick += dt;
+  if (bl.tick > 0.5) { bl.tick = 0; blRender(); }
+}
+function blArrow(x1, y1, x2, y2, col) {
+  const a = Math.atan2(y2 - y1, x2 - x1), h = 7;
+  ctx.strokeStyle = col; ctx.fillStyle = col; ctx.lineWidth = 2.5;
+  ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2 - Math.cos(a) * h, y2 - Math.sin(a) * h); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(x2, y2); ctx.lineTo(x2 - Math.cos(a - 0.45) * h * 1.4, y2 - Math.sin(a - 0.45) * h * 1.4);
+  ctx.lineTo(x2 - Math.cos(a + 0.45) * h * 1.4, y2 - Math.sin(a + 0.45) * h * 1.4); ctx.closePath(); ctx.fill();
+}
+function blDial(c, font, cx, cy, value, label, col) {
+  const r = 34, max = 200;
+  ctx.fillStyle = '#fff'; ctx.strokeStyle = c.text; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  ctx.strokeStyle = '#90a4ae'; ctx.lineWidth = 1.5;
+  for (let i = 0; i <= 4; i++) {
+    const a = Math.PI * 0.75 + (i / 4) * Math.PI * 1.5;
+    ctx.beginPath(); ctx.moveTo(cx + Math.cos(a) * (r - 3), cy + Math.sin(a) * (r - 3)); ctx.lineTo(cx + Math.cos(a) * (r - 9), cy + Math.sin(a) * (r - 9)); ctx.stroke();
+  }
+  const a = Math.PI * 0.75 + Math.min(1, value / max) * Math.PI * 1.5;
+  ctx.strokeStyle = col; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(a) * (r - 7), cy + Math.sin(a) * (r - 7)); ctx.stroke();
+  ctx.fillStyle = '#333'; ctx.font = `700 9px ${font}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText('kPa', cx, cy + 18);
+  ctx.fillStyle = c.text; ctx.font = `800 14px ${font}`; ctx.fillText(label, cx, cy - r - 12);
+  ctx.fillStyle = col; ctx.font = `800 17px ${font}`; ctx.fillText(`${value.toFixed(0)} kPa`, cx, cy + r + 16);
+}
+function blDraw() {
+  const k = canvas.width / W;
+  ctx.setTransform(k, 0, 0, k, 0, 0);
+  const c = { surface: PK.cssVar('--surface'), surface2: PK.cssVar('--surface-2'), text: PK.cssVar('--text'), muted: PK.cssVar('--muted') };
+  const font = PK.cssVar('--font-body') || 'sans-serif', R = bl.R, cx = BL.cx, cy = BL.cy;
+  const IN = '#e53935', OUT = PK.isDark() ? '#64b5f6' : '#1e63c6';
+  ctx.fillStyle = c.surface; ctx.fillRect(0, 0, W, H);
+  // The air outside
+  ctx.fillStyle = '#9eadb6'; ctx.beginPath();
+  for (const p of bl.out) { ctx.moveTo(p.x + 2.5, p.y); ctx.arc(p.x, p.y, 2.5, 0, Math.PI * 2); }
+  ctx.fill();
+  // The tube from the pump, and the neck of the balloon
+  const neck = bl.popped ? cy + 40 : cy + R;
+  ctx.fillStyle = '#78909c'; ctx.fillRect(cx - 5, neck + 8, 10, H - neck - 8);
+  ctx.fillStyle = c.muted; ctx.font = `700 12px ${font}`; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+  ctx.fillText('from the pump', cx + 12, H - 14);
+  if (bl.popped) { ctx.fillStyle = '#c62828'; ctx.fillRect(cx - 8, neck + 2, 16, 8); }   // all that's left on the tube
+  if (!bl.popped) {
+    ctx.fillStyle = '#c62828'; ctx.beginPath(); ctx.moveTo(cx - 9, neck + 12); ctx.lineTo(cx + 9, neck + 12); ctx.lineTo(cx + 4, neck - 2); ctx.lineTo(cx - 4, neck - 2); ctx.closePath(); ctx.fill();
+    // The balloon: the rubber gets thinner as it stretches
+    ctx.fillStyle = 'rgba(229, 57, 53, .12)'; ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill();
+    const vref = blSD(293) * Math.SQRT2;   // coloured against room temperature, so cold air looks slow and hot air fast
+    for (const p of bl.in) {
+      const s = Math.min(1, Math.hypot(p.vx, p.vy) / (2 * vref));
+      ctx.fillStyle = `hsl(${220 - s * 200}, 80%, 52%)`;
+      ctx.beginPath(); ctx.arc(p.x, p.y, 3, 0, Math.PI * 2); ctx.fill();
+    }
+    const lw = Math.min(7, 480 / R);
+    ctx.strokeStyle = '#e53935'; ctx.lineWidth = lw;
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.stroke();
+    // A flash where each particle hits the rubber: on the inside for the air inside, on the outside for the air outside
+    ctx.lineWidth = 4; ctx.lineCap = 'round';
+    for (const h of bl.hits) {
+      const r = h.inside ? R - lw / 2 - 3 : R + lw / 2 + 3, span = 11 / r;
+      ctx.globalAlpha = 1 - h.age / 0.35; ctx.strokeStyle = h.inside ? '#ff6d00' : OUT;
+      ctx.beginPath(); ctx.arc(cx, cy, r, h.ang - span, h.ang + span); ctx.stroke();
+    }
+    ctx.globalAlpha = 1; ctx.lineWidth = 1; ctx.lineCap = 'butt';
+    // The forces on the balloon, from the air inside and the air outside
+    if ($('arrows').checked) {
+      const pin = blPin(), Lin = Math.min(R - 8, pin * 0.32), Lout = bl.pout * 0.32;
+      for (let i = 0; i < 8; i++) {
+        const a = (i * Math.PI) / 4 + Math.PI / 8, ux = Math.cos(a), uy = Math.sin(a);
+        if (Lin > 6) blArrow(cx + ux * (R - 4 - Lin), cy + uy * (R - 4 - Lin), cx + ux * (R - 4), cy + uy * (R - 4), IN);
+        blArrow(cx + ux * (R + 4 + Lout), cy + uy * (R + 4 + Lout), cx + ux * (R + 4), cy + uy * (R + 4), OUT);
+      }
+      ctx.lineWidth = 1;
+    }
+  } else {
+    // Pop! Bits of rubber fly off
+    ctx.strokeStyle = '#e53935'; ctx.lineWidth = 4; ctx.lineCap = 'round';
+    for (const s of bl.shreds) { ctx.beginPath(); ctx.arc(s.x, s.y, 10, s.a, s.a + 1.4); ctx.stroke(); }
+    ctx.lineCap = 'butt'; ctx.lineWidth = 1;
+    if (bl.popT < 2.5) {
+      ctx.globalAlpha = Math.max(0, 1 - bl.popT / 2.5);
+      ctx.fillStyle = '#e53935'; ctx.font = `900 64px ${font}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText('Pop!', cx, cy - 50);
+      ctx.globalAlpha = 1;
+    }
+    ctx.fillStyle = c.text; ctx.font = `700 15px ${font}`; ctx.textAlign = 'center';
+    ctx.fillText('The rubber stretched too far. Press 🎈 New balloon.', cx, cy + 5);
+  }
+  // Key for the arrows
+  if (!bl.popped && $('arrows').checked) {
+    ctx.fillStyle = c.surface; ctx.globalAlpha = 0.88; ctx.fillRect(6, 4, 230, 50); ctx.globalAlpha = 1;
+    ctx.font = `700 13px ${font}`; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+    blArrow(14, 18, 44, 18, IN); ctx.fillStyle = IN; ctx.fillText('force from the air inside', 52, 18);
+    blArrow(14, 40, 44, 40, OUT); ctx.fillStyle = OUT; ctx.fillText('force from the air outside', 52, 40);
+  }
+  // Gauges and readings
+  ctx.fillStyle = c.surface; ctx.globalAlpha = 0.88; ctx.fillRect(560, 0, W - 560, H); ctx.globalAlpha = 1;
+  blDial(c, font, 625, 92, blPin(), 'Inside', IN);
+  blDial(c, font, 735, 92, bl.pout, 'Outside', OUT);
+  ctx.fillStyle = c.text; ctx.font = `700 15px ${font}`; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+  ctx.fillText(`Air particles inside: ${bl.in.length}`, 580, 200);
+  ctx.fillText(`Temperature inside: ${String(bl.T - 273).replace('-', '−')} °C`, 580, 226);
+  ctx.fillText(`Outside: ${BL.TOUT - 273} °C`, 580, 252);
+  if (!bl.popped && bl.R > 185) { ctx.fillStyle = '#c62828'; ctx.font = `800 14px ${font}`; ctx.fillText('The rubber is very thin!', 580, 288); }
+  ctx.fillStyle = c.muted; ctx.font = `600 13px ${font}`;
+  ctx.fillText('Flashes: collisions with', 580, H - 80);
+  ctx.fillText('the rubber.', 580, H - 62);
+  ctx.fillText('Blue = slow, red = fast.', 580, H - 40);
+  ctx.fillText('Grey = air outside.', 580, H - 20);
+}
+function blRender() {
+  if (state.tab !== 'balloon') return;
+  const pin = blPin(), n = bl.in.length, Tc = bl.T - 273, floppy = !bl.popped && bl.R <= BL.R0 + 0.5;
+  let html = `<dl class="readout"><dt>Pressure inside</dt><dd>${pin.toFixed(0)} kPa</dd><dt>Pressure outside</dt><dd>${bl.pout} kPa</dd><dt>Air particles inside</dt><dd>${n}</dd></dl>`;
+  if (bl.popped) html += '<p><b>Pop!</b> The rubber was stretched too far and split. The air inside rushes out and mixes with the air outside.</p>';
+  else if (floppy) html += '<p>The balloon is floppy: there aren’t enough particles inside to stretch the rubber against the force of the air outside. Pump in some air.</p>';
+  else {
+    html += `<p>Each particle that hits the inside of the rubber exerts a tiny force on it, outwards. Each flash is one collision. The air particles outside hit it too, exerting forces inwards. The balloon stretches until the forces balance. The stretched rubber squeezes too, so the pressure inside is a little higher than outside.</p>`;
+    html += '<p>Pump in more air: more particles means more collisions with the rubber every second, so the pressure inside goes up and the balloon gets bigger.</p>';
+  }
+  if (!bl.popped) {
+    html += Tc <= -150 ? '<p>In liquid nitrogen the particles slow right down. They hit the rubber less hard and less often, so the balloon shrinks.</p>'
+      : Tc >= 50 ? '<p>The air inside is hot, so its particles move faster and hit the rubber harder and more often: the balloon gets bigger.</p>'
+        : '<p>Heat the air inside and the balloon gets bigger, because the particles move faster. Cool it right down (−196&nbsp;°C is liquid nitrogen) and it shrinks.</p>';
+    html += bl.pout < 90 ? '<p>The air pressure outside is low, as it is high up. Fewer air particles hit the outside, so the balloon gets bigger. Weather balloons grow as they rise, until they burst.</p>'
+      : '<p>Try a lower air pressure outside, as you’d find high up a mountain.</p>';
+  }
+  $('info').innerHTML = html;
+  $('pump').disabled = bl.popped || n >= 1200;
+  $('letout').disabled = bl.popped || n === 0;
+}
+$('pump').addEventListener('click', () => { for (let i = 0; i < BL.PUMP; i++) bl.in.push(blInsideParticle(true)); blRender(); });
+$('letout').addEventListener('click', () => {
+  // The particles nearest the neck leave through it, into the air outside
+  const neck = { x: BL.cx, y: BL.cy + bl.R };
+  bl.in.sort((a, b) => Math.hypot(a.x - neck.x, a.y - neck.y) - Math.hypot(b.x - neck.x, b.y - neck.y));
+  const sd = blSD(BL.TOUT);
+  bl.in.splice(0, BL.PUMP).forEach((p) => bl.out.push({ x: BL.cx + (Math.random() - 0.5) * 10, y: neck.y + 8, vx: gauss() * sd, vy: Math.abs(gauss() * sd) + sd }));
+  blRender();
+});
+$('newb').addEventListener('click', () => blNew());
+$('btemp').addEventListener('input', () => {
+  const T = PK.num('btemp') + 273, k = Math.sqrt(T / bl.T);
+  for (const p of bl.in) { p.vx *= k; p.vy *= k; }
+  bl.T = T; blRender();
+});
+$('bout').addEventListener('input', () => { bl.pout = PK.num('bout'); blRender(); });
+
+// ---------- Tabs ----------
+
+const INTRO = {
+  cylinder: 'Gas particles move randomly and hit the walls of the container. Each collision pushes on the wall, which is what causes the pressure. Drag the piston to change the volume, or change the temperature.',
+  balloon: 'Pump air into a balloon. The particles inside hit the rubber, exerting a force outwards, while the air outside exerts a force inwards. Change the temperature, or the air pressure outside, and watch the balloon.',
+};
+function showTab(t) {
+  state.tab = t;
+  document.querySelectorAll('#tabs .chip').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.t === t)));
+  document.querySelectorAll('[data-for]').forEach((el) => { el.hidden = el.dataset.for !== t; });
+  $('intro').textContent = INTRO[t];
+  canvas.classList.toggle('drag', t === 'cylinder');   // nothing to drag on the balloon, so let iPads scroll over it
+  canvas.setAttribute('aria-label', t === 'cylinder' ? 'Gas particles in a cylinder with a piston' : 'A balloon with air particles inside and outside');
+  if (location.hash !== '#practice') history.replaceState(null, '', t === 'cylinder' ? location.pathname + location.search : `#${t}`);
+  sizeCanvas();
+  if (t === 'cylinder') drawGraph(); else blRender();
+}
+document.querySelectorAll('#tabs .chip').forEach((b) => b.addEventListener('click', () => showTab(b.dataset.t)));
+
 // ---------- Loop ----------
 
 let lastT = performance.now(), frameCount = 0;
 function frame(now) {
   const dt = Math.min(0.05, (now - lastT) / 1000);
   lastT = now;
+  if (state.tab === 'balloon') {
+    for (let i = 0; i < 2; i++) blStep(dt / 2);
+    blDraw();
+    requestAnimationFrame(frame);
+    return;
+  }
   for (let i = 0; i < 4; i++) step(dt / 4);
   if (!state.iso && frameCount++ % 10 === 0) {
     // Insulated: show the gas's own temperature in the box (unless someone is typing in it).
@@ -315,15 +608,19 @@ window.addEventListener('pk-beyond', () => { renderResults(); drawGraph(); });
 
 setCount(state.n);
 pressure = 100;
+blNew();
 sizeCanvas();
 syncLabels();
 renderResults();
+showTab(PK.initialHash === '#balloon' ? 'balloon' : 'cylinder');
 requestAnimationFrame(frame);
 
-// Share: the readings go with the link, so the table and graph open as they are now
+// Share: the readings go with the link, so the table and graph open as they are now,
+// and so does how much air is in the balloon
 PK.shareState = {
-  get: () => ({ r: results.map((x) => [Number(x.V.toFixed(4)), Number(x.T.toFixed(2)), Number(x.p.toFixed(2))]) }),
+  get: () => ({ r: results.map((x) => [Number(x.V.toFixed(4)), Number(x.T.toFixed(2)), Number(x.p.toFixed(2))]), b: bl.popped ? 0 : bl.in.length }),
   set: (o) => {
+    if (Number.isInteger(o.b) && o.b >= 0 && o.b <= 1200) blNew(o.b);
     if (!Array.isArray(o.r)) return;
     results.length = 0;
     o.r.forEach(([V, T, p]) => results.push({ V: Number(V), T: Number(T), p: Number(p) }));

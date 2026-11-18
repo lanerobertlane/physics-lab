@@ -611,6 +611,10 @@ window.SPEC_INDEX = [
    {
     "code": "KS3",
     "text": "Pressure in gases as a result of particles colliding with the walls"
+   },
+   {
+    "code": "KS3",
+    "text": "Atmospheric pressure decreases with increasing height, as the weight of air above decreases"
    }
   ]
  },
