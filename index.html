@@ -35,7 +35,7 @@
     </section>
 
     <div class="filters" role="search">
-      <input class="search" id="search" type="search" placeholder="Search tools… e.g. magnet, v = fλ, half-life" aria-label="Search tools">
+      <input class="search" id="search" type="search" placeholder="Search tools… e.g. magnet, v = fλ, earthquake, 4.6.1.5" aria-label="Search tools">
       <div class="chip-group" id="level" aria-label="Course">
         <button class="chip" data-level="all" aria-pressed="true">All</button>
         <button class="chip" data-level="ks3" aria-pressed="false">KS3</button>
@@ -58,6 +58,9 @@
 
   <script src="js/common.js"></script>
   <script src="js/catalogue.js"></script>
+  <script src="js/spec-index-data.js"></script>
+  <script src="js/search-words.js"></script>
+  <script src="js/search.js"></script>
   <script>
     PK.header({ isHome: true });
 
@@ -76,11 +79,9 @@
       return true;
     };
 
-    const textOk = (t, topic) => {
-      if (!state.q) return true;
-      const hay = `${t.name} ${t.desc} ${topic.name}`.toLowerCase();
-      return state.q.toLowerCase().split(/\s+/).every((w) => hay.includes(w));
-    };
+    // Searches each tool's name, description, topic, spec points and extra words (js/search.js)
+    const search = PKSearch.index(TOOLS, TOPICS, window.SPEC_INDEX, window.SEARCH_WORDS);
+    const textOk = (t) => search.match(t, state.q);
 
     function tagsFor(t) {
       const tags = [];
