@@ -4,7 +4,7 @@
 // copy is saved when it does arrive.
 // Bump VERSION when anything changes, and keep it the same as SITE.version in js/common.js.
 
-const VERSION = 'physkit-v69';
+const VERSION = 'physkit-v70';
 // Written by scripts/build-quiz-bank.js: the pages that have quiz questions for their Practice tab
 const QUIZ_PAGES = ['acceleration', 'atom', 'atom-history', 'background', 'black-body', 'bonding', 'brownian', 'circuits', 'colour', 'density', 'displacement', 'earth-field', 'echo', 'efficiency', 'electricity-cost', 'electrolysis', 'electromagnetism', 'em-spectrum', 'energy', 'fission', 'fluid-pressure', 'gas', 'generators', 'graph-plotter', 'grid', 'half-life', 'heat', 'infrared', 'insulation', 'levers', 'light-box', 'magnets', 'mains', 'moments', 'momentum', 'motion-graphs', 'nuclear', 'orbits', 'periodic-table', 'pinhole', 'power', 'radiation', 'rates', 'reaction', 'reaction-profiles', 'redshift', 'resources', 'resultant-forces', 'ripple-tank', 'seismic', 'shc', 'sky', 'solid-pressure', 'solid-waves', 'sound', 'speed', 'speed-of-sound', 'springs', 'star-life', 'states', 'static', 'stopping', 'terminal', 'third-law', 'transformers', 'uncertainty', 'units', 'uses', 'waves', 'weight', 'wire-resistance', 'work'];
 const PRECACHE = [
@@ -149,12 +149,14 @@ const PRECACHE = [
   'tools/equations.html',
   'js/qrcode.min.js',
   'icons/apple-touch-icon.png',
+  'js/search.js',
+  'js/search-words.js',
 ].concat(QUIZ_PAGES.map((p) => `js/quiz-pages/${p}.js`));
 // PRECACHE is the whole site. Only these few files, which every page needs, are fetched as soon as a
 // new version arrives. The rest is saved as it's used, and downloaded slowly in the background by
 // the page (see js/common.js), so a class of iPads opening the site after an update don't all
 // download the whole site at once.
-const CORE = ['./', 'index.html', 'manifest.webmanifest', 'css/style.css', 'icons/favicon.svg', 'icons/apple-touch-icon.png', 'js/common.js', 'js/catalogue.js', 'js/extras.js', 'js/glossary.js'];
+const CORE = ['./', 'index.html', 'manifest.webmanifest', 'css/style.css', 'icons/favicon.svg', 'icons/apple-touch-icon.png', 'js/common.js', 'js/catalogue.js', 'js/extras.js', 'js/glossary.js', 'js/spec-index-data.js', 'js/search-words.js', 'js/search.js'];
 // One cache that lasts from version to version, so an update never throws away the saved copies
 const CACHE = 'physkit-files';
 // How long to wait for the network before showing the saved copy instead
