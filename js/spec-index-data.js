@@ -204,6 +204,46 @@ window.SPEC_INDEX = [
   ]
  },
  {
+  "page": "colour",
+  "title": "Colour & filters",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "4.6.2.6",
+    "text": "Each colour within the visible light spectrum has its own narrow band of wavelength and frequency",
+    "po": 1
+   },
+   {
+    "code": "4.6.2.6",
+    "text": "Specular reflection from a smooth surface in a single direction; diffuse reflection from a rough surface, which scatters the light",
+    "po": 1
+   },
+   {
+    "code": "4.6.2.6",
+    "text": "Colour filters work by absorbing certain wavelengths (and colour) and transmitting other wavelengths (and colour)",
+    "po": 1
+   },
+   {
+    "code": "4.6.2.6",
+    "text": "The colour of an opaque object depends on which wavelengths are reflected; the rest are absorbed. White reflects all wavelengths equally; black absorbs them all",
+    "po": 1
+   },
+   {
+    "code": "4.6.2.6",
+    "text": "Objects that transmit light are either transparent or translucent",
+    "po": 1
+   },
+   {
+    "code": "KS3",
+    "text": "Colours and the different frequencies of light; white light and prisms; colour effects in absorption and diffuse reflection"
+   },
+   {
+    "code": "KS3",
+    "text": "Transmission of light through materials: absorption, diffuse scattering and specular reflection at a surface"
+   }
+  ]
+ },
+ {
   "page": "density",
   "title": "Density",
   "course": "physics",
@@ -619,6 +659,37 @@ window.SPEC_INDEX = [
   ]
  },
  {
+  "page": "generators",
+  "title": "Generators, loudspeakers & microphones",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "4.7.3.1",
+    "text": "Induced potential: a p.d. is induced across a conductor that moves relative to a magnetic field (the generator effect)",
+    "ht": 1,
+    "po": 1
+   },
+   {
+    "code": "4.7.3.2",
+    "text": "Uses of the generator effect: alternators generate a.c. and dynamos generate d.c.; graphs of potential difference against time",
+    "ht": 1,
+    "po": 1
+   },
+   {
+    "code": "4.7.3.3",
+    "text": "Microphones use the generator effect to convert the pressure variations in sound waves into variations in current",
+    "ht": 1,
+    "po": 1
+   },
+   {
+    "code": "4.7.2.4",
+    "text": "Loudspeakers and headphones use the motor effect to convert variations in current into the pressure variations in sound waves",
+    "ht": 1,
+    "po": 1
+   }
+  ]
+ },
+ {
   "page": "graph-plotter",
   "title": "Practical graph plotter",
   "course": "physics",
@@ -994,6 +1065,25 @@ window.SPEC_INDEX = [
   ]
  },
  {
+  "page": "pinhole",
+  "title": "Pinhole camera & the eye",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "KS3",
+    "text": "Use of the ray model to explain imaging in the pinhole camera"
+   },
+   {
+    "code": "KS3",
+    "text": "The action of a convex lens in focusing (qualitative); the human eye"
+   },
+   {
+    "code": "KS3",
+    "text": "Light transferring energy from source to absorber, leading to chemical and electrical effects; photo-sensitive material in the retina and in cameras"
+   }
+  ]
+ },
+ {
   "page": "power",
   "title": "Power: comparing two motors",
   "course": "physics",
@@ -1265,6 +1355,35 @@ window.SPEC_INDEX = [
   ]
  },
  {
+  "page": "seismic",
+  "title": "Seismic waves",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "4.6.1.5",
+    "text": "P-waves are longitudinal seismic waves. P-waves travel at different speeds through solids and liquids",
+    "ht": 1,
+    "po": 1
+   },
+   {
+    "code": "4.6.1.5",
+    "text": "S-waves are transverse seismic waves. S-waves cannot travel through a liquid",
+    "ht": 1,
+    "po": 1
+   },
+   {
+    "code": "4.6.1.5",
+    "text": "P-waves and S-waves provide evidence for the structure and size of the Earth’s core, which can’t be observed directly",
+    "ht": 1,
+    "po": 1
+   },
+   {
+    "code": "4.6.1.1",
+    "text": "Transverse and longitudinal waves: the direction of the vibrations compared with the direction the wave travels"
+   }
+  ]
+ },
+ {
   "page": "shc",
   "title": "Specific heat capacity",
   "course": "physics",
@@ -1318,6 +1437,25 @@ window.SPEC_INDEX = [
    {
     "code": "KS3",
     "text": "Pressure = force ÷ area, in newtons per square metre (N/m²) or newtons per square centimetre (N/cm²)"
+   }
+  ]
+ },
+ {
+  "page": "solid-waves",
+  "title": "Waves in a solid",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "4.6.1.2",
+    "text": "Properties of waves: frequency, wavelength and wave speed; v = f λ"
+   },
+   {
+    "code": "4.6.1.2",
+    "text": "Required practical: make observations to identify the suitability of apparatus to measure the frequency, wavelength and speed of waves in a solid, and take appropriate measurements"
+   },
+   {
+    "code": "4.6.1.1",
+    "text": "Transverse and longitudinal waves: waves on a string are transverse; sound waves travelling through a solid are longitudinal"
    }
   ]
  },

@@ -1,0 +1,30 @@
+SOURCE OWN
+
+## Seismic waves
+mc | waves | Seismic waves | What type of wave is a P wave? {ks4} | *Longitudinal; Transverse; Electromagnetic | EXP: In a P wave the particles vibrate along the direction the wave travels.
+mc | waves | Seismic waves | What type of wave is an S wave? {ks4} | *Transverse; Longitudinal; Electromagnetic | EXP: In an S wave the particles vibrate at right angles to the direction the wave travels.
+tf | waves | Seismic waves | S waves can travel through liquids. {ks4} | FALSE | EXP: S waves are transverse and can only travel through solids.
+mc | waves | Seismic waves | Which seismic waves arrive first at a seismometer? {ks4} | *P waves, because they travel faster; S waves, because they travel faster; They always arrive together | EXP: P waves are faster, so they arrive first (P for primary).
+mc | waves | Seismic waves | What does the S-wave shadow zone tell us about the Earth? {ks4} | *The outer core is liquid; The inner core is liquid; The mantle is liquid; The crust is very thick | EXP: S waves can't travel through liquids. No S waves reach the far side of the Earth, so part of the core must be liquid.
+mc | waves | Seismic waves | Why is there a P-wave shadow zone? {ks4} | *P waves refract (change direction) when they change speed at the boundaries of the core; P waves can't travel through liquids; P waves are absorbed by the mantle; The Earth is flat there | EXP: P waves slow down as they enter the liquid outer core and refract, so none arrive directly in part of the far side.
+open | waves | Seismic waves | Explain how seismic waves give evidence that the Earth's outer core is liquid. {ks4} | MODEL: S waves are transverse and cannot travel through a liquid. Seismometers on the far side of the Earth from an earthquake do not detect any S waves (the S-wave shadow zone), so something must be stopping them: the outer core must be liquid.
+
+## Colour & filters
+mc | waves | Colour & filters | What does a green filter do to white light? {both} | *Transmits green light and absorbs the other colours; Turns all the light green; Reflects green light; Absorbs green light | EXP: A filter transmits its own colour and absorbs the rest.
+mc | waves | Colour & filters | A red card is lit by blue light. What colour does it look? {both} | *Black; Red; Blue; Purple | EXP: The red card only reflects red light. There is no red light in blue light, so it reflects nothing and looks black.
+mc | waves | Colour & filters | A white card is lit by red light. What colour does it look? {both} | *Red; White; Black; Pink | EXP: A white card reflects all colours, so it reflects the red light.
+mc | waves | Colour & filters | Which colour of visible light has the longest wavelength? {ks4} | *Red; Violet; Green; Blue | EXP: Red is about 700 nm; violet is about 400 nm.
+mc | waves | Colour & filters | What is diffuse reflection? {ks4} | *Light scattered in all directions by a rough surface; Light reflected in one direction by a smooth surface; Light passing through a material; Light being absorbed | EXP: A rough surface reflects each ray in a different direction.
+mc | waves | Colour & filters | What is specular reflection? {ks4} | *Reflection in a single direction from a smooth surface; Reflection in all directions from a rough surface; Light passing through glass; Light being split into colours | EXP: A smooth surface, like a mirror, reflects all the rays in the same direction, making a clear image.
+mc | waves | Colour & filters | Frosted glass lets light through but you can't see clearly through it. What do we call a material like this? {both} | *Translucent; Transparent; Opaque; Reflective | EXP: Translucent materials transmit light but scatter it.
+tf | waves | Colour & filters | A black object absorbs all the colours of light that fall on it. {both} | TRUE | EXP: That's why it looks black: it reflects no light.
+
+## Pinhole camera & the eye
+mc | waves | Pinhole camera & the eye | What does the image in a pinhole camera look like? {ks3} | *Upside down; The right way up; Back to front only; Always bigger than the object | EXP: Rays from the top of the object go down through the hole and rays from the bottom go up, so they cross over.
+mc | waves | Pinhole camera & the eye | What happens to the image when the hole in a pinhole camera is made bigger? {ks3} | *It gets brighter but more blurred; It gets dimmer and sharper; It gets smaller; It turns the right way up | EXP: More light gets in, but light from each point spreads into a patch.
+mc | waves | Pinhole camera & the eye | Which part of the eye is like the screen in a camera? {ks3} | *Retina; Iris; Cornea; Pupil | EXP: The image forms on the retina at the back of the eye.
+mc | waves | Pinhole camera & the eye | What does the iris do? {ks3} | *Controls the size of the pupil, so it lets in more or less light; Focuses the light; Turns light into electrical signals; Protects the front of the eye | EXP: In dim light the iris makes the pupil bigger to let in more light.
+mc | waves | Pinhole camera & the eye | Which parts of the eye focus light on the retina? {ks3} | *The cornea and the lens; The iris and the pupil; The retina and the optic nerve; Only the pupil | EXP: The cornea and lens refract (bend) the light to focus it.
+mc | waves | Pinhole camera & the eye | How does the lens change to focus on something close up? {ks3} | *It gets thicker; It gets thinner; It moves further back; It doesn't change | EXP: A thicker lens bends light more, which is needed to focus light from near things.
+short | waves | Pinhole camera & the eye | What carries signals from the retina to the brain? {ks3} | ACCEPT: optic nerve; the optic nerve; nerve
+open | waves | Pinhole camera & the eye | Explain why the image in a pinhole camera is upside down. {ks3} | MODEL: Light travels in straight lines. Light from the top of the object travels down through the pinhole to the bottom of the screen, and light from the bottom goes up to the top of the screen. The rays cross at the hole, so the image is upside down.

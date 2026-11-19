@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generators, Loudspeakers &amp; Microphones · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Turn a coil in a magnetic field and compare the output of an alternator and a dynamo, then see how loudspeakers and microphones turn current into sound and back.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="physics, magnetism, education, school, KS3, GCSE, AQA, science, simulation, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/generators.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Generators, loudspeakers &amp; microphones">
+  <meta property="og:description" content="Turn a coil in a magnetic field and compare the output of an alternator and a dynamo, then see how loudspeakers and microphones turn current into sound and back.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/generators.html">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Generators, loudspeakers & microphones", "description": "Turn a coil in a magnetic field and compare the output of an alternator and a dynamo, then see how loudspeakers and microphones turn current into sound and back.", "url": "https://lanerobertlane.space/tools/generators.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["GCSE"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="Physics Lab">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #scene { display: block; width: 100%; aspect-ratio: 800 / 420; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .stage-bar .spacer { flex: 1; }
+    #info p, #explain p { margin: 0 0 8px; line-height: 1.5; }
+    #info p:last-child, #explain p:last-child { margin-bottom: 0; }
+    #explain ul { margin: 0 0 8px; padding-left: 20px; }
+    #explain li { margin-bottom: 4px; }
+    .readout dd { white-space: nowrap; }
+    .set-label { font-size: .88rem; font-weight: 700; color: var(--muted); margin: 0 0 6px; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Generators, loudspeakers &amp; microphones</h1>
+      <p id="intro"></p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px" aria-label="Show">
+      <button class="chip" data-t="gen" aria-pressed="true">Alternator &amp; dynamo</button>
+      <button class="chip" data-t="speaker" aria-pressed="false">Loudspeaker</button>
+      <button class="chip" data-t="mic" aria-pressed="false">Microphone</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="scene" class="drag" aria-label="A coil turning between the poles of a magnet, and an oscilloscope"></canvas>
+          <div class="stage-bar">
+            <button class="btn primary" id="spin" data-for="gen">⏸ Stop the coil</button>
+            <button class="btn" id="clear" data-for="gen">Clear the screen</button>
+            <button class="btn primary" id="listen" data-for="speaker mic" hidden>🔊 Play the sound</button>
+            <span class="spacer"></span>
+          </div>
+        </div>
+        <div class="panel after-aside">
+          <h2>How it works</h2>
+          <div id="explain"></div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel" data-for="gen">
+          <h2>Set up</h2>
+          <p class="set-label">Connected with</p>
+          <div class="chip-group" id="gtype" aria-label="Alternator or dynamo" style="margin-bottom:12px"><button class="chip" data-v="alt" aria-pressed="true">Slip rings (alternator)</button><button class="chip" data-v="dyn" aria-pressed="false">Split-ring commutator (dynamo)</button></div>
+          <div class="num-row"><label for="speed">Speed</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: speed">−</button><input type="number" id="speed" min="0.25" max="4" step="any" data-inc="0.25" value="1" inputmode="decimal"><span class="unit">turns/s</span><button data-step="1" aria-label="More: speed">+</button></div></div>
+          <div class="num-row"><label for="turns">Turns on the coil</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: turns">−</button><input type="number" id="turns" min="10" max="100" step="any" data-inc="10" value="50" inputmode="decimal" data-whole><span class="unit"></span><button data-step="1" aria-label="More: turns">+</button></div></div>
+          <p class="set-label">Oscilloscope: volts per square</p>
+          <div class="chip-group" id="ygain" aria-label="Volts per square on the oscilloscope" style="margin-bottom:12px"><button class="chip" data-v="0.5" aria-pressed="true">0.5 V</button><button class="chip" data-v="1" aria-pressed="false">1 V</button><button class="chip" data-v="2" aria-pressed="false">2 V</button></div>
+          <p class="note" style="margin:0">You can also drag the coil to turn it by hand.</p>
+        </div>
+        <div class="panel" data-for="speaker" hidden>
+          <h2>Set up</h2>
+          <div class="num-row"><label for="sfreq">Frequency of the current</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: frequency">−</button><input type="number" id="sfreq" min="100" max="1000" step="any" data-inc="50" value="250" inputmode="decimal"><span class="unit">Hz</span><button data-step="1" aria-label="More: frequency">+</button></div></div>
+          <p class="set-label">Loudness</p><div class="chip-group" id="sloud" aria-label="Loudness" style="margin-bottom:0"><button class="chip" data-v="1" aria-pressed="false">Quiet</button><button class="chip" data-v="2" aria-pressed="true">Medium</button><button class="chip" data-v="3" aria-pressed="false">Loud</button></div>
+        </div>
+        <div class="panel" data-for="mic" hidden>
+          <h2>Set up</h2>
+          <div class="num-row"><label for="mfreq">Frequency of the sound</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: frequency">−</button><input type="number" id="mfreq" min="100" max="1000" step="any" data-inc="50" value="250" inputmode="decimal"><span class="unit">Hz</span><button data-step="1" aria-label="More: frequency">+</button></div></div>
+          <p class="set-label">Loudness</p><div class="chip-group" id="mloud" aria-label="Loudness" style="margin-bottom:0"><button class="chip" data-v="1" aria-pressed="false">Quiet</button><button class="chip" data-v="2" aria-pressed="true">Medium</button><button class="chip" data-v="3" aria-pressed="false">Loud</button></div>
+        </div>
+        <div class="panel">
+          <h2>What’s happening</h2>
+          <div id="info"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/generators.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/quiz-pages/generators.js"></script>
+  <script src="../js/practice-tab.js"></script>
+</body>
+</html>

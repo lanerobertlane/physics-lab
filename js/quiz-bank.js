@@ -5342,6 +5342,151 @@ window.QUIZ_BANK = {
   },
   {
    "type": "mc",
+   "topic": "magnetism",
+   "tool": "Generators, loudspeakers & microphones",
+   "q": "Which part lets an alternator produce alternating current?",
+   "lv": "ks4",
+   "opts": [
+    "Slip rings",
+    "A split-ring commutator",
+    "A diaphragm",
+    "An iron core"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Slip rings keep each end of the coil connected to the same brush, so the output reverses every half turn: a.c.",
+   "id": "mag1j2h1",
+   "pg": "generators"
+  },
+  {
+   "type": "mc",
+   "topic": "magnetism",
+   "tool": "Generators, loudspeakers & microphones",
+   "q": "What does the split-ring commutator do in a dynamo?",
+   "lv": "ks4",
+   "opts": [
+    "It swaps the coil's connections every half turn, so the output is d.c.",
+    "It makes the coil turn faster",
+    "It makes the magnetic field stronger",
+    "It turns d.c. into a.c."
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "It swaps the connections just as the induced p.d. reverses, so the output is always the same way round.",
+   "id": "magqx9co",
+   "pg": "generators"
+  },
+  {
+   "type": "mc",
+   "topic": "magnetism",
+   "tool": "Generators, loudspeakers & microphones",
+   "q": "The coil in an alternator is turned faster. What happens to its output?",
+   "lv": "ks4",
+   "opts": [
+    "The peak p.d. gets bigger and the frequency gets higher",
+    "Only the peak p.d. gets bigger",
+    "Only the frequency gets higher",
+    "Nothing changes"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The sides cut the field lines faster, inducing a bigger p.d., and there are more turns each second, so more waves each second.",
+   "id": "magjqy4g",
+   "pg": "generators"
+  },
+  {
+   "type": "tf",
+   "topic": "magnetism",
+   "tool": "Generators, loudspeakers & microphones",
+   "q": "The p.d. from a dynamo always has the same direction, but its size rises and falls.",
+   "lv": "ks4",
+   "ans": true,
+   "exp": "The commutator stops it reversing, but the coil still moves at different angles to the field as it turns.",
+   "id": "mag1pwso",
+   "pg": "generators"
+  },
+  {
+   "type": "mc",
+   "topic": "magnetism",
+   "tool": "Generators, loudspeakers & microphones",
+   "q": "When is the p.d. induced in a turning coil at its biggest?",
+   "lv": "ks4",
+   "opts": [
+    "When its sides are moving straight across the magnetic field",
+    "When its sides are moving along the magnetic field",
+    "When the coil has stopped",
+    "When the coil faces the poles"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The p.d. is biggest when the sides cut across the field lines fastest.",
+   "id": "mag9xwq1",
+   "pg": "generators"
+  },
+  {
+   "type": "mc",
+   "topic": "magnetism",
+   "tool": "Generators, loudspeakers & microphones",
+   "q": "Which effect does a microphone use?",
+   "lv": "ks4",
+   "opts": [
+    "The generator effect",
+    "The motor effect",
+    "The heating effect",
+    "The greenhouse effect"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Sound moves a coil in a magnetic field, which induces a p.d.: the generator effect.",
+   "id": "magkyt7b",
+   "pg": "generators"
+  },
+  {
+   "type": "mc",
+   "topic": "magnetism",
+   "tool": "Generators, loudspeakers & microphones",
+   "q": "In a loudspeaker, what makes the cone vibrate?",
+   "lv": "ks4",
+   "opts": [
+    "An alternating current in a coil in a magnetic field, so the force on the coil keeps reversing",
+    "A steady current in the coil",
+    "The magnet getting hotter",
+    "Sound waves arriving at the cone"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "This is the motor effect. As the current reverses, so does the force, so the coil and cone move in and out.",
+   "id": "mag1bx5d",
+   "pg": "generators"
+  },
+  {
+   "type": "open",
+   "topic": "magnetism",
+   "tool": "Generators, loudspeakers & microphones",
+   "q": "Explain how a moving-coil loudspeaker produces a sound.",
+   "lv": "ks4",
+   "model": "An alternating current passes through a coil in the field of a permanent magnet. A current in a magnetic field feels a force (the motor effect), and as the current reverses so does the force, so the coil vibrates. The coil is attached to a cone, which vibrates too and makes compressions and rarefactions in the air: a sound wave.",
+   "id": "mag10e0o",
+   "pg": "generators"
+  },
+  {
+   "type": "open",
+   "topic": "magnetism",
+   "tool": "Generators, loudspeakers & microphones",
+   "q": "Explain how a microphone turns sound into an electrical signal.",
+   "lv": "ks4",
+   "model": "The pressure variations in a sound wave make the diaphragm vibrate. The diaphragm is attached to a coil in a magnetic field, so the coil moves through the field and a p.d. is induced across it (the generator effect). The p.d. varies in the same way as the pressure of the sound.",
+   "id": "mage7e9c",
+   "pg": "generators"
+  },
+  {
+   "type": "mc",
    "topic": "forces",
    "tool": "Newton's third law pairs",
    "q": "When you sit on a chair, you push down on it. What does the chair do?",
@@ -6347,6 +6492,533 @@ window.QUIZ_BANK = {
    "exp": "E = P t.",
    "id": "ele11mgm",
    "pg": "electricity-cost"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Seismic waves",
+   "q": "What type of wave is a P wave?",
+   "lv": "ks4",
+   "opts": [
+    "Longitudinal",
+    "Transverse",
+    "Electromagnetic"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "In a P wave the particles vibrate along the direction the wave travels.",
+   "id": "wav16dpn",
+   "pg": "seismic"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Seismic waves",
+   "q": "What type of wave is an S wave?",
+   "lv": "ks4",
+   "opts": [
+    "Transverse",
+    "Longitudinal",
+    "Electromagnetic"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "In an S wave the particles vibrate at right angles to the direction the wave travels.",
+   "id": "wavinru9",
+   "pg": "seismic"
+  },
+  {
+   "type": "tf",
+   "topic": "waves",
+   "tool": "Seismic waves",
+   "q": "S waves can travel through liquids.",
+   "lv": "ks4",
+   "ans": false,
+   "exp": "S waves are transverse and can only travel through solids.",
+   "id": "wav1u54n",
+   "pg": "seismic"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Seismic waves",
+   "q": "Which seismic waves arrive first at a seismometer?",
+   "lv": "ks4",
+   "opts": [
+    "P waves, because they travel faster",
+    "S waves, because they travel faster",
+    "They always arrive together"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "P waves are faster, so they arrive first (P for primary).",
+   "id": "wav17jie",
+   "pg": "seismic"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Seismic waves",
+   "q": "What does the S-wave shadow zone tell us about the Earth?",
+   "lv": "ks4",
+   "opts": [
+    "The outer core is liquid",
+    "The inner core is liquid",
+    "The mantle is liquid",
+    "The crust is very thick"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "S waves can't travel through liquids. No S waves reach the far side of the Earth, so part of the core must be liquid.",
+   "id": "wav1l8z5",
+   "pg": "seismic"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Seismic waves",
+   "q": "Why is there a P-wave shadow zone?",
+   "lv": "ks4",
+   "opts": [
+    "P waves refract (change direction) when they change speed at the boundaries of the core",
+    "P waves can't travel through liquids",
+    "P waves are absorbed by the mantle",
+    "The Earth is flat there"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "P waves slow down as they enter the liquid outer core and refract, so none arrive directly in part of the far side.",
+   "id": "wavmfkle",
+   "pg": "seismic"
+  },
+  {
+   "type": "open",
+   "topic": "waves",
+   "tool": "Seismic waves",
+   "q": "Explain how seismic waves give evidence that the Earth's outer core is liquid.",
+   "lv": "ks4",
+   "model": "S waves are transverse and cannot travel through a liquid. Seismometers on the far side of the Earth from an earthquake do not detect any S waves (the S-wave shadow zone), so something must be stopping them: the outer core must be liquid.",
+   "id": "wav1nha5",
+   "pg": "seismic"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Colour & filters",
+   "q": "What does a green filter do to white light?",
+   "lv": "both",
+   "opts": [
+    "Transmits green light and absorbs the other colours",
+    "Turns all the light green",
+    "Reflects green light",
+    "Absorbs green light"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "A filter transmits its own colour and absorbs the rest.",
+   "id": "wav1t25k",
+   "pg": "colour"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Colour & filters",
+   "q": "A red card is lit by blue light. What colour does it look?",
+   "lv": "both",
+   "opts": [
+    "Black",
+    "Red",
+    "Blue",
+    "Purple"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The red card only reflects red light. There is no red light in blue light, so it reflects nothing and looks black.",
+   "id": "waviz7kh",
+   "pg": "colour"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Colour & filters",
+   "q": "A white card is lit by red light. What colour does it look?",
+   "lv": "both",
+   "opts": [
+    "Red",
+    "White",
+    "Black",
+    "Pink"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "A white card reflects all colours, so it reflects the red light.",
+   "id": "wav111mc",
+   "pg": "colour"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Colour & filters",
+   "q": "Which colour of visible light has the longest wavelength?",
+   "lv": "ks4",
+   "opts": [
+    "Red",
+    "Violet",
+    "Green",
+    "Blue"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Red is about 700 nm; violet is about 400 nm.",
+   "id": "wav1rm5g",
+   "pg": "colour"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Colour & filters",
+   "q": "What is diffuse reflection?",
+   "lv": "ks4",
+   "opts": [
+    "Light scattered in all directions by a rough surface",
+    "Light reflected in one direction by a smooth surface",
+    "Light passing through a material",
+    "Light being absorbed"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "A rough surface reflects each ray in a different direction.",
+   "id": "wavwu5mf",
+   "pg": "colour"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Colour & filters",
+   "q": "What is specular reflection?",
+   "lv": "ks4",
+   "opts": [
+    "Reflection in a single direction from a smooth surface",
+    "Reflection in all directions from a rough surface",
+    "Light passing through glass",
+    "Light being split into colours"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "A smooth surface, like a mirror, reflects all the rays in the same direction, making a clear image.",
+   "id": "wav3aker",
+   "pg": "colour"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Colour & filters",
+   "q": "Frosted glass lets light through but you can't see clearly through it. What do we call a material like this?",
+   "lv": "both",
+   "opts": [
+    "Translucent",
+    "Transparent",
+    "Opaque",
+    "Reflective"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Translucent materials transmit light but scatter it.",
+   "id": "wav1yi6l",
+   "pg": "colour"
+  },
+  {
+   "type": "tf",
+   "topic": "waves",
+   "tool": "Colour & filters",
+   "q": "A black object absorbs all the colours of light that fall on it.",
+   "lv": "both",
+   "ans": true,
+   "exp": "That's why it looks black: it reflects no light.",
+   "id": "waviunw2",
+   "pg": "colour"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Pinhole camera & the eye",
+   "q": "What does the image in a pinhole camera look like?",
+   "lv": "ks3",
+   "opts": [
+    "Upside down",
+    "The right way up",
+    "Back to front only",
+    "Always bigger than the object"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Rays from the top of the object go down through the hole and rays from the bottom go up, so they cross over.",
+   "id": "wavgkesg",
+   "pg": "pinhole"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Pinhole camera & the eye",
+   "q": "What happens to the image when the hole in a pinhole camera is made bigger?",
+   "lv": "ks3",
+   "opts": [
+    "It gets brighter but more blurred",
+    "It gets dimmer and sharper",
+    "It gets smaller",
+    "It turns the right way up"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "More light gets in, but light from each point spreads into a patch.",
+   "id": "wav1a98h",
+   "pg": "pinhole"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Pinhole camera & the eye",
+   "q": "Which part of the eye is like the screen in a camera?",
+   "lv": "ks3",
+   "opts": [
+    "Retina",
+    "Iris",
+    "Cornea",
+    "Pupil"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The image forms on the retina at the back of the eye.",
+   "id": "wavr343l",
+   "pg": "pinhole"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Pinhole camera & the eye",
+   "q": "What does the iris do?",
+   "lv": "ks3",
+   "opts": [
+    "Controls the size of the pupil, so it lets in more or less light",
+    "Focuses the light",
+    "Turns light into electrical signals",
+    "Protects the front of the eye"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "In dim light the iris makes the pupil bigger to let in more light.",
+   "id": "wav1yjo0",
+   "pg": "pinhole"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Pinhole camera & the eye",
+   "q": "Which parts of the eye focus light on the retina?",
+   "lv": "ks3",
+   "opts": [
+    "The cornea and the lens",
+    "The iris and the pupil",
+    "The retina and the optic nerve",
+    "Only the pupil"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The cornea and lens refract (bend) the light to focus it.",
+   "id": "wav2h3zj",
+   "pg": "pinhole"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Pinhole camera & the eye",
+   "q": "How does the lens change to focus on something close up?",
+   "lv": "ks3",
+   "opts": [
+    "It gets thicker",
+    "It gets thinner",
+    "It moves further back",
+    "It doesn't change"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "A thicker lens bends light more, which is needed to focus light from near things.",
+   "id": "wavb3upi",
+   "pg": "pinhole"
+  },
+  {
+   "type": "short",
+   "topic": "waves",
+   "tool": "Pinhole camera & the eye",
+   "q": "What carries signals from the retina to the brain?",
+   "lv": "ks3",
+   "accept": [
+    "optic nerve",
+    "the optic nerve",
+    "nerve"
+   ],
+   "id": "wavcm9aj",
+   "pg": "pinhole"
+  },
+  {
+   "type": "open",
+   "topic": "waves",
+   "tool": "Pinhole camera & the eye",
+   "q": "Explain why the image in a pinhole camera is upside down.",
+   "lv": "ks3",
+   "model": "Light travels in straight lines. Light from the top of the object travels down through the pinhole to the bottom of the screen, and light from the bottom goes up to the top of the screen. The rays cross at the hole, so the image is upside down.",
+   "id": "wav14zls",
+   "pg": "pinhole"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Waves in a solid",
+   "q": "In the vibrating string practical, what does one loop of the standing wave show?",
+   "lv": "ks4",
+   "opts": [
+    "Half a wavelength",
+    "One wavelength",
+    "Two wavelengths",
+    "The amplitude"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Each loop is half a wavelength, so the wavelength is twice the length of one loop.",
+   "id": "waveh91q",
+   "pg": "solid-waves"
+  },
+  {
+   "type": "num",
+   "topic": "waves",
+   "tool": "Waves in a solid",
+   "q": "A string 1.2 m long vibrates with 3 loops. What is the wavelength?",
+   "lv": "ks4",
+   "num": 0.8,
+   "unit": "m",
+   "exp": "One loop is 1.2 ÷ 3 = 0.4 m. Each loop is half a wavelength, so λ = 2 × 0.4 = 0.8 m.",
+   "id": "wavnp4ni",
+   "pg": "solid-waves"
+  },
+  {
+   "type": "num",
+   "topic": "waves",
+   "tool": "Waves in a solid",
+   "q": "The signal generator is set to 50 Hz and the wavelength of the waves on the string is 0.8 m. What is the wave speed?",
+   "lv": "ks4",
+   "num": 40,
+   "unit": "m/s",
+   "exp": "v = f λ = 50 × 0.8 = 40 m/s.",
+   "id": "wav1j2gz",
+   "pg": "solid-waves"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Waves in a solid",
+   "q": "Why should you measure the length of several loops, rather than just one?",
+   "lv": "ks4",
+   "opts": [
+    "It makes the wavelength measurement more accurate",
+    "It makes the waves faster",
+    "It changes the frequency",
+    "One loop is too small to see"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Measuring a longer length gives a smaller percentage uncertainty. Divide by the number of loops to find the length of one.",
+   "id": "wavzvnqo",
+   "pg": "solid-waves"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Waves in a solid",
+   "q": "In the vibrating string practical, what sets the frequency of the waves?",
+   "lv": "ks4",
+   "opts": [
+    "The signal generator",
+    "The hanging mass",
+    "The length of the string",
+    "The pulley"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The vibration generator shakes the string at the frequency set on the signal generator.",
+   "id": "wav1t2qq",
+   "pg": "solid-waves"
+  },
+  {
+   "type": "tf",
+   "topic": "waves",
+   "tool": "Waves in a solid",
+   "q": "Doubling the frequency on the signal generator doubles the speed of the waves on the string.",
+   "lv": "ks4",
+   "ans": false,
+   "exp": "The wave speed depends on the string and how tight it is. Doubling the frequency halves the wavelength, so v = f λ stays the same.",
+   "id": "wav1nsqz",
+   "pg": "solid-waves"
+  },
+  {
+   "type": "num",
+   "topic": "waves",
+   "tool": "Waves in a solid",
+   "q": "A steel rod 1.0 m long is held at its middle and tapped. Its length is half a wavelength. A phone app measures the frequency of the note as 2500 Hz. What is the speed of sound in the steel?",
+   "lv": "ks4",
+   "num": 5000,
+   "unit": "m/s",
+   "exp": "λ = 2 × 1.0 = 2.0 m. v = f λ = 2500 × 2.0 = 5000 m/s.",
+   "id": "wav4q3eg",
+   "pg": "solid-waves"
+  },
+  {
+   "type": "mc",
+   "topic": "waves",
+   "tool": "Waves in a solid",
+   "q": "What kind of wave is sound travelling along a metal rod?",
+   "lv": "ks4",
+   "opts": [
+    "Longitudinal",
+    "Transverse",
+    "Electromagnetic"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Sound waves are longitudinal: the particles vibrate along the direction the wave travels.",
+   "id": "wavbl2eg",
+   "pg": "solid-waves"
+  },
+  {
+   "type": "open",
+   "topic": "waves",
+   "tool": "Waves in a solid",
+   "q": "Describe how to use a vibration generator and a string to find the speed of waves on the string.",
+   "lv": "ks4",
+   "model": "Stretch the string over a pulley with a mass hanging on the end, and attach the other end to a vibration generator connected to a signal generator. Change the frequency until a clear pattern of still loops forms. Measure the length of string across all the loops, divide by the number of loops and double it to get the wavelength. Read the frequency from the signal generator and calculate the wave speed with v = f λ.",
+   "id": "wavnsfj8",
+   "pg": "solid-waves"
   },
   {
    "type": "mc",
@@ -10719,7 +11391,8 @@ window.QUIZ_BANK = {
     "absorb",
     "absorbs all"
    ],
-   "id": "wavhmhpe"
+   "id": "wavhmhpe",
+   "pg": "colour"
   },
   {
    "type": "mc",
@@ -10736,7 +11409,8 @@ window.QUIZ_BANK = {
     0
    ],
    "exp": "The filter absorbs every other colour.",
-   "id": "wav1qhxi"
+   "id": "wav1qhxi",
+   "pg": "colour"
   },
   {
    "type": "mc",
@@ -16127,7 +16801,8 @@ window.QUIZ_BANK = {
    "lv": "ks4",
    "ans": false,
    "exp": "A generator uses electromagnetic induction, not the motor effect, to produce electricity.",
-   "id": "magvbv89"
+   "id": "magvbv89",
+   "pg": "generators"
   },
   {
    "type": "open",
@@ -16185,7 +16860,8 @@ window.QUIZ_BANK = {
    "lv": "ks4",
    "ans": true,
    "exp": "Loudspeakers use the motor effect to convert electrical signals into sound by moving a diaphragm.",
-   "id": "magus9a2"
+   "id": "magus9a2",
+   "pg": "generators"
   },
   {
    "type": "mc",
@@ -16214,7 +16890,8 @@ window.QUIZ_BANK = {
    "lv": "ks4",
    "ans": true,
    "exp": "The diaphragm in a loudspeaker moves because of the interaction between the magnetic field of the coil and the permanent magnet.",
-   "id": "magj13xg"
+   "id": "magj13xg",
+   "pg": "generators"
   },
   {
    "type": "open",
@@ -16272,7 +16949,8 @@ window.QUIZ_BANK = {
     1
    ],
    "exp": "The diaphragm (cone) in a loudspeaker vibrates to produce sound waves, driven by the motor effect.",
-   "id": "mag4wqem"
+   "id": "mag4wqem",
+   "pg": "generators"
   },
   {
    "type": "mc",
@@ -17325,7 +18003,8 @@ window.QUIZ_BANK = {
     3
    ],
    "exp": "P waves are longitudinal and faster. S waves are transverse and can only travel through solids, so they don't pass through the liquid outer core.",
-   "id": "wav41pu5"
+   "id": "wav41pu5",
+   "pg": "seismic"
   },
   {
    "type": "multi",

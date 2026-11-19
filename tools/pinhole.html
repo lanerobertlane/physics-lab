@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pinhole Camera &amp; the Eye · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Make an image with a pinhole camera, see why a bigger hole blurs it and a lens sharpens it, then see how the eye focuses light on the retina.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="physics, waves, education, school, KS3, science, simulation, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/pinhole.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Pinhole camera &amp; the eye">
+  <meta property="og:description" content="Make an image with a pinhole camera, see why a bigger hole blurs it and a lens sharpens it, then see how the eye focuses light on the retina.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/pinhole.html">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Pinhole camera & the eye", "description": "Make an image with a pinhole camera, see why a bigger hole blurs it and a lens sharpens it, then see how the eye focuses light on the retina.", "url": "https://lanerobertlane.space/tools/pinhole.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["Key Stage 3"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="Physics Lab">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #scene { display: block; width: 100%; aspect-ratio: 800 / 420; }
+    #info p, #explain p { margin: 0 0 8px; line-height: 1.5; }
+    #info p:last-child, #explain p:last-child { margin-bottom: 0; }
+    #explain ul { margin: 0 0 8px; padding-left: 20px; }
+    #explain li { margin-bottom: 4px; }
+    .readout dd { white-space: nowrap; }
+    .set-label { font-size: .88rem; font-weight: 700; color: var(--muted); margin: 0 0 6px; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Pinhole camera &amp; the eye</h1>
+      <p id="intro"></p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px" aria-label="Show">
+      <button class="chip" data-t="camera" aria-pressed="true">Pinhole camera</button>
+      <button class="chip" data-t="eye" aria-pressed="false">The eye</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="scene" class="drag" aria-label="A candle and a pinhole camera"></canvas>
+        </div>
+        <div class="panel after-aside">
+          <h2>How it works</h2>
+          <div id="explain"></div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel" data-for="camera">
+          <h2>Set up</h2>
+          <p class="set-label">The hole</p><div class="chip-group" id="hole" aria-label="The hole" style="margin-bottom:12px"><button class="chip" data-v="small" aria-pressed="true">Small</button><button class="chip" data-v="big" aria-pressed="false">Big</button><button class="chip" data-v="lens" aria-pressed="false">Big, with a lens</button></div>
+          <p class="note" style="margin:0">Drag the candle, or the back of the camera, to move them.</p>
+        </div>
+        <div class="panel" data-for="eye" hidden>
+          <h2>Set up</h2>
+          <p class="set-label">Looking at</p><div class="chip-group" id="dist" aria-label="Looking at" style="margin-bottom:12px"><button class="chip" data-v="far" aria-pressed="true">A tree far away</button><button class="chip" data-v="near" aria-pressed="false">A book close up</button></div>
+          <p class="set-label">Light</p><div class="chip-group" id="lightlvl" aria-label="Light" style="margin-bottom:12px"><button class="chip" data-v="bright" aria-pressed="true">Bright</button><button class="chip" data-v="dim" aria-pressed="false">Dim</button></div>
+          <label class="toggle" style="margin-bottom:0"><input type="checkbox" id="focus" checked> Let the lens change shape to focus</label>
+        </div>
+        <div class="panel">
+          <h2>What’s happening</h2>
+          <div id="info"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/pinhole.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/quiz-pages/pinhole.js"></script>
+  <script src="../js/practice-tab.js"></script>
+</body>
+</html>

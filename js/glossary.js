@@ -106,6 +106,13 @@ window.PK_GLOSSARY = {
   'uncertainty': { def: 'How far either side of the mean the true value could be. Half the range of the repeat readings is a good estimate.' },
   'zero error': { def: 'When an instrument doesn’t read zero when it should, so every reading is out by the same amount.' },
   // Waves
+  'specular reflection': { def: 'Reflection from a smooth surface in a single direction.' },
+  'diffuse reflection': { def: 'Reflection from a rough surface, which scatters the light in all directions.' },
+  'translucent': { def: 'Lets light pass through, but scatters it, so you can’t see clearly through it.' },
+  'retina': { def: 'The layer at the back of the eye with light-sensitive cells, where the image is formed.' },
+  'P-wave': { def: 'A longitudinal seismic wave. It travels through solids and liquids, at different speeds.', also: ['P-waves', 'P wave', 'P waves'] },
+  'S-wave': { def: 'A transverse seismic wave. It can’t travel through a liquid.', also: ['S-waves', 'S wave', 'S waves'] },
+  'standing wave': { def: 'A wave pattern that stays in one place: some points stay still and others vibrate as much as possible. On a string it looks like still loops, and each loop is half a wavelength.', also: ['standing waves'] },
   'echo': { def: 'A sound that has reflected from a surface and come back to you.', also: ['echoes'] },
   'ultrasound': { def: 'Sound with a frequency above 20 kHz, too high for humans to hear.' },
   'oscilloscope': { def: 'A device that draws how a voltage changes with time as a trace on a screen. Connected to a microphone, it shows a sound wave.' },
@@ -124,6 +131,9 @@ window.PK_GLOSSARY = {
   'magnetic field': { def: 'The region around a magnet where a force acts on another magnet or on a magnetic material.' },
   'induced magnet': { def: 'A material that becomes a magnet when it is placed in a magnetic field, and loses it when taken out.' },
   'motor effect': { def: 'The force on a wire carrying a current in a magnetic field: F = B I l.' },
+  'generator effect': { def: 'A potential difference is induced across a conductor that moves relative to a magnetic field, or when the field around it changes.' },
+  'alternator': { def: 'A generator that produces alternating current (a.c.). Slip rings connect the turning coil to the circuit.', also: ['alternators'] },
+  'dynamo': { def: 'A generator that produces direct current (d.c.). A split-ring commutator connects the turning coil to the circuit.', also: ['dynamos'] },
   'solenoid': { def: 'A coil of wire. A current through it makes a strong, uniform magnetic field inside.' },
   // Atomic structure
   'isotope': { def: 'Atoms of the same element with different numbers of neutrons.', also: ['isotopes'] },
