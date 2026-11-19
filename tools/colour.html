@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Colour &amp; Filters · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Shine white light through colour filters and a prism, see coloured objects under coloured light, and compare smooth, rough, transparent and translucent surfaces.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="physics, waves, education, school, KS3, GCSE, AQA, science, simulation, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/colour.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Colour &amp; filters">
+  <meta property="og:description" content="Shine white light through colour filters and a prism, see coloured objects under coloured light, and compare smooth, rough, transparent and translucent surfaces.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/colour.html">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Colour & filters", "description": "Shine white light through colour filters and a prism, see coloured objects under coloured light, and compare smooth, rough, transparent and translucent surfaces.", "url": "https://lanerobertlane.space/tools/colour.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["Key Stage 3", "GCSE"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="Physics Lab">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #scene { display: block; width: 100%; aspect-ratio: 800 / 420; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    #info p, #explain p { margin: 0 0 8px; line-height: 1.5; }
+    #info p:last-child, #explain p:last-child { margin-bottom: 0; }
+    #explain ul { margin: 0 0 8px; padding-left: 20px; }
+    #explain li { margin-bottom: 4px; }
+    .readout dd { white-space: nowrap; }
+    .set-label { font-size: .88rem; font-weight: 700; color: var(--muted); margin: 0 0 6px; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Colour &amp; filters</h1>
+      <p id="intro"></p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px" aria-label="Show">
+      <button class="chip" data-t="filters" aria-pressed="true">Filters and a prism</button>
+      <button class="chip" data-t="objects" aria-pressed="false">Coloured objects</button>
+      <button class="chip" data-t="surfaces" aria-pressed="false">Smooth, rough and see-through</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="scene" aria-label="White light passing through colour filters and a prism onto a screen"></canvas>
+        </div>
+        <div class="panel after-aside">
+          <h2>How it works</h2>
+          <div id="explain"></div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel" data-for="filters">
+          <h2>Set up</h2>
+          <div class="field"><label for="f1">First filter</label><select class="select" id="f1"><option value="none">No filter</option><option value="red">Red</option><option value="green">Green</option><option value="blue">Blue</option><option value="yellow">Yellow</option><option value="cyan">Cyan</option><option value="magenta">Magenta</option></select></div>
+          <div class="field" style="margin-bottom:0"><label for="f2">Second filter</label><select class="select" id="f2"><option value="none">No filter</option><option value="red">Red</option><option value="green">Green</option><option value="blue">Blue</option><option value="yellow">Yellow</option><option value="cyan">Cyan</option><option value="magenta">Magenta</option></select></div>
+        </div>
+        <div class="panel" data-for="objects" hidden>
+          <h2>Set up</h2>
+          <p class="set-label">Colour of the light</p>
+          <div class="chip-group" id="light" aria-label="Colour of the light" style="margin-bottom:12px"><button class="chip" data-v="white" aria-pressed="true">White</button><button class="chip" data-v="red" aria-pressed="false">Red</button><button class="chip" data-v="green" aria-pressed="false">Green</button><button class="chip" data-v="blue" aria-pressed="false">Blue</button><button class="chip" data-v="yellow" aria-pressed="false">Yellow</button><button class="chip" data-v="cyan" aria-pressed="false">Cyan</button><button class="chip" data-v="magenta" aria-pressed="false">Magenta</button></div>
+          <div class="field" style="margin-bottom:0"><label for="eyef">Look at them through</label><select class="select" id="eyef"><option value="none">No filter (just your eyes)</option><option value="red">Red</option><option value="green">Green</option><option value="blue">Blue</option><option value="yellow">Yellow</option><option value="cyan">Cyan</option><option value="magenta">Magenta</option></select></div>
+        </div>
+        <div class="panel" data-for="surfaces" hidden>
+          <h2>Set up</h2>
+          <p class="set-label">The light hits</p>
+          <div class="chip-group" id="surface" aria-label="Surface" style="margin-bottom:0"><button class="chip" data-v="smooth" aria-pressed="true">Smooth (mirror)</button><button class="chip" data-v="rough" aria-pressed="false">Rough (paper)</button><button class="chip" data-v="transparent" aria-pressed="false">Transparent (glass)</button><button class="chip" data-v="translucent" aria-pressed="false">Translucent (frosted glass)</button><button class="chip" data-v="opaque" aria-pressed="false">Opaque (wood)</button></div>
+        </div>
+        <div class="panel">
+          <h2>What’s happening</h2>
+          <div id="info"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/colour.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/quiz-pages/colour.js"></script>
+  <script src="../js/practice-tab.js"></script>
+</body>
+</html>

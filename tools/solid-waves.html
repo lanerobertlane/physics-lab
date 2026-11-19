@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Waves in a Solid · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Required practical: find the frequency, wavelength and speed of waves on a vibrating string and in a metal rod, and check v = f λ.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="physics, waves, education, school, KS3, GCSE, AQA, science, simulation, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/solid-waves.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Waves in a solid">
+  <meta property="og:description" content="Required practical: find the frequency, wavelength and speed of waves on a vibrating string and in a metal rod, and check v = f λ.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/solid-waves.html">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Waves in a solid", "description": "Required practical: find the frequency, wavelength and speed of waves on a vibrating string and in a metal rod, and check v = f λ.", "url": "https://lanerobertlane.space/tools/solid-waves.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["GCSE"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="Physics Lab">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #scene { display: block; width: 100%; aspect-ratio: 800 / 360; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .stage-bar .spacer { flex: 1; }
+    #info p, #method p { margin: 0 0 8px; line-height: 1.5; }
+    #info p:last-child { margin-bottom: 0; }
+    .readout dd { white-space: nowrap; }
+    .results { width: 100%; border-collapse: collapse; margin-top: 10px; font-variant-numeric: tabular-nums; font-size: .88rem; }
+    .results th, .results td { border: 1px solid var(--border-strong); padding: 4px 5px; text-align: center; }
+    .results th { background: var(--surface-2); }
+    .results .del { border: 0; background: none; color: var(--muted); cursor: pointer; }
+    #method ol { margin: 0 0 10px; padding-left: 20px; }
+    #method li { margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Waves in a solid</h1>
+      <p id="intro"></p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px" aria-label="Show">
+      <button class="chip" data-t="string" aria-pressed="true">Vibrating string</button>
+      <button class="chip" data-t="rod" aria-pressed="false">Metal rod</button>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="scene" class="drag" aria-label="A string stretched between a vibration generator and a pulley"></canvas>
+          <div class="stage-bar">
+            <div class="chip-group" id="view" data-for="string" aria-label="View"><button class="chip" data-v="blur" aria-pressed="true">As you see it</button><button class="chip" data-v="slow" aria-pressed="false">Slow motion</button></div>
+            <button class="btn primary" id="tap" data-for="rod" hidden>🔨 Tap the end of the rod</button>
+          </div>
+        </div>
+        <div class="panel after-aside">
+          <h2>Required practical: method</h2>
+          <div id="method"></div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel" data-for="string">
+          <h2>Set up</h2>
+          <div class="num-row"><label for="freq">Signal generator frequency</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: frequency">−</button><input type="number" id="freq" min="5" max="120" step="any" data-inc="1" value="10" inputmode="decimal"><span class="unit">Hz</span><button data-step="1" aria-label="More: frequency">+</button></div></div>
+          <div class="num-row"><label for="mass">Hanging mass</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: hanging mass">−</button><input type="number" id="mass" min="50" max="500" step="any" data-inc="50" value="200" inputmode="decimal" data-whole><span class="unit">g</span><button data-step="1" aria-label="More: hanging mass">+</button></div></div>
+          <div class="num-row"><label for="len">Length of string vibrating</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: length">−</button><input type="number" id="len" min="0.6" max="1.5" step="any" data-inc="0.1" value="1.2" inputmode="decimal"><span class="unit">m</span><button data-step="1" aria-label="More: length">+</button></div></div>
+          <p class="note" style="margin:0">You can also drag the vibration generator along the bench.</p>
+        </div>
+        <div class="panel" data-for="rod" hidden>
+          <h2>Set up</h2>
+          <div class="field"><label for="metal">Metal</label>
+            <select class="select" id="metal">
+              <option value="steel">Steel</option>
+              <option value="aluminium">Aluminium</option>
+              <option value="brass">Brass</option>
+              <option value="copper">Copper</option>
+            </select></div>
+          <div class="num-row"><label for="rlen">Length of the rod</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: length of the rod">−</button><input type="number" id="rlen" min="0.5" max="1.5" step="any" data-inc="0.1" value="1.0" inputmode="decimal"><span class="unit">m</span><button data-step="1" aria-label="More: length of the rod">+</button></div></div>
+        </div>
+        <div class="panel">
+          <h2>What’s happening</h2>
+          <div id="info"></div>
+        </div>
+        <div class="panel">
+          <h2>Results</h2>
+          <div class="btn-row">
+            <button class="btn primary" id="record">＋ Record reading</button>
+            <button class="btn" id="clear-results">Clear</button>
+          </div>
+          <div id="table"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/solid-waves.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/quiz-pages/solid-waves.js"></script>
+  <script src="../js/practice-tab.js" data-eqs="wave period"></script>
+</body>
+</html>
