@@ -4,7 +4,7 @@
 const SITE = {
   name: "Mr Lane's Physics Lab",
   byline: 'KS3 & AQA GCSE Physics · Beta', // shown under the name in the header
-  version: 67,   // shown in the footer; keep it the same as VERSION in sw.js
+  version: 68,   // shown in the footer; keep it the same as VERSION in sw.js
   bugEmail: 'bug@lanerobertlane.space',
 };
 
@@ -326,8 +326,28 @@ const PK = (() => {
   // Cache the site for offline use (only works over http/https).
   if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register(root + 'sw.js').catch(() => {});
+      navigator.serviceWorker.register(root + 'sw.js')
+        .then(() => navigator.serviceWorker.ready)
+        .then((reg) => {
+          // Save the rest of the site for offline use, once per version. Wait a random 20 to 90 s
+          // and fetch one file at a time, so a class of iPads opening the site together don't all
+          // download it at once on the school's Wi-Fi.
+          if (store.get('filled') === SITE.version || !reg.active) return;
+          setTimeout(() => fillCache(reg.active), 20000 + Math.random() * 70000);
+        })
+        .catch(() => {});
     });
+  }
+  function fillCache(sw) {
+    const ch = new MessageChannel();
+    ch.port1.onmessage = async (e) => {
+      for (const f of Array.isArray(e.data) ? e.data : []) {
+        try { await fetch(root + f); } catch { return; }   // offline: carry on another time
+        await new Promise((r) => setTimeout(r, 300));
+      }
+      store.set('filled', SITE.version);
+    };
+    sw.postMessage({ type: 'missing' }, [ch.port2]);
   }
 
   // Anonymous page-view counts (Cloudflare Web Analytics): no cookies and nothing stored on the

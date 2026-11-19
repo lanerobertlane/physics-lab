@@ -1,8 +1,10 @@
-// Offline support: keeps a copy of the site so it still works if school Wi-Fi drops.
-// Network first (so updates show straight away), falling back to the saved copy.
+// Offline support: keeps a copy of the site so it still works if school Wi-Fi drops or crawls.
+// Each file comes from the network if it arrives within 3 seconds (so updates show straight away);
+// if it's slower than that, or there's no network, the saved copy is shown instead, and the new
+// copy is saved when it does arrive.
 // Bump VERSION when anything changes, and keep it the same as SITE.version in js/common.js.
 
-const VERSION = 'physkit-v67';
+const VERSION = 'physkit-v68';
 // Written by scripts/build-quiz-bank.js: the pages that have quiz questions for their Practice tab
 const QUIZ_PAGES = ['acceleration', 'atom', 'atom-history', 'background', 'black-body', 'bonding', 'brownian', 'circuits', 'density', 'displacement', 'earth-field', 'echo', 'efficiency', 'electricity-cost', 'electrolysis', 'electromagnetism', 'em-spectrum', 'energy', 'fission', 'fluid-pressure', 'gas', 'graph-plotter', 'grid', 'half-life', 'heat', 'infrared', 'insulation', 'levers', 'light-box', 'magnets', 'mains', 'moments', 'momentum', 'motion-graphs', 'nuclear', 'orbits', 'periodic-table', 'power', 'radiation', 'rates', 'reaction', 'reaction-profiles', 'redshift', 'resources', 'resultant-forces', 'ripple-tank', 'shc', 'sky', 'solid-pressure', 'sound', 'speed', 'speed-of-sound', 'springs', 'star-life', 'states', 'static', 'stopping', 'terminal', 'third-law', 'transformers', 'uncertainty', 'units', 'uses', 'waves', 'weight', 'wire-resistance', 'work'];
 const PRECACHE = [
@@ -136,31 +138,82 @@ const PRECACHE = [
   'tools/em-spectrum.html',
   'tools/equations.html',
   'js/qrcode.min.js',
+  'icons/apple-touch-icon.png',
 ].concat(QUIZ_PAGES.map((p) => `js/quiz-pages/${p}.js`));
+// PRECACHE is the whole site. Only these few files, which every page needs, are fetched as soon as a
+// new version arrives. The rest is saved as it's used, and downloaded slowly in the background by
+// the page (see js/common.js), so a class of iPads opening the site after an update don't all
+// download the whole site at once.
+const CORE = ['./', 'index.html', 'manifest.webmanifest', 'css/style.css', 'icons/favicon.svg', 'icons/apple-touch-icon.png', 'js/common.js', 'js/catalogue.js', 'js/extras.js', 'js/glossary.js'];
+// One cache that lasts from version to version, so an update never throws away the saved copies
+const CACHE = 'physkit-files';
+// How long to wait for the network before showing the saved copy instead
+const WAIT_MS = 3000;
+// The same page with a different ?s=… set-up is the same file
+const keyOf = (url) => { const u = new URL(url, self.location.href); return u.origin + u.pathname; };
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(VERSION).then((cache) => cache.addAll(PRECACHE)).then(() => self.skipWaiting()));
+  event.waitUntil(
+    caches.open(CACHE)
+      .then((cache) => Promise.all(CORE.map((f) => fetch(f, { cache: 'no-cache' })
+        .then((res) => (res.ok ? cache.put(keyOf(f), res) : null))
+        .catch(() => null))))   // one file failing mustn't stop the update
+      .then(() => self.skipWaiting()),
+  );
 });
 
+// Up to v67 there was a separate cache for each version, and an update threw the old one away.
+// Move anything saved in an old cache into the lasting one (no downloading), then remove it.
 self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys()
-      .then((keys) => Promise.all(keys.filter((k) => k !== VERSION).map((k) => caches.delete(k))))
-      .then(() => self.clients.claim()),
-  );
+  event.waitUntil((async () => {
+    const cache = await caches.open(CACHE);
+    for (const name of await caches.keys()) {
+      if (name === CACHE) continue;
+      const old = await caches.open(name);
+      for (const req of await old.keys()) {
+        const key = keyOf(req.url);
+        if (await cache.match(key)) continue;
+        const res = await old.match(req);
+        if (res) await cache.put(key, res);
+      }
+      await caches.delete(name);
+    }
+    await self.clients.claim();
+  })());
 });
 
 self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET' || new URL(req.url).origin !== self.location.origin) return;
-  event.respondWith(
-    // 'no-cache' asks the server whether the file has changed, so updates show straight away.
-    fetch(req, { cache: 'no-cache' })
-      .then((res) => {
-        const copy = res.clone();
-        if (res.ok) caches.open(VERSION).then((cache) => cache.put(req, copy));
-        return res;
-      })
-      .catch(() => caches.match(req, { ignoreSearch: true }).then((hit) => hit || caches.match('index.html'))),
-  );
+  const key = keyOf(req.url);
+  // 'no-cache' asks the server whether the file has changed, so updates show straight away.
+  // The copy for saving is taken straight away, before the page starts reading the file.
+  let saving = null;
+  const network = fetch(req, { cache: 'no-cache' }).then((res) => {
+    if (res.ok) { const copy = res.clone(); saving = caches.open(CACHE).then((cache) => cache.put(key, copy)); }
+    return res;
+  });
+  // Save the new copy when it arrives, even if the saved one has already been shown
+  event.waitUntil(network.then(() => saving, () => null).catch(() => null));
+  event.respondWith((async () => {
+    const saved = await caches.match(key);
+    if (!saved) {
+      try { return await network; } catch {
+        return (req.mode === 'navigate' && (await caches.match(keyOf('index.html')))) || Response.error();
+      }
+    }
+    // There's a saved copy: give the network a few seconds, then show the saved copy
+    const fresh = await Promise.race([network.catch(() => null), new Promise((r) => setTimeout(r, WAIT_MS, null))]);
+    return fresh && fresh.ok ? fresh : saved;
+  })());
+});
+
+// The page asks which files aren't saved yet, to download them slowly in the background
+self.addEventListener('message', (event) => {
+  if (!event.data || event.data.type !== 'missing' || !event.ports || !event.ports[0]) return;
+  event.waitUntil(caches.open(CACHE).then(async (cache) => {
+    const out = [];
+    for (const f of PRECACHE) if (!(await cache.match(keyOf(f)))) out.push(f);
+    event.ports[0].postMessage(out);
+  }));
 });
