@@ -51,14 +51,19 @@ window.PKSearch = (() => {
       const sp = byPage[page];
       const topicName = (id) => (topics.find((x) => x.id === id) || {}).name || '';
       const text = norm([t.name, t.desc, topicName(t.topic), ...(t.also || []).map(topicName), sp ? sp.spec.map((s) => s.text).join(' ') : '', (words && words[t.name]) || ''].join(' | '));
-      data.set(t, { text, ...squash(text), codes: sp ? sp.spec.map((s) => s.code) : [], chem: Boolean(sp && sp.course === 'chemistry') });
+      // Each code, and whether it's a Chemistry one (a Chemistry tool's, or marked "Chem" in a Physics tool)
+      const codes = sp ? sp.spec.map((s) => (s.code.startsWith('Chem ') ? { c: s.code.slice(5), chem: true } : { c: s.code, chem: sp.course === 'chemistry' })) : [];
+      data.set(t, { text, ...squash(text), codes });
     }
     function codeMatches(d, w) {
-      const code = w.replace(/\.$/, ''), tries = [code];
+      const code = w.replace(/\.$/, '');
       // Combined Science numbers its physics 6.1–6.7 and its chemistry 5.x, where the separate sciences use 4.x
-      if (!d.chem && code.startsWith('6.')) tries.push(`4.${code.slice(2)}`);
-      if (d.chem && code.startsWith('5.')) tries.push(`4.${code.slice(2)}`);
-      return d.codes.some((c) => tries.some((x) => c === x || c.startsWith(`${x}.`)));
+      return d.codes.some(({ c, chem }) => {
+        const tries = [code];
+        if (!chem && code.startsWith('6.')) tries.push(`4.${code.slice(2)}`);
+        if (chem && code.startsWith('5.')) tries.push(`4.${code.slice(2)}`);
+        return tries.some((x) => c === x || c.startsWith(`${x}.`));
+      });
     }
     // Found at the start of a word, ignoring spaces and hyphens: "magn" finds "magnetic" but not "electromagnetic"
     function atWordStart(d, phrase) {

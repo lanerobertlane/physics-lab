@@ -218,6 +218,52 @@ const SATS = {
     use: 'TV, phone and internet links, and weather pictures of half the Earth at once. It stays above the same place, so a satellite dish can point at it without moving.', orbit: 'Above the equator, going round once in the time the Earth takes to spin once (23 h 56 min)' },
 };
 const sa = { t: 0 };   // hours
+// Every working satellite, for the "Show every working satellite" tick box: about 17 000 in
+// November 2026 (published counts were 16 900 to 17 300), about two-thirds of them Starlink.
+// Each group: [how many, height (km), tilt to the equator (°), planes (0: spread out), kind]
+const CROWD_GROUPS = [
+  [6000, 550, 53, 0, 0], [2500, 530, 43, 0, 0], [1300, 535, 33, 0, 0], [700, 570, 70, 0, 0], [500, 560, 97.6, 0, 0],   // Starlink
+  [650, 1200, 87.9, 0, 0],                                   // OneWeb
+  [3000, -1, 97.5, 0, 0],                                    // watching the Earth, 450–850 km, over the poles
+  [1400, -2, -1, 0, 0],                                      // other low orbits, 300–1500 km, any tilt
+  [31, 20200, 55, 6, 1], [24, 19100, 64.8, 3, 1], [28, 23222, 56, 3, 1], [24, 21528, 55, 3, 1], [20, 8062, 0, 1, 1],   // satnav and others in medium orbits
+  [600, 35786, 0, 0, 2],                                     // geostationary
+];
+const CROWD_COL = ['rgba(225, 232, 242, .8)', '#4fc3f7', '#f48fb1'];
+const CROWD = [];
+for (const [n, h0, inc0, planes, kind] of CROWD_GROUPS) {
+  for (let j = 0; j < n; j++) {
+    const h = h0 === -1 ? 450 + rand() * 400 : h0 === -2 ? 300 + rand() * 1200 : h0;
+    const inc = ((inc0 < 0 ? rand() * 100 : kind === 2 ? rand() * 3 : inc0) * Math.PI) / 180;
+    const node = planes ? (Math.floor(rand() * planes) / planes) * TAU : rand() * TAU, r = RE + h;
+    // Mean motion in radians per hour, from T = 2π √(r³ / GM) with GM = 398 600 km³/s²
+    CROWD.push({ kind, k: r / RE, cO: Math.cos(node), sO: Math.sin(node), ci: Math.cos(inc), si: Math.sin(inc), u0: rand() * TAU, n: Math.sqrt(398600 / (r * r * r)) * 3600 });
+  }
+}
+const crowdXY = new Float32Array(CROWD.length * 3);
+// Where every satellite is now, seen from a little above the equator
+function placeCrowd(R) {
+  const ce = Math.cos(EPS), se = Math.sin(EPS), turn = earthTurn();
+  CROWD.forEach((s, j) => {
+    const u = s.kind === 2 ? s.u0 + turn : s.u0 + s.n * sa.t, r = R * s.k, cu = Math.cos(u), su = Math.sin(u);
+    const X = r * (s.cO * cu - s.sO * su * s.ci), Y = r * (s.sO * cu + s.cO * su * s.ci), Z = r * su * s.si;
+    crowdXY[j * 3] = CX + X; crowdXY[j * 3 + 1] = CY - (Z * ce + Y * se); crowdXY[j * 3 + 2] = -Y * ce + Z * se;
+  });
+}
+// The groups are listed low, medium, geostationary, so each kind is one run of the list
+const CROWD_RUNS = [0, 1, 2].map((kind) => { const a = CROWD.findIndex((s) => s.kind === kind); return [a, a + CROWD.filter((s) => s.kind === kind).length]; });
+// One shape per colour, rather than 17 000 separate squares, so it stays quick on an iPad
+function drawCrowd(front, size) {
+  CROWD_RUNS.forEach(([a, b], kind) => {
+    ctx.beginPath();
+    for (let j = a; j < b; j++) {
+      if ((crowdXY[j * 3 + 2] >= 0) !== front) continue;
+      const x = crowdXY[j * 3], y = crowdXY[j * 3 + 1];
+      if (x > -2 && x < W + 2 && y > -2 && y < H + 2) ctx.rect(x - size / 2, y - size / 2, size, size);
+    }
+    ctx.fillStyle = CROWD_COL[kind]; ctx.fill();
+  });
+}
 // Rough continents: [latitude, longitude, half-height, half-width] in degrees
 const BLOBS = [[50, -100, 18, 30], [62, -140, 8, 22], [32, -95, 10, 16], [18, -99, 6, 8], [73, -40, 9, 16], [-5, -60, 14, 17], [-30, -65, 14, 8],
   [50, 10, 9, 18], [63, 20, 8, 12], [54, -2, 4, 3], [10, 15, 14, 25], [-12, 26, 16, 13], [24, 10, 9, 25], [55, 90, 14, 55], [35, 80, 12, 30],
@@ -268,6 +314,8 @@ function drawSats() {
     if (!L.close && p.s.h < 2000 && !on) return;   // zoomed out, the low orbits are too crowded to label
     tag(p.s.name, p.x + 14 * k, p.y - 11, on ? p.s.col : INK, 'left', on ? 15 : 14, on ? 800 : 700);
   };
+  const crowd = $('crowd').checked, dotSize = L.close ? 1.8 : 1.2;
+  if (crowd) { placeCrowd(R); drawCrowd(false, dotSize); }
   drawOrbits(false);
   for (const p of L.sats) if (p.z < 0) drawSat(p);
   // The Earth, turning
@@ -291,8 +339,10 @@ function drawSats() {
     const below = surface(0, 0, R, CX, CY);
     ctx.strokeStyle = 'rgba(244, 143, 177, .7)'; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.moveTo(geo.x, geo.y); ctx.lineTo(below.x, below.y); ctx.stroke(); ctx.setLineDash([]);
   }
+  if (crowd) drawCrowd(true, dotSize);
   drawOrbits(true);
   for (const p of L.sats) if (p.z >= 0) drawSat(p);
+  if (crowd) tag('Each dot is one working satellite: about 17 000 (November 2026)', 14, 42, '#e1e8f2', 'left', 13, 700);
   if (!L.close) tag('low orbits, just above the surface', CX - R - 10, CY - R - 4, DIM, 'right', 13, 600);
   tag(L.close ? 'Close up: the GPS and geostationary satellites are far beyond the edge' : 'The orbits and the Earth are to scale; the satellites are drawn much bigger', 14, H - 16, DIM, 'left', 13, 600);
   tag('Tap a satellite', 14, 20, DIM, 'left', 14, 700);
@@ -329,6 +379,7 @@ const EXPLAIN = {
       <li>A <b>geostationary</b> satellite orbits above the equator once a day, in the same direction as the Earth spins, so it stays above the same place.</li>
       <li>A satellite in a <b>polar orbit</b> passes over the North and South Poles. The Earth turns beneath it, so it can see the whole planet.</li>
       <li>The Moon, our natural satellite, is about 9 times further from the Earth’s centre than a geostationary satellite, and takes 27 days to go round.</li>
+      <li>The number of satellites is rising fast: there are about 17 000 working ones (November 2026), most of them in low orbits. Tick “Show every working satellite” to see them.</li>
     </ul>
     <h3 style="font-size:1rem;margin:14px 0 6px">Planets, moons and artificial satellites compared</h3>
     <p><b>What’s the same:</b> planets, moons and artificial satellites all orbit something bigger than themselves, in orbits that are almost circles, and <b>gravity</b> provides the force that keeps them there. The further out they are, the slower they go.</p>
@@ -362,7 +413,9 @@ function render() {
     const s = SATS[pressed('sat')], r = RE + s.h, v = (TAU * r) / (s.T * 3600);
     const time = s.T < 3 ? `${Math.round(s.T * 60)} minutes` : `${Math.floor(s.T)} h ${Math.round((s.T % 1) * 60)} min`;
     html = `<p style="font-weight:800;font-size:1.05rem;margin-bottom:6px">${s.name}</p><dl class="readout"><dt>Height above the ground</dt><dd>${spaced(s.h)} km</dd><dt>Time to orbit</dt><dd>${time}</dd><dt>Speed</dt><dd>${v.toFixed(1)} km/s</dd></dl><p><b>Orbit:</b> ${s.orbit}.</p><p><b>Used for:</b> ${s.use}</p>`;
-    html += '<p>The higher the orbit, the slower the satellite moves, and the longer it takes to go round.</p><p class="note">Time passed: <b id="clock"></b></p>';
+    html += '<p>The higher the orbit, the slower the satellite moves, and the longer it takes to go round.</p>';
+    if ($('crowd').checked) html += '<p><b>Every working satellite:</b> about 17 000 in November 2026, and the number is rising fast. Grey dots are in low orbits, blue dots in medium orbits (mostly satnav) and pink dots in geostationary orbit.</p><p>About two-thirds of them belong to one internet network, Starlink. As well as working satellites, tens of thousands of pieces of space junk are tracked: dead satellites, old rocket parts and broken pieces that could crash into working satellites.</p>';
+    html += '<p class="note">Time passed: <b id="clock"></b></p>';
   }
   $('info').innerHTML = html;
   document.querySelectorAll('#ptable tbody tr').forEach((tr) => tr.classList.toggle('on', tr.dataset.n === sol.pick));
@@ -381,6 +434,7 @@ function tickClock(force) {
 // ---------- Controls ----------
 
 $('ptable').querySelector('tbody').innerHTML = BODIES.map((b) => `<tr data-n="${b.name}"><th>${b.name}</th><td>${b.kind}</td><td>${spaced(b.a * AU)}</td><td>${b.T < 1 ? b.T.toFixed(2) : b.T < 20 ? b.T.toFixed(1) : spaced(b.T)}</td><td>${spaced(b.d)}</td><td>${b.moons}</td><td>${b.temp < 0 ? '−' : ''}${Math.abs(b.temp)}</td></tr>`).join('');
+$('crowd').addEventListener('change', render);
 $('ptable').addEventListener('click', (e) => { const tr = e.target.closest('tr[data-n]'); if (tr) { sol.pick = tr.dataset.n; render(); } });
 
 function showTab(t) {

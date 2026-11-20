@@ -8,7 +8,7 @@ const state = { q: '', course: PK.store.get('spec.course', 'all') };
 
 const SECTIONS = {
   physics: { '4.1': 'Energy', '4.2': 'Electricity', '4.3': 'Particle model of matter', '4.4': 'Atomic structure', '4.5': 'Forces', '4.6': 'Waves', '4.7': 'Magnetism and electromagnetism', '4.8': 'Space physics' },
-  chemistry: { '4.1': 'Atomic structure and the periodic table', '4.2': 'Bonding, structure and the properties of matter' },
+  chemistry: { '4.1': 'Atomic structure and the periodic table', '4.2': 'Bonding, structure and the properties of matter', '4.3': 'Quantitative chemistry', '4.4': 'Chemical changes', '4.5': 'Energy changes', '4.6': 'The rate and extent of chemical change', '4.7': 'Organic chemistry', '4.8': 'Chemical analysis', '4.9': 'Chemistry of the atmosphere', '4.10': 'Using resources' },
 };
 const nameOf = (page, fallback) => (TOOLS.find((t) => t.href === `tools/${page}.html`) || {}).name || fallback;
 const keyOf = (code) => code.split('.').map((n) => n.padStart(3, '0')).join('.');
@@ -17,10 +17,11 @@ const keyOf = (code) => code.split('.').map((n) => n.padStart(3, '0')).join('.')
 function rows() {
   const map = new Map();
   for (const t of window.SPEC_INDEX) for (const s of t.spec) {
-    const isAqa = /^\d/.test(s.code);
-    const course = s.code === 'KS3' ? 'ks3' : isAqa ? t.course : 'skills';
-    const k = `${course}|${s.code}`;
-    if (!map.has(k)) map.set(k, { course, code: s.code, texts: new Set(), tools: new Map(), ht: false, po: false });
+    // "Chem 4.9.2.1" in a Physics tool is a GCSE Chemistry point
+    const chem = s.code.startsWith('Chem '), code = chem ? s.code.slice(5) : s.code;
+    const course = chem ? 'chemistry' : code === 'KS3' ? 'ks3' : /^\d/.test(code) ? t.course : 'skills';
+    const k = `${course}|${code}`;
+    if (!map.has(k)) map.set(k, { course, code, texts: new Set(), tools: new Map(), ht: false, po: false });
     const r = map.get(k);
     r.texts.add(s.text); r.tools.set(t.page, nameOf(t.page, t.title)); r.ht = r.ht || !!s.ht; r.po = r.po || !!s.po;
   }
