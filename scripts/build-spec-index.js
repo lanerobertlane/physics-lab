@@ -14,7 +14,8 @@ for (const file of fs.readdirSync(path.join(root, 'tools')).filter((f) => f.ends
   let header;
   try { header = Function(`return {${m[1]}};`)(); } catch (e) { console.warn(`Skipped ${page}: ${e.message}`); continue; }
   if (!header.spec) continue;
-  const course = /Chemistry \(8462\)/.test(header.specNote || '') ? 'chemistry' : 'physics';
+  // A Physics tool may quote a few Chemistry points (marked "Chem"); only the main reference decides
+  const course = /references are to GCSE Chemistry \(8462\)/.test(header.specNote || '') ? 'chemistry' : 'physics';
   out.push({ page, title: header.title, course, spec: header.spec.map(({ code, text, ht, po }) => ({ code, text, ...(ht ? { ht: 1 } : {}), ...(po ? { po: 1 } : {}) })) });
 }
 fs.writeFileSync(path.join(root, 'js', 'spec-index-data.js'),

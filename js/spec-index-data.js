@@ -76,7 +76,7 @@ window.SPEC_INDEX = [
  {
   "page": "black-body",
   "title": "Black body radiation",
-  "course": "chemistry",
+  "course": "physics",
   "spec": [
    {
     "code": "4.6.3.1",
