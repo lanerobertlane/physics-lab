@@ -6132,6 +6132,370 @@ window.QUIZ_BANK = {
   },
   {
    "type": "mc",
+   "topic": "space",
+   "tool": "Planets, moons & satellites",
+   "q": "What is a moon?",
+   "lv": "both",
+   "opts": [
+    "A natural satellite that orbits a planet",
+    "An object that orbits the Sun",
+    "A small star",
+    "A satellite made by people"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Moons are natural satellites: they orbit planets (or dwarf planets).",
+   "id": "spa531w8",
+   "pg": "planets"
+  },
+  {
+   "type": "mc",
+   "topic": "space",
+   "tool": "Planets, moons & satellites",
+   "q": "Why is Pluto called a dwarf planet, not a planet?",
+   "lv": "both",
+   "opts": [
+    "It hasn't cleared other objects out of its path round the Sun",
+    "It doesn't orbit the Sun",
+    "It has no moons",
+    "It's made of gas"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Pluto orbits the Sun and is round, but it shares its part of space with many other icy objects.",
+   "id": "spa1q3b4",
+   "pg": "planets"
+  },
+  {
+   "type": "mc",
+   "topic": "space",
+   "tool": "Planets, moons & satellites",
+   "q": "What provides the force that keeps the planets in their orbits round the Sun?",
+   "lv": "both",
+   "opts": [
+    "The Sun's gravity",
+    "Magnetism",
+    "The planets' speed",
+    "Friction"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The Sun's gravity pulls each planet towards it, which keeps it moving in a (nearly) circular path.",
+   "id": "spa16aea",
+   "pg": "planets"
+  },
+  {
+   "type": "tf",
+   "topic": "space",
+   "tool": "Planets, moons & satellites",
+   "q": "Ganymede is bigger than the planet Mercury, so it is a planet, not a moon.",
+   "lv": "both",
+   "ans": false,
+   "exp": "Ganymede orbits Jupiter, so it's a moon. Whether something is a planet or a moon depends on what it orbits, not on its size.",
+   "id": "spa1naqc",
+   "pg": "planets"
+  },
+  {
+   "type": "mc",
+   "topic": "space",
+   "tool": "Planets, moons & satellites",
+   "q": "A geostationary satellite stays above the same place on the Earth. How long does it take to go round the Earth once?",
+   "lv": "ks4",
+   "opts": [
+    "About 24 hours (one day)",
+    "About 90 minutes",
+    "One year",
+    "About a month"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "It orbits above the equator once in the time the Earth takes to spin once, in the same direction, so it stays above the same place.",
+   "id": "spa1tymm",
+   "pg": "planets"
+  },
+  {
+   "type": "mc",
+   "topic": "space",
+   "tool": "Planets, moons & satellites",
+   "q": "Which kind of orbit lets a satellite see every part of the Earth's surface as the Earth turns?",
+   "lv": "ks4",
+   "opts": [
+    "A polar orbit",
+    "A geostationary orbit",
+    "An orbit above the equator",
+    "An orbit round the Moon"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "A polar orbit passes over the North and South Poles, and the Earth turns beneath it.",
+   "id": "spa1joal",
+   "pg": "planets"
+  },
+  {
+   "type": "multi",
+   "topic": "space",
+   "tool": "Planets, moons & satellites",
+   "q": "Which of these are artificial satellites? (tick 2)",
+   "lv": "both",
+   "opts": [
+    "The International Space Station",
+    "The Hubble Space Telescope",
+    "The Moon",
+    "Titan"
+   ],
+   "ans": [
+    0,
+    1
+   ],
+   "exp": "Artificial satellites are made by people. The Moon and Titan are natural satellites (moons).",
+   "id": "spavs10f",
+   "pg": "planets"
+  },
+  {
+   "type": "mc",
+   "topic": "space",
+   "tool": "Planets, moons & satellites",
+   "q": "Satellite A orbits 400 km above the Earth. Satellite B orbits 36 000 km above it. Which is true?",
+   "lv": "ks4",
+   "opts": [
+    "B moves more slowly and takes longer to go round",
+    "A moves more slowly and takes longer to go round",
+    "They take the same time to go round",
+    "B moves faster than A"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Higher satellites move more slowly and have further to go: about 90 minutes at 400 km, and a day at 36 000 km.",
+   "id": "spahdkz8",
+   "pg": "planets"
+  },
+  {
+   "type": "mc",
+   "topic": "space",
+   "tool": "Planets, moons & satellites",
+   "q": "Which list is in the right order, starting nearest the Sun?",
+   "lv": "both",
+   "opts": [
+    "Mercury, Venus, Earth, Mars",
+    "Venus, Mercury, Earth, Mars",
+    "Mercury, Earth, Venus, Mars",
+    "Mars, Earth, Venus, Mercury"
+   ],
+   "ans": [
+    0
+   ],
+   "id": "spa1tzvk",
+   "pg": "planets"
+  },
+  {
+   "type": "tf",
+   "topic": "space",
+   "tool": "Planets, moons & satellites",
+   "q": "Our solar system is a small part of the Milky Way galaxy.",
+   "lv": "both",
+   "ans": true,
+   "exp": "The Milky Way has hundreds of billions of stars. The Sun is just one of them.",
+   "id": "spa1aj2c",
+   "pg": "planets"
+  },
+  {
+   "type": "open",
+   "topic": "space",
+   "tool": "Planets, moons & satellites",
+   "q": "Give two similarities and two differences between the Moon and an artificial satellite.",
+   "lv": "both",
+   "model": "Similarities: both orbit the Earth, and both are kept in orbit by the Earth's gravity. Differences: the Moon is natural but artificial satellites are made by people; the Moon is much bigger; the Moon is much further away and takes about 27 days to go round, while artificial satellites take between about 90 minutes and a day.",
+   "id": "spai9ojo",
+   "pg": "planets"
+  },
+  {
+   "type": "mc",
+   "topic": "space",
+   "tool": "Stars, galaxies & light years",
+   "q": "What is a light year?",
+   "lv": "ks3",
+   "opts": [
+    "The distance light travels in one year",
+    "The time light takes to reach the Earth",
+    "The time the Earth takes to orbit the Sun",
+    "The speed of light"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "A light year is a distance, not a time: about 9.5 million million km.",
+   "id": "spa1b1ub",
+   "pg": "stars"
+  },
+  {
+   "type": "tf",
+   "topic": "space",
+   "tool": "Stars, galaxies & light years",
+   "q": "A light year is a unit of time.",
+   "lv": "ks3",
+   "ans": false,
+   "exp": "It's a unit of distance: how far light travels in a year.",
+   "id": "spa1anpd",
+   "pg": "stars"
+  },
+  {
+   "type": "mc",
+   "topic": "space",
+   "tool": "Stars, galaxies & light years",
+   "q": "What is a galaxy?",
+   "lv": "ks3",
+   "opts": [
+    "A huge group of billions of stars held together by gravity",
+    "A star with planets round it",
+    "A cloud of gas where stars form",
+    "Another name for the solar system"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Our galaxy is the Milky Way. There are hundreds of billions of others.",
+   "id": "spa6o280",
+   "pg": "stars"
+  },
+  {
+   "type": "short",
+   "topic": "space",
+   "tool": "Stars, galaxies & light years",
+   "q": "What is the name of the galaxy our solar system is in?",
+   "lv": "ks3",
+   "accept": [
+    "the milky way",
+    "milky way",
+    "the milky way galaxy",
+    "milky way galaxy"
+   ],
+   "id": "spauvicx",
+   "pg": "stars"
+  },
+  {
+   "type": "mc",
+   "topic": "space",
+   "tool": "Stars, galaxies & light years",
+   "q": "Why does the Sun look so much bigger and brighter than the other stars?",
+   "lv": "ks3",
+   "opts": [
+    "It's much closer to us",
+    "It's the biggest star",
+    "It's the hottest star",
+    "It's the only star that gives out light"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The Sun is 8⅓ light minutes away; the next nearest star is over 4 light years away. Many stars are bigger and brighter than the Sun.",
+   "id": "spa1ki5d",
+   "pg": "stars"
+  },
+  {
+   "type": "mc",
+   "topic": "space",
+   "tool": "Stars, galaxies & light years",
+   "q": "Which is the nearest star to the Earth?",
+   "lv": "ks3",
+   "opts": [
+    "The Sun",
+    "Proxima Centauri",
+    "Sirius",
+    "The North Star (Polaris)"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The Sun is a star, 8⅓ light minutes away. The next nearest is Proxima Centauri, 4.24 light years away.",
+   "id": "spak6ff7",
+   "pg": "stars"
+  },
+  {
+   "type": "mc",
+   "topic": "space",
+   "tool": "Stars, galaxies & light years",
+   "q": "A star is 100 light years away. What does this tell you about the light you see from it?",
+   "lv": "ks3",
+   "opts": [
+    "It left the star 100 years ago",
+    "It left the star 1 year ago",
+    "It will take another 100 years to arrive",
+    "It travels 100 times faster than sunlight"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The light has taken 100 years to reach us, so you see the star as it was 100 years ago.",
+   "id": "spaab1p5",
+   "pg": "stars"
+  },
+  {
+   "type": "mc",
+   "topic": "space",
+   "tool": "Stars, galaxies & light years",
+   "q": "Which colour of star has the hottest surface?",
+   "lv": "ks3",
+   "opts": [
+    "Blue-white",
+    "Yellow",
+    "Orange",
+    "Red"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Red stars are the coolest, then orange, yellow and white; blue-white stars are the hottest.",
+   "id": "spayjv7n",
+   "pg": "stars"
+  },
+  {
+   "type": "num",
+   "topic": "space",
+   "tool": "Stars, galaxies & light years",
+   "q": "Sunlight takes 500 s to reach the Earth. Light travels at 300 000 km/s. How far away is the Sun, in km?",
+   "lv": "ks3",
+   "num": 150000000,
+   "unit": "km",
+   "exp": "Distance = speed × time = 300 000 km/s × 500 s = 150 000 000 km (150 million km).",
+   "id": "spa1n6o1",
+   "pg": "stars"
+  },
+  {
+   "type": "mc",
+   "topic": "space",
+   "tool": "Stars, galaxies & light years",
+   "q": "Which list is in order of size, smallest first?",
+   "lv": "ks3",
+   "opts": [
+    "The Earth, the Sun, the Milky Way, the universe",
+    "The Sun, the Earth, the Milky Way, the universe",
+    "The Earth, the Milky Way, the Sun, the universe",
+    "The Milky Way, the Sun, the Earth, the universe"
+   ],
+   "ans": [
+    0
+   ],
+   "id": "spanwlpp",
+   "pg": "stars"
+  },
+  {
+   "type": "open",
+   "topic": "space",
+   "tool": "Stars, galaxies & light years",
+   "q": "Why are distances to stars given in light years rather than kilometres?",
+   "lv": "ks3",
+   "model": "The distances are so huge that in kilometres the numbers would be enormous: Proxima Centauri is about 40 million million km away. In light years the numbers are much smaller and easier to use and compare (4.24 light years).",
+   "id": "spa1avvo",
+   "pg": "stars"
+  },
+  {
+   "type": "mc",
    "topic": "particles",
    "tool": "Brownian motion & diffusion",
    "q": "What do you see when you look at smoke particles in air through a microscope?",
@@ -9891,12 +10255,12 @@ window.QUIZ_BANK = {
   {
    "type": "open",
    "topic": "space",
-   "tool": "Earth, Sun & Moon",
+   "tool": "Planets, moons & satellites",
    "q": "Name the rocky planets.",
    "lv": "ks3",
    "model": "Mercury, Venus, Earth and Mars (the four planets closest to the Sun).",
    "id": "spa1xrvr",
-   "pg": "sky"
+   "pg": "planets"
   },
   {
    "type": "open",
@@ -9950,26 +10314,26 @@ window.QUIZ_BANK = {
   {
    "type": "num",
    "topic": "space",
-   "tool": "Earth, Sun & Moon",
+   "tool": "Planets, moons & satellites",
    "q": "How many planets are in our solar system?",
    "lv": "ks3",
    "num": 8,
    "unit": "",
    "exp": "Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus and Neptune.",
    "id": "spa27rys",
-   "pg": "sky"
+   "pg": "planets"
   },
   {
    "type": "short",
    "topic": "space",
-   "tool": "Earth, Sun & Moon",
+   "tool": "Planets, moons & satellites",
    "q": "Which planet is closest to the Sun?",
    "lv": "ks3",
    "accept": [
     "mercury"
    ],
    "id": "spa1en6g",
-   "pg": "sky"
+   "pg": "planets"
   },
   {
    "type": "short",
@@ -10131,7 +10495,7 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "space",
-   "tool": "Orbits",
+   "tool": "Planets, moons & satellites",
    "q": "If a planet is further from the Sun, what happens to the time it takes to complete one orbit?",
    "lv": "ks3",
    "opts": [
@@ -10145,7 +10509,7 @@ window.QUIZ_BANK = {
    ],
    "exp": "Planets further out travel more slowly and have further to go, so their year is longer.",
    "id": "spagm7tl",
-   "pg": "orbits"
+   "pg": "planets"
   },
   {
    "type": "open",
@@ -11186,13 +11550,13 @@ window.QUIZ_BANK = {
   {
    "type": "tf",
    "topic": "space",
-   "tool": "Earth, Sun & Moon",
+   "tool": "Planets, moons & satellites",
    "q": "The distances between all the planets in the solar system are very similar.",
    "lv": "ks3",
    "ans": false,
    "exp": "The inner rocky planets are close together; the outer gas giants are much further apart.",
    "id": "spa19fdk",
-   "pg": "sky"
+   "pg": "planets"
   },
   {
    "type": "short",

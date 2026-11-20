@@ -1084,6 +1084,37 @@ window.SPEC_INDEX = [
   ]
  },
  {
+  "page": "planets",
+  "title": "Planets, moons & satellites",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "4.8.1.1",
+    "text": "Our solar system: one star (the Sun), the eight planets and the dwarf planets that orbit it, and the natural satellites (moons) that orbit planets",
+    "po": 1
+   },
+   {
+    "code": "4.8.1.1",
+    "text": "Our solar system is a small part of the Milky Way galaxy",
+    "po": 1
+   },
+   {
+    "code": "4.8.1.3",
+    "text": "Gravity provides the force that keeps planets and satellites, natural and artificial, in their circular orbits",
+    "po": 1
+   },
+   {
+    "code": "4.8.1.3",
+    "text": "The similarities and differences between the planets, their moons and artificial satellites",
+    "po": 1
+   },
+   {
+    "code": "KS3",
+    "text": "The solar system: the planets orbit the Sun, and moons orbit planets"
+   }
+  ]
+ },
+ {
   "page": "power",
   "title": "Power: comparing two motors",
   "course": "physics",
@@ -1582,6 +1613,21 @@ window.SPEC_INDEX = [
     "code": "4.8.1.2",
     "text": "Fusion in stars produces elements up to iron; heavier elements form in supernovae, which distribute them throughout the universe",
     "po": 1
+   }
+  ]
+ },
+ {
+  "page": "stars",
+  "title": "Stars, galaxies & light years",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "KS3",
+    "text": "Our Sun as a star, other stars in our galaxy, other galaxies"
+   },
+   {
+    "code": "KS3",
+    "text": "The light year as a unit of astronomical distance"
    }
   ]
  },

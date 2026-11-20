@@ -69,6 +69,8 @@ window.SEARCH_WORDS = {
   'Orbits': 'orbit, orbits, planets, satellites, moon, gravity, solar system, circular motion, speed',
   'Life cycle of a star': 'star, stars, nebula, protostar, main sequence, red giant, white dwarf, supernova, neutron star, black hole, sun',
   'Red-shift': 'red shift, redshift, big bang, expanding universe, galaxies, universe, doppler',
+  'Planets, moons & satellites': 'planets, solar system, sun, mercury, venus, earth, mars, jupiter, saturn, uranus, neptune, pluto, ceres, dwarf planet, moon, moons, natural satellite, artificial satellite, satellites, space station, ISS, GPS, satnav, geostationary, polar orbit, asteroid belt, gas giant, rocky planet, orbit',
+  'Stars, galaxies & light years': 'star, stars, sun, galaxy, galaxies, milky way, andromeda, local group, laniakea, supercluster, observable universe, cosmic web, light year, light years, lightyear, speed of light, universe, voyager, proxima centauri, sirius, betelgeuse, rigel, red giant, supergiant, constellation, orion, space',
   'Earth, Sun & Moon': 'day and night, seasons, moon phases, phases of the moon, eclipse, earth, sun, moon, tilt, year',
   'Periodic table': 'elements, groups, periods, metals, non-metals, atomic number, electron configuration, chemistry',
   'Bonding': 'ionic, covalent, metallic, bonds, molecules, electrons, dot and cross, chemistry',

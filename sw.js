@@ -4,9 +4,9 @@
 // copy is saved when it does arrive.
 // Bump VERSION when anything changes, and keep it the same as SITE.version in js/common.js.
 
-const VERSION = 'physkit-v70';
+const VERSION = 'physkit-v71';
 // Written by scripts/build-quiz-bank.js: the pages that have quiz questions for their Practice tab
-const QUIZ_PAGES = ['acceleration', 'atom', 'atom-history', 'background', 'black-body', 'bonding', 'brownian', 'circuits', 'colour', 'density', 'displacement', 'earth-field', 'echo', 'efficiency', 'electricity-cost', 'electrolysis', 'electromagnetism', 'em-spectrum', 'energy', 'fission', 'fluid-pressure', 'gas', 'generators', 'graph-plotter', 'grid', 'half-life', 'heat', 'infrared', 'insulation', 'levers', 'light-box', 'magnets', 'mains', 'moments', 'momentum', 'motion-graphs', 'nuclear', 'orbits', 'periodic-table', 'pinhole', 'power', 'radiation', 'rates', 'reaction', 'reaction-profiles', 'redshift', 'resources', 'resultant-forces', 'ripple-tank', 'seismic', 'shc', 'sky', 'solid-pressure', 'solid-waves', 'sound', 'speed', 'speed-of-sound', 'springs', 'star-life', 'states', 'static', 'stopping', 'terminal', 'third-law', 'transformers', 'uncertainty', 'units', 'uses', 'waves', 'weight', 'wire-resistance', 'work'];
+const QUIZ_PAGES = ['acceleration', 'atom', 'atom-history', 'background', 'black-body', 'bonding', 'brownian', 'circuits', 'colour', 'density', 'displacement', 'earth-field', 'echo', 'efficiency', 'electricity-cost', 'electrolysis', 'electromagnetism', 'em-spectrum', 'energy', 'fission', 'fluid-pressure', 'gas', 'generators', 'graph-plotter', 'grid', 'half-life', 'heat', 'infrared', 'insulation', 'levers', 'light-box', 'magnets', 'mains', 'moments', 'momentum', 'motion-graphs', 'nuclear', 'orbits', 'periodic-table', 'pinhole', 'planets', 'power', 'radiation', 'rates', 'reaction', 'reaction-profiles', 'redshift', 'resources', 'resultant-forces', 'ripple-tank', 'seismic', 'shc', 'sky', 'solid-pressure', 'solid-waves', 'sound', 'speed', 'speed-of-sound', 'springs', 'star-life', 'stars', 'states', 'static', 'stopping', 'terminal', 'third-law', 'transformers', 'uncertainty', 'units', 'uses', 'waves', 'weight', 'wire-resistance', 'work'];
 const PRECACHE = [
   './',
   'index.html',
@@ -127,6 +127,10 @@ const PRECACHE = [
   'tools/colour.html',
   'js/pinhole.js',
   'tools/pinhole.html',
+  'js/planets.js',
+  'tools/planets.html',
+  'js/stars.js',
+  'tools/stars.html',
   'js/infrared.js',
   'tools/infrared.html',
   'js/insulation.js',

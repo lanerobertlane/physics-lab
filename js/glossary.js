@@ -151,6 +151,16 @@ window.PK_GLOSSARY = {
   'nuclear fission': { def: 'The splitting of a large, unstable nucleus (such as uranium) into two smaller nuclei, usually after absorbing a neutron.', also: ['fission'] },
   'nuclear fusion': { def: 'The joining of two light nuclei to form a heavier nucleus, releasing energy.', also: ['fusion'] },
   'chain reaction': { def: 'When neutrons from one fission go on to cause more fissions.' },
+  // Space
+  'solar system': { def: 'The Sun and everything that orbits it: the planets, dwarf planets, moons, asteroids and comets.' },
+  'dwarf planet': { def: 'A round object that orbits the Sun but hasn’t cleared other objects out of its path, such as Pluto.', also: ['dwarf planets'] },
+  'natural satellite': { def: 'A natural object that orbits a planet: a moon.', also: ['natural satellites'] },
+  'artificial satellite': { def: 'A satellite made by people and launched into orbit, for example for communications, satnav or weather forecasts.', also: ['artificial satellites'] },
+  'geostationary': { def: 'A geostationary satellite orbits above the equator once a day, in the same direction as the Earth spins, so it stays above the same place.' },
+  'polar orbit': { def: 'An orbit that passes over the North and South Poles, so the Earth turns beneath the satellite.', also: ['polar orbits'] },
+  'galaxy': { def: 'A huge group of billions of stars, held together by gravity.', also: ['galaxies'] },
+  'Milky Way': { def: 'The galaxy our solar system is part of.' },
+  'light year': { def: 'The distance light travels in one year: about 9.5 million million km (9.46 × 10¹² km).', also: ['light years', 'light-year', 'light-years'] },
   // Chemistry
   'electron': { def: 'A tiny negatively charged particle that orbits the nucleus in energy levels (shells).', also: ['electrons'] },
   'electronic structure': { def: 'How the electrons in an atom are arranged in shells (energy levels), such as 2,8,1 for sodium.' },

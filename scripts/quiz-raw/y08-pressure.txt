@@ -14,7 +14,7 @@ open | space | Earth, Sun & Moon | Why do the UK and Australia have opposite sea
 ## 3. Pressure in liquids   (Q1, Q4 repeat existing questions; Q6 sugar-stirring variables dropped as before)
 mc | forces | Pressure on solids | What is the unit of pressure? | N m²; N m; N/m; *N/m² | EXP: Pressure = force ÷ area, so newtons per square metre (N/m²), also called pascals (Pa).
 num | forces | Pressure on solids | A force of 20 N acts on an area of 5 m². Calculate the pressure. | NUM: 4 N/m² | EXP: Pressure = force ÷ area = 20 ÷ 5 = 4 N/m².
-tf | space | Earth, Sun & Moon | The distances between all the planets in the solar system are very similar. | FALSE | EXP: The inner rocky planets are close together; the outer gas giants are much further apart.
+tf | space | Planets, moons & satellites | The distances between all the planets in the solar system are very similar. | FALSE | EXP: The inner rocky planets are close together; the outer gas giants are much further apart.
 short | waves | Sound on an oscilloscope | If the frequency of a sound wave increases, how does the sound change? | ACCEPT: higher pitch; higher; it gets higher; higher pitched; pitch increases; the pitch gets higher; pitch goes up
 open | waves | Measuring the speed of sound | Why do we see lightning before we hear thunder? | MODEL: Light travels much faster than sound (about 300 000 000 m/s compared with about 330 m/s in air), so the light reaches us first.
 
