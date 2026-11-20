@@ -30,9 +30,11 @@ window.PKSearch = (() => {
     gravity: ['gravit'], radioactivity: ['radioactiv', 'decay'], speed: ['speed', 'velocity'], velocity: ['velocity', 'speed'],
     ac: ['alternating', 'a.c'], dc: ['direct current', 'd.c'], em: ['electromagnetic'], ir: ['infrared'], uv: ['ultraviolet'], xray: ['x-ray', 'x ray'], xrays: ['x-ray', 'x ray'],
   };
-  // The word, other words for it, and the word without its ending: lenses → lens, batteries → battery
+  // The word, other words for it, and the word without its ending: lenses → lens, batteries → battery,
+  // or with its plural ending: galaxy → galaxies
   function forms(w) {
     const out = [w, ...(ALSO[w] || [])];
+    if (w.length > 3 && /[^aeiou]y$/.test(w)) out.push(`${w.slice(0, -1)}ies`);
     if (w.length > 4 && w.endsWith('ies')) out.push(`${w.slice(0, -3)}y`);
     if (w.length > 4 && /(s|x|z|ch|sh)es$/.test(w)) out.push(w.slice(0, -2));
     if (w.length > 3 && w.endsWith('s') && !w.endsWith('ss')) out.push(w.slice(0, -1));

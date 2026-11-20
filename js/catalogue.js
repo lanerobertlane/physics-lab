@@ -168,10 +168,10 @@ const TOOLS = [
     desc: 'See how light from galaxies moving away from us gives evidence for the Big Bang.' },
   { topic: 'space', icon: 'moon', name: 'Earth, Sun & Moon', href: 'tools/sky.html', ks3: true,
     desc: 'See what causes day and night, the seasons (Earth’s tilt) and the phases of the Moon.' },
-  { topic: 'space', icon: 'orbit', name: 'Planets, moons & satellites', gcse: true, po: true,
-    desc: 'Compare planets, their moons and artificial satellites in our solar system.' },
-  { topic: 'space', icon: 'star', name: 'Stars, galaxies & light years', ks3: true,
-    desc: 'The Sun as a star, other stars and galaxies, and the light year as a unit of distance.' },
+  { topic: 'space', icon: 'orbit', name: 'Planets, moons & satellites', href: 'tools/planets.html', gcse: true, po: true, ks3: true,
+    desc: 'Watch the planets orbit the Sun, and see the biggest moons and how artificial satellites orbit the Earth.' },
+  { topic: 'space', icon: 'star', name: 'Stars, galaxies & light years', href: 'tools/stars.html', ks3: true,
+    desc: 'Compare the Sun with other stars to scale, explore the Milky Way and other galaxies, and see how far a light year is.' },
 
   // Chemistry
   { topic: 'chemistry', icon: 'ptable', name: 'Periodic table', href: 'tools/periodic-table.html', ks3: true, gcse: true,

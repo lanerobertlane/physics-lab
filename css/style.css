@@ -882,7 +882,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); min-height: 32px
 .pk-term:focus-visible { outline: 2px solid var(--accent, #1e63c6); outline-offset: 2px; border-radius: 3px; }
 
 /* Copy picture button on diagrams: small and faint until you point at it */
-.pk-copy { position: absolute; z-index: 5; display: inline-flex; align-items: center; gap: 4px; padding: 3px 7px;
+.pk-copy { position: absolute; z-index: 5; display: inline-flex; align-items: center; gap: 4px; padding: 3px 7px; white-space: nowrap;
   font: 700 .72rem var(--font-body); color: var(--muted); background: var(--surface); border: 1px solid var(--border);
   border-radius: 6px; opacity: .45; cursor: pointer; transition: opacity .15s; }
 .pk-copy[hidden] { display: none; }
