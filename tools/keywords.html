@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en-GB" data-root="../" data-glossary="off">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Key Words &amp; Flashcards · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Flashcards and a word list for over 380 key words in KS3 and AQA GCSE Physics, by topic, with meanings in the AQA specification wording.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="physics, key words, education, school, KS3, GCSE, AQA, science, simulation, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/keywords.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Key words &amp; flashcards">
+  <meta property="og:description" content="Flashcards and a word list for over 380 key words in KS3 and AQA GCSE Physics, by topic, with meanings in the AQA specification wording.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/keywords.html">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Key words & flashcards", "description": "Flashcards and a word list for over 380 key words in KS3 and AQA GCSE Physics, by topic, with meanings in the AQA specification wording.", "url": "https://lanerobertlane.space/tools/keywords.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["Key Stage 3", "GCSE"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="Physics Lab">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #info p { margin: 0 0 8px; line-height: 1.5; }
+    #info p:last-child { margin-bottom: 0; }
+    .set-label { font-size: .88rem; font-weight: 700; color: var(--muted); margin: 0; white-space: nowrap; }
+    .tool-page > .panel { margin-bottom: 14px; }
+    /* The set-up, in one bar along the top */
+    .kw-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; padding: 12px 16px; }
+    .kw-set { display: flex; align-items: center; gap: 10px; }
+    .kw-set .chip-group { margin: 0; }
+    #kwtopic { width: 200px; }
+    .kw-find { flex: 1; min-width: 240px; }
+    #kwsearch { width: 100%; }
+    .stage-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--border); }
+    .kw-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 4px; }
+    #kw-count { color: var(--muted); font-weight: 700; font-size: .9rem; }
+    .kw-group + .kw-group { margin-top: 22px; }
+    .kw-head { font-size: 1.15rem; margin: 0 0 8px; padding-bottom: 6px; border-bottom: 2px solid var(--topic); }
+    .kw-n { color: var(--muted); font-size: .85rem; font-weight: 700; margin-left: 6px; }
+    .kw-dl { margin: 0; display: grid; grid-template-columns: minmax(150px, 30%) 1fr; }
+    .kw-dl dt, .kw-dl dd { padding: 8px 0; border-bottom: 1px solid var(--border); line-height: 1.45; }
+    .kw-dl dt { font-weight: 700; padding-right: 14px; }
+    .kw-dl dd { margin: 0; }
+    .eq { white-space: nowrap; }
+    .eq sub { font-size: .72em; }
+    .kw-none { color: var(--muted); padding: 24px 0; text-align: center; margin: 0; }
+    @media (max-width: 600px) { .kw-dl { grid-template-columns: 1fr; } .kw-dl dt { border-bottom: 0; padding-bottom: 0; } }
+    /* Flashcards: a card that turns over */
+    .fc-wrap { padding: clamp(14px, 2.5vw, 28px); perspective: 1600px; }
+    #fc-card { position: relative; display: block; width: 100%; min-height: clamp(260px, calc(100vh - 430px), 640px); border: 0; padding: 0; background: none; cursor: pointer; color: var(--text); font: inherit; }
+    .fc-inner { display: block; position: relative; width: 100%; min-height: clamp(260px, calc(100vh - 430px), 640px); transition: transform .45s ease; transform-style: preserve-3d; }
+    #fc-card.flipped .fc-inner { transform: rotateY(180deg); }
+    .fc-face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 32px 40px 48px;
+      background: var(--surface); border: 2px solid var(--border-strong); border-radius: var(--radius); -webkit-backface-visibility: hidden; backface-visibility: hidden; text-align: center; }
+    .fc-back { transform: rotateY(180deg); background: var(--surface-2); }
+    .fc-label { font-size: .9rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+    .fc-word { font-family: var(--font-head); font-size: clamp(2.2rem, 6vw, 4.4rem); font-weight: 700; color: var(--title, var(--text)); line-height: 1.15; }
+    .fc-def { font-size: clamp(1.3rem, 2.8vw, 2.1rem); line-height: 1.45; max-width: 38ch; }
+    .fc-topic { position: absolute; bottom: 14px; left: 0; right: 0; font-size: .9rem; color: var(--muted); }
+    /* Back, Turn over and Next in the middle; the count on the left and Shuffle on the right */
+    .fc-bar { display: grid; grid-template-columns: 1fr auto 1fr; }
+    .fc-nav { display: flex; gap: 8px; }
+    .fc-nav .btn { min-width: 104px; justify-content: center; }
+    .fc-shuffle { justify-self: end; }
+    #fc-count { color: var(--muted); font-weight: 700; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Key words &amp; flashcards</h1>
+      <p id="intro"></p>
+    </div>
+
+    <div class="chip-group" id="tabs" style="margin-bottom:12px" aria-label="Show">
+      <button class="chip" data-t="cards" aria-pressed="true">Flashcards</button>
+      <button class="chip" data-t="list" aria-pressed="false">Word list</button>
+    </div>
+
+    <div class="panel kw-bar" aria-label="Set up">
+      <div class="kw-set"><span class="set-label">Level</span><div class="chip-group" id="kwlevel" aria-label="Level"><button class="chip" data-v="ks3" aria-pressed="false">KS3</button><button class="chip" data-v="gcse" aria-pressed="true">GCSE</button></div></div>
+      <div class="kw-set"><label class="set-label" for="kwtopic">Topic</label><select class="select" id="kwtopic"></select></div>
+      <div class="kw-set" data-for="cards"><div class="chip-group" id="front" aria-label="Show first"><button class="chip" data-v="word" aria-pressed="true">Key word first</button><button class="chip" data-v="meaning" aria-pressed="false">Meaning first</button></div></div>
+      <div class="kw-set kw-find" data-for="list" hidden><label class="set-label" for="kwsearch">Find a word</label><input class="search" id="kwsearch" type="search" placeholder="e.g. current, half-life"></div>
+    </div>
+
+    <div class="panel stage kw-main" data-for="cards">
+      <div class="fc-wrap">
+        <button id="fc-card" type="button"><span class="fc-inner"><span class="fc-face fc-front" id="fc-front"></span><span class="fc-face fc-back" id="fc-back"></span></span></button>
+      </div>
+      <div class="stage-bar fc-bar">
+        <span id="fc-count"></span>
+        <span class="fc-nav">
+          <button class="btn" id="fc-prev">◀ Back</button>
+          <button class="btn primary" id="fc-turn">Turn over</button>
+          <button class="btn" id="fc-next">Next ▶</button>
+        </span>
+        <button class="btn fc-shuffle" id="fc-shuffle">🔀 Shuffle</button>
+      </div>
+    </div>
+
+    <div class="panel kw-main" data-for="list" hidden>
+      <div class="kw-top"><h2>Key words</h2><span id="kw-count"></span></div>
+      <div id="kw-list"></div>
+    </div>
+
+    <div class="panel">
+      <h2>How to use it</h2>
+      <div id="info"></div>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/catalogue.js"></script>
+  <script src="../js/glossary.js"></script>
+  <script src="../js/keywords.js"></script>
+</body>
+</html>

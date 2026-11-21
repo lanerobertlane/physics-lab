@@ -194,6 +194,8 @@ const TOOLS = [
     desc: 'Practise random questions on any AQA equation and check the worked answer, or put one on the board for the class.' },
   { topic: 'reference', icon: 'list', name: 'Quick quizzes', href: 'tools/quiz.html', ks3: true, gcse: true,
     desc: 'Self-marking quizzes. Do one on your own for revision, or show the QR code on the board so the whole class can answer on their iPads.' },
+  { topic: 'reference', icon: 'cards', name: 'Key words & flashcards', href: 'tools/keywords.html', ks3: true, gcse: true,
+    desc: 'Learn the key words for KS3 and GCSE Physics with flashcards you turn over, or look them up in the word list, by topic.' },
   { topic: 'reference', icon: 'list', name: 'Spec index', href: 'tools/spec.html', ks3: true, gcse: true,
     desc: 'Find any AQA or KS3 specification point and go straight to the tools that cover it.' },
   { topic: 'reference', icon: 'units', name: 'Units, prefixes & standard form', href: 'tools/units.html', ks3: true, gcse: true,
@@ -252,6 +254,7 @@ const TOOL_ICONS = {
   flask: '<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7.5 15h9"/>',
   bond: '<circle cx="8" cy="12" r="5"/><circle cx="16" cy="12" r="5"/><circle cx="12" cy="10" r=".8" fill="currentColor"/><path d="M11 13.5l2 2M13 13.5l-2 2"/>',
   transformer: '<rect x="6" y="4" width="12" height="16" rx="1"/><path d="M2 8h4M2 11h4M2 14h4M18 8h4M18 11h4M18 14h4M18 17h4"/>',
+  cards: '<rect x="3" y="7" width="13" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3M7 12h5M7 16h3"/>',
   list: '<path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/>',
   equation: '<path d="M4 7h7M7.5 3.5v7M4 17h7M14 5l6 6M20 5l-6 6M14 15h6M14 19h6"/>',
 };

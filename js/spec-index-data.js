@@ -814,6 +814,17 @@ window.SPEC_INDEX = [
   ]
  },
  {
+  "page": "keywords",
+  "title": "Key words & flashcards",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "WS 4.1",
+    "text": "Use scientific vocabulary, terminology and definitions"
+   }
+  ]
+ },
+ {
   "page": "levers",
   "title": "Levers & gears",
   "course": "physics",

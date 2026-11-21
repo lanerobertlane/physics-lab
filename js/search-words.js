@@ -81,6 +81,7 @@ window.SEARCH_WORDS = {
   'Practical graph plotter': 'graph, plot, line of best fit, gradient, anomaly, axes, results',
   'Calculation practice': 'calculations, maths, equations, practice, questions, rearranging, units',
   'Quick quizzes': 'quiz, quizzes, questions, test, revision, multiple choice',
+  'Key words & flashcards': 'key words, keywords, glossary, definitions, definition, meaning, meanings, vocabulary, flashcards, flash cards, revision, revise, learn, dictionary, terms, word list',
   'Spec index': 'specification, spec, AQA, spec points, syllabus',
   'Units, prefixes & standard form': 'units, prefixes, standard form, kilo, mega, milli, micro, nano, conversion, SI units, scientific notation',
   'Uncertainty & means': 'uncertainty, mean, average, repeat readings, range, anomaly, precision, accuracy, resolution, reading scales',
