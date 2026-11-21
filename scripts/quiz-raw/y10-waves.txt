@@ -3,7 +3,7 @@ SOURCE GRN Science / Year 10 / Physics / Waves
 ## Calculating period   (Q5 unit of speed: duplicate, skip)
 short | waves | Transverse & longitudinal waves | Name an example of a transverse wave. {both} | ACCEPT: light; water waves; ripples; water ripples; radio waves; microwaves; x-rays; gamma rays; electromagnetic waves; em waves; s waves; s-waves; infrared; ultraviolet; visible light; waves on a string
 tf | waves | Transverse & longitudinal waves | The oscillations in a longitudinal wave are perpendicular to the direction of energy transfer. | FALSE | EXP: In a longitudinal wave they are parallel. Perpendicular oscillations make a transverse wave.
-open | forces | Resultant forces | A stationary object with balanced forces will... {both} | MODEL: stay stationary (remain at rest).
+open | forces | Newton's first law & inertia | A stationary object with balanced forces will... {both} | MODEL: stay stationary (remain at rest).
 open | forces | Stopping distances | Name a factor that can affect braking distance. | MODEL: Any one of: speed, wet or icy roads, worn brakes, worn tyres, the mass of the vehicle.
 
 ## Properties of Waves   (Q1, Q2 duplicates, skip)

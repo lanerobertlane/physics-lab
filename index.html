@@ -130,7 +130,8 @@
         const tools = TOOLS
           .filter((t) => t.topic === topic.id || (t.also || []).includes(topic.id))
           .filter((t) => levelOk(t) && textOk(t, topic) && (!state.readyOnly || t.href))
-          .sort((a, b) => Boolean(b.href) - Boolean(a.href));
+          // Ready tools first, then a section's own tools before ones listed under it from another section
+          .sort((a, b) => Boolean(b.href) - Boolean(a.href) || (a.topic !== topic.id) - (b.topic !== topic.id));
         if (!tools.length) return '';
         return `
           <section class="topic" style="--topic: var(${topic.colour})">

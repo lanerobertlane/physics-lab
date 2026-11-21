@@ -1,9 +1,9 @@
 SOURCE GRN Science / Year 9 / Physics
 
 ## Vectors and Scalars   [NOTE for Rob: Q1 "Forces cause movement" is marked False, which is confusing (a resultant force does start things moving). Reworded. Q4 had no correct answer ticked; set to newtons]
-tf | forces | Resultant forces | A moving object needs a resultant force to keep it moving at a steady speed. {both} | FALSE | EXP: With no resultant force, a moving object keeps moving at the same speed in the same direction. A resultant force changes its speed or direction.
+tf | forces | Newton's first law & inertia | A moving object needs a resultant force to keep it moving at a steady speed. {both} | FALSE | EXP: With no resultant force, a moving object keeps moving at the same speed in the same direction. A resultant force changes its speed or direction.
 short | forces | Weight on other planets | What is the unit of mass? {both} | ACCEPT: kilograms; kilogram; kg
-mc | forces | Resultant forces | What happens to a moving car when the resultant force on it is zero? {both} | It stops; It slows down; It speeds up; *It carries on at a constant speed
+mc | forces | Newton's first law & inertia | What happens to a moving car when the resultant force on it is zero? {both} | It stops; It slows down; It speeds up; *It carries on at a constant speed
 mc | forces | Weight on other planets | What is the unit of weight? {both} | Kilograms (kg); *Newtons (N); Newton-metres (N m); Newtons per kilogram (N/kg) | EXP: Weight is a force, so it is measured in newtons. N/kg is the unit of gravitational field strength.
 tf | forces | Resultant forces | Friction is a non-contact force. {both} | FALSE | EXP: Friction only acts when surfaces touch, so it is a contact force.
 mc | forces | Resultant forces | Air resistance is a... {both} | *Contact force; Non-contact force | EXP: The object has to touch the air particles, so air resistance is a contact force.

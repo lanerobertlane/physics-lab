@@ -4,6 +4,7 @@
 window.SEARCH_WORDS = {
   'Resultant forces': 'net force, balanced, unbalanced, forces diagram, free body diagram, scale drawing, F = m a, newton, accelerate',
   "Newton's third law pairs": 'action reaction, equal and opposite, interaction pair, newton',
+  "Newton's first law & inertia": 'first law, newton, constant velocity, steady speed, keeps moving, heavy, hard to move, F = m a',
   'Motion graphs': 'distance time graph, velocity time graph, speed time graph, gradient, area under the graph, journey, car',
   'Stopping distances': 'thinking distance, braking distance, reaction time, car, road safety, brakes, wet road, icy road, tired, alcohol, speed limit',
   "Springs & Hooke's law": 'spring, stretch, extension, elastic, limit of proportionality, spring constant, F = k e, hooke, masses, ruler, required practical',

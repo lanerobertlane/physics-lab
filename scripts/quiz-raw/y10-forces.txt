@@ -9,10 +9,10 @@ mc | waves | Transverse & longitudinal waves | What unit is used to measure the 
 tf | forces | Terminal velocity | As an object's speed increases, the resistive forces acting on it also increase. | TRUE | EXP: Air resistance and drag get bigger as the object moves faster, which is why falling objects reach terminal velocity.
 
 ## 2. Vector diagrams   (NOTE for Rob: Q1 "Forces cause movement: False" reworded; Q5 had no answer ticked)
-tf | forces | Resultant forces | A resultant force is always needed to keep an object moving. | FALSE | EXP: With no resultant force, a moving object keeps moving at a constant velocity (Newton's first law). A resultant force changes its speed or direction.
+tf | forces | Newton's first law & inertia | A resultant force is always needed to keep an object moving. | FALSE | EXP: With no resultant force, a moving object keeps moving at a constant velocity (Newton's first law). A resultant force changes its speed or direction.
 mc | forces | Resultant forces | Forces are... | *Vectors; Scalars; Both | EXP: A force has a size and a direction.
 short | forces | Weight on other planets | What is the unit of mass? | ACCEPT: kilograms; kilogram; kg
-mc | forces | Resultant forces | What happens to a moving car with zero resultant force acting on it? | It stops; Slows down; Speeds up; *Continues at a constant speed
+mc | forces | Newton's first law & inertia | What happens to a moving car with zero resultant force acting on it? | It stops; Slows down; Speeds up; *Continues at a constant speed
 mc | forces | Weight on other planets | What is the unit of weight? | Kilograms (kg); *Newtons (N); Newton-metres (N m); Newtons per kilogram (N/kg)   [set by me]
 tf | forces | Resultant forces | Friction is a non-contact force. | FALSE | EXP: Friction only acts when surfaces touch, so it is a contact force.
 

@@ -61,6 +61,7 @@
     'seismic#shows': 'Draws the paths of the S waves: transverse, slower, and stopped by the liquid outer core.',
     'seismic#layers': 'Labels the crust, mantle, outer core and inner core.',
     'pinhole#focus': 'When ticked, the lens gets thicker or thinner to focus the image on the retina, as a real eye does. Untick it to see what happens when it can’t.',
+    'first-law#forces': 'Draws the forces on the object as arrows. The longer the arrow, the bigger the force.',
     'planets#crowd': 'Adds a dot for each of the roughly 17 000 working satellites (November 2026), in about the right orbits. Most are in low orbits, a few hundred kilometres up.',
     'brownian#air': 'Shows the air particles hitting the smoke particle. In real life they’re far too small to see, even with a microscope.',
     'brownian#path': 'Draws the path the smoke particle has taken, so you can see its random zigzag.',

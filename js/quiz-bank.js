@@ -3302,6 +3302,164 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "forces",
+   "tool": "Newton's first law & inertia",
+   "q": "A box is pushed across a carpet and let go. Why does it slow down and stop?",
+   "lv": "both",
+   "opts": [
+    "Friction acts backwards on it, so there is a resultant force against its motion",
+    "The push runs out",
+    "Its weight pulls it back",
+    "Objects always slow down when nothing is pushing them"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Once you let go, friction is the only horizontal force. It's a resultant force backwards, so the box decelerates.",
+   "id": "for1jlpz",
+   "pg": "first-law"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Newton's first law & inertia",
+   "q": "A space probe is moving through deep space, far from any star or planet, with its engines off. What happens to its motion?",
+   "lv": "both",
+   "opts": [
+    "It keeps moving at the same speed in the same direction",
+    "It slowly comes to a stop",
+    "It speeds up",
+    "It starts to move in a circle"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "There is no friction or air resistance and almost no gravity, so the resultant force is zero. It keeps moving at a constant velocity.",
+   "id": "forj51gv",
+   "pg": "first-law"
+  },
+  {
+   "type": "tf",
+   "topic": "forces",
+   "tool": "Newton's first law & inertia",
+   "q": "A puck slides further on ice than on a wooden floor because there is less friction on the ice.",
+   "lv": "both",
+   "ans": true,
+   "exp": "The smaller the friction, the smaller the resultant force slowing it down, so it takes longer to stop.",
+   "id": "for1g699",
+   "pg": "first-law"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Newton's first law & inertia",
+   "q": "A coin sits on a card on top of a glass. The card is flicked away quickly. Why does the coin drop into the glass?",
+   "lv": "both",
+   "opts": [
+    "Its inertia keeps it where it was, because friction acts on it for only a very short time",
+    "The card pushes it into the glass",
+    "Gravity is stronger than friction",
+    "Air pushes it down into the glass"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Friction from the card is the only sideways force on the coin, and a quick flick gives it almost no time to act. The coin stays put, then falls.",
+   "id": "for1bo1l",
+   "pg": "first-law"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Newton's first law & inertia",
+   "q": "What is inertia?",
+   "lv": "ks4",
+   "opts": [
+    "The tendency of an object to stay at rest or to keep moving at a steady velocity",
+    "The force that keeps an object moving",
+    "The force of friction on a moving object",
+    "The weight of an object"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "The AQA specification defines inertia as the tendency of objects to continue in their state of rest or of uniform motion.",
+   "id": "forcl7qz",
+   "pg": "first-law"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Newton's first law & inertia",
+   "q": "A passenger in a bus lurches forwards when the bus brakes suddenly. Why?",
+   "lv": "both",
+   "opts": [
+    "The passenger's body tends to keep moving forwards while the bus slows down",
+    "The brakes push the passenger forwards",
+    "The seat pushes the passenger forwards",
+    "Air in the bus pushes the passenger forwards"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "This is inertia. A seat belt gives the resultant force needed to slow the passenger down with the bus.",
+   "id": "for1pieq",
+   "pg": "first-law"
+  },
+  {
+   "type": "num",
+   "topic": "forces",
+   "tool": "Newton's first law & inertia",
+   "q": "A force of 12 N gives an object an acceleration of 4 m/s². What is its inertial mass, in kg?",
+   "lv": "ks4",
+   "num": 3,
+   "unit": "kg",
+   "exp": "Inertial mass = force ÷ acceleration = 12 N ÷ 4 m/s² = 3 kg.",
+   "id": "for14z2k",
+   "pg": "first-law"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
+   "tool": "Newton's first law & inertia",
+   "q": "A bowling ball is taken to the Moon. What happens to its inertial mass and its weight?",
+   "lv": "ks4",
+   "opts": [
+    "Its inertial mass stays the same, but its weight gets smaller",
+    "Both get smaller",
+    "Both stay the same",
+    "Its inertial mass gets smaller, but its weight stays the same"
+   ],
+   "ans": [
+    0
+   ],
+   "exp": "Inertial mass doesn't depend on gravity, so it's just as hard to get moving. Weight depends on the gravitational field strength, which is smaller on the Moon.",
+   "id": "for1f1xs",
+   "pg": "first-law"
+  },
+  {
+   "type": "tf",
+   "topic": "forces",
+   "tool": "Newton's first law & inertia",
+   "q": "An object moving at a constant velocity must have a resultant force acting on it.",
+   "lv": "both",
+   "ans": false,
+   "exp": "Newton's first law: if the resultant force is zero, a moving object keeps moving at the same speed in the same direction.",
+   "id": "for1hbd0",
+   "pg": "first-law"
+  },
+  {
+   "type": "open",
+   "topic": "forces",
+   "tool": "Newton's first law & inertia",
+   "q": "Explain why it is harder to start a full shopping trolley moving than an empty one, even on a smooth floor.",
+   "lv": "ks4",
+   "model": "The full trolley has a bigger (inertial) mass. Inertial mass is a measure of how difficult it is to change an object's velocity, so the same push gives it a smaller acceleration (a = F ÷ m).",
+   "id": "for157l0",
+   "pg": "first-law"
+  },
+  {
+   "type": "mc",
+   "topic": "forces",
    "tool": "Acceleration",
    "q": "In the acceleration required practical, what is the independent variable when you investigate the effect of force?",
    "lv": "ks4",
@@ -10477,7 +10635,7 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "forces",
-   "tool": "Resultant forces",
+   "tool": "Newton's first law & inertia",
    "q": "The forces on a car driving along a motorway are balanced. What do you know about its speed?",
    "lv": "ks3",
    "opts": [
@@ -10490,7 +10648,7 @@ window.QUIZ_BANK = {
     3
    ],
    "id": "for1oxf9",
-   "pg": "resultant-forces"
+   "pg": "first-law"
   },
   {
    "type": "mc",
@@ -13363,13 +13521,13 @@ window.QUIZ_BANK = {
   {
    "type": "tf",
    "topic": "forces",
-   "tool": "Resultant forces",
+   "tool": "Newton's first law & inertia",
    "q": "A moving object needs a resultant force to keep it moving at a steady speed.",
    "lv": "both",
    "ans": false,
    "exp": "With no resultant force, a moving object keeps moving at the same speed in the same direction. A resultant force changes its speed or direction.",
    "id": "for1u36w",
-   "pg": "resultant-forces"
+   "pg": "first-law"
   },
   {
    "type": "short",
@@ -13388,7 +13546,7 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "forces",
-   "tool": "Resultant forces",
+   "tool": "Newton's first law & inertia",
    "q": "What happens to a moving car when the resultant force on it is zero?",
    "lv": "both",
    "opts": [
@@ -13401,7 +13559,7 @@ window.QUIZ_BANK = {
     3
    ],
    "id": "for13srs",
-   "pg": "resultant-forces"
+   "pg": "first-law"
   },
   {
    "type": "mc",
@@ -15123,13 +15281,13 @@ window.QUIZ_BANK = {
   {
    "type": "tf",
    "topic": "forces",
-   "tool": "Resultant forces",
+   "tool": "Newton's first law & inertia",
    "q": "A resultant force is always needed to keep an object moving.",
    "lv": "ks4",
    "ans": false,
    "exp": "With no resultant force, a moving object keeps moving at a constant velocity (Newton's first law). A resultant force changes its speed or direction.",
    "id": "forw7q8g",
-   "pg": "resultant-forces"
+   "pg": "first-law"
   },
   {
    "type": "mc",
@@ -15152,7 +15310,7 @@ window.QUIZ_BANK = {
   {
    "type": "mc",
    "topic": "forces",
-   "tool": "Resultant forces",
+   "tool": "Newton's first law & inertia",
    "q": "What happens to a moving car with zero resultant force acting on it?",
    "lv": "ks4",
    "opts": [
@@ -15165,7 +15323,7 @@ window.QUIZ_BANK = {
     3
    ],
    "id": "for1a55y",
-   "pg": "resultant-forces"
+   "pg": "first-law"
   },
   {
    "type": "short",
@@ -16761,12 +16919,12 @@ window.QUIZ_BANK = {
   {
    "type": "open",
    "topic": "forces",
-   "tool": "Resultant forces",
+   "tool": "Newton's first law & inertia",
    "q": "A stationary object with balanced forces will...",
    "lv": "both",
    "model": "stay stationary (remain at rest).",
    "id": "for1tu3r",
-   "pg": "resultant-forces"
+   "pg": "first-law"
   },
   {
    "type": "open",

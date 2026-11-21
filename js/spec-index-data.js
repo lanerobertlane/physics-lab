@@ -569,6 +569,35 @@ window.SPEC_INDEX = [
   ]
  },
  {
+  "page": "first-law",
+  "title": "Newton’s first law & inertia",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "4.5.6.2.1",
+    "text": "Newton’s first law: if the resultant force on a stationary object is zero, it remains stationary; if the resultant force on a moving object is zero, it continues to move at the same speed and in the same direction"
+   },
+   {
+    "code": "4.5.6.2.1",
+    "text": "The velocity (speed and/or direction) of an object will only change if a resultant force is acting on it"
+   },
+   {
+    "code": "4.5.6.2.1",
+    "text": "Inertia: the tendency of objects to continue in their state of rest or of uniform motion",
+    "ht": 1
+   },
+   {
+    "code": "4.5.6.2.2",
+    "text": "Inertial mass is a measure of how difficult it is to change the velocity of an object; it is defined as the ratio of force over acceleration",
+    "ht": 1
+   },
+   {
+    "code": "KS3",
+    "text": "Forces being needed to cause objects to stop or start moving, or to change their speed or direction of motion (qualitative only)"
+   }
+  ]
+ },
+ {
   "page": "fission",
   "title": "Nuclear fission & fusion",
   "course": "physics",
