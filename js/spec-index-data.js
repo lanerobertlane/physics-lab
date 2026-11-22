@@ -854,6 +854,25 @@ window.SPEC_INDEX = [
   ]
  },
  {
+  "page": "ldr",
+  "title": "Light-dependent resistors (LDRs)",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "4.2.1.4",
+    "text": "The resistance of an LDR decreases as light intensity increases. LDRs are used in circuits, e.g. to switch lights on when it gets dark"
+   },
+   {
+    "code": "4.2.1.4",
+    "text": "Explain the design and use of a circuit to measure the resistance of a component by measuring the current through it and the potential difference across it"
+   },
+   {
+    "code": "4.2.1.3",
+    "text": "Potential difference = current × resistance: V = I R"
+   }
+  ]
+ },
+ {
   "page": "levers",
   "title": "Levers & gears",
   "course": "physics",

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Light-dependent resistors (LDRs) · GCSE Physics · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Slide an LDR closer to a lamp or further away, read the ammeter and voltmeter, and see how its resistance changes with light intensity.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="physics, electricity, LDR, light-dependent resistor, light intensity, resistance, ammeter, voltmeter, potential difference, current, education, school, GCSE, AQA, science, simulation, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/ldr.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Light-dependent resistors (LDRs)">
+  <meta property="og:description" content="Slide an LDR closer to a lamp or further away, read the ammeter and voltmeter, and see how its resistance changes with light intensity.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/ldr.html">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:image" content="https://lanerobertlane.space/icons/share.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Mr Lane’s Physics Lab: free interactive physics for KS3 and GCSE">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Light-dependent resistors (LDRs)", "description": "Slide an LDR closer to a lamp or further away, read the ammeter and voltmeter, and see how its resistance changes with light intensity.", "url": "https://lanerobertlane.space/tools/ldr.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["GCSE"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="Physics Lab">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #bench { aspect-ratio: 800 / 440; }
+    #graph { width: 100%; aspect-ratio: 800 / 340; display: block; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    #diagram { width: 100%; max-width: 380px; aspect-ratio: 270 / 190; display: block; margin: 0 auto; }
+    .status { margin: 0; padding: 10px 12px 12px; min-height: 2.6em; border-top: 1px solid var(--border); }
+    .results { width: 100%; border-collapse: collapse; margin-top: 10px; font-variant-numeric: tabular-nums; font-size: .9rem; }
+    .results th, .results td { border: 1px solid var(--border-strong); padding: 4px 6px; text-align: center; }
+    .results th { background: var(--surface-2); }
+    .del { border: 0; background: none; color: var(--muted); font: inherit; cursor: pointer; padding: 2px 6px; }
+    .set-label { font-size: .88rem; font-weight: 700; color: var(--muted); margin: 0 0 6px; }
+    #how ol, #what ul { margin: 0; padding-left: 1.3em; display: grid; gap: 4px; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Light-dependent resistors (LDRs)</h1>
+      <p>How does the light intensity on an LDR affect its resistance? Slide the LDR closer to the lamp or further away, read the two meters and use <b>resistance = potential difference ÷ current</b>.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="bench" class="drag" aria-label="A lamp shining along a ruler onto an LDR in a holder. The LDR is connected to two cells and an ammeter, with a voltmeter across it. Drag the LDR along the ruler to change its distance from the lamp, and tap the lamp to switch it on or off."></canvas>
+          <p class="note status" id="status" aria-live="polite"></p>
+        </div>
+
+        <div class="panel after-aside">
+          <h2>Resistance against distance</h2>
+          <canvas id="graph" aria-label="Graph of the LDR’s resistance against its distance from the lamp"></canvas>
+          <p class="note" id="trend"></p>
+          <div id="what" class="hide-when-no-answers">
+            <ul>
+              <li>Close to the lamp, a lot of light falls on the LDR: the light intensity is high, so its resistance is low.</li>
+              <li>Further away, the lamp’s light has spread out more, so less of it reaches the LDR. The light intensity is lower and <b>the resistance is higher</b>.</li>
+              <li>The graph is a curve, not a straight line, so the resistance isn’t directly proportional to the distance.</li>
+              <li>With the lamp off, the LDR is in the dark: its resistance is very high, so hardly any current flows.</li>
+              <li>Light from anywhere else, such as the room lights, would reach the LDR too and change its resistance. That’s why you do this in a darkened room.</li>
+              <li>LDRs are used in circuits that switch lights on automatically when it gets dark, such as street lights and night lights.</li>
+            </ul>
+          </div>
+          <p class="note">You can also put an LDR in a circuit of your own in the <a href="circuits.html">Circuit builder</a>, and change the light level there.</p>
+        </div>
+
+        <div class="panel after-aside">
+          <h2>How to do it for real</h2>
+          <div id="how" class="hide-when-no-answers">
+            <ol>
+              <li>Connect the LDR in series with a cell and an ammeter, and connect a voltmeter in parallel with the LDR.</li>
+              <li>Put the lamp at the end of a ruler, with the LDR facing it along the ruler. Darken the room.</li>
+              <li>Put the LDR at a measured distance from the lamp, such as 5 cm.</li>
+              <li>Read both meters and work out the resistance: R = V ÷ I.</li>
+              <li>Move the LDR to at least four more distances and repeat. Take a second set of readings and work out the means.</li>
+              <li>Plot resistance against distance, and draw a smooth curve of best fit.</li>
+            </ol>
+            <p class="note"><b>Independent variable:</b> the distance from the lamp. <b>Dependent variable:</b> the resistance of the LDR. <b>Control variables:</b> the same lamp at the same brightness, the same LDR, and no other light in the room. The lamp gets hot, so don’t touch the bulb or its housing.</p>
+          </div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Set-up</h2>
+          <div class="num-row"><label for="dist">Distance from the lamp</label><div class="stepper" data-num><button data-step="-1" aria-label="Less: distance from the lamp">−</button><input type="number" id="dist" min="1" max="30" step="any" data-inc="0.5" value="10" inputmode="decimal"><span class="unit">cm</span><button data-step="1" aria-label="More: distance from the lamp">+</button></div></div>
+          <p class="set-label">Lamp</p>
+          <div class="chip-group" id="lamp" aria-label="Lamp"><button class="chip" data-v="on" aria-pressed="true">On</button><button class="chip" data-v="off" aria-pressed="false">Off</button></div>
+        </div>
+        <div class="panel">
+          <h2>Circuit diagram</h2>
+          <canvas id="diagram" aria-label="Circuit diagram: two cells and an ammeter in series with the LDR, and a voltmeter in parallel with the LDR"></canvas>
+        </div>
+        <div class="panel">
+          <h2>Results</h2>
+          <div class="btn-row">
+            <button class="btn primary" id="rec">＋ Record reading</button>
+            <button class="btn" id="clear">Clear</button>
+          </div>
+          <div id="table"></div>
+          <p class="note" id="working"></p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/ldr.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/quiz-pages/ldr.js"></script>
+  <script src="../js/practice-tab.js" data-eqs="ohm"></script>
+</body>
+</html>

@@ -78,6 +78,8 @@ const TOOLS = [
     desc: 'Required practical: slide a crocodile clip along a wire, read the meters and plot resistance against length.' },
   { topic: 'electricity', icon: 'iv', name: 'I–V characteristics', href: 'tools/circuits.html', gcse: true, rp: true,
     desc: 'Plot the I–V graph for a resistor, filament lamp and diode, using the circuit builder’s results table.' },
+  { topic: 'electricity', icon: 'ldr', name: 'Light-dependent resistors (LDRs)', href: 'tools/ldr.html', gcse: true,
+    desc: 'Slide an LDR closer to a lamp or further away, read the meters and plot how its resistance changes with light intensity.' },
   // 4.2.3 Domestic uses and safety
   { topic: 'electricity', icon: 'plug', name: 'Mains electricity', href: 'tools/mains.html', gcse: true, ks3: true,
     desc: 'Compare a.c. and d.c. on an oscilloscope, wire a three-pin plug, and see how the earth wire and fuse keep you safe.' },
@@ -248,6 +250,7 @@ const TOOL_ICONS = {
   lever: '<path d="M2 10l20 -2"/><path d="M12 9l-3 9h6z"/>',
   circuit: '<rect x="3" y="5" width="18" height="14" rx="1"/><path d="M10 3v4M14 4v2" /><circle cx="12" cy="19" r="2.5"/>',
   iv: '<path d="M12 3v18M3 12h18"/><path d="M5 19l14-14"/>',
+  ldr: '<circle cx="13" cy="14" r="7"/><rect x="9.5" y="12.5" width="7" height="3"/><path d="M2 14h4M20 14h2M2 2l4 4m0 0V3m0 3H3M7 1l4 4m0 0V2m0 3H8"/>',
   magnet: '<rect x="3" y="9" width="18" height="6" rx="1"/><path d="M12 9v6"/><path d="M5 9c2-6 12-6 14 0" stroke-dasharray="2 2"/>',
   motor: '<circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16"/>',
   spectrum: '<path d="M2 12c1-4 2-4 3 0s2 4 3 0 1.5-4 2.5 0 1.5 4 2 0 1-4 1.5 0 1 4 1.5 0 .7-4 1 0 .7 4 1 0 .5-3 .7 0 .5 3 .8 0"/>',
