@@ -799,7 +799,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); min-height: 32px
 
 /* ---------- Spec coverage panel ---------- */
 
-.spec-panel { margin-top: 20px; }
+.spec-panel, .related-panel { margin-top: 20px; }
 .spec-panel ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
 .spec-panel li { display: grid; grid-template-columns: 92px 1fr; gap: 10px; font-size: .94rem; }
 .spec-panel .code { font-weight: 700; font-variant-numeric: tabular-nums; color: var(--accent); }

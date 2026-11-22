@@ -489,7 +489,7 @@
 
   // ---------- Recently used ----------
   function recordVisit() {
-    if (!location.pathname.includes('/tools/')) return;
+    if (!location.pathname.includes('/tools/') || document.documentElement.hasAttribute('data-no-recent')) return;
     const href = `tools/${location.pathname.split('/').pop()}`;
     const list = (PK.store.get('home.recent', []) || []).filter((h) => h !== href);
     list.unshift(href);

@@ -4,7 +4,7 @@
 const SITE = {
   name: "Mr Lane's Physics Lab",
   byline: 'KS3 & AQA GCSE Physics · Beta', // shown under the name in the header
-  version: 74,   // shown in the footer; keep it the same as VERSION in sw.js
+  version: 75,   // shown in the footer; keep it the same as VERSION in sw.js
   bugEmail: 'bug@lanerobertlane.space',
 };
 
@@ -94,7 +94,8 @@ const PK = (() => {
   applyBeyond();
 
   function header({ title = '', isHome = false, spec = null, answers = false, specNote = null, back = null } = {}) {
-    document.title = title ? `${title} · ${SITE.name}` : SITE.name;
+    // Each page's <title> is written for search results ("Name · Level · Site"), so keep it if it's there
+    if (!document.title.includes(SITE.name)) document.title = title ? `${title} · ${SITE.name}` : SITE.name;
     // Opened from a Revise link on a quiz's score screen: the back button returns to the score
     const fromQuiz = new URLSearchParams(location.search).has('fromquiz');
     if (fromQuiz) back = { href: `${root}tools/quiz.html`, label: 'Back to my score' };
@@ -160,8 +161,47 @@ const PK = (() => {
       document.addEventListener('webkitfullscreenchange', syncFs);
     }
 
-    if (spec) specPanel(spec, specNote);
+    if (spec) { specPanel(spec, specNote); relatedTools(); }
     footer();
+  }
+
+  // "More on <topic>": links to the tools either side of this one in the catalogue (spec order),
+  // under the spec panel, so students (and search engines) can move on to related tools.
+  function relatedTools() {
+    if (!/\/tools\/[^/]+$/.test(location.pathname)) return;
+    const page = `tools/${location.pathname.split('/').pop().replace(/\.html$/, '')}.html`;
+    const draw = () => {
+      if (typeof TOOLS === 'undefined' || typeof TOPICS === 'undefined' || document.getElementById('related')) return;
+      const base = (t) => t.href.split('#')[0];
+      const mine = TOOLS.find((t) => t.href && base(t) === page);
+      const topic = mine && TOPICS.find((x) => x.id === mine.topic);
+      if (!topic) return;
+      const list = TOOLS.filter((t) => t.href && t.topic === topic.id)
+        .concat(TOOLS.filter((t) => t.href && t.topic !== topic.id && (t.also || []).includes(topic.id)));
+      const at = list.findIndex((t) => base(t) === page);
+      const others = list.filter((t) => base(t) !== page);
+      const before = list.slice(0, at).filter((t) => base(t) !== page).length;
+      const SHOW = 6;
+      const start = Math.max(0, Math.min(before - SHOW / 2, others.length - SHOW));
+      const picks = others.slice(start, start + SHOW);
+      if (!picks.length) return;
+      const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+      const panel = document.createElement('section');
+      panel.className = 'panel related-panel';
+      panel.id = 'related';
+      panel.innerHTML = `<h2>More on ${esc(topic.name)}</h2>
+        <div class="btn-row">${picks.map((t) => `<a class="btn" href="${root}${t.href}">${esc(t.name)}</a>`).join('')}</div>`;
+      const specEl = document.getElementById('spec');
+      if (specEl) specEl.after(panel); else document.querySelector('main').appendChild(panel);
+    };
+    if (typeof TOOLS !== 'undefined') draw();
+    else if (document.querySelector('script[src$="catalogue.js"]')) document.addEventListener('DOMContentLoaded', draw);
+    else {
+      const s = document.createElement('script');
+      s.src = `${root}js/catalogue.js`;
+      s.onload = draw;
+      document.body.appendChild(s);
+    }
   }
 
   function footer() {
