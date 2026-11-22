@@ -233,10 +233,9 @@ function drawDiagram() {
 // ---------- Results ----------
 
 const graph = $('graph'), g = graph.getContext('2d');
-// The axis goes up in steps of 1, 2, 2.5 or 5 (× 10ⁿ), with 6 steps at most
-function axisSteps(max) {
-  for (let p = 10 ** Math.floor(Math.log10(max / 6)); ; p *= 10) for (const m of [1, 2, 2.5, 5]) { const step = m * p, n = Math.ceil(max / step); if (n <= 6) return { step, n }; }
-}
+// The resistance axis is fixed at 0 to 12 000 Ω in steps of 2000, so it doesn't change as readings are added.
+// The highest reading the bench can give is about 10 000 Ω, at 30 cm.
+const AXIS = { step: 2000, n: 6 };
 const resist = (r) => r.V / (r.I / 1000);
 const points = () => state.rows.map((r) => ({ x: r.d, y: resist(r) }));
 // A smooth curve of best fit: ln R = a + b ln d + c (ln d)², by least squares. Like a student, it waits
@@ -278,7 +277,7 @@ function drawGraph() {
   const f = font(), pts = points();
   g.fillStyle = col.surface; g.fillRect(0, 0, GW, GH);
   const L = 84, R = 20, T = 16, B = 58, pw = GW - L - R, ph = GH - T - B;
-  const ax = axisSteps(Math.max(1000, ...pts.map((p) => p.y)) * 1.02), yMax = ax.step * ax.n;
+  const ax = AXIS, yMax = ax.step * ax.n;
   const X = (x) => L + (x / D_MAX) * pw, Y = (y) => T + ph - (y / yMax) * ph;
   g.lineWidth = 1; g.font = `600 15px ${f}`;
   g.textAlign = 'center'; g.textBaseline = 'top';
