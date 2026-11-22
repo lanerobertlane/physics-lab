@@ -239,12 +239,27 @@ function axisSteps(max) {
 }
 const resist = (r) => r.V / (r.I / 1000);
 const points = () => state.rows.map((r) => ({ x: r.d, y: resist(r) }));
-// A smooth curve of best fit: ln R = a + b ln d + c (ln d)², by least squares (a straight line in ln–ln with 2 distances)
+// A smooth curve of best fit: ln R = a + b ln d + c (ln d)², by least squares. Like a student, it waits
+// until the readings show the shape: five or more distances, spread over at least 10 cm of the ruler,
+// with no gap bigger than half that spread. It's only drawn between the readings, never beyond them.
+const FIT_MIN = 5, FIT_SPREAD = 10;
+const distances = (pts) => [...new Set(pts.map((p) => p.x))].sort((a, b) => a - b);
+// Why there's no curve yet, or '' when there's enough
+function notYet(pts) {
+  const xs = distances(pts), more = FIT_MIN - xs.length;
+  if (more > 0) return `Take readings at ${more} more distance${more > 1 ? 's' : ''} to draw the curve of best fit.`;
+  const lo = xs[0], hi = xs[xs.length - 1];
+  if (hi - lo < FIT_SPREAD) return `Your readings are bunched together, between ${lo} cm and ${hi} cm. Spread them out over at least ${FIT_SPREAD} cm of the ruler to draw the curve of best fit.`;
+  for (let i = 1; i < xs.length; i++) {
+    if (xs[i] - xs[i - 1] > (hi - lo) / 2) return `There’s a big gap between ${xs[i - 1]} cm and ${xs[i]} cm. Take a reading in between to draw the curve of best fit.`;
+  }
+  return '';
+}
 function curveFit(pts) {
-  const xs = [...new Set(pts.map((p) => p.x))];
-  if (xs.length < 2) return null;
+  const xs = distances(pts);
+  if (notYet(pts)) return null;
   const rows = pts.map((p) => [1, Math.log(p.x), Math.log(p.x) ** 2, Math.log(p.y)]);
-  const n = xs.length >= 3 ? 3 : 2;
+  const n = 3;
   const A = Array.from({ length: n }, (_, i) => Array.from({ length: n + 1 }, (_, j) => rows.reduce((s, r) => s + r[i] * (j < n ? r[j] : r[3]), 0)));
   for (let i = 0; i < n; i++) {   // Gaussian elimination
     const piv = A[i][i];
@@ -295,9 +310,10 @@ function renderResults() {
     ? `${mA(last.I)} mA = ${amps(last.I)} A<br>Resistance = p.d. ÷ current = ${last.V.toFixed(2)} ÷ ${amps(last.I)} = ${PK.ans(`${ohms(resist(last))} Ω`)}`
     : '';
   const ds = rows.map((r) => r.d), lo = rows[ds.indexOf(Math.min(...ds))], hi = rows[ds.indexOf(Math.max(...ds))];
+  const why = notYet(points()), toGo = why ? ` ${why}` : '';
   $('trend').innerHTML = lo && hi && lo.d !== hi.d
-      ? `From ${lo.d} cm to ${hi.d} cm, the resistance went up from ${PK.ans(`${ohms(resist(lo))} Ω`)} to ${PK.ans(`${ohms(resist(hi))} Ω`)}.`
-      : 'Take readings at five or more distances to draw the curve.';
+      ? `From ${lo.d} cm to ${hi.d} cm, the resistance went up from ${PK.ans(`${ohms(resist(lo))} Ω`)} to ${PK.ans(`${ohms(resist(hi))} Ω`)}.${toGo}`
+      : 'Take readings at five or more distances to draw the curve of best fit.';
   drawGraph();
 }
 $('clear').addEventListener('click', () => { state.rows = []; renderResults(); });
