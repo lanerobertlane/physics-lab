@@ -92,6 +92,7 @@
     'energy#friction': 'Adds friction and air resistance, so some energy is dissipated by heating the surroundings.',
     graph: 'Shows the graph alongside the experiment.',
     'waves#graph': 'Plots how far each particle has moved, so a longitudinal wave can be drawn as a graph like a transverse one.',
+    'waves#particles': 'Shows the waves passing through lots of particles instead of beads on a string and a slinky: a block of particles for the transverse wave, and the air in a tube pushed by a piston for the longitudinal wave.',
     'sky#heat': 'Colours the Earth by how much of the Sun’s energy each square metre receives.',
     hide: 'Hides the answers so you can test yourself.',
     insulate: 'Wraps the block in insulation, so less energy is lost to the surroundings and the result is more accurate.',
