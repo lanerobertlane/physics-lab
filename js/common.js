@@ -4,7 +4,7 @@
 const SITE = {
   name: "Mr Lane's Physics Lab",
   byline: 'KS3 & AQA GCSE Physics · Beta', // shown under the name in the header
-  version: 79,   // shown in the footer; keep it the same as VERSION in sw.js
+  version: 80,   // shown in the footer; keep it the same as VERSION in sw.js
   bugEmail: 'bug@lanerobertlane.space',
 };
 
@@ -96,6 +96,8 @@ const PK = (() => {
   function header({ title = '', isHome = false, spec = null, answers = false, specNote = null, back = null } = {}) {
     // Each page's <title> is written for search results ("Name · Level · Site"), so keep it if it's there
     if (!document.title.includes(SITE.name)) document.title = title ? `${title} · ${SITE.name}` : SITE.name;
+    // Link home as / (not /index.html), the address search engines are told is the home page
+    const home = root;
     // Opened from a Revise link on a quiz's score screen: the back button returns to the score
     const fromQuiz = new URLSearchParams(location.search).has('fromquiz');
     if (fromQuiz) back = { href: `${root}tools/quiz.html`, label: 'Back to my score' };
@@ -103,8 +105,8 @@ const PK = (() => {
     const el = document.createElement('header');
     el.className = isHome ? 'site-header' : 'site-header tool';
     el.innerHTML = `
-      ${isHome ? '' : `<a class="icon-btn" id="pk-back" href="${back ? back.href : `${root}index.html`}" aria-label="${back ? back.label : 'All tools'}">${icons.back}<span class="label">${back ? back.label : 'All tools'}</span></a>`}
-      <a class="brand" href="${root}index.html">
+      ${isHome ? '' : `<a class="icon-btn" id="pk-back" href="${back ? back.href : home}" aria-label="${back ? back.label : 'All tools'}">${icons.back}<span class="label">${back ? back.label : 'All tools'}</span></a>`}
+      <a class="brand" href="${home}">
         <span class="brand-mark" aria-hidden="true">${icons.cradle}</span>
         <span class="brand-text"><span class="brand-name">${SITE.name}</span>${SITE.byline ? `<span class="brand-by">${SITE.byline}</span>` : ''}</span>
       </a>
