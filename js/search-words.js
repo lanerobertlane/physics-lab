@@ -30,6 +30,7 @@ window.SEARCH_WORDS = {
   'Transformers': 'transformer, coil, turns, primary, secondary, step-up, step-down, iron core, voltage, alternating current',
   'Static electricity & electric fields': 'static, charge, charging, balloon, rub, friction, attract, repel, electrons, spark, Van de Graaff, lightning, electric field',
   'Resistance of a wire': 'resistance, wire, length, thickness, ohm, required practical, ammeter, voltmeter',
+  'Conductors & insulators': 'conductor, insulator, conduct, conducts electricity, metal, non-metal, plastic, wood, rubber, glass, paper, graphite, pencil, free electrons, delocalised electrons, electron flow, material test, crocodile clips',
   'Light-dependent resistors (LDRs)': 'ldr, light dependent resistor, light sensor, street light, night light, automatic lights, dark, brightness, lamp, ohm, ammeter, voltmeter',
   'Bar magnet fields': 'magnet, magnets, magnetic field, field lines, compass, plotting compass, north, south, poles, attract, repel, iron filings',
   'Electromagnets & the motor effect': 'electromagnet, solenoid, coil, motor, motors, motor effect, F = B I l, Fleming left hand rule, magnetic field, current, relay',

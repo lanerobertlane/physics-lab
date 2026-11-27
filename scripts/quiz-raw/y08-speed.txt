@@ -4,8 +4,8 @@ SOURCE GRN Science / Year 8 / Physics / Speed
 mc | magnetism | Bar magnet fields | Where is the magnetic field of a bar magnet strongest? | At the centre; At the north pole only; At the south pole only; *At either pole
 mc | forces | Speed & distance–time | What unit do we measure time in, in science? | *Seconds; Minutes; Hours
 mc | forces | Speed & distance–time | What unit do we measure distance in, in science? | Inches; *Metres; Feet; Yards
-short | electricity | Circuit builder | What do we call a material that lets electricity flow through it? | ACCEPT: conductor; a conductor; electrical conductor; conductors
-short | electricity | Circuit builder | What do we call a material that stops electricity flowing through it? | ACCEPT: insulator; an insulator; electrical insulator; insulators
+short | electricity | Conductors & insulators | What do we call a material that lets electricity flow through it? | ACCEPT: conductor; a conductor; electrical conductor; conductors
+short | electricity | Conductors & insulators | What do we call a material that stops electricity flowing through it? | ACCEPT: insulator; an insulator; electrical insulator; insulators
 mc | forces | Speed & distance–time | What is the most accurate way to time something in a lesson? | Clock; *Stopwatch; Watch
 multi | forces | Speed & distance–time | Which would you use to measure a short distance, such as 20 cm? (tick 2) | *Ruler; *Metre stick; Tape measure; Trundle wheel
 

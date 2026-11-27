@@ -244,6 +244,25 @@ window.SPEC_INDEX = [
   ]
  },
  {
+  "page": "conductors",
+  "title": "Conductors & insulators",
+  "course": "physics",
+  "spec": [
+   {
+    "code": "KS3",
+    "text": "Differences in resistance between conducting and insulating components"
+   },
+   {
+    "code": "KS3",
+    "text": "Electric current as a flow of charge, measured in amperes"
+   },
+   {
+    "code": "KS3",
+    "text": "The properties of metals and non-metals"
+   }
+  ]
+ },
+ {
   "page": "density",
   "title": "Density",
   "course": "physics",

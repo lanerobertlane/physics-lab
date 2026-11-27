@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en-GB" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Conductors &amp; insulators · KS3 Physics · Mr Lane's Physics Lab</title>
+  <!-- About this page, for search engines and school web filters -->
+  <meta name="description" content="Clip metals, pencil lead, plastic, wood and more into a circuit to see which conduct, and look inside each one to see why electrons can or can’t flow.">
+  <meta name="rating" content="general">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Robert Lane">
+  <meta name="keywords" content="physics, electricity, conductor, insulator, metal, non-metal, graphite, free electrons, current, lamp, ammeter, education, school, KS3, science, simulation, revision, teacher">
+  <link rel="canonical" href="https://lanerobertlane.space/tools/conductors.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mr Lane’s Physics Lab">
+  <meta property="og:title" content="Conductors &amp; insulators">
+  <meta property="og:description" content="Clip metals, pencil lead, plastic, wood and more into a circuit to see which conduct, and look inside each one to see why electrons can or can’t flow.">
+  <meta property="og:url" content="https://lanerobertlane.space/tools/conductors.html">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:image" content="https://lanerobertlane.space/icons/share.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Mr Lane’s Physics Lab: free interactive physics for KS3 and GCSE">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Conductors & insulators", "description": "Clip metals, pencil lead, plastic, wood and more into a circuit to see which conduct, and look inside each one to see why electrons can or can’t flow.", "url": "https://lanerobertlane.space/tools/conductors.html", "inLanguage": "en-GB", "isAccessibleForFree": true, "isFamilyFriendly": true, "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "Secondary school students (ages 11–16) and their teachers"}, "educationalLevel": ["Key Stage 3"], "about": {"@type": "Thing", "name": "Physics"}, "author": {"@type": "Person", "name": "Robert Lane", "jobTitle": "Physics teacher"}, "publisher": {"@type": "Organization", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}, "learningResourceType": "Interactive simulation", "educationalUse": ["Lesson", "Revision", "Homework"], "isPartOf": {"@type": "WebSite", "name": "Mr Lane’s Physics Lab", "url": "https://lanerobertlane.space/"}}</script>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="Physics Lab">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #bench { aspect-ratio: 800 / 440; }
+    #diagram { width: 100%; max-width: 380px; aspect-ratio: 270 / 160; display: block; margin: 0 auto; }
+    .status { margin: 0; padding: 10px 12px 12px; min-height: 2.6em; border-top: 1px solid var(--border); }
+    .results { width: 100%; border-collapse: collapse; margin-top: 10px; font-variant-numeric: tabular-nums; font-size: .9rem; }
+    .results th, .results td { border: 1px solid var(--border-strong); padding: 4px 6px; text-align: center; }
+    .results th { background: var(--surface-2); }
+    .del { border: 0; background: none; color: var(--muted); font: inherit; cursor: pointer; padding: 2px 6px; }
+    #how ol, #what ul { margin: 0; padding-left: 1.3em; display: grid; gap: 4px; }
+  </style>
+</head>
+<body>
+  <main class="tool-page">
+    <div class="tool-intro">
+      <h1>Conductors &amp; insulators</h1>
+      <p>Which materials let a current flow? Drag a material into the gap in the circuit, watch the lamp and the ammeter, and look inside the material to see what its electrons are doing.</p>
+    </div>
+
+    <div class="tool-layout">
+      <div class="main-col">
+        <div class="panel stage">
+          <canvas id="bench" class="drag" aria-label="A circuit with two cells, a lamp, an ammeter and a gap between two crocodile clips. Below it is a tray of materials: copper wire, a steel nail, aluminium foil, a brass key, pencil lead, a plastic ruler, a lolly stick, a rubber band, a glass rod and paper. Drag or tap a material to put it in the gap. A zoomed-in view shows the inside of the material."></canvas>
+          <p class="note status" id="status" aria-live="polite"></p>
+        </div>
+
+        <div class="panel after-aside">
+          <h2>How it works</h2>
+          <div id="what" class="hide-when-no-answers">
+            <ul>
+              <li><b>Metals are conductors.</b> In a metal, some electrons aren’t held by any one atom. These free electrons can move through the whole metal. When the circuit is complete, the cell pushes them round it, and that flow of charge is the current.</li>
+              <li><b>Most non-metals are insulators.</b> Plastic, wood, rubber and paper are made of non-metal elements. In them, and in glass, each electron stays with its own atom, so nothing can flow and there’s no current.</li>
+              <li><b>Graphite is the exception.</b> It’s a form of carbon, a non-metal, but it has free electrons that can move along its layers. That’s why pencil lead lights the lamp, though it doesn’t conduct as well as a metal, so the lamp is dimmer.</li>
+              <li>Insulators keep us safe: the plastic around wires and plugs stops the current reaching you.</li>
+              <li>The blue dots show electrons, which flow from the negative terminal of the cell, round the circuit, to the positive terminal. Diagrams usually show the current the other way, from + to −. That’s called conventional current.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="panel after-aside">
+          <h2>How to do it for real</h2>
+          <div id="how" class="hide-when-no-answers">
+            <ol>
+              <li>Connect a cell, a lamp and an ammeter in series, with a gap between two crocodile clips.</li>
+              <li>Touch the clips together to check that the lamp lights.</li>
+              <li>Clip each material into the gap. Watch the lamp and read the ammeter.</li>
+              <li>Record whether each material is a metal, and whether it’s a conductor or an insulator.</li>
+            </ol>
+            <p class="note">Use a cell or a low-voltage power supply. Never test materials with mains electricity.</p>
+          </div>
+        </div>
+      </div>
+      <aside>
+        <div class="panel">
+          <h2>Circuit diagram</h2>
+          <canvas id="diagram" aria-label="Circuit diagram: two cells, a gap for the material, a lamp and an ammeter, all in series"></canvas>
+        </div>
+        <div class="panel">
+          <h2>Results</h2>
+          <div class="btn-row">
+            <button class="btn primary" id="rec">＋ Record result</button>
+            <button class="btn" id="clear">Clear</button>
+          </div>
+          <div id="table"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/circuit-symbols.js"></script>
+  <script src="../js/conductors.js"></script>
+  <script src="../js/equations-data.js"></script>
+  <script src="../js/practice-core.js"></script>
+  <script src="../js/quiz-images.js"></script>
+  <script src="../js/quiz-core.js"></script>
+  <script src="../js/quiz-pages/conductors.js"></script>
+  <script src="../js/practice-tab.js"></script>
+</body>
+</html>
